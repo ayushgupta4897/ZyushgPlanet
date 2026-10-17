@@ -1,32 +1,34 @@
 """
-Modal fan-out for the KBONUS background-star transit screen, driven over HTTPS.
+Modal fan-out for the transit screen, driven over HTTPS, code shipped per run.
 
-Why HTTPS endpoints: the Claude Code cloud sandbox cannot speak gRPC (Modal's
-client protocol), so the app is deployed ONCE from a laptop and then controlled
-through three authenticated web endpoints.  Containers only exist while a batch
-is running; the deployment itself costs nothing when idle.
+Why: the Claude Code cloud sandbox cannot speak gRPC (Modal's client protocol), so
+this app is deployed ONCE from a laptop and then controlled through authenticated
+web endpoints.  The search code itself (pipeline/batch_search.py) and the
+pre-registered config are sent in the /start request and stored in a Modal Volume,
+so pipeline changes never require a redeploy.  Containers exist only while a batch
+is running; an idle deployment costs nothing.
 
-One-time deploy (laptop, inside the repo):
+One-time deploy (laptop, inside the repo, branch claude/planet-hunt-playbook):
 
     pip install modal
-    modal token set --token-id ... --token-secret ...      # already done
     export ZP_ENDPOINT_TOKEN='<shared secret from the session>'
     modal deploy pipeline/modal_app.py
-
-    # prints three URLs like https://<workspace>--zyushg-planet-screen-start.modal.run
+    # copy the printed URLs (…--zyushg-planet-screen-start.modal.run etc.) back to the session
 
 Tear-down when the experiments are over:
 
     modal app stop zyushg-planet-screen
 
 Endpoints (all require header  X-ZP-Token: $ZP_ENDPOINT_TOKEN):
-    POST /start   {"run_id": "poolA_full", "start": 1, "stop": 6465}   -> {"call_id": ...}
-    GET  /status?run_id=poolA_full                                      -> progress json
-    GET  /results?run_id=poolA_full&offset=0                            -> JSONL text (append-only)
-    POST /stop    {"call_id": "..."}                                    -> cancels a running batch
+    POST /start   {"run_id": "...", "fnames": [...], "code": {"batch_search.py": "..."}, "config": {...}}
+                  -> {"call_id": "...", "n": N}
+    GET  /status?run_id=...                      -> progress json
+    GET  /results?run_id=...&offset=0            -> JSONL text; header X-Next-Offset
+    POST /stop    {"call_id": "..."}             -> cancels a running batch
 
 Cost: ~90 CPU-s per star (real + inverted BLS) -> 6,465 stars ~ 160 CPU-h,
 roughly US$30-40 at Modal's ~US$0.19/CPU-h; ~1-2 h wall-clock at 100 containers.
+The sandbox-side driver is pipeline/modal_client.py.
 """
 from __future__ import annotations
 
@@ -35,37 +37,48 @@ import os
 
 import modal
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APP_NAME = "zyushg-planet-screen"
+RUNS = "/runs"
 
-image = (
-    modal.Image.debian_slim(python_version="3.12")
-    .pip_install("numpy", "scipy", "astropy", "wotan", "requests", "pandas", "fastapi[standard]")
-    .add_local_dir(os.path.join(ROOT, "pipeline"), remote_path="/root/pipeline")
-    .add_local_file(os.path.join(ROOT, "pipeline", "prereg_poolA.json"), remote_path="/root/prereg.json")
-    .add_local_file(os.path.join(ROOT, "targets", "poolA_kbonus_bg_dwarfs_ranked.csv"), remote_path="/root/targets.csv")
+image = modal.Image.debian_slim(python_version="3.12").pip_install(
+    "numpy", "scipy", "astropy", "wotan", "requests", "pandas", "fastapi[standard]"
 )
-
 app = modal.App(APP_NAME, image=image)
 vol = modal.Volume.from_name("zyushg-planet-runs", create_if_missing=True)
 secret = modal.Secret.from_local_environ(["ZP_ENDPOINT_TOKEN"])
-RUNS = "/runs"
 
 with image.imports():
     from fastapi import HTTPException, Request
     from fastapi.responses import PlainTextResponse
 
 
-@app.function(cpu=2.0, memory=2048, timeout=1800, max_containers=100, retries=1)
-def screen_one(fname: str) -> dict:
+_LOADED: dict[str, object] = {}
+
+
+def _load_pipeline(run_id: str):
+    """Import batch_search.py + config shipped for this run (cached per container)."""
+    if run_id in _LOADED:
+        return _LOADED[run_id]
+    import importlib.util
     import sys
-    sys.path.insert(0, "/root")
-    from pipeline.batch_search import load_config, passes_first_screen, search_star
-    cfg = load_config("/root/prereg.json")
-    res = search_star(fname, cfg, cache_dir="/tmp/kb", keep_fits=False)
+    vol.reload()
+    code_dir = os.path.join(RUNS, run_id, "code")
+    spec = importlib.util.spec_from_file_location(f"batch_search_{run_id}", os.path.join(code_dir, "batch_search.py"))
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = mod
+    spec.loader.exec_module(mod)
+    cfg = mod.load_config(os.path.join(code_dir, "config.json"))
+    _LOADED[run_id] = (mod, cfg)
+    return _LOADED[run_id]
+
+
+@app.function(cpu=2.0, memory=2048, timeout=1800, max_containers=100, retries=1, volumes={RUNS: vol})
+def screen_one(fname: str, run_id: str) -> dict:
+    mod, cfg = _load_pipeline(run_id)
+    res = mod.search_star(fname, cfg, cache_dir="/tmp/kb", keep_fits=False)
     if res.get("ok") and "real" in res:
-        res["pass_real_s1"] = bool(passes_first_screen(res["real"]["s1"], cfg)[0])
-        res["pass_inv_s1"] = bool(passes_first_screen(res["inverted"]["s1"], cfg)[0]) if "inverted" in res else False
+        res["pass_real_s1"] = bool(mod.passes_first_screen(res["real"]["s1"], cfg)[0])
+        res["pass_inv_s1"] = bool(mod.passes_first_screen(res["inverted"]["s1"], cfg)[0]) if "inverted" in res else False
     return res
 
 
@@ -96,7 +109,7 @@ def run_batch(run_id: str, fnames: list[str]) -> dict:
     flush()
     last = time.time()
     with open(out, "a") as fh:
-        for res in screen_one.map(todo, order_outputs=False, return_exceptions=True):
+        for res in screen_one.map(todo, kwargs={"run_id": run_id}, order_outputs=False, return_exceptions=True):
             if isinstance(res, Exception):
                 res = {"fname": "?", "ok": False, "error": repr(res)}
             fh.write(json.dumps(res, default=str) + "\n")
@@ -123,14 +136,16 @@ def _auth(request) -> None:
 @modal.fastapi_endpoint(method="POST")
 def start(body: dict, request: Request):
     _auth(request)
-    import pandas as pd
     run_id = body["run_id"]
-    if body.get("fnames"):
-        fnames = list(body["fnames"])
-    else:
-        df = pd.read_csv("/root/targets.csv")
-        df = df[(df["rank"] >= int(body.get("start", 1))) & (df["rank"] <= int(body.get("stop", 100)))]
-        fnames = df["fname"].tolist()
+    fnames = list(body["fnames"])
+    code_dir = os.path.join(RUNS, run_id, "code")
+    os.makedirs(code_dir, exist_ok=True)
+    for name, text in body["code"].items():
+        with open(os.path.join(code_dir, os.path.basename(name)), "w") as fh:
+            fh.write(text)
+    with open(os.path.join(code_dir, "config.json"), "w") as fh:
+        json.dump(body["config"], fh)
+    vol.commit()
     call = run_batch.spawn(run_id, fnames)
     return {"call_id": call.object_id, "run_id": run_id, "n": len(fnames)}
 
@@ -166,31 +181,3 @@ def stop(body: dict, request: Request):
     _auth(request)
     modal.FunctionCall.from_id(body["call_id"]).cancel()
     return {"cancelled": body["call_id"]}
-
-
-@app.local_entrypoint()
-def main(start: int = 1, stop: int = 100, run_id: str = "poolA_modal"):
-    """Laptop-only alternative: `modal run pipeline/modal_app.py --start 1 --stop 300 --run-id poolA_pilot`
-    streams results straight into runs/<run-id>/results.jsonl on the laptop."""
-    import pandas as pd
-    df = pd.read_csv(os.path.join(ROOT, "targets", "poolA_kbonus_bg_dwarfs_ranked.csv"))
-    df = df[(df["rank"] >= start) & (df["rank"] <= stop)]
-    run_dir = os.path.join(ROOT, "runs", run_id)
-    os.makedirs(run_dir, exist_ok=True)
-    out = os.path.join(run_dir, "results.jsonl")
-    done = {json.loads(l)["fname"] for l in open(out)} if os.path.exists(out) else set()
-    todo = [f for f in df["fname"].tolist() if f not in done]
-    print(f"{len(todo)} stars to screen on Modal (run {run_id})")
-    n = npr = npi = 0
-    with open(out, "a") as fh:
-        for res in screen_one.map(todo, order_outputs=False, return_exceptions=True):
-            if isinstance(res, Exception):
-                res = {"fname": "?", "ok": False, "error": repr(res)}
-            fh.write(json.dumps(res, default=str) + "\n")
-            fh.flush()
-            n += 1
-            npr += bool(res.get("pass_real_s1"))
-            npi += bool(res.get("pass_inv_s1"))
-            if n % 25 == 0:
-                print(f"  {n}/{len(todo)} done; first-screen pass real={npr} inverted={npi}")
-    print(f"done: {n} stars; real passes {npr}, inverted passes {npi} -> {out}")
