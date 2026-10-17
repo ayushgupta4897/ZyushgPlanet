@@ -63,7 +63,7 @@ def _flatten(t, y, window, mask=None):
     from wotan import flatten
     kw = dict(method="biweight", window_length=window, break_tolerance=0.5, return_trend=True, edge_cutoff=0.0)
     if mask is not None:
-        flat, trend = flatten(t, y, transit_mask=mask, **kw)
+        flat, trend = flatten(t, y, mask=mask, **kw)
     else:
         flat, trend = flatten(t, y, **kw)
     return flat, trend
