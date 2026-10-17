@@ -192,6 +192,12 @@ def run(fname, period, t0_bjd, dur_h, ra, dec, tpforg, out, K=48, seed=1, max_qu
                        "strongest_alternative": worst[0], "strongest_alternative_dchi2_over_target": worst[1],
                        "verdict_reason": f"{len(rows)} seasons, {sum(r['n_events'] for r in rows)} events: null-target {d_null:.0f}, best-alt-target {d_alt:.0f}"}}
     json.dump(res, open(os.path.join(out, "pixel_season.json"), "w"), indent=1, default=lambda o: float(o) if isinstance(o, np.floating) else str(o))
+    arrs = {}
+    for j, (season, im, snr, (tx, ty), nbs) in enumerate(imgs):
+        arrs[f"s{j}_image"] = im.astype(np.float32); arrs[f"s{j}_snr"] = snr.astype(np.float32)
+        arrs[f"s{j}_target"] = np.array([tx, ty], np.float32); arrs[f"s{j}_neighbours"] = np.array(nbs, np.float32).reshape(-1, 2)
+        arrs[f"s{j}_season"] = np.array([-1 if season is None else int(season)])
+    np.savez_compressed(os.path.join(out, "season_maps.npz"), **arrs)
     try:
         import matplotlib
         matplotlib.use("Agg")
