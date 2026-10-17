@@ -12,7 +12,7 @@ Submitting is public: RNAAS publishes within about 72 hours of acceptance, index
 - [ ] Recommended: ask one professional astronomer to read the note first (`docs/06-publishing-and-community.md` §6 lists who and how). Kuber's note was declined at moderation within 11 hours.
 
 ## 2. Archive the data
-- [ ] Bundle already built for Aayush Gupta; add an ORCID if you have one: `python papers/rnaas/build_zenodo.py --orcid 0000-...`.
+- [x] Bundle built for Aayush Gupta (ORCID 0009-0006-1165-0828).
 - [ ] On zenodo.org: New upload, choose Dataset, upload `papers/rnaas/zenodo/*.zip`, copy title, description, license and keywords from `papers/rnaas/zenodo/.zenodo.json`, then **Reserve DOI**.
 - [ ] Publish the Zenodo record when you submit (the DOI must resolve for the moderator).
 
@@ -20,7 +20,7 @@ Submitting is public: RNAAS publishes within about 72 hours of acceptance, index
 ```sh
 . .venv/bin/activate
 python papers/rnaas/build_note.py --doi "10.5281/zenodo.NNNNNNN" \
-    [--orcid 0000-0000-0000-0000] [--affiliation "Independent researcher, City, Country"]   # author and email already set
+    [--affiliation "Independent researcher, City, Country"]   # author, email and ORCID already set
 ```
 - [ ] Check `papers/rnaas/build/note.pdf` again; put the DOI into `cover_letter.txt`.
 

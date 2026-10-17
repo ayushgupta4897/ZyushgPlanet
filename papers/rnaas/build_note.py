@@ -13,7 +13,7 @@ import subprocess
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--author", default="Aayush Gupta")
-ap.add_argument("--orcid", default="")
+ap.add_argument("--orcid", default="0009-0006-1165-0828")
 ap.add_argument("--affiliation", default="Independent researcher")
 ap.add_argument("--email", default="ayushgupta4897@gmail.com")
 ap.add_argument("--doi", default="[Zenodo DOI to be added]")

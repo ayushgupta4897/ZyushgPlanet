@@ -16,7 +16,7 @@ import zipfile
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--author", default="Aayush Gupta")
-ap.add_argument("--orcid", default="")
+ap.add_argument("--orcid", default="0009-0006-1165-0828")
 ap.add_argument("--affiliation", default="Independent researcher")
 a = ap.parse_args()
 root = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
