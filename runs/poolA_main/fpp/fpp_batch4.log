@@ -84,3 +84,14 @@ light curve: 110 binned points from 1404 cadences; flux_err 204 ppm
 The current archive release 3.15 contains two breaking changes. Please see https://www.cosmos.esa.int/web/gaia/news#GACSrelease315 for details. In case of questions or feedback, please consult the Gaia helpdesk at https://www.cosmos.esa.int/web/gaia/gaia-helpdesk.
 INFO: Query finished. [astroquery.utils.tap.core]
 Getting TPF for sector 4
+Getting TPF for sector 5
+Getting TPF for sector 6
+Getting TPF for sector 7
+Estimated missing stellar parameters for 14 of 34 stars from photometry. See the 'params_estimated' column of the .stars dataframe.
+TRICERATOPS target row 0: TIC 270864056 Tmag 15.55 Teff 4614.0 R 0.760711 M 0.73 plx 1.1593; 34 TIC stars within 10 px; build 18s
+row-0 offset from Gaia position: 0.15 arcsec (must be < 1)
+stars that could host the dip (tdepth = eclipse depth they would need):
+   TIC 270864056 Tmag 15.55 fluxratio 0.6878 tdepth 0.0010
+   TIC 270864061 Tmag 14.39 fluxratio 0.3100 tdepth 0.0021
+   TIC 1880854624 Tmag 18.97 fluxratio 0.0018 tdepth 0.3605
+   neighbour TIC 270864061: {"TIC": 270864061, "Tmag": 14.393, "fluxratio": 0.3100374286362366, "required_depth": 0.002109875148357679, "excluded": true, "lc_used": "kic-006699878", "note": "235 in-transit cadences", "measured_depth_ppm": -56.35344459009595, "measured_err_ppm": 22.916561305525548, "exclusion_sigma": 94.52677319548212, "why": "own light curve at the ephemeris: -56 +- 23 ppm vs 2110 ppm required (95 sigma)"}
