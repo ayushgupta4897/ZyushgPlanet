@@ -117,8 +117,24 @@ def pixel_vet(fname, period, t0_bjd, dur_h, ra, dec, tpforg, out_dir, make_plot=
             m, ne = event_diff_map([tc + shift for tc in tcs])
             if ne >= 2:
                 rand_maps.append(m)
-        sig_map = np.nanstd(np.array(rand_maps), axis=0) if len(rand_maps) >= 8 else np.full((ny, nx), np.nan)
+        if len(rand_maps) >= 8:
+            sig_map = np.nanstd(np.array(rand_maps), axis=0)
+        else:
+            # analytic fallback (long periods -> few events per quarter): per-pixel cadence scatter
+            # propagated through the local in/out differencing and averaged over events
+            cad_std = np.nanstd(cube, axis=0)
+            fac = []
+            for tc in tcs:
+                inm = np.abs(t - tc) < 0.5 * D
+                outm = (np.abs(t - tc) > 0.75 * D) & (np.abs(t - tc) < 3.0 * D)
+                if inm.sum() >= 2 and outm.sum() >= 6:
+                    fac.append(1.0 / inm.sum() + 1.0 / outm.sum())
+            sig_map = cad_std * np.sqrt(np.mean(fac)) / np.sqrt(len(fac)) if fac else np.full((ny, nx), np.nan)
+        sig_map = np.where(valid_px & np.isfinite(sig_map) & (sig_map > 0), sig_map, np.nan)
         snr_map = diff / sig_map
+        if not np.isfinite(snr_map).any():
+            rows.append({"quarter": q, "error": "no usable noise map"})
+            continue
         # pixel coordinates of target and neighbours through the TPF WCS
         w = tpf.wcs
         px_t = w.all_world2pix([[ra, dec]], 0)[0]
