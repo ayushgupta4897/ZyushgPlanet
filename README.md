@@ -10,9 +10,11 @@ controls that must pass, and ephemeris matching against every known object.
 Kepler targets and have no published transit search, has been screened (6,365 on Modal, 100
 locally; 31 had no usable cadences). First screen: 448 real vs 97 inverted passes. Stage 2:
 11 survivors under the registered v1.4 rules, 23 under the post-hoc v1.5 rules, 22 under v1.7 (all reported).
-Pixel localisation puts 7 on target. The independent re-derivation + red-team pass has cleared four so far,
-two of them candidate-grade pending a TRICERATOPS run (`docs/10`); the remaining batches are running.
-Nothing has been called a candidate.
+Pixel localisation puts 7 on target. After independent re-derivation, red-team review, deep runs and a
+documented TRICERATOPS run, two signals meet this repo's definition of *candidate* (kic-006699887, FPP 2.4 %;
+kic-003831969, FPP 2.7 %; NFPP 0; evidence packs under `candidates/`). Neither is below the 1.5 % validation
+line, which needs high-resolution imaging. Seven other survivors were killed by the red team as post-gap
+ramps, saturated-neighbour artefacts, a same-channel eclipsing binary and a background EB (`docs/10`).
 
 ## Read in this order
 
@@ -48,6 +50,7 @@ Nothing has been called a candidate.
 | `scripts/incremental_vet.sh` | Fetch-triage-vet loop used while a Modal batch runs |
 | `pipeline/run.py` (+ `fetch/prep/search/vet/report.py`) | Deep single-target reproduction (used on KIC 5689121) |
 | `runs/<run-id>/` | Results, logs, triage tables; `runs/controls/` are the positive controls |
+| `pipeline/fpp_triceratops.py`, `scripts/build_evidence_pack.py` | TRICERATOPS false-positive probability (Kepler mode) and the evidence-pack builder (`candidates/<fname>/`, SHA-256 manifest) |
 
 ```sh
 uv venv .venv && . .venv/bin/activate && uv pip install -r requirements.txt
