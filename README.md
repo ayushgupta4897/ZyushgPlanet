@@ -14,6 +14,7 @@ the Kepler pipeline nor anyone else has searched, is being screened (ranks 1-100
 
 | Doc | What it is |
 |---|---|
+| `docs/00-executive-summary.md` | One page: what Kuber found, what we built, what we found, how close |
 | `docs/01-anatomy-of-kubers-discovery.md` | What actually happened with KIC 5689121, from his evidence repo and our own archive queries |
 | `docs/01b-kuber-method-verified.md` | His pipeline line by line, every count re-derived |
 | `docs/02-landscape-and-open-ground.md` | The October-2026 wave (Rabtsevich, Chopra, eumemic, Kuber and eight more), what each covered, verified open-ground ranking |
