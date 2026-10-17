@@ -252,7 +252,7 @@ def empirical_depth(t, y, w, P, t0, dur, sel=None, n_rand=3000, avoid=None):
     }
 
 
-def per_event(t, y, w, P, t0, dur):
+def per_event(t, y, w, P, t0, dur, qarr):
     """Per-epoch local depth: in-box weighted mean vs weighted mean of +-3 dur either
     side of the box within the same epoch."""
     ep = np.round((t - t0) / P).astype(int)
@@ -286,7 +286,7 @@ def per_event(t, y, w, P, t0, dur):
             "depth_err_formal_ppm": float(loc_sig / np.sqrt(inb.sum()) * 1e6) if np.isfinite(loc_sig) else None,
             "min_in_flux_ppm": float((1 - yy[inb].min()) * 1e6),
             "gap_dist_d": gap_dist,
-            "quarter": int(np.round(np.median(QUARTER_LOOKUP[s]))),
+            "quarter": int(np.round(np.median(qarr[s]))),
         })
     return rows
 
@@ -306,8 +306,6 @@ def duration_scan(t, y, dy, P, t0):
     """Depth SNR vs duration at fixed P (t0 free within +-0.1 d)."""
     durs = np.arange(0.02, 0.5, 0.01)
     bls = BoxLeastSquares(t, y, dy=dy)
-    res = bls.power([P], durs, objective="snr", oversample=20)
-    # astropy returns best duration only; scan manually with compute_stats
     out = []
     for d in durs:
         st = bls.compute_stats(P, d, t0)
@@ -330,7 +328,6 @@ if __name__ == "__main__":
     # ---- PSF flux ----
     t, y_raw, ye, q = load("FLUX")
     y, keep, sig_q = detrend(t, y_raw, q, window=1.0)
-    QUARTER_LOOKUP = q
     results["n_cadences_quality0"] = int(len(t))
     results["n_after_positive_clip"] = int(keep.sum())
     results["baseline_d"] = float(t.max() - t.min())
@@ -408,7 +405,7 @@ if __name__ == "__main__":
     results["per_year"] = per_year
 
     # ---- per event ----
-    ev = per_event(tk, yk, wk, P, t0, dur)
+    ev = per_event(tk, yk, wk, P, t0, dur, qk)
     results["events"] = ev
     results["n_transits_with_data"] = int(len(ev))
     results["n_transits_ge2pts"] = int(sum(1 for e in ev if e["n_in"] >= 2))
@@ -437,15 +434,12 @@ if __name__ == "__main__":
     ys, keeps, sigs = detrend(ts, ys_raw, qs, window=1.0)
     ws = 1 / sigs[keeps] ** 2
     sap = empirical_depth(ts[keeps], ys[keeps], ws, P, t0, dur, avoid=[P / 2])
-    sap_ev = per_event(ts[keeps], ys[keeps], ws, P, t0, dur) if False else None
     results["sap_box"] = sap
     results["sap_per_quarter_scatter_ppm"] = {int(qq): float(1e6 * sigs[qs == qq][0]) for qq in np.unique(qs)}
     if sap["depth_ppm"] and prim["depth_ppm"]:
         results["sap_over_psf_depth_ratio"] = float(sap["depth_ppm"] / prim["depth_ppm"])
     # SAP per-event (for the figure/table)
-    QUARTER_LOOKUP = qs[keeps]
-    results["sap_events"] = per_event(ts[keeps], ys[keeps], ws, P, t0, dur)
-    QUARTER_LOOKUP = qk
+    results["sap_events"] = per_event(ts[keeps], ys[keeps], ws, P, t0, dur, qs[keeps])
 
     # ---- also: depth on PSF_FLAT_FLUX column (the HLSP's own flattened PSF flux) ----
     try:

@@ -1,0 +1,44 @@
+{
+ "fname": "kic-003831969",
+ "recovered_blind": true,
+ "agrees_with_pipeline": true,
+ "disagreements": [
+  "Empirical SNR: mine 19.6 vs pipeline 23.8. The depths agree (1009 vs 997 ppm); the difference is the noise estimator: my random-phase-box scatter is 51 ppm, the pipeline's box_noise is 42 ppm (20% smaller). The pipeline SNR is the more optimistic of the two.",
+  "Duration: box durations agree (3.75 h both), but my free trapezoid fit gives T14 = 4.29 +/- 0.25 h, slightly above the pipeline's t14_max = 4.17 h for the assumed Rstar = 0.83 Rsun (ratio 1.03 +/- 0.06). The pipeline's duration_ratio of 0.90 used the box duration; with T14 the signal sits at the plausibility edge, i.e. a central transit of a star at least as large as assumed, or an eccentric orbit, or a different host.",
+  "Per-event depth scatter: both analyses find chi2 about a constant depth far above dof (mine 220/85, pipeline 195/85): per-event depths scatter 1.6x more than white-noise errors predict. The global empirical error (51 ppm) does not include this excess, so the quoted depth errors from both analyses may be ~30-60% underestimated. Not a disagreement with the pipeline, but a shared caveat the vet.json does not flag.",
+  "t0: mine BKJD 144.28244 (BLS fine scan) vs pipeline 144.28486, a 3.5 min offset; consistent within my ~5.5 min t0 error (plus period-propagation to the first epoch).",
+  "Per-year depths: my Kepler-year partition gives 1002/1188/962/901 ppm (chi2 3.8/3, consistent with constant); the pipeline's event-quartile partition gives 1015/1234/820/814. Same pattern (second year deepest, later data shallower) but the pipeline's last two quartiles are lower than my years 3-4; partition-dependent, not a conflict.",
+  "Blind BLS SDE is not comparable: vet.json carries no stage-1 SDE (only TLS SDE 13.3, a different statistic); my own definition gives 52.6 for the real data and 9.5 for the inverted-flux null.",
+  "The pipeline performed no SAP_FLUX measurement; mine (678 +/- 41 ppm, SAP/PSF = 0.67 +/- 0.05) is new information, not a disagreement."
+ ],
+ "depth_ppm": 1009.4,
+ "depth_err_ppm": 51.4,
+ "duration_h": 3.75,
+ "empirical_snr": 19.64,
+ "n_transits": 86,
+ "odd_even_sigma": 0.32,
+ "per_year_depths_ppm": [
+  1001.7,
+  1187.9,
+  961.8,
+  900.9
+ ],
+ "period_d": 15.31336,
+ "sde": 52.6,
+ "secondary_ppm": -3.8,
+ "secondary_sigma": -0.08,
+ "t0_bjd": 2454977.28244,
+ "sap_vs_psf_depth": "PSF (FLUX) box depth 1009 +/- 51 ppm; SAP_FLUX box depth 678 +/- 41 ppm at the same ephemeris, duration and detrending; ratio SAP/PSF = 0.67 +/- 0.05 (median SAP/PSF flux level = 1.26, i.e. the 4-pixel aperture carries ~26% more light than the PSF flux). The dip is clearly present in both flux products and is WEAKER in the contaminated aperture, as expected if it originates in the target's PSF and is diluted by neighbour light in the aperture (expected ratio ~0.6-0.76 depending on whether one trusts crowdsap=0.76 or the measured 1.26 flux ratio; 0.67 sits inside that range). A ratio > 1 would have pointed to a neighbour that is in the aperture but excluded from the PSF fit; that is not seen. This is a weak discriminant (it cannot exclude a source blended inside the PSF), so pixel-level localisation remains the decisive test.",
+ "files_written": [
+  "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-003831969/rederive/rederive_kic003831969.py",
+  "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-003831969/rederive/results.json",
+  "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-003831969/rederive/fold.png",
+  "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-003831969/rederive/events.csv",
+  "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-003831969/rederive/comparison.json",
+  "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-003831969/rederive/period_err_scan.py",
+  "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-003831969/rederive/trapezoid_free_ephemeris.py",
+  "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-003831969/rederive/finalize_compare.py",
+  "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-003831969/rederive/run.log"
+ ],
+ "narrative_markdown": "## Independent re-derivation: kic-003831969 (Gaia DR3 2100154070473374976, TPF host KIC 3831977)\n\n**Scope.** Written from scratch with numpy/scipy/astropy; nothing under `pipeline/` was imported or read before my numbers existed. All my numbers trace to `runs/poolA_main/adversarial/kic-003831969/rederive/results.json` (script `rederive_kic003831969.py`, log `run.log`); pipeline numbers are quoted from `runs/poolA_main/vet/kic-003831969/vet.json` (run id poolA_main). Candidate language throughout: this is a first-screen/stage-2 *signal*, not a planet.\n\n**Data and detrending.** `LIGHTCURVE_STITCHED`, `SAP_QUALITY == 0` (59,115 of 64,806 cadences), per-quarter median normalisation, time-aware 1.0 d running median with iterative 4-sigma upward clipping (58,998 points kept; robust sigma 1298 ppm on PSF flux; baseline 1459.5 d, BKJD 131.5-1591.0).\n\n**Blind BLS 1-50 d (astropy, own duration-matched frequency grid, 205,543 periods, durations 2-10 h).** Top peak P = 15.31329 d, SDE = 52.6 (own definition: baseline-subtracted likelihood power, (max-mean)/std; raw 46.1). Peaks 2 and 3 are the P/2 and 2P aliases (7.65675 d, SDE 28.2; 30.6267 d, SDE 26.8). The pipeline period is recovered blind. The identical search on the inverted flux (2-f) tops out at SDE 9.5 at 1.059 d.\n\n**Ephemeris (after masked re-detrend).** P = 15.31336 d; period error 9.4e-5 d from a trapezoid fit with P and t0 free (the BLS delta-logL interval of 4.6e-6 d is optimistic because box edges make the surface spiky). t0 (first epoch) = BKJD 144.28244 = BJD 2454977.28244, +/- 5.5 min at the reference epoch BKJD 864.007.\n\n**Depth, shape, duration.** Box depth 1009 +/- 51 ppm (error = std of 3000 random-phase boxes at the same period/duration), empirical SNR 19.6; 602 in-transit points. Trapezoid: full depth 1066 +/- 68 ppm, T14 = 4.29 +/- 0.25 h, T23/T14 = 0.65 (flat-bottomed, not V-shaped; rp/rs ~ 0.033). Best box duration 3.75 h. The 99th percentile of random-box 'depths' is 104 ppm, so the primary is ~10x anything a random phase produces; the deepest non-primary box anywhere in phase is 120 ppm (phase 0.57).\n\n**Consistency tests.** Odd 993 +/- 73 ppm vs even 1026 +/- 74 ppm (0.32 sigma). Secondary at phase 0.5: -4 +/- 48 ppm (-0.08 sigma). Per Kepler year: 1002 +/- 124, 1188 +/- 116, 962 +/- 103, 901 +/- 97 ppm (chi2 3.8 for 3 dof). 86 transits with >= 50% in-transit coverage out of 96 epochs in the baseline; 91% of events have positive local depth; single-event dominance 0.076 (no one event carries the detection). Per-event depths correlate at 0.97 with the pipeline's events.csv (mean difference -7 ppm).\n\n**Dilution check (SAP vs PSF).** SAP_FLUX depth 678 +/- 41 ppm; SAP/PSF = 0.67 +/- 0.05. The dip is weaker in the contaminated aperture, as expected for a source inside the target's PSF diluted by neighbour light (expected ~0.6-0.76); a neighbour in the aperture but outside the PSF fit would give > 1. Weak discriminant; pixel localisation remains decisive.\n\n**Agreement with the pipeline.** P (15.31336 vs 15.31335), box depth (1009 vs 997 ppm), box duration (3.75 vs 3.75 h), odd/even (0.3 vs 0.5 sigma), secondary (-4 vs +1 ppm), n transits (86 vs 86) and the per-event pattern all agree within 1 sigma. I therefore confirm the pipeline's P, depth and duration.\n\n**Honest caveats / differences.**\n1. My empirical SNR is 19.6, not 23.8: same depth, but my random-phase noise (51 ppm) is 20% larger than the pipeline's box_noise (42 ppm). Quote the conservative one.\n2. T14 from the free trapezoid (4.29 +/- 0.25 h) is marginally above the pipeline's t14_max (4.17 h) for Rstar = 0.83 Rsun; the box-based duration ratio (0.90) hides this. The duration is at the plausibility edge for the assumed host, which should be stated in any write-up.\n3. Both analyses find excess per-event depth scatter (reduced chi2 ~2.3-2.6), so depth errors from white-noise or random-box estimators are probably underestimated by tens of percent.\n4. Later data are shallower in both partitions (my years 3-4: ~930 ppm; pipeline quartiles 3-4: ~820 ppm). Statistically consistent with constant depth in my partition, but worth watching.\n5. The pipeline made no SAP measurement; the SAP/PSF ratio above is new.\n\n**Not done here (outside this step):** no download of the TPF host KIC 3831977's own KBONUS light curve (a fold of the host at this ephemeris would be a cheap additional contamination test), no TRICERATOPS, no evaluation of the pixel-level result."
+}

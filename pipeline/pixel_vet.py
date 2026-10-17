@@ -67,6 +67,14 @@ def _load_rules(cfg_path):
             "nb_px": c.get("neighbour_search_px_outside_stamp", 2.0), "nboot": c.get("bootstrap_n", 200)}
 
 
+def _load_rules_v16():
+    try:
+        c = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "pipeline", "prereg_poolA.json")))["pixel_localisation"]["v16_chi2_rule"]
+    except Exception:  # noqa: BLE001
+        c = {}
+    return {"min_q": c.get("min_quarters", 5), "d_null": c.get("delta_chi2_vs_null_min", 25.0), "d_alt": c.get("delta_chi2_vs_best_alternative_min", 25.0)}
+
+
 def pixel_vet(fname, period, t0_bjd, dur_h, ra, dec, tpforg, out_dir, make_plot=True, max_quarters=None,
               force_analytic=False, cfg_path=None):
     import lightkurve as lk
@@ -184,8 +192,11 @@ def pixel_vet(fname, period, t0_bjd, dur_h, ra, dec, tpforg, out_dir, make_plot=
             px_n = w.all_world2pix([[n["ra"], n["dec"]]], 0)[0]
             near = (-rules["nb_px"] <= px_n[0] < nx + rules["nb_px"]) and (-rules["nb_px"] <= px_n[1] < ny + rules["nb_px"])
             is_target = np.hypot(px_n[0] - px_t[0], px_n[1] - px_t[1]) < 0.3
+            c2n = None
+            if near and not is_target:
+                c2n, _ = chi2_fit(np.exp(-0.5 * ((xx - px_n[0]) ** 2 + (yy - px_n[1]) ** 2) / 0.9**2))
             nb.append({"source_id": n["source_id"], "G": n["G"], "px": [float(px_n[0]), float(px_n[1])], "near_stamp": bool(near),
-                       "is_target": bool(is_target), "deficit_dist_arcsec": dist(px_n[0], px_n[1], cx, cy)})
+                       "is_target": bool(is_target), "deficit_dist_arcsec": dist(px_n[0], px_n[1], cx, cy), "chi2_gauss_at_source": c2n})
         d_t = dist(px_t[0], px_t[1], cx, cy)
         others = [x["deficit_dist_arcsec"] for x in nb if x["near_stamp"] and not x["is_target"] and x["deficit_dist_arcsec"] is not None]
         d_nb = min(others) if others else None
@@ -195,7 +206,11 @@ def pixel_vet(fname, period, t0_bjd, dur_h, ra, dec, tpforg, out_dir, make_plot=
         off_q = bool(conclusive and sig_arcsec is not None and d_t > 2 * sig_arcsec and d_nb is not None and d_nb < d_t)
         aperture = tpf.pipeline_mask if tpf.pipeline_mask is not None else valid_px
         ap = aperture & valid_px
+        alt = [x["chi2_gauss_at_source"] for x in nb if x["chi2_gauss_at_source"] is not None] + [chi2A]
+        chi2_best_alt = float(min(alt))
+        best_alt_name = "scaled_image" if chi2_best_alt == chi2A else [x["source_id"] for x in nb if x["chi2_gauss_at_source"] == chi2_best_alt][0]
         row = {"quarter": q, "n_events": nev, "n_cadences": int(len(t)), "stamp_shape": [int(ny), int(nx)], "n_valid_px": int(valid_px.sum()),
+               "chi2_best_alternative": chi2_best_alt, "best_alternative": best_alt_name,
                "target_px": [float(px_t[0]), float(px_t[1])], "target_at_edge_or_outside": bool(edge_flag),
                "noise_method": noise_method, "n_random_maps": len(rand_maps),
                "deficit_centroid_px": [cx, cy], "centroid_bootstrap_sigma_px": sig_cent_px, "n_bootstrap": len(bxs), "n_sig_pixels": n_sig,
@@ -228,13 +243,34 @@ def pixel_vet(fname, period, t0_bjd, dur_h, ra, dec, tpforg, out_dir, make_plot=
             "median_depth_in_aperture_ppm": float(np.median([r["depth_in_aperture_ppm"] for r in concl]))})
     n = len(concl)
     if n >= rules["min_q"] and summ["n_on_target_quarters"] / n >= rules["frac"]:
-        verdict = "on-target"
+        cverdict = "on-target"
     elif n >= rules["min_q"] and summ["n_offset_quarters"] / n >= rules["frac"]:
+        cverdict = "offset"
+    else:
+        cverdict = "inconclusive"
+    summ["centroid_verdict_v15"] = cverdict
+    summ["centroid_verdict_reason"] = f"{summ['n_on_target_quarters']} on-target and {summ['n_offset_quarters']} offset of {n} conclusive quarters ({summ['n_edge_or_outside']} edge/outside)"
+    # v1.6 chi-square model comparison (does not need a centroid; works at stamp edges)
+    qq = [r for r in allq if r.get("n_events", 0) >= 2 and np.isfinite(r.get("chi2_gauss_at_target", np.nan))]
+    d_null = float(sum(r["chi2_null"] - r["chi2_gauss_at_target"] for r in qq))
+    d_alt = float(sum(r["chi2_best_alternative"] - r["chi2_gauss_at_target"] for r in qq))
+    worst_alt = None
+    if qq:
+        names = {}
+        for r in qq:
+            names[r["best_alternative"]] = names.get(r["best_alternative"], 0.0) + (r["chi2_gauss_at_target"] - r["chi2_best_alternative"])
+        worst_alt = max(names.items(), key=lambda kv: kv[1])
+    r16 = _load_rules_v16()
+    if len(qq) >= r16["min_q"] and d_null >= r16["d_null"] and d_alt >= r16["d_alt"]:
+        verdict = "on-target"
+    elif len(qq) >= r16["min_q"] and d_alt <= -r16["d_alt"]:
         verdict = "offset"
     else:
         verdict = "inconclusive"
-    summ["verdict"] = verdict
-    summ["verdict_reason"] = f"{summ['n_on_target_quarters']} on-target and {summ['n_offset_quarters']} offset of {n} conclusive quarters ({summ['n_edge_or_outside']} edge/outside; rules: >= {rules['min_q']} conclusive, >= {rules['frac']:.0%})"
+    summ.update({"verdict": verdict, "verdict_rule": "v1.6 chi2 model comparison", "n_quarters_chi2": len(qq),
+                 "sum_dchi2_null_minus_target": d_null, "sum_dchi2_bestalt_minus_target": d_alt,
+                 "strongest_alternative": worst_alt[0] if worst_alt else None, "strongest_alternative_dchi2_over_target": worst_alt[1] if worst_alt else None,
+                 "verdict_reason": f"{len(qq)} quarters: null-target dchi2 {d_null:.0f}, best-alternative-target dchi2 {d_alt:.0f} (rule: both >= {r16['d_alt']:.0f} over >= {r16['min_q']} quarters)"})
     res["summary"] = summ
     if make_plot and imgs:
         _plot(out_dir, imgs, fname, verdict)

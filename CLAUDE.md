@@ -38,7 +38,7 @@ This is an archival exoplanet search. The failure mode we are guarding against i
 - Pool slice: `python -m pipeline.run_batch ... --targets targets/poolA_kbonus_bg_dwarfs_ranked.csv --start A --stop B --run-id <id> --workers 3`
 - Known-object catalogues first: `python -m pipeline.fetch_known` (writes `data/known/manifest.json`).
 - Triage: `python -m pipeline.triage --run-id <id> --config pipeline/prereg_poolA.json`; stage-2: `python -m pipeline.vet_batch --run-id <id> --skip-done`; re-verdict after a rule change: `python scripts/reverdict.py <id>`
-- Pixel localisation: `python scripts/pixel_vet_survivors.py <id> [pixel_v15]` (wraps `pipeline.pixel_vet`)
+- Pixel localisation: `python scripts/pixel_vet_survivors.py <id> pixel_v16` (wraps `pipeline.pixel_vet`)
 - Modal (code shipped per run, HTTPS only): `python -m pipeline.modal_client start|status|fetch|stop`
 - Long jobs run with `nohup ... &` and a log in `runs/<id>/`; they are resumable.
 

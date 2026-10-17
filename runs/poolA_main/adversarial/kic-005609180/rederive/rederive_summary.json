@@ -1,0 +1,284 @@
+{
+  "fname": "kic-005609180",
+  "date": "2026-10-17",
+  "role": "independent re-derivation, no pipeline code, no wotan/TLS; numpy/scipy/astropy only",
+  "inputs": {
+    "fits": "/home/user/ZyushgPlanet/data/kbonus_batch/hlsp_kbonus-bkg_kepler_kepler_kic-005609180_kepler_v1.0_lc.fits",
+    "n_quality0": 60043,
+    "n_used_after_positive_clip": 59871,
+    "baseline_d": 1459.4889559834264
+  },
+  "blind_bls_1_50d": {
+    "n_periods": 85949,
+    "top3": [
+      {
+        "period_d": 21.105601415619702,
+        "power": 25.316540000526206,
+        "sde": 9.681035108825881,
+        "depth_ppm": 445.2412023422111,
+        "duration_h": 3.0,
+        "t0_bkjd": 147.11269928598776
+      },
+      {
+        "period_d": 49.245020857890914,
+        "power": 21.295013419821014,
+        "sde": 7.748132473157203,
+        "depth_ppm": 539.9539514602828,
+        "duration_h": 4.0,
+        "t0_bkjd": 133.00436595265444
+      },
+      {
+        "period_d": 40.529826350604665,
+        "power": 20.611787505916208,
+        "sde": 7.419747432491336,
+        "depth_ppm": 404.9844036842242,
+        "duration_h": 6.0,
+        "t0_bkjd": 159.64186595265443
+      }
+    ],
+    "sde_top": 9.681035108825881,
+    "pipeline_period_is_top_peak": true,
+    "inverted_flux_null_sde_top": 7.739302144846792,
+    "after_0.5d_edge_trim": {
+      "top3": [
+        {
+          "period_d": 45.9798616479703,
+          "sde": 9.6449218065698,
+          "depth_ppm": 430.1578171501589,
+          "duration_h": 6.0
+        },
+        {
+          "period_d": 1.005154918985452,
+          "sde": 8.94707141704028,
+          "depth_ppm": 45.91312198043378,
+          "duration_h": 12.0
+        },
+        {
+          "period_d": 1.062622221029836,
+          "sde": 7.8896839988043315,
+          "depth_ppm": 51.977438408609835,
+          "duration_h": 9.0
+        }
+      ],
+      "near_21.1d": {
+        "period_d": 21.099826947988337,
+        "sde": 4.928848041305235,
+        "depth_ppm": 206.31328042708037,
+        "duration_h": 9.0,
+        "rank_note": "local max within +-200 grid steps of 21.106 d",
+        "n_distinct_peaks_above": 30
+      }
+    },
+    "sap_flux_blind": {
+      "top3": [
+        {
+          "period_d": 1.0020705504278322,
+          "sde": 8.812336465680312,
+          "depth_ppm": 42.44183491228366,
+          "duration_h": 12.0
+        },
+        {
+          "period_d": 2.5762267275035238,
+          "sde": 7.256844270434474,
+          "depth_ppm": 218.79030248626637,
+          "duration_h": 1.0
+        },
+        {
+          "period_d": 10.992864169140379,
+          "sde": 6.861224175428513,
+          "depth_ppm": 259.98443288465006,
+          "duration_h": 3.0
+        }
+      ],
+      "near_21.1d": {
+        "period_d": 19.77871515190228,
+        "sde": 5.19161737495166,
+        "depth_ppm": 558.1698394658127
+      }
+    }
+  },
+  "ephemeris": {
+    "period_d": 21.10648785087916,
+    "t0_bkjd_3.4h_box": 147.07853261932112,
+    "t0_bjd_3.4h_box": 2454980.0785326194,
+    "bls_duration_h": 3.0,
+    "box_snr_preferred_duration_h": 8.0,
+    "duration_note": "box SNR keeps rising to the 8-10 h grid edge; the folded dip is asymmetric (deep ingress side, long shallow tail) because it is dominated by post-gap recovery ramps, so a transit duration is ill-defined"
+  },
+  "depth_3.4h_box_psf": {
+    "all_data_ppm": 483.2872869028337,
+    "all_data_err_ppm": 69.98467875016509,
+    "all_data_snr": 6.905615565202458,
+    "no_gap_edge_epochs_ppm": 233.28833118085868,
+    "no_gap_edge_epochs_err_ppm": 74.45964493650315,
+    "no_gap_edge_snr": 3.1330841206642823,
+    "edge_trimmed_0.5d_ppm": 226.0814553974866,
+    "edge_trimmed_err_ppm": 78.84937400599159,
+    "drop_epochs_4_39_only_ppm": 290.5377342020676,
+    "drop_epochs_4_39_err_ppm": 71.88428536429716
+  },
+  "depth_8h_box_psf": {
+    "all_ppm": 402.58118455505087,
+    "all_err": 54.382738499073135,
+    "no_gap_edge_ppm": 38.715220062712774,
+    "no_gap_edge_err": 47.471697026931444
+  },
+  "odd_even_3.4h": {
+    "odd_ppm": 489.1117421548241,
+    "odd_err": 105.64307987929844,
+    "even_ppm": 475.90979133704803,
+    "even_err": 99.07743125611798,
+    "sigma": 0.0911524855369071
+  },
+  "secondary_3.4h": {
+    "depth_ppm": -11.56175074856769,
+    "sigma": -0.1652040268676723,
+    "deepest_off_primary_box_8h": {
+      "phase": 0.44500000000000006,
+      "depth_ppm": 124.26828237843691,
+      "sigma": 2.4339641263025773
+    }
+  },
+  "per_year_3.4h_psf": [
+    {
+      "year": 1,
+      "depth_ppm": 521.690247915596,
+      "err_ppm": 152.43727693021904,
+      "depth_no_edge_ppm": -27.940085931543734,
+      "err_no_edge_ppm": 149.40870038057176
+    },
+    {
+      "year": 2,
+      "depth_ppm": 314.59213020845755,
+      "err_ppm": 141.2440895031211,
+      "depth_no_edge_ppm": 317.3353096280751,
+      "err_no_edge_ppm": 131.0769838150425
+    },
+    {
+      "year": 3,
+      "depth_ppm": 777.0865609362243,
+      "err_ppm": 118.18255758854504,
+      "depth_no_edge_ppm": 125.14714948153039,
+      "err_no_edge_ppm": 115.25759491242812
+    },
+    {
+      "year": 4,
+      "depth_ppm": 393.9906290618689,
+      "err_ppm": 127.38926932975365,
+      "depth_no_edge_ppm": 452.65753790912913,
+      "err_no_edge_ppm": 131.41823639570524
+    }
+  ],
+  "per_year_3.4h_sap": [
+    {
+      "year": 1,
+      "depth_ppm": -109.53477165576153,
+      "err_ppm": 154.39190000286922
+    },
+    {
+      "year": 2,
+      "depth_ppm": 153.60382206630607,
+      "err_ppm": 141.5438774045663
+    },
+    {
+      "year": 3,
+      "depth_ppm": 156.3802732648112,
+      "err_ppm": 121.16051129110079
+    },
+    {
+      "year": 4,
+      "depth_ppm": 204.21287958816148,
+      "err_ppm": 110.83876227768495
+    }
+  ],
+  "n_transits": {
+    "cov_ge_50pct": 58,
+    "any_data": 63,
+    "epochs_in_baseline": 69
+  },
+  "gap_edge_epochs_within_0.5d": [
+    4,
+    12,
+    14,
+    23,
+    36,
+    39,
+    45,
+    48,
+    49,
+    52,
+    58,
+    63
+  ],
+  "dominant_events": [
+    {
+      "epoch": 4,
+      "psf_ppm": 3965.6005588443177,
+      "sap_ppm": -1092.4420000035796,
+      "sap_err": 465.22336442393646
+    },
+    {
+      "epoch": 36,
+      "psf_ppm": 2445.250243787056,
+      "sap_ppm": 1097.3037849847378,
+      "sap_err": 501.309780243542
+    },
+    {
+      "epoch": 39,
+      "psf_ppm": 4898.998424342604,
+      "sap_ppm": -115.18111024111377,
+      "sap_err": 349.91670594553017
+    }
+  ],
+  "sap_vs_psf": {
+    "sap_all_ppm": 119.02291905596663,
+    "sap_all_err": 71.5442153421795,
+    "sap_no_edge_ppm": 172.02547240269263,
+    "sap_no_edge_err": 75.72782031081432,
+    "ratio_sap_over_psf_all": 0.2462777777969908,
+    "ratio_sap_over_psf_no_edge": 0.73739424313224,
+    "fits_headers": "CROWDSAP=1.0, FLFRCSAP 0.79-0.98, NPIXSAP 2-4 (per-quarter LIGHTCURVE_Qn headers); median SAP/PSF flux = 0.76",
+    "interpretation": "with CROWDSAP=1 an on-target transit must appear in SAP at ~full depth; ratio 0.25+-0.15 on all data says most of the PSF-flux 'depth' is absent from the aperture flux; the three dominant PSF events have SAP counterparts of opposite or null sign (post-gap PSF-model ramps, not dilution)"
+  },
+  "pipeline_vet_json_read_after_own_numbers": {
+    "P": 21.106289,
+    "t0_bkjd": 147.08145,
+    "dur_h": 3.0,
+    "depth_pass2_ppm": 655.8,
+    "formal_err": 114.1,
+    "snr_emp": 12.3,
+    "odd_even_sigma": 0.25,
+    "secondary_sigma": -0.55,
+    "n_events": 61,
+    "event_chi2_const": 87.0,
+    "event_dof": 60,
+    "gap_frac_1d": 0.213,
+    "event_weighted_depth_ppm": 318.5,
+    "tls_sde": 8.8,
+    "stage2_pass_v1.5": true,
+    "stage2_pass_v1.4": false,
+    "pixel_dir": "absent"
+  },
+  "agreement": {
+    "period": "agree (frac diff 9e-6)",
+    "t0": "agree (0.003 d)",
+    "odd_even": "agree (0.09 vs 0.25 sigma)",
+    "secondary": "agree (none)",
+    "n_transits": "agree (58-63 vs 61)",
+    "depth": "DISAGREE in magnitude and meaning: 483+-70 (mine, 3.4 h, all data) vs 656+-114; both inflated by gap-edge ramps; 233+-74 without the 12 gap-edge epochs, 39+-47 at 8 h box",
+    "empirical_snr": "DISAGREE: 6.9 (mine) vs 12.3; 3.1 without gap-edge epochs",
+    "blind_recovery": "top peak only on untrimmed data (SDE 9.7 ~ noise ceiling 9.6); after 0.5 d edge trim 21.1 d has local SDE 4.9 with 30 distinct peaks above it",
+    "sap": "DISAGREE with an astrophysical on-target origin: SAP 119+-72 ppm at the same ephemeris and box"
+  },
+  "verdict": "The 21.106 d first-screen signal in the KBONUS PSF flux of KIC 5609180 is reproduced as the top BLS peak only when post-gap cadences are kept; it is built from 3 post-gap recovery ramps (epochs 4, 36, 39; 2.4-4.9 ppt, exponential ~2 d recovery, opposite sign in SAP) plus a 3-sigma residual that is at the level expected from a 1-50 d search of noise and is absent from a blind BLS of the SAP flux. Not supported as a transit signal by this re-derivation.",
+  "files": [
+    "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005609180/rederive/rederive_kic005609180.py",
+    "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005609180/rederive/rederive_followup.py",
+    "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005609180/rederive/rederive_results.json",
+    "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005609180/rederive/rederive_followup.json",
+    "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005609180/rederive/rederive_box34.json",
+    "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005609180/rederive/fold_rederive.png",
+    "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005609180/rederive/events_raw_psf_vs_sap.png",
+    "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005609180/rederive/followup_periodograms_sap_vs_psf.png"
+  ]
+}
