@@ -2,7 +2,7 @@
 
 Files: `note.tex` (AASTeX 7.0.1, RNAAS option), `figure1.pdf`, `build/note.pdf`, `cover_letter.txt`.
 Every number in the note is filled by `build_note.py` from `report/data.json` and the transit fits; `numbers.json` records them.
-Current count (`word_count.json`): 826 words including title, headers, caption and references (limit 1,500); abstract 94 (limit 150); one figure; no line numbers; first person singular.
+Current count (`word_count.json`): see file; about 810 words including title, headers, caption and references (limit 1,500); abstract 94 (limit 150); one figure; no line numbers; first person singular.
 
 Submitting is public: RNAAS publishes within about 72 hours of acceptance, indexed in ADS, under CC BY 4.0. A decline is also part of the record. Do the steps in order.
 
@@ -13,16 +13,15 @@ Submitting is public: RNAAS publishes within about 72 hours of acceptance, index
 
 ## 2. Archive the data
 - [x] Bundle built for Aayush Gupta (ORCID 0009-0006-1165-0828).
-- [ ] On zenodo.org: New upload, choose Dataset, upload `papers/rnaas/zenodo/*.zip`, copy title, description, license and keywords from `papers/rnaas/zenodo/.zenodo.json`, then **Reserve DOI**.
+- [x] On zenodo.org: New upload, choose Dataset, upload `papers/rnaas/zenodo/*.zip`, copy title, description, license and keywords from `papers/rnaas/zenodo/.zenodo.json`, then **Reserve DOI** (reserved: 10.5281/zenodo.23442225).
 - [ ] Publish the Zenodo record when you submit (the DOI must resolve for the moderator).
 
 ## 3. Finalise the manuscript
 ```sh
 . .venv/bin/activate
-python papers/rnaas/build_note.py --doi "10.5281/zenodo.NNNNNNN" \
-    [--affiliation "Independent researcher, City, Country"]   # author, email and ORCID already set
+python papers/rnaas/build_note.py   # author, email, ORCID and DOI already set
 ```
-- [ ] Check `papers/rnaas/build/note.pdf` again; put the DOI into `cover_letter.txt`.
+- [x] DOI in `note.tex` and `cover_letter.txt`.
 
 ## 4. Submit
 - [ ] AAS Journals portal (https://aas.msubmit.net), journal **Research Notes of the AAS**, article type Research Note.

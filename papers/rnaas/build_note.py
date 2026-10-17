@@ -16,7 +16,7 @@ ap.add_argument("--author", default="Aayush Gupta")
 ap.add_argument("--orcid", default="0009-0006-1165-0828")
 ap.add_argument("--affiliation", default="Independent researcher")
 ap.add_argument("--email", default="ayushgupta4897@gmail.com")
-ap.add_argument("--doi", default="[Zenodo DOI to be added]")
+ap.add_argument("--doi", default="10.5281/zenodo.23442225")
 ap.add_argument("--tectonic", default="/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/tex/tectonic")
 ap.add_argument("--aastex", default="/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/tex/aastex/aastex701.cls")
 a = ap.parse_args()
@@ -34,7 +34,7 @@ def pm(d, nd, scale=1.0):
     return f"{m:.{nd}f}^{{+{p:.{nd}f}}}_{{-{n:.{nd}f}}}"
 
 
-V = {"AUTHORLINE": (f"\\author[{a.orcid}]{{{a.author}}}" if a.orcid else f"\\author{{{a.author}}}"), "AUTHOR": a.author, "EMAIL": a.email, "ORCID": a.orcid, "AFFILIATION": a.affiliation, "DATA_DOI": a.doi,
+V = {"AUTHORLINE": (f"\\author[{a.orcid}]{{{a.author}}}" if a.orcid else f"\\author{{{a.author}}}"), "AUTHOR": a.author, "EMAIL": a.email, "ORCID": a.orcid, "AFFILIATION": a.affiliation, "DATA_DOI": (f"Zenodo, \\dataset[doi:{a.doi}]{{https://doi.org/{a.doi}}}" if a.doi.startswith("10.") else a.doi),
      "n_targets": f"{D['funnel']['targets']:,}", "n_s1_real": D["funnel"]["first_screen_real"], "n_s1_inv": D["funnel"]["first_screen_inverted"],
      "w_pix": ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven"][D["funnel"]["path_pixel_on_target"]],
      "w_pix_l": ["zero", "one", "two", "three", "four", "five", "six", "seven"][D["funnel"]["path_pixel_on_target"]],
