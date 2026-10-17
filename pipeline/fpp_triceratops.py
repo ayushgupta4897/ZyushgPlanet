@@ -126,6 +126,8 @@ def main():
     ap.add_argument("--contrast-curve", default=None, help="text file: separation (arcsec), delta mag; passed to calc_probs")
     ap.add_argument("--contrast-filt", default="Vis", help="TESS, Vis, J, H or K")
     ap.add_argument("--contrast-note", default="", help="provenance of the contrast curve, recorded in the summary")
+    ap.add_argument("--molusc-file", default=None, help="MOLUSC kept-companions CSV (scripts/molusc_run.py); replaces the default bound-companion prior")
+    ap.add_argument("--host-params", default=None, help="CSV with fname, radius_flame, mass_flame (Gaia DR3 FLAME); overrides the TIC radius and mass of the target")
     ap.add_argument("--vet-json", default=None, help="alternative vet.json (e.g. a post-hoc second signal); default runs/<run>/vet/<fname>/vet.json")
     a = ap.parse_args()
 
@@ -155,9 +157,21 @@ def main():
     t_build = time.time()
     tgt = tr.target(ID=int(row.tpforg), sectors=np.array(a.quarters), mission="Kepler", ra=float(row.ra), dec=float(row.dec),
                     lightkurve_cache_dir=os.path.abspath("data/lightkurve_cache"), search_radius=10)
+    host_override = None
+    if a.host_params:
+        hp = pd.read_csv(a.host_params)
+        hp = hp[hp.fname == a.fname]
+        if len(hp) and np.isfinite(hp.radius_flame.iloc[0]) and np.isfinite(hp.mass_flame.iloc[0]):
+            idx0 = tgt.stars.index[0]
+            host_override = {"rad_tic": float(tgt.stars.loc[idx0, "rad"]), "mass_tic": float(tgt.stars.loc[idx0, "mass"]),
+                             "rad": float(hp.radius_flame.iloc[0]), "mass": float(hp.mass_flame.iloc[0]), "source": a.host_params + " (Gaia DR3 FLAME)"}
+            tgt.stars.loc[idx0, "rad"] = host_override["rad"]
+            tgt.stars.loc[idx0, "mass"] = host_override["mass"]
     stars = tgt.stars.copy()
     stars.to_csv(os.path.join(out, "stars_tic.csv"), index=False)
     s0 = stars.iloc[0]
+    if host_override:
+        say(f"host radius/mass overridden: TIC {host_override['rad_tic']:.3f} Rsun / {host_override['mass_tic']:.3f} Msun -> Gaia FLAME {host_override['rad']:.3f} / {host_override['mass']:.3f}")
     say(f"TRICERATOPS target row 0: TIC {int(s0.ID)} Tmag {s0.Tmag:.2f} Teff {s0.Teff} R {s0.rad} M {s0['mass']} plx {s0.plx}; "
         f"{len(stars)} TIC stars within 10 px; build {time.time()-t_build:.0f}s")
     sep0 = 3600 * np.hypot((float(s0.ra) - float(row.ra)) * np.cos(np.radians(float(row.dec))), float(s0.dec) - float(row.dec))
@@ -232,7 +246,7 @@ def main():
         t1 = time.time()
         tgt.calc_probs(time=lc.time.values, flux_0=lc.flux.values, flux_err_0=err, P_orb=P, N=a.N, parallel=a.parallel,
                        verbose=0, exptime=CADENCE_D, nsamples=20, dilution_corrected=True,
-                       contrast_curve_file=a.contrast_curve, filt=a.contrast_filt)
+                       contrast_curve_file=a.contrast_curve, filt=a.contrast_filt, molusc_file=a.molusc_file)
         probs = tgt.probs.copy()
         probs.to_csv(os.path.join(out, f"probs_seed{s}.csv"), index=False)
         runs.append({"seed": 1000 + s, "FPP": float(tgt.FPP), "NFPP": float(tgt.NFPP), "runtime_s": round(time.time() - t1, 1),
@@ -257,6 +271,7 @@ def main():
             "contrast_curve": None if not a.contrast_curve else {"file": a.contrast_curve, "filt": a.contrast_filt, "note": a.contrast_note,
                                                                  "curve": open(a.contrast_curve).read().split("\n")[:40]},
             "vet_json": a.vet_json or f"runs/{a.run_id}/vet/{a.fname}/vet.json",
+            "molusc_file": a.molusc_file, "host_override": host_override,
             "FPP_mean": float(np.mean([r["FPP"] for r in runs])), "FPP_std": float(np.std([r["FPP"] for r in runs])),
             "NFPP_mean": float(np.mean([r["NFPP"] for r in runs])), "NFPP_std": float(np.std([r["NFPP"] for r in runs])),
             "runs": runs,
