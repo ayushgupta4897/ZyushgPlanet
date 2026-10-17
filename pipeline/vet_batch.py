@@ -227,9 +227,60 @@ def vet_one(fname: str, P0: float, D0_h: float, T0_bkjd: float, star: dict, cfg:
         res["ok"] = False
         res["error"] = f"{type(ex).__name__}: {ex}"
     res["runtime_s"] = round(time.time() - t_start, 1)
+    ok2, fails2 = stage2_verdict(res, cfg, both_polarity=bool(star.get("_both_polarity", False)))
+    res["stage2_pass"], res["stage2_fails"] = ok2, fails2
     with open(os.path.join(out_dir, "vet.json"), "w") as fh:
         json.dump(res, fh, indent=1, default=_jd)
     return res
+
+
+def stage2_verdict(r: dict, cfg: dict, both_polarity: bool = False) -> tuple[bool, list[str]]:
+    """Apply the registered stage-2 criteria; returns (passes, list_of_failed_criteria)."""
+    c = cfg.get("stage2_vetting", {})
+    fails = []
+    if not r.get("ok"):
+        return False, ["error"]
+    def g(k):
+        v = r.get(k)
+        return None if v is None or (isinstance(v, float) and not np.isfinite(v)) else v
+    if g("gap_frac_1d") is not None and g("gap_frac_1d") > c.get("gap_frac_1d_max", 1):
+        fails.append("gap_frac")
+    if g("frac_events_positive") is not None and g("frac_events_positive") < c.get("frac_events_positive_min", 0):
+        fails.append("events_positive")
+    d1, d2 = g("depth_pass1_ppm"), g("depth_pass2_ppm")
+    if d1 and d2 and d1 > 0:
+        lo, hi = c.get("depth_pass2_over_pass1_range", [0, 99])
+        if not (lo <= d2 / d1 <= hi):
+            fails.append("depth_pass_ratio")
+    if g("event_chi2_const") is not None and g("event_dof"):
+        if g("event_chi2_const") / max(1, g("event_dof")) > c.get("event_reduced_chi2_max", 99):
+            fails.append("event_chi2")
+    if g("odd_even_sigma") is not None and g("odd_even_sigma") > c.get("odd_even_sigma_max", 99):
+        fails.append("odd_even")
+    if g("secondary_sigma") is not None and g("secondary_sigma") > c.get("secondary_sigma_max", 99):
+        fails.append("secondary")
+    if g("core_to_box_depth_ratio") is not None and g("core_to_box_depth_ratio") < c.get("core_to_box_depth_ratio_min", 0):
+        fails.append("v_shape")
+    if g("ls_amp_over_depth") is not None and g("ls_amp_over_depth") > c.get("ls_amp_over_depth_max", 99):
+        fails.append("variability_amp")
+    if c.get("ls_period_matches_forbidden") and r.get("ls_period_matches"):
+        fails.append("variability_period")
+    if c.get("both_polarity_forbidden") and both_polarity:
+        fails.append("both_polarity")
+    if g("duration_ratio") is not None and g("duration_ratio") > c.get("duration_ratio_max", 99):
+        fails.append("duration")
+    tls = r.get("tls") or {}
+    if isinstance(tls, dict) and "SDE" in tls:
+        if (tls.get("SDE") or 0) < c.get("tls_sde_min", 0):
+            fails.append("tls_sde")
+        if (tls.get("snr") or 0) < c.get("tls_snr_min", 0):
+            fails.append("tls_snr")
+    if c.get("known_match_same_star_or_tpf_forbidden"):
+        if any(h.get("same_kic") or h.get("same_tpf") for h in r.get("known_matches", [])):
+            fails.append("known_object")
+    if g("rp_earth_box") is not None and g("rp_earth_box") > c.get("rp_earth_max_for_candidate", 99):
+        fails.append("radius")
+    return len(fails) == 0, fails
 
 
 def _jd(o):
@@ -297,6 +348,7 @@ def main():
     rows = []
     for _, s in sv.iterrows():
         star = tg.loc[s.fname].to_dict() if s.fname in tg.index else {}
+        star["_both_polarity"] = bool(s.get("both_polarity", False))
         out_dir = os.path.join(run_dir, "vet", s.fname)
         print(f"vetting {s.fname} P={s.real_period_d:.4f} ...", flush=True)
         r = vet_one(s.fname, float(s.real_period_d), float(s.real_duration_h), float(s.real_t0_bjd) - BKJD_OFFSET, star, cfg, out_dir, make_plots=not a.no_plots)
@@ -304,8 +356,9 @@ def main():
         if isinstance(r.get("tls"), dict):
             flat.update({f"tls_{k}": v for k, v in r["tls"].items()})
         flat["n_known_matches"] = len(r.get("known_matches", []))
+        flat["stage2_fails"] = ",".join(r.get("stage2_fails", []))
         rows.append(flat)
-        print(f"  -> depth2={r.get('depth_pass2_ppm')} snr2={r.get('snr_emp_pass2')} gap1d={r.get('gap_frac_1d')} oe={r.get('odd_even_sigma')} sec={r.get('secondary_sigma')} ls_amp/depth={r.get('ls_amp_over_depth')} durRatio={r.get('duration_ratio')} tlsSDE={r.get('tls', {}).get('SDE') if isinstance(r.get('tls'), dict) else None} rt={r.get('runtime_s')}s err={r.get('error')}", flush=True)
+        print(f"  -> depth2={r.get('depth_pass2_ppm')} snr2={r.get('snr_emp_pass2')} gap1d={r.get('gap_frac_1d')} oe={r.get('odd_even_sigma')} sec={r.get('secondary_sigma')} ls_amp/depth={r.get('ls_amp_over_depth')} durRatio={r.get('duration_ratio')} tlsSDE={r.get('tls', {}).get('SDE') if isinstance(r.get('tls'), dict) else None} rt={r.get('runtime_s')}s err={r.get('error')} | STAGE2 {'PASS' if r.get('stage2_pass') else 'fail: ' + ','.join(r.get('stage2_fails', []))}", flush=True)
     pd.DataFrame(rows).to_csv(os.path.join(run_dir, "vet_summary.csv"), index=False)
 
 
