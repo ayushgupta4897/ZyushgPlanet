@@ -1,0 +1,18 @@
+{'ephemeris': 'pipeline', 'label': 'pipeline w=0.5 masked=False', 'window_d': 0.5, 'masked': False, 'depth_ppm': 1137.5167870084636, 'err_ppm': 155.98214151506193, 'snr': 7.292609115118623, 'n_in': 62}
+{'ephemeris': 'pipeline', 'label': 'pipeline w=0.5 masked=True', 'window_d': 0.5, 'masked': True, 'depth_ppm': 1102.59672007762, 'err_ppm': 154.9885649753218, 'snr': 7.114052060893537, 'n_in': 58}
+{'ephemeris': 'pipeline', 'label': 'pipeline w=1.0 masked=False', 'window_d': 1.0, 'masked': False, 'depth_ppm': 1153.2111012101386, 'err_ppm': 173.6499860941543, 'snr': 6.6410088889086305, 'n_in': 59}
+{'ephemeris': 'pipeline', 'label': 'pipeline w=1.0 masked=True', 'window_d': 1.0, 'masked': True, 'depth_ppm': 975.4140563220659, 'err_ppm': 171.62212225463074, 'snr': 5.683498394658426, 'n_in': 57}
+{'ephemeris': 'pipeline', 'label': 'pipeline w=2.0 masked=False', 'window_d': 2.0, 'masked': False, 'depth_ppm': 1168.3383135512315, 'err_ppm': 203.03709171615608, 'snr': 5.754309735605144, 'n_in': 60}
+{'ephemeris': 'pipeline', 'label': 'pipeline w=2.0 masked=True', 'window_d': 2.0, 'masked': True, 'depth_ppm': 1270.3787505904395, 'err_ppm': 202.74053659269356, 'snr': 6.266032298921231, 'n_in': 60}
+{'ephemeris': 'mine', 'label': 'mine w=0.5 masked=False', 'window_d': 0.5, 'masked': False, 'depth_ppm': 956.799388604157, 'err_ppm': 161.59897610374426, 'snr': 5.920825810120884, 'n_in': 73}
+{'ephemeris': 'mine', 'label': 'mine w=0.5 masked=True', 'window_d': 0.5, 'masked': True, 'depth_ppm': 1401.1200909628262, 'err_ppm': 161.03098204895267, 'snr': 8.700934895478015, 'n_in': 71}
+{'ephemeris': 'mine', 'label': 'mine w=1.0 masked=False', 'window_d': 1.0, 'masked': False, 'depth_ppm': 1263.9948547829017, 'err_ppm': 173.0759228823107, 'snr': 7.303123587227099, 'n_in': 73}
+{'ephemeris': 'mine', 'label': 'mine w=1.0 masked=True', 'window_d': 1.0, 'masked': True, 'depth_ppm': 1100.8137691478348, 'err_ppm': 172.74179971107532, 'snr': 6.372596389461237, 'n_in': 70}
+{'ephemeris': 'mine', 'label': 'mine w=2.0 masked=False', 'window_d': 2.0, 'masked': False, 'depth_ppm': 1005.345542842817, 'err_ppm': 191.6710343649977, 'snr': 5.245161566396857, 'n_in': 74}
+{'ephemeris': 'mine', 'label': 'mine w=2.0 masked=True', 'window_d': 2.0, 'masked': True, 'depth_ppm': 1158.4108337968635, 'err_ppm': 191.10273173358817, 'snr': 6.061717816843021, 'n_in': 74}
+pipeline local-baseline weighted depth 1218.2882014380568 +- 194.07652402361694 chi2 85.96202241694844
+mine local-baseline weighted depth 854.7289818723008 +- 189.20556412063289 chi2 31.11629980652838
+pipeline events within 0.5 d of a gap/segment edge: 3 / 17
+mine events within 0.5 d of a gap/segment edge: 2 / 17
+fine peak: {'P_fine': 32.937669807839896, 'power_max': 21.483076163925087, 'hwhm_dlogL_0p5_d': 6.5963466806096e-05, 'hwhm_dlogL_2_d': 0.00014841780031460416, 'power_at_pipeline_P': 10.718754629680669, 'dlogL_mine_minus_pipeline': 10.764321534244418, 'n_local_maxima_within_2_of_top': 12}
+written comparison.json, events_gallery.png

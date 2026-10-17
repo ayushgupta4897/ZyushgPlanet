@@ -965,5 +965,353 @@
   "depth_ppm": 796,
   "duration_h": 4.5
  },
- "wall_s": 228.79853773117065
+ "wall_s": 228.79853773117065,
+ "depth_vs_box_width": {
+  "note": "box depth (mean out - mean in, out = beyond 1 box width either side, secondary window excluded) vs box width at the re-derived ephemeris; error = robust std of 1500 random-phase boxes",
+  "rows": [
+   {
+    "column": "FLUX",
+    "box_h": 2.41,
+    "depth_ppm": 922.9036339227781,
+    "err_ppm": 137.96136178942976,
+    "snr": 6.689580487987677,
+    "n_in": 406,
+    "median_flux_e_s": 1583.9145712949214,
+    "deficit_e_s": 1.4618005136713221,
+    "deficit_err_e_s": 0.21851901121396822
+   },
+   {
+    "column": "FLUX",
+    "box_h": 3.0,
+    "depth_ppm": 923.9440787404129,
+    "err_ppm": 118.58861432856555,
+    "snr": 7.791170206108513,
+    "n_in": 507,
+    "median_flux_e_s": 1583.9145712949214,
+    "deficit_e_s": 1.4634484893786024,
+    "deficit_err_e_s": 0.18783423422468867
+   },
+   {
+    "column": "FLUX",
+    "box_h": 3.65,
+    "depth_ppm": 914.4466721655587,
+    "err_ppm": 115.03919465554075,
+    "snr": 7.949000989651097,
+    "n_in": 609,
+    "median_flux_e_s": 1583.9145712949214,
+    "deficit_e_s": 1.4484054087151783,
+    "deficit_err_e_s": 0.18221225668494384
+   },
+   {
+    "column": "FLUX",
+    "box_h": 4.0,
+    "depth_ppm": 856.6612119994543,
+    "err_ppm": 117.58915565629981,
+    "snr": 7.285205912213376,
+    "n_in": 676,
+    "median_flux_e_s": 1583.9145712949214,
+    "deficit_e_s": 1.3568781763491036,
+    "deficit_err_e_s": 0.18625117707027988
+   },
+   {
+    "column": "FLUX",
+    "box_h": 4.5,
+    "depth_ppm": 800.698850759951,
+    "err_ppm": 115.57211268777539,
+    "snr": 6.928131987368652,
+    "n_in": 754,
+    "median_flux_e_s": 1583.9145712949214,
+    "deficit_e_s": 1.2682385769377842,
+    "deficit_err_e_s": 0.1830563533215061
+   },
+   {
+    "column": "FLUX",
+    "box_h": 5.0,
+    "depth_ppm": 772.6055185255376,
+    "err_ppm": 102.73587891676924,
+    "snr": 7.520308646519281,
+    "n_in": 848,
+    "median_flux_e_s": 1583.9145712949214,
+    "deficit_e_s": 1.2237411386554673,
+    "deficit_err_e_s": 0.1627248556110615
+   },
+   {
+    "column": "FLUX",
+    "box_h": 5.91,
+    "depth_ppm": 648.9313559137066,
+    "err_ppm": 95.69363195502844,
+    "snr": 6.781343153729124,
+    "n_in": 996,
+    "median_flux_e_s": 1583.9145712949214,
+    "deficit_e_s": 1.0278518304018907,
+    "deficit_err_e_s": 0.15157053803370285
+   },
+   {
+    "column": "SAP_FLUX",
+    "box_h": 2.41,
+    "depth_ppm": 367.47865482122944,
+    "err_ppm": 71.27395385545312,
+    "snr": 5.155861783204748,
+    "n_in": 406,
+    "median_flux_e_s": 3518.831171179999,
+    "deficit_e_s": 1.2930953453282372,
+    "deficit_err_e_s": 0.2508010105198133
+   },
+   {
+    "column": "SAP_FLUX",
+    "box_h": 3.0,
+    "depth_ppm": 394.816552750199,
+    "err_ppm": 62.385204750340236,
+    "snr": 6.328688898757614,
+    "n_in": 507,
+    "median_flux_e_s": 3518.831171179999,
+    "deficit_e_s": 1.3892927927152325,
+    "deficit_err_e_s": 0.21952300309594378
+   },
+   {
+    "column": "SAP_FLUX",
+    "box_h": 3.65,
+    "depth_ppm": 409.58283717840163,
+    "err_ppm": 58.906110608527385,
+    "snr": 6.953146845840293,
+    "n_in": 609,
+    "median_flux_e_s": 3518.831171179999,
+    "deficit_e_s": 1.4412528546437018,
+    "deficit_err_e_s": 0.20728065818226296
+   },
+   {
+    "column": "SAP_FLUX",
+    "box_h": 4.0,
+    "depth_ppm": 376.8802826751294,
+    "err_ppm": 58.60343833428289,
+    "snr": 6.431026802989735,
+    "n_in": 676,
+    "median_flux_e_s": 3518.831171179999,
+    "deficit_e_s": 1.3261780864803747,
+    "deficit_err_e_s": 0.2062156055489995
+   },
+   {
+    "column": "SAP_FLUX",
+    "box_h": 4.5,
+    "depth_ppm": 368.86788557588534,
+    "err_ppm": 60.05830237961841,
+    "snr": 6.141830037824473,
+    "n_in": 754,
+    "median_flux_e_s": 3518.831171179999,
+    "deficit_e_s": 1.2979838138116824,
+    "deficit_err_e_s": 0.21133502650155514
+   },
+   {
+    "column": "SAP_FLUX",
+    "box_h": 5.0,
+    "depth_ppm": 362.73981066858863,
+    "err_ppm": 54.46764514112203,
+    "snr": 6.659730005377578,
+    "n_in": 848,
+    "median_flux_e_s": 3518.831171179999,
+    "deficit_e_s": 1.2764201528085608,
+    "deficit_err_e_s": 0.191662447543351
+   },
+   {
+    "column": "SAP_FLUX",
+    "box_h": 5.91,
+    "depth_ppm": 301.8173854897332,
+    "err_ppm": 48.267076202500036,
+    "snr": 6.253069571139682,
+    "n_in": 996,
+    "median_flux_e_s": 3518.831171179999,
+    "deficit_e_s": 1.0620444240653233,
+    "deficit_err_e_s": 0.16984369228307744
+   }
+  ],
+  "psf_4p5h_box": {
+   "column": "FLUX",
+   "box_h": 4.5,
+   "depth_ppm": 800.698850759951,
+   "err_ppm": 115.57211268777539,
+   "snr": 6.928131987368652,
+   "n_in": 754,
+   "median_flux_e_s": 1583.9145712949214,
+   "deficit_e_s": 1.2682385769377842,
+   "deficit_err_e_s": 0.1830563533215061
+  },
+  "sap_4p5h_box": {
+   "column": "SAP_FLUX",
+   "box_h": 4.5,
+   "depth_ppm": 368.86788557588534,
+   "err_ppm": 60.05830237961841,
+   "snr": 6.141830037824473,
+   "n_in": 754,
+   "median_flux_e_s": 3518.831171179999,
+   "deficit_e_s": 1.2979838138116824,
+   "deficit_err_e_s": 0.21133502650155514
+  },
+  "sap_over_psf_depth_ratio_4p5h": 0.4606824216442789,
+  "sap_over_psf_depth_ratio_4p5h_err": 0.10023780182146992,
+  "psf_over_sap_median_flux": 0.45012519619228397,
+  "sap_over_psf_absolute_deficit_ratio_4p5h": 1.023453975785628,
+  "sap_over_psf_absolute_deficit_ratio_4p5h_err": 0.22268871564934664
+ },
+ "per_event_consistency": {
+  "n_events_ge5pts": 92,
+  "weighted_mean_ppm": 679.4685746973042,
+  "chi2_vs_constant": 272.8718129087059,
+  "dof": 91,
+  "chi2_per_dof": 2.99859135064512,
+  "frac_positive": 0.6739130434782609,
+  "median_event_depth_ppm": 486.1994498254196,
+  "events_abs_z_gt3": [
+   {
+    "epoch": -61,
+    "tc_bkjd": 185.53923446584815,
+    "depth_ppm": 5036.045915855824,
+    "err_ppm": 732.8992235238994,
+    "n_in": 9
+   },
+   {
+    "epoch": -47,
+    "tc_bkjd": 336.6014486718568,
+    "depth_ppm": 2767.229043957098,
+    "err_ppm": 695.2892525113136,
+    "n_in": 10
+   },
+   {
+    "epoch": -13,
+    "tc_bkjd": 703.4668260293065,
+    "depth_ppm": 2863.466272834292,
+    "err_ppm": 695.2892525113136,
+    "n_in": 10
+   },
+   {
+    "epoch": 18,
+    "tc_bkjd": 1037.9617289140401,
+    "depth_ppm": 2700.6426322860875,
+    "err_ppm": 662.9322909740696,
+    "n_in": 11
+   },
+   {
+    "epoch": 38,
+    "tc_bkjd": 1253.764892065481,
+    "depth_ppm": 2708.258463478441,
+    "err_ppm": 662.9322909740696,
+    "n_in": 11
+   }
+  ],
+  "weighted_mean_excluding_abs_z_gt3_ppm": 543.0323490722086,
+  "its_white_noise_err_ppm": 72.21470628819749,
+  "note": "per-event errors are white-noise only; chi2/dof~3 means red noise inflates per-event scatter by ~1.7x in sigma, consistent with empirical/formal global error ratio 1.6",
+  "epoch_m61_context": "tc=185.54 BKJD is 1.8 d after the Q2 safe-mode gap (no q=0 data 181.51-183.72); flux within +-0.4 d is 1-2% below the +-3 d median (thermal recovery ramp); the 5036 ppm event is a detrending residual on that ramp, not a transit; depth without it 598 ppm (T14 box), single-event dominance 0.07"
+ },
+ "comparison_with_pipeline": {
+  "read_after_own_numbers": "vet.json and pixel.json were opened only after results.json existed",
+  "pipeline": {
+   "P_d": 10.791014243111542,
+   "t0_bkjd": 131.52142943487635,
+   "depth_pass2_ppm": 796.12,
+   "depth_err_ppm": 92.4,
+   "box_noise_ppm": 91.0,
+   "dur_box_h": 4.5,
+   "snr_emp": 8.75,
+   "odd_ppm": 673,
+   "even_ppm": 919,
+   "odd_even_sigma": 1.35,
+   "secondary_ppm": 160,
+   "secondary_sigma": 1.76,
+   "n_events": 96,
+   "tls_sde": 11.09,
+   "tls_duration_h": 3.3407999999999998,
+   "event_chi2_const": 194.5,
+   "event_dof": 95,
+   "depth_by_quartile_ppm": [
+    763,
+    1351,
+    453,
+    675
+   ]
+  },
+  "period": {
+   "mine_d": 10.79015815757205,
+   "pipeline_d": 10.791014243111542,
+   "delta_d": -0.0008560855394925682,
+   "bls_peak_width_estimate_d": 0.0018215254028234162,
+   "verdict": "agree: offset 0.00086 d is below the BLS peak width (~0.0018 d = P*T14/baseline); predicted transit times differ by 1.6 h at the start, 0.3 h mid-baseline, 0.9 h at the end, i.e. the same events are counted"
+  },
+  "t0": {
+   "mine_propagated_to_epoch_-66_bkjd": 131.58844367798793,
+   "pipeline_bkjd": 131.52142943487635,
+   "delta_h": 1.6083418346777307,
+   "mine_last_epoch_bkjd": 1458.77789705935,
+   "pipeline_last_epoch_bkjd": 1458.8161813375962,
+   "delta_end_h": -0.9188226779097022
+  },
+  "depth": {
+   "mine_4p5h_box_ppm": 800.698850759951,
+   "mine_4p5h_box_err_ppm": 115.57211268777539,
+   "pipeline_4p5h_box_ppm": 796.12,
+   "mine_T14_box_ppm": 648.8684461016803,
+   "mine_narrow_3p65h_box_ppm": 914.4466721655587,
+   "mine_trapezoid_ppm": 890.6322532795815,
+   "verdict": "agree at matched box width (801+-116 vs 796+-92 ppm); the box depth depends strongly on box width because the event is trapezoidal (T23/T14=0.41): 915 ppm at 3.65 h, 649 ppm at T14=5.9 h"
+  },
+  "duration": {
+   "mine_bls_best_h": 3.6479999999999997,
+   "mine_blind_bls_h": 3.96,
+   "mine_T14_h": 5.913159364290099,
+   "mine_T23_h": 2.414902065386432,
+   "pipeline_box_h": 4.5,
+   "pipeline_tls_h": 3.3407999999999998,
+   "verdict": "definitional, not a disagreement: pipeline 4.5 h box lies between my T23 (2.4 h) and T14 (5.9 h); my BLS-optimal box is 3.65-3.96 h, TLS 3.3 h"
+  },
+  "snr": {
+   "mine_empirical_4p5h": 6.928131987368652,
+   "mine_empirical_range_over_boxes": [
+    6.8,
+    7.9
+   ],
+   "pipeline_snr_emp": 8.75,
+   "verdict": "mild disagreement: my empirical SNR is 7-8 vs pipeline 8.7; my random-phase noise at 4.5 h is 116 ppm vs pipeline box_noise 91 ppm, i.e. my 1-d running-median detrend leaves ~25% more red noise"
+  },
+  "odd_even": {
+   "mine_sigma": 0.6058789356433252,
+   "pipeline_sigma": 1.35,
+   "verdict": "agree: both null"
+  },
+  "secondary": {
+   "mine_ppm": 108.67484971988084,
+   "mine_sigma": 1.2095944039344813,
+   "pipeline_ppm": 160,
+   "pipeline_sigma": 1.76,
+   "verdict": "agree: both below 2 sigma; my deepest off-transit box anywhere is 247 ppm (2.75 sigma) at phase 0.455, consistent with look-elsewhere over ~70 independent phases"
+  },
+  "n_transits": {
+   "mine_any_data": 98,
+   "mine_ge50pct": 90,
+   "pipeline_n_events": 96,
+   "pipeline_tls_distinct": 95,
+   "verdict": "agree"
+  },
+  "per_year_or_quartile": {
+   "mine_per_year_ppm": [
+    694,
+    842,
+    710,
+    254
+   ],
+   "mine_chi2_3dof": 5.381482767797054,
+   "pipeline_quartiles_ppm": [
+    763,
+    1351,
+    453,
+    675
+   ],
+   "verdict": "both show over-dispersion at the ~2 sigma level (my Y4 = 254+-199 ppm is 2.0 sigma below the Y1-3 mean; pipeline quartile 2 vs 3 differ by 3.7 sigma with white errors); not fatal but the per-event scatter exceeds white noise (my chi2/dof 3.0, pipeline 2.05)"
+  },
+  "dilution": {
+   "sap_over_psf_depth_4p5h": 0.4606824216442789,
+   "psf_over_sap_flux": 0.45012519619228397,
+   "absolute_deficit_ratio": 1.023453975785628,
+   "verdict": "SAP depth is exactly the PSF depth scaled by the flux ratio: the same ~1.3 e/s absolute deficit is seen in both apertures. The signal is present in plain aperture photometry (not a PSF-fit artefact), but the SAP aperture (6 px) holds 2.2x the target flux, dominated by the Kp 13.6 neighbour KIC 11285496 ~9 arcsec away, so this test cannot say which star hosts the event: 1.3 e/s is ~30 ppm on that neighbour"
+  },
+  "pixel_vet_pipeline_read_after": "pixel.json summary: median peak SNR 2.5, deficit closer to target than any other source in 3/8 quarters, Gaussian-at-target beats scaled-image in 4/8 quarters: localisation inconclusive"
+ }
 }

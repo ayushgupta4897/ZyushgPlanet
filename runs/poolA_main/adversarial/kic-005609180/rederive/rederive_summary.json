@@ -237,8 +237,8 @@
     "sap_no_edge_err": 75.72782031081432,
     "ratio_sap_over_psf_all": 0.2462777777969908,
     "ratio_sap_over_psf_no_edge": 0.73739424313224,
-    "fits_headers": "CROWDSAP=1.0, FLFRCSAP 0.79-0.98, NPIXSAP 2-4 (per-quarter LIGHTCURVE_Qn headers); median SAP/PSF flux = 0.76",
-    "interpretation": "with CROWDSAP=1 an on-target transit must appear in SAP at ~full depth; ratio 0.25+-0.15 on all data says most of the PSF-flux 'depth' is absent from the aperture flux; the three dominant PSF events have SAP counterparts of opposite or null sign (post-gap PSF-model ramps, not dilution)"
+    "fits_headers": "per-quarter LIGHTCURVE_Qn headers: CROWDSAP 0.949-1.0 (median 0.957 in quarters where <1), FLFRCSAP 0.79-0.99, NPIXSAP 2-4, PSFFRAC 0.55-0.70; median SAP/PSF flux = 0.758",
+    "interpretation": "with CROWDSAP >= 0.95 in every quarter an on-target transit must appear in SAP at >= 95% of its PSF depth; ratio SAP/PSF = 0.25+-0.15 on all data (3.4 h box) says most of the PSF-flux 'depth' is absent from the aperture flux; the three dominant PSF events (epochs 4, 36, 39) have SAP counterparts of opposite or null sign, i.e. post-gap PSF-model ramps, not dilution"
   },
   "pipeline_vet_json_read_after_own_numbers": {
     "P": 21.106289,
@@ -257,7 +257,8 @@
     "tls_sde": 8.8,
     "stage2_pass_v1.5": true,
     "stage2_pass_v1.4": false,
-    "pixel_dir": "absent"
+    "pixel_dir": "absent",
+    "note": "vet.json quotes dur_h = 3.0 (task text said 3.4 h); my 3.0 h box numbers are in rederive_followup.json treatments.box_3.0h: all-data 509+-67 ppm, no-gap-edge 296+-77, SAP 179+-70"
   },
   "agreement": {
     "period": "agree (frac diff 9e-6)",
@@ -280,5 +281,6 @@
     "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005609180/rederive/fold_rederive.png",
     "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005609180/rederive/events_raw_psf_vs_sap.png",
     "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005609180/rederive/followup_periodograms_sap_vs_psf.png"
-  ]
+  ],
+  "verified_2026-10-17_resume": "headers re-read, vet.json re-read, figures inspected; numbers unchanged"
 }

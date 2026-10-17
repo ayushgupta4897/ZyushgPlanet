@@ -12,7 +12,9 @@
   "Not previously reported: absent from KOI/TCE/EB/confirmed lists, from Bienias & Szabo 2025 Appendix B (their seven candidates are KIC 4459924, 9674230, 4543171, 9040849, 8175131, 8293539, 11033410), from any published KBONUS-team candidate list, and SIMBAD has only a UCAC4 positional entry.",
   "Shape: cadence-supersampled trapezoid gives T23/T14 = 0.80 (delta-chi2 = 2 for 0.60-0.99); V-shape (T23/T14 <= 0.4) disfavoured by delta-chi2 >= 8. Secondary at phase 0.5: -4 +/- 48 ppm (3-sigma < 14% of primary). Odd/even 0.3-0.5 sigma. Deepest non-primary box anywhere in phase 120 ppm.",
   "Duration 4.06-4.29 h matches a central transit of the catalogue host (T14(b=0) = 4.08 h for 0.83 Rsun) and sits comfortably inside the range for an extinction-corrected ~1.0-1.1 Rsun host (4.7-5.0 h); no evolved host needed; implied radius 2.7-4.0 Earth radii, an ordinary sub-Neptune. Gaia RUWE 1.057.",
-  "Independent re-derivation (different code) recovers P, depth, duration, odd/even, secondary and event count within 1 sigma; pipeline and re-derivation per-event depths correlate at 0.97."
+  "Independent re-derivation (different code) recovers P, depth, duration, odd/even, secondary and event count within 1 sigma; pipeline and re-derivation per-event depths correlate at 0.97.",
+  "SAP/PSF depth ratio 0.69 +/- 0.06 matches the on-target expectation from measured flux levels (FLFRCSAP x F_psf/F_sap = 0.71; 0.79 with FLFRCSAP=1), 0.4-1.8 sigma; per season all within 1.3 sigma. A dip on a resolved neighbour would require a ratio > 0.79. The earlier 'tension' came from header CROWDSAP (0.87-0.94) understating the host's contamination of the SAP aperture; the catalogue value 0.763 is the per-quarter minimum.",
+  "TOI/CTOI (ExoFOP, downloaded 2026-10-17): target TIC 120425498 (Tmag 16.0), host TIC 120425499 and the four faint neighbour TICs are not TOIs/CTOIs; none within 3 arcmin."
  ],
  "checks_run": [
   "Read vet.json, events.csv, fold_events.png, pixel.json (per-quarter table), diffimages.png and the independent re-derivation results/comparison.",
@@ -24,13 +26,15 @@
   "Ephemeris/harmonic (1/3, 1/2, 2/3, 1, 3/2, 2, 3; 0.2% tolerance) match with phase check against local KOI cumulative, DR25 TCE, Kirk+2016 Kepler EB, confirmed Kepler-field planets; 3-arcmin cone in all plus the TESS EB catalogue; MODULE/OUTPUT/CHANNEL per season from TPF headers.",
   "Novelty: grep of all local known-object catalogues for KIC 3831969/3831977; Bienias & Szabo 2025 arXiv HTML and Zenodo Appendix B PDF (pdftotext, grep for KIC/Gaia IDs); web search for a Kepler Bonus team candidate list; SIMBAD 30-arcsec cone via astroquery.",
   "Duration/density/implied-radius calculation for the catalogue host (0.83 Rsun) and for an extinction-corrected 1.0-1.1 Rsun host; Lomb-Scargle and inverted-null numbers reviewed from vet.json and the re-derivation.",
-  "Reviewed Kepler systematics: channel dependence, gap proximity, quarter phase drift, period vs Kepler cadences, per-event red-noise excess."
+  "Reviewed Kepler systematics: channel dependence, gap proximity, quarter phase drift, period vs Kepler cadences, per-event red-noise excess.",
+  "SAP/PSF depth ratio per season against the expectation from measured SAP and PSF flux levels and per-quarter FLFRCSAP headers (sap_psf_fluxlevel.py/json); per-quarter CROWDSAP/FLFRCSAP/PSFFRAC header audit vs the target-table values.",
+  "TIC lookup (astroquery MAST) within 20 arcsec and cross-match of all six TIC ids plus a 3-arcmin cone against ExoFOP TOI and CTOI lists (toi_check.txt)."
  ],
  "what_would_settle_it": [
   "A documented TRICERATOPS run with the Gaia DR3 field, the measured depth/duration, the secondary limit (< 14% of primary) and the odd/even result, to bound the unresolved-EB / hierarchical-triple false-positive probability.",
   "High-resolution (AO or speckle) imaging of the G=16.5 target to exclude companions inside ~1-2 arcsec brighter than the delta-mag needed to host a ~15% EB.",
   "A proper Kepler PRF-model (not Gaussian) fit to the stacked difference images, including season 2 where the target sits in the corner pixel, to tighten the deficit position to well below 1 arcsec with realistic systematics.",
-  "Resolve the two mild tensions: the 2-sigma season dependence of the PSF depth (1199/1089/836/772 ppm) and the SAP/PSF depth ratio (0.69 +/- 0.06) being ~0.2 below CROWDSAP (0.87-0.94); e.g. refit the target with a PSF model that handles stamp truncation, and quote depth/radius with ~25% systematic error until then.",
+  "Resolve the remaining mild tension: the 2-sigma season dependence of the PSF depth (1199/1089/836/772 ppm, shallower where psffrac is lowest) via a stamp-truncation-aware PSF refit; quote depth/radius with ~25% systematics until then.",
   "Extinction-corrected host characterisation (3D dust map at 2 kpc) to pin the stellar radius and hence the companion radius (2.7-4.0 Earth radii range today).",
   "Quote the conservative empirical SNR (19.6, random-phase noise) and red-noise-inflated depth error (~70-80 ppm) rather than the pipeline's 23.8 / 42 ppm."
  ],

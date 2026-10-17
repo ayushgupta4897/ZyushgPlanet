@@ -609,8 +609,8 @@ def make_figure(R):
     ax.set_xlabel("hours from mid-transit")
     ax.set_ylabel("relative flux")
     d = E["depth"]
-    ax.set_title(f"PSF fold at pass-2 top peak: P={P:.5f} d, box depth {d['box_depth_ppm']:.0f} +/- {d['empirical_err_ppm']:.0f} ppm "
-                 f"(emp. SNR {d['empirical_snr']:.1f}), {E['n_transits']} transits", loc="left", fontsize=8.5, color=INK)
+    ax.set_title(f"PSF fold, P={P:.5f} d: box depth {d['box_depth_ppm']:.0f} +/- {d['empirical_err_ppm']:.0f} ppm\n"
+                 f"(empirical SNR {d['empirical_snr']:.1f}), {E['n_transits']} transits with local depths", loc="left", fontsize=8.5, color=INK)
     ax.legend(frameon=False, fontsize=7.5, loc="lower right")
 
     # (c) SAP fold
@@ -627,8 +627,8 @@ def make_figure(R):
     ax.set_xlabel("hours from mid-transit")
     ax.set_ylabel("relative flux")
     s = E["sap"]
-    ax.set_title(f"SAP fold: depth {s['box_depth_ppm']:.0f} +/- {s['empirical_err_ppm']:.0f} ppm; "
-                 f"SAP/PSF = {s['ratio_sap_over_psf']:.2f} +/- {s['ratio_err']:.2f} (CROWDSAP {CROWDSAP:.2f})",
+    ax.set_title(f"SAP fold: depth {s['box_depth_ppm']:.0f} +/- {s['empirical_err_ppm']:.0f} ppm\n"
+                 f"SAP/PSF = {s['ratio_sap_over_psf']:.2f} +/- {s['ratio_err']:.2f} (header CROWDSAP 0.80-0.97 if on target)",
                  loc="left", fontsize=8.5, color=INK)
     ax.legend(frameon=False, fontsize=7.5, loc="lower right")
 
@@ -660,7 +660,7 @@ def make_figure(R):
     ax.set_xlabel("hours from phase 0.5")
     ax.set_ylabel("relative flux")
     sec = E["secondary"]
-    ax.set_title(f"secondary at phase 0.5: {sec['depth_ppm']:.0f} +/- {sec['err_ppm']:.0f} ppm ({sec['sigma']:.1f} sigma); "
+    ax.set_title(f"secondary at phase 0.5: {sec['depth_ppm']:.0f} +/- {sec['err_ppm']:.0f} ppm ({sec['sigma']:.1f} sigma)\n"
                  f"deepest other box {sec['deepest_other_depth_ppm']:.0f} ppm at phase {sec['deepest_other_phase']:.2f}",
                  loc="left", fontsize=8, color=INK)
 

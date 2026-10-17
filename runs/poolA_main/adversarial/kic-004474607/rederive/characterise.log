@@ -1,0 +1,133 @@
+coarse best: P=32.98206 dur=0.100 t0=754.1051 (grid points with higher power: 2)
+fine: P=32.98173+-nan dur=0.090 d (2.16 h) t0=754.1131
+{
+ "ephemeris": {
+  "period_d": 32.9817334036672,
+  "period_err_d": NaN,
+  "t0_bkjd": 754.1131296888925,
+  "t0_bjd": 2455587.113129689,
+  "duration_box_d": 0.09,
+  "duration_box_h": 2.16,
+  "duration_fwhm_h": 4.895999999999995,
+  "fine_grid": "+-0.4% in P, 4001 steps; durations 0.03-0.30 d step 0.01"
+ },
+ "depth": {
+  "depth_ppm": 1100.8137691478348,
+  "depth_err_empirical_ppm": 172.5098425051891,
+  "depth_err_analytic_ppm": 172.2813249220294,
+  "empirical_snr": 6.381164999989622,
+  "n_in_transit": 70,
+  "random_box_mean_ppm": -8.127312652440933,
+  "depth_unmasked_detrend_ppm": 1263.9948547829017,
+  "bls_depth_at_peak_ppm": 1122.973139801712,
+  "bls_depth_snr_at_peak": 7.087638165348237
+ },
+ "odd_even": {
+  "depth_odd_ppm": 1164.7797365599288,
+  "err_odd_ppm": 240.55348234630114,
+  "n_odd": 36,
+  "depth_even_ppm": 1033.0850977704476,
+  "err_even_ppm": 247.5274912409648,
+  "n_even": 34,
+  "sigma": 0.3815459830857699
+ },
+ "secondary": {
+  "phase": 0.5,
+  "depth_ppm": -256.2738814582133,
+  "err_ppm": 169.10616854893908,
+  "sigma": -1.5154614622118174,
+  "n_in": 85,
+  "deepest_box_phase_0p2_0p8": {
+   "phase": 0.6375000000000002,
+   "depth_ppm": 474.35424975128535,
+   "sigma": 2.8050676910346293
+  }
+ },
+ "sap_vs_psf": {
+  "depth_sap_ppm": 1000.5032726007057,
+  "err_sap_ppm": 148.31176506328976,
+  "n_in_sap": 73,
+  "depth_psf_ppm": 1100.8137691478348,
+  "depth_psf_flat_flux_ppm": 815.6939057181179,
+  "err_psf_flat_flux_ppm": 171.06643003682956,
+  "ratio_sap_over_psf": 0.9088760521002733,
+  "ratio_err": 0.1960575524835465,
+  "header_crowding_per_quarter": {
+   "8": {
+    "CROWDSAP": 0.8524562313,
+    "FLFRCSAP": 0.9367721971,
+    "PSFFRAC": 0.811224086049067,
+    "NPIXSAP": 5
+   },
+   "9": {
+    "CROWDSAP": 0.8768344494,
+    "FLFRCSAP": 0.8673689604,
+    "PSFFRAC": 0.6112707143539408,
+    "NPIXSAP": 2
+   },
+   "11": {
+    "CROWDSAP": 0.8373873981,
+    "FLFRCSAP": 0.7791835019,
+    "PSFFRAC": 0.793737336226682,
+    "NPIXSAP": 4
+   },
+   "12": {
+    "CROWDSAP": 0.8355172448,
+    "FLFRCSAP": 0.9184842989,
+    "PSFFRAC": 0.8042594216998848,
+    "NPIXSAP": 5
+   },
+   "13": {
+    "CROWDSAP": 0.9408200115,
+    "FLFRCSAP": 0.9475589453,
+    "PSFFRAC": 0.6188564650731052,
+    "NPIXSAP": 3
+   },
+   "15": {
+    "CROWDSAP": 0.8688897768,
+    "FLFRCSAP": 0.803348591,
+    "PSFFRAC": 0.7595541670460892,
+    "NPIXSAP": 4
+   },
+   "16": {
+    "CROWDSAP": 0.8247894376,
+    "FLFRCSAP": 0.9331154845,
+    "PSFFRAC": 0.7839353862112088,
+    "NPIXSAP": 5
+   },
+   "17": {
+    "CROWDSAP": 0.7037279859,
+    "FLFRCSAP": 0.9186283417,
+    "PSFFRAC": 0.6095852836759368,
+    "NPIXSAP": 4
+   }
+  },
+  "target_table": {
+   "psffrac": 0.609585,
+   "crowdsap": 0.703728,
+   "flfrcsap": 0.779184,
+   "npixsap": 2
+  }
+ },
+ "per_year": {
+  "2011": {
+   "depth_ppm": 493.72231254585233,
+   "err_ppm": 247.45038129592325,
+   "n_in": 34,
+   "n_transits": 8
+  },
+  "2012": {
+   "depth_ppm": 2096.9084565897188,
+   "err_ppm": 295.5367064083005,
+   "n_in": 24,
+   "n_transits": 6
+  },
+  "2013": {
+   "depth_ppm": 830.2824190056235,
+   "err_ppm": 414.1326882208629,
+   "n_in": 12,
+   "n_transits": 3
+  }
+ }
+}
+transits: 17 stack SNR 5.28831733842671 minus top 4.32738773831734

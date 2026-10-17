@@ -1,0 +1,19 @@
+loaded 39004 good cadences; span 1210.9 d; quarters [3, 4, 5, 6, 8, 9, 10, 12, 14, 15]
+after clipping 38861 cadences; PSF MAD-scatter 1689 ppm; SAP 807 ppm
+BLS grid: 89004 periods, 8 durations; baseline 1210.9 d
+BLS real done in 27 s
+top-3 (detrended power): [(6.70377, 27.25), (1.43429, 14.89), (3.35218, 14.37)]
+top-3 (raw power):      [(6.70377, 33.5), (1.43429, 20.44), (13.40816, 19.97)]
+best P=6.70377 t0=265.1549 dur=3.17 h depth=479 ppm SDE raw=14.21 det=15.58
+BLS inverted done in 27 s: SDE raw=6.60 det=7.13; top P=1.2914
+refined: P=6.703660 t0=265.17436 dur=2.33 h depth(BLS)=590 ppm dlogL=37.4
+PSF box depth 565 +/- 75 ppm (random-phase; mean -46); formal 77; N_in=557; SNR_emp=7.54
+odd 594+/-104 (N=285)  even 538+/-96 (N=272)  diff 0.39 sigma
+secondary at 0.5: -37 +/- 73 ppm (-0.51 sigma); max box 0.2-0.8: 145 ppm at phase 0.390
+  Y1_Q3-4: 620 +/- 184 ppm (N_in=111)
+  Y2_Q5-8: 834 +/- 158 ppm (N_in=162)
+  Y3_Q9-12: 423 +/- 140 ppm (N_in=165)
+  Y4_Q13-17: 376 +/- 158 ppm (N_in=119)
+events: any=125 >=half=124 full=115; weighted per-event mean 558+/-67; top1 0.06 top3 0.15 of sum(snr^2); depth w/o top3 events 503+/-74
+SAP box depth 265 +/- 32 ppm; ratio SAP/PSF = 0.47 +/- 0.08; expected if on-target: 0.48 (flux medians) or 0.77 (mean CROWDSAP)
+done in 80 s; wrote /home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-009655224/rederive

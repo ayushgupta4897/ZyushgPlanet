@@ -1,0 +1,279 @@
+{
+  "fname": "kic-004474607",
+  "date": "2026-10-17",
+  "role": "independent re-derivation; no code under pipeline/ read or imported; vet.json/pixel.json read only after results.json was written",
+  "verdict": "NOT CONFIRMED as a periodic transit signal. The ~32.9 d signal is carried by two ~5000-7000 ppm events (epochs 13, 14 at BKJD 1182.9 and 1215.9) that sit 0.14 d after a quarter start / data gap on visible post-gap flux ramps; without them the stacked depth is 609+-181 ppm (3.4 sigma). The blind 1-50 d BLS does not rank it first and its SDE (6.7) is below the inverted-flux null (7.7).",
+  "my_numbers": {
+    "period_d": 32.9817334036672,
+    "period_alias_comb": "12 local maxima within dlogL<2 between 32.94 and 32.98 d; single-duration scan prefers 32.9377 d; P is degenerate at the +-0.02 d level",
+    "t0_bkjd": 754.1131296888925,
+    "t0_bjd": 2455587.113129689,
+    "duration_box_h": 2.16,
+    "depth_ppm": 1100.8137691478348,
+    "depth_err_empirical_ppm": 172.5098425051891,
+    "empirical_snr": 6.381164999989622,
+    "sde_1_50d": 6.7431777715785906,
+    "sde_inverted_1_50d": 7.65809976686399,
+    "sde_1_40d": 6.727497695529838,
+    "sde_inverted_1_40d": 6.618865531787605,
+    "top3_peaks_1_50d": [
+      [
+        49.98387094727588,
+        23.420303983334595
+      ],
+      [
+        32.982063224299445,
+        22.679103241120107
+      ],
+      [
+        42.1390133031897,
+        22.584694002011627
+      ]
+    ],
+    "odd_even_sigma": 0.3815459830857699,
+    "secondary_ppm": -256.2738814582133,
+    "secondary_sigma": -1.5154614622118174,
+    "n_transits": 17,
+    "per_year_ppm": {
+      "2011": 493.72231254585233,
+      "2012": 2096.9084565897188,
+      "2013": 830.2824190056235
+    },
+    "per_year_err_ppm": {
+      "2011": 247.45038129592325,
+      "2012": 295.5367064083005,
+      "2013": 414.1326882208629
+    },
+    "chi2_constant_depth": 70.11037640835399,
+    "dof": 16,
+    "stacked_snr_all_events": 5.28831733842671,
+    "stacked_snr_without_strongest": 4.32738773831734,
+    "stacked_depth_without_epochs_13_14_ppm": 609,
+    "stacked_err_without_epochs_13_14_ppm": 181,
+    "stacked_snr_without_epochs_13_14": 3.37,
+    "sap_depth_ppm": 1000.5032726007057,
+    "sap_err_ppm": 148.31176506328976,
+    "sap_over_psf": 0.9088760521002733,
+    "sap_over_psf_err": 0.1960575524835465,
+    "psf_flat_flux_depth_ppm": 815.6939057181179,
+    "depth_at_pipeline_ephemeris_my_detrend_ppm": {
+      "min": 975.4140563220659,
+      "max": 1270.3787505904395,
+      "values": [
+        {
+          "ephemeris": "pipeline",
+          "label": "pipeline w=0.5 masked=False",
+          "window_d": 0.5,
+          "masked": false,
+          "depth_ppm": 1137.5167870084636,
+          "err_ppm": 155.98214151506193,
+          "snr": 7.292609115118623,
+          "n_in": 62
+        },
+        {
+          "ephemeris": "pipeline",
+          "label": "pipeline w=0.5 masked=True",
+          "window_d": 0.5,
+          "masked": true,
+          "depth_ppm": 1102.59672007762,
+          "err_ppm": 154.9885649753218,
+          "snr": 7.114052060893537,
+          "n_in": 58
+        },
+        {
+          "ephemeris": "pipeline",
+          "label": "pipeline w=1.0 masked=False",
+          "window_d": 1.0,
+          "masked": false,
+          "depth_ppm": 1153.2111012101386,
+          "err_ppm": 173.6499860941543,
+          "snr": 6.6410088889086305,
+          "n_in": 59
+        },
+        {
+          "ephemeris": "pipeline",
+          "label": "pipeline w=1.0 masked=True",
+          "window_d": 1.0,
+          "masked": true,
+          "depth_ppm": 975.4140563220659,
+          "err_ppm": 171.62212225463074,
+          "snr": 5.683498394658426,
+          "n_in": 57
+        },
+        {
+          "ephemeris": "pipeline",
+          "label": "pipeline w=2.0 masked=False",
+          "window_d": 2.0,
+          "masked": false,
+          "depth_ppm": 1168.3383135512315,
+          "err_ppm": 203.03709171615608,
+          "snr": 5.754309735605144,
+          "n_in": 60
+        },
+        {
+          "ephemeris": "pipeline",
+          "label": "pipeline w=2.0 masked=True",
+          "window_d": 2.0,
+          "masked": true,
+          "depth_ppm": 1270.3787505904395,
+          "err_ppm": 202.74053659269356,
+          "snr": 6.266032298921231,
+          "n_in": 60
+        },
+        {
+          "ephemeris": "mine",
+          "label": "mine w=0.5 masked=False",
+          "window_d": 0.5,
+          "masked": false,
+          "depth_ppm": 956.799388604157,
+          "err_ppm": 161.59897610374426,
+          "snr": 5.920825810120884,
+          "n_in": 73
+        },
+        {
+          "ephemeris": "mine",
+          "label": "mine w=0.5 masked=True",
+          "window_d": 0.5,
+          "masked": true,
+          "depth_ppm": 1401.1200909628262,
+          "err_ppm": 161.03098204895267,
+          "snr": 8.700934895478015,
+          "n_in": 71
+        },
+        {
+          "ephemeris": "mine",
+          "label": "mine w=1.0 masked=False",
+          "window_d": 1.0,
+          "masked": false,
+          "depth_ppm": 1263.9948547829017,
+          "err_ppm": 173.0759228823107,
+          "snr": 7.303123587227099,
+          "n_in": 73
+        },
+        {
+          "ephemeris": "mine",
+          "label": "mine w=1.0 masked=True",
+          "window_d": 1.0,
+          "masked": true,
+          "depth_ppm": 1100.8137691478348,
+          "err_ppm": 172.74179971107532,
+          "snr": 6.372596389461237,
+          "n_in": 70
+        },
+        {
+          "ephemeris": "mine",
+          "label": "mine w=2.0 masked=False",
+          "window_d": 2.0,
+          "masked": false,
+          "depth_ppm": 1005.345542842817,
+          "err_ppm": 191.6710343649977,
+          "snr": 5.245161566396857,
+          "n_in": 74
+        },
+        {
+          "ephemeris": "mine",
+          "label": "mine w=2.0 masked=True",
+          "window_d": 2.0,
+          "masked": true,
+          "depth_ppm": 1158.4108337968635,
+          "err_ppm": 191.10273173358817,
+          "snr": 6.061717816843021,
+          "n_in": 74
+        }
+      ]
+    },
+    "gap_edge_events": {
+      "epoch13": {
+        "tc": 1182.876,
+        "d_quarter_edge_d": 0.139,
+        "local_depth_ppm": 6615,
+        "err": 1086
+      },
+      "epoch14": {
+        "tc": 1215.857,
+        "d_gap_d": 0.14,
+        "local_depth_ppm": 7010,
+        "err": 1101
+      }
+    },
+    "eb_host_check": {
+      "host": "KIC 4474637 = KOI-3829.01 FALSE POSITIVE / Kepler EB, P=3.8867 d, depth 37%",
+      "leak_of_eb_into_target_psf_flux": "13+-21 ppm (0.004% of EB depth)",
+      "alias_ratio": 8.48572728849344,
+      "events_in_eb_eclipse": "7 of 17 (5.9 expected at random)",
+      "depth_excluding_eb_eclipse_cadences_ppm": 1009.0295088781564
+    },
+    "global_top_peak_49_98d": {
+      "period_d": 49.98187159243799,
+      "depth_ppm": 1936.9211719912905,
+      "empirical_snr": 5.248089798943714,
+      "n_transits": 7,
+      "duration_h": 0.72,
+      "note": "grid-edge, 0.72 h box, 7 events: noise"
+    }
+  },
+  "pipeline_numbers_for_comparison": {
+    "source": "runs/poolA_main/vet/kic-004474607/vet.json, results.jsonl, pixel_v15/v16 pixel.json",
+    "P": 32.94271710658947,
+    "t0_bkjd": 754.5746921888925,
+    "dur_h": 1.95,
+    "depth_pass2_ppm": 2140.68,
+    "snr_emp_pass2": 11.59,
+    "event_weighted_depth_ppm": 1025.2,
+    "event_chi2_const": 45.3,
+    "depth_by_quartile_ppm": [
+      1043,
+      888,
+      1270,
+      490
+    ],
+    "stage1_depth_ppm": 1620,
+    "stage1_sde": 12.91,
+    "stage1_inverted_sde": 8.84,
+    "stage1_max_single_event_frac": 0.393,
+    "tls_sde": 5.68,
+    "tls_depth_ppm": 1618,
+    "odd_even_sigma": 1.04,
+    "secondary_sigma": -0.07,
+    "pixel_verdict_v15": "inconclusive",
+    "pixel_verdict_v16": "inconclusive; best-alternative source Gaia DR3 2052438568667567488 preferred over target by dchi2=183",
+    "events_13_14_gap_dist_d": [
+      0.093,
+      0.055
+    ],
+    "events_13_14_depth_ppm": [
+      8061,
+      8101
+    ]
+  },
+  "disagreements": [
+    "Depth: my box depth is 1101+-173 ppm (and 975-1270 ppm at the pipeline's own ephemeris for any detrend window 0.5-2 d); the pipeline's headline 2141 ppm is not reproducible and is inconsistent with the pipeline's own event-weighted depth (1025 ppm) and quartile depths (490-1270 ppm).",
+    "Empirical SNR: 6.4 (mine) vs 11.6 (pipeline pass-2) / 9.9 (stage 1).",
+    "Blind recovery: not the top peak in 1-50 d (49.98 d edge peak wins; 32.98 d is 2nd); top peak within 1-40 d but SDE 6.73 vs inverted-null 6.62 (1-50 d: 6.74 vs 7.66). Pipeline stage-1 SDE 12.9 vs inverted 8.8.",
+    "Event consistency: chi2=70 for 16 dof (constant depth rejected); 2012 depth 2097+-296 vs 2011 494+-247 and 2013 830+-414; two events (epochs 13, 14) are 5.5 and 5.8 sigma above the rest and sit 0.14 d after a quarter start / gap on visible ramps; without them the stack is 609+-181 ppm (3.4 sigma).",
+    "Period: degenerate alias comb 32.94-32.98 d (12 local maxima within dlogL<2); my multi-duration fine grid prefers 32.9817, a single-duration scan prefers 32.9377; the pipeline's 32.9427 is one tooth of the comb.",
+    "Duration: 2.16 h (mine) vs 1.95 h (vet.json) vs 2.3 h quoted in the task text vs 2.58 h (pipeline TLS): consistent within one 29.4 min cadence, no real disagreement.",
+    "Odd/even and secondary: both agree with the pipeline that nothing is detected (0.4 sigma, -1.5 sigma)."
+  ],
+  "files": [
+    "__pycache__",
+    "bls_search.npz",
+    "characterise.log",
+    "characterise_P50.log",
+    "comparison.json",
+    "detrended_psf.npz",
+    "detrended_psf_masked.npz",
+    "detrended_psf_masked_P50.npz",
+    "eb_crosscheck.json",
+    "eb_crosscheck.py",
+    "events_gallery.png",
+    "fold_rederive.png",
+    "fold_rederive_P50.png",
+    "followup.log",
+    "followup.py",
+    "rederive_kic004474607.py",
+    "results.json",
+    "results_P50.json",
+    "search.log"
+  ]
+}

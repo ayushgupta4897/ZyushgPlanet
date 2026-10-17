@@ -3420,5 +3420,374 @@
       }
     }
   },
-  "figure": "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-006367225/rederive/fold_rederive.png"
+  "figure": "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-006367225/rederive/fold_rederive.png",
+  "supplementary": {
+    "file": "rederive_extra.json (produced by rederive_extra.py; same own code)",
+    "depth_definitions_at_pipeline_exact_ephemeris_ppm": {
+      "n_in": 391,
+      "box_mean_ppm": 2098.6400654020576,
+      "box_median_ppm": 1755.3984908393882,
+      "box_wmean_fluxerr_ppm": 2171.8485922981313,
+      "box_trimmed10_ppm": 1867.6438834358544,
+      "core50_mean_ppm": 2039.2188922865319,
+      "n_core": 204
+    },
+    "depth_definitions_at_own_ephemeris_ppm": {
+      "n_in": 425,
+      "box_mean_ppm": 1971.5125648355204,
+      "box_median_ppm": 1726.0109159074054,
+      "box_wmean_fluxerr_ppm": 2038.9606087518607,
+      "box_trimmed10_ppm": 1775.2115262950063,
+      "core50_mean_ppm": 2194.31994487318,
+      "n_core": 209
+    },
+    "psf_depth_vs_box_width_at_pipeline_ephemeris": [
+      [
+        0.5,
+        1935
+      ],
+      [
+        1.0,
+        2007
+      ],
+      [
+        1.5,
+        1999
+      ],
+      [
+        2.0,
+        1993
+      ],
+      [
+        2.25,
+        2099
+      ],
+      [
+        2.5,
+        1947
+      ],
+      [
+        3.0,
+        1760
+      ],
+      [
+        3.5,
+        1544
+      ],
+      [
+        4.0,
+        1382
+      ],
+      [
+        4.5,
+        1224
+      ],
+      [
+        5.0,
+        995
+      ],
+      [
+        6.0,
+        793
+      ]
+    ],
+    "max_psf_box_depth_any_width_ppm": 2272.6857045306524,
+    "per_season_own_ephemeris": {
+      "season_0": {
+        "quarters": [
+          4,
+          8,
+          12,
+          16
+        ],
+        "module": [
+          18
+        ],
+        "npixsap": [
+          6,
+          6,
+          6,
+          6
+        ],
+        "crowdsap_header": 0.821,
+        "psffrac_header": 0.792,
+        "psf_depth_ppm": 3925,
+        "psf_err_ppm": 641,
+        "sap_depth_ppm": 474,
+        "sap_err_ppm": 65,
+        "sap_over_psf": 0.12,
+        "sap_over_psf_err": 0.03
+      },
+      "season_1": {
+        "quarters": [
+          1,
+          5,
+          9,
+          13,
+          17
+        ],
+        "module": [
+          14
+        ],
+        "npixsap": [
+          4,
+          3,
+          4,
+          4,
+          3
+        ],
+        "crowdsap_header": 0.878,
+        "psffrac_header": 0.758,
+        "psf_depth_ppm": 1960,
+        "psf_err_ppm": 448,
+        "sap_depth_ppm": 309,
+        "sap_err_ppm": 94,
+        "sap_over_psf": 0.16,
+        "sap_over_psf_err": 0.06
+      },
+      "season_2": {
+        "quarters": [
+          2,
+          6,
+          10,
+          14
+        ],
+        "module": [
+          8
+        ],
+        "npixsap": [
+          5,
+          4,
+          5,
+          5
+        ],
+        "crowdsap_header": 0.954,
+        "psffrac_header": 0.848,
+        "psf_depth_ppm": 1417,
+        "psf_err_ppm": 140,
+        "sap_depth_ppm": 1446,
+        "sap_err_ppm": 111,
+        "sap_over_psf": 1.02,
+        "sap_over_psf_err": 0.13
+      },
+      "season_3": {
+        "quarters": [
+          3,
+          7,
+          11,
+          15
+        ],
+        "module": [
+          12
+        ],
+        "npixsap": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "crowdsap_header": 0.93,
+        "psffrac_header": 0.526,
+        "psf_depth_ppm": 1129,
+        "psf_err_ppm": 237,
+        "sap_depth_ppm": 383,
+        "sap_err_ppm": 103,
+        "sap_over_psf": 0.34,
+        "sap_over_psf_err": 0.12
+      }
+    },
+    "per_season_chi2_const": {
+      "psf": 18.1,
+      "sap": 74.9,
+      "dof": 3
+    },
+    "raw_flux_levels_target": {
+      "kepmag": 17.2350006103516,
+      "expected_total_flux_e_s": 1401,
+      "raw_psf_flux_e_s_by_quarter": {
+        "1": 1002,
+        "2": 2604,
+        "3": 1679,
+        "4": 351,
+        "5": 1015,
+        "6": 2350,
+        "7": 1551,
+        "8": 383,
+        "9": 961,
+        "10": 2327,
+        "11": 1479,
+        "12": 445,
+        "13": 863,
+        "14": 2246,
+        "15": 1495,
+        "16": 440,
+        "17": 1017
+      },
+      "raw_sap_flux_e_s_by_quarter": {
+        "1": 4201,
+        "2": 2827,
+        "3": 2101,
+        "4": 7369,
+        "5": 2575,
+        "6": 2681,
+        "7": 2029,
+        "8": 7276,
+        "9": 4384,
+        "10": 2779,
+        "11": 2002,
+        "12": 7049,
+        "13": 4289,
+        "14": 2726,
+        "15": 2026,
+        "16": 6926,
+        "17": 2352
+      },
+      "note": "stitched FLUX/SAP_FLUX are rescaled per quarter to a common median (1366 / 3765 e/s); fractional depths are unaffected by a multiplicative rescale, but the raw levels show the PSF fit assigns this Kp=17.2 star 0.25x (module 18) to 1.9x (module 8) its expected ~1400 e/s, and the SAP aperture holds 1.4-5.3x the expected flux, so header CROWDSAP/PSFFRAC are not credible for this source"
+    },
+    "abs_deficit_vs_raw_flux_own_ephemeris": {
+      "season_0": {
+        "quarters": [
+          4,
+          8,
+          12,
+          16
+        ],
+        "raw_psf_flux_e_s": 411.5674148025598,
+        "raw_sap_flux_e_s": 7162.525390625,
+        "psf_abs_deficit_e_s": 1.6154154413134103,
+        "psf_abs_deficit_err_e_s": 0.2637787280627248,
+        "sap_abs_deficit_e_s": 3.398565603802989,
+        "sap_abs_deficit_err_e_s": 0.46201180472509024,
+        "depth_if_on_target_from_psf_deficit_ppm": 1152.750251717473,
+        "depth_if_on_target_from_sap_deficit_ppm": 3063.3432633253256
+      },
+      "season_1": {
+        "quarters": [
+          1,
+          5,
+          9,
+          13,
+          17
+        ],
+        "raw_psf_flux_e_s": 1001.5475504885931,
+        "raw_sap_flux_e_s": 4200.800537109375,
+        "psf_abs_deficit_e_s": 1.9629103971767663,
+        "psf_abs_deficit_err_e_s": 0.44823850049946423,
+        "sap_abs_deficit_e_s": 1.296445177257308,
+        "sap_abs_deficit_err_e_s": 0.3958113810242486,
+        "depth_if_on_target_from_psf_deficit_ppm": 1400.720456531381,
+        "depth_if_on_target_from_sap_deficit_ppm": 1220.0402135687095
+      },
+      "season_2": {
+        "quarters": [
+          2,
+          6,
+          10,
+          14
+        ],
+        "raw_psf_flux_e_s": 2338.2523047883988,
+        "raw_sap_flux_e_s": 2752.3236694335938,
+        "psf_abs_deficit_e_s": 3.3127164681863808,
+        "psf_abs_deficit_err_e_s": 0.32809469032904787,
+        "sap_abs_deficit_e_s": 3.9792589465147876,
+        "sap_abs_deficit_err_e_s": 0.30675584363517866,
+        "depth_if_on_target_from_psf_deficit_ppm": 2363.9335398859716,
+        "depth_if_on_target_from_sap_deficit_ppm": 3346.5940262260065
+      },
+      "season_3": {
+        "quarters": [
+          3,
+          7,
+          11,
+          15
+        ],
+        "raw_psf_flux_e_s": 1522.7059357169692,
+        "raw_sap_flux_e_s": 2027.3070678710938,
+        "psf_abs_deficit_e_s": 1.7191273012570942,
+        "psf_abs_deficit_err_e_s": 0.3606510990171232,
+        "sap_abs_deficit_e_s": 0.7763513847253638,
+        "sap_abs_deficit_err_e_s": 0.20893398335354438,
+        "depth_if_on_target_from_psf_deficit_ppm": 1226.7583796569745,
+        "depth_if_on_target_from_sap_deficit_ppm": 1052.547744446074
+      }
+    },
+    "neighbour_kic006367220": {
+      "G": 13.82,
+      "sep_arcsec": 8.1,
+      "note": "TPF-origin star (KIC 6367220), 23x brighter than target",
+      "psf_depth_ppm": -10.5,
+      "psf_err_ppm": 8.9,
+      "sap_depth_ppm": -5.5,
+      "sap_err_ppm": 9.8,
+      "scatter_ppm": 180,
+      "verdict": "no signal at the ephemeris; excluded as the source"
+    },
+    "neighbours_without_kbonus_light_curve": [
+      "Gaia DR3 2077645628637721728 (G=20.5, 3.6 arcsec; absent from KBONUS source catalogue -> unmodelled, its light is absorbed into the target PSF fit and aperture; nearest source to the pipeline pixel deficit in Q2,4,7,8)",
+      "Gaia DR3 2077645628637706112 (G=20.9, 9.6 arcsec; absent from KBONUS source catalogue)"
+    ]
+  },
+  "pipeline_vet_json_read_after_own_numbers": {
+    "P": 12.971527521795288,
+    "t0_bkjd": 142.75300012519583,
+    "dur_h": 2.25,
+    "depth_pass2_ppm": 3034.19,
+    "depth_pass2_formal_err_ppm": 304.5,
+    "snr_emp_pass2": 9.85,
+    "depth_odd_ppm": 2743,
+    "depth_even_ppm": 3300,
+    "odd_even_sigma": 0.9,
+    "secondary_ppm": -85,
+    "secondary_sigma": -0.28,
+    "n_events": 100,
+    "frac_events_positive": 0.88,
+    "event_weighted_depth_ppm": 1518.8,
+    "event_chi2_const": 175.7,
+    "event_dof": 99,
+    "depth_by_quartile_ppm": [
+      1331,
+      1112,
+      1645,
+      1980
+    ],
+    "tls_sde": 13.4,
+    "tls_depth_ppm": 3007,
+    "tls_duration_h": 2.41,
+    "rp_earth_box": 5.28,
+    "rp_earth_tls": 4.73,
+    "t14_max_h": 4.12,
+    "known_matches": [],
+    "stage2_pass": true,
+    "pixel_summary": {
+      "n_quarters_used": 14,
+      "quarters_deficit_closer_to_target_than_any_other_source": 2,
+      "quarters_target_gaussian_beats_scaled_image": 11,
+      "median_target_to_deficit_arcsec": 3.9,
+      "median_nearest_other_source_to_deficit_arcsec": 1.35
+    }
+  },
+  "comparison_with_pipeline": {
+    "agree": [
+      "period: 12.971956 +/- 0.0015 d (HWHM) vs 12.971528 d: difference 0.00043 d = 0.3 HWHM",
+      "epoch: t0 BKJD 856.18195 is 55 epochs after the pipeline t0 142.75300 with a 7-min offset (inside the box)",
+      "duration: best box 2.4 h (grid step 0.48 h) vs 2.25 h; trapezoid T14 4.40 h vs pipeline t14_max 4.12 h",
+      "odd/even: 0.78 sigma vs 0.90 sigma (both consistent)",
+      "secondary: 236 +/- 158 ppm (1.5 sigma) vs -85 ppm (-0.28 sigma): none in either",
+      "per-year depths [1627, 1738, 2276, 2113] ppm, chi2 2.0/3, vs pipeline quartiles [1331,1112,1645,1980]: both flat in time",
+      "number of transits with local depths 98 vs 100; fraction positive 0.89 vs 0.88; per-transit weighted mean 1525 ppm vs pipeline event_weighted_depth 1519 ppm",
+      "blind recovery: 12.9718 d is the top BLS peak (SDE 31.0, own grid, 1-50 d) with the inverted-flux null at SDE 9.5; aliases P/2 and 2P are peaks 2 and 3",
+      "bright TPF-origin star KIC 6367220 (G=13.8, 8 arcsec): -10 +/- 9 ppm at the ephemeris, so it is not the source (consistent with the pipeline's scaled-image test)"
+    ],
+    "disagree": [
+      "DEPTH: pipeline 3034 +/- 305 ppm (pass-2 box) is not reproduced. Own 2.4-h box 1972 +/- 158 ppm (empirical); at the pipeline's exact ephemeris and 2.25-h box 2099 ppm; median/trimmed/weighted/core definitions 1726-2194 ppm; maximum over box widths 0.5-6 h 2273 ppm; astropy BLS fitted depth 1444 ppm; trapezoid bottom 2293 ppm. The pipeline's own event-weighted depth (1519 ppm) and quartile depths (1112-1980 ppm) agree with this re-derivation, not with its 3034-ppm headline; the only pipeline statistic near 3034 is the TLS model depth (3007 ppm).",
+      "empirical SNR 12.5 (random-phase boxes) vs 9.85 (pipeline box noise): same sign, different noise estimator",
+      "SAP vs PSF: SAP depth 677 +/- 49 ppm, ratio 0.34 +/- 0.04 against 0.80-0.97 expected from header CROWDSAP for an undiluted on-target signal; vet.json contains no SAP check",
+      "per-season (same module every 4th quarter) depths are inconsistent: PSF 3925/1960/1417/1129 ppm (chi2 18/3), SAP 474/309/1446/383 ppm (chi2 75/3); SAP/PSF is 1.02 on module 8 but 0.12-0.34 elsewhere; the pipeline's per-quartile test (time quartiles mixing all seasons) cannot see this",
+      "dilution bookkeeping: raw per-quarter PSF-fit flux of the target is 351-2604 e/s (0.25x-1.9x the ~1400 e/s expected for Kp 17.2) and raw SAP aperture flux 2000-7370 e/s (1.4-5.3x expected), module-dependent; the CSV psffrac 0.52 / crowdsap 0.80 used downstream are not trustworthy for this source",
+      "radius if on target: 4.3 Re from the 1972-ppm PSF box depth vs pipeline 5.28 Re (box) / 4.73 Re (TLS); season- and photometry-dependent estimates span ~1000-3400 ppm (3-5.5 Re), so no single radius is defensible",
+      "the G=20.5 Gaia source 3.6 arcsec (~0.9 px) from the target is not in the KBONUS source catalogue (unmodelled) and has no light curve to test; the pipeline pixel deficit is nearest to it in 4 of 14 quarters and to the target in only 2; this re-derivation cannot exclude it as the host (a ~3-4% V-shaped eclipse on it would reproduce the signal)",
+      "blind recovery is detrend-dependent: with a plain 1-d running median (no step splitting) the periodogram is dominated by Q2/Q6 step discontinuities (top peak 45.85 d, SDE 7.7) and 12.97 d ranks ~60th; it is the top peak only after splitting detrend segments at detected steps"
+    ],
+    "verdict": "A periodic 12.972-d box-shaped deficit is unambiguously present in both PSF and aperture photometry of this source (independent SNR 12.5 and 13.8), with no odd/even or secondary signature; but its fractional depth is not a stable quantity for this star (factor 3-10 between photometries and seasons), the pipeline's 3034 ppm is not reproduced (own value ~2000 ppm), and the deficit cannot be assigned to the target rather than an unmodelled G=20.5 neighbour 0.9 px away. Candidate-language only; depth and radius should be quoted as ranges until pixel-level work resolves the host."
+  }
 }

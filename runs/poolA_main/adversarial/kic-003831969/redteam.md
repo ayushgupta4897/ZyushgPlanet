@@ -74,7 +74,8 @@ target of 0.94, 0.88, 0.93, 0.87. If the dip is on the target and the PSF depth 
 the SAP depth should equal PSF depth x CROWDSAP; the measured ratio is ~0.2 lower (2-3 sigma
 overall). Possible benign causes: uncatalogued light/background in the 4-8 px aperture, or the PSF
 depth being ~20% over-estimated for a star whose PSF is truncated by the stamp edge. Recorded as a
-mild tension, not a kill.
+mild tension, not a kill. **Resolved in the addendum below**: with the measured SAP and PSF flux
+levels in place of the header CROWDSAP the expected ratio is 0.71 and the tension disappears.
 
 ## 2. Stellar variability / rotation aliases
 
@@ -124,8 +125,10 @@ Kepler EB catalogue Kirk+2016 (2876), confirmed planets in the field, TESS EB ca
   TPF, not an EXBA mask). A 2026 workshop poster (Moquin et al., "BOI-1.01") is a single unrelated
   object.
 - SIMBAD cone (30"): only UCAC4 645-065182 (a positional catalogue entry, no variability type).
-- TOI/CTOI: not cross-matched (no TIC lookup performed); irrelevant in practice because TESS
-  cannot reach 1000 ppm at T ~ 16.
+- TOI/CTOI (ExoFOP lists downloaded 2026-10-17: 8151 TOIs, 5138 CTOIs; `redteam_work/toi_check`
+  below): target is TIC 120425498 (Tmag 16.01, 0.03" from the Gaia position), host TIC 120425499
+  (Tmag 14.49); neither, nor the four faint neighbour TICs (1715992116-9), is a TOI or CTOI, and
+  there is no TOI/CTOI within 3 arcmin. (TESS could not reach 1000 ppm at T=16 anyway.)
 
 ## 6. Depth consistency across seasons / quarters (my per-season test, PSF flux)
 
@@ -169,8 +172,9 @@ pixel fits already place the deficit on the target in all three usable seasons).
 2. A planet-sized companion on a different star inside the Kepler PSF but not in Gaia (G > 20.5
    within 1"): this is the same TRICERATOPS space.
 3. The season-dependence of the recovered depth (section 6) should be re-measured with a proper
-   PRF model fit rather than a Gaussian, and the SAP/PSF vs CROWDSAP discrepancy (section 1)
-   understood, before any depth or radius is quoted to better than ~25%.
+   PRF model fit rather than a Gaussian before any depth or radius is quoted to better than ~25%.
+   (The SAP/PSF vs CROWDSAP discrepancy is resolved in the addendum: header CROWDSAP understates
+   the host's contamination of the SAP aperture.)
 4. Quote the conservative empirical SNR (19.6) and the per-event red-noise-inflated depth error
    (~70-80 ppm), not the pipeline's 23.8 / 42 ppm.
 
@@ -187,3 +191,38 @@ pixel fits already place the deficit on the target in all three usable seasons).
 - Duration/density/implied radius for the catalogue host and an extinction-corrected host.
 - Re-read of pipeline vet.json, events.csv, fold_events.png, pixel.json, diffimages.png and the
   independent re-derivation.
+
+## Addendum (2026-10-17, after the session was interrupted and resumed)
+
+**Traceability of the pixel numbers.** In `pix_free_sigfix.json` the field `fit_sigma_px` (0.7) is the
+unused initial guess; the Gaussian sigma is fixed at 0.6 px (`SIGFIX` in `pix_free_sigfix.py`). The
+"integrated Gaussian deficit" quoted in section 1 (2.8, 2.6, 2.9 e/s for seasons 0, 1, 3) is
+`fit_amp` x 2 pi x 0.6^2 (fit_amp = 1.22, 1.14, 1.28). The JSON field `deficit_sum_e_s` (3.1, 1.6, 1.7)
+is a different quantity, the raw sum of the whole difference image including noise pixels, and is
+consistent with the Gaussian integral within its ~0.65 e/s error.
+
+**CROWDSAP in the target table is the per-quarter minimum.** The ranked target CSV gives
+crowdsap 0.763, flfrcsap 0.734, psffrac 0.754; those are the minima over quarters (Q12, Q4, Q16).
+The per-quarter LIGHTCURVE_Qn headers give CROWDSAP 0.76-0.97 (season means 0.94, 0.88, 0.93, 0.87),
+FLFRCSAP 0.73-0.97, PSFFRAC 0.75-0.85. The independent re-derivation's "~0.76 expectation" for the
+SAP/PSF depth ratio therefore used the most contaminated quarter, not the typical one.
+
+**SAP/PSF depth ratio from measured flux levels (`sap_psf_fluxlevel.py` -> `.json`).** Rather than
+trust the header, use the light curves themselves: median SAP flux 4051 e/s vs PSF flux 3217 e/s
+(mean FLFRCSAP 0.898). If the dip is on the target, SAP depth / PSF depth = FLFRCSAP x F_psf / F_sap
+= 0.714 (0.794 if the aperture captured all the target light). Measured 0.689 +/- 0.060: 0.4 sigma
+(1.8 sigma) from expectation. Per season: expected 0.83, 0.70, 0.71, 0.61 vs measured
+0.69 +/- 0.13, 0.63 +/- 0.10, 0.73 +/- 0.13, 0.81 +/- 0.15 (all within 1.3 sigma). The "tension" in
+section 1 was an artefact of header CROWDSAP (0.87-0.94) understating how much of the 4x brighter
+host 8" away lands in the 4-8 pixel SAP aperture; the real SAP contamination is ~26-29%. This also
+adds an argument independent of the pixel fits: an eclipse on a *resolved* neighbour would have to
+contribute more to the SAP aperture than to the target's PSF-fit flux, giving a ratio > F_psf/F_sap
+= 0.79 and typically >> 1; the measured 0.69 +/- 0.06 is below that bound. Only an unresolved source
+(inside the PSF core) evades it, the same residual space as before.
+
+**Net effect on the verdict**: unchanged (survives). One of the two caveats (SAP/PSF) is withdrawn; the
+other (season dependence of the PSF depth, chi2 9.3/3 white, 4.1/3 red-noise inflated) stands and is
+a photometry-systematics caveat for the quoted depth, not evidence against the signal.
+
+Files added in this addendum: `redteam_work/sap_psf_fluxlevel.py`, `redteam_work/sap_psf_fluxlevel.json`,
+`redteam_work/toi_check.txt`.
