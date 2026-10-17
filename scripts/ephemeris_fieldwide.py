@@ -33,10 +33,21 @@ for name, df, pc, tc, idc, dc in cats:
                          "t0_offset_d": off, "epoch_match": bool(off is not None and abs(off) < 2 * D),
                          "depth_ppm": None if dc is None else float(pd.to_numeric(r[dc], errors="coerce")),
                          "ra": None if "ra" not in df.columns else float(r["ra"]), "dec": None if "dec" not in df.columns else float(r["dec"])})
-out = {"fname": fname, "P_d": P, "t0_bkjd": t0, "dur_d": D, "catalogues_fetched_utc": man.get("fetched_utc"),
+# physical viability: a 1:1 twin contaminates directly; a 2:1 twin (their P = 2 x ours) would alternate odd/even depths;
+# a 1:2 twin (their P = ours / 2) would put an equal dip at phase 0.5; 3:1 / 1:3 / 4:1 / 1:4 likewise leave phase-scan signatures.
+oe = abs(v.get("odd_even_sigma") or 0); sec = abs(v.get("secondary_sigma") or 0)
+ra0, dec0 = float(v["ra"]), float(v["dec"])
+for r in rows:
+    if r["ra"] is not None:
+        r["sep_arcmin"] = 60 * float(np.hypot((r["ra"] - ra0) * np.cos(np.radians(dec0)), r["dec"] - dec0))
+    viable = r["epoch_match"] and (r["ratio"] == "1:1" or (r["ratio"] in ("2:1", "3:1", "4:1") and oe > 3) or (r["ratio"] in ("1:2", "1:3", "1:4") and sec > 3))
+    r["viable_contaminant"] = bool(viable)
+out = {"fname": fname, "odd_even_sigma": v.get("odd_even_sigma"), "secondary_sigma": v.get("secondary_sigma"),
+       "n_viable_contaminants": int(sum(r["viable_contaminant"] for r in rows)), "viable_contaminants": [r for r in rows if r["viable_contaminant"]], "P_d": P, "t0_bkjd": t0, "dur_d": D, "catalogues_fetched_utc": man.get("fetched_utc"),
        "n_period_coincidences": len(rows), "n_epoch_matches": int(sum(r["epoch_match"] for r in rows)),
        "epoch_matches": [r for r in rows if r["epoch_match"]], "all_period_coincidences": rows,
        "note": "Whole Kepler field, any channel. A period coincidence without an epoch match cannot contaminate a folded light curve over a 4-year baseline."}
 os.makedirs(f"runs/{run}/ephemeris_fieldwide", exist_ok=True)
 json.dump(out, open(f"runs/{run}/ephemeris_fieldwide/{fname}.json", "w"), indent=1)
-print(f"{fname}: {len(rows)} period coincidences, {out['n_epoch_matches']} with matching epoch:", [(r['catalogue'], r['id'], r['ratio'], round(r['t0_offset_d'], 3)) for r in out['epoch_matches']])
+print(f"{fname}: {len(rows)} period coincidences, {out['n_epoch_matches']} with matching epoch, {out['n_viable_contaminants']} viable given odd/even {oe:.1f} sigma and secondary {sec:.1f} sigma:", [(r['catalogue'], r['id'], r['ratio'], round(r['t0_offset_d'], 3), round(r.get('sep_arcmin') or -1)) for r in out['viable_contaminants']])
+print("   epoch matches by harmonic:", [(r['ratio'], r['id'], round(r.get('sep_arcmin') or -1, 1)) for r in out['epoch_matches']])

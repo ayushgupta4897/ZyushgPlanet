@@ -172,7 +172,7 @@ if vet:
     L.append(f"| Ephemeris matches (KOI/TCE/EB/confirmed within 3′, ratios 1:1,2:1,1:2,3:1,1:3, 0.2 %) | {len(km)} ({'none on the same star or TPF' if eph_ok else 'MATCH ON SAME STAR/TPF'}) | catalogues dated {known.get('fetched_utc') if known else 'n/a'} | stage2/vet.json `known_matches`, known_catalogues_manifest.json |")
 fw = jload(f"{R}/ephemeris_fieldwide/{a.fname}.json")
 if fw:
-    L.append(f"| Field-wide ephemeris check (whole Kepler field, any channel; KOI, DR25 TCE, Kepler EB; harmonics 1:1–4:1) | {fw['n_period_coincidences']} period coincidences within 0.1 %, **{fw['n_epoch_matches']} with a matching epoch** | a 4-year baseline separates period twins whose epochs differ | ephemeris_fieldwide.json |")
+    L.append(f"| Field-wide ephemeris check (whole Kepler field, any channel; KOI, DR25 TCE, Kepler EB; harmonics 1:1–4:1) | {fw['n_period_coincidences']} period coincidences within 0.1 %, {fw['n_epoch_matches']} with a matching epoch, **{fw['n_viable_contaminants']} viable** (1:1 twins, or harmonics not excluded by this signal's odd/even and secondary tests) | a 4-year baseline separates period twins whose epochs differ; harmonic twins need an odd/even or phase-0.5 signature this signal lacks | ephemeris_fieldwide.json |")
 L.append("")
 if second:
     L.append(f"## Second signal (post-hoc, label {a.second_signal})")
