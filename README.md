@@ -10,11 +10,12 @@ controls that must pass, and ephemeris matching against every known object.
 Kepler targets and have no published transit search, has been screened (6,365 on Modal, 100
 locally; 31 had no usable cadences). First screen: 448 real vs 97 inverted passes. Stage 2:
 11 survivors under the registered v1.4 rules, 23 under the post-hoc v1.5 rules, 22 under v1.7 (all reported).
-Pixel localisation puts 7 on target. After independent re-derivation, red-team review, deep runs and a
-documented TRICERATOPS run, two signals meet this repo's definition of *candidate* (kic-006699887, FPP 2.4 %;
-kic-003831969, FPP 2.7 %; NFPP 0; evidence packs under `candidates/`). Neither is below the 1.5 % validation
-line, which needs high-resolution imaging. Seven other survivors were killed by the red team as post-gap
-ramps, saturated-neighbour artefacts, a same-channel eclipsing binary and a background EB (`docs/10`).
+Pixel localisation puts 7 on target. After independent re-derivation, red-team review, deep runs, transit fits and
+documented TRICERATOPS runs, three signals meet this repo's definition of *candidate*: kic-006699887 (15.11 d, 2.8 R⊕,
+plus a second on-target signal at 47.69 d), kic-003831969 (15.31 d, 3.5 R⊕) and kic-011138423 (4.89 d, 2.8 R⊕). Their FPP
+is 0.6–0.7 % with Gaia-based companion constraints (2.4–3.6 % without), NFPP 0; evidence packs under `candidates/`.
+Not validated: that needs a refereed paper and, most likely, high-resolution imaging. Fifteen other survivors were
+rejected or stay signals (`docs/10`).
 
 ## Read in this order
 
@@ -50,7 +51,8 @@ ramps, saturated-neighbour artefacts, a same-channel eclipsing binary and a back
 | `scripts/incremental_vet.sh` | Fetch-triage-vet loop used while a Modal batch runs |
 | `pipeline/run.py` (+ `fetch/prep/search/vet/report.py`) | Deep single-target reproduction (used on KIC 5689121) |
 | `runs/<run-id>/` | Results, logs, triage tables; `runs/controls/` are the positive controls |
-| `pipeline/fpp_triceratops.py`, `scripts/build_evidence_pack.py` | TRICERATOPS false-positive probability (Kepler mode) and the evidence-pack builder (`candidates/<fname>/`, SHA-256 manifest) |
+| `pipeline/fpp_triceratops.py`, `scripts/build_evidence_pack.py` | TRICERATOPS false-positive probability (Kepler mode; contrast curve, MOLUSC and Gaia FLAME options) and the evidence-pack builder (`candidates/<fname>/`, SHA-256 manifest) |
+| `scripts/molusc_run.py`, `scripts/gaia_contrast_curve.py`, `scripts/transit_fit.py`, `pipeline/pixel_season_stack.py`, `scripts/ephemeris_fieldwide.py` | Gaia RUWE/imaging companion constraint (MOLUSC), empirical Gaia contrast curve, batman+emcee transit fit with stellar-density check, season-stacked pixel localisation (v1.8), whole-field ephemeris match |
 
 ```sh
 uv venv .venv && . .venv/bin/activate && uv pip install -r requirements.txt
