@@ -225,11 +225,21 @@ def bls_one(t, y, e, pmin, pmax, durations_h, oversample=3.0, objective="likelih
     depth, depth_err = float(stats["depth"][0]), float(stats["depth"][1])
     dodd, dodd_e = float(stats["depth_odd"][0]), float(stats["depth_odd"][1])
     deven, deven_e = float(stats["depth_even"][0]), float(stats["depth_even"][1])
+    # astropy naming: depth_phased = model shifted by half a period (the SECONDARY-eclipse test);
+    # depth_half = model at half the period (NOT a secondary test; kept for information only)
+    dsec, dsec_e = float(stats["depth_phased"][0]), float(stats["depth_phased"][1])
     dhalf, dhalf_e = float(stats["depth_half"][0]), float(stats["depth_half"][1])
-    oe_sigma = abs(dodd - deven) / np.sqrt(dodd_e**2 + deven_e**2) if (dodd_e > 0 and deven_e > 0) else np.nan
-    sec_sigma = dhalf / dhalf_e if dhalf_e > 0 else np.nan
     box_noise = _empirical_box_noise(t, y, P, D, T0)
-    snr_emp = depth / box_noise if (box_noise and np.isfinite(box_noise) and box_noise > 0) else np.nan
+    have_box = bool(box_noise and np.isfinite(box_noise) and box_noise > 0)
+    snr_emp = depth / box_noise if have_box else np.nan
+    # formal sigmas (white-noise errors) and empirical sigmas (folded-box scatter, which
+    # includes correlated noise).  The screen uses the empirical ones when available.
+    oe_sigma_formal = abs(dodd - deven) / np.sqrt(dodd_e**2 + deven_e**2) if (dodd_e > 0 and deven_e > 0) else np.nan
+    oe_sigma_emp = abs(dodd - deven) / (2.0 * box_noise) if have_box else np.nan  # each half has ~sqrt(2) x noise
+    sec_sigma_formal = dsec / dsec_e if dsec_e > 0 else np.nan
+    sec_sigma_emp = dsec / box_noise if have_box else np.nan
+    oe_sigma = oe_sigma_emp if np.isfinite(oe_sigma_emp) else oe_sigma_formal
+    sec_sigma = sec_sigma_emp if np.isfinite(sec_sigma_emp) else sec_sigma_formal
     # top-5 distinct peaks for aliasing diagnostics
     order = np.argsort(res.power)[::-1]
     peaks = []
@@ -246,13 +256,24 @@ def bls_one(t, y, e, pmin, pmax, durations_h, oversample=3.0, objective="likelih
         "snr_emp": snr_emp, "box_noise_ppm": (box_noise * 1e6) if np.isfinite(box_noise) else np.nan,
         "sde": _sde(res.power), "power": float(res.power[i]),
         "n_transits": n_tr, "max_single_event_frac": max_single,
+        "depth_odd_ppm": dodd * 1e6, "depth_even_ppm": deven * 1e6,
         "odd_even_sigma": float(oe_sigma) if np.isfinite(oe_sigma) else None,
+        "odd_even_sigma_formal": float(oe_sigma_formal) if np.isfinite(oe_sigma_formal) else None,
         "secondary_sigma": float(sec_sigma) if np.isfinite(sec_sigma) else None,
-        "secondary_depth_ppm": dhalf * 1e6,
+        "secondary_sigma_formal": float(sec_sigma_formal) if np.isfinite(sec_sigma_formal) else None,
+        "secondary_depth_ppm": dsec * 1e6,
+        "half_period_depth_ppm": dhalf * 1e6,
         "n_periods": int(len(periods)),
         "top_peaks": [[p, w] for p, w in peaks],
-        "_mask": bls.transit_mask(t, P, 2.0 * D, T0),
+        "_mask": _phase_mask(t, P, min(2.0 * D, 0.5 * P), T0),
     }
+
+
+def _phase_mask(t, period, width_d, t0):
+    """In-transit mask of total width `width_d` centred on the ephemeris (no astropy
+    validation, so it cannot fail for short periods)."""
+    phase = ((t - t0) / period + 0.5) % 1.0 - 0.5
+    return np.abs(phase) < 0.5 * width_d / period
 
 
 def search_star(fname: str, config: dict, cache_dir: str | None = None, keep_fits: bool = False) -> dict:
