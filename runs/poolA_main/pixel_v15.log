@@ -71,3 +71,40 @@ pixel_vet gaia-dr3-2127687048516119168 P=32.8687
   Q16: ev=2 sig=1 edge=False noise=random_phase target->deficit 7.5" (None sigma) other->deficit 3.9" chi2 null/img/gauss 41/40/40 -> inconclusive
   Q17: ev=1 sig=0 edge=False noise=analytic target->deficit None" (None sigma) other->deficit None" chi2 null/img/gauss 10/9/9 -> inconclusive
 pixel_vet kic-001577049 P=0.5379
+{
+ "n_quarters_with_maps": 15,
+ "n_conclusive": 9,
+ "n_edge_or_outside": 6,
+ "n_on_target_quarters": 0,
+ "n_offset_quarters": 9,
+ "median_target_to_deficit_arcsec": 26.52900060876903,
+ "median_target_to_deficit_sigma": 14.259556061606922,
+ "median_nearest_other_source_arcsec": 4.521667149906449,
+ "quarters_target_gaussian_beats_scaled_image": 0,
+ "sum_chi2_null": 5183.885975022016,
+ "sum_chi2_scaled_image": 4646.344071354811,
+ "sum_chi2_gauss_at_target": 5109.3563094406945,
+ "median_peak_snr": 3.501418547903772,
+ "median_depth_in_aperture_ppm": 1509.9180392297164,
+ "verdict": "offset",
+ "verdict_reason": "0 on-target and 9 offset of 9 conclusive quarters (6 edge/outside; rules: >= 5 conclusive, >= 70%)"
+}
+  Q0: ev=18 sig=11 edge=True noise=random_phase target->deficit 26.9" (9.6 sigma) other->deficit 1.5" chi2 null/img/gauss 347/345/338 -> inconclusive
+  Q1: ev=61 sig=7 edge=False noise=random_phase target->deficit 20.9" (5.8 sigma) other->deficit 3.5" chi2 null/img/gauss 380/329/372 -> OFF
+  Q2: ev=154 sig=0 edge=True noise=random_phase target->deficit None" (None sigma) other->deficit None" chi2 null/img/gauss 322/267/314 -> inconclusive
+  Q3: ev=155 sig=8 edge=True noise=random_phase target->deficit 29.0" (12.8 sigma) other->deficit 8.1" chi2 null/img/gauss 445/378/440 -> inconclusive
+  Q4: ev=155 sig=17 edge=False noise=random_phase target->deficit 23.5" (9.9 sigma) other->deficit 4.9" chi2 null/img/gauss 606/524/597 -> OFF
+  Q5: ev=170 sig=11 edge=False noise=random_phase target->deficit 33.0" (14.3 sigma) other->deficit 12.4" chi2 null/img/gauss 523/474/513 -> OFF
+  Q6: ev=161 sig=18 edge=True noise=random_phase target->deficit 26.8" (7.9 sigma) other->deficit 1.6" chi2 null/img/gauss 536/477/530 -> inconclusive
+  Q7: ev=160 sig=13 edge=True noise=random_phase target->deficit 29.2" (9.3 sigma) other->deficit 0.9" chi2 null/img/gauss 417/388/414 -> inconclusive
+  Q8: ev=119 sig=17 edge=True noise=random_phase target->deficit 14.8" (213.0 sigma) other->deficit 3.9" chi2 null/img/gauss 577/469/568 -> inconclusive
+  Q9: ev=175 sig=0 edge=False noise=random_phase target->deficit None" (None sigma) other->deficit None" chi2 null/img/gauss 1585/1564/1584 -> inconclusive
+  Q10: ev=169 sig=1 edge=False noise=random_phase target->deficit 32.1" (7794776053325893.0 sigma) other->deficit 8.8" chi2 null/img/gauss 379/349/369 -> inconclusive
+  Q11: ev=169 sig=2 edge=False noise=random_phase target->deficit 31.4" (3.2 sigma) other->deficit 3.3" chi2 null/img/gauss 430/373/423 -> OFF
+  Q12: ev=133 sig=51 edge=False noise=random_phase target->deficit 26.2" (15.0 sigma) other->deficit 4.5" chi2 null/img/gauss 907/786/897 -> OFF
+  Q13: ev=158 sig=0 edge=False noise=random_phase target->deficit None" (None sigma) other->deficit None" chi2 null/img/gauss 262/218/253 -> inconclusive
+  Q14: ev=163 sig=40 edge=False noise=random_phase target->deficit 38.1" (19.0 sigma) other->deficit 9.7" chi2 null/img/gauss 785/737/777 -> OFF
+  Q15: ev=166 sig=14 edge=False noise=random_phase target->deficit 26.6" (26.5 sigma) other->deficit 8.4" chi2 null/img/gauss 585/563/578 -> OFF
+  Q16: ev=133 sig=9 edge=False noise=random_phase target->deficit 22.5" (2.9 sigma) other->deficit 4.2" chi2 null/img/gauss 463/399/458 -> OFF
+  Q17: ev=48 sig=18 edge=False noise=random_phase target->deficit 26.5" (20.7 sigma) other->deficit 3.6" chi2 null/img/gauss 504/460/496 -> OFF
+pixel_vet kic-003831969 P=15.3134
