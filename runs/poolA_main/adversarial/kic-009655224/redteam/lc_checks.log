@@ -1,0 +1,44 @@
+global depth 648 +/- 89 ppm
+Q 3 season 1: depth    453 +/-  156 ppm  n_in=61
+Q 4 season 2: depth    690 +/-  268 ppm  n_in=58
+Q 5 season 3: depth    966 +/-  256 ppm  n_in=67
+Q 6 season 0: depth    845 +/-  215 ppm  n_in=63
+Q 8 season 2: depth    955 +/-  347 ppm  n_in=39
+Q 9 season 3: depth    330 +/-  255 ppm  n_in=65
+Q10 season 0: depth    745 +/-  212 ppm  n_in=65
+Q12 season 2: depth    775 +/-  313 ppm  n_in=44
+Q14 season 0: depth    563 +/-  218 ppm  n_in=66
+Q15 season 1: depth    281 +/-  162 ppm  n_in=59
+season 0 (ch 47): depth    716 +/-  124 ppm
+season 1 (ch 23): depth    368 +/-  112 ppm
+season 2 (ch 39): depth    790 +/-  176 ppm
+season 3 (ch 63): depth    653 +/-  181 ppm
+season chi2 about weighted mean 585: 6.32 for 3 dof
+per-event depth trend: -204 +/- 173 ppm per 1000 d (-1.2 sigma)
+events with gap_dist>0.5 d: n=119 depth 547 +/- 74
+   near gap (<0.5 d): n=5 depth 40 +/- 395
+events with gap_dist>1.0 d: n=113 depth 525 +/- 76
+   near gap (<1.0 d): n=11 depth 582 +/- 257
+events with gap_dist>2.0 d: n=102 depth 540 +/- 81
+   near gap (<2.0 d): n=22 depth 490 +/- 164
+spearman depth vs gap_dist: SignificanceResult(statistic=np.float64(-0.08670967741935483), pvalue=np.float64(0.33827244111361243))
+per-event outliers |z|>3: 5 of 124 ; max z 4.0 at tc 533.32
+depth excluding 5 highest-SNR events: 429 +/- 75
+in-transit cadences: n=587; mean -648 ppm; mean excluding deepest 5%: -438 ppm; excluding deepest 10%: -283
+median in-box - median out: 644 ppm
+LS peak: P=37.0151 d power 0.09167 amp 906 ppm
+  LS power at 6.703 d: 0.0002591 (peak 0.09167); FAP-ish rank 9018
+  LS power at 3.352 d: 1.3e-06 (peak 0.09167); FAP-ish rank 191008
+  LS power at 13.407 d: 0.001982 (peak 0.09167); FAP-ish rank 1651
+  LS power at 2.234 d: 0.0001199 (peak 0.09167); FAP-ish rank 17413
+trapezoid grid: best [9.639672e-03 0.000000e+00 2.400000e+00 6.500000e-04]
+  ingress frac 0.0: min dchi2 vs global 0.00
+  ingress frac 0.1: min dchi2 vs global 2.89
+  ingress frac 0.2: min dchi2 vs global 3.26
+  ingress frac 0.3: min dchi2 vs global 5.56
+  ingress frac 0.4: min dchi2 vs global 8.43
+  ingress frac 0.5: min dchi2 vs global 8.95
+  flat model dchi2 vs best: 71.4
+deepest box at other phases: 150 ppm at phase 0.16 (err ~89)
+narrow BLS dlogL real 0.0 vs inverted 0.0
+SAP depth 300 +/- 34 ppm

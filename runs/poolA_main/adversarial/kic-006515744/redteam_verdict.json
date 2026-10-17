@@ -1,0 +1,37 @@
+{
+ "fname": "kic-006515744",
+ "verdict": "kill",
+ "most_likely_explanation": "PSF-photometry single-cadence artefacts aligned by the period search, not an astrophysical dimming. The 12,763 ppm \"depth\" is the mean of four isolated one-cadence negative excursions. The two that carry it are demonstrably instrumental in the originating TPF (kplr006515734): BKJD 200.33 (Q2 cadence 4473) is the first cadence after the Q2 attitude tweak (cadence 4472 QUALITY = NoData+NoFinePoint+AttitudeTweak), with a -27 sigma POS_CORR2 pointing excursion and a dipole difference image (+21/-41 sigma pixels, whole-stamp change -0.02 percent) that a fixed-position PSF fit reads as a -6.7 percent dip; the same cadence is a field-wide outlier in other KBONUS sources (4 sources < -10 sigma vs max 0 over 40 control cadences). BKJD 1370.09 (Q14 cadence 61720) shows no pixel fainter than -2 sigma anywhere in the stamp but four pixels at +89/+72/+23/+17 sigma beside the target; PSF FLUX reads -35,529 ppm while PSF_FLUX_NOVA reads +115,501 ppm and SAP +127 ppm, i.e. a localised charge/cosmic-ray event perturbing the PSF fit. The remaining contributors (BKJD 1033.06 = first cadence after a Q11 Earth-point gap; 1033.14, 1069.3 = Q11 PSF scatter, 7,600 ppm quarter) show no target deficit in the TPF (3x3 box within 0.07 percent). With a symmetric 5-MAD single-cadence clip the 20-50 d BLS gives SDE 7.4 and the 36.2075 d power falls below the spectrum median; the inverted-flux null on the unclipped data (SDE 9.7) is comparable to the real-flux SDE.",
+ "kill_reasons": [
+  "Dominant cadence BKJD 200.33 is the first cadence after the Q2 attitude tweak: TPF QUALITY of cadence 4472 = 98305 (NoData+NoFinePoint+AttitudeTweak), POS_CORR1/2 = -6.7/-27.1 sigma, dipole single-cadence difference image (16 px < -3 sigma, 8 px > +3 sigma, whole-stamp -0.02 percent). Field-wide: 4 of 147 unrelated KBONUS sources are < -10 sigma at the same cadence number vs 0 at any of 40 control cadences (redteam_tpf_check.json, redteam_extra.json).",
+  "Second dominant cadence BKJD 1370.09 is a pixel brightening, not a dimming: no TPF pixel below -3 sigma, four pixels at +89/+72/+23/+17 sigma next to the target, whole-stamp +0.35 percent; KBONUS FLUX -35,529 ppm vs PSF_FLUX_NOVA +115,501 ppm vs SAP +127 ppm (redteam_tpf_check.json, redteam_checks.json).",
+  "Every 'deep' epoch is exactly one cadence wide and 10 of 15 epochs at the pipeline ephemeris are consistent with zero (three positive); pipeline events.csv has one usable event at 357 +/- 585 ppm with event_dof 0; vet.json already fails v1.7 (n_events) and v1.4 (tls_sde 5.4), passing only under v1.5.",
+  "Remaining contributors are Q11/Q3 noise and edge cadences with no pixel deficit: BKJD 1033.063 is the first good cadence after an Earth-point gap (preceding QUALITY 98312/16392); 1033.145, 1069.29, 1069.31 and 272.75 have target 3x3-box changes within +/-0.07 percent and no pixel < -3 sigma (one at -3.8), while PSF flux reads -27,000 to -28,000 ppm (redteam_extra.json).",
+  "Nothing periodic survives symmetric outlier treatment: dropping the 480 cadences below -5 MAD (MAD 2,045 ppm) gives BLS 20-50 d SDE 7.4 with the 36.2075 d power (15.8) below the spectrum median (16.0); inverted-flux null on unclipped data has SDE 9.7 vs 12.7 real; dropping only the two artefact cadences moves the best period to 43.4 d (redteam_checks.json bls_*).",
+  "Duration physically impossible: P = 36.2 d, Rstar 0.854 Rsun gives a/R* = 52 and central T14 = 5.9 h; measured 0.48-1.5 h would require b > 1.0 (1.10 for 1 h) and the 0.48 h best duration is shorter than one 29.4-min cadence (redteam_checks.json duration_physics; vet.json duration_ratio 0.13).",
+  "SAP/PSF depth ratio 0.12 overall and inconsistent per event (0.42 at 200.33, 0.00 at 1370.09) where crowdsap 0.77-0.95 / psffrac 0.88-0.94 predict 0.7-0.9 (rederive_results.json; redteam_checks.json events).",
+  "Existing pixel runs pixel_v15/v16: 0 of 8 quarters conclusive, 'no usable events' in Q0-3 and Q14, peak S/N 0.1-1.7 and in-aperture depth -30 to -144 ppm in Q6/Q10/Q11."
+ ],
+ "surviving_strengths": [
+  "Not a known object: KIC 6515744 is not a Kepler target, has no KOI/DR25 TCE/Kepler EB entry (data/known, fetched 2026-10-17T15:46 UTC), SIMBAD 20 arcsec returns only the G = 12.3 host; no whole-field KOI/TCE ephemeris match (period within 0.2 percent at x1/3..x3 and epoch within 0.1 d) for the pipeline ephemeris; Bienias & Szabo 2025 and Moquin 2026 BOI-1 are P < 5 d. Novelty is moot since the signal is instrumental.",
+  "No stellar variability or rotation alias: Lomb-Scargle 0.1-100 d best 1.03 d, power 0.0012, FAP 0.22; vet.json 238 ppm half-amplitude.",
+  "Secondary at phase 0.5 is null (-555 ppm, -0.6 sigma) and no KOI/TCE within 3 arcmin matches the period (KIC 6515722 TCEs at 35.85/34.26 d have discordant epochs) \u2014 but these are uninformative given one cadence per event."
+ ],
+ "checks_run": [
+  "Read vet.json, events.csv, fold_events.png, survivors.csv/triage/vet_summary rows, pixel_v15 and pixel_v16 pixel.json, rederive_results.json",
+  "Per-epoch PSF and SAP depths at pipeline (36.2075 d) and rederive (33.42 d) ephemerides with own 1-d running-median detrend, gap distances and quarter per epoch",
+  "Per-quarter FITS extension diagnostics (RED_CHI2, SAP_BKG, CENTROID, PSF_FLUX_NOVA, FLUX_ERR z-scores) at BKJD 200.33 and 1370.09; MODULE/OUTPUT/CHANNEL per quarter from headers",
+  "TPF single-cadence difference images (kplr006515734 Q2, Q3, Q11, Q14, cached) at the six contributing cadences plus the most negative cadence: Kepler QUALITY bits of cadence and neighbours, POS_CORR z-scores, pixel z-maps, whole-stamp and target 3x3 flux change",
+  "Cross-source cadence test: z-score at cadence 4473 (Q2) and 61720 (Q14) across 323/366 other cached KBONUS sources, by channel, with a 40-random-cadence control in Q2",
+  "BLS 20-50 d (60k periods, 0.02-0.1 d durations) on all data, minus the two artefact cadences, with symmetric 5-MAD clip, and on inverted flux (2 - f)",
+  "Lomb-Scargle 0.1-100 d on detrended PSF flux",
+  "Duration/density: a/R*, central T14, implied impact parameter and Rp from Gaia-based Rstar and Teff",
+  "Known-object checks: KOI cumulative, DR25 TCE, Kepler EB (Kirk 2016), confirmed planets within 3 arcmin and by kepid; whole-field period+epoch ephemeris match at harmonics; SIMBAD cone; Bienias & Szabo 2025 / Moquin 2026 period ranges",
+  "Per-quarter raw-flux tails and count of cadences below -5 MAD"
+ ],
+ "what_would_settle_it": [
+  "Re-run the first screen on this star with the Kepler TPF QUALITY bitmask propagated (including the cadence after any AttitudeTweak/NoFinePoint flag) and a symmetric 5-MAD single-cadence clip; the 36.2 d peak should disappear (this review: SDE 7.4, 36.2 d power below median).",
+  "Require >= 3 epochs with >= 2 in-window cadences and per-epoch depths consistent at < 3 sigma before a signal with duration < 2 cadences can advance; this signal has 0 such epochs.",
+  "Post-hoc pipeline hygiene suggestion (not a prereg threshold change): flag survivors whose BLS duration equals the shortest grid value and whose depth is carried by <= 2 cadences, and check those cadences against host-TPF QUALITY (cadence-1) and POS_CORR z-scores."
+ ]
+}

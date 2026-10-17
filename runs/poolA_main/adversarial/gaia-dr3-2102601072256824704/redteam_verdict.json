@@ -1,0 +1,34 @@
+{
+ "fname": "gaia-dr3-2102601072256824704",
+ "verdict": "kill",
+ "most_likely_explanation": "Detrending artefacts at three Kepler data-segment edges (last 2 h before the 2009-07-02 Q2 safe-mode gap; first cadences of Q6 after the roll; first cadences after a 5.66-d mid-Q15 gap) where the raw PSF flux ramps at 3700-5700 ppm/d; these three epochs (n=1, 12, 39; local depths ~1000-2000 ppm) supply ~70% of the folded 32.556-d depth. With a 0.3-d edge trim the depth falls from 147+-22 to 62+-20 ppm (SNR 3.1), the narrow-window BLS SDE at the pipeline period falls to 2.35, and the signal is indistinguishable from the inverted-flux null (whose max SDE 10.74 already exceeded the real max 10.60 on untrimmed data). Independently, the target is not a background dwarf: it is the Kepler target KIC 7269549 (0.32 arcsec away, Kp 14.76, observed Q1-Q17, no KOI/TCE), an unresolved 0.74-arcsec pair of near-twin G dwarfs (Gaia G 15.28 + 15.76, same parallax and proper motion, ipd_frac_multi_peak 70), so the KBONUS PSF flux is a blend and the pool premise 'never searched' fails.",
+ "kill_reasons": [
+  "Three per-event local depths of 992/1044/969 ppm (own biweight detrend; pipeline events.csv: 1114/1016/988 ppm) at epochs n=1,12,39 sit 0.04-0.14 d from segment edges with raw-flux ramps of -5680, +5552, +3730 ppm/d; the pre-fixed rule |depth| > 5x median flags exactly these three; excluding them the depth is 66 ppm (redteam_check.json, PSF_edge0).",
+  "wotan edge_cutoff=0.3 d: PSF depth 62+-20 ppm (SNR 3.1), SAP 50+-21 ppm; odd/even 189/109 -> 81/45 ppm, i.e. the 2.6-sigma odd/even asymmetry was also made by the three artefacts (n=1,39 odd; n=12 even).",
+  "Per-channel depths untrimmed: ch22 65, ch38 301, ch62 158, ch46 26 ppm; trimmed: 62, 91, 78, 10 ppm. The untrimmed signal lives on ch38 (Q2, Q6) and ch62 (Q15), the channels hosting the three edge events; after trimming all seasons are at the ~50 ppm noise floor.",
+  "Narrow BLS 28-37 d (likelihood objective): untrimmed SDE 8.6 at P_pipe; edge-trimmed SDE 2.35 at P_pipe, with the top real peak (28.15 d, SDE 7.2) matching the inverted-null top (34.55 d, SDE 7.0). Re-derivation's full 1-50 d search: trimmed SDE 1.4, rank 20104; untrimmed inverted max 10.74 > real max 10.60, failing the repo's real-vs-inverted rule.",
+  "Pipeline's own event_chi2_const = 108.5 for 42 dof (vet.json) is a ~6-sigma rejection of a constant transit depth that rules v1.5-v1.7 let through; v1.4 had already failed the star on tls_sde (TLS SDE 4.0).",
+  "Target identity: KIC 7269549 lies 0.32 arcsec from the Gaia source (keplerstellar, manifest 2026-10-17), Kp 14.76, observed all 17 quarters, no DR25 TCE at any period; Gaia DR3 shows a 0.74-arcsec companion (G 15.76, BP-RP 0.92, plx 0.718 vs 0.697 mas, common proper motion), combined G 14.75 = Kp. KBONUS serves neither kic-007269549 nor the companion (404), so the PSF light curve is an unresolved blend of two near-equal G dwarfs; the ranked CSV row has kic=0 and empty kic_sep, which is how it entered the 'unsearched background dwarf' pool."
+ ],
+ "surviving_strengths": [
+  "No stellar-variability alias: Lomb-Scargle top peak 1.4724 d at ~10 ppm amplitude, both polarities; power near 32.56 d and its harmonics < 1e-4 (not a strength of the signal, just a test it does not fail).",
+  "No ephemeris-match contamination: no KOI/TCE/EB/confirmed planet within 3 arcmin; the closest period matches on sky (KIC 7430876 32.612 d at 0.42 deg, KIC 7515212 16.258 d at 0.27 deg, KIC 6850504 10.854 d at 0.54 deg) are off in epoch by 4-10 d.",
+  "Duration/radius arithmetic is not unphysical: for R* 0.87-0.99 Rsun and P 32.557 d, central T14 5.1-5.7 h, observed 3.4-3.6 h implies b ~ 0.75; 147 ppm would be 1.5-1.7 Re after dilution. This is irrelevant once the signal is gone."
+ ],
+ "checks_run": [
+  "Read vet.json, events.csv, fold_events.png, the re-derivation results/logs/fold.png; pixel.json absent (pixel stage not run, correctly).",
+  "FITS header per-quarter MODULE/OUTPUT/CHANNEL/SEASON, PSFFRAC/CROWDSAP/FLFRCSAP/NPIXSAP.",
+  "Own light-curve analysis (wotan biweight 1.0 d, break_tolerance 0.5, edge_cutoff 0 and 0.3 d; PSF and SAP): depth with empirical errors, per-event local depths with segment-edge distance, 5x-median outlier rule, odd/even, per-channel depths, raw ramp slopes at the three events, gap lengths and UTC dates bracketing them.",
+  "Narrow BLS 28-37 d, likelihood objective, real and inverted, untrimmed and edge-trimmed.",
+  "Lomb-Scargle 0.2-60 d on both polarities; power at P, P/2, P/3.",
+  "Catalogue checks (data/known, fetched 2026-10-17): KIC 7269549 in keplerstellar/KOI/TCE/Kirk+2016 EB; KOI/TCE/confirmed within 3 arcmin; KOI/TCE period matches at 1x, 2x, 3x, 1/2, 1/3 of 32.556 d with epoch-offset and sky-separation test.",
+  "Gaia DR3 12-arcsec cone search (astroquery): neighbours, parallax, proper motion, RUWE, ipd_frac_multi_peak; flux fraction of the 0.74-arcsec pair.",
+  "Attempted KBONUS downloads of kic-007269549 and the companion gaia-dr3-2102601072259527296 (both 404).",
+  "Host duration/density and implied Rp for primary- or companion-hosted dilution.",
+  "Not run: pixel localisation (no coherent signal; pair unresolvable at 4 arcsec pixels); live Bienias & Szabo 2025 / Kepler Bonus candidate list query (moot)."
+ ],
+ "what_would_settle_it": [
+  "Nothing further is needed to retire this signal; but if anyone insists: a per-quarter PSF re-fit of the TPF with both Gaia components modelled (or the original Kepler PDC-SAP of KIC 7269549) searched with 0.3-d edge trimming; a detection at 32.556 d with SDE above the inverted null on that product would reopen the case.",
+  "Pipeline-level: add segment-edge distance to the per-event table and re-verdict all batch-A survivors with edge-adjacent events removed; enforce event_chi2_const; flag pool rows whose TPF host KIC is < 2 arcsec away or that have a Gaia neighbour < 2 arcsec of comparable brightness (RUWE > 2, ipd_frac_multi_peak > 30)."
+ ]
+}
