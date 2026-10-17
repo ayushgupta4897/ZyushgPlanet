@@ -1,2 +1,19 @@
-loaded 48146 pts, MAD=786 ppm, baseline 1470.3 d
-BLS grid: 287589 periods
+bad quarters (RED_CHI2>1e5): [0, 1, 5, 9, 13, 17] channels [25]
+A: 48146 pts MAD 786 ppm;  B: 36383 pts MAD 699 ppm
+[A] BLS real+inverted on 287589 periods in 268s
+[A] SDE real 9.33 inverted 7.93; top3 real: [(49.7233, 1613.1), (38.67, 1408.6), (41.7911, 1344.3)] ; at pipeline P: pow 957.1 rank 641
+[B] BLS real+inverted on 271529 periods in 229s
+[B] SDE real 8.01 inverted 7.33; top3 real: [(22.8813, 48.7), (38.0418, 44.6), (15.362, 39.8)] ; at pipeline P: pow 15.2 rank 114626
+  A: blind top peak (refined): P=49.77355 t0=151.0969 dur=0.60h depth 9867+-504 ppm (SNR 19.6, n_in 19) oe 4.18s sec 1441+-483 N_ev 12 yrs [15655, 13782, 172, 2092]
+  A: pipeline period fixed (own t0/duration): P=38.60670 t0=151.4686 dur=0.60h depth 6470+-375 ppm (SNR 17.3, n_in 34) oe 4.41s sec -349+-378 N_ev 22 yrs [11392, 5847, 105, 7265]
+  A: pipeline period and 0.9 h duration fixed (own t0): P=38.60670 t0=151.4652 dur=0.90h depth 4370+-359 ppm (SNR 12.2, n_in 51) oe 4.93s sec -207+-361 N_ev 31 yrs [7117, 3818, 175, 5402]
+  A: local refine within 0.3% of pipeline P: P=38.67039 t0=151.4904 dur=4.80h depth 3259+-200 ppm (SNR 16.3, n_in 241) oe 8.96s sec -228+-209 N_ev 33 yrs [5465, 4920, -262, 3815]
+  B: blind top peak (refined): P=22.88134 t0=188.9631 dur=1.44h depth 457+-74 ppm (SNR 6.2, n_in 103) oe 0.13s sec 23+-75 N_ev 43 yrs [665, 280, 405, 432]
+  B: pipeline period fixed (own t0/duration): P=38.60670 t0=201.0818 dur=0.90h depth 477+-122 ppm (SNR 3.9, n_in 35) oe 1.05s sec 75+-124 N_ev 23 yrs [567, -81, 523, 690]
+  B: pipeline period and 0.9 h duration fixed (own t0): P=38.60670 t0=201.0818 dur=0.90h depth 477+-122 ppm (SNR 3.9, n_in 35) oe 1.05s sec 75+-123 N_ev 23 yrs [567, -81, 523, 690]
+  B: local refine within 0.3% of pipeline P: P=38.70595 t0=183.5991 dur=1.68h depth 487+-90 ppm (SNR 5.4, n_in 65) oe 1.61s sec -61+-91 N_ev 24 yrs [394, 561, 649, 332]
+  SAP[A/top] P=49.7735: PSF 9867+-511  SAP 5363+-387  ratio 0.54 (expected if on target 1.17)
+  SAP[A/pipe] P=38.6067: PSF 4370+-334  SAP 2012+-277  ratio 0.46 (expected if on target 1.17)
+  SAP[B/top] P=22.8813: PSF 457+-74  SAP 459+-87  ratio 1.00 (expected if on target 1.35)
+  SAP[B/pipe] P=38.6067: PSF 477+-122  SAP 607+-142  ratio 1.27 (expected if on target 1.35)
+done in 679 s

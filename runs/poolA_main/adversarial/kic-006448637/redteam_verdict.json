@@ -1,0 +1,36 @@
+{
+ "fname": "kic-006448637",
+ "verdict": "survives",
+ "most_likely_explanation": "An on-target, flat-bottomed, ~850-ppm, 4-5-h loss of light every 35.588 d from within ~1 arcsec of KIC 6448637 (K dwarf, G 15.7), consistent with a ~2.5-Re body on a b~0.3-0.6 orbit of the Gaia host; the alternative Kepler pixels cannot separate is an unresolved (<1-2 arcsec) faint eclipsing binary or an EB at 2P with equal eclipses. The pipeline's pixel-test failure (0/13 quarters) is a failure of that test on this TPF (Kp 8.75 saturated host with a 40-80-row bleed column; target in the bottom rows of the stamp, 1.7 px from the bleed column, psffrac 0.50): a localised re-analysis of the same TPF pixels finds a 3-7 e/s deficit at the target in 12 of 12 usable quarters, centroid dx = 0.00 +- 0.06, dy = +0.21 +- 0.07 px from the Gaia position, flat radial profile beyond 1.6 px, nothing on the G = 16.0 neighbour.",
+ "kill_reasons": [],
+ "surviving_strengths": [
+  "Pixel localisation on raw TPF pixels (independent of KBONUS): target-box deficit positive in all 12 quarters where the target is on the stamp (511-1228 ppm, 3-7 e/s); mean centroid offset dx=0.00+-0.06, dy=+0.21+-0.07 px (<0.9 arcsec); deficit complete within r<=1.6 px, 2.5-4.5 px annulus consistent with zero every quarter",
+  "Neighbours excluded by their own KBONUS light curves at the ephemeris: KIC 6448650 (G 16.0, 10 arcsec) -75+-121 ppm where >=1120 ppm would be required (~10 sigma); KIC 6448629 (G 18.4) 971+-694 ppm where 1.0% required (~13 sigma); TPF neighbour box shows no deficit; fainter Gaia sources (G 19.4-21.1 at 1.9-5.8 px) would need 2.4-12% eclipses 1.9-5.8 px from where the deficit sits",
+  "Shape: trapezoid chi2 grid with cadence integration gives box as best fit; pure V-shape disfavoured by delta chi2 = 24, T23/T14 >= ~0.55 at 2 sigma; secondary 3-sigma limit ~130 ppm at phase 0.5 and nothing at any phase",
+  "Depth consistent across seasons (857+-76, 857+-81, 728+-65, 853+-101 ppm) and across PSF vs SAP (0.96+-0.07 with crowdsap 0.94); no trend with the target's row position on the stamp; excluding bleed-column pixels does not change the deficit",
+  "Not a gap/edge artefact: only 2 of 24 events within 0.5 d of a gap (0.7 expected); depth 812 -> 794 ppm without them; inverted-flux null SDE 9.9 vs 50.6 real",
+  "Kepler-1715 b (KOI-308.01, Kp 12.35, P 35.5970 d) is on the SAME channel (ch 23/63 in seasons 0/2) but its period is 20 sigma from the 35.58777+-0.00045 d timing-fit period and its transits are 0.84-1.20 d away from ours at every epoch (min 0.835 d = 4.5 durations), so no ephemeris contamination; no other on-channel-and-on-time KOI/TCE/EB at P, P/2, P/3, P/4, 2P, 3P, 4P",
+  "Not known: absent from KOI cumulative, DR25 TCE, Kirk+2016 EB, confirmed planets (data/known, 2026-10-17), Bienias & Szabo 2025 (their 7 source apertures are other KICs), Moquin 2026 BOI-1; SIMBAD empty within 40 arcsec apart from the Kp 11 star at 30 arcsec; nearest KOI/EB is KIC 6448768 at 127 arcsec with unrelated 16.49-d period",
+  "Duration/density consistent with the Gaia host: T14 4.1-4.8 h at P 35.59 d implies rho*(b=0) 2.1-3.3 rhosun vs host 1.7-1.9 rhosun, i.e. b~0.3-0.6; Rp 2.4-2.5 Re undiluted; LS variability only 32 ppm at 0.74 d"
+ ],
+ "checks_run": [
+  "Read vet.json, events.csv, fold_events.png, pixel.json, diffimages.png and the independent re-derivation pack",
+  "Localised TPF pixel analysis on KIC 6448574 TPFs Q2-Q17 (own code: target box r<=1.6 px with bleed column excluded, neighbour box, host aperture, per-event deficit maps, 7x7 SNR cutouts) -> runs/poolA_main/adversarial/kic-006448637/redteam/tpf_local.{py,log,json}",
+  "Radial deficit profile r<=1.0/1.6/2.5/3.5 px and 2.5-4.5 px annulus, deficit centroid per quarter and mean offset -> redteam/tpf_radius.{py,log}",
+  "KBONUS light curves of KIC 6448650 (G 16.0), 6448629 (G 18.4), 6448666 (Kp 11.0) folded at the ephemeris (PSF and SAP), required-depth table for all Gaia neighbours in pixel.json",
+  "TPF header MODULE/OUTPUT/CHANNEL per quarter for the host TPF and for KIC 6291837 (Kepler-1715 b)",
+  "Ephemeris match of P, P/2, P/3, P/4, 2P, 3P, 4P (|dP/P|<5e-4) against KOI cumulative, DR25 TCE, Kirk+2016 EB and confirmed planets, with phase offset and sigma vs the timing-fit period; explicit transit-time overlap test against Kepler-1715 b over 40 epochs; 3-arcmin cone search in all four tables",
+  "Novelty: KIC lookups for target, TPF host and neighbours; Bienias & Szabo 2025 appendix B source-aperture list; SIMBAD cone (40 arcsec) and name query via astroquery",
+  "Per-quarter and per-season PSF-flux depths; depth excluding gap-adjacent events (epochs 23, 28); Lomb-Scargle on out-of-transit detrended flux",
+  "Trapezoid chi2 grid in T23/T14 (0-1) with 9x supersampled 29.4-min cadence to test V-shape",
+  "Stellar density / a/R* / T14(b=0) / Rp for M* 0.75-0.85 Msun, R* 0.768 Rsun; T23/T14 vs b for k=0.03",
+  "Visual inspection of fold_events.png (positive bump at -8 h traced to epoch 39 brightening) and diffimages.png (saturated host dominates the stamp)"
+ ],
+ "what_would_settle_it": [
+  "Rerun pipeline/pixel_vet.py on this star in a saturated-host / edge-of-stamp mode (local box around the Gaia position, bleed column excluded) so the localisation becomes a pipeline product rather than a red-team scratch result",
+  "TRICERATOPS run with the Gaia neighbour list and a contrast curve or Gaia-completeness argument inside 1-2 arcsec (FPP < 0.015, NFPP < 0.001 only in a refereed paper)",
+  "High-resolution imaging (AO or speckle) of KIC 6448637 to exclude a companion with delta G <= 3-4 inside 1 arcsec",
+  "Independent 2P test: a secondary-eclipse / odd-even search at 71.175 d with the depth-difference limit quoted, plus RV or multi-colour follow-up for a bound companion",
+  "Quote both depth sets (with and without the Q13-start epoch-28 outlier, 2268+-349 ppm) and the pipeline's conservative SNR 10.0; live cross-match of ExoFOP TOI/CTOI, VSX, Gaia NSS and the KBonus team's TraSHDUMP list when published"
+ ]
+}

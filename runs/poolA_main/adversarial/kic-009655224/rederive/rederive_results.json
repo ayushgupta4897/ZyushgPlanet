@@ -1406,5 +1406,258 @@
     "expected_ratio_if_on_target_from_mean_crowdsap": 0.77226682968
   },
   "at_pipeline_period": null,
-  "runtime_s": 78.98050880432129
+  "runtime_s": 78.98050880432129,
+  "comparison_with_pipeline": {
+    "pipeline": {
+      "P_d": 6.703464464595031,
+      "P_screen_d": 6.703556661548366,
+      "tls_P_d": 6.703511576898897,
+      "t0_bkjd": 265.183161835447,
+      "dur_h": 2.4375,
+      "dur_screen_h": 1.95,
+      "depth_pass1_ppm": 565.4398962834373,
+      "depth_pass2_ppm": 638.2683283716606,
+      "depth_pass2_err_ppm": 78.49247775476712,
+      "snr_emp_pass2": 8.20514302741028,
+      "tls_sde": 13.212652088182034,
+      "tls_snr": 7.505741494664674,
+      "odd_ppm": 663.4938469488594,
+      "even_ppm": 611.8122966932705,
+      "odd_even_sigma": 0.3321914098473603,
+      "secondary_ppm": -28.63663620278345,
+      "secondary_sigma": -0.36813309610269873,
+      "n_events": 125,
+      "n_in_transit": 588,
+      "depth_by_quartile": [
+        [
+          530.4410486825178,
+          131.47000861816124,
+          32
+        ],
+        [
+          780.0744978994527,
+          162.21573623483215,
+          32
+        ],
+        [
+          642.673003164184,
+          161.48493105341842,
+          32
+        ],
+        [
+          309.6959743406333,
+          131.55938689159126,
+          32
+        ]
+      ],
+      "event_chi2_const": 186.91223789736154,
+      "event_dof": 124,
+      "known_matches": [],
+      "stage2_pass": true,
+      "pixel_summary": {
+        "n_quarters_used": 6,
+        "median_target_to_deficit_arcsec": 4.613500756728021,
+        "median_fluxcentroid_to_deficit_arcsec": 2.7108975643503257,
+        "median_nearest_other_source_to_deficit_arcsec": 2.7356085804133725,
+        "quarters_deficit_closer_to_target_than_any_other_source": 2,
+        "quarters_deficit_closer_to_target_than_flux_centroid": 2,
+        "median_depth_in_aperture_ppm": -61.90714943013511,
+        "quarters_target_gaussian_beats_scaled_image": 5,
+        "sum_chi2_scaled_image": 282.07123429814374,
+        "sum_chi2_gauss_at_target": 257.9950477575646,
+        "sum_chi2_null": 301.29853942908767,
+        "median_peak_snr": 3.0850083010266074
+      }
+    },
+    "mine": {
+      "P_refined_d": 6.703659900291816,
+      "P_bootstrap_d": 6.703619678332414,
+      "P_bootstrap_err_d": 0.00022925001618168966,
+      "P_blind_top_d": 6.703767160566385,
+      "t0_bkjd": 265.17435975233093,
+      "dur_h_bls": 2.325,
+      "dur_h_boxscan": 2.25,
+      "depth_unmasked_1d_ppm": 565.2675417324726,
+      "depth_unmasked_err_ppm": 74.98428399726596,
+      "snr_unmasked": 7.538480220109632,
+      "depth_masked_1d_ppm": 613.9113208745162,
+      "depth_masked_err_ppm": 72.18658551162133,
+      "snr_masked": 8.504506987322214,
+      "depth_vs_window_unmasked": {
+        "window_0.5d": 494.09501541819446,
+        "window_1.0d": 565.7690947074024,
+        "window_2.0d": 639.6092545660758,
+        "exclude_0p5d_after_gaps": 584.2003958532738
+      },
+      "depth_vs_window_masked": {
+        "window_0.5d": 605.7750014709651,
+        "window_1.0d": 613.9113208745162,
+        "window_2.0d": 657.3853986870937
+      },
+      "bls_sde_detrended": 15.57589598922527,
+      "bls_sde_raw": 14.205449052343022,
+      "inverted_sde_detrended": 7.130806692254398,
+      "odd_even_sigma": 0.3915697027213814,
+      "odd_even_sigma_masked": 0.13581486356016692,
+      "secondary_ppm": -37.256182096045976,
+      "secondary_sigma": -0.5070719940920345,
+      "n_events": 125,
+      "n_in": 557,
+      "per_year": {
+        "Y1_Q3-4": {
+          "depth_ppm": 620.0336455592925,
+          "err_ppm": 183.98163706120914,
+          "n_in": 111,
+          "quarters": [
+            3,
+            4
+          ]
+        },
+        "Y2_Q5-8": {
+          "depth_ppm": 833.9827863348414,
+          "err_ppm": 158.03431447267894,
+          "n_in": 162,
+          "quarters": [
+            5,
+            6,
+            8
+          ]
+        },
+        "Y3_Q9-12": {
+          "depth_ppm": 423.080386354413,
+          "err_ppm": 140.3979808257224,
+          "n_in": 165,
+          "quarters": [
+            9,
+            10,
+            12
+          ]
+        },
+        "Y4_Q13-17": {
+          "depth_ppm": 375.8287894738421,
+          "err_ppm": 157.79216444596636,
+          "n_in": 119,
+          "quarters": [
+            14,
+            15
+          ]
+        }
+      },
+      "per_year_chi2": {
+        "weighted_mean_ppm": 550.0350369288661,
+        "chi2": 5.409588039977713,
+        "dof": 3,
+        "max_pair_sigma": 2.0515297127406016
+      },
+      "event_chi2_const": 182.4,
+      "event_dof": 124,
+      "sap_depth_ppm": 265.12489878016686,
+      "sap_err_ppm": 31.621598261071064,
+      "sap_over_psf": 0.4690255130651815,
+      "sap_over_psf_masked": 0.4899238300224666,
+      "absolute_deficit": {
+        "psf_e_s": 1.068638273323653,
+        "psf_err": 0.1417577869970337,
+        "sap_e_s": 1.0371184253098433,
+        "sap_err": 0.12369770755290453,
+        "ratio_sap_over_psf": 0.9705046611181374,
+        "ratio_err": 0.17312621731476652,
+        "note": "stitched FLUX and SAP_FLUX are both rescaled per quarter to common levels (see supplement raw_per_quarter); e/s here are in the stitched scale"
+      }
+    },
+    "deltas": {
+      "period_sigma": 0.6770500607502503,
+      "t0_diff_min": -12.674999687114905,
+      "depth_masked_vs_pass2_sigma": -0.22840522535460892,
+      "depth_unmasked_vs_pass1_ppm": -0.17235455096465557,
+      "dur_diff_h": -0.11249999999999982
+    },
+    "neighbours": {
+      "kic009655236_tpf_host": {
+        "G": 16.40755081176758,
+        "sep_arcsec": 9.352007087179825,
+        "quarters": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "psf_depth_ppm": -33.46926938307959,
+        "psf_err_ppm": 31.841817360028028,
+        "psf_deficit_e_s": -0.1272983644413221,
+        "psf_deficit_err_e_s": 0.12110844800275407,
+        "sap_deficit_e_s": -0.09869207542632512,
+        "sap_deficit_err_e_s": 0.11594943701032678
+      },
+      "kic009655226_G15p9": {
+        "G": 15.887621,
+        "sep_arcsec": 5.226226242262141,
+        "quarters": [
+          3,
+          7,
+          10,
+          11,
+          13
+        ],
+        "overlap_quarters_with_target": [
+          3,
+          10
+        ],
+        "psf_depth_ppm": 55.508656989333716,
+        "psf_err_ppm": 39.432282077418265,
+        "psf_deficit_e_s": 0.33824199947911976,
+        "psf_deficit_err_e_s": 0.2402806094994068,
+        "sap_deficit_e_s": 0.6221832899664933,
+        "sap_deficit_err_e_s": 0.18619348689627915,
+        "own_narrow_bls_peak": {
+          "best_P_d": 6.704553721611855,
+          "t0_bkjd": 263.79956808544694,
+          "dlogL": 14.336362993575731,
+          "depth_ppm": 187.60788301914621,
+          "deficit_e_s": 1.1431886288049518,
+          "offset_from_target_transit_at_data_midtime_h": -31.386121629146146,
+          "period_offset_frac": 0.00013333333333331865,
+          "n_independent_freqs_in_window": 6.045872768752832,
+          "comment": "neighbour's own best peak in +/-2% window; dlogL_at_target_P=7.9 vs window mean 5.9 +/- 1.8"
+        }
+      },
+      "target_deficit_e_s": 1.068638273323653,
+      "target_deficit_err_e_s": 0.1417577869970337,
+      "kic009655226_psf_deficit_below_target_sigma": 2.6180920866948707
+    }
+  },
+  "files": [
+    "__pycache__",
+    "bls_power.npy",
+    "events_rederive.csv",
+    "finalize.log",
+    "finalize.py",
+    "flat_lc.npy",
+    "fold_rederive.png",
+    "neighbour_check.py",
+    "neighbour_check_kic-009655226.json",
+    "neighbour_check_kic-009655226.log",
+    "neighbour_check_kic009655236.json",
+    "neighbour_check_kic009655236.log",
+    "rederive_kic009655224.py",
+    "rederive_results.json",
+    "rederive_supplement.json",
+    "rederive_supplement.py",
+    "rederive_supplement2.json",
+    "rederive_supplement2.py",
+    "run.log",
+    "supplement.log",
+    "supplement2.log"
+  ]
 }

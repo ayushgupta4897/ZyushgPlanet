@@ -9,8 +9,9 @@ controls that must pass, and ephemeris matching against every known object.
 **Status (2026-10-17):** the first pool, 6,465 Kepler Bonus background dwarfs that were never
 Kepler targets and have no published transit search, has been screened (6,365 on Modal, 100
 locally; 31 had no usable cadences). First screen: 448 real vs 97 inverted passes. Stage 2:
-11 survivors under the registered v1.4 rules, 23 under the post-hoc v1.5 rules (both reported).
-Pixel localisation and an independent re-derivation + red-team pass are running on all of them.
+11 survivors under the registered v1.4 rules, 23 under the post-hoc v1.5 rules, 22 under v1.7 (all reported).
+Pixel localisation puts 7 on target. The independent re-derivation + red-team pass has cleared four so far,
+two of them candidate-grade pending a TRICERATOPS run (`docs/10`); the remaining batches are running.
 Nothing has been called a candidate.
 
 ## Read in this order

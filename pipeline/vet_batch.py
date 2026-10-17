@@ -245,6 +245,8 @@ def stage2_verdict(r: dict, cfg: dict, both_polarity: bool = False) -> tuple[boo
         return None if v is None or (isinstance(v, float) and not np.isfinite(v)) else v
     if g("gap_frac_1d") is not None and g("gap_frac_1d") > c.get("gap_frac_1d_max", 1):
         fails.append("gap_frac")
+    if c.get("n_events_min") is not None and (g("n_events") or 0) < c["n_events_min"]:
+        fails.append("n_events")  # v1.7: per-event tests are silent with < 3 usable events
     if g("frac_events_positive") is not None and g("frac_events_positive") < c.get("frac_events_positive_min", 0):
         fails.append("events_positive")
     d1, d2 = g("depth_pass1_ppm"), g("depth_pass2_ppm")
