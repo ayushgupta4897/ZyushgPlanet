@@ -75,6 +75,12 @@ star = tg[tg.fname == a.fname].iloc[0].to_dict()
 second = jload(f"{R}/vet_posthoc/{a.fname}_{a.second_signal}/vet.json") if a.second_signal else None
 second_pix = jload(f"{R}/pixel_v16_posthoc/{a.fname}_{a.second_signal}/pixel.json") if a.second_signal else None
 second_fpp = jload(f"{R}/fpp_posthoc/{a.fname}_{a.second_signal}/fpp_summary.json") if a.second_signal else None
+second_season = jload(f"{R}/pixel_season/{a.fname}_{a.second_signal}/pixel_season.json") if a.second_signal else None
+season = jload(f"{R}/pixel_season/{a.fname}/pixel_season.json")
+fpp_cc = jload(f"{R}/fpp_gaiacc/{a.fname}/fpp_summary.json")
+fpp_mol = jload(f"{R}/fpp_molusc/{a.fname}/fpp_summary.json")
+mol = jload(f"{R}/molusc/{a.fname}/molusc_summary.json")
+tfit = jload(f"{R}/transit_fit/{a.fname}/fit.json")
 deep = jload(os.path.join(a.deep, "results.json")) if a.deep else None
 
 # ---- copy
@@ -102,6 +108,13 @@ if a.second_signal:
     cp(f"{R}/vet_posthoc/{a.fname}_{a.second_signal}", f"second_signal_{a.second_signal}/stage2")
     cp(f"{R}/pixel_v16_posthoc/{a.fname}_{a.second_signal}", f"second_signal_{a.second_signal}/pixels")
     cp(f"{R}/fpp_posthoc/{a.fname}_{a.second_signal}", f"second_signal_{a.second_signal}/fpp")
+    cp(f"{R}/pixel_season/{a.fname}_{a.second_signal}", f"second_signal_{a.second_signal}/pixels_season_stack")
+cp(f"{R}/pixel_season/{a.fname}", "pixels/season_stack")
+for extra, dst in [("fpp_gaiacc", "fpp_gaia_contrast"), ("fpp_molusc", "fpp_molusc"), ("transit_fit", "transit_fit")]:
+    cp(f"{R}/{extra}/{a.fname}", dst)
+for fn in ("molusc_summary.json", "molusc.log"):
+    cp(f"{R}/molusc/{a.fname}/{fn}", f"molusc/{fn}")
+cp(f"{R}/gaia_contrast/{a.fname}", "gaia_contrast")
 # drop bulky scratch binaries from the copy
 for pat in ["**/*.npz", "**/*.fits", "**/__pycache__", "deep_run/lightcurve_*.csv", "deep_run/nohup.log"]:
     for p in glob.glob(os.path.join(out, pat), recursive=True):
@@ -172,6 +185,16 @@ L.append(f"| Host (Gaia DR3) | G {f(star.get('phot_g_mean_mag'), 2)}, BP−RP {f
 if vet:
     km = vet.get("known_matches") or []
     L.append(f"| Ephemeris matches (KOI/TCE/EB/confirmed within 3′, ratios 1:1,2:1,1:2,3:1,1:3, 0.2 %) | {len(km)} ({'none on the same star or TPF' if eph_ok else 'MATCH ON SAME STAR/TPF'}) | catalogues dated {known.get('fetched_utc') if known else 'n/a'} | stage2/vet.json `known_matches`, known_catalogues_manifest.json |")
+if season:
+    ss = season["summary"]
+    L.append(f"| Pixel localisation, season-stacked (v1.8) | **{ss['verdict']}**: {ss['verdict_reason']} | post-hoc method extension; controls: KIC 5689121 on, two background EBs offset | pixels/season_stack/pixel_season.json |")
+if fpp_cc:
+    L.append(f"| TRICERATOPS FPP with Gaia contrast curve | {f(fpp_cc.get('FPP_mean'), 4)} ± {f(fpp_cc.get('FPP_std'), 4)}, NFPP {f(fpp_cc.get('NFPP_mean'), 5)} ({fpp_cc.get('seeds_done')} seeds) | curve from Gaia DR3 resolved-pair completeness (a catalogue property, not imaging) | fpp_gaia_contrast/fpp_summary.json, gaia_contrast/ |")
+if fpp_mol:
+    L.append(f"| TRICERATOPS FPP with MOLUSC companions + Gaia FLAME host | **{f(fpp_mol.get('FPP_mean'), 4)} ± {f(fpp_mol.get('FPP_std'), 4)}**, NFPP {f(fpp_mol.get('NFPP_mean'), 5)} ({fpp_mol.get('seeds_done')} seeds) | bound companions constrained by Gaia RUWE and Gaia imaging (G ≤ 20); companion prior {f(100*(mol or {}).get('companion_prior_passed_to_triceratops', float('nan')), 1)} % vs the default; multiplicity fraction 0.46 (conservative) | fpp_molusc/fpp_summary.json, molusc/molusc_summary.json |")
+if tfit:
+    dc = tfit.get("density_check") or {}
+    L.append(f"| Transit fit (batman + emcee) | rp/rs {f(tfit['rp_rs']['median'], 4)}, b {f(tfit['b']['median'], 2)} (+{f(tfit['b']['plus'], 2)}/−{f(tfit['b']['minus'], 2)}), T14 {f(tfit['T14_h']['median'], 2)} h, Rp {f((dc.get('Rp_earth') or {}).get('median'), 2)} R⊕ | stellar density from transit {f(tfit['rho_star_gcc']['median'], 2)} g/cc vs Gaia FLAME {f((dc.get('rho_gaia_flame_gcc') or {}).get('median'), 2)} g/cc ({f(dc.get('tension_sigma'), 1)} σ) | transit_fit/fit.json |")
 fw = jload(f"{R}/ephemeris_fieldwide/{a.fname}.json")
 if fw:
     L.append(f"| Field-wide ephemeris check (whole Kepler field, any channel; KOI, DR25 TCE, Kepler EB; harmonics 1:1–4:1) | {fw['n_period_coincidences']} period coincidences within 0.1 %, {fw['n_epoch_matches']} with a matching epoch, **{fw['n_viable_contaminants']} viable** (1:1 twins, or harmonics not excluded by this signal's odd/even and secondary tests) | a 4-year baseline separates period twins whose epochs differ; harmonic twins need an odd/even or phase-0.5 signature this signal lacks | ephemeris_fieldwide.json |")
@@ -183,6 +206,7 @@ if second:
              f"P {f(second['P'], 5)} d, depth {f(second['depth_pass2_ppm'], 0)} ppm, SNR {f(second['snr_emp_pass2'])}, {second.get('n_events')} events "
              f"({f(100*(second.get('frac_events_positive') or 0), 0)} % positive), odd/even {f(second.get('odd_even_sigma'), 2)} σ, secondary {f(second.get('secondary_sigma'), 2)} σ, "
              f"verdict {'PASS' if second.get('stage2_pass') else 'FAIL ' + str(second.get('stage2_fails'))}; known matches {len(second.get('known_matches') or [])}. "
+             f"Season-stacked pixel localisation (v1.8, controls passed): {(second_season or {}).get('summary', {}).get('verdict', 'not run')} ({(second_season or {}).get('summary', {}).get('verdict_reason', '')}). "
              f"Pixel v1.6: {(second_pix or {}).get('summary', {}).get('verdict', 'not run')} ({(second_pix or {}).get('summary', {}).get('verdict_reason', '')}). TRICERATOPS on this signal alone: {('FPP %.4f ± %.4f, NFPP %.5f (%d seeds)' % (second_fpp['FPP_mean'], second_fpp['FPP_std'], second_fpp['NFPP_mean'], second_fpp['seeds_done'])) if second_fpp else 'not run'}. "
              f"Two independent signals on one star would, if both are real, lower the false-positive prior for both (the published multiplicity boost is a factor of order 20); that boost is NOT applied anywhere in this pack because the second signal's pixel verdict is inconclusive. Files: second_signal_{a.second_signal}/.")
     L.append("")
