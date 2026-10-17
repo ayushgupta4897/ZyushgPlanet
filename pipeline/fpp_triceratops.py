@@ -112,6 +112,7 @@ def main():
     ap.add_argument("--targets", default="targets/poolA_kbonus_bg_dwarfs_ranked.csv")
     ap.add_argument("--quarters", type=int, nargs="+", default=[4, 5, 6, 7], help="one Kepler quarter per season by default")
     ap.add_argument("--seeds", type=int, default=4)
+    ap.add_argument("--seed-start", type=int, default=0, help="first seed index; existing runs in fpp_summary.json are kept and appended to")
     ap.add_argument("--N", type=int, default=1_000_000)
     ap.add_argument("--parallel", action="store_true")
     ap.add_argument("--aperture-half-width", type=int, default=1, help="1 -> 3x3 pixels around the target")
@@ -216,7 +217,11 @@ def main():
         say(f"plot_field failed: {type(ex).__name__}: {ex}")
 
     runs = []
-    for s in range(a.seeds):
+    prev = os.path.join(out, "fpp_summary.json")
+    if a.seed_start > 0 and os.path.exists(prev):
+        runs = json.load(open(prev)).get("runs", [])
+        say(f"appending to {len(runs)} existing seed runs")
+    for s in range(a.seed_start, a.seed_start + a.seeds):
         np.random.seed(1000 + s)
         t1 = time.time()
         tgt.calc_probs(time=lc.time.values, flux_0=lc.flux.values, flux_err_0=err, P_orb=P, N=a.N, parallel=a.parallel,
@@ -226,7 +231,7 @@ def main():
         runs.append({"seed": 1000 + s, "FPP": float(tgt.FPP), "NFPP": float(tgt.NFPP), "runtime_s": round(time.time() - t1, 1),
                      "scenario_probs": {str(r.scenario) + ":" + str(int(r.ID)): float(r.prob) for _, r in probs.iterrows()}})
         say(f"seed {1000+s}: FPP {tgt.FPP:.4f}  NFPP {tgt.NFPP:.5f}  ({time.time()-t1:.0f}s)")
-        if s == 0:
+        if s == 0 and not os.path.exists(os.path.join(out, "fits_seed0.pdf")):
             try:
                 tgt.plot_fits(time=lc.time.values, flux_0=lc.flux.values, flux_err_0=err, save=True, fname=os.path.join(out, "fits_seed0"))
             except Exception as ex:  # noqa: BLE001

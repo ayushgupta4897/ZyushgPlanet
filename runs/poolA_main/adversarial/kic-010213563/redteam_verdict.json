@@ -1,0 +1,39 @@
+{
+ "fname": "kic-010213563",
+ "verdict": "weak",
+ "most_likely_explanation": "A real, flat-bottomed, 36.767-d transit-like event (2146 +- 68 ppm diluted, 6.2 h) that is NOT localised on KIC 10213563. With the TPF WCS calibrated on the bright host to 0.1 px, the in-transit missing light in all four Kepler seasons (channels 47/23/39/63) is centred 1.2-2 arcsec from the target's Gaia position, on the side of an unmodelled G=18.35 Gaia source 0.97 arcsec away (Gaia DR3 2128591018880005120, absent from the KBONUS catalogue, so its light is inside the target's PSF flux); the target position is disfavoured by dchi2 = 27/48/48/108 per season and the neighbour beats the target by dchi2 = 27/40/32/93, with a model-light column-ratio test agreeing in every season. The most likely picture is a ~0.9%-deep event on the fainter neighbour (giant planet, brown dwarf or diluted EB on a star of unknown type) or on something at/just beyond the stamp edge; the target is the least favoured of the nearby hypotheses. Consistent with this, the PSF depth varies between seasons (chi2 14.7/3), and the duration excludes the catalogue 0.79 Rsun K dwarf on a circular orbit (rho* = 0.98 +0.53/-0.62 g/cc, 99% < 1.8, vs 2.3 g/cc; dchi2 = 25).",
+ "kill_reasons": [
+  "Pixel localisation fails for the target: WCS-calibrated free-position deficit fits in all four seasons put the missing light 0.3-0.5 px (1.2-2 arcsec) from the target toward the 0.97-arcsec Gaia neighbour and the stamp edge; target position worse than best by dchi2 27/48/48/108 (seasons 0-3); neighbour favoured over target by dchi2 27/40/32/93; column-ratio test (second-to-last/last column of missing light) 0.30+-0.11, 0.94+-0.11, <0, 0.18+-0.06 vs 0.58-0.87, 1.12-1.57, 0.14-0.61, 0.73-0.93 expected for the target. Caveat: Gaussian PRF model; a real Kepler PRF fit is needed before calling this a formal exclusion.",
+  "An unmodelled Gaia source (G 18.35, no BP/RP, plx 0.22+-0.16 mas, not co-moving) lies 0.97 arcsec from the target and is not in the KBONUS source catalogue: the host is ambiguous between two stars inside 1 arcsec, and the target's own Gaia photometry is contaminated (ipd_frac_multi_peak 18%, BP/RP excess 1.55), so the catalogue Teff/Rstar are unreliable.",
+  "Season-dependent PSF depth: 2104/2507/1706/2105 ppm (chi2 14.7/3) with SAP/PSF ratio 0.40/0.42/0.78/0.60, as expected for season-dependent flux assignment of a blended edge-of-stamp source; any depth/radius carries a +-20% systematic.",
+  "Transit duration/shape excludes the catalogue host on a circular orbit: batman rho* = 0.98 (0.36-1.51) g/cc, 99% < 1.77, vs 2.29 g/cc for 0.79 Rsun/0.80 Msun (dchi2 = 25 with b forced to 0); needs a >=0.9 Rsun dwarf, a subgiant, eccentricity, or a different host.",
+  "pipeline pixel.json already had chi2_gauss_at_source lower for the neighbour than for the target in 9 of 12 quarters, but the summary statistic (significance-weighted centroid, cannot cross the stamp edge; 'closer to target than any other source') was uninformative with the competitor 1 arcsec away."
+ ],
+ "surviving_strengths": [
+  "Blind recovery and periodicity: 36/36 events individually positive, 32/36 > 2 sigma, per-event weighted depth 2146 +- 68 ppm, largest single-event share 7%, leave-one-out range 2179-2336 ppm; BLS SDE 71-78 vs inverted-null 14-16.",
+  "Odd/even 2211 vs 2075 ppm (1.0 sigma); no secondary: -96 +- 70 ppm at phase 0.5 (5.6-h box), -13 +- 48 (12 h); clean phase scan z_std 0.98, the only 3.8-sigma feature (329 ppm at phase 0.492) is 54% one epoch and drops to 147 ppm without it.",
+  "Not a Kepler systematic: events far from gaps give the same depth as near-gap events once event 0 (quarter-end, one-sided baseline) is measured with a flat baseline (2475 ppm); the three shallow events are in three different seasons/channels and 1-5 d from any gap; no LS power at P, 2P or P/2; 'scaled image' (focus/pointing) pixel model no better than the null.",
+  "TPF host KIC 10213566 (Kp 14.3, 7.8 arcsec, 12x brighter) excluded as the source: its own KBONUS light curve gives -17 +- 27 ppm at the ephemeris vs >=185 ppm required; pixel deficit at the host 0 +- 5 e/s; host has no KOI/TCE/EB entry.",
+  "Not already known and no ephemeris match: not a KOI/TCE/EB/confirmed planet, not in Bienias & Szabo 2025, SIMBAD has nothing on the target; nothing within 3 arcmin shares the period; the closest 1:1 period matches (KOI 9452897, KOI 7102227) are 5.7-6.9 degrees away with epoch offsets of 185 h and 13.5 h.",
+  "Flat-bottomed shape (T23/T14 0.88, 0.75-0.91) and deficit amplitude (4.7-6.0 e/s) consistent with depth x PSF flux; the event is astrophysical, just not attributable to KIC 10213563."
+ ],
+ "checks_run": [
+  "Read vet.json, events.csv, fold_events.png, pixel.json, diffimages.png, results.jsonl (stage-1 real/inverted), rederivation outputs, target CSV row",
+  "Gaia DR3 TAP query within 20 arcsec (astrometry, RUWE, ipd flags, excess factor); KBONUS source-catalogue membership of all neighbours; KBONUS HLSP download attempt for the 0.97-arcsec neighbour (404 = not in KBONUS)",
+  "TPF header channel/module/season/stamp per quarter; pixel positions of all Gaia sources per season vs stamp edges",
+  "Known-object checks: KOI, DR25 TCE, Kepler EB catalogue, confirmed planets within 3 arcmin and for host KIC 10213566; 1:1 and harmonic (1:6-6:1) period matches field-wide with epoch offsets; Bienias & Szabo 2025 host list; SIMBAD 30 arcsec",
+  "Host KIC 10213566 KBONUS light curve: box depth at the ephemeris (PSF and SAP), BLS 1-50 d, Lomb-Scargle",
+  "Own detrend (per-quarter median, masked 1-d running median, asymmetric clipping): box depth PSF/SAP with random-phase errors, per-event depths (linear and flat baselines), gap/ramp/quarter-position dependence, per-quarter and per-season depths in PSF and SAP, odd/even, secondary at phase 0.5 with 5.6/12/24-h boxes, 600-phase scan with per-epoch decomposition of its extrema, Lomb-Scargle 0.1-60 d, inverted-flux BLS 35-39 d on masked clipped data",
+  "Per-quarter PSF/SAP flux from LIGHTCURVE_Qn extensions and deficit (e/s) budget per season",
+  "batman + emcee transit fit (quadratic LD, 30-min supersampling, free t0/P/k/b/a-R) with and without event 0; fixed-density comparisons for K-dwarf and G-dwarf hosts",
+  "Pixel: event-differenced per-pixel deficit maps per quarter and season stack; single-Gaussian free-position fit allowed beyond the stamp; chi2 at target, 0.97-arcsec neighbour, host, G20.4 and G21.0 sources; scaled-image model; PSF-width sensitivity 0.45-1.1 px; WCS (dx,dy) and sigma calibration on the out-of-transit image per season; column-ratio test in the target row",
+  "Extinction-corrected absolute magnitude/radius/density of the target; dilution-corrected radii for target vs neighbour hosts; brightness/eclipse-depth needed for an undetected source beyond the stamp edge"
+ ],
+ "what_would_settle_it": [
+  "A proper Kepler PRF (channels 23/39/47/63, correct sub-pixel phase) two-source fit of the event-differenced images per season, with a free-position variant that includes positions beyond the stamp; if the neighbour/edge solution persists with a real PRF, KIC 10213563 is excluded as host.",
+  "Per-quarter (not season-stacked) calibrated localisation to confirm no single quarter drives each season.",
+  "Re-extraction of the KBONUS PSF photometry with Gaia DR3 2128591018880005120 added to the source model (psfmachine), to see how the dip splits between the two stars; also inspect the PSF_FLUX_NOVA column.",
+  "Ground-based imaging/photometry resolving the 0.97-arcsec pair: a 36.8-d, 6-h, ~0.9% event on the 18th-mag neighbour is detectable with a 1-2 m telescope in one transit; AO or Gaia DR4 epoch photometry to get the neighbour's colour and type.",
+  "TRICERATOPS-style FPP/NFPP with both stars as possible hosts and the Kepler PRF contrast curve (expect a large NFPP)."
+ ]
+}

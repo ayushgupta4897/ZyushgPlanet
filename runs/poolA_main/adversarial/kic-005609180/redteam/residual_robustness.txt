@@ -1,0 +1,28 @@
+PSF non-gap (3 h box): 254+-68 ppm  SNR 3.73  chi2 67/44
+   top 5 non-gap events by SNR: [(59, 1770, 392, np.float64(11.9), 15), (5, 1545, 549, np.float64(1.3), 2), (20, 1334, 482, np.float64(1.8), 6), (67, 1908, 861, np.float64(2.0), 17), (25, 736, 416, np.float64(13.7), 7)]
+   drop top 1 by SNR: 207+-69 ppm SNR 2.99 chi2 52/43
+   drop top 2 by SNR: 185+-70 ppm SNR 2.66 chi2 46/42
+   drop top 3 by SNR: 161+-70 ppm SNR 2.28 chi2 40/41
+   per season (channel):
+      S0 ch17: 386+-147 ppm (n=12)  CROWDSAP<1: True
+      S1 ch57: 505+-141 ppm (n=12)  CROWDSAP<1: True
+      S2 ch65: -110+-145 ppm (n=9)  CROWDSAP<1: False
+      S3 ch25: 233+-118 ppm (n=12)  CROWDSAP<1: False
+   per year:
+      year 1: 249+-128 ppm (n=13)
+      year 2: 128+-121 ppm (n=14)
+      year 3: 248+-174 ppm (n=7)
+      year 4: 427+-137 ppm (n=11)
+   duration scan (non-gap subset, PSF): box_h depth err snr
+       1.0    194  570  0.34
+       1.5    179  105  1.70
+       2.0    215   84  2.56
+       3.0    254   68  3.73
+       4.5    111   55  2.00
+       6.0      6   47  0.12
+       8.0    -48   40 -1.20
+   phase scan (non-gap, 3 h box, offset in hours): 
+      [(np.float64(-12.0), -14, 67), (np.float64(-10.5), -109, 68), (np.float64(-9.0), 12, 68), (np.float64(-7.5), -136, 69), (np.float64(-6.0), -138, 69), (np.float64(-4.5), -152, 67), (np.float64(-3.0), -265, 67), (np.float64(-1.5), -77, 67), (np.float64(0.0), 254, 68), (np.float64(1.5), 133, 69), (np.float64(3.0), -88, 68), (np.float64(4.5), 13, 68), (np.float64(6.0), 19, 67), (np.float64(7.5), 61, 68), (np.float64(9.0), 150, 68), (np.float64(10.5), 167, 68), (np.float64(12.0), 131, 68)]
+SAP non-gap (3 h box): 235+-64 ppm SNR 3.66 chi2 95/44
+
+alias comb: 70 distinct periods in 1-50 d phase all three big ramps within 0.15 d; those >10 d: [np.float64(10.552), np.float64(21.103)]
