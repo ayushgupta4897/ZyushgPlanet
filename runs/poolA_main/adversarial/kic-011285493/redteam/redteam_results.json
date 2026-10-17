@@ -1,0 +1,152 @@
+{
+ "fname": "kic-011285493",
+ "date": "2026-10-17",
+ "verdict": "kill",
+ "contaminant": {
+  "kic": 11285625,
+  "koi": {
+   "period_d": 5.395256,
+   "time0bk": 131.542553,
+   "depth_ppm": 104242,
+   "duration_h": 7.8377,
+   "disposition": "FALSE POSITIVE",
+   "fpflag_ss": 1
+  },
+  "gaia_dr3": 2131979370116194432,
+  "kepmag": 10.143,
+  "G": 10.085,
+  "parallax_mas": [
+   1.8649,
+   0.0167
+  ],
+  "eb_catalogue": {
+   "source": "data/known/J_AJ_151_68_catalog.csv (Kirk+2016), fetched 2026-10-17",
+   "period_d": 10.790444,
+   "period_err_d": 3.2e-05,
+   "BJD0_bkjd": 142.33451,
+   "morph": 0.23
+  },
+  "separation_arcmin": 5.631,
+  "same_channel_all_seasons": true,
+  "channels_by_season": {
+   "0": 79,
+   "1": 51,
+   "2": 7,
+   "3": 35
+  },
+  "eb_ccd_col_row": [
+   [
+    722,
+    726
+   ],
+   [
+    917,
+    922
+   ]
+  ],
+  "target_ccd_col_row": [
+   [
+    639,
+    643
+   ],
+   [
+    938,
+    943
+   ]
+  ]
+ },
+ "ephemeris_match": {
+  "pipeline_P": 10.791014243111542,
+  "pipeline_t0_bkjd": 131.52142943487635,
+  "dP_over_P_pipeline": 5.3e-05,
+  "dt_pipeline_h": -0.54,
+  "rederive_P": 10.790158,
+  "rederive_t0_bkjd": 843.73888,
+  "dP_over_P_rederive": -2.6e-05,
+  "dt_rederive_h": 0.61
+ },
+ "eb_profile": {
+  "primary_depth": 0.1251,
+  "secondary_depth": 0.0869,
+  "ratio": 0.695,
+  "primary_width_h_gt10pct": 6.76,
+  "secondary_phase_d": 5.39
+ },
+ "template_fit_target_psf": {
+  "primary_ppm": 952,
+  "primary_err_emp_ppm": 136,
+  "snr": 7.0,
+  "secondary_ppm": 247,
+  "sec_over_prim_scale": 0.37,
+  "per_season_ppm": {
+   "s0_ch79": 825,
+   "s1_ch51": 1634,
+   "s3_ch35": 391
+  }
+ },
+ "box_depth_by_season_ppm": {
+  "s0": [
+   525,
+   162
+  ],
+  "s1": [
+   1151,
+   146
+  ],
+  "s3": [
+   368,
+   134
+  ]
+ },
+ "other_kbonus_sources_at_eb_ephemeris": {
+  "kic-011285496": {
+   "prim_ppm": 65,
+   "err": 16,
+   "snr": 4.2,
+   "e_s": 2.71,
+   "sec_ppm": 9
+  },
+  "kic-011285117": {
+   "prim_ppm": 582,
+   "err": 94,
+   "snr": 6.2,
+   "e_s": 1.97,
+   "sec_ppm": 91
+  },
+  "kic-011285661": {
+   "prim_ppm": 108,
+   "err": 60,
+   "e_s": 1.96
+  },
+  "kic-011285855": {
+   "prim_ppm": 49,
+   "err": 51,
+   "e_s": 0.2
+  }
+ },
+ "official_kepler_kic11285496_at_eb_ephemeris": {
+  "sap_ppm": [
+   -14.0,
+   12.6
+  ],
+  "pdcsap_ppm": [
+   -6.6,
+   10.2
+  ]
+ },
+ "raw_pixels_target_aperture_e_s": {
+  "all_quarters": [
+   0.48,
+   0.2
+  ],
+  "season1": [
+   -0.06,
+   0.45
+  ],
+  "expected_if_hosted_season1": 1.8
+ },
+ "files": [
+  "redteam.md",
+  "redteam/*"
+ ]
+}

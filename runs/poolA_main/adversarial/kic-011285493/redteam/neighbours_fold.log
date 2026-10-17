@@ -1,0 +1,32 @@
+kic-011285117    Kp=15.956000328064 tpforg=11285120 PSFmed=    3394 e/s | primary-template dip     582 +-   94 ppm (SNR  6.2) =   1.97 e/s | secondary     91 ppm | per season [1402, 126, None, 452]
+kic-011285855    Kp=16.3540000915527 tpforg=11285862 PSFmed=    4083 e/s | primary-template dip      49 +-   51 ppm (SNR  1.0) =   0.20 e/s | secondary     13 ppm | per season [-26, 119, None, 54]
+kic-011285496    Kp=13.66100025177 tpforg=11285496 PSFmed=   41422 e/s | primary-template dip      65 +-   16 ppm (SNR  4.2) =   2.71 e/s | secondary      9 ppm | per season [59, 99, None, 38]
+kic-011285661    Kp=1e+20 tpforg=11285663 PSFmed=   18182 e/s | primary-template dip     108 +-   60 ppm (SNR  1.8) =   1.96 e/s | secondary    203 ppm | per season [235, -14, -1867, 183]
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/redteam-kic011285493/neighbours_fold.py", line 19, in <module>
+    h=fits.open(F); d=h['LIGHTCURVE_STITCHED'].data; hdr=h[0].header
+  File "/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/astropy/io/fits/hdu/hdulist.py", line 227, in fitsopen
+    return HDUList.fromfile(
+           ~~~~~~~~~~~~~~~~^
+        name,
+        ^^^^^
+    ...<9 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/astropy/io/fits/hdu/hdulist.py", line 491, in fromfile
+    return cls._readfrom(
+           ~~~~~~~~~~~~~^
+        fileobj=fileobj,
+        ^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/astropy/io/fits/hdu/hdulist.py", line 1246, in _readfrom
+    raise OSError(
+    ...<3 lines>...
+    )
+OSError: No SIMPLE card found, this file does not appear to be a valid FITS file. If this is really a FITS file, try with ignore_missing_simple=True

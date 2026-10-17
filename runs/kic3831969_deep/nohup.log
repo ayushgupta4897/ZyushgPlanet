@@ -83,3 +83,72 @@ Downloading URL https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:HLSP/kbon
 /home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/lightkurve/prf/__init__.py:7: UserWarning: Warning: the tpfmodel submodule is not available without oktopus installed, which requires a current version of autograd. See #1452 for details.
   warnings.warn(
 [prep] N=59010 points in 17 quarters, baseline 1459.5 d; std 1335 ppm, robust sigma 1259 ppm, point-to-point 1314 ppm; 6-h CDPP-like: binned 308 ppm, lightkurve 293.84406184270273 ppm, white-noise expectation 379 ppm
+[bls] 215123 periods x 8 durations in 143.5s; best P=15.313578 d power=18.65 SDE=17.83
+[bls] refined: P=15.313670 d T0=144.26507 BKJD dur=3.30 h depth=803+/-42 ppm (+1.3s)
+/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/transitleastsquares/grid.py:196: UserWarning: period_grid defaults to R_star=1 and M_star=1 as given density yielded grid with too few values
+  warnings.warn(
+Transit Least Squares TLS 2.0.1 (11 Oct 2026)
+Creating model cache for 35 durations
+Searching 59010 data points, 198786 periods from 1.0 to 49.999 days
+Using 1 of 4 CPU threads
+[tls] 198786 periods (1.0-50.0 d, osf=3) in 267.3s with 1 threads; P=15.313604 d SDE=67.55 SNR=12.83 depth=823 ppm dur=2.91 h T0=144.26653 BKJD transits=95 distinct=86
+[pass1] box depth on blind-detrended LC: 776 +/- 55 ppm (biased low by in-transit trend pull)
+[prep] Q 1:  1439/ 1624 cadences kept (quality=hard), median PSF flux   3195.5 e-/s, PSFFRAC 0.814, CROWDSAP 0.960
+[prep] Q 2:  2854/ 4081 cadences kept (quality=hard), median PSF flux   2855.5 e-/s, PSFFRAC 0.829, CROWDSAP 0.971
+[prep] Q 3:  3783/ 4135 cadences kept (quality=hard), median PSF flux   3664.6 e-/s, PSFFRAC 0.836, CROWDSAP 0.930
+[prep] Q 4:  3871/ 4110 cadences kept (quality=hard), median PSF flux   3543.5 e-/s, PSFFRAC 0.771, CROWDSAP 0.912
+[prep] Q 5:  4156/ 4486 cadences kept (quality=hard), median PSF flux   2971.9 e-/s, PSFFRAC 0.839, CROWDSAP 0.929
+[prep] Q 6:  4014/ 4272 cadences kept (quality=hard), median PSF flux   2827.2 e-/s, PSFFRAC 0.842, CROWDSAP 0.851
+[prep] Q 7:  3816/ 4227 cadences kept (quality=hard), median PSF flux   3677.5 e-/s, PSFFRAC 0.831, CROWDSAP 0.931
+[prep] Q 8:  2956/ 3107 cadences kept (quality=hard), median PSF flux   3467.3 e-/s, PSFFRAC 0.771, CROWDSAP 0.911
+[prep] Q 9:  4368/ 4652 cadences kept (quality=hard), median PSF flux   2931.9 e-/s, PSFFRAC 0.836, CROWDSAP 0.924
+[prep] Q10:  4093/ 4442 cadences kept (quality=hard), median PSF flux   2814.1 e-/s, PSFFRAC 0.840, CROWDSAP 0.851
+[prep] Q11:  3818/ 4474 cadences kept (quality=hard), median PSF flux   3605.5 e-/s, PSFFRAC 0.828, CROWDSAP 0.930
+[prep] Q12:  3241/ 3884 cadences kept (quality=hard), median PSF flux   3584.6 e-/s, PSFFRAC 0.774, CROWDSAP 0.763
+[prep] Q13:  3947/ 4244 cadences kept (quality=hard), median PSF flux   2866.8 e-/s, PSFFRAC 0.835, CROWDSAP 0.924
+[prep] Q14:  4013/ 4270 cadences kept (quality=hard), median PSF flux   2814.9 e-/s, PSFFRAC 0.838, CROWDSAP 0.851
+[prep] Q15:  4131/ 4367 cadences kept (quality=hard), median PSF flux   3504.7 e-/s, PSFFRAC 0.833, CROWDSAP 0.927
+[prep] Q16:  3381/ 3535 cadences kept (quality=hard), median PSF flux   3471.8 e-/s, PSFFRAC 0.754, CROWDSAP 0.901
+[prep] Q17:  1234/ 1290 cadences kept (quality=hard), median PSF flux   2798.9 e-/s, PSFFRAC 0.847, CROWDSAP 0.962
+[prep] wotan biweight window=0.496 d (11.9 h), break_tolerance=0.5 d, masked points=792; 0 NaN points dropped
+[prep] upward-only clip at +4.0 x 1263 ppm: removed 102 points (no downward clipping)
+[bls-refine] P=15.313390 d T0=144.27966 BKJD dur=3.80 h depth=1048+/-39 ppm (SNR 27.1); odd 1080 even 1015; phase0.5 32+/-40 ppm; 86 transits with data
+[vet] box depth 1045 +/- 56 ppm; odd 1042+/-69, even 1049+/-98 ppm (-0.06 sigma); secondary @0.5 -6+/-52 ppm; max other dip 2.4 sigma at phase 0.225; events 86 (79 positive); empirical SNR 23.2 (random-phase std 45 ppm)
+[bls] 215123 periods x 8 durations in 142.3s; best P=22.925998 d power=8.84 SDE=5.12
+Transit Least Squares TLS 2.0.1 (11 Oct 2026)
+Creating model cache for 35 durations
+Searching 59013 data points, 198786 periods from 1.0 to 49.999 days
+Using 1 of 4 CPU threads
+/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/transitleastsquares/stats.py:735: RuntimeWarning: divide by zero encountered in scalar divide
+  snr_pink_per_transit[i] = (1 - mean_flux) / pinknoise
+/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/transitleastsquares/stats.py:735: RuntimeWarning: invalid value encountered in scalar divide
+  snr_pink_per_transit[i] = (1 - mean_flux) / pinknoise
+[tls] 198786 periods (1.0-50.0 d, osf=3) in 292.1s with 1 threads; P=1.554087 d SDE=9.85 SNR=6.42 depth=220 ppm dur=1.01 h T0=131.70821 BKJD transits=940 distinct=838
+[null] inverted BLS best P=22.9260 d power=8.84 SDE=5.12; inverted TLS best P=1.5541 SDE=9.85 SNR=6.42
+[compare] dP = 3.45 s (2.6 ppm); T0 offset at epoch 47 (mid-baseline): -4.8 min; depth at reference ephemeris (3.8 h box): 1037 +/- 56 ppm
+Downloading URL https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:HLSP/kbonus-bkg/lcs/0038/003831977/hlsp_kbonus-bkg_kepler_kepler_kic-003831977_kepler_v1.0_lc.fits to /home/user/ZyushgPlanet/data/kbonus/2100154074771475328/hlsp_kbonus-bkg_kepler_kepler_kic-003831977_kepler_v1.0_lc.fits ... [Done]
+[fetch] downloaded mast:HLSP/kbonus-bkg/lcs/0038/003831977/hlsp_kbonus-bkg_kepler_kepler_kic-003831977_kepler_v1.0_lc.fits -> /home/user/ZyushgPlanet/data/kbonus/2100154074771475328/hlsp_kbonus-bkg_kepler_kepler_kic-003831977_kepler_v1.0_lc.fits (11419200 bytes, 0.8s, status=COMPLETE)
+[prep] Q 1:  1439/ 1624 cadences kept (quality=hard), median PSF flux  13558.4 e-/s, PSFFRAC 0.882, CROWDSAP 0.909
+[prep] Q 2:  2854/ 4081 cadences kept (quality=hard), median PSF flux  12190.5 e-/s, PSFFRAC 0.912, CROWDSAP 0.909
+[prep] Q 3:  3783/ 4135 cadences kept (quality=hard), median PSF flux  12634.4 e-/s, PSFFRAC 0.887, CROWDSAP 0.883
+[prep] Q 4:  3871/ 4110 cadences kept (quality=hard), median PSF flux  13000.2 e-/s, PSFFRAC 0.901, CROWDSAP 0.895
+[prep] Q 5:  4156/ 4486 cadences kept (quality=hard), median PSF flux  14269.2 e-/s, PSFFRAC 0.840, CROWDSAP 0.889
+[prep] Q 6:  4014/ 4272 cadences kept (quality=hard), median PSF flux  12432.8 e-/s, PSFFRAC 0.902, CROWDSAP 0.904
+[prep] Q 7:  3816/ 4227 cadences kept (quality=hard), median PSF flux  12510.3 e-/s, PSFFRAC 0.886, CROWDSAP 0.880
+[prep] Q 8:  2956/ 3107 cadences kept (quality=hard), median PSF flux  12751.1 e-/s, PSFFRAC 0.901, CROWDSAP 0.896
+[prep] Q 9:  4368/ 4652 cadences kept (quality=hard), median PSF flux  13766.9 e-/s, PSFFRAC 0.842, CROWDSAP 0.894
+[prep] Q10:  4093/ 4442 cadences kept (quality=hard), median PSF flux  12450.4 e-/s, PSFFRAC 0.900, CROWDSAP 0.904
+[prep] Q11:  3818/ 4474 cadences kept (quality=hard), median PSF flux  12431.1 e-/s, PSFFRAC 0.883, CROWDSAP 0.881
+[prep] Q12:  3241/ 3884 cadences kept (quality=hard), median PSF flux  12838.3 e-/s, PSFFRAC 0.906, CROWDSAP 0.868
+[prep] Q13:  3947/ 4244 cadences kept (quality=hard), median PSF flux  13650.5 e-/s, PSFFRAC 0.841, CROWDSAP 0.893
+[prep] Q14:  4013/ 4270 cadences kept (quality=hard), median PSF flux  12459.5 e-/s, PSFFRAC 0.897, CROWDSAP 0.903
+[prep] Q15:  4131/ 4367 cadences kept (quality=hard), median PSF flux  12343.2 e-/s, PSFFRAC 0.873, CROWDSAP 0.883
+[prep] Q16:  3381/ 3535 cadences kept (quality=hard), median PSF flux  12643.2 e-/s, PSFFRAC 0.908, CROWDSAP 0.891
+[prep] Q17:  1234/ 1290 cadences kept (quality=hard), median PSF flux  12337.3 e-/s, PSFFRAC 0.809, CROWDSAP 0.950
+[prep] wotan biweight window=0.496 d (11.9 h), break_tolerance=0.5 d, masked points=0; 0 NaN points dropped
+[prep] upward-only clip at +4.0 x 403 ppm: removed 99 points (no downward clipping)
+[prep] N=59016 points in 17 quarters, baseline 1459.5 d; std 426 ppm, robust sigma 403 ppm, point-to-point 420 ppm; 6-h CDPP-like: binned 99 ppm, lightkurve 93.51418784343208 ppm, white-noise expectation 121 ppm
+[bls] 215123 periods x 8 durations in 141.4s; best P=59.790956 d power=16.29 SDE=5.44
+[bls] refined: P=59.787965 d T0=170.10049 BKJD dur=3.00 h depth=510+/-31 ppm (+3.7s)
+[neighbour] own best BLS P=59.7880 d power=16.29 SDE=5.44; depth at target ephemeris -32 +/- 19 ppm (would need ~252 ppm to host the signal)
+[run] done in 17.0 min -> runs/kic3831969_deep/results.json

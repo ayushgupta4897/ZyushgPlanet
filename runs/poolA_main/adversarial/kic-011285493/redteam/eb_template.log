@@ -1,0 +1,10 @@
+EB primary depth 0.1251, secondary 0.0869, ratio sec/prim 0.695; primary T(>10% depth) 6.76 h; secondary minimum at |phase| = 5.3900 d vs P/2 = 5.3952
+null chi2 48694.0
+primary-template only : scale 7.616 +- 0.779 x1e-3 -> implied dip 952 ppm ; dchi2 vs null 95.5
+secondary-template only: scale 2.846 +- 1.097 x1e-3 -> implied dip 247 ppm ; dchi2 6.7
+both free             : prim scale 7.616+-0.779, sec scale 2.846+-1.097; ratio sec/prim scale = 0.37 (expected 1.0 for a pure copy); dchi2 102.2
+single-scale full copy: scale 6.016+-0.635; chi2 48604.4 vs both-free 48591.8: dchi2 = 12.6
+empirical (random-phase) error on primary scale: 1.086 x1e-3 -> implied-dip error 136 ppm; prim SNR 7.0; sec-scale SNR with same error 2.6; (prim-sec)/err = 3.1 sigma
+ season 0 quarters [np.int64(2), np.int64(6), np.int64(10), np.int64(14)]: prim dip 825 ppm, sec dip 71 ppm
+ season 1 quarters [np.int64(3), np.int64(7), np.int64(11), np.int64(15)]: prim dip 1634 ppm, sec dip 561 ppm
+ season 3 quarters [np.int64(1), np.int64(5), np.int64(9), np.int64(13), np.int64(17)]: prim dip 391 ppm, sec dip 83 ppm
