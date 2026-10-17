@@ -1,0 +1,22 @@
+[2026-10-17T19:28:24.995041Z] kic-003831969: P=15.313350 d, D=3.750 h, t0_bkjd=144.28486, depth=997 ppm (stage 2, poolA_kbonus_background_dwarfs_v1.7)
+light curve: 92 binned points from 3640 cadences; flux_err 178 ppm
+host radius/mass overridden: TIC 1.132 Rsun / 0.970 Msun -> Gaia FLAME 1.009 / 0.845
+TRICERATOPS target row 0: TIC 120425498 Tmag 16.01 Teff 5511.0 R 1.0093199 M 0.844624 plx 0.428657; 15 TIC stars within 10 px; build 23s
+row-0 offset from Gaia position: 0.03 arcsec (must be < 1)
+stars that could host the dip (tdepth = eclipse depth they would need):
+   TIC 120425498 Tmag 16.01 fluxratio 0.3848 tdepth 0.0010
+   TIC 120425499 Tmag 14.49 fluxratio 0.6119 tdepth 0.0006
+   TIC 1715992119 Tmag 19.51 fluxratio 0.0010 tdepth 0.3934
+   TIC 1715992116 Tmag 18.43 fluxratio 0.0023 tdepth 0.1692
+   neighbour TIC 120425499: {"TIC": 120425499, "Tmag": 14.4917, "fluxratio": 0.6118948888677783, "required_depth": 0.000627015328299665, "excluded": true, "lc_used": "kic-003831977", "note": "599 in-transit cadences", "measured_depth_ppm": -80.9170719804353, "measured_err_ppm": 20.493891649312754, "exclusion_sigma": 34.54358071146728, "why": "own light curve at the ephemeris: -81 +- 20 ppm vs 627 ppm required (35 sigma)"}
+   neighbour TIC 1715992119: {"TIC": 1715992119, "Tmag": 19.5082, "fluxratio": 0.0009751578319079614, "required_depth": 0.3934414123277316, "excluded": false, "lc_used": "gaia-dr3-2100154074771475456", "note": "no KBONUS light curve (RuntimeError)"}
+   neighbour TIC 1715992116: {"TIC": 1715992116, "Tmag": 18.4306, "fluxratio": 0.0022680869266898185, "required_depth": 0.1691590697488232, "excluded": false, "lc_used": "gaia-dr3-2100154070473367040", "note": "no KBONUS light curve (RuntimeError)"}
+   dropped TIC 120425499 from the scenario list: own light curve at the ephemeris: -81 +- 20 ppm vs 627 ppm required (35 sigma)
+scenario hosts after exclusions: TIC 120425498 (0.0010), TIC 1715992119 (0.3934), TIC 1715992116 (0.1692)
+seed 1000: FPP 0.0061  NFPP 0.00000  (128s)
+seed 1001: FPP 0.0029  NFPP 0.00000  (117s)
+seed 1002: FPP 0.0031  NFPP 0.00000  (118s)
+seed 1003: FPP 0.0145  NFPP 0.00000  (117s)
+seed 1004: FPP 0.0101  NFPP 0.00000  (118s)
+seed 1005: FPP 0.0019  NFPP 0.00000  (118s)
+seed 1006: FPP 0.0135  NFPP 0.00000  (117s)
