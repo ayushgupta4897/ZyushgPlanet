@@ -61,3 +61,20 @@ DONE kic-003831969: FPP 0.0071 +- 0.0047, NFPP 0.00000 +- 0.00000 over 8 seeds
 [2026-10-17T19:45:30.870895Z] kic-011138423: P=4.894451 d, D=1.950 h, t0_bkjd=125.33663, depth=1316 ppm (stage 2, poolA_kbonus_background_dwarfs_v1.7)
 light curve: 48 binned points from 5594 cadences; flux_err 271 ppm
 The current archive release 3.15 contains two breaking changes. Please see https://www.cosmos.esa.int/web/gaia/news#GACSrelease315 for details. In case of questions or feedback, please consult the Gaia helpdesk at https://www.cosmos.esa.int/web/gaia/gaia-helpdesk.
+INFO: Query finished. [astroquery.utils.tap.core]
+Getting TPF for sector 4
+Getting TPF for sector 5
+Getting TPF for sector 6
+Getting TPF for sector 7
+Estimated missing stellar parameters for 6 of 17 stars from photometry. See the 'params_estimated' column of the .stars dataframe.
+host radius/mass overridden: TIC 0.683 Rsun / 0.630 Msun -> Gaia FLAME 0.680 / 0.675
+TRICERATOPS target row 0: TIC 424864042 Tmag 16.55 Teff 4057.0 R 0.6804613 M 0.67473525 plx 1.09799; 17 TIC stars within 10 px; build 13s
+row-0 offset from Gaia position: 0.18 arcsec (must be < 1)
+stars that could host the dip (tdepth = eclipse depth they would need):
+   TIC 424864042 Tmag 16.55 fluxratio 0.1558 tdepth 0.0013
+   TIC 424864045 Tmag 12.08 fluxratio 0.8440 tdepth 0.0002
+   TIC 1882935455 Tmag 18.65 fluxratio 0.0002 tdepth 0.8656
+   neighbour TIC 424864045: {"TIC": 424864045, "Tmag": 12.0799, "fluxratio": 0.8439733833156157, "required_depth": 0.00024288824828144566, "excluded": true, "lc_used": "kic-011138418", "note": "939 in-transit cadences", "measured_depth_ppm": -4.641369015345731, "measured_err_ppm": 8.540148998375297, "exclusion_sigma": 28.984227013355635, "why": "own light curve at the ephemeris: -5 +- 9 ppm vs 243 ppm required (29 sigma)"}
+   neighbour TIC 1882935455: {"TIC": 1882935455, "Tmag": 18.6528, "fluxratio": 0.0002368209371912392, "required_depth": 0.8655958341392727, "excluded": false, "lc_used": "gaia-dr3-2129669944725627904", "note": "no KBONUS light curve (RuntimeError)"}
+   dropped TIC 424864045 from the scenario list: own light curve at the ephemeris: -5 +- 9 ppm vs 243 ppm required (29 sigma)
+scenario hosts after exclusions: TIC 424864042 (0.0013), TIC 1882935455 (0.8656)
