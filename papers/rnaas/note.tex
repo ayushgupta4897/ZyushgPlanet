@@ -1,0 +1,58 @@
+\documentclass[RNAAS]{aastex701}
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{Three Sub-Neptune Transit Candidates Around Kepler Bonus Background Stars}
+
+\author[0000-0000-0000-0000]{[AUTHOR NAME]}
+\affiliation{Independent researcher}
+\email{[author email]}
+
+\begin{abstract}
+I report three transiting sub-Neptune candidates from a pre-registered search of 6,465 dwarf stars that fell on Kepler target-pixel files but were never Kepler targets, using Kepler Bonus photometry. KIC 6699887 ($P = 15.114$\,d, 2.8\,$R_\oplus$), KIC 3831969 (15.313\,d, 3.5\,$R_\oplus$) and KIC 11138423 (4.894\,d, 2.8\,$R_\oplus$) show transits that localize on the target in difference images, no odd--even or secondary signal, no ephemeris match to any known Kepler object, and transit-derived stellar densities consistent with Gaia DR3. Using TRICERATOPS with companion constraints from Gaia astrometry and imaging, their false-positive probabilities are 0.6--0.7\% and their nearby-star false-positive probabilities are zero. KIC 6699887 also shows a second on-target signal at 47.69\,d. High-resolution imaging is needed before these can be considered validated.
+\end{abstract}
+
+\section{Sample and search}
+Kepler Bonus \citep{MartinezPalomera2023} provides point-spread-function photometry for 606,900 sources on Kepler target-pixel files, most of them background stars. Bienias \& Szab\'o (\citeyear{Bienias2025}) reported hot-Jupiter candidates among them, and the Kepler Bonus team is running its own search. I froze a list of 6,465 sources before searching: PSF fraction $>0.5$, crowding metric $>0.7$, $\geq8$ quarters, $G<17.5$, dwarfs by Gaia DR3 \citep{Gaia2023}, never observed as Kepler targets. I normalized each quarter, detrended with a 1-day biweight \citep{Hippke2019}, and ran box least squares \citep{Kovacs2002} over 0.5--40\,d with thresholds registered in advance. The same search ran on every light curve inverted ($2-f$): 448 stars passed on real flux and 97 on inverted flux. Two positive controls (KIC 5689121 and Kepler-138) passed before any pool result was read.
+
+\section{Vetting}
+Of these, 22 passed a second stage (masked re-detrending, per-transit depths, gap proximity, variability, duration). Some second-stage criteria and both pixel tests were defined after an early look at the results; every revision is dated in the public log, and I treat everything after the first screen as post hoc. For localization I differenced in- and out-of-transit images from the originating target-pixel files and fitted point sources at the Gaia positions of the target and of every neighbor within two pixels, plus a scaled stamp image, per quarter and per Kepler season (Figure~\ref{fig}). The test places KIC 5689121 on target and two known off-target signals on other stars. Five of the 22 localize on target. Each signal then received an independent re-derivation with separate code and an adversarial review, and four of the five survived. Across all reviewed signals, rejections included post-downlink thermal ramps, single-cadence artifacts, a saturated neighbor, and an eclipsing binary $5.6'$ away on the same detector channel. No candidate matches the period (within 0.1\%, harmonics 1:4--4:1) and epoch of any KOI, DR25 TCE \citep{Thompson2018} or Kepler eclipsing binary \citep{Kirk2016} in the Kepler field, and the brighter star on each stamp shows no dip ($\geq29\sigma$).
+
+\section{False-positive probability}
+I ran TRICERATOPS \citep{Giacalone2021} in Kepler mode, eight runs of $10^6$ draws each, removing a neighbor only when its own light curve excludes the eclipse it would need. With default priors the false-positive probabilities (FPP) are 2.4, 2.7 and 3.6\%, almost entirely a planet orbiting an unresolved bound companion. The hosts have Gaia RUWE 1.06--1.09. MOLUSC \citep{Wood2021}, using RUWE and Gaia imaging and a multiplicity fraction of 0.46, reduces the companion prior from 26--29\% to 15--19\%, giving FPP $= 0.63 \pm 1.03$, $0.71 \pm 0.46$ and $0.70 \pm 0.21$\% (mean and scatter over runs) and zero nearby-star FPP. A fourth survivor, KIC 3963519, has FPP $\approx$ 39\% because of an unmodeled $G=18$ neighbor and is not included. Transit fits \citep{Kreidberg2015,ForemanMackey2013} give stellar densities within $0.4\sigma$ of Gaia FLAME values \citep{Creevey2023}.
+
+\section{Candidates}
+Ephemerides are BJD$_{\rm TDB}$; radii use Gaia FLAME stellar radii.
+\begin{itemize}
+\item KIC 6699887 (Gaia DR3 2077554781499350144, TIC 270864056; $T_{\rm eff}=4,542$\,K, 859\,pc): $P=15.11366^{+0.00006}_{-0.00005}$\,d, $T_0=2455693.1849^{+0.0012}_{-0.0013}$, depth 1,023\,ppm, $T_{14}=3.78^{+0.18}_{-0.13}$\,h, $R_p=2.76^{+0.17}_{-0.14}\,R_\oplus$. A second signal ($P=47.6901$\,d, 951\,ppm, 28 transits) passes the same vetting and the seasonal pixel test.
+\item KIC 3831969 (Gaia DR3 2100154070473374976, TIC 120425498; 5,275\,K, 1,969\,pc): $P=15.31347^{+0.00013}_{-0.00012}$\,d, $T_0=2455697.0076^{+0.0030}_{-0.0029}$, depth 997\,ppm, $T_{14}=4.04^{+0.26}_{-0.22}$\,h, $R_p=3.47^{+0.38}_{-0.32}\,R_\oplus$.
+\item KIC 11138423 (Gaia DR3 2129669944725625344, TIC 424864042; 4,258\,K, 894\,pc): $P=4.89443^{+0.00002}_{-0.00002}$\,d, $T_0=2455726.7654^{+0.0020}_{-0.0018}$, depth 1,316\,ppm, $T_{14}=1.91^{+0.17}_{-0.14}$\,h, $R_p=2.83^{+0.27}_{-0.24}\,R_\oplus$.
+\end{itemize}
+None appears in public candidate lists as of 2026 October 17. Statistical limits on companions within $0.5''$ are the main remaining uncertainty; speckle or adaptive-optics imaging of these $G=16$--17 hosts would test them. Code, light curves, run outputs and evidence packs are archived at [Zenodo DOI to be added].
+
+\begin{figure}[ht!]
+\plotone{figure1.pdf}
+\caption{Top: phase-folded Kepler Bonus photometry (gray), binned (black) with the transit model (red). Bottom: missing flux during transit (S/N) for one Kepler season; red circle, target Gaia position; blue crosses, other Gaia sources. $\Delta\chi^2$ values compare a source at the target with no signal and with the best alternative, summed over four seasons; the season shown is labeled. Figure made with Python code written by Claude Code (Anthropic).\label{fig}}
+\end{figure}
+
+\begin{acknowledgments}
+This paper includes data collected by the Kepler mission and Gaia. Claude Code (Anthropic) wrote and ran the analysis code, performed the independent re-derivations and adversarial reviews, and drafted this note under my direction; I reviewed the evidence and accept responsibility for the analysis and text.
+\end{acknowledgments}
+
+\begin{thebibliography}{}
+\bibitem[Bienias \& Szab\'o(2025)]{Bienias2025} Bienias, D., \& Szab\'o, R. 2025, A\&A, 694, A209
+\bibitem[Creevey et al.(2023)]{Creevey2023} Creevey, O.~L., et al. 2023, A\&A, 674, A26
+\bibitem[Foreman-Mackey et al.(2013)]{ForemanMackey2013} Foreman-Mackey, D., et al. 2013, PASP, 125, 306
+\bibitem[Gaia Collaboration et al.(2023)]{Gaia2023} Gaia Collaboration, Vallenari, A., et al. 2023, A\&A, 674, A1
+\bibitem[Giacalone et al.(2021)]{Giacalone2021} Giacalone, S., et al. 2021, AJ, 161, 24
+\bibitem[Hippke et al.(2019)]{Hippke2019} Hippke, M., et al. 2019, AJ, 158, 143
+\bibitem[Kirk et al.(2016)]{Kirk2016} Kirk, B., et al. 2016, AJ, 151, 68
+\bibitem[Kov\'acs et al.(2002)]{Kovacs2002} Kov\'acs, G., Zucker, S., \& Mazeh, T. 2002, A\&A, 391, 369
+\bibitem[Kreidberg(2015)]{Kreidberg2015} Kreidberg, L. 2015, PASP, 127, 1161
+\bibitem[Mart\'inez-Palomera et al.(2023)]{MartinezPalomera2023} Mart\'inez-Palomera, J., Hedges, C., \& Dotson, J. 2023, AJ, 166, 265
+\bibitem[Thompson et al.(2018)]{Thompson2018} Thompson, S.~E., et al. 2018, ApJS, 235, 38
+\bibitem[Wood et al.(2021)]{Wood2021} Wood, M.~L., Mann, A.~W., \& Kraus, A.~L. 2021, AJ, 162, 128
+\end{thebibliography}
+
+\end{document}

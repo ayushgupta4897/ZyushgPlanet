@@ -19,3 +19,7 @@ runs/*_deep/lightcurve_*.csv
 # MOLUSC companion tables (60-70 MB each; reproducible from scripts/molusc_run.py with its fixed seed; SHA-256 in molusc_summary.json)
 runs/*/molusc/*/molusc_kept.csv
 report/dist/*.wrapped.html
+
+# Zenodo upload bundle (rebuilt by papers/rnaas/build_zenodo.py)
+papers/rnaas/zenodo/*.zip
+papers/rnaas/aastex701.cls

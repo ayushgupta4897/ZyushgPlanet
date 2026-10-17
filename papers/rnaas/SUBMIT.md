@@ -1,0 +1,36 @@
+# Submitting the RNAAS note
+
+Files: `note.tex` (AASTeX 7.0.1, RNAAS option), `figure1.pdf`, `build/note.pdf`, `cover_letter.txt`.
+Every number in the note is filled by `build_note.py` from `report/data.json` and the transit fits; `numbers.json` records them.
+Current count (`word_count.json`): 826 words including title, headers, caption and references (limit 1,500); abstract 94 (limit 150); one figure; no line numbers; first person singular.
+
+Submitting is public: RNAAS publishes within about 72 hours of acceptance, indexed in ADS, under CC BY 4.0. A decline is also part of the record. Do the steps in order.
+
+## 1. Before anything goes public (this repo's rules, `CLAUDE.md`)
+- [ ] Inspect every plot yourself: `candidates/*/stage2/fold_events.png`, `candidates/*/pixels/diffimages_v16.png`, `candidates/*/pixels/season_stack/season_maps.png`, `candidates/*/deep_run/0[5-9]_*.png`, `candidates/*/transit_fit/fit.png`, and `figure1.png`.
+- [ ] Read the note and the cover letter and change anything you would not say yourself. The AAS policy allows AI drafting only when the author supervises the text.
+- [ ] Recommended: ask one professional astronomer to read the note first (`docs/06-publishing-and-community.md` §6 lists who and how). Kuber's note was declined at moderation within 11 hours.
+
+## 2. Archive the data
+- [ ] Rebuild the bundle with your details: `python papers/rnaas/build_zenodo.py --author "Your Name" --orcid 0000-... --affiliation "..."`.
+- [ ] On zenodo.org: New upload, choose Dataset, upload `papers/rnaas/zenodo/*.zip`, copy title, description, license and keywords from `papers/rnaas/zenodo/.zenodo.json`, then **Reserve DOI**.
+- [ ] Publish the Zenodo record when you submit (the DOI must resolve for the moderator).
+
+## 3. Finalise the manuscript
+```sh
+. .venv/bin/activate
+python papers/rnaas/build_note.py --author "Your Name" --email "you@example.org" \
+    --orcid 0000-0000-0000-0000 --affiliation "Independent researcher, City, Country" --doi "10.5281/zenodo.NNNNNNN"
+```
+- [ ] Check `papers/rnaas/build/note.pdf` again; put the same details into `cover_letter.txt`.
+
+## 4. Submit
+- [ ] AAS Journals portal (https://aas.msubmit.net), journal **Research Notes of the AAS**, article type Research Note.
+- [ ] Upload `note.tex`, `figure1.pdf` and, if asked, the compiled PDF.
+- [ ] When the portal asks about generative AI, state: "Claude Code (Anthropic) wrote and ran the analysis code, performed independent re-derivations and adversarial reviews, produced the figure, and drafted the text under my direction; I reviewed the evidence and accept responsibility for the analysis and text."
+- [ ] Paste `cover_letter.txt` into the cover-letter field.
+
+## 5. After acceptance
+- The note is the citable record; you can then post the screens and the report link with the RNAAS DOI.
+- ExoFOP community candidates: ExoFOP accepts an RNAAS as the publication only if the search methodology was previously published in a refereed journal. This pipeline is not, so expect the upload to need a methods paper first (`docs/06` §0, item 5).
+- Next scientific step: speckle or adaptive-optics imaging of the three hosts (G 16–17.4), ideally with a professional collaborator.
