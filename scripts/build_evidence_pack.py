@@ -100,7 +100,7 @@ if a.second_signal:
     cp(f"{R}/vet_posthoc/{a.fname}_{a.second_signal}", f"second_signal_{a.second_signal}/stage2")
     cp(f"{R}/pixel_v16_posthoc/{a.fname}_{a.second_signal}", f"second_signal_{a.second_signal}/pixels")
 # drop bulky scratch binaries from the copy
-for pat in ["**/*.npz", "**/*.fits", "**/__pycache__"]:
+for pat in ["**/*.npz", "**/*.fits", "**/__pycache__", "deep_run/lightcurve_*.csv", "deep_run/nohup.log"]:
     for p in glob.glob(os.path.join(out, pat), recursive=True):
         (shutil.rmtree if os.path.isdir(p) else os.remove)(p)
 
