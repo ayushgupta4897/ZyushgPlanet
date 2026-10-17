@@ -88,7 +88,7 @@ cc = pd.DataFrame(curve, columns=["sep_arcsec", "delta_mag", "n_pairs_in_bin"])
 # enforce monotonic non-decreasing contrast with separation (physical for a resolution-limited catalogue)
 cc["delta_mag"] = np.maximum.accumulate(cc.delta_mag.values)
 cc = cc[cc.delta_mag > 0]
-cc[["sep_arcsec", "delta_mag"]].to_csv(os.path.join(out, "contrast_curve.csv"), index=False, header=False, sep=" ")
+cc[["sep_arcsec", "delta_mag"]].to_csv(os.path.join(out, "contrast_curve.csv"), index=False, header=False, sep=",")  # TRICERATOPS reads comma-delimited
 cc.to_csv(os.path.join(out, "contrast_curve_with_counts.csv"), index=False)
 json.dump({"fname": a.fname, "ra": a.ra, "dec": a.dec, "radius_deg": a.radius_deg, "gmax": a.gmax, "n_sources": int(len(t)),
            "n_pairs": int(len(sep)), "primary_G_range": [13, 18.5], "sep_edges": sep_edges.tolist(), "dg_edges": dg_edges.tolist(),

@@ -9,3 +9,7 @@ stars that could host the dip (tdepth = eclipse depth they would need):
    TIC 1882700925 Tmag 19.74 fluxratio 0.0007 tdepth 0.2781
    neighbour TIC 270957551: {"TIC": 270957551, "Tmag": 15.2552, "fluxratio": 0.6387124544386311, "required_depth": 0.00029733005354124777, "excluded": true, "lc_used": "kic-009655226", "note": "305 in-transit cadences", "measured_depth_ppm": 72.0128259471542, "measured_err_ppm": 37.43665193722098, "exclusion_sigma": 6.018626558056983, "why": "own light curve at the ephemeris: 72 +- 37 ppm vs 297 ppm required (6 sigma)"}
    neighbour TIC 270957549: {"TIC": 270957549, "Tmag": 15.9147, "fluxratio": 0.06306776378754693, "required_depth": 0.0030111803062406726, "excluded": true, "lc_used": "kic-009655236", "note": "823 in-transit cadences", "measured_depth_ppm": -41.919806792245495, "measured_err_ppm": 31.108860198635792, "exclusion_sigma": 98.1424614575498, "why": "own light curve at the ephemeris: -42 +- 31 ppm vs 3011 ppm required (98 sigma)"}
+   neighbour TIC 1882700925: {"TIC": 1882700925, "Tmag": 19.7443, "fluxratio": 0.0006828226912629757, "required_depth": 0.2781225795593259, "excluded": false, "lc_used": "gaia-dr3-2128120389243661568", "note": "no KBONUS light curve (RuntimeError)"}
+   dropped TIC 270957551 from the scenario list: own light curve at the ephemeris: 72 +- 37 ppm vs 297 ppm required (6 sigma)
+   dropped TIC 270957549 from the scenario list: own light curve at the ephemeris: -42 +- 31 ppm vs 3011 ppm required (98 sigma)
+scenario hosts after exclusions: TIC 270957554 (0.0006), TIC 1882700925 (0.2781)

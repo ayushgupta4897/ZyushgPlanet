@@ -77,6 +77,8 @@ def neighbour_depth(fname: str, cfg: dict, P: float, D: float, T0: float):
         return None, None, f"no KBONUS light curve ({type(ex).__name__})"
     t, f, fe, q, quarter, _ = read_kbonus(path, flux_col=cfg.get("flux_col", "FLUX"))
     t, y, e, quarter = _normalise(t, f, fe, q, quarter)
+    if len(t) < 500:
+        return None, None, f"only {len(t)} quality-0 cadences in its KBONUS light curve"
     mask = _phase_mask(t, P, 2.0 * D, T0)
     y2, _ = _flatten(t, y, cfg.get("window_length_d", 1.0), mask=mask)
     g = np.isfinite(y2)
