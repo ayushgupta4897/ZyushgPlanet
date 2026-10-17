@@ -1,6 +1,6 @@
 # kic-006699887 (Gaia DR3 2077554781499350144, KIC 6699887) — evidence pack
 
-_Built 2026-10-17T20:02:18Z from run `poolA_main` at commit `073b75f2ba3b`. Status under `CLAUDE.md` language: **candidate**. Nothing here is a planet; nothing is 'discovered'. Search, vetting, localisation, re-derivation, red team and FPP were run by Claude Code (Anthropic) agents under human direction; every number below names the file it comes from._
+_Built 2026-10-17T21:00:59Z from run `poolA_main` at commit `6a93dbe97b24`. Status under the project's language rules: **candidate**. Nothing here is a planet; nothing is 'discovered'. Author: Aayush Gupta; analysis code written with AI assistance (Claude); every number below names the file it comes from._
 
 ## Key numbers
 

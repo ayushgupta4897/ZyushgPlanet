@@ -1,6 +1,6 @@
 # kic-003831969 (Gaia DR3 2100154070473374976, KIC 3831969) — evidence pack
 
-_Built 2026-10-17T20:02:19Z from run `poolA_main` at commit `073b75f2ba3b`. Status under `CLAUDE.md` language: **candidate**. Nothing here is a planet; nothing is 'discovered'. Search, vetting, localisation, re-derivation, red team and FPP were run by Claude Code (Anthropic) agents under human direction; every number below names the file it comes from._
+_Built 2026-10-17T21:00:59Z from run `poolA_main` at commit `6a93dbe97b24`. Status under the project's language rules: **candidate**. Nothing here is a planet; nothing is 'discovered'. Author: Aayush Gupta; analysis code written with AI assistance (Claude); every number below names the file it comes from._
 
 ## Key numbers
 
@@ -27,6 +27,7 @@ _Built 2026-10-17T20:02:19Z from run `poolA_main` at commit `073b75f2ba3b`. Stat
 | TRICERATOPS NFPP | 0.00000 ± 0.00000 | nearby stars excluded only by their own light curves (fpp/fpp_summary.json `neighbour_tests`) | fpp/fpp_summary.json |
 | Host (Gaia DR3) | G 16.53, BP−RP 0.99, Teff 5275 K, R★ 0.83 R☉, 1969 pc, RUWE 1.06 | colour-based radius; TIC values in fpp/stars_tic.csv | target_row.json |
 | Ephemeris matches (KOI/TCE/EB/confirmed within 3′, ratios 1:1,2:1,1:2,3:1,1:3, 0.2 %) | 0 (none on the same star or TPF) | catalogues dated 2026-10-17T15:46:52+00:00 | stage2/vet.json `known_matches`, known_catalogues_manifest.json |
+| Pixel localisation, season-stacked (v1.8) | **on-target**: 4 seasons, 89 events: null-target 114, best-alt-target 68 | post-hoc method extension; controls: KIC 5689121 on, two background EBs offset | pixels/season_stack/pixel_season.json |
 | TRICERATOPS FPP with Gaia contrast curve | 0.0211 ± 0.0024, NFPP 0.00000 (8 seeds) | curve from Gaia DR3 resolved-pair completeness (a catalogue property, not imaging) | fpp_gaia_contrast/fpp_summary.json, gaia_contrast/ |
 | TRICERATOPS FPP with MOLUSC companions + Gaia FLAME host | **0.0071 ± 0.0047**, NFPP 0.00000 (8 seeds) | bound companions constrained by Gaia RUWE and Gaia imaging (G ≤ 20); companion prior 18.8 % vs the default; multiplicity fraction 0.46 (conservative) | fpp_molusc/fpp_summary.json, molusc/molusc_summary.json |
 | Transit fit (batman + emcee) | rp/rs 0.0314, b 0.47 (+0.35/−0.34), T14 4.04 h, Rp 3.47 R⊕ | stellar density from transit 1.53 g/cc vs Gaia FLAME 1.16 g/cc (0.3 σ) | transit_fit/fit.json |

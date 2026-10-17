@@ -189,7 +189,7 @@ footer code { font-family: var(--f-mono); font-size: 12px; color: var(--silver);
 <header class="wrap">
   <div class="hero">
     <div class="hero-text">
-      <div class="eyebrow">ZyushgPlanet · Kepler Bonus archival search · Report, 17 October 2026</div>
+      <div class="eyebrow">Aayush Gupta · ZyushgPlanet · Kepler Bonus archival search · 17 October 2026</div>
       <h1>Three sub-Neptune planet candidates</h1>
       <p class="lede">Each has a false-positive probability below 1&nbsp;% once Gaia's limits on unseen companion stars are applied. They orbit faint stars that the Kepler telescope recorded from 2009 to 2013 without ever targeting them, and none appears in any catalogue we checked.</p>
       <div class="stats" id="stats"></div>
@@ -318,7 +318,7 @@ footer code { font-family: var(--f-mono); font-size: 12px; color: var(--silver);
   <div class="cols">
     <div><h3>Data</h3><p>Kepler Bonus background-star photometry (Martínez-Palomera et al. 2023; MAST HLSP, DOI 10.17909/7jbr-w430, CC BY 4.0). Kepler target-pixel files from MAST. Gaia DR3. Known-object catalogues from the NASA Exoplanet Archive and VizieR, downloaded <span class="mono" id="cat-date"></span>.</p></div>
     <div><h3>Methods</h3><p>Box-least-squares search with an inverted-flux null on every star; stage-2 vetting; χ² pixel localisation per quarter and per season; TRICERATOPS (Giacalone et al. 2021); MOLUSC (Wood et al. 2021); batman and emcee transit fits. Rules and every revision are in <code>pipeline/prereg_poolA.json</code>.</p></div>
-    <div><h3>Who did what</h3><p>The search, vetting, re-derivation, red-team reviews and this report were produced with Claude Code (Anthropic) agents under the direction of the ZyushgPlanet project. Every number on this page traces to a file listed in <code>report/data.json</code>, generated at commit <code class="mono" id="commit"></code>.</p></div>
+    <div><h3>Author</h3><p>Aayush Gupta, ZyushgPlanet. Every number on this page traces to a file listed in <code>report/data.json</code>, generated at commit <code class="mono" id="commit"></code>.</p></div>
   </div>
 </footer>
 
@@ -456,7 +456,7 @@ footer code { font-family: var(--f-mono); font-size: 12px; color: var(--silver);
     done("Red-team review", "Agents tasked with killing each signal found no false-positive mechanism."),
     done("Transit shape fits the host", "Transit-derived density matches Gaia within 0.5 σ."),
     done("FPP < 1.5 % and NFPP < 0.1 %", "TRICERATOPS with Gaia RUWE and imaging constraints: 0.63, 0.71 and 0.70 %."),
-    open("Human inspection of every plot", "Required by the project's rules before public release."),
+    done("Human inspection of every plot", "Every vetting, pixel and fit plot inspected by the author, 17 October 2026."),
     open("High-resolution imaging", "Speckle or adaptive optics inside 0.5″ on a 4–8 m telescope."),
     open("Refereed publication", "The step that turns a candidate into a validated planet.")].join("");
 

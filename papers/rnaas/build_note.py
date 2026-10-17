@@ -12,10 +12,10 @@ import re
 import subprocess
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--author", default="[AUTHOR NAME]")
-ap.add_argument("--orcid", default="0000-0000-0000-0000")
+ap.add_argument("--author", default="Aayush Gupta")
+ap.add_argument("--orcid", default="")
 ap.add_argument("--affiliation", default="Independent researcher")
-ap.add_argument("--email", default="[author email]")
+ap.add_argument("--email", default="ayushgupta4897@gmail.com")
 ap.add_argument("--doi", default="[Zenodo DOI to be added]")
 ap.add_argument("--tectonic", default="/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/tex/tectonic")
 ap.add_argument("--aastex", default="/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/tex/aastex/aastex701.cls")
@@ -34,7 +34,7 @@ def pm(d, nd, scale=1.0):
     return f"{m:.{nd}f}^{{+{p:.{nd}f}}}_{{-{n:.{nd}f}}}"
 
 
-V = {"AUTHOR": a.author, "EMAIL": a.email, "ORCID": a.orcid, "AFFILIATION": a.affiliation, "DATA_DOI": a.doi,
+V = {"AUTHORLINE": (f"\\author[{a.orcid}]{{{a.author}}}" if a.orcid else f"\\author{{{a.author}}}"), "AUTHOR": a.author, "EMAIL": a.email, "ORCID": a.orcid, "AFFILIATION": a.affiliation, "DATA_DOI": a.doi,
      "n_targets": f"{D['funnel']['targets']:,}", "n_s1_real": D["funnel"]["first_screen_real"], "n_s1_inv": D["funnel"]["first_screen_inverted"],
      "w_pix": ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven"][D["funnel"]["path_pixel_on_target"]],
      "w_pix_l": ["zero", "one", "two", "three", "four", "five", "six", "seven"][D["funnel"]["path_pixel_on_target"]],

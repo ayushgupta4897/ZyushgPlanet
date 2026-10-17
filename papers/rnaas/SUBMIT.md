@@ -7,27 +7,27 @@ Current count (`word_count.json`): 826 words including title, headers, caption a
 Submitting is public: RNAAS publishes within about 72 hours of acceptance, indexed in ADS, under CC BY 4.0. A decline is also part of the record. Do the steps in order.
 
 ## 1. Before anything goes public (this repo's rules, `CLAUDE.md`)
-- [ ] Inspect every plot yourself: `candidates/*/stage2/fold_events.png`, `candidates/*/pixels/diffimages_v16.png`, `candidates/*/pixels/season_stack/season_maps.png`, `candidates/*/deep_run/0[5-9]_*.png`, `candidates/*/transit_fit/fit.png`, and `figure1.png`.
+- [x] Inspect every plot yourself (done by Aayush Gupta, 2026-10-17; `runs/poolA_main/human_review.json`): `candidates/*/stage2/fold_events.png`, `candidates/*/pixels/diffimages_v16.png`, `candidates/*/pixels/season_stack/season_maps.png`, `candidates/*/deep_run/0[5-9]_*.png`, `candidates/*/transit_fit/fit.png`, and `figure1.png`.
 - [ ] Read the note and the cover letter and change anything you would not say yourself. The AAS policy allows AI drafting only when the author supervises the text.
 - [ ] Recommended: ask one professional astronomer to read the note first (`docs/06-publishing-and-community.md` §6 lists who and how). Kuber's note was declined at moderation within 11 hours.
 
 ## 2. Archive the data
-- [ ] Rebuild the bundle with your details: `python papers/rnaas/build_zenodo.py --author "Your Name" --orcid 0000-... --affiliation "..."`.
+- [ ] Bundle already built for Aayush Gupta; add an ORCID if you have one: `python papers/rnaas/build_zenodo.py --orcid 0000-...`.
 - [ ] On zenodo.org: New upload, choose Dataset, upload `papers/rnaas/zenodo/*.zip`, copy title, description, license and keywords from `papers/rnaas/zenodo/.zenodo.json`, then **Reserve DOI**.
 - [ ] Publish the Zenodo record when you submit (the DOI must resolve for the moderator).
 
 ## 3. Finalise the manuscript
 ```sh
 . .venv/bin/activate
-python papers/rnaas/build_note.py --author "Your Name" --email "you@example.org" \
-    --orcid 0000-0000-0000-0000 --affiliation "Independent researcher, City, Country" --doi "10.5281/zenodo.NNNNNNN"
+python papers/rnaas/build_note.py --doi "10.5281/zenodo.NNNNNNN" \
+    [--orcid 0000-0000-0000-0000] [--affiliation "Independent researcher, City, Country"]   # author and email already set
 ```
-- [ ] Check `papers/rnaas/build/note.pdf` again; put the same details into `cover_letter.txt`.
+- [ ] Check `papers/rnaas/build/note.pdf` again; put the DOI into `cover_letter.txt`.
 
 ## 4. Submit
 - [ ] AAS Journals portal (https://aas.msubmit.net), journal **Research Notes of the AAS**, article type Research Note.
 - [ ] Upload `note.tex`, `figure1.pdf` and, if asked, the compiled PDF.
-- [ ] When the portal asks about generative AI, state: "Claude Code (Anthropic) wrote and ran the analysis code, performed independent re-derivations and adversarial reviews, produced the figure, and drafted the text under my direction; I reviewed the evidence and accept responsibility for the analysis and text."
+- [ ] When the portal asks about generative AI, state: "I used Claude (Anthropic) to help write analysis code and draft the text; I reviewed all results and the text and take responsibility for them."
 - [ ] Paste `cover_letter.txt` into the cover-letter field.
 
 ## 5. After acceptance

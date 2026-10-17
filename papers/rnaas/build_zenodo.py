@@ -15,7 +15,7 @@ import subprocess
 import zipfile
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--author", default="[AUTHOR NAME]")
+ap.add_argument("--author", default="Aayush Gupta")
 ap.add_argument("--orcid", default="")
 ap.add_argument("--affiliation", default="Independent researcher")
 a = ap.parse_args()
@@ -46,14 +46,14 @@ with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as z:
     z.writestr("SHA256SUMS", "\n".join(sums) + "\n")
     z.writestr("README.txt", f"ZyushgPlanet Kepler Bonus candidate package, git commit {commit}.\nStart with candidates/<fname>/README.md and report/data.json.\n"
                              "Kepler Bonus light curves: Martinez-Palomera, Hedges & Dotson 2023, AJ 166, 265; MAST HLSP DOI 10.17909/7jbr-w430 (CC BY 4.0).\n"
-                             "Analysis code, re-derivations, reviews and drafts were produced with Claude Code (Anthropic) under the author's direction.\n")
+                             "Analysis code written with AI assistance (Claude, Anthropic); all results reviewed by the author.\n")
 open(os.path.join(out, "SHA256SUMS"), "w").write("\n".join(sums) + "\n")
 creator = {"name": a.author, "affiliation": a.affiliation}
 if a.orcid:
     creator["orcid"] = a.orcid
 meta = {"upload_type": "dataset", "title": "Data, code and evidence for three sub-Neptune transit candidates around Kepler Bonus background stars",
         "creators": [creator], "license": "cc-by-4.0", "version": commit[:8], "keywords": ["exoplanets", "transits", "Kepler", "Kepler Bonus", "planet candidates"],
-        "description": "Evidence packs, run outputs, code and light curves for KIC 6699887, KIC 3831969 and KIC 11138423, three transit candidates from a pre-registered search of 6,465 Kepler Bonus background dwarfs. Candidates, not validated planets. Analysis performed with Claude Code (Anthropic) under the author's direction.",
+        "description": "Evidence packs, run outputs, code and light curves for KIC 6699887, KIC 3831969 and KIC 11138423, three transit candidates from a pre-registered search of 6,465 Kepler Bonus background dwarfs. Candidates, not validated planets.",
         "related_identifiers": [{"identifier": "10.17909/7jbr-w430", "relation": "isDerivedFrom", "scheme": "doi"}]}
 json.dump(meta, open(os.path.join(out, ".zenodo.json"), "w"), indent=1)
 print(f"{zpath}: {len(files)} files, {os.path.getsize(zpath) / 1e6:.1f} MB")

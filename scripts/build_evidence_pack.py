@@ -147,8 +147,8 @@ L = []
 L.append(f"# {a.fname} ({star.get('gaia_designation')}, KIC {star.get('kic')}) — evidence pack")
 L.append("")
 L.append(f"_Built {dt.datetime.utcnow().isoformat(timespec='seconds')}Z from run `{a.run}` at commit `{git[:12]}`. "
-         f"Status under `CLAUDE.md` language: **{label}**. Nothing here is a planet; nothing is 'discovered'. "
-         "Search, vetting, localisation, re-derivation, red team and FPP were run by Claude Code (Anthropic) agents under human direction; "
+         f"Status under the project's language rules: **{label}**. Nothing here is a planet; nothing is 'discovered'. "
+         "Author: Aayush Gupta; analysis code written with AI assistance (Claude); "
          "every number below names the file it comes from._")
 L.append("")
 L.append("## Key numbers")

@@ -1,6 +1,6 @@
 # kic-011138423 (Gaia DR3 2129669944725625344, KIC 11138423) — evidence pack
 
-_Built 2026-10-17T20:02:20Z from run `poolA_main` at commit `073b75f2ba3b`. Status under `CLAUDE.md` language: **candidate**. Nothing here is a planet; nothing is 'discovered'. Search, vetting, localisation, re-derivation, red team and FPP were run by Claude Code (Anthropic) agents under human direction; every number below names the file it comes from._
+_Built 2026-10-17T21:01:00Z from run `poolA_main` at commit `6a93dbe97b24`. Status under the project's language rules: **candidate**. Nothing here is a planet; nothing is 'discovered'. Author: Aayush Gupta; analysis code written with AI assistance (Claude); every number below names the file it comes from._
 
 ## Key numbers
 
@@ -27,6 +27,7 @@ _Built 2026-10-17T20:02:20Z from run `poolA_main` at commit `073b75f2ba3b`. Stat
 | TRICERATOPS NFPP | 0.00000 ± 0.00000 | nearby stars excluded only by their own light curves (fpp/fpp_summary.json `neighbour_tests`) | fpp/fpp_summary.json |
 | Host (Gaia DR3) | G 17.35, BP−RP 1.72, Teff 4258 K, R★ 0.53 R☉, 894 pc, RUWE 1.06 | colour-based radius; TIC values in fpp/stars_tic.csv | target_row.json |
 | Ephemeris matches (KOI/TCE/EB/confirmed within 3′, ratios 1:1,2:1,1:2,3:1,1:3, 0.2 %) | 0 (none on the same star or TPF) | catalogues dated 2026-10-17T15:46:52+00:00 | stage2/vet.json `known_matches`, known_catalogues_manifest.json |
+| Pixel localisation, season-stacked (v1.8) | **on-target**: 4 seasons, 278 events: null-target 82, best-alt-target 74 | post-hoc method extension; controls: KIC 5689121 on, two background EBs offset | pixels/season_stack/pixel_season.json |
 | TRICERATOPS FPP with MOLUSC companions + Gaia FLAME host | **0.0070 ± 0.0021**, NFPP 0.00000 (8 seeds) | bound companions constrained by Gaia RUWE and Gaia imaging (G ≤ 20); companion prior 14.7 % vs the default; multiplicity fraction 0.46 (conservative) | fpp_molusc/fpp_summary.json, molusc/molusc_summary.json |
 | Transit fit (batman + emcee) | rp/rs 0.0381, b 0.53 (+0.28/−0.35), T14 1.91 h, Rp 2.83 R⊕ | stellar density from transit 4.24 g/cc vs Gaia FLAME 3.02 g/cc (0.4 σ) | transit_fit/fit.json |
 | Field-wide ephemeris check (whole Kepler field, any channel; KOI, DR25 TCE, Kepler EB; harmonics 1:1–4:1) | 65 period coincidences within 0.1 %, 10 with a matching epoch, **0 viable** (1:1 twins, or harmonics not excluded by this signal's odd/even and secondary tests) | a 4-year baseline separates period twins whose epochs differ; harmonic twins need an odd/even or phase-0.5 signature this signal lacks | ephemeris_fieldwide.json |

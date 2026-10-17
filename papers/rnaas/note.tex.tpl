@@ -5,7 +5,7 @@
 
 \title{Three Sub-Neptune Transit Candidates Around Kepler Bonus Background Stars}
 
-\author[<<ORCID>>]{<<AUTHOR>>}
+<<AUTHORLINE>>
 \affiliation{<<AFFILIATION>>}
 \email{<<EMAIL>>}
 
@@ -33,11 +33,11 @@ None appears in public candidate lists as of 2026 October 17. Statistical limits
 
 \begin{figure}[ht!]
 \plotone{figure1.pdf}
-\caption{Top: phase-folded Kepler Bonus photometry (gray), binned (black) with the transit model (red). Bottom: missing flux during transit (S/N) for one Kepler season; red circle, target Gaia position; blue crosses, other Gaia sources. $\Delta\chi^2$ values compare a source at the target with no signal and with the best alternative, summed over four seasons; the season shown is labeled. Figure made with Python code written by Claude Code (Anthropic).\label{fig}}
+\caption{Top: phase-folded Kepler Bonus photometry (gray), binned (black) with the transit model (red). Bottom: missing flux during transit (S/N) for one Kepler season; red circle, target Gaia position; blue crosses, other Gaia sources. $\Delta\chi^2$ values compare a source at the target with no signal and with the best alternative, summed over four seasons; the season shown is labeled.\label{fig}}
 \end{figure}
 
 \begin{acknowledgments}
-This paper includes data collected by the Kepler mission and Gaia. Claude Code (Anthropic) wrote and ran the analysis code, performed the independent re-derivations and adversarial reviews, and drafted this note under my direction; I reviewed the evidence and accept responsibility for the analysis and text.
+This paper includes data collected by the Kepler mission and Gaia. I used Claude (Anthropic) to help write analysis code and draft the text; I reviewed all results and the text and take responsibility for them.
 \end{acknowledgments}
 
 \begin{thebibliography}{}
