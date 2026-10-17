@@ -1,0 +1,29 @@
+source cols ['gaia_designation', 'ra', 'dec', 'sap_mean_flux', 'sap_mean_flux_err', 'psf_mean_flux', 'psf_mean_flux_err', 'flfrcsap', 'crowdsap', 'npixsap', 'psffrac', 'pertrati', 'pertstd', 'psf_avail', 'sap_avail', 'psf_fraction_flag', 'phot_g_mean_mag', 'phot_bp_mean_mag', 'phot_rp_mean_mag', 'tpforg', 'kic', 'kic_sep', 'kep_mag', 'fname']
+source rows 606900 mstars rows 29800
+mstars matched to source 29800
+psf_avail dtype <U18 ex '011011001000100010' sap_avail ex '011011001000100011'
+kic dtype >i8 tpforg dtype >i8 kic sample [3357387 3357360 3357363] [3357373 3357373 3357373]
+M 29800 9204 6477 2495 1836
+nonM 577100 275659 192698 132009 25542
+all 606900 284863 199175 134504 27378
+bkg total 425219 primary 181681
+M bkg surv G hist [<13,13-14,14-15,15-16,16-17,17-18,18-19,>19] [   0    2   10   24   68  341 1391    0] G<16 36 G<17 104
+nonM bkg surv G hist [<13,13-14,14-15,15-16,16-17,17-18,18-19,>19] [ 320  937 1824 3070 4266 6712 8412    1] G<16 6151 G<17 10417
+primary passing c3 107126
+median kic_sep bkg surv 0.22924378256638234
+median bp-rp nonM surv 1.0592741966247559
+  kic 5689121
+  tpforg 5689116
+  psffrac 0.6661181206211804
+  crowdsap 0.7472471618
+  flfrcsap 0.6881423515
+  npixsap 2.0
+  psf_avail 011110111011101110
+  sap_avail 011110111011101110
+  kic_sep 0.06707897094066582
+  kep_mag 16.3320007324219
+  phot_g_mean_mag 16.282413482666016
+  psf_fraction_flag 011110111011101110
+  pertrati 0.9997841738627983
+  pertstd 0.000544143371496828
+mstars with kic>0 27495

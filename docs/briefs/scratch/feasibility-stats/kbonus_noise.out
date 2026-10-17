@@ -1,0 +1,27 @@
+/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/lightkurve/prf/__init__.py:7: UserWarning: Warning: the tpfmodel submodule is not available without oktopus installed, which requires a current version of autograd. See #1452 for details.
+  warnings.warn(
+SearchResult containing 2 data products.
+
+ #      mission     year   author   exptime         target_name          distance
+                                       s                                  arcsec 
+--- --------------- ---- ---------- ------- ---------------------------- --------
+  0 Kepler Quarter  2009 KBONUS-BKG    1765 Gaia DR3 2103792461826460288      0.0
+  1 Kepler Quarter  2009 KBONUS-BKG    1765 Gaia DR3 2103792427466721792      3.1
+N products for target: 1
+download time 28.7 s
+columns: <TableColumns names=('time','flux','flux_err','cadenceno','quarter','quality','sap_flux','sap_flux_err','psf_flat_flux','psf_flat_flux_err','sap_quality','flatten_mask')>
+meta keys sample: ['EXTNAME', 'CHECKSUM', 'DATASUM', 'SIMPLE', 'BITPIX', 'NAXIS', 'EXTEND', 'NEXTEND', 'EXTVER', 'DOI', 'HLSPID', 'HLSPLEAD', 'HLSPVER', 'LICENSE', 'LICENURL', 'ORIGIN', 'DATE', 'CREATOR', 'TELESCOP', 'INSTRUME', 'FILTER', 'TIMESYS', 'OBJECT', 'KEPLERID', 'RADESYS', 'RA_OBJ', 'DEC_OBJ', 'EQUINOX', 'PROCVER', 'VERSION', 'APERTURE', 'MISSION', 'OBSMODE', 'XPOSURE', 'MJD-BEG', 'MJD-END', 'LABEL', 'TARGETID', 'KEPMAG', 'TPFORG', 'GAIAID', 'PMRA', 'PMDEC', 'PARALLAX', 'GMAG', 'RPMAG', 'BPMAG', 'QDETECT', 'RA', 'DEC', 'FILENAME', 'FLUX_ORIGIN', 'AUTHOR', 'QUALITY_BITMASK', 'QUALITY_MASK']
+KEPMAG 16.3320007324219
+OBJECT KIC 5689121
+GMAG 16.28241348266602
+RPMAG 15.22890281677246
+BPMAG 17.42299842834473
+ORIGIN PSFMACHINE
+  quarter       col   npts     p2p_ppm  cdpp6h_ppm
+0    None      flux  50182  942.823134  390.168785
+1    None  sap_flux  50182  761.739883  301.853593
+             p2p_ppm  cdpp6h_ppm
+col                             
+flux      942.823134  390.168785
+sap_flux  761.739883  301.853593
+total time 48.8 s

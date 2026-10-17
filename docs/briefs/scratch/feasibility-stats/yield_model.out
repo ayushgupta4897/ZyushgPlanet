@@ -1,0 +1,147 @@
+/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/feasibility-stats/yield_model.py:153: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  t['bin']=pd.cut(t.st_tmag,[0,12,13,14,15,20],labels=['<12','12-13','13-14','14-15','>15']); toi_counts=t.groupby('bin',observed=True).size()
+/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/feasibility-stats/yield_model.py:155: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  k['bin']=pd.cut(k.koi_kepmag,[9,12,13,14,15,16,17,20],labels=['<12','12-13','13-14','14-15','15-16','16-17','>17']); koi_counts=k.groupby('bin',observed=True).size()
+DR25 cool-dwarf median CDPP by Kp bin (3h/6h/12h ppm, n): [(np.float64(11.5), np.float64(62.0), np.float64(78.0), np.float64(91.0), np.int64(68)), (np.float64(12.5), np.float64(89.0), np.float64(102.0), np.float64(120.0), np.int64(62)), (np.float64(13.5), np.float64(115.0), np.float64(104.0), np.float64(92.0), np.int64(182)), (np.float64(14.5), np.float64(166.0), np.float64(132.0), np.float64(113.0), np.int64(585)), (np.float64(15.5), np.float64(300.0), np.float64(234.0), np.float64(191.0), np.int64(2461)), (np.float64(16.5), np.float64(549.0), np.float64(417.0), np.float64(324.0), np.int64(1151)), (np.float64(17.5), np.float64(1196.0), np.float64(912.0), np.float64(690.0), np.int64(294))]
+## 1. Occurrence (DC15 Table 5, Huber-radii block), transit probability, transiting planets per 1000 M dwarfs (M*=0.5, R*=0.5)
+
+| Rp         | P        |   planets_per_star |   transiting_per_1000_stars |   mean_ptransit |
+|:-----------|:---------|-------------------:|----------------------------:|----------------:|
+| 1.0-1.5 Re | <10 d    |              0.212 |                       23.66 |          0.1114 |
+| 1.0-1.5 Re | 10-50 d  |              0.35  |                        7.48 |          0.0214 |
+| 1.0-1.5 Re | 50-200 d |              0.327 |                        2.33 |          0.0071 |
+| 1.5-2.0 Re | <10 d    |              0.108 |                       12.02 |          0.1114 |
+| 1.5-2.0 Re | 10-50 d  |              0.351 |                        7.51 |          0.0214 |
+| 1.5-2.0 Re | 50-200 d |              0.239 |                        1.87 |          0.0078 |
+| 2.0-4.0 Re | <10 d    |              0.151 |                       16.78 |          0.1114 |
+| 2.0-4.0 Re | 10-50 d  |              0.423 |                        9.04 |          0.0214 |
+| 2.0-4.0 Re | 50-200 d |              0.315 |                        2.76 |          0.0088 |
+
+Total 1-4 Re, 0.5-200 d: 2.48 planets/star; transiting: 83.4 per 1000 stars
+P<50 d, Rp 2-4 Re: 0.573 planets/star; transiting 25.8 per 1000 M dwarfs
+P<50 d, Rp 1-4 Re: 1.59 planets/star; transiting 76.5 per 1000 M dwarfs
+
+Geometric transit probability R*/a (x1.08 ecc. boost) for M*=0.5 Msun, R*=0.5 Rsun:
+|    P_d |   a_AU |   p_transit |   T14_mean_h |
+|-------:|-------:|------------:|-------------:|
+|   1    | 0.0155 |      0.1617 |         0.9  |
+|   3    | 0.0323 |      0.0777 |         1.3  |
+|   5    | 0.0454 |      0.0553 |         1.54 |
+|  10    | 0.0721 |      0.0348 |         1.94 |
+|  13.77 | 0.0892 |      0.0281 |         2.15 |
+|  30    | 0.15   |      0.0167 |         2.79 |
+|  50    | 0.2108 |      0.0119 |         3.31 |
+| 100    | 0.3347 |      0.0075 |         4.17 |
+| 200    | 0.5312 |      0.0047 |         5.25 |
+
+## 2. Noise vs magnitude (ppm) and minimum detectable radius (SNR>=7.1) for a 0.5 Rsun / 0.5 Msun M dwarf
+
+Kepler CDPP duration scaling exponent alpha (from DR25 cool-dwarf 3h/6h means): 0.16; KBONUS noise model: KBONUS PSF 6-h noise / Kepler DR25 cool-dwarf median CDPP at same magnitude: median ratio 0.84 over 13 measured background M dwarfs (range 0.23-4.97); model = 0.84 x Kepler CDPP(G); pessimistic alt = 1.5x
+|   mag |   Kepler_CDPP6h |   KBONUS_CDPP6h |   K2_CDPP6h |   TESS_1h(Tmag=mag) |
+|------:|----------------:|----------------:|------------:|--------------------:|
+|    12 |              90 |              76 |          90 |                 595 |
+|    13 |             103 |              87 |         103 |                1122 |
+|    14 |             118 |             100 |         118 |                2285 |
+|    15 |             183 |             155 |         220 |                5190 |
+|    16 |             325 |             275 |         520 |               13957 |
+|    17 |             664 |             561 |        1328 |               48659 |
+|    18 |             912 |             770 |        1823 |              250067 |
+
+Minimum detectable planet radius (Re) at P = 5 / 13.77 / 30 d:
+|   mag |   Kepler 4yr P5 |   Kepler 4yr P13.77 |   Kepler 4yr P30 |   KBONUS 13q P5 |   KBONUS 13q P13.77 |   KBONUS 13q P30 |   K2 80d P5 |   K2 80d P13.77 | K2 80d P30   |   TESS 2 sec P5 |   TESS 2 sec P13.77 | TESS 2 sec P30   |   TESS 4 sec P5 |   TESS 4 sec P13.77 |   TESS 4 sec P30 |   TESS 13 sec P5 |   TESS 13 sec P13.77 |   TESS 13 sec P30 |
+|------:|----------------:|--------------------:|-----------------:|----------------:|--------------------:|-----------------:|------------:|----------------:|:-------------|----------------:|--------------------:|:-----------------|----------------:|--------------------:|-----------------:|-----------------:|---------------------:|------------------:|
+|    12 |            0.38 |                0.48 |             0.57 |            0.37 |                0.47 |             0.55 |        0.78 |            0.98 | -            |            1.8  |                2.13 | -                |            1.51 |                1.79 |             2.04 |             1.13 |                 1.33 |              1.52 |
+|    13 |            0.41 |                0.51 |             0.61 |            0.4  |                0.5  |             0.59 |        0.83 |            1.05 | -            |            2.47 |                2.93 | -                |            2.08 |                2.46 |             2.8  |             1.55 |                 1.83 |              2.09 |
+|    14 |            0.43 |                0.55 |             0.65 |            0.42 |                0.53 |             0.63 |        0.89 |            1.12 | -            |            3.53 |                4.17 | -                |            2.96 |                3.51 |             4    |             2.21 |                 2.61 |              2.98 |
+|    15 |            0.54 |                0.68 |             0.81 |            0.53 |                0.66 |             0.79 |        1.22 |            1.52 | -            |            5.31 |                6.29 | -                |            4.47 |                5.29 |             6.02 |             3.33 |                 3.94 |              4.49 |
+|    16 |            0.72 |                0.9  |             1.08 |            0.7  |                0.88 |             1.05 |        1.87 |            2.35 | -            |            8.71 |               10.31 | -                |            7.33 |                8.67 |             9.88 |             5.46 |                 6.46 |              7.36 |
+|    17 |            1.03 |                1.29 |             1.54 |            1.01 |                1.26 |             1.5  |        2.99 |            3.75 | -            |           16.27 |               19.26 | -                |           13.68 |               16.19 |            18.44 |            10.19 |                12.06 |             13.73 |
+|    18 |            1.21 |                1.51 |             1.8  |            1.18 |                1.48 |             1.76 |        3.5  |            4.39 | -            |           36.88 |               43.66 | -                |           31.01 |               36.71 |            41.8  |            23.1  |                27.35 |             31.14 |
+
+## 3. Yield
+
+
+### Kepler primary cool dwarfs (DR25 Teff<4000, logg>4; official PDC photometry; 4-yr; known = cool-host KOIs cand+conf with P<50 d, 1-4 Re)
+
+| mag_bin   |   n_stars |   transiting_1_4Re_P50 |   detectable_1_4Re |   detectable_2_4Re |   known_1_4Re |   remaining_est |
+|:----------|----------:|-----------------------:|-------------------:|-------------------:|--------------:|----------------:|
+| <12       |        68 |                    5.2 |                5.2 |                1.8 |             0 |             5.2 |
+| 12-13     |        62 |                    4.7 |                4.7 |                1.6 |             2 |             2.7 |
+| 13-14     |       183 |                   14   |               14   |                4.7 |             6 |             8   |
+| 14-15     |       585 |                   44.7 |               44.7 |               15.1 |            22 |            22.7 |
+| 15-16     |      2464 |                  188.5 |              188.4 |               63.6 |            84 |           104.4 |
+| 16-17     |      1151 |                   88   |               85.7 |               29.7 |            13 |            72.7 |
+| >17       |       294 |                   22.5 |               18.9 |                7.6 |             2 |            16.9 |
+Totals: detectable 361.7, known 129, remaining ~232.7
+
+### KBONUS eligible background M dwarfs (Kuber funnel, 1,836 stars; PSF photometry; ~13 quarters; known = 0 catalogued, 1 Kuber candidate)
+
+| mag_bin   |   n_stars |   transiting_1_4Re_P50 |   detectable_1_4Re |   detectable_2_4Re |   known_1_4Re |   remaining_est |
+|:----------|----------:|-----------------------:|-------------------:|-------------------:|--------------:|----------------:|
+| 13-14     |         2 |                    0.2 |                0.2 |                0.1 |             0 |             0.2 |
+| 14-15     |        10 |                    0.8 |                0.8 |                0.3 |             0 |             0.8 |
+| 15-16     |        24 |                    1.8 |                1.8 |                0.6 |             0 |             1.8 |
+| 16-17     |        68 |                    5.2 |                5.1 |                1.8 |             0 |             5.1 |
+| >17       |      1732 |                  132.5 |              113   |               44.7 |             0 |           113   |
+Totals: detectable 120.9, known 0, remaining ~120.9
+
+### KBONUS relaxed background M dwarfs (PSFFRAC>0.5, CROWDSAP>0.7, background, >=4 PSF quarters; ~9 quarters assumed)
+
+| mag_bin   |   n_stars |   transiting_1_4Re_P50 |   detectable_1_4Re |   detectable_2_4Re |   known_1_4Re |   remaining_est |
+|:----------|----------:|-----------------------:|-------------------:|-------------------:|--------------:|----------------:|
+| 13-14     |         2 |                    0.2 |                0.2 |                0.1 |             0 |             0.2 |
+| 14-15     |        11 |                    0.8 |                0.8 |                0.3 |             0 |             0.8 |
+| 15-16     |        29 |                    2.2 |                2.2 |                0.7 |             0 |             2.2 |
+| 16-17     |        89 |                    6.8 |                6.5 |                2.3 |             0 |             6.5 |
+| >17       |      2248 |                  171.9 |              137.7 |               57.7 |             0 |           137.7 |
+Totals: detectable 147.4, known 0, remaining ~147.4
+
+### TESS FFI: GCNS M dwarfs within 100 pc by approx Tmag (T~G-0.7), 2 sectors assumed, dilution 0.85; known = cool-host TOIs d<100 pc, P<50 d, 1-4 Re (excl FP/FA)
+
+| mag_bin   |   n_stars |   transiting_1_4Re_P50 |   detectable_1_4Re |   detectable_2_4Re |   known_1_4Re |   remaining_est |
+|:----------|----------:|-----------------------:|-------------------:|-------------------:|--------------:|----------------:|
+| <12       |     11610 |                  888   |              453.3 |              238.9 |           170 |           283.3 |
+| 12-13     |     25090 |                 1919   |              533   |              417.6 |            58 |           475   |
+| 13-14     |     37631 |                 2878.2 |              278.6 |              278.6 |            24 |           254.6 |
+| 14-15     |     44639 |                 3414.2 |               31.6 |               31.6 |             6 |            25.6 |
+Totals: detectable 1296.5, known 258, remaining ~1038.5
+
+### TESS FFI: GCNS M dwarfs within 100 pc by approx Tmag (T~G-0.7), 4 sectors assumed, dilution 0.85; known = cool-host TOIs d<100 pc, P<50 d, 1-4 Re (excl FP/FA)
+
+| mag_bin   |   n_stars |   transiting_1_4Re_P50 |   detectable_1_4Re |   detectable_2_4Re |   known_1_4Re |   remaining_est |
+|:----------|----------:|-----------------------:|-------------------:|-------------------:|--------------:|----------------:|
+| <12       |     11610 |                  888   |              636.8 |              282   |           170 |           466.8 |
+| 12-13     |     25090 |                 1919   |              816.2 |              523.9 |            58 |           758.2 |
+| 13-14     |     37631 |                 2878.2 |              529.9 |              497.8 |            24 |           505.9 |
+| 14-15     |     44639 |                 3414.2 |              115   |              115   |             6 |           109   |
+Totals: detectable 2097.9, known 258, remaining ~1839.9
+
+### TESS FFI: GCNS M dwarfs within 100 pc by approx Tmag (T~G-0.7), 8 sectors assumed, dilution 0.85; known = cool-host TOIs d<100 pc, P<50 d, 1-4 Re (excl FP/FA)
+
+| mag_bin   |   n_stars |   transiting_1_4Re_P50 |   detectable_1_4Re |   detectable_2_4Re |   known_1_4Re |   remaining_est |
+|:----------|----------:|-----------------------:|-------------------:|-------------------:|--------------:|----------------:|
+| <12       |     11610 |                  888   |              771   |              299.7 |           170 |           601   |
+| 12-13     |     25090 |                 1919   |             1159.3 |              623.1 |            58 |          1101.3 |
+| 13-14     |     37631 |                 2878.2 |              843.4 |              657.6 |            24 |           819.4 |
+| 14-15     |     44639 |                 3414.2 |              284.7 |              284.7 |             6 |           278.7 |
+Totals: detectable 3058.4, known 258, remaining ~2800.4
+
+### K2: M-dwarf proxy from K2TARGETS (J-K 0.78-1.05, Kp-J>2.3, PM>20 mas/yr, long cadence; 13,891 stars Kp<16.5; 80-d campaigns; EVEREST-like noise; known = 132 K2 cool-host planets P<50 d 1-4 Re spread by Kp)
+
+| mag_bin   |   n_stars |   transiting_1_4Re_P50 |   detectable_1_4Re |   detectable_2_4Re |   known_1_4Re |   remaining_est |
+|:----------|----------:|-----------------------:|-------------------:|-------------------:|--------------:|----------------:|
+| <14       |      2316 |                  177.1 |              158.3 |               53.6 |            40 |           118.3 |
+| 14-15     |      3843 |                  293.9 |              256.4 |               88.9 |            40 |           216.4 |
+| 15-16     |      4805 |                  367.5 |              250.3 |              110.4 |            45 |           205.3 |
+| 16-16.5   |      2927 |                  223.9 |               89.2 |               53.3 |             7 |            82.2 |
+Totals: detectable 754.2, known 132, remaining ~622.2
+
+MODE: STEP completeness at SNR 7.1 (upper envelope)

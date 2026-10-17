@@ -74,7 +74,14 @@ def main():
              f"- first-screen passes: **real {n_real}**, **inverted {n_inv}** (pre-registered thresholds: {json.dumps(cfg['first_screen'])})",
              f"- mean runtime {df.runtime_s.mean():.0f} s/star; median point-to-point scatter {df.p2p_ppm.median():.0f} ppm", ""]
     if n_ok:
-        # SDE / SNR distributions real vs inverted (the calibration that matters)
+        lines.append("- What the inverted null does and does not calibrate: inverting the flux (2 - f) turns dips into bumps, so the inverted pass rate bounds the rate of SIGN-SYMMETRIC noise and variability passing the screen; it cannot mimic dip-shaped (sign-asymmetric) systematics such as post-gap thermal ramps. A real-minus-inverted excess is therefore NOT a count of astrophysical signals; compare per period bin:")
+        bins = [0.5, 2.0, 10.0, 20.0, 40.1]
+        for lo, hi in zip(bins[:-1], bins[1:]):
+            nr = int(((ok.pass_real.fillna(False)) & (ok.real_period_d >= lo) & (ok.real_period_d < hi)).sum())
+            ni = int(((ok.pass_inv.fillna(False)) & (ok.inv_period_d >= lo) & (ok.inv_period_d < hi)).sum())
+            lines.append(f"  - P {lo:g}-{hi:g} d: real {nr}, inverted {ni}")
+        lines.append("")
+        # SDE / SNR distributions real vs inverted
         for col in ("sde", "snr_emp"):
             rv, iv = ok[f"real_{col}"].dropna(), ok[f"inv_{col}"].dropna()
             if len(rv) and len(iv):

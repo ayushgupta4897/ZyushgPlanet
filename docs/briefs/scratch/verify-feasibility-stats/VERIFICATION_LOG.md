@@ -1,0 +1,27 @@
+# verify-feasibility-stats log (2026-10-17)
+Checks run in /home/user/ZyushgPlanet/.venv; untrusted repo only read.
+- DC15 Table 5 (dl/1501.01623.txt lines 1374-1400): all 30 cumulative values in yield_model.py DC15_T5 match. 1.08 Kipping factor (lines 829-834), 156 candidates, 2.5+/-0.2, 0.56/0.46, <26.54% upper limit (line 1298) all confirmed.
+- Christiansen 2012 Table 2 (dl/christiansen2012.txt lines 255-269): medians 32.4/38.5/37.0/41.7/54.5/80.8/139.1 confirmed; column (4) = median rms CDPP for dwarfs log g>4, Q3, 6-h.
+- DR25 cool dwarfs: re-binned dl/dr25_cool_dwarfs.csv; medians 78/102/104/132/234/417/912 confirmed BUT first bin is Kp 10-12 (n=68), not 11-12. Means are much higher (221/237 at Kp 12-14).
+- KBONUS target noise re-measured independently from cached FITS: FLUX 571/534/405/285, SAP 454/420/315/215, PSF_FLAT 543/507/374/251 ppm -> exact match. Fold: 76 transits confirmed; depth 1968 ppm / SNR 26 with my windows vs 1856 / 33.7 in brief (window-dependent).
+- Pilot log: 64 stars, median 18.69 s, mean 20.03 s, min 9.3, max 35.4 -> confirmed.
+- Editorial audit README: funnel 29,800/9,204/6,477/2,495/1,836/1,800; 31/29 vs 32/28; KIC 8701308 & 5283912; TESS table -> confirmed.
+- Chopra GUIDE.md: 743/752, 31/39, 10/17, 8.4 vs 11.3/10.3, 38 scrambles 8.5/9.3, 526 stars, ~1e6 periods, 1.5 h on 12 cores, TRICERATOPS never completed -> confirmed.
+- eumemic README: 798,769 / 4,039,203 / 96 (19 found) / 645 / 9 s / c8g.4xlarge 2.6x / 130 GB & 12 GB / 300 injections / 3,661 -> confirmed; 2,462 and 9,938 and 2,756/3,482 are sums of table columns, not stated figures.
+- TLS FAQ: SDE 5.7/6.1/7.0/8.3/9.1 and red-noise warning -> confirmed.
+- tess.mit.edu/observations: Sector 109 current, Sector 110 begins 2026-10-31 -> confirmed.
+- Exoplanet Archive TAP: KOI 214/143/129/49; TOI 581 (PC 307, CP 219, KP 28, APC 27; FP 100, FA 13), 258 within 100 pc -> confirmed; K2 cool-host 223 unique, but P<50 & 1-4 Re = 134 (default row) to 150 (any row), brief said 132.
+- GCNS counts 213,665 / 118,970 / 36,700 / 5,025 / 4,161 -> confirmed.
+- astropy autoperiod: df = min_duration/baseline^2 -> 1.0e8 periods for 1-h min duration on 1460 d (brief said ~5e7, which is the 2-h figure).
+- ticgen 1.0.4 polynomial coefficients match yield_model.py; values 94/132/203/336/595/1122/2285/5190/13957 ppm.
+- KBONUS paper: '<100 ppm for G<16' (abstract), 'up to 40% better ... fainter than G=13.25' (Summary) -> confirmed.
+- EVEREST abstract -> confirmed. Hsu 2020 4.2/8.4 (Dirichlet baseline / uniform) -> confirmed. Ment & Charbonneau 2023, HU 2019, Bergsten 2022 -> confirmed.
+- Scott 2021: r~18 confirmed; 'R 6-15' and '30-45 min for R>16' are from Howell & Furlan 2022, not Scott 2021. Contrast 4-5 mag near diffraction limit, 7-10 mag at 1 arcsec (H&F 2022).
+- MAROON-X: '1 m/s for mid M dwarfs as faint as V=16.5 in 30 minutes or less' is in arXiv:1606.07140 (pdf text) but assumes a 6.5-m telescope; instrument is now on 8.1-m Gemini North.
+- Fressin 2013: global FP 9.4%, Earth-size 12.3%, small Neptunes 6.7%, giants 17.7%.
+- TESS products for TIC 120686465: 10 'TARS' HLSP FFI light curves (S14-81). TARS = TESS All-Sky Rotation Survey, T<16 & plx>2 mas, S1-96, 0.14 MB/sector; S81 file: TESSMAG 15.21, 200-s cadence, 1-h noise 5,029 ppm (Stassun model ~5,900 at T 15.2).
+- TESS-SPOC FFI selection (ar5iv 2011.05495 + MAST page): 2-min targets; then H<=10 OR d<=100 pc with crowding>=0.5 and T<=16; then field stars by T<=13.5, logg>=3.5, crowding>=0.8; cap 10,000/CCD; TPS run on FFI targets since May 2021 (single-sector DV from S36, multi-sector from S56). => GCNS stars within 100 pc are nominally SPOC FFI targets regardless of T<=16.
+- QLP: T<13.5 (EM1 years 1-2, Kunimoto 2021/2022); from S41 'select fainter M dwarfs' also processed.
+- ExoFOP (home page news 2026-08-19 + candidate_help.php): community candidates from TESS, Kepler, K2 'and beyond' accepted again but ONLY after peer-reviewed publication (or RNAAS citing a published methodology), with approval via 'Published Candidate Upload Request'; name TID.nn (TIC ID); cTOI = TESS-discovered; 'Other Discovery Data Source' for Kepler/K2.
+- K2TARGETS has k2_teff/k2_logg/k2_rad columns (brief said no Teff). 392,156 LC targets confirmed.
+- K2TARGETS k2_teff<4000 & k2_logg>4 & k2_lcflag=1: 47,749 rows, 27,666 unique EPIC with Kp<16.5 (by Kp: 13: 2,323; 14: 6,881; 15: 11,002; 16: 12,229 rows) -> brief's colour/PM proxy (13,891) is ~2x too small; colour-only (24,623) closer.

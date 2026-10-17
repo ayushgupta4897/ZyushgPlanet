@@ -1,0 +1,142 @@
+{
+  "period_d": {
+    "mine": 15.113717989275697,
+    "pipeline": 15.113611512744262,
+    "diff": 0.00010647653143536218,
+    "note": "my dloglike=1 half-width 0.00e+00 d"
+  },
+  "t0_bkjd": {
+    "mine": 134.72681549259772,
+    "pipeline": 134.72785715926437,
+    "diff": -0.0010416666666515084,
+    "note": ""
+  },
+  "tc_epoch48_bkjd": {
+    "mine": 860.1852789778311,
+    "pipeline": 860.181209770989,
+    "diff": 0.004069206842132189,
+    "note": "drift at mid-baseline, days"
+  },
+  "duration_h_box": {
+    "mine": 3.5,
+    "pipeline": 3.75,
+    "diff": -0.25,
+    "note": "my box grid 0.25 h; trapezoid T14 = 4.000 h, T23/T14 = 0.70"
+  },
+  "depth_ppm_box": {
+    "mine": 1086.1599343529037,
+    "pipeline": 1022.6050610526727,
+    "diff": 63.554873300231066,
+    "note": "mine 3.5 h box on masked re-detrend; pipeline 3.75 h box pass2"
+  },
+  "depth_ppm_at_3.75h_box": {
+    "mine": 1026.5969494792637,
+    "pipeline": 1022.6050610526727,
+    "diff": 3.9918884265910037,
+    "note": "my masked-detrend depth evaluated with the pipeline box width"
+  },
+  "depth_err_ppm": {
+    "mine": 32.8788685575036,
+    "pipeline": 51.00636610141651,
+    "diff": -18.12749754391291,
+    "note": "mine = std of 3000 random-phase boxes (same P, dur); pipeline box_noise_ppm. Pipeline formal err 33.3"
+  },
+  "empirical_snr": {
+    "mine": 33.03519804683245,
+    "pipeline": 20.048577054468378,
+    "diff": 12.98662099236407,
+    "note": ""
+  },
+  "odd_even_sigma": {
+    "mine": 0.23041547447480115,
+    "pipeline": 0.026301375581943648,
+    "diff": 0.2041140988928575,
+    "note": ""
+  },
+  "secondary_ppm": {
+    "mine": -36.218429666723395,
+    "pipeline": -37.18076451697527,
+    "diff": 0.962334850251878,
+    "note": ""
+  },
+  "secondary_sigma": {
+    "mine": -1.101571655465548,
+    "pipeline": -0.7289436076086729,
+    "diff": -0.372628047856875,
+    "note": ""
+  },
+  "n_transits": {
+    "mine": 86,
+    "pipeline": 86,
+    "diff": 0,
+    "note": ""
+  },
+  "event_weighted_depth_ppm": {
+    "mine": 1093.559459571608,
+    "pipeline": 1068.5591574281827,
+    "diff": 25.000302143425188,
+    "note": ""
+  },
+  "event_chi2": {
+    "mine": 160.37253704336592,
+    "pipeline": 151.60888791262073,
+    "diff": 8.763649130745193,
+    "note": "dof mine 85 pipeline 85"
+  },
+  "trapezoid_or_tls_depth_ppm": {
+    "mine": 1140.8867288620263,
+    "pipeline": 1189.0988996748897,
+    "diff": -48.212170812863405,
+    "note": "my trapezoid full depth vs pipeline TLS depth"
+  },
+  "tls_period_d": {
+    "mine": 15.113717989275697,
+    "pipeline": 15.11370642640775,
+    "diff": 1.156286794667949e-05,
+    "note": ""
+  },
+  "sde": {
+    "mine": 81.80755004385196,
+    "pipeline": 13.717880524253639,
+    "diff": 68.08966951959832,
+    "note": "NOT the same statistic: mine = SDE of BLS log-likelihood power (skewed); pipeline = TLS SDE. My depth-SNR-spectrum SDE = 31.4"
+  },
+  "per_year_mine_ppm": [
+    1170.6018373597306,
+    1057.8309732830471,
+    1127.047596377051,
+    1006.163324475784
+  ],
+  "per_quartile_pipeline_ppm": [
+    [
+      1099.7988229977773,
+      63.02573302497049,
+      22
+    ],
+    [
+      1074.6380731969139,
+      62.175916620868676,
+      22
+    ]
+  ],
+  "n_in_transit": {
+    "mine": 568,
+    "pipeline": 608,
+    "note": "different box width (3.5 vs 3.75 h)"
+  },
+  "per_event": {
+    "n_matched": 86,
+    "pearson_r_depth": 0.8850382845962212,
+    "median_abs_diff_ppm": 118.58447800949745,
+    "mean_diff_mine_minus_pipe_ppm": 25.028448215020198,
+    "max_abs_tc_diff_min": 13.065989500573778
+  },
+  "sap_vs_psf": {
+    "psf_depth_ppm": 1086.1599343529037,
+    "sap_depth_ppm": 995.3142464030896,
+    "ratio": 0.9163606711345537,
+    "ratio_err": 0.04449192036740144,
+    "crowdsap_catalogue": 0.8849,
+    "psffrac_catalogue": 0.7328
+  }
+}

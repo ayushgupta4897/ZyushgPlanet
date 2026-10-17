@@ -1,0 +1,10 @@
+Verification run 2026-10-17 (this directory). Key outputs:
+tap_counts.txt       NASA Exoplanet Archive TAP counts (toi, cumulative, k2pandc, k2targets, pscomppars, q1_q17_dr25_tce, keplerstellar)
+lag_out.txt          ExoFOP TOI/CTOI faint-end counts, TOI alert lags by Source stream, 2026 TOI stats
+kb2_out.txt          Kepler Bonus funnel from v1.0 catalogues (join mstars->source on gaia_designation)
+lk_out.txt           lightkurve probes (KBONUS-BKG, TARS, QLP, TESS-SPOC coverage)
+census_out.txt       60-star random product census of faint nearby M dwarfs; QLP S104/105 probe
+mastlag_out.txt      MAST SPOC 2-min release dates S105-109
+dl/tce/              S107 single-sector tcestats CSV (846 TCEs) + multisector s0001-s0096 tcestats (20,207 TCEs)
+dl/tl/               TESS-SPOC target lists s0031/s0069/s0085 and QLP target lists s0085/s0104
+dl/lk/               downloaded KBONUS-BKG light curve for KIC 5689121 (HDU inspection)

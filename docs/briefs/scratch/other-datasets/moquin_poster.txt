@@ -1,0 +1,117 @@
+                                                 One Man’s TraSHDUMP is Another Man’s Treasure:
+                                                 An Exoplanet Candidate in the Kepler Bonus Light Curves
+                                             Julie Moquin, Robert F. Wilson, Elisa Quintana, Christina Hedges, Jorge Martínez-Palomera,
+                                              Zachary Claytor, Emily Gilbert, Jason Rowe, Kelsey Hoffman, Veselin Kostov, David Ciardi
+
+   1. What is a Bonus Object of Interest (BOI)?                                                                          2. Detecting BOI-1.01
+
+  Kepler Bonus Light Curves                                                                                             Detrending the Light Curve
+   The Kepler space telescope's [1] primary mission observed around 200,000 target
+   stars [2]. However, hundreds of thousands of additional stars were serendipitously                                                                                                                                                                    3
+                                                                                                                                 Pixel-by-pixel Light curve
+   observed. Light curves for these bonus sources were extracted (see Martínez-                                                                                                               PSF-extracted Light curve
+   Palomera, Hedges, & Dotson 2023 [3]) resulting in...
+      ★ triple the number of planet-search stars
+      ★ an increase in the number of M dwarfs by a factor of seven
+      ★ an expected yield of several hundred new planet candidates
+
+                                                                                            Fig 1. Archival imaging
+                                                                                       1    of BOI-1 from the
+                                                                                            Digitized Sky Survey 1
+                                                                                            (1953) and the Digitized
+                                                                                            Sky Survey 2 (1983) in
+                                                                                            the Red photographic
+                                                                                            emulsion, Pan-STARRS
+                                                                                            in the i band (2012),           Fig 3. Left: Subset of the TPF, showing per-pixel light curves over a 10-day window; red outline mark pixels where the
+                                                                                            and Kepler Quarter 1            transit is visible. Right: The top panel shows the original light curve and the bottom panel shows the detrended light
+                                                                             Saturated      Target Pixel File (TPF)         curve; in-transit points are in red.
+                                                                             Mission Target (2009).
+                                                                     Bonus Target
+                                                                                                                        TraSHDUMP: Threshold Crossing Event Detection
+  Stellar Parameters                                                                                                    (TRAnsits with any Stellar Host Detected with an Unbiased Matched-filter Pipeline)
+                                                                                       2         BOI =
+   We derive stellar                                                                             planet                 TraSHDUMP is an unbiased                                                                                                   4
+   parameters using grid-                                                                        candidate              matched-filter pipeline                                                         Multiple Event Statistic
+   based isochrone fitting                                                                       found in               motivated by transit-search
+   with kiauhoku [4,5] and the                                                                   Kbonus                 concepts developed for                                                                     Weak Secondary Test                  Detection
+                                                                                                 Light curves           the Kepler pipeline [9,10]. It                                                                                                  Threshold
+   SPOTS model grid [6,7].
+                                                                                                                        searches a range of
+                                                                                                                        period and transit
+       BOI-1 is a 17.8 G mag                                                                  Fig 2. Color              duration combinations to
+       M-dwarf with roughly                                                                   magnitude diagram         find Threshold Crossing
+       0.51 Solar radii and 0.55                                                              for the Gaia Catalog      Events (TCEs).                                    Fig 4. Multiple Event Statistic. Strong signal at phase 0 exceeds
+                                                                                              of Nearby Stars [8]
+       Solar masses and is less                                                               with BOI-1 highlighted
+                                                                                                                                                                          the 7.1σ threshold; no significant secondary near phase ≈ 0.5.
+       than 1 Gyr old.                                                                        as a blue star.
+                                                                                                                            We detect a TCE for BOI-1 with a period of 3.37 days and a duration of ~2 hours.
+
+
+
+
+   3. IS BOI-1.01 A PLANET OR AN IMPOSTER?
+
+   RECYCLEBin: Flux-Level Vetting                                                                                       5                  ★ Odd-Even Depth Test ★                                              ★ Transit Fit vs Sinusoid Fit ★
+   (Removal of Exoplanet Candidates Yearning to be Condoned as Lookalikes and Eclipsing BINaries)
+
+
+   RECYCLEBin employs a suite of statistical tests, adapted from
+   the Kepler Team’s Robovetter [11], to determine whether
+   the TCE is consistent with a planet candidate or false
+   positive/alarm.
+                                                                                                                       Fig 5a. We compare the depths of odd-numbered and even-            Fig 5b. We compare transit and sinusoidal fits to
+                                                                                                                       numbered transits to check for near equal-mass EBs at half         verify the TCE is not caused by stellar variability.
+                                                                                                                       their true orbital period.
+
+
+
+   INCInERATOr: Pixel-Level Vetting                                                                                    Earning the b in BOI-1b
+  (Indicator of Nonaligned Centroids IN Exoplanet Reliability Analysis of Transit ObseRvations)                         BOI-1.01 demonstrates the discovery power
+                                                                                                                        of Kbonus for exploring fainter target stars.                           8
+ Scan me for
+ INCInERATOr’s                           6       Target Pixel File                  INCInERATOr Output
+                                                                                                                                                                                                                                                  EB
+ documentation!                                                                                                         7                                                                                         TP             EB               x2P
+
+
+ Fig 6. INCInERATOr output.
+ Left: The Kepler TPF. The red
+ cross marks BOI-1; the blue                                                                                                                                                                                                                      PEB
+ cross marks the mission                                                                                                                                                                                          PTP            PEB              x2P
+ target. Right: The depth
+                                                                                                                                                                                              Normalized Flux
+
+
+
+
+ heatmap indicating the most
+ likely origin of the transit
+ signal. The PRF-fitted location
+ (black dot) lies on the same                                                                                                                                                                                                                     SEB
+ pixel as the Gaia DR3 position                                                                                          Fig 7. Phase-folded, detrended light curve of BOI-1 overlaid                             STP             SEB             x2P
+ of BOI-1.                                                                                                               with the best-fit pytfit5 transit model [12].
+
+   INCInERATOr localizes transit signals at the pixel level by mapping transit depth
+   across the detector and fitting a PRF model to determine the signal’s position.                                           Our transit model indicates that BOI-
+                                                                                                                                                                                                                                                  DEB
+                                                                                                                             1.01 is a sub-Neptune with a radius of                                               DTP            DEB              x2P
+                                                                                                                             around 2.94 +/- 0.15 Earth radii.
+ Fig 9. Kepler magnitude (Kp) versus
+ planetary radius for the known Kepler       9
+ planet candidate population (grey                                                                                                                High resolution AO
+                                                                                                                                                                                                                                                  BEB
+ points), with our candidate BOI-1.01                                                                                  We need                    imaging rules out the                                           BTP            BEB              x2P
+ highlighted as a blue star.                                                                                           smaller                    Background Transiting
+                                                                                                                       ephemeris                  Planet scenario.                                                                 Phase
+                                                                                                                       uncertainties
+Scan me for                                                                                                            and higher-                   The shape of the transit and the
+abstract,
+                                                                                                                       cadence                       distribution of ultra-faint stars in
+author
+information,
+                                                                                                                       data!                         our galaxy does not support EB                                      Fig 8. TRICERATOPS-PLUS [13, 14]
+and                                                                                                                                                  hypotheses.                                                         outputs showing the best-fit model for
+                                                                                                                                                                                                                         each transit and false positive scenario.
+references!
+

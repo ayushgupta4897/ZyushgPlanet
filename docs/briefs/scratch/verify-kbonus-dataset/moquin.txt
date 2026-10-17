@@ -1,0 +1,175 @@
+One Man’s TraSHDUMP is Another Man’s Treasure:
+An Exoplanet Candidate in the Kepler Bonus Light Curves
+Julie Moquin, Robert F. Wilson, Elisa Quintana, Christina Hedges, Jorge Martínez-Palomera, 
+Zachary Claytor, Emily Gilbert, Jason Rowe, Kelsey Hoffman, Veselin Kostov, David Ciardi
+1. What is a Bonus Object of Interest (BOI)? 2. Detecting BOI-1.01
+Kepler Bonus Light Curves
+Stellar Parameters
+The Kepler space telescope's [1] primary mission observed around 200,000 target 
+stars [2]. However,hundreds of thousands of additional stars were serendipitously 
+observed. Light curves for these bonus sources were extracted (see Martínez-
+Palomera, Hedges, & Dotson 2023 [3]) resulting in...
+ ★ triplethe number of planet-search stars
+ ★ an increase inthe number of M dwarfs by a factor of seven
+ ★ an expectedyield of several hundred new planet candidates
+3. IS BOI-1.01 A PLANET OR AN IMPOSTER?
+★ Transit Fit vs Sinusoid Fit ★
+RECYCLEBin: Flux-Level Vetting
+INCInERATOr: Pixel-Level Vetting
+TraSHDUMP: Threshold Crossing Event Detection
+(Removal of Exoplanet Candidates Yearning to be Condoned as Lookalikes and Eclipsing BINaries)
+(Indicator ofNonalignedCentroidsINExoplanetReliabilityAnalysis ofTransitObseRvations)
+Detrending the Light Curve
+★ Odd-Even Depth Test ★
+Target Pixel File INCInERATOr Output
+(TRAnsits with any Stellar Host Detected with an Unbiased Matched-filter Pipeline)
+TraSHDUMP is an unbiased 
+matched-filter pipeline 
+motivated by transit-search 
+concepts developed for 
+theKepler pipeline[9,10]. It 
+searches a range of 
+periodand transit 
+durationcombinations to 
+find Threshold Crossing 
+Events (TCEs). 
+Detection 
+Threshold
+Multiple Event Statistic
+Weak Secondary Test
+We derive stellar 
+parameters using grid-
+based isochrone fitting 
+withkiauhoku[4,5] and the 
+SPOTS model grid [6,7]. 
+RECYCLEBin employs a suite of statistical tests, adapted from 
+the Kepler Team’s Robovetter [11], to determine whether 
+the TCE is consistent with a planet candidate or false 
+positive/alarm.
+Saturated
+Mission Target
+Bonus Target
+We detect a TCE for BOI-1 with a period of 3.37 days and a duration of ~2 hours.
+BOI-1 is a 17.8 G mag 
+M-dwarf with roughly 
+0.51 Solar radii and 0.55 
+Solar masses and is less 
+than 1 Gyr old.
+Scan me for
+abstract,
+author
+information,
+and
+references!
+Scan me for 
+INCInERATOr’s 
+documentation!
+1
+2
+3
+4
+5
+6
+Fig 4. Multiple Event Statistic. Strong signal at phase 0 exceeds 
+the 7.1σ threshold; no significant secondary near phase ≈ 0.5.
+Fig 1. Archival imaging 
+of BOI-1 from the 
+Digitized Sky Survey 1 
+(1953) and the Digitized 
+Sky Survey 2 (1983) in 
+the Red photographic 
+emulsion, Pan-STARRS 
+in the i band (2012), 
+and Kepler Quarter 1 
+Target Pixel File (TPF) 
+(2009). 
+Fig 2. Color 
+magnitude diagram 
+for the Gaia Catalog 
+of Nearby Stars [8] 
+with BOI-1 highlighted 
+as a blue star. 
+Fig 3. Left: Subset of the TPF, showing per-pixel light curves over a 10-day window; red outline mark pixels where the 
+transit is visible. Right: The top panel shows the original light curve and the bottom panel shows the detrended light 
+curve; in-transit points are in red.
+Fig 5b.We compare transit and sinusoidal fits to 
+verify the TCE is not caused by stellar variability.
+Fig 5a.We compare the depths of odd-numbered and even-
+numbered transits to check for near equal-mass EBs at half 
+their true orbital period.
+Fig 6. INCInERATOr output. 
+Left: The Kepler TPF. The red 
+cross marks BOI-1; the blue 
+cross marks the mission 
+target. Right: The depth 
+heatmap indicating the most 
+likely origin of the transit 
+signal. The PRF-fitted location 
+(black dot) lies on the same 
+pixel as the Gaia DR3 position 
+of BOI-1. 
+BOI =
+planet 
+candidate 
+found in 
+Kbonus 
+Light curves
+Our transit model indicates that BOI-
+1.01 is a sub-Neptune with a radius of 
+around 2.94 +/- 0.15 Earth radii.
+Fig 9. Kepler magnitude (Kp) versus 
+planetary radius for the known Kepler 
+planet candidate population (grey 
+points), with our candidate BOI-1.01 
+highlighted as a blue star. 
+7
+Fig 7. Phase-folded, detrended light curve of BOI-1 overlaid 
+with the best-fit pytfit5 transit model [12]. 
+Pixel-by-pixel Light curve PSF-extracted Light curve 
+Earning the b in BOI-1b
+BOI-1.01 demonstrates the discovery power 
+of Kbonus for exploring fainter target stars.
+INCInERATOrlocalizes transit signals at the pixel level by mapping transit depth 
+across the detector and fitting a PRF model to determine the signal’s position.
+The shape of the transit and the 
+distribution of ultra-faint stars in 
+our galaxy does not support EB 
+hypotheses.
+Fig 8. TRICERATOPS-PLUS [13, 14] 
+outputs showing the best-fit model for 
+each transit and false positive scenario.
+8
+Normalized Flux
+PTP
+TP
+STP
+DTP
+BTP
+EB
+EB
+x2P
+PEB
+SEB
+DEB
+BEB
+PEB
+x2P
+SEB
+x2P
+DEB
+x2P
+BEB
+x2P
+Phase
+High resolution AO 
+imaging rules out the 
+Background Transiting 
+Planet scenario.
+We need 
+smaller 
+ephemeris 
+uncertainties 
+and higher-
+cadence 
+data!
+9

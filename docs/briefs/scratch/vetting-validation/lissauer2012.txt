@@ -1,0 +1,1604 @@
+arXiv:1201.5424v1  [astro-ph.EP]  26 Jan 2012
+ApJ in press
+Preprint typeset using L ATEX style emulateapj v. 5/2/11
+ALMOST ALL OF Kepler’S MULTIPLE PLANET CANDIDATES ARE PLANETS
+Jack J. Lissauer 1, Geoffrey W. Marcy 2, Jason F. Rowe 1,3, Stephen T. Bryson 1, Elisabeth Adams 4, Lars A.
+Buchhave5,6, David R. Ciardi 7, William D. Cochran 8, Daniel C. F abrycky 9,10, Eric B. Ford 12, Francois Fressin 4,
+John Geary 4, Ronald L. Gilliland 13, Matthew J. Holman 4, Steve B. Howell 1, Jon M. Jenkins 1,3, Karen
+Kinemuchi1,14, David G. Koch 1, Robert C. Morehead 12, Darin Ragozzine 4, Shawn E. Seader 1,3, Peter G.
+Tanenbaum1,3, Guillermo Torres 4, Joseph D. Twicken 1,3
+ApJ in press
+ABSTRACT
+We present a statistical analysis that demonstrates that the ove rwhelming majority of Kepler can-
+didate multiple transiting systems (multis) indeed represent true, p hysically-associated transiting
+planets. Binary stars provide the primary source of false positives among Kepler planet candidates,
+implying that false positives should be nearly randomly-distributed am ong Kepler targets. In con-
+trast, true transiting planets would appear clustered around a sm aller number of Kepler targets if
+detectable planets tend to come in systems and/or if the orbital pla nes of planets encircling the same
+star are correlated. There are more than one hundred times as ma ny Kepler planet candidates in
+multi-candidate systems as would be predicted from a random distrib ution of candidates, implying
+that the vast majority are true planets. Most of these multis are m ultiple planet systems orbiting the
+Kepler target star, but there are likely cases where (a) the planetary sy stem orbits a fainter star, and
+the planets are thus signiﬁcantly larger than has been estimated, o r (b) the planets orbit diﬀerent stars
+within a binary/multiple star system. We use the low overall false posit ive rate among Kepler multis,
+together with analysis of Kepler spacecraft and ground-based data, to validate the closely-pack ed
+Kepler-33 planetary system, which orbits a star that has evolved s omewhat oﬀ of the main sequence.
+Kepler-33 hosts ﬁve transiting planets with periods ranging from 5.6 7 to 41 days.
+Subject headings: planetary systems; stars: individual (Kepler-33/KOI-707/KIC 9 458613); methods:
+statistical
+1. INTRODUCTION
+Roughly one-third of Kepler’s planet candidates an-
+nounced by Borucki et al. (2011) are associated with tar-
+gets that have more than one candidate planet. False
+positives (FPs) plague ground-based transit searches, but
+the exquisite quality of Kepler photometry, combined
+with the ability to measure small deviations in center of
+light during transits (Jenkins et al. 2010; Batalha et al.
+2010), have been used to cleanse the sample prior to pre-
+sentation in Borucki et al. (2011). Accounting for candi-
+dates on each one’s individual merit, Morton & Johnson
+Jack.Lissauer@nasa.gov
+1 NASA Ames Research Center, Moﬀett Field, CA 94035, USA
+2 Astronomy Department, University of California, Berkeley ,
+CA 94720, USA
+3 SETI Institute/NASA Ames Research Center, Moﬀett Field,
+CA 94035, USA
+4 Harvard-Smithsonian Center for Astrophysics, 60 Garden
+Street, Cambridge, MA 02138, USA
+5 Niels Bohr Institute, University of Copenhagen, DK-2100,
+Copenhagen, Denmark
+6 Centre for Star and Planet Formation, Natural History Mu-
+seum of Denmark, University of Copenhagen, DK-1350 Copen-
+hagen, Denmark
+7 Exoplanet Science Institute/Caltech, Pasadena, CA 91125,
+USA
+8 Department of Astronomy, University of Texas, Austin, TX
+78712, USA
+9 Department of Astronomy & Astrophysics, University of Cal-
+ifornia, Santa Cruz, CA 95064, USA
+11 Hubble Fellow
+12 University of Florida, 211 Bryant Space Science Center,
+Gainesville, FL 32611, USA
+13 Space Telescope Science Institute, Baltimore, MD 21218,
+USA
+14 Bay Area Environmental Institute, CA
+(2011) estimated the ﬁdelity of Kepler’s planet candi-
+dates (fraction of the candidates expected to be actual
+planets) to be above 90%. Yet the ﬁdelity of multiple
+planet candidates is likely to be higher than that for
+singles (Latham et al. 2011; Lissauer et al. 2011a). We
+show herein that the vast majority of Kepler’s multiple
+planet candidates are true multiple planet systems.
+The majority of Kepler planet discoveries announced
+to date have been conﬁrmed dynamically, using radial
+velocity variations of the target star or departures of
+observed transit times from a linear ephemeris (tran-
+sit timing variations, TTVs). However, three of the
+ﬁrst sixteen Kepler planets do not have dynamical ev-
+idence supporting the discovery, but rather these planets
+have been “validated” by showing that the probability
+that the observed signal is produced by a planet around
+the host star is at least 100 times as large as that of
+a false positive (Torres et al. 2011; Fressin et al. 2011;
+Lissauer et al. 2011b). For these three planets, the vali-
+dation process was based on the results of the BLENDER
+code, which performs detailed comparisons between the
+observed Kepler lightcurve and the lightcurves predicted
+for an ensemble of theoretically conceivable FPs to reject
+FP models that are not consistent with the observations.
+BLENDER then sums the a priori probability for the al-
+lowed false positives and compares that to the a priori
+probability for the planet model. BLENDER validates a
+planet when the resulting odds ratio very strongly favors
+the planet model. Although all three of these planets or-
+bit stars that also have dynamically-conﬁrmed planets,
+planetary multiplicity was not used quantitatively to aid
+in their validation.
+2 Lissauer et al.
+Morton & Johnson (2011) do a more cursory analy-
+sis, but one that is far easier, enabling them to per-
+form it for all of the candidate planets (“candidates”,
+henceforth) that are listed in the Borucki et al. (2011)
+paper. The study by Morton & Johnson (2011) as-
+sumes a ﬂat 20% planet occurrence rate as a prior for
+their Bayesian analysis (i.e., the average number of plan-
+ets per star is assumed to be 0.2), and they do not
+consider planets orbiting background stars to be FPs.
+Morton & Johnson (2011) use the depth and period of
+the transit, together with the magnitude, stellar prop-
+erties and galactic latitude of the target star (hence-
+forth “target”) to provide an upper bound on the FP
+prior; for high SNR transits, this upper bound on the
+FP prior can be much higher than the one computed
+using detailed lightcurve matching by BLENDER to rule
+out many FP scenarios (Torres et al. 2011; Fressin et al.
+2011). Indeed, Morton & Johnson (2011) do not exam-
+ine Kepler lightcurves, but rather assume for their cal-
+culations that various false-positive vetting procedures
+using Kepler photometry have been done, such as elimi-
+nation of candidates with V-shaped lightcurves or where
+the centroid of light received on the Kepler focal plane
+is in a diﬀerent position during a transit than it is out-
+side of transit, and that the planet candidates show no
+evidence for being FPs. However, these cuts were not
+applied to all of the candidates listed in Borucki et al.
+(2011). Some candidates were not vetted as extensively
+as assumed by Morton & Johnson (2011), and other can-
+didates did not pass one of the cleanness tests but still
+remain viable, if somewhat more suspect, planetary can-
+didates (e.g., grazing planetary transits, as well as graz-
+ing stellar eclipses, produce V-shaped lightcurves), and
+thus remain on Borucki et al. (2011)’s candidate list.
+We develop herein a quantitative method to esti-
+mate the true planet fraction of the overall sample of
+Kepler candidate multiple planets that is based upon
+the observation that there are far more multiples than
+would be expected for a random distribution of can-
+didates among Kepler targets (Lissauer et al. 2011a).
+This “overabundance” of multiples is illustrated by the
+fact that fewer than 1% of targets have a candidate on
+Borucki et al. (2011)’s candidate list, whereas more than
+15% of targets with at least one candidate have multi-
+ple candidates, and more than 25% of targets with at
+least two candidates have a third candidate. Such a re-
+sult is expected if planets often appear within systems
+of planets, especially if such systems tend to be ﬂat in
+the distribution of inclinations. High multiplicity, low
+inclination, planetary systems are consistent with Ke-
+pler observations (Lissauer et al. 2011a).
+We describe an approach to validation of speciﬁc mul-
+tiple planet system candidates that is intermediate be-
+tween those of Morton & Johnson (2011) and BLENDER,
+and we apply these techniques to validate the very ﬂat
+and dynamically-packed KOI-707 system 14. In this ap-
+proach, applied herein exclusively to KOI-707, we exam-
+14 Targets with planetary candidates are given an integer KOI
+(Kepler Object of Interest) number, and individual candidates are
+denoted by the target KOI number followed by a decimal point a nd
+a two digit number specifying the order in which they were ide n-
+tiﬁed. For example, KOI-707.02 is the second planetary cand idate
+to have been identiﬁed by transit-like signatures in the lig htcurve
+of the target star KOI-707.
+ine the target and candidates individually, supplement-
+ing the Kepler Input Catalog (KIC, Brown et al. 2011)
+with spectroscopic observations of the target and high-
+resolution imaging, including Keck guider camera expo-
+sures and speckle imaging (Howell et al. 2011) and/or
+adaptive optics (Troy et al. 2000; Hayward et al. 2001),
+to search for other stars in the target aperture. We check
+the lightcurve for a shape consistent with a transit. We
+verify that the centroid motion is nil or consistent with a
+transit around the target star and not a transit/ eclipse
+of any other stars observed nearby. But we do not per-
+form detailed matching of observed lightcurves to FP sce-
+narios. We then use multiplicity to eﬀectively increase
+the planet priors and allow for validation in a Bayesian
+sense. Note that for candidate giant ( ∼ 1 Jupiter ra-
+dius) planets, one would need to consider the possibility
+of the transit signal being produced by a late M star par-
+tially eclipsing the target star (perhaps with dilution); for
+smaller candidates, the possibility of transits of fainter
+stars by larger planets must be taken into account.
+The probability of a candidate in a multiple system be-
+ing a false positive is contrasted to that of a single can-
+didate in Section 2. Other factors involved in validating
+transiting planet candidates are discussed in Section 3.
+We apply our method to the KOI-707 candidate multi-
+planet system in Section 4. We conclude in Section 5
+with a summary of our results and a discussion of their
+implications.
+2. STATISTICAL V ALIDATION OF MULTI-PLANET
+CANDIDATES
+Kepler has found far more multiple candidate systems
+than would be the case if candidates were randomly
+distributed among target stars (Lissauer et al. 2011a).
+False positives are expected to be nearly randomly dis-
+tributed among Kepler targets, whereas true transiting
+planets could be clustered if planets whose sizes and pe-
+riods are adequate for transits to be detected often come
+in multiples, as is the case for planets detected by radial
+velocity variations (Wright et al. 2009), and/or if plane-
+tary systems tend to be ﬂat, so geometry leads to higher
+transit probabilities for other planets if one planet is seen
+to transit (Ragozzine & Holman 2010). We quantify the
+excess of multiples and its implications for the overall
+ﬁdelity of the sample of multiple candidates in this sec-
+tion.
+We use the following notation and input parameters:
+The number of planet candidates is nc = 1199, the num-
+ber of targets with two or more candidates, i.e., the num-
+ber of candidate multiple planet systems, is nm = 170,
+and the number of targets from which the sample is
+drawn is nt = 160,171. These numerical values are taken
+from Lissauer et al. (2011a), who removed from the 1235
+candidates listed in Borucki et al. (2011) those objects
+that were estimated to have radii greater than twice that
+of Jupiter, those for which only one transit had been
+observed, and those identiﬁed as FPs by Howard et al.
+(2011). We denote the number of actual planets among
+the candidates as np, the number of false positives as nf ,
+and the ﬁdelity of the sample (fraction of candidates that
+are planets) as P , so nc = np + nf and P = np/nc.
+For our calculations in Equations (1–9), we make the
+following two assumptions:
+i) FPs are randomly distributed among the targets;
+High Reliability of Kepler’s Multiple Planet Candidates 3
+ii) there is no correlation between the probability of a
+target to host one or more detectable planets and to dis-
+play FPs.
+In contrast, we do not assume that planets are randomly
+distributed among the targets. The previous veriﬁca-
+tions of the two-planet Kepler-10 system (Batalha et al.
+2011; Fressin et al. 2011), the three-planet Kepler-9
+(Holman et al. 2010; Torres et al. 2011) and Kepler-18
+systems (Cochran et al. 2011), and especially the six-
+planet Kepler-11 system (Lissauer et al. 2011b), provide
+strong evidence of the non-random distribution of tran-
+siting planets among Kepler target stars.
+The above two assumptions, together with observed
+values of nc, nm and nt and an assumed lower bound
+on P , allow us to estimate lower bounds on the ﬁdelity
+of candidates in various classes of candidate multi-planet
+systems using simple algebra. For example, assumption
+(1) implies that the expected number of targets with k
+false positives, E(k), is given by a Poisson distribution of
+nt members whose mean is given by the average number
+of false positives per target, λ = (1 − P )nc/nt. This
+expectation value is given by the following formula:
+E(k) = λke−λ
+k! nt =
+((1 − P ) ncnt )ke−(1−P ) ncnt
+k! nt (1)
+≈
+((1 − P ) ncnt )k
+k! nt,
+where the approximation in Equation (1) is valid for λ ≪
+1.
+We next compute the expected number of Kepler tar-
+gets with multiple candidates at least one of which is a
+FP. In some cases, we make approximations that yield
+conservative estimates of the expected numbers of true
+planets (i.e., overestimate the expected number of FPs).
+Our results, presented in Equations (2–7), are given ﬁrst
+as general formulae, then as a function of the fraction
+of candidates that are true planets, P , for the observed
+values of 160,171 targets, 1199 candidates, and 170 mul-
+tiple candidate systems stated above, and ﬁnally these
+value if P = 0.5 or 0.9 15. These ﬁnal numbers are to be
+compared to the observation that there are 115 candidate
+2-planet systems, with a total of 230 planet candidates,
+and 55 candidate systems of 3 or more transiting planets,
+with a total of 178 planet candidates.
+Equation (1) yields estimates of the number of targets
+with two or three false positives:
+2 FPs : ((1 − P )nc)2
+2nt
+= 4.49(1 − P )2 (2)
+= 1.12 or 0 .045;
+3 FPs : ((1 − P )nc)3
+6n2t = 0.011(1 − P )3 (3)
+= 0.0014 or 1 .1 × 10−5.
+15 W e choose to present numerical results for P = 0.9 because we
+consider it to be a reasonable estimate of the actual planet ﬁ delity
+rate, and P = 0 .5 to show that even for an overall FP rate far
+higher than studies suggest, the expected number of FPs amon g
+the multis is remarkably low.
+The number of targets expected to have four or more
+false positives is very small and can be neglected for our
+purposes. Equation (1) also yields the expected number
+of targets with a single FP under the same assumptions,
+597.3 or 119.8.
+The assumed lack of correlation between the propen-
+sity of a target to have false positives and true plan-
+ets implies that the probability that a given target hosts
+both a planet and one or more false positive is equal to
+the product of these individual probabilities. The prob-
+ability of a target having a detected transiting planet is
+given by P nc/nt, and the probability of it showing a false
+positive is given by Equation (1). Thus, the estimated
+numbers of targets with at least one planet as well as one
+or more false positives are given by:
+1 planet + 1 FP : ncPnt × nc(1 − P )nt × nt (4)
+= P (1 − P ) n2c
+nt
+= 8.98P (1 − P ) = 2 .25 or 0 .81;
+1 planet + 2 FPs : P (1 − P )2 n3c
+2n2t (5)
+= 0.034P (1 − P )2
+= 0.0042 or 3 × 10−4.
+The number of targets expected to have both a planet
+and three or more false positives is very small and can be
+neglected for our purposes. Somewhat lower estimates of
+the number of multi- candidate systems with one planet
+and at least one FP than given by Equations (4) and (5)
+can be derived by noting that the observed multiplicity
+implies fewer (than nc) targets with a nonzero number
+of planet candidates.
+To derive an estimate of the expected number of tar-
+gets with multiple true planets as well as at least one
+FP, replace the term in Equations (4) and (5) that rep-
+resents the probability of a given target having a true
+planet, P nc/nt, with a term representing the probability
+of a given target having a multi-planet system, nm/nt.
+(Assuming all multis are multi-planet systems to esti-
+mate of this term is conservative in the sense that it may
+lead to an overestimate in the number of false positives
+in multi-candidate systems.)
+2 or more planets + 1 FP : nm
+nt
+× nc(1 − P )nt × nt (6)
+= (1 − P ) nmnc
+nt
+= 1.27(1 − P )
+= 0.64 or 0 .13;
+2 or more planets + 2 FPs : nm
+nt
+× (1 − P )2 × n2c
+2nt
+(7)
+= 0.0048(1 − P )2
+= 0.0012 or 5 × 10−5.
+The number of targets expected to have both multiple
+4 Lissauer et al.
+planets and three or more false positives is extremely
+small and can be neglected for our purposes.
+2.1. Numerical Estimates for Kepler Candidates
+Adding up the above estimates of FPs of diﬀerent types
+yields expected totals of 4.5 or 0.9 FPs (for assumed FP
+rates of 50% and 10%, respectively) in doubles (com-
+pared to a total of 230 candidates) and 0.65 or 0.13 FPs
+in systems with three or more candidates (compared to
+a total of 178 candidates). These numbers suggest that
+validation of doubles at the 99% level by this method
+alone is marginal. Triples and higher multiplicity candi-
+dates are more strongly validatable, enough so that the
+one dynamically-unstable candidate triple system noted
+by Lissauer et al. (2011a), KOI-284, which has a pair of
+candidates with a period ratio 1 .0383, should be viewed
+as somewhat surprising (but see Section 2.4).
+It is of interest to compare the (low) false positive rates
+for multis estimated in the previous paragraph with the
+presumed FP rates for singles upon which their calcula-
+tions are based. For 50% FPs in singles, our estimates
+above correspond to 2% FPs in doubles (compare the ﬁrst
+numbers at the end of equations 2 and 4 with the 230 can-
+didates in Kepler candidate 2-planet systems) and 0.4%
+FPs for targets with three or more candidates (compare
+the ﬁrst numbers at the end equations 3 and 5–7 with the
+178 candidates in Kepler candidate 3 or more planet sys-
+tems); for 10% FPs in singles, we estimate 0.4% FPs in
+doubles (compare the ﬁnal numbers at the end of equa-
+tions 2 and 4 with the 230 candidates in Kepler candi-
+date 2-planet systems) and 0.1% for targets with three
+or more candidates (compare the ﬁnal numbers at the
+end equations 3 and 5–7 with the 178 candidates in Ke-
+pler candidate 3 or more planet systems). These values
+are consistent with a “multiplicity boost” in the Bayesian
+prior for planets of ∼ 25 for a system with one additional
+candidate and of ∼ 100 for a system with more than one
+additional candidate. The probability that a target hosts
+a planet candidate, 1/150, can be compared to the prob-
+ability of a target that hosts one candidate hosts another,
+1/6, and that an additional candidate has been found for
+higher multiplicity systems, 1/3. These latter values, to-
+gether with the assumption that FPs and true planets
+are uncorrelated, lead to an estimate of the multiplicity
+boost for candidate doubles of 30, slightly larger than the
+value of 25 computed above, and to a somewhat reduced
+estimate of ∼ 50 for candidates in systems of higher mul-
+tiplicity.
+The multiplicity boost introduced in the previous para-
+graph can be used to quantify the increased probability
+that a set of transit-like signatures represent a real tran-
+siting planet if one or more additional set of transit-like
+signatures are detected for the same Kepler target; i.e.,
+to compute an estimate the probability of a particular
+candidate in a multiple candidate system being a true
+planet from an estimate of that candidate being a planet
+that does not account for multiplicity. We denote the
+probability of planethood of the candidate in question
+computed without factoring in multiplicity by P1 and
+the probability of it being a planet accounting for multi-
+plicity by P2 if it is in a two candidate system and by P3+
+if it is a member of a three or more candidate system.
+In our formulation, multiplicity eﬀectively increases the
+Bayesian estimate of the planet prior but leaves the FP
+prior unchanged. Thus the probability of the planet in-
+terpretation accounting for multiplicity is related to that
+neglecting multiplicity according to the following approx-
+imate formulae:
+P2 ≈ 25P125P1 + (1 − P1) (8)
+( ≈ 1 − 1 − P1
+25 for 1 − P1 ≪ 1, and ≈ 25P1 for P1 ≪ 1)
+P3+ ≈ 50P150P1 + (1 − P1) (9)
+( ≈ 1 − 1 − P1
+50 for 1 − P1 ≪ 1, and ≈ 50P1 for P1 ≪ 1),
+where in each case we use the smaller value computed
+in the previous paragraph. Rough estimates for the
+planet probabilities of individual Kepler candidate multis
+can be obtained by applying Expressions (8) and (9) to
+the estimates of planet probability by Morton & Johnson
+(2011); the Morton & Johnson (2011) planet probabili-
+ties are given by P1 in the above formulae since their
+numbers do not account for multiplicity. Note that this
+multiplicity boost incorporates self-consistently both the
+coplanarity boost discussed in Cochran et al. (2011) and
+the systems boost (that planets tend to come in systems)
+without need to disentangle these eﬀects.
+The above calculations of the multiplicity boost do
+not assume that any of the candidates of the target un-
+der consideration have been conﬁrmed or validated as
+planets. Does validating one or more candidate as a
+true planet(s) substantially increase the probability that
+other candidates of the same target are also planets?
+For realistic estimates of FP rates (e.g., 10%), the equa-
+tions above show that most FPs in multis are likely to
+be combinations of 1 FP with one or more true plan-
+ets, so validating one candidate does not substantially
+increase conﬁdence in the others from a statistical view-
+point. Nonetheless, validating one candidate does elim-
+inate some of the non-statistical issues raised in the fol-
+lowing three subsections. In particular, if that validated
+candidate is shown to not only be a planet but also to
+orbit the Kepler target star, then the probability that
+the other candidates are physically-associated with the
+target increases.
+2.2. Caveats
+To examine the validity of the three assumptions
+stated above, we divide FPs into two classes, (I) chance-
+alignment blends such as background eclipsing binaries
+(BGEBs) and (II) physical triple stars (PTs), where graz-
+ing eclipses of the target star by a stellar companion are
+considered together with PTs for this purpose. We note
+that it is a matter of choice how to count cases where the
+transit signal is produced by a planet transiting a star
+other than the Kepler target. Larger planets transiting
+stars that are not physically associated with the star pro-
+viding most of the target’s ﬂux can be considered to fall
+within the chance-alignment blends/BGEB class of FPs
+(as they must be for Kepler’s statistical census of plan-
+ets, because background stars are not in the denominator
+of the ratio taken to calculate the fraction of stars with
+High Reliability of Kepler’s Multiple Planet Candidates 5
+planets, so their planets must not be included in the nu-
+merator), or alternatively not be regarded as FPs when
+assessing individual candidates and the reliability of the
+sample. Planets transiting physical companions to the
+star providing most of the ﬂux can either be viewed as
+members of the PT class of FPs or not classiﬁed as FPs;
+how these planets are categorized for Kepler’s statistical
+census of planets is also a matter of choice.
+Assumptions (i) and (ii) lead to the following caveats:
+(i): The expected number of BGEBs (chance-
+alignment blends) that can cause FPs varies with the
+magnitude and galactic latitude of the target star,
+whereas those of PTs do not (except to the extent that
+the distribution of stellar types among Kepler targets
+depends somewhat on magnitude). The variations in ex-
+pected BGEBs act to increase the expected total number
+of systems with 2 or more FPs compared to the value
+given by the above formulae. When looking at indi-
+vidual candidate systems, the FP probability of those
+around faint targets and at low galactic latitude is larger,
+whereas the planetary interpretation becomes more likely
+for brighter targets and those at higher galactic latitude.
+However, the distributions in galactic latitude of the
+planet candidates and of the multiple candidate systems
+both track that of all Kepler targets, whereas the distri-
+bution of expected BGEB FPs is quite diﬀerent (Figure
+1); this suggests that the fraction of candidates (both sin-
+gles and multis) that are produced by BGEBs is small.
+The statistical analysis that we presented above does
+not discriminate between multiple candidates resulting
+from multiple planets orbiting a background star and a
+single candidate resulting from a single planet orbiting
+a background star. However, the correlations and lack
+thereof between the curves shown in Figure 1 also imply
+that the fraction of KOIs caused by single or multiple
+planets transiting a background star is small. In some
+cases, it is especially unlikely that a multiple candidate
+system is produced by several planets orbiting a back-
+ground star, either because its largest member would
+be greater than planetary in size, or because the re-
+quirement of dynamical stability would imply implau-
+sibly small densities for the larger planets orbiting the
+fainter star. Additionally, as the fraction of giant plan-
+ets among the multis is smaller than it is for the singles
+(Latham et al. 2011), the probability of a multi being a
+system of larger planets orbiting a fainter star is less than
+that of a single candidate orbiting a star fainter than the
+target.
+A second class of multiple FPs can be produced from a
+single physical system, either a triple star with two sets
+of eclipses or a background star with multiple transit-
+ing planets. Triple star systems are unstable for small
+period ratios and produce large eclipse timing variations
+for moderate period ratios, so if large timing variations
+are not detected, we do not need to consider triple star
+system FPs (nor grazing eclipsing binary stars with a
+transiting planet) unless period ratios are large.
+Quadruple star systems consisting of two pairs of
+eclipsing binaries (e.g., Graczyk et al. 2011) could pro-
+duce a small excess probability of a pair of FPs. Such sys-
+tems, as well as line of sight pairs of physically-unrelated
+EBs, also might be more likely to mimic planetary-depth
+transits because of mutual dilution of the fraction of light
+in the Kepler aperture.
+6 8 10 12 14 16 18 20
+Galactic latitude (deg)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0Cumulative fraction
+(Bkg stars) x (targets)
+Targets (163986)
+KOIs (961)
+Multis (170)
+Fig. 1.— Distributions in galactic latitude of all 163,986 Ke-
+pler Quarter 2 exoplanet targets (solid turquoise curve), the 96 1
+targets with planet candidates meeting our criteria (solid dark red
+curve) and the 170 multiple candidate systems (solid black c urve).
+The dashed curve shows the distribution of expected BGEB FPs ,
+which we compute by weighting each target by the sky density o f
+stars with magnitudes between 15.0 and 20.0 according to the Be-
+sancon model of the galaxy (Robin et al. 2003, 2004). All curv es
+are normalized to give a total of unity. Error bars represent the
+statistical uncertainty (1 σ binomial variation) of each of the planet
+candidate curves at quartile points in their distributions . The ba-
+sic shape of the three solid curves is governed by the orienta tion
+of the Kepler ﬁeld on the sky, where the amount of area covered
+increases from a point at galactic latitude 5 ◦ to a region spanning
+16◦ in longitude at 13 ◦ in galactic latitude and then decreases
+to a point at 21 ◦ latitude; the second most important factor is a
+weighting towards the galactic plane because of the higher s patial
+density of target stars in that portion of the ﬁeld. The dashe d
+curve is more heavily weighted towards the galactic plane be cause,
+to ﬁrst approximation, it is weighted quadratically in the s patial
+density of stars (more precisely, the product of the spatial densi-
+ties of target stars and background stars), whereas the othe r curves
+are only weighted linearly. The spatial density of backgrou nd stars
+drops by a factor of 17 from the lowest latitude Kepler observes to
+the highest latitude. The similarity of curves for targets, planets
+and multis, and the diﬀerence of these from the curve estimat ing
+BGEB FPs, suggests that the fraction of candidates that are p ro-
+duced by BGEBs (as well as that resulting from planets transi ting
+background stars) is small.
+We note also that FPs are inherently more likely among
+both small (Earth-size and smaller) and large (Jupiter-
+size and larger) candidates than among intermediate
+(Neptune-size) candidates, independent of multiplicity.
+Most small candidates produce low-amplitude transits
+that reduce our ability to remove false positives from the
+candidate list on the basis of the shape of the lightcurve
+or from diﬀerences in the centroid of the location of the
+dip relative to that of the target. Small candidates, in-
+cluding multis, are more likely to be planets orbiting
+stars fainter than the target simply because the Neptune-
+6 Lissauer et al.
+size planets that could produce such signals are far more
+common according to Kepler observations than are giant
+planets (Borucki et al. 2011), and this diﬀerence in abun-
+dance is even larger for the multis than for the singles
+(Latham et al. 2011). At the other extreme of the planet
+size distribution, giant candidates appear to be more con-
+taminated by stellar false positives (Demory & Seager
+2011) of the type which plague ground-based surveys
+than do Neptune-size candidates.
+(ii): Planets and FPs of both types are more easily de-
+tectable for quieter targets; planets and PTs are more de-
+tectable for brighter targets, but BGEBs that are bright
+enough to mimic observable transits of the target star
+are more likely for fainter targets. A grazing eclipsing
+binary with a circumstellar or circumbinary transiting
+planet analogous to Kepler-16 (Doyle et al. 2011) would
+violate our assumption of a lack of correlation between
+planets and FPs, but such a conﬁguration requires a large
+period ratio for stability and an even larger period ratio
+for the planet to have modest TTVs.
+The assumption of no correlation between planets and
+FPs would be violated if the orientations of orbital planes
+of PTs with one star having a planet are not random.
+Alignments of planetary orbital planes for binary stars
+for which both stars possess planets also violate this as-
+sumption, although members of this class are true plan-
+ets that are all physically associated (albeit less directly)
+with the target star and thus would for many purposes
+not be classiﬁed as FPs.
+The numbers quoted in Equations (2–9) do not incor-
+porate the caveats noted in this subsection. Correlations
+between the propensity of a target to have one or more
+FPs and to host one or more identiﬁed true planets (ii)
+are likely to be at most a factor of a few. False positives
+of the BGEB class are likely to be concentrated among
+faint target stars that are located at low galactic latitude
+(Morton & Johnson 2011); this concentration increases
+the expected number of targets with two (or more) FPs,
+but also points to a substantial portion of Kepler’s target
+list whose members have a priori FP likelihood that is
+lower than or comparable to those given by the numbers
+above.
+2.3. Period Ratios: Resonances & Stability
+The distribution of candidate period ratios exhibits
+spikes near strong mean motion resonances, which im-
+plies that candidates with such period ratios are more
+likely to be true planets than those candidates not in
+or very near such resonances (Lissauer et al. 2011a).
+This clustering can be used to increase conﬁdence in
+candidates with periods near resonances; such a “near-
+resonance boost” can be quantiﬁed using the measured
+values of the normalized distance from resonance com-
+puted from the distribution of planet period ratios in
+Lissauer et al. (2011a). Candidate resonant planets can,
+however, arise from period aliases in analysis of light
+curves; such aliases are not of the form of the astrophysi-
+cal FPs considered in this paper, and we note that special
+care to search for them is an important aspect of vali-
+dating candidate resonant planets (see the discussion of
+KOI-730 and the Note Added in Proof in Lissauer et al.
+(2011a)).
+Resonant period ratios increase conﬁdence in various
+candidates, and as mentioned at the beginning of Sec-
+tion 2.1, one of the candidate systems, KOI-284, is highly
+suspect because two of the candidates have periods that
+diﬀer from one another by < 4%, which would rapidly
+lead to a dynamical instability on a very short time scale
+(but see the discussion of this system in Section 2.4).
+Do non-resonant periods reduce the conﬁdence in indi-
+vidual multis and do stable systems produce an increase
+in our conﬁdence? The answers to both parts of this
+question are yes, but in most cases these eﬀects are mi-
+nor. While resonances are overpopulated, a substantial
+majority of multis are not in nor near such resonances
+(Lissauer et al. 2011a; Wright et al. 2011). And while
+drawing planetary periods randomly from the observed
+ensemble of transiting planet periods gives many more
+nominally unstable systems than are observed, the frac-
+tion of unstable conﬁgurations from such a random draw
+is still small. Nonetheless, in high-multiplicity densely-
+packed systems, wherein most conﬁgurations with the
+same number of planets randomly spread over the same
+range in period would likely be unstable, the boost in
+conﬁdence from stability can be signiﬁcant. Note that
+special period ratio boosts and stability boosts are in ad-
+dition to the standard multiplicity boost, i.e., they can
+be applied together as two multiplicative factors in the
+planet prior for appropriate systems.
+2.4. KOI-284 & Multis Composed of Planets Transiting
+Diﬀering Stars in a Binary
+A very rough estimate of the expected number of mul-
+tiple candidate systems that orbit diﬀerent members of
+a binary/multiple star system (rather than a single sys-
+tem of planets orbiting the same star) can be made by
+assuming that half of Kepler’s targets are binaries, that
+each star within a binary is as likely to host both single
+and multiple transiting planets as are single stars, and
+that the probability of one star within a binary hosting
+transiting planets is uncorrelated with that of its binary
+companion. These assumptions imply nc planets spread
+around 3 nt/2 stars, and thus (2 /3)(nc/nt) planets per
+star and 2 n2c/(9nt) ≈ 2 cases in which multis are com-
+posed of planets transiting diﬀering members of a stellar
+binary. Positive correlations between the propensity of
+stars in a binary to have transiting planets (resulting
+from the abundance of planets and/or alignment of or-
+bital planes) would increase this number, but the fact
+that a signiﬁcant majority of binaries are composed of
+stars of substantially diﬀering surface brightness com-
+bined with the paucity of giant planets transiting low
+luminosity stars should reduce the number of multis com-
+prised of two planetary systems because of the diﬃculty
+of detecting planets around secondary stars.
+As mentioned above, KOI-284, with three planetary
+candidates having periods of 6.18, 6.42, 18.0 days and
+nominal sizes of ∼ 2 R ⊕ (Earth radii), is the only one of
+170 multi-candidate system identiﬁed in Borucki et al.
+(2011) that would be clearly dynamically unstable if
+all of the planets orbited the same star (Lissauer et al.
+2011a)16. Analysis of a McDonald observatory spec-
+trum of this bright ( Kepler magnitude Kp = 11.8) target
+16 The other multi that was unstable according to the integra-
+tions reported in Lissauer et al. (2011a) was the 4 candidate system
+KOI-191. This instability resulted from the strong perturb ations of
+giant planet candidate KOI-191.01 on the nearby outermost c an-
+didate KOI-191.04. As the period ratio of these two candidat es
+High Reliability of Kepler’s Multiple Planet Candidates 7
+yields a temperature of ∼ 6250 K and log g = 4.5, which
+suggest a F7V star that is twice as luminous as the Sun.
+Speckle images of KOI-284 obtained on 24 June 2010 re-
+vealed two stars diﬀering in brightness by less than one
+magnitude and separated from one another by slightly
+less than 1 ′′ (Howell et al. 2011). Spectroscopic obser-
+vations of each individual star obtained at Keck in 2011
+show the two stars to have nearly identical spectra and
+have a diﬀerence in radial velocity of 0.94 ± 0.1 km/s.
+The nearly identical velocities are consistent with their
+being gravitationally bound. Their separation of 0 .9′′ at
+a distance of roughly 500 pc implies a projected separa-
+tion of 450 AU; the relative orbital velocities for two 1
+M⊙ stars on a circular orbit with semimajor axis a = 450
+AU is 2 km/s. These observations suggest that the three
+candidates may well all be transiting planets in the same
+stellar system, with one of the stars hosting one of the
+six day period planets and the other two planets orbit-
+ing the other star in the binary. Thus, this system would
+not call into question the statistical arguments presented
+in Section 2.1. A detailed analysis of both Kepler and
+ground-based data to test this hypothesis and elucidate
+particulars is currently underway (Bryson et al. 2012).
+3. TRANSIT CHARACTERISTICS: PLANETS VS. F ALSE
+POSITIVES
+The numbers derived in Section 2 suggest that the sam-
+ple of multi-planet candidates identiﬁed by Borucki et al.
+(2011) is likely to include only a small fraction of false
+positives, of order 1%. But because of the uncertain-
+ties associated with the caveats discussed in Section 2,
+as well as any factors that we may have omitted, we
+do not consider it appropriate to view all of Kepler’s
+multi-planet candidates to be validated planets at the
+99% level. Nonetheless, it is possible to identify candi-
+dates with various favorable characteristics as detailed
+below, and to examine the available data for systems in-
+dividually for signs of potential inconsistencies with the
+planet hypothesis. See Haswell (2011) for a more detailed
+discussion of transit characteristics.
+The shape and duration of a candidate transit can be
+used to distinguish events produced by planets from false
+positives produced by known astrophysical sources. The
+BLENDER code (Torres et al. 2011) compares the observed
+lightcurve to synthetic lightcurves of both a planet tran-
+siting the target star and a vast array of possible astro-
+physical false positives involving binary stars and larger
+planets transiting fainter stars. If the planet hypothe-
+sis does not provide an acceptable ﬁt to the data, the
+candidate is not viable; candidates for which the planet
+ﬁt is marginal are called into question, and such can-
+didates are not considered further herein. Astrophysi-
+cal false positives are considered credible if they provide
+an acceptable ﬁt (3 σ) to the data. Then the a priori
+likelihoods of the planet hypothesis and that of a false
+positive are compared, and a probability that the ap-
+parent transit is caused by a blend is computed. The
+was 1.258, Lissauer et al. (2011a) speculated that the syste m was
+librating in a 5:4 mean motion resonance and that this resona nce
+protected the planets from close approaches. Subsequent da ta anal-
+ysis shows that the period of KOI-191.04 was underestimated by
+a factor of two. The updated value of the period of this candid ate
+is 38.6516 ± 0.0012 days. The revised period places the planets
+much farther apart, and the system is stable with the updated
+parameters.
+process can be very involved, especially for candidates
+with orbital periods long enough that astrophysical false
+positives could plausibly be produced by objects with ec-
+centric (not tidally-damped) orbits (Fressin et al. 2011;
+Lissauer et al. 2011b).
+True planetary transits of the star that is the dom-
+inant source of light in the aperture are wavelength-
+independent (neglecting the small eﬀects of stellar limb-
+darkening and contamination by ﬂux from other stars
+in the aperture), whereas false positives are not (except
+in the unlikely case that the eﬀective temperatures of
+the contributing stars are similar). By providing in-
+frared time series spanning times of transit, the Warm
+Spitzer Mission can assist in the validation of many tran-
+siting planet systems. Several candidates in multiple
+systems have been observed, and they all exhibit achro-
+matic transit depths, consistent with planetary signals
+(Desert et al. 2012).
+The durations of transit-like signatures can be used to
+assess the probability of the planetary interpretation, es-
+pecially when more than one planet candidate is present
+for a given target. Transit and eclipse durations depend
+on several factors, including the masses and radii of the
+two objects, the impact parameter, b, which is deﬁned as
+the minimum projected separation between the center of
+the smaller body (planet in the case of a planetary tran-
+sit) and that of the larger body (star) measured in units
+of the radius of the larger body, and the period and ec-
+centricity of the orbit. Central transits (those for which
+the center of the transiting body passes over the center of
+the transited body) by a planet on a circular orbit have
+durations that vary as the cube root of the orbital period
+(Kepler 1619) and inversely to the cube root of the stel-
+lar density (Seager & Mall´ en-Ornelas 2003); these rela-
+tionships hold for FPs as long as the bright star is sub-
+stantially larger and more massive than the other body.
+When the system’s mass is dominated by the primary
+but the radius of the secondary cannot be ignored, then
+the duration, Tdur, (1 st contact – 4 th contact, which cor-
+responds to the values reported in Borucki et al. (2011)
+and in Table 3 of this paper), of a central transit for a
+circular orbit satisﬁes the following proportionality rela-
+tionship:
+Tdur ∝ R⋆ + RpR⋆ P 1/3orb . (10)
+If the transit duration is measured over the time interval
+when the center of the planet covers the disk of the star,
+the ﬁrst factor on the right-hand side of Expression (10)
+is no longer relevant and the proportionality is simply to
+P 1/3orb . Note that the orbital period, Porb, is very accu-rately measured by Kepler, as is the ratio of the planet’s
+radius, Rp, to that of the star, R⋆, provided dilution by
+nearby stars is small.
+Planetary transits with an impact parameter smaller
+than half the star’s radius have a duration that exceeds
+31/2/2 ≈ 86.67% that of a central transit. Such transits
+account for almost half of all transiting planets, and over
+half of the transits observed to a speciﬁed SNR threshold.
+The fraction of transits with durations greater than half
+that of a central transit is 3 1/2/2; again specifying a SNR
+threshold increases the observed fraction. Orbital eccen-
+tricities also inﬂuence the durations of transits and FPs;
+in most cases, durations are reduced because speeds are
+8 Lissauer et al.
+highest near periastron (Kepler 1609), where geometric
+considerations imply that transit probabilities are larger.
+4. V ALIDATION OF THE 5-PLANET SYSTEM KEPLER-33
+There are two primary purposes of this work: demon-
+strating the very high credibility of the ensemble of Ke-
+pler multi-planet candidates and providing a framework
+to validate particular systems of candidates as planets.
+We now turn to a speciﬁc system that is both intrinsically
+interesting because it is the closest analog to Kepler-11
+observed to date (Lissauer et al. 2011a) and has charac-
+teristics very favorable for validation by multiplicity.
+KOI-707 (KIC 9458613) is a Kp = 14 star for which
+four planet candidates, ranging in period from 13 to 41
+days, were announced by Borucki et al. (2011); a ﬁfth
+candidate planet, with shorter orbital period and smaller
+size, has subsequently been identiﬁed. The lightcurve of
+this target is shown in Figure 2.
+We performed an analysis of pixel-level Kepler space-
+craft data that shows that the transit signals come from
+a location on the sky that is coincident with that of the
+target star within small uncertainty, and we obtained
+high-resolution images of the target that did not show
+any nearby stars capable of producing the transit signals;
+these studies are presented in Section 4.1. Our analyses
+of the transit lightcurves and spectra taken of the target
+star are presented in Section 4.2. In Section 4.3, we re-
+view the characteristics of this system that allow for its
+validation by multiplicity. We discuss the properties of
+the Kepler-33 planetary system in Section 4.4.
+4.1. Location of Transit Signature on the Plane of the
+Sky
+A seeing-limited image taken at Lick shows a star 7 ′′
+to the NW that is 4.5 magnitudes fainter than KOI-707,
+but no stars closer to the target. On 12 June 2011, KOI-
+707 was imaged in the 880 nm ﬁlter (∆ λ = 50 nm) of
+our speckle camera at the WIYN 3.5-m telescope located
+on Kitt Peak. This star showed no companions within a
+2.8 × 2.8 arcsec region down to 3.1 magnitudes fainter
+than the target star; stars within 0 .05′′ of the target star
+would not have been detected. Details of this speckle
+imaging data collection and reduction precesses are fully
+described in Howell et al. (2011).
+We check to see whether the transit signal is due to
+a source other than KOI-707 using the diﬀerence image
+technique described in Torres et al. (2011). This method
+ﬁts the measured Kepler pixel response function (PRF)
+to a diﬀerence image formed from the average in-transit
+and average out-of-transit pixel images in order to calcu-
+late the position of the diﬀerence image centroid. This
+diﬀerence image centroid position is compared with the
+position of the PRF-ﬁt centroid of the average out-of-
+transit image, as well as to the predicted deviations in
+centroid locations due to scene crowding. The results
+for all 5 planet candidates are presented in Table 1 and
+shown in Figure 3.
+The uncertainty in the quarterly centroid locations dis-
+played in Figure 3 is based upon propagating pixel-level
+uncertainty and does not include possible PRF ﬁt bias.
+Sources of PRF ﬁt bias include scene crowding, because
+the ﬁt is of a single PRF that assumes a single star, and
+PRF error. The centroid oﬀset is the diﬀerence between
+the positions of the centroids of the diﬀerence image and
+out-of-transit images, so common biases such as PRF
+error should approximately cancel. There is, however,
+a quarter-dependent residual bias. Statistical analysis
+across many uncrowded Kepler targets indicates that the
+residual bias due to PRF error is zero-mean, so we av-
+erage the quarterly centroid positions. Speciﬁcally, we
+compute a robust χ2 minimizing best-ﬁt position to the
+quarterly position data. The uncertainties of the average
+are estimated by taking the uncertainties of the ﬁt and
+performing a bootstrap analysis. This average for each
+planet candidate is shown on Figure 3.
+Bias due to crowding (stars close enough to the tar-
+get that they contribute light observed in the aperture),
+however, does not cancel because, to the extent that vari-
+ations in other ﬁeld stars are not correlated with transits,
+ﬁeld stars do not contribute to the diﬀerence image. This
+introduces a systematic bias component that remains in
+the average over quarters. To investigate the possibility
+that the observed oﬀsets are due to crowding bias, we
+model the local scene using stars from the KIC and the
+measured PRF, induced the transit on KOI-707 with the
+ephemeris of each planet candidate, and performed the
+same PRF ﬁt analysis on the model diﬀerence and out-
+of-transit images as that performed on the pixel data.
+If the resulting modeled average oﬀset matches the ob-
+served average oﬀset, then the observed oﬀset can be
+explained by crowding bias.
+The locations of the transit signatures (diﬀerence im-
+age centroids) of each of KOI-707’s ﬁve planet candidates
+lie within 1 ′′ of the predicted position, and given the un-
+certainties listed in Table 1, none of the signatures are
+signiﬁcantly oﬀset and all are fully consistent with tran-
+sits on the target star. Furthermore, the lack of near
+neighbor stars seen in the speckle image rules out some
+of the possible false positive scenarios that could pro-
+duce a centroid shift of the magnitude suggested by the
+marginally signiﬁcant oﬀset observed.
+4.2. Lightcurves, Spectra, Derived Properties
+We obtained a spectrum of the target star KOI-
+707/Kepler-33 using the HiRES spectrometer at Keck
+I 10-m telescope. Classiﬁcation of this spectrum us-
+ing SME (Spectroscopy Made Easy, (Valenti & Piskunov
+1996; Valenti & Fischer 2005)) yields the stellar param-
+eter values shown in Table 2 (the ﬁnal two columns in
+this table show results from constrained ﬁts described
+at the end of this subsection). The mean stellar den-
+sity based on spectroscopic information was estimated
+by matching the determined distributions of Teﬀ, log g
+and [Fe/H] to the Yonsei-Yale evolution tracks. This al-
+lowed the determination of stellar mass and radius and
+mean stellar density posterior distribution based on spec-
+troscopy. The spectrum of KOI-707 is consistent with
+two sets of stellar evolution tracks (Figure 4), leading to
+double-peaked probability distributions and asymmetric
+uncertainties in several stellar parameters. We plot the
+probability distributions of the fundamental parameters
+of stellar mass and age in Figure 5 and those of the stellar
+density, which is a key input to transit ﬁtting, in Figure 6,
+and we include in Table 2 various measures of uncertainty
+beyond the simple standard deviation for the values of
+various derived stellar parameters that are either criti-
+cal to the validation and properties of KOI-707 and/or
+distributed highly asymmetrically. Note that both solu-
+High Reliability of Kepler’s Multiple Planet Candidates 9
+Fig. 2.— Kepler photometric time series data for KOI-707 (KIC 9458613; Kepl er-33) in 29.426 minute intervals (standard Kepler long
+cadence observations). Calibrated data from the spacecraf t with each quarter normalized to its median are shown in the t op panel. The
+bottom panel displays the lightcurve after detrending with a polynomial ﬁlter (Rowe et al. 2010). The entire 8 Quarters o f Kepler data
+analyzed herein are displayed. Note the diﬀerence in vertic al scales between the two panels. The midpoint times of the ﬁv e sets of periodic
+transits (including those that were not observed because th ey occurred during data gaps) are indicated by triangles of d iﬀering colors.
+Close-ups of folded lightcurves near transit times of each o f the planets are shown in Figures 7 and 8.
+tions are somewhat above the main sequence, implying
+an evolved star.
+As an independent check of the values of the
+SME parameters, we also derived values by matching
+the spectrum to synthetic spectra (Torres et al. 2002;
+Buchhave et al. 2010), and in addition we employ a new
+ﬁtting scheme (Stellar Parameter Classiﬁcation, SPC)
+that is currently under development and being read-
+ied for publication, allowing us to extract precise stel-
+lar parameters from the spectra. The SPC analysis
+yielded the following parameters: Teﬀ = 5849 ± 50 K,
+log g = 4.07 ± 0.10, [m/H]=0 .12 ± 0.08, v sin i = 3.4 ± 0.5
+km/s, R V = 13 .779 ± 0.020 km/s. The SME and SPC
+parameters are fully consistent, and the nominal value
+of the key parameter log g from SPC is slightly ( < 1σ)
+larger than the SME value. In contrast, the derived stel-
+lar radius from SME is 1 .82 ± 0.16 R⊙, substantially
+larger (more than 3 σ formal error, see Table 2) than the
+radius estimate of 1.29 R ⊙ based upon the KIC that was
+used by used by Borucki et al. (2011).
+We measured the radial velocity of KOI-707 relative to
+the barycenter of our Solar System. The method involves
+measuring the Doppler shift of the stellar spectrum ob-
+tained with the Keck I telescope and HiRES spectrom-
+eter on BJD = 2455782.9441 relative to the solar spec-
+trum by a χ2 ﬁt of the two spectra. To set the zero point
+of the wavelength scale accurately, we measure the dis-
+placement of telluric lines from the Earth’s atmosphere,
+serving as the “iodine cell”. The resulting radial veloc-
+ities are accurate to 0.1 km/s, based on measurements
+of 2000 stars (Chubak & Marcy 2012) and comparison
+with IAU standard stars. For KOI-707, the radial veloc-
+ity is v⋆ = 14.09 km/s, indicating motion of the star away
+from the Solar System at a speed typical of the velocity
+dispersion of stars in the Galactic disk. Orbital periods
+of the planets quoted in Table 3 are as perceived from
+the barycenter of our Solar System. As the Kepler-33
+system is receding from us at 4 .7 × 10−5c, where c repre-
+sents the speed of light, the actual orbital periods in the
+rest frame of the Kepler-33 system are 0.999953 times as
+large as the tabulated values.
+We used Q1-Q8 long-cadence Kepler aperture photom-
+etry (i.e., only pixel-level corrections such as bias and
+dark smear are applied to the data and there is no co-
+10 Lissauer et al.
+−1.5 −1 −0.5 0 0.5 1 1.5
+−1.5
+−1
+−0.5
+0
+0.5
+1
+1.5
+ 9458613, 13.988
+← E (arcsec)
+N (arcsec) →
+KOI−707.01
+−1.5 −1 −0.5 0 0.5 1 1.5
+−1.5
+−1
+−0.5
+0
+0.5
+1
+1.5
+ 9458613, 13.988
+← E (arcsec)
+N (arcsec) →
+KOI−707.02
+−1.5 −1 −0.5 0 0.5 1 1.5
+−1.5
+−1
+−0.5
+0
+0.5
+1
+1.5
+ 9458613, 13.988
+← E (arcsec)
+N (arcsec) →
+KOI−707.03
+−2.5 −2 −1.5 −1 −0.5 0 0.5 1 1.5 2 2.5
+−2.5
+−2
+−1.5
+−1
+−0.5
+0
+0.5
+1
+1.5
+2
+2.5
+ 9458613, 13.988
+← E (arcsec)
+N (arcsec) →
+KOI−707.04
+−3 −2 −1 0 1 2 3
+−3
+−2
+−1
+0
+1
+2
+3
+ 9458613, 13.988
+← E (arcsec)
+N (arcsec) →
+KOI−707.05
+Fig. 3.— Centroid ﬁtting results are shown for all 5 planet candi-
+dates of KOI-707. The origin is the center of light received o utside
+of transit times. The red asterisk is the expected centroid o f light
+during transit assuming the transit is on the target star; it is dis-
+placed from the origin because some of the light entering the aper-
+ture comes from known background stars whose brightness wou ld
+not be aﬀected by transits of the target star. (The numbers fo llow-
+ing the red asterisk are the KIC number and Kepler magnitude of
+KOI-707.) The ﬁtted centroids of the transit signatures obs erved
+in Quarters 1 through 8 are shown as the thin black crosses, wh ere
+the arms of these crosses show the uncertainty in RA and Dec.
+Some quarters as missing for some candidates due to failure o f the
+PRF ﬁt. The robust average centroid across quarters is shown
+by the thick black cross, with the black solid circle giving t he 3 σ
+uncertainty in the oﬀset distance. The robust average of eac h mod-
+eled quarterly oﬀsets is shown as a thick gray cross, with the gray
+dashed circle showing the average model 3 σ oﬀset distance uncer-
+tainty. When the circle showing the observed 3 σ uncertainty in the
+diﬀerence image has signiﬁcant intersection with the dashe d circle
+showing the modeled 3 σ uncertainty in the position of the target
+star, the data are consistent with the observed transit sign al being
+on KOI-707.
+detrending). At this level of data reduction, there are
+still instrumental artifacts on timescales similar to the
+planetary orbits. To detrend the data (remove long-
+period variations), a second-order polynomial was ﬁtted
+to segments of sequential Kepler photometry data out-
+side of transits (i.e., in-transit observations were given
+zero weight), and then this polynomial was subtracted
+from the data. A segment is deﬁned as a length of data
+that is uninterrupted for 5 or more consecutive long ca-
+dences ( ∼2.5 hours). Each segment is then combined to
+produce a ﬁnal time series that is then normalized by the
+Fig. 4.— Plotted are the Yonsei-Yale evolutionary tracks for 1.1
+M⊙ (red), 1.2 M ⊙ (green), 1.3 M ⊙ (blue), 1.4 M ⊙ (cyan) and 1.5
+M⊙ (magenta) stars with [Fe/H] = 0.15. Ages, in Gyr, are marked
+along the tracks. Note the uneven rates of evolution along th ese
+tracks. The gray dotted tracks are spaced by 0.01 M ⊙ in stellar
+mass and 0.02 Gyr in time to illustrate the distribution of ﬁe ld
+stars on the log g − Teﬀ plane; the apparent gaps/discontinuities
+in these tracks are caused by rapid changes at various stages of
+stellar evolution. The three boxes mark the 1, 2 and 3 σ conﬁdence
+regions of the spectroscopic SME analysis of the spectrum of KOI-
+707 taken at Keck. There are degeneracies in determining a un ique
+stellar mass and radius for speciﬁed values of Teﬀ and log g. For
+example, a 4.4 Gyr, 1.3 M ⊙ model and a 5.5 Gyr, 1.2 M ⊙ model
+have nearly identical Teﬀ and log g. The low-mass/old peaks in the
+probability distribution functions shown in Figure 5 resul t from
+the pile-up of stellar evolution tracks as core H is exhauste d in
+the transition regime from radiative cores of 1.1 M ⊙ and smaller
+stars to convective cores in 1.2 M ⊙ and larger stars. The high-
+mass/young peaks result from the overlap between tracks for the
+early shell H burning phase of stars with convective cores wi th
+tracks for the late core H burning phase of stars that are ∼ 0.12 M⊙
+more massive.
+median.
+We adopt a simple model to ﬁt the data. We ﬁt for
+the mean stellar density ( ρ⋆), and each planet’s orbital
+period ( Porb), transit epoch ( T0), scaled planetary ra-
+dius (Rp/R⋆) and impact parameter ( b). The planets are
+assumed to be on circular orbits; planet-planet interac-
+tions are implicitly accounted for by allowing the center
+of transit time to vary in order to best-ﬁt transit shape
+(minimization of scatter on residuals). The transit was
+described with the analytic formulae of Mandel & Agol
+(2002), and we adopted a non-linear limb darkening law
+with coeﬃcients ﬁxed based on the Claret & Bloemen
+(2011) tabulation for the Kepler band with stellar param-
+eters from SME analysis. A best ﬁt model was computed
+using a Levenberg-Marquardt algorithm to minimize the
+χ2 statistic and initial uncertainties were estimated via
+the construction of a co-variance matrix.
+The best ﬁt model and co-variances were used to seed a
+hybrid-MCMC (Markov Chain Monte-Carlo) algorithm
+to determine posterior distributions of our model param-
+eters. The model is considered hybrid, as we randomly
+High Reliability of Kepler’s Multiple Planet Candidates 11
+Fig. 5.— The relative probability distribution of estimates for
+the mass and age of the star Kepler-33 (KOI-707), computed us -
+ing the SME analysis of the star’s spectrum and a prior based
+on the frequency distribution of stars, as described in the t ext.
+Both curves are double-peaked because two solutions, both r ecently
+evolved oﬀ the main sequence, are consistent with the data. I nte-
+gration under the curves implies that the younger, more mass ive,
+solution is a bit more probable than a somewhat older and fain ter
+star.
+use a Gibbs-sampler and a buﬀer of previous chain pa-
+rameters to produce proposals to jump to a new location
+in the parameter space. The addition of the buﬀer al-
+lows for a calculation of vectorized jumps that allow for
+eﬃcient sampling of highly correlated parameter space.
+A direct comparison of the mean stellar density deter-
+mined by the circular transit-model (0.236 ± 0.080) and
+the mean stellar density determined from spectroscopy
+(0.301 ± 0.067) diﬀer by less than 1 σ. This shows that
+we can produce a self-consistent circular model in which
+all ﬁve planets orbit the same star and produce stellar
+parameters that agree with spectroscopy.
+Close-ups of the lightcurves of each of the planets near
+planetary transit are shown in Figure 7. Transit dura-
+tions of all ﬁve KOIs vary in proportion to the P 1/3orb towithin 5%, and to within 3% when planet sizes are fac-
+tored in as speciﬁed in Expression (10). The remarkable
+similarity of these transit durations when appropriately
+scaled to orbital periods is apparent in Figure 8, which
+shows the same data as Figure 7 but with the time coor-
+Fig. 6.— The relative probability distribution of estimates for
+the density of the star Kepler-33 (KOI-707). The top curve wa s
+computed using an MCMC analysis of the transit photometry da ta,
+whereas the results shown in the bottom panel incorporated t he
+SME analysis of the star’s spectrum and a prior based on the fr e-
+quency distribution of stars. The spectral solution is high ly asym-
+metric because two groups of stars are consistent with the da ta
+(see Figure 4). Note the diﬀerence in horizontal scales betw een the
+two panels.
+dinate scaled by P 1/3orb . Such similarity would be the con-sequence of an ensemble of planets transiting the same
+star on low eccentricity orbits with similar impact pa-
+rameters. The impact parameters given in Table 3 are
+indeed quite similar for all of the planets. But the in-
+clinations implied to produce these parameters require a
+very fortuitous arrangement in which tilt to the line of
+sight is just enough larger in the inner planets than the
+outer ones. In contrast, if the system is viewed nearly
+edge on, i.e., i ≈ 90◦, then both a wider range of impact
+parameters would be allowed (because transit durations
+are less sensitive to the precise value of b when b ≪ 1)
+and similar values of b imply a very ﬂat system rather
+than a fortuitous ensemble of tilts.
+We are thus motivated to perform a second set of ﬁts
+constrained by the assumptions of circular orbits for all
+planets and b = 0 for the planet with the longest nor-
+malized (according to Expression 10) transit duration,
+KOI-707.01. Two such ﬁts were performed, one for the
+low mass stellar solution (where we imposed the con-
+straint M⋆ < 1.21 M⊙) and the other for the high mass
+12 Lissauer et al.
+Fig. 7.— Detrended Kepler ﬂux from Kepler-33 shown phased at
+the period of each transit signal and zoomed to a 30-hour regi on
+around mid-transit. Black dots represent individual Kepler long
+cadence observations. The folded light curves correspondi ng to the
+model ﬁts are shown in colors that correspond to these used in
+Figure 2. In each panel, the best-ﬁt model for the other 4 plan ets
+was removed before plotting. Each panel has an identical ver tical
+scale, to show the relative depths, and identical horizonta l scale,
+to show the relative durations.
+Fig. 8.— The folded lightcurves near the transit of each planet
+in the Kepler-33 system, as shown in Figure 7, but in this case the
+time coordinate in each panel has been scaled to P 1/3orb of the planet
+in question. Vertical lines mark the beginning and end times for
+each transit. For planets on circular orbits with the same im pact
+parameter, durations normalized in this manner should be th e same
+for all planets. The remarkable similarity in normalized du rations
+of these planets is very strong evidence that they all orbit t he same
+star.
+High Reliability of Kepler’s Multiple Planet Candidates 13
+(M⋆ > 1.21 M⊙) solution. We show in the far right
+columns of Tables 2 and 3 both the high and low stellar
+mass “Flat” ﬁts; no uncertainties are quoted for these
+ﬁts because the b = 0 assumption constrains results so
+tightly that computed uncertainties are unrealistically
+low.
+The ﬁtting procedure that we used to compute the
+planetary parameters listed in Table 3 did not account for
+the small (1 – 2%) contribution of the second star in the
+aperture to the ﬂux measured by Kepler. This dilution
+implies that the planet radii quoted are overestimated by
+0.5 – 1%, a diﬀerence far smaller than the uncertainties
+in their actual values.
+4.3. Validation of the Kepler-33 Planetary System
+The ﬁve planetary candidates of KOI-707 are ex-
+tremely likely to represent a true 5 planet system orbiting
+the target star. There are several lines of evidence that
+support this conclusion. First, the analysis presented
+in Section 2 implies that the overwhelming majority of
+Kepler multiple-planet candidates are true planets and
+bound within the same physical system.
+Second, the planetary system is already closely-packed
+dynamically for the sizes of planets around an undiluted
+target star (see Section 4.4). Were the planetary system
+to orbit another star that is not seen because it is signiﬁ-
+cantly fainter than the target, the larger planets required
+to match the observations would necessitate implausibly
+low densities for the planetary system to be stable.
+Third, the spatial location analysis presented in Sec-
+tion 4.1, combined with the galactic latitude distribution
+of targets and planet candidates shown in Figure 1 and
+the relatively high galactic latitude of KOI-707 (15 ◦), to-
+gether imply that it is unlikely that the signals are due to
+a source not physically associated with the target star.
+Fourth, the long durations of the transits relative to the
+planets’ orbital periods imply that they are produced by
+light being blocked from a star whose density is signif-
+icantly less than those of cool dwarfs, and/or they are
+produced by apocentric transits of objects with substan-
+tial orbital eccentricity. Substantial orbital eccentricities
+would make the system unstable if the planets orbited
+the same star. It is highly implausible that two stars in
+an unresolved stellar binary would be so similarly coeval
+to have nearly equal densities characteristic of a some-
+what evolved star.
+Fifth, the remarkable similarity of the transit durations
+when appropriately scaled to orbital periods (Expression
+(10) and Figure 8) can be understood as the consequence
+of an ensemble of planets transiting the same star with
+similar impact parameters, but would otherwise be an
+unlikely coincidence.
+The above characteristics of KOI-707.01–05, combined
+with the overall high validity of Kepler multis, imply that
+these candidates have a well above 99% probability of
+composing a true multi-planet system, hence we consider
+these candidates to be validated planets and name the
+system Kepler-33.
+4.4. Characteristics of the Kepler-33 Planetary System
+Numerical integrations to test stability of the sys-
+tem were performed using masses of the planets from
+the nominal mass-radius relationship based upon plan-
+ets within our Solar System presented in Lissauer et al.
+(2011a). This relationship is given by:
+Mp =
+( Rp
+R⊕
+)2.06
+M⊕, (11)
+where R ⊕ and M ⊕ are the radius and mass of the Earth,
+respectively. In previous work, Lissauer et al. (2011a)
+integrated the KOI-707 system using parameters based
+on the data presented by Borucki et al. (2011) and as-
+suming planar initially circular orbits; the model system
+survived intact for the entire 3 × 108 years simulated. All
+of our integrations also assume that the system is planar.
+For all planets having zero initial eccentricity, all three
+models of the system listed in Tables 2 and 3 survived
+intact for the entire 10 7 years simulated.
+Of the three Kepler-33 planetary system models that
+we integrated, the one based directly on the spectroscopic
+stellar parameters had the largest planetary sizes and
+thus largest estimated planetary masses, with the frac-
+tional diﬀerences in estimated planetary masses from one
+model to another being larger than those for stellar mass.
+Thus, the spectroscopic parameters yielded the largest
+interplanetary perturbations, and presumably the largest
+TTV signatures. We examined distributions of TTV sig-
+nals over 2 year periods during the ﬁrst 2 Myr of this
+simulation. These theoretical TTVs for the inner planet
+were smaller than 30 seconds, and those for Kepler-33c
+less than 90 seconds, both values below current measure-
+ment capabilities. The outer three planets exhibited far
+larger TTVs, 9 – 18 minutes for Kepler-33d, 23 – 38 min-
+utes for Kepler-33e and 23 – 35 minutes for Kepler-33f,
+roughly consistent with variations detected. While this
+model used relatively high mass estimates, the integra-
+tion began with circular orbits, which produce smaller
+TTVs, so the results do not yield a preference between
+the three models of planetary sizes listed in Table 3. A
+detailed analysis of planetary TTVs is beyond the scope
+of this paper, but we note that it may well soon be pos-
+sible to derive estimates of the masses of some or all of
+the outer three planets using observed TTVs.
+The properties of the 5 planet Kepler-33 system are
+analogous to those of the 6 planet Kepler-11 system
+(Lissauer et al. 2011b). Both systems include 4 plan-
+ets with orbital periods between 13 and 47 days that
+are comparable in radius to, or somewhat smaller in size
+than, Neptune, as well as a smaller planet closer to the
+star. Both systems are thus very closely-packed in a dy-
+namical sense. The Kepler-11 system is slightly more
+dynamically close-packed than is the Kepler-33 system,
+both in the sense that the ratios of the orbital periods of
+neighboring planets are a bit larger for Kepler-33’s plan-
+ets (Lissauer et al. 2011a) and as evidenced from smaller
+TTVs detected in the Kepler-33 system.
+In some aspects, the Kepler-33 system can be viewed
+as a less extreme cousin of Kepler-11, with 5 known tran-
+siting planets rather than 6 and spacing that not quite as
+close, yet dynamically much tighter than most systems
+(Lissauer et al. 2011a). However, the new system’s in-
+ner planet, Kepler-33b, is smaller and closer to its star
+than is its counterpart, Kepler-11b. The high density
+of Kepler-11b relative to its brethren, coupled with its
+smaller size, indicates a composition richer in heavy ele-
+ments (Lissauer et al. 2011b). While the mass and thus
+14 Lissauer et al.
+the density of Kepler-33b is not known, it is unlikely
+that a planet this small (1 .5 − 1.8 R⊕) and close (0.07
+AU) to its bright star (3 L ⊙) could have retained a sub-
+stantial H/He atmosphere. This lends support to the
+suggestion by Lissauer et al. (2011b) that planets such
+as Kepler-11b may have once had atmospheres of light
+gases that subsequently escaped as a result of stellar irra-
+diation. The slightly shorter normalized duration of the
+small inner planet Kepler-33b suggests that this planet
+has somewhat larger inclination and/or eccentricity than
+do the outer four planets. We note that Mercury, the in-
+nermost and smallest planet in our Solar System, also has
+the largest eccentricity and inclination of the 8 planets
+known to orbit our Sun.
+Stability of the Kepler-33 planetary system excludes
+large eccentricities of the four outer planets, although
+interplanetary perturbations must cause eccentricities to
+be non-zero. The remarkable similarity in the normal-
+ized transit durations of the ﬁve planets orbiting Kepler-
+33 would be very unlikely if the eccentricities and in-
+clinations of planetary orbits are signiﬁcant (Figure 9).
+Moreover, the consequent similarity in computed impact
+parameters despite the planets’ diﬀering orbital distances
+requires that either the system is viewed near edge-on,
+with impact parameters b ≪ 1, or a very fortuitous co-
+incidence producing an anticorrelation between inclina-
+tions and orbital periods. We view such a coincidence as
+unlikely, and therefore prefer the planetary parameters
+closer to those listed in ﬁnal two columns of Tables 2
+and 3 (the “Flat” ﬁts) than to those listed in the second
+column of Tables 2 and 3.
+5. CONCLUSIONS
+The calculations presented in Section 2 show that the
+vast majority of Kepler’s multi-planet candidates are in-
+deed planets. The essence of our argument is that fewer
+than 10 −2 of Kepler targets have a planet candidate
+listed in Borucki et al. (2011). If 10% or fewer of these
+candidates are FPs, then fewer than 10 −3 of Kepler tar-
+gets have a false positive, and if FPs are not correlated
+with other planet candidates, then fewer than 10 −5 of
+Kepler’s ∼ 160,000 targets, i.e., a total of at most 2
+targets, are expected to have a false positive as well as
+another transit-like signature that makes them a can-
+didate multi-planet system. This number can be com-
+pared to 170 candidate multi-planet systems with a to-
+tal of 408 planet candidates announced by Borucki et al.
+(2011). Accurate estimates of the false positive rate
+in this population require detailed analysis of both Ke-
+pler and ground-based data to account for the caveats
+expressed in Section 2.2. Nonetheless, we expect that
+/greaterorsimilar 400 of the 408 planet candidates in multis that were
+announced by Borucki et al. (2011) are indeed exoplan-
+ets, although a small fraction of these planets orbit stars
+other than their nominal Kepler target star. Note that
+the smallest planet candidates are most prone to false
+positives, because low SNR limits the restrictiveness in
+parameter space of tests of lightcurve shape and location
+of the centroid of the transit signal on the sky plane, and
+the abundance of astrophysical signals that are capable
+of producing lower amplitude events is greater. Also note
+that stellar parameters, and thus planetary sizes, are
+prone to large uncertainties for candidates that have no
+high-SNR spectroscopic observations from the ground.
+0.0 ◦ 0.5 ◦ 1.0 ◦ 1.5 ◦ 2.0 ◦ 2.5 ◦ 3.0 ◦
+Mean Mutual Inclination
+0.00
+0.05
+0.10
+0.15
+0.20
+0.25
+0.30Conditional Probability
+Mean e = 0.00
+Mean e = 0.01
+Mean e = 0.03
+Mean e = 0.05
+Fig. 9.— The probability of observing all ﬁve planets in the
+Kepler-33 system to have period-normalized transit durati ons
+within 3.0% of one another given that all ﬁve planets are seen
+to transit the host star is shown as a function of mean mutual i n-
+clination. Points were derived using Monte Carlo simulatio ns that
+assumed parameters from the spectroscopic ﬁt given in the se cond
+column of Tables 2 and 3. Results with the ﬂat ﬁt parameters
+(not shown) are nearly identical. Mutual inclinations for e ach re-
+alization are drawn from a Rayleigh distribution with respe ct to
+random reference plane (i.e., random observer). The black d ots are
+for the e = 0 case. The blue triangles, yellow diamonds and red
+squares show results from simulations in which the eccentri city as-
+signed to each planet was drawn form a Rayleigh distribution with
+mean value < e > = 0 .01, < e > = 0 .03 and < e > = 0 .05,
+respectively. The addition of even a small range of eccentri cities
+greatly reduces probability of highly correlated transit d urations.
+From a Bayesian statistical perspective, multiplicity
+eﬀectively allows us to increase the planet prior, and thus
+enables the validation of candidates as being true planets
+at a speciﬁed high probability level without going to the
+extreme lengths often required to provide a very small
+upper bound on the FP prior. We use these arguments
+along with a detailed analysis of Kepler data to validate
+the Kepler-11 analog KOI-707 system, which we name
+Kepler-33.
+Kepler was competitively selected as the tenth Dis-
+covery mission. Funding for this mission is provided
+by NASA’s Science Mission Directorate. The authors
+thank the many people who gave so generously of their
+time to make the Kepler mission a success, chief among
+them Bill Borucki, who has devoted decades to devel-
+oping and implementing Kepler. Useful comments were
+provided by Natalie Batalha, Ruth Murray-Clay, Dimi-
+tar Sasselov, Jason Steﬀen, and especially by Tim Brown.
+Kevin Zahnle and Mark Marley provided constructive
+comments on the manuscript. D. C. F. acknowledges
+NASA support through Hubble Fellowship grant #HF-
+51272.01-A, awarded by STScI, operated by AURA un-
+der contract NAS 5-26555.
+High Reliability of Kepler’s Multiple Planet Candidates 15
+TABLE 1
+Centroid offsets for KOI-707 based on PRF fits.
+Planet Transit Oﬀset from KOI-707 Transit Oﬀset from Predic tion
+(arcsec) (Oﬀset/ σ) (arcsec) (Oﬀset/ σ)
+.01 0 .17 ± 0.29 0 .59 0 .39 ± 0.26 1 .50
+.02 0 .30 ± 0.22 1 .35 0 .53 ± 0.22 2 .38
+.03 0 .25 ± 0.39 0 .63 0 .65 ± 0.40 1 .64
+.04 0 .37 ± 0.93 0 .39 0 .50 ± 0.67 0 .75
+.05 1 .06 ± 0.42 2 .53 0 .71 ± 0.48 1 .47
+TABLE 2
+Characteristics of the Star Kepler-33
+Parameter Median σ +1σ −1σ +3σ −3σ Flat, M⋆ > 1.2 M⊙ Flat, M⋆ < 1.2 M⊙
+Spectroscopy
+M⋆ (M⊙) 1.291 0.082 0.063 -0.121 0.212 -0.200 1.271 1.164
+R⋆ (R⊙) 1.82 0.16 0.14 -0.18 0.49 -0.42 1.663 1.615
+Z 0.0250 0.0019 0.0248 0.0241
+Teﬀ (K) 5904 47 5899 5880
+log(L⋆/L⊙) 0.556 0.080 0.476 0.446
+Age (Gyr) 4.27 0.87 0.74 -1.03 2.68 -1.65 4.31 5.92
+logg (cm2/s) 4.027 0.056 4.0994 4.087
+v⋆ (km/s) 14.09 0.1
+ρ⋆ (g/cm3) 0.300 0.066 0.049 -0.079 0.230 -0.147 0.3883 0.3885
+Transit Model
+ρ⋆ (g/cm3) 0.288 0.081 0.091 -0.066 0.112 -0.215 0.03897 0.3897
+REFERENCES
+Batalha, N. M., et al. 2010, ApJ, 713, 103
+Batalha, N. M., et al. 2011, ApJ, 729, 27
+Borucki, W. J., et al. 2011, ApJ, 736, 19
+Brown, T. M., Latham, D. W., Everett, M. R., & Esquerdo, G.
+A. 2011, AJ, 142, 112
+Bryson, S., et al. 2012, in preparation
+Buchhave, L. A., et al. 2010, ApJ, 720, 1118
+Chubak, C. & Marcy, G. W. 2012, in preparation
+Claret, A. & Bloemen, S. A&A, 529, 75
+Cochran, et al. 2011, ApJS, 197, 7
+Demory, B.-O., & Seager, S. 2011, ApJS, 197, 12
+Desert, J.-M. et al. 2012, in preparation
+Doyle, L. R., et al. 2011, Science, 333, 1602
+Fressen, F., et al. 2011, ApJS, 197, 5
+Graczyk, D., et al. 2011, arXiv, 1108.0446v1
+Haswell, C. A. 2011. Transiting Exoplanets. Cambridge
+University Press.
+Hayward, T. L., Brandl, B., Pirger, B., Blacken, C., Gull, G. E.,
+Schoenwald, J., & Houck, J. R. 2001, PASP, 113, 105
+Holman, M. J., & Murray, N. W. 2005, Science, 307, 1288
+Holman, M. J., et al. 2010, Science, 330, 51
+Horch, E. P., van Altena, W. F., Howell, S. B., Sherry, W. H., &
+Ciardi, D. R. 2011, AJ, 141, 181
+Howard, A. W., et al. 2011, Submitted to ApJ (arXiv1103.2541 )
+Howell, S. B., Everett, M. E., Sherry, W., Horch, E. & Ciardi, D.
+M. 2011, AJ, 142, 19
+Jenkins, J. M., et al. 2010, ApJ, 713, L87
+Kepler, J. 1609, Astronomia Nova, Heidelberg
+Kepler, J. 1619, Harmony of the W orld, Linz
+Latham, D. W., et al. 2011, ApJ, 732, 24
+Lissauer, J. J., et al. 2011a, ApJS, 197, 8
+Lissauer, J. J., et al. 2011b, Nature, 470, 53
+Mandel, K., & Agol, E. 2002 ApJ, 579, L171
+Morton, T. D., & Johnson, J. A. 2011, ApJ, 738, 170
+Ragozzine, D., & Holman, M. J. 2010, submitted to ApJ,
+arXiv:1006.3727
+Robin, A. C.., Reyl´ e, C., Derri` ere, S. & Picaud, S. 2003, A& A,
+409, 523
+Robin, A. C.., Reyl´ e, C., Derri` ere, S. & Picaud, S. 2004, A& A,
+416, 157
+Rowe, J. F., et al. 2010, ApJ, 713, 150
+Seager, S., & Mall´ en-Ornelas, G. 2003, ApJ, 585, 1038
+Torres, G., Neuhauser, R., & Guenther, E. W. 2002, AJ, 123, 17 01
+Torres, G., et al. 2011, ApJ, 727, 24
+Troy, M. et al. 2000, Proc. SPIE, 4007, 31
+Valenti, J. A. & Piskunov, N. 1996, A&AS, 118, 595
+Valenti, J. A. & Fischer, D. A. 2005, A&AS, 159, 141
+W right, J. T., Upadhyay, S., Marcy, G. W., Fischer, D. A., For d,
+E. B., & Johnson, J. A. 2009, ApJ, 693, 1084
+W right, J. T., et al. 2011, ApJ, 730, 93
+16 Lissauer et al.
+TABLE 3
+Characteristics of the Kepler-33 Planets
+Parameter Median σ +1σ −1σ +3σ −3σ Flat, M⋆ > 1.2 M⊙ Flat, M⋆ < 1.2 M⊙
+Kepler-33b = KOI-707.05
+T0 (BJD-2454900) 64.8981 0.0075 64.8973 64.8973
+Porb (days) 5.66793 0.00012 5.667939 5.667939
+b 0.50 0.16 0.16 -0.20 0.34 -0.41 0.298 0.298
+Rp/R⋆ 0.00877 0.00046 0.00853 0.00853
+Rp (R⊕) 1.74 0.18 1.549 1.504
+i (degrees) 86.39 1.17 0.96 -1.62 2.90 -3.16 88.03 88.03
+a/R⋆ 7.87 0.87 8.714 8.714
+a (AU) 0.0677 0.0014 0.06740 0.06544
+Trdepth (ppm) 86.8 6.8 87.7 87.7
+Trdur (hr) 4.88 0.16 0.16 -0.15 0.45 -0.54 4.80 4.80
+Kepler-33c = KOI-707.04
+T0 (BJD-2454900) 76.6764 0.0042 76.6777 76.6777
+Porb (days) 13.17562 0.00014 13.17563 13.17563
+b 0.44 0.17 0.17 -0.21 0.38 -0.38 0.144 0.144
+Rp/R⋆ 0.01602 0.00057 0.01560 0.01560
+Rp (R⊕) 3.20 0.30 2.833 2.751
+i (degrees) 88.19 0.72 0.58 -1.06 1.55 -1.92 89.46 89.46
+a/R⋆ 13.8 1.5 15.292 15.292
+a (AU) 0.1189 0.0025 0.11287 0.11484
+Trdepth (ppm) 297.7 9.1 299.8 299.8
+Trdur (hr) 6.700 0.104 0.096 -0.107 0.325 -0.295 6.616 6.616
+Kepler-33d = KOI-707.01
+T0 (BJD-2454900) 122.6342 0.0018 122.6341 122.6341
+Porb (days) 21.77596 0.00011 21.775984 21.7759
+b 0.44 0.17 0.14 -0.23 0.38 -0.40 0 (assumed) 0 (assumed)
+Rp/R⋆ 0.02667 0.00087 0.02589 0.02589
+Rp (R⊕) 5.35 0.49 4.700 4.564
+i (degrees) 88.71 0.51 0.61 -0.48 1.08 -1.37 90 (assumed) 90 (a ssumed)
+a/R⋆ 19.3 2.1 21.38 21.38
+a (AU) 0.1662 0.0035 0.16533 0.16053
+Trdepth (ppm) 831.4 10.5 831 831
+Trdur (hr) 8.011 0.097 0.065 -0.103 0.345 -0.192 7.987 7.987
+Kepler-33e = KOI-707.03
+T0 (BJD-2454900) 68.8715 0.0048 68.8720 68.8720
+Porb (days) 31.78440 0.00039 31.78438 31.78438
+b 0.47 0.16 0.14 -0.21 0.38 -0.37 0.204 0.204
+Rp/R⋆ 0.02011 0.00072 0.01955 0.01955
+Rp (R⊕) 4.02 0.38 3.550 3.446
+i (degrees) 88.94 0.37 0.45 -0.35 0.84 -1.07 89.576 89.576
+a/R⋆ 24.9 2.8 27.51 27.51
+a (AU) 0.2138 0.0045 0.2127 0.20656
+Trdepth (ppm) 467 12 469 469
+Trdur (hr) 8.90 0.13 0.12 -0.13 0.40 -0.38 8.819 8.819
+Kepler-33f = KOI-707.02
+T0 (BJD-2454900) 105.5763 0.0040 105.5757 105.5757
+Porb (days) 41.02902 0.00042 41.02903 41.02903
+b 0.43 0.17 0.15 -0.23 0.39 -0.42 0.130 0.130
+Rp/R⋆ 0.02227 0.00076 0.02171 0.02171
+Rp (R⊕) 4.46 0.41 3.941 3.827
+i (degrees) 89.17 0.34 0.33 -0.42 0.68 -0.98 89.772 89.772
+a/R⋆ 29.5 3.3 32.61 32.61
+a (AU) 0.2535 0.0054 0.2522 0.2449
+Trdepth (ppm) 579 12 581 581
+Trdur (hr) 9.87 0.13 0.11 -0.15 0.43 -0.36 9.732 9.732

@@ -1,0 +1,1838 @@
+                                                 Draft version May 16, 2019
+                                                 Typeset using LATEX twocolumn style in AASTeX62
+
+
+
+
+                                                               Kepler Planet Occurrence Rates for Mid-Type M Dwarfs as a Function of Spectral Type
+                                                   Kevin K. Hardegree-Ullman,1, 2, ∗ Michael C. Cushing,1 Philip S. Muirhead,3 and Jessie L. Christiansen2
+                                                                      1 The University of Toledo, 2801 W. Bancroft St., Mailstop 111, Toledo, OH 43606 USA
+arXiv:1905.05900v1 [astro-ph.EP] 15 May 2019
+
+
+
+
+                                                                     2 Caltech/IPAC-NExScI, MC 100-22, 1200 E. California Blvd., Pasadena, CA 91125 USA
+                                               3 Department of Astronomy & The Institute for Astrophysical Research, Boston University, 725 Commonwealth Ave., Boston, MA 02215
+
+                                                                                                                 USA
+
+
+                                                                                                           ABSTRACT
+                                                          Previous studies of planet occurrence rates largely relied on photometric stellar characterizations. In
+                                                        this paper, we present planet occurrence rates for mid-type M dwarfs using spectroscopy, parallaxes,
+                                                        and photometry to determine stellar characteristics. Our spectroscopic observations have allowed us
+                                                        to constrain spectral type, temperatures, and in some cases metallicities for 337 out of 561 probable
+                                                        mid-type M dwarfs in the primary Kepler field. We use a random forest classifier to assign a spectral
+                                                        type to the remaining 224 stars. Combining our data with Gaia parallaxes, we compute precise (∼3%)
+                                                        stellar radii and masses, which we use to update planet parameters and planet occurrence rates for
+                                                        Kepler mid-type M dwarfs. Within the Kepler field, there are seven M3 V to M5 V stars which host 13
+                                                        confirmed planets between 0.5 and 2.5 Earth radii and at orbital periods between 0.5 and 10 days. For
+                                                        this population, we compute a planet occurrence rate of 1.19+0.70 −0.49 planets per star. For M3 V, M4 V,
+                                                        and M5 V, we compute planet occurrence rates of 0.86+1.32             +2.30          +5.49
+                                                                                                                 −0.68 , 1.36−1.02 , and 3.07−2.49 planets per star,
+                                                        respectively.
+
+                                                        Keywords: stars: planetary systems — stars: fundamental parameters — stars: late-type — stars:
+                                                                  low-mass
+
+                                                                  1. INTRODUCTION                                      K) stars. M dwarfs (2, 300 K . Teff . 3, 900 K,
+                                                  The NASA Kepler mission (Borucki et al. 2010) rev-                   0.1 R⊙ . R⋆ . 0.6 R⊙ , 0.07 M⊙ . M⋆ . 0.6 M⊙ )
+                                               olutionized astrophysics and planetary science. Kepler                  comprise about 70% of the nearby stellar population,
+                                               has enabled the discovery of 2,342 new exoplanets and                   by number (Henry et al. 2006; Bochanski et al. 2010),
+                                               an additional 2,421 planet candidates.1 Four years of                   though they only constitute about 2.5% of the targets
+                                               data from the original Kepler mission have provided                     Kepler observed (Dressing & Charbonneau 2015, here-
+                                               light curves for nearly 200,000 stars (Mathur et al. 2017)              after DC15). The smaller size of these stars makes
+                                               from which we can estimate the statistical distribution                 it easier to detect the presence of smaller transiting
+                                               of planet properties within our Galaxy.                                 planets. For example, the transit depth for an Earth-
+                                                  Kepler was designed to detect Earth-sized plan-                      radius planet transiting a solar metallicity M0 V star
+                                               ets in the habitable zones of Sun-like (F, G, and                       would be 3 times deeper than the same planet transit-
+                                                                                                                       ing a G2 V Sun-like star, and nearly 70 times deeper
+                                                                                                                       for an M7 V star. Fortuitously, the low luminosity of
+                                               Corresponding author: Kevin K. Hardegree-Ullman                         M dwarfs means the habitable zone is closer to the
+                                               kevinkhu@caltech.edu                                                    star, thus increasing the chance of detecting a transit-
+                                               ∗ Visiting astronomer, Kitt Peak National Observatory, National
+                                                                                                                       ing planet in the habitable zone over a finite observing
+                                                 Optical Astronomy Observatory, which is operated by the               period (Nutzman & Charbonneau 2008). For example,
+                                                 Association of Universities for Research in Astronomy (AURA)
+                                                 under a cooperative agreement with the National Science               an Earth-sized planet in the habitable zone of an M4 V
+                                                 Foundation. Visiting Astronomer at the Infrared Telescope             star orbits once every two weeks as opposed to once a
+                                                 Facility, which is operated by the University of Hawaii under         year for a Sun-like G star.
+                                                 contract NNH14CK55B with the National Aeronautics and
+                                                 Space Administration.                                                   Planet occurrence rates increase toward later spectral
+                                                 1 http://exoplanetarchive.ipac.caltech.edu/docs/counts detail.html,   types within the Kepler field. Using the first three quar-
+                                               as of April 2019                                                        ters of Kepler data, Howard et al. (2012) measured the
+2                                             Hardegree-Ullman et al.
+
+planet occurrence rate for M0 to F2 dwarfs for plan-          and 5%; however, this method is currently limited to
+ets with radii between 2 and 4 R⊕ and found that these        bright (V . 11), nearby stars (e.g., Ségransan et al.
+small planets are seven times more abundant around            2003; Boyajian et al. 2012; von Braun et al. 2014).
+cool stars (3,600 to 4, 100 K) than hot stars (6,600 to       These precise radius measurements can, however, be
+7, 100 K). More recent work by Mulders et al. (2015a)         used to calibrate empirical relationships between radius
+found the occurrence rate of planets with radii between       and other measurable parameters (e.g., Boyajian et al.
+1 and 4 R⊕ around M dwarfs to be two times higher             2012; Mann et al. 2015). For example, Mann et al.
+than for G stars, and three times higher than for F           (2015, hereafter M15) derive MKs vs. R⋆ and Teff vs.
+stars. Dressing & Charbonneau (2013, hereafter DC13)          R⋆ relationships for K7 through M7 dwarfs, which con-
+focused specifically on stars with temperatures below         strain stellar radii to ∼3% and ∼15%, respectively.
+4, 000 K in Q1 to Q6 of Kepler data and found the oc-         Gaidos et al. (2016b) used these relationships to update
+currence rate of 0.5 to 4 R⊕ planets with orbital periods     the stellar properties of over 4,000 Kepler M dwarfs
+shorter than 50 days to be 0.90+0.04−0.03 planets per star.   based on temperatures, metallicities, and distances de-
+Separating these stars into warmer (Teff > 3, 400 K) and      rived from photometry and proper motions. These
+cooler (Teff < 3, 400 K) groups, they find the occurrence     measurements constrain stellar radii to ∼15%.
+rate of Earth-sized planets (0.5 to 1.4 R⊕ ) to be con-          With moderate resolution spectra, we can precisely
+sistent at around 0.5 planets per star, but the rate of       determine spectral type and measure stellar properties
+larger planets (1.4 to 4.0 R⊕ ) is three times higher for     such as temperature and metallicity. Having accurate
+the warmer stars, 0.61+0.08                      +0.07
+                        −0.06 compared to 0.19−0.05 . Us-     spectral types for a specific population (e.g., mid-type M
+ing the full Kepler data set, DC15 updated their M            dwarfs) allows us to assess trends in planet occurrence
+dwarf planet occurrence rate for 1 to 4 R⊕ planets with       rates for that population as a function of spectral type,
+orbital periods shorter than 200 days to be 2.5 ± 0.2         like the assessment of F, G, K, and early M dwarf planet
+planets per star, but they do not make a distinction          occurrence rates by Howard et al. (2012). In large stel-
+between early and mid-type M dwarfs. Gaidos et al.            lar catalogs, such as the KIC, it is difficult to obtain a
+(2016b) computed an overall Kepler M dwarf planet oc-         spectrum of each star, so photometric selection criteria
+currence rate of 2.2 ± 0.3 for orbital periods shorter than   are typically used to identify specific stellar popula-
+180 days, consistent with DC15. Focusing specifically on      tions (e.g., Brown et al. 2011; Dressing & Charbonneau
+mid-type M dwarfs, Muirhead et al. (2015) calculated a        2013; Gaidos 2013; Huber et al. 2014; Gaidos et al.
+compact multiple occurrence rate of 21+7  −5 %, assuming a    2016b). Efforts to spectroscopically classify nearly 5,000
+radius of 0.2 R⊙ for all mid-type M dwarfs.                   photometrically-identified late-type K and M dwarfs in
+   Computing planet occurrence rates requires measure-        the Kepler field by Mann et al. (2012), Muirhead et al.
+ments of stellar radii (R⋆ ) for all stars in the sample      (2012), Mann et al. (2013b), and Martı́n et al. (2013)
+population. In the absence of direct measurements,            have yielded spectra for only 2% of the sample (DC15).
+R⋆ for the M dwarfs in the Kepler Input Catalog               While selection criteria aim to minimize stellar outliers,
+(KIC) was derived from optical and infrared photometry        they are not impervious to contamination. Spectra al-
+(Batalha et al. 2010; Brown et al. 2011). Brown et al.        low us to identify any interlopers (such as giant stars)
+(2011) noted that stellar parameters in the KIC are un-       that selection criteria might not cull.
+reliable at Teff < 3, 750 K because the models they use          In this paper we present spectroscopic observations
+are calibrated to work best for Sun-like stars. DC13,         of 333 M dwarfs and 4 M giants in the Kepler field,
+Gaidos (2013), and Huber et al. (2014) addressed this         from which we derive spectral types, effective tempera-
+issue by using stellar models more suited to later type       tures, and metallicities. Thanks to the European Space
+stars (e.g., Dartmouth Stellar Evolution Database;            Agency’s Gaia mission (Gaia Collaboration et al. 2016),
+Dotter et al. 2008) to reclassify the set of cooler stars     nearly all the stars in the Kepler field now have trigono-
+in the KIC. These updated measurements of R⋆ , based          metric parallax measurements (Berger et al. 2018).
+on photometry, still have a wide range of uncertainties       Over 90% of our targets have Gaia parallax measure-
+with an average around 30% (Mathur et al. 2017). An           ments, which we use to compute MKs . We apply the
+uncertainty this large can mean the difference between        empirical relationships of M15 and Mann et al. (2019)
+several spectral sub-types, and for a transiting planet       to measure radii and masses for our stars. With these
+this propagates to a 30 to 40% planet radius uncertainty.     updated stellar properties, we refine the properties for
+   Combining long-baseline optical interferometry with        the 13 confirmed planets around mid-type M dwarfs. We
+trigonometric parallax measurements yields direct mea-        then compute the total planet occurrence rate for mid-
+surements of stellar radii with uncertainties between 1%      type M dwarfs, individual occurrence rates for M3 V,
+                                   Mid-Type M Dwarf Planet Occurrence Rates                                              3
+
+M4 V, and M5 V stars, and compact multiple occurrence               Each Hydra field configuration contained an average of
+rates.                                                           five mid-type M dwarf targets with V < 18.53 . We used
+  In Section 2 we describe our target selection, spec-           the bench spectrograph camera and the red optimized
+troscopic observations, and Gaia data. We explain our            fiber cable containing 90 fibers. The 316 lines mm−1
+methods for determining stellar properties in Section 3,         grating and the G5 filter were used to obtain spectra
+and refine our sample to reject giant stars and close bi-        spanning 5,000 to 10,000 Å with an average resolving
+naries in Section 4. In Section 5 we identify the planets        power R = λ/∆λ ≈ 1, 420. Most fields were observed in
+around mid-type M dwarfs in the Kepler field, which we           three consecutive 1,200 second exposures to mitigate the
+use for our planet occurrence rate calculations in Sec-          effect of cosmic rays and to yield a signal-to-noise (S/N)
+tion 6. We conclude with a discussion in Section 7.              of at least 30 per resolution element for targets with
+                                                                 V < 18.5. At the beginning and end of each night we
+                                                                 obtained bias, dome flat field, and copper-argon wave-
+ 2. TARGET SELECTION, OBSERVATIONS, AND                          length calibration frames. After each field observation,
+                    DATA REDUCTION                               we obtained a spectrum of a nearby bright G0 star at
+                                                                 a similar airmass to be used for telluric correction. At
+   Using revised KIC temperature estimates, DC13 iden-           least once each night we observed a spectrophotometric
+tified 202 stars with Teff . 3, 300 K. Muirhead et al.           standard star for relative flux calibration.
+(2015) identified 509 probable mid-type M dwarfs from               The data were reduced using IRAF4 and custom IDL
+KIC photometry using the following color selection cri-          routines. Each image was first corrected for readout
+teria: r − J > 3.2 to identify red objects, and J − K <          bias using the overscan strip, then trimmed to remove
+0.0555×(r−J)+0.7622 to remove giant stars. The union             this region. An average bias was then created and sub-
+between these samples produces 561 probable mid-type             tracted from the rest of the images. The dohydra IRAF
+M dwarfs which we targeted in this study. In total, we           routine was used for aperture extraction, flat fielding,
+observed 337 of the 561 targets (60%), obtaining opti-           dispersion correction, and sky subtraction. Sky spec-
+cal spectra of 327 stars and near-infrared spectra of 82         tra were created from 5 to 10 sky fibers placed in ran-
+stars. We have both optical and infrared spectra for             dom positions distributed throughout each field. Sky
+72 targets. Magnitude distributions of our targets in r-         subtraction removed OH atmospheric emission, which
+band and Ks -band are shown in Figure 1, including the           is problematic at wavelengths redder than 6,000 Å. In-
+distributions of targets we observed.                            dividual exposures were then combined, and a relative
+                                                                 flux calibration was performed on all targets using a
+                                                                 spectrophotometric standard star. We developed a cus-
+                        2.1. WIYN                                tom IDL script to interpolate across a G0 star spectrum
+   In observing semester 2015B, NASA and NSF imple-              where there is known atmospheric absorption, and di-
+mented Stage 1 of the Exoplanet Observational Research           vide these regions out of our M dwarf spectra to remove
+(NN-EXPLORE) program, enabling community access                  terrestrial atmospheric absorption features. We shift
+to about 100 nights per year on the 3.5-meter WIYN2              each spectrum in wavelength to the source star’s rest
+telescope on Kitt Peak at least through commissioning            frame by cross-correlation with the closest matching M
+of the extreme precision Doppler spectrometer NEID               dwarf template from Bochanski et al. (2007). We find
+(Schwab et al. 2016). We have made use of the fiber-fed          the closest matching M dwarf template from a by-eye
+multi-object spectrograph Hydra (Barden et al. 1994)             comparison of each spectrum to each template, normal-
+on WIYN for this project. The Kepler field spans a               ized to 8,350 Å.
+12 degree diameter, making the one degree diameter
+field-of-view of Hydra advantageous. We collected spec-
+tra over five observing semesters beginning in Septem-                      2.2. Discovery Channel Telescope
+ber 2015 (NOAO Program IDs 2015B-0280, 2016A-
+0328, 2016B-0111, 2017A-0185, 2017B-0095; PI: K.
+Hardegree-Ullman). In total, we observed 287 targets                3 KIC photometry was converted to V -band magnitudes
+with WIYN.                                                       using the transformation V = g − 0.5784 × (g − r) − 0.0038,
+                                                                 http://www.sdss3.org/dr8/algorithms/sdssUBVRITransform.php#Lupton2005
+                                                                    4 IRAF is distributed by the National Optical Astronomy Ob-
+  2 The WIYN Observatory is a joint facility of the University   servatories, which are operated by the Association of Universi-
+of Wisconsin-Madison, Indiana University, the National Optical   ties for Research in Astronomy, Inc., under cooperative agreement
+Astronomy Observatory and the University of Missouri.            with the National Science Foundation.
+4                                               Hardegree-Ullman et al.
+
+
+
+
+                                  (a)                                                              (b)
+
+Figure 1. Magnitude distributions in (a) r-band and (b) Ks -band of Kepler targets for this survey. The orange solid line
+histograms represent all targets, the blue dashed line histograms are the targets for which we have an optical spectrum, and the
+red dashed dotted line histograms show targets for which we have an infrared spectrum. The optical spectra distribution closely
+follows the distribution of all targets in the sample. Targets were selected to optimize observation efficiency with WIYN by
+maximizing the number of targets observed per field configuration. Several fainter targets were also observed with the Discovery
+Channel Telescope. This strategy allowed us to effectively observe a random sample representing the total target set. Almost
+all stars with infrared spectra have Ks < 13, since fainter targets necessitate much longer integration times to obtain sufficient
+S/N to measure stellar properties.
+
+  About 90 of our targets have V -band magnitudes                                            2.3. IRTF
+fainter than 18.5, which would require integration times              We used the SpeX spectrograph (Rayner et al. 2003)
+longer than one hour using WIYN to achieve a S/N of 30.             on the NASA Infrared Telescope Facility (IRTF) on
+We therefore used the DeVeny spectrograph on the 4.3-               Maunakea to observe 82 targets over 12 partial nights
+meter Discovery Channel Telescope (DCT) to observe                  (Program IDs 2016A-981, 2017A-106, 2017B-021; PI:
+some of these fainter targets over four observing runs,             K. Hardegree-Ullman). We used SpeX in SXD mode
+collecting spectra of 49 stars. We observed 17 of these             with a 0.′′ 3 × 15′′ slit to obtain 0.8 to 2.4 µm spectra at
+stars with WIYN because they were within one of the                 R ≈ 2, 000. We observed using the ABBA nod pattern
+observed WIYN fields. These targets are used to check               with at least three exposures for each target. Exposure
+for consistency between the two telescopes, though the              times were shorter than 120 seconds to minimize effects
+DCT data are higher resolution.                                     from atmospheric OH line variability. For most targets
+  The DeVeny spectrograph is a single-slit instrument               we achieved a S/N of at least 50 per resolution element.
+with a deep depletion e2v CCD. The 400 grooves mm−1                 An A0 V star was observed within 0.1 airmasses of each
+grating and OG570 filter were used to obtain spectra                target to be used for telluric correction and flux cali-
+spanning 6,300 to 9,700 Å with R ≈ 2, 850. Total inte-             bration. Flat field and thorium-argon lamp calibrations
+gration times varied in order to achieve a S/N similar              were taken after each A0 V star observation.
+to WIYN targets, and at least three consecutive expo-                 Spectra were reduced using Spextool (v. 4.2; Cushing et al.
+sures were taken of each target to mitigate cosmic rays             2004), which performs flat fielding, wavelength calibra-
+in the data reduction. Calibrations were the same as for            tion, sky subtraction, and spectrum extraction. We
+WIYN, except for the neon-argon lamps used for wave-                used the xtellcor IDL package (Vacca et al. 2003) for
+length calibration. Data reduction was again performed              telluric correction. As with each optical spectrum, we
+in IRAF using the same steps as for WIYN data, but                  shift each infrared spectrum in wavelength to the source
+with single slit routines instead of dohydra.
+                                   Mid-Type M Dwarf Planet Occurrence Rates                                          5
+
+star’s rest frame by cross-correlating with a spectrum        do a by-eye comparison to spectral templates to deter-
+of corresponding spectral type from the IRTF spectral         mine spectral types. There are 224 targets for which
+library (Cushing et al. 2005; Rayner et al. 2009).            we do not have spectra, so we use a machine learn-
+                                                              ing technique to identify spectral type from photometry
+                                                              (Section 3.2). Using a spectral type vs. temperature re-
+                       2.4. LAMOST                            lationship, we derive stellar temperatures (Section 3.3).
+                                                              For targets with infrared spectra, we determine metallic-
+  The Large Sky Area Multi-Object Fiber Spectroscopic
+                                                              ity (Section 3.4). We apply the MKs vs. radius and MKs
+Telescope (LAMOST; Cui et al. 2012) is a 4-meter class
+                                                              vs. mass relationships of M15 and Mann et al. (2019) to
+telescope designed to survey stars and galaxies in the
+                                                              derive stellar radii and masses for targets with paral-
+northern hemisphere. Its 4,000 fiber multi-object spec-
+                                                              lax measurements. For the remaining targets, we derive
+trograph has a wavelength range of 3,690 to 9,100 Å at
+                                                              radii from a temperature vs. radius relationship (Sec-
+R ≈ 1, 800. As of data release 4, over 7.6 million5 spec-
+                                                              tion 3.5) and masses from a radius vs. mass relationship
+tra have been gathered in total. There are LAMOST
+                                                              (Section 3.6). With our updated spectral types, we iso-
+spectra for 17 of our Kepler targets, including 8 targets
+                                                              late mid-type M dwarfs, and compute planet occurrence
+we did not observe with WIYN or the DCT. This brings
+                                                              rates for spectral types M3 V to M5 V using our new
+our total optical spectra count to 327 targets.
+                                                              stellar properties (Section 6). We present all derived
+                          2.5. Gaia                           stellar parameters in Tables 3 and 4.
+  The Gaia mission has provided parallax measure-
+                                                                             3.1. Absolute Magnitudes
+ments for over 1.3 billion sources in second data release
+(Gaia Collaboration et al. 2018). Bailer-Jones (2015)           For targets with Gaia parallax measurements, we
+and Bailer-Jones et al. (2018) note that simply invert-       compute absolute magnitudes M for Sloan Digital Sky
+ing the parallax does not always produce reliable dis-        Survey (SDSS; York et al. 2000) r-band and Two Mi-
+tances. Instead, distances must be inferred via prob-         cron All-Sky Survey (2MASS; Skrutskie et al. 2006) J
+abilistic analysis, which Bailer-Jones et al. (2018) per-     and KS -bands using
+formed on all targets in the second Gaia data release,
+                                                                           M = m − 5[log10 (d) − 1] − A,           (1)
+providing distance measurements and uncertainties. We
+use the Gaia/Kepler cross-match database6 to obtain           where m is the apparent magnitude for a photometric
+the Bailer-Jones et al. (2018) Gaia distances to our Ke-      band, d is the distance in parsecs, and A is the extinc-
+pler stars. In total, 532 of our targets cross-match with     tion for that photometric band. We compute reddening
+a Gaia target within 4′′ , the Kepler pixel size. We also     vectors using the 3D dust maps of Green et al. (2018)
+check the difference between the Gaia G-band (& 20%           with the Python package dustmaps. We find extinc-
+transmission between 4,000 and 9,000 Å; Evans et al.         tion for each band by multiplying the reddening vec-
+2018) and Kepler Kp-band (& 20% transmission be-              tors by the extinction coefficients R from Green et al.
+tween 4,300 and 8,900 Å7) magnitudes. For any target         (2018), which are 2.483, 0.650, and 0.161 for r, J, and
+with an absolute G − Kp magnitude difference greater          Ks bands, respectively. We calculate absolute magni-
+than 2, we discard the parallax measurement in our            tudes and their associated uncertainties for each band
+analysis, which applies to KIC 02164791, KIC 03330684,        using the following Monte Carlo (MC) analysis. For each
+KIC 07729309, and KIC 10665619.                               measured parameter we generate 104 random samples
+               3. STELLAR PROPERTIES                          from a Gaussian distribution and combine these distri-
+                                                              butions for each calculation. The uncertainties for each
+   We seek to determine planet occurrence rates for mid-
+                                                              quantity are symmetric or nearly symmetric within a few
+type M dwarfs using revised stellar radius measure-
+                                                              percent, so we use the mean of any asymmetric uncer-
+ments derived from spectra, photometry, and parallaxes.
+                                                              tainty to draw our Gaussian distribution. The absolute
+About 95% of our targets have parallax measurements,
+                                                              magnitude is then the median value of the posterior dis-
+which allows us to compute absolute magnitudes in the
+                                                              tribution, and we adopt the 16th and 84th percentiles as
+r, J, and Ks -bands for use in computing stellar proper-
+                                                              the uncertainties.
+ties (Section 3.1). For the 337 targets with spectra, we
+                                                                                 3.2. Spectral Type
+  5 http://dr4.lamost.org/                                      We determine optical spectral types by comparing
+  6 http://gaia-kepler.fun/
+                                                              our spectra to the SDSS M dwarf spectral templates
+  7 https://keplergo.arc.nasa.gov/CalibrationResponse.shtml
+                                                              of Bochanski et al. (2007), following the methods of
+6                                             Hardegree-Ullman et al.
+
+Kirkpatrick et al. (1991). The template spectra span
+a wavelength range of 3,800 to 9,200 Å with R ≈ 1, 800.
+Target spectra are normalized to the same wavelength
+as the template spectra (8,350 Å) and we do a by-eye
+comparison to find the closest matching spectrum to the
+nearest half spectral type. Ten of our targets were only
+observed with IRTF. For these targets, we determine
+spectral type in the same manner as our optical spectra,
+except we use M dwarfs in the IRTF Spectral Library for
+comparison (Cushing et al. 2005; Rayner et al. 2009).
+   It is always best to determine spectral type from a
+spectrum rather than photometry, however, this is not
+always economical with a large target sample and lim-
+ited resources. For the 224 stars in our sample that
+lack a spectrum, we use the RandomForestClassifier
+routine from the scikit-learn (Pedregosa et al. 2011)
+Python package to classify these targets with r, J, and
+Ks -band photometry. For our training sample, we use         Figure 2. Comparison of the fraction of predicted classi-
+the extinction corrected photometry and spectral types       fications in each spectral type bin versus observed spectral
+                                                             type from a random forest classification using photometry
+from West et al. (2011), who visually inspected over
+                                                             from the West et al. (2011) M dwarf sample. Over 90% of
+70,000 M dwarf spectra from SDSS. We truncate this           the predicted classifications are within one spectral type of
+data set to include spectral types M0 to M8, and use         the observed spectral type.
+the color cut J − Ks < 0.0555 × (r − J) + 0.7622 to
+reflect the targets in our sample. From these 48,978 tar-    tral types roughly follows the same distribution as the
+gets, we randomly select 1,500 from each spectral type       spectroscopic sample. We also show the spectral type
+to minimize sample bias, reducing our input sample to        distribution for the entire sample in Figure 3 b. Since
+13,500 targets. Using the r − J and J − Ks colors along      we effectively observed a random subset of mid-type M
+with spectral type, we train the random forest classifier    dwarfs in the Kepler field, we expect the photometri-
+on a random subset of 75% of the total input sample.         cally classified targets to follow a similar spectral type
+The remaining 25% of the input sample is used to deter-      distribution to the spectroscopically classified targets,
+mine how well the classifier performs. Figure 2 compares     and thus we are confident in the results from the photo-
+the observed spectral type from spectra to the predicted     metric classification.
+spectral type from the classifier. Over 90% of the pre-
+dicted classifications are within one spectral type of the                  3.3. Effective Temperature
+observed spectral type, so we adopt an uncertainty of          Direct measurement of effective temperatures requires
+±1 spectral type for our photometric classifications.        both bolometric flux and interferometric angular diam-
+   We run the trained classifier on the photometry for       eter measurements. Due to the distance and faintness
+both our spectroscopically observed and unobserved tar-      of these stars, interferometric observations are not cur-
+gets. In the case of the 530 targets for which we have       rently possible. Using the spectral types and effective
+Gaia parallax measurements, we use extinction cor-           temperatures of the 183 stars in Table 5 of M15, we de-
+rected absolute magnitudes to compute r−J and J −Ks          termine a linear spectral type vs. effective temperature
+colors. The average difference between the colors com-       relationship:
+puted from absolute magnitudes versus apparent mag-
+nitudes is about 0.03 for each color, which is the small                 Teff = −168.37 × SpT + 3914.65,              (2)
+effect of the reddening correction. For the remaining 31
+                                                             where SpT is the spectral type between −1 for K7 V
+targets without parallax measurements, we use appar-
+                                                             and 7 for M7 V. We adopt this as a uniform temperature
+ent magnitudes to compute colors. The classifier pre-
+                                                             scale across our spectroscopic and photometric sample.
+dicts 86% of the spectral types of our spectroscopically
+                                                             The residual 1-σ scatter of our fit to the M15 spectral
+observed sample to within one spectral type, however,
+                                                             types and temperatures is 64 K, which we add in quadra-
+it over-predicts M3 V by a factor of 2, and significantly
+                                                             ture to the typical 60 K spectroscopic measurement un-
+under-predicts M2 V and M7 V, as shown in Figure 3 a.
+                                                             certainties. This yields 88 K, which we adopt as our
+For the photometric sample, the distribution of spec-
+                                                             temperature uncertainty.
+                                  Mid-Type M Dwarf Planet Occurrence Rates                                                    7
+
+
+
+
+                                 (a)                                                              (b)
+
+Figure 3. (a) Comparison of observed (solid orange) versus predicted (dashed blue) spectral type distributions using the
+random forest classifier on the Kepler targets we have spectroscopically classified. (b) The spectral type distribution for our
+entire Kepler sample using results from spectra for observed targets (solid green), and the classifier (dashed magenta) on stars
+without spectra. The photometric histogram is stacked on top of the spectroscopic histogram. For these histograms, stars with
+half spectral types are rounded up to the nearest integer type.
+
+  Pecaut & Mamajek (2013) determine effective tem-                 tween metallicity and equivalent widths of Na I and Ca I
+peratures for each sub-type of main sequence stars by              using infrared spectra from SpeX. Our metallicity mea-
+taking the median values of published effective tem-               surements using these relationships are listed in Table 3.
+peratures in the literature. As a consistency check to             We did not obtain infrared spectra of any of the mid-
+our M15 fit, we take the most recent list of all re-               type M dwarf planet hosts (Table 2), however, we adopt
+ported values used to compute the median effective tem-            the metallicity measurements of Kepler-42, Kepler-
+perature for each sub-type8 between K7 V and M9 V                  445, and Kepler-1650 from Mann et al. (2017), Kepler-
+(280 stars) and fit a linear relationship. This results            446 and Kepler-1582 from Muirhead et al. (2014), and
+in Teff = −166.96 × SpT + 3868.39, with a 107 K 1-σ                Kepler-1649 from Angelo et al. (2017). All of these
+scatter. This relationship gives temperatures on aver-             metallicity measurements were made using the same re-
+age 40 K cooler than our temperatures. We also com-                lationships from Mann et al. (2013a). The only planet
+pare our temperatures to the M dwarf temperature scale             host for which we do not have a metallicity measurement
+of Rajpurohit et al. (2013), which are on average 76 K             is Kepler-1646.
+cooler than our temperatures. All three methods yield
+temperatures which are consistent within the measure-                                      3.5. Radius
+ment uncertainties.                                                  For the 95% of targets with distance measurements,
+                                                                   we apply the MKs vs. R⋆ and MKs vs. [Fe/H] vs. R⋆ re-
+                     3.4. Metallicity                              lationships of M15 to compute stellar radii, which have
+  We computed metallicities (specifically, iron abun-              model fit uncertainties of 2.89% and 2.70%, respectively.
+dance, [Fe/H]) for 82 targets we observed with SpeX on             We employ the same MC analysis from Section 3.1 to
+IRTF. Mann et al. (2013a, 2014) determined metallicity             assess parameter uncertainties, and add them to the
+of M dwarfs in wide binary systems with an F, G, or K              model uncertainties in quadrature, which yields a me-
+primary star, and computed empirical relationships be-             dian 3.13% and 2.85% radius uncertainty, respectively.
+                                                                     Not all of our targets have distance measurements, so
+                                                                   we rely on the M15 Teff vs. R⋆ and Teff vs. [Fe/H] vs. R⋆
+  8 http://www.pas.rochester.edu/∼emamajek/spt/
+                                                                   relationships to get the remaining stellar radii. Adding
+8                                              Hardegree-Ullman et al.
+
+
+
+
+                      (a)                                       (b)                                           (c)
+
+Figure 4. (a) Comparison of our radius measurements of Kepler M dwarfs to radii from the Kepler Stellar Catalog (Mathur et al.
+2017). We do not include 17 targets from the Kepler Stellar Catalog with R⋆ > 1 R⊙ . The 1:1 reference line is plotted in red,
+and median uncertainties are shown in the upper left corner. The histograms show the radius measurement distributions. (b)
+Comparison of our radius measurements to those from DC13 for the 213 targets found in both samples. (c) Comparison of our
+radius measurements to those from Gaidos et al. (2016b) for the 399 targets found in both samples. Our radii are generally
+larger than previous measurements.
+
+in quadrature the 13.4% (Teff vs. R⋆ ) and 9.3% (Teff             The root-mean square scatter of this fit is 3.75%. We
+vs. [Fe/H] vs. R⋆ ) uncertainties to values from the MC           apply Equation 3 to the targets for which we do not
+analysis, we yield median uncertainties of 20.6% and              have distance measurements in the same manner as our
+18.6%, respectively, for these targets.                           previous model fits and yield a median 33.2% mass un-
+  In Figure 4 we compare our new stellar radius mea-              certainty for these targets.
+surements to those reported in the Kepler Stellar Cat-
+alog (Mathur et al. 2017), 213 of our targets also found                        4. REFINING THE SAMPLE
+in DC13, and 399 stars in Gaidos et al. (2016b). Both               Our target selection criteria were chosen to isolate M
+the Kepler Stellar Catalog and DC13 show a similar                dwarfs, but that does not preclude a few giant or binary
+radius distribution for most targets, with a peak near            interlopers. From our spectra, we identify four giants
+0.2 R⊙ , whereas our measurements are generally larger            (Section 4.1), two eclipsing binaries, four potential white
+by ∼58%. Our radii are more consistent with those re-             dwarf-M dwarf binaries (Section 4.2), and 15 probable
+ported in Gaidos et al. (2016b), but our use of distances         binaries from the Gaia data (Section 4.3).
+from Gaia yield more precise values of MKs , resulting
+in ∼20% larger radii.                                                                       4.1. Giants
+                                                                    Spectroscopic indicators of M giants include weak
+                        3.6. Mass
+                                                                  Na D, K I, and Na I absorption, significant Ca II absorp-
+   We apply the MKs vs. M⋆ relationship of Mann et al.            tion, and differing shapes in the CaH2 index compared
+(2019) to compute stellar masses of targets with dis-             to M dwarfs (Reid et al. 1995; Mann et al. 2012). The
+tance measurements using the Python code provided                 four giants we identify from spectra are KIC 08628971,
+with that paper9 . This yields median uncertainties of            KIC 10548114, KIC 11495654, and KIC 11913210 (Fig-
+2.59% and 2.64% for targets with and without metal-               ure 5). KIC 11913210 is CH Cygni, an S-type symbi-
+licity measurements, respectively. For the 28 targets             otic star system10 consisting of at least two giant stars
+without MKs measurements we need another method                   (Skopal 2005). We discard these sources in our occur-
+to compute mass. We fit the mass and radius mea-                  rence rate analysis, reducing our sample to 557 stars.
+surements for 183 M dwarfs in M15 with a third de-
+gree polynomial using the polyfit routine in the numpy                                    4.2. Binaries
+(Oliphant 2015) Python package and find:
+
+        M⋆ = −0.01 + 0.63R⋆ + 1.34R⋆2 − 0.99R⋆3 .       (3)         10 An S-type star is a cool giant containing zirconium monoxide
+
+                                                                  bands in their spectra (Merrill 1922, 1923). This is not to be
+                                                                  confused with an S-type orbit, where a planet orbits a single star
+    9 https://github.com/awmann/M -M K-                           in a binary star system.
+                                     Mid-Type M Dwarf Planet Occurrence Rates                                            9
+
+                                                                  instrument systematics, and to confirm our assessment
+                                                                  that these systems are likely white dwarf-M dwarf bi-
+                                                                  naries. Wang et al. (2014) and Kraus et al. (2016) find
+                                                                  that close binary companions appear to suppress planet
+                                                                  formation, and hence decrease planet occurrence rates
+                                                                  for these systems. As such, we remove the eclipsing and
+                                                                  candidate white dwarf-M dwarf binaries from our anal-
+                                                                  ysis of planet occurrence rates, reducing our sample to
+                                                                  551 stars.
+
+
+
+
+Figure 5. Four giant stars identified in our data (in color),
+corresponding to two early and two late-type M giants. We
+plot an M dwarf of similar spectral class (black) to show
+differences in spectral features. Prominent spectral lines used
+to delineate dwarf and giant spectra are identified at the top
+of the plot.
+
+   Within the Kepler data, 2,909 eclipsing binaries have
+been identified11 , which is ∼1.5% of the nearly 200,000
+Kepler stars observed (Kirk et al. 2016; Abdul-Masih et al.
+2016).     Two of our targets are eclipsing binaries,
+KIC 07174349 and KIC 10002261, which we spectral                  Figure 6. Four potential white dwarf-M dwarf binaries.
+type as M4 V and M3.5 V, respectively.                            KIC 09772829 and KIC 100064337 are compared an M2 V
+                                                                  spectrum, and KIC 07983929 and KIC 09713959 are com-
+   Our spectra are not high enough resolution to be
+                                                                  pared to an M3 V spectrum (black). Spectra are normalized
+able to detect single- and double-lined spectroscopic             to 8,350 Å.
+binaries, however, we identify four targets which are
+potential white dwarf-M dwarf binaries. The spectra
+of KIC 07983929, KIC 09713959, KIC 09772829, and                            4.3. Gaia Color Cuts and Binaries
+KIC 10064337 have excess flux toward blue wavelengths               We identify 61 targets with more than one source
+(Figure 6), which we attribute to a companion. Addi-              within 4′′ of the KIC coordinates, in which case we
+tionally, these spectra have similar spectral shapes to           choose the target with the smallest difference in G − Kp
+red-optical spectra of white dwarf–M dwarf binaries in            magnitudes. We also check if the MKs magnitudes (Sec-
+the literature (e.g., Ren et al. 2014; Skinner et al. 2017).      tion 3.1) are in the range we expect for an M dwarf
+It is possible that the excess blue flux could be due to          (4.6 . MKs . 9.8; M15). Four targets for which we
+either improper flux calibration, slit losses, or atmo-           do not have spectra (KIC 10711066, KIC 10473048,
+spheric dispersion. Since all these binary candidates             KIC 06757650, and KIC 06029053) have Gaia coor-
+were observed using Hydra, we checked the spectra of              dinates < 0.′′ 4 from the KIC coordinates, but have
+other M dwarfs observed at the same time in the same              MKs magnitudes of 2.0, -1.6, -3.7, and 3.2, respec-
+field configuration and find no excess blue flux in these         tively. We discard these four sources from our analysis
+targets. Additionally, none of these targets were ob-             as they are likely non-M dwarfs, reducing our sample
+served with the same fiber, and other targets observed            to 547 stars. Two spectroscopically observed targets,
+with the same fiber in a different fiber configuration do         KIC 04545041 (M3.5 V) and KIC 03631048 (M4 V) have
+not exhibit excess blue flux. We recommend additional             MKs of 4.06 and 4.45, respectively. Additionally, two
+spectroscopic observations of these targets at red and            photometrically classified targets, KIC 11196417 (M5 V)
+blue wavelengths to check that these effects are not from         and KIC 10991155 (M4 V), have MKs of 4.53 and 4.56,
+                                                                  respectively. For these four targets, we use their effec-
+  11 http://keplerebs.villanova.edu/, as of April 2019            tive temperatures to determine radius since the MKs vs.
+                                                                  R⋆ relationships do not extend to MKs < 4.6.
+10                                             Hardegree-Ullman et al.
+
+
+
+
+Figure 7. Probable binary stars sharing common proper motions and distances in the Gaia data. These 10′′ cutouts are stacked
+g, i, and y-band images from Pan-STARRS and are centered on the target coordinates from the NASA Exoplanet Archive. The
+image for KIC 10731839 is only g-band since it is saturated in the other filters.
+
+  Within the Gaia data, 15 targets have a nearby star               With our updated stellar properties in hand, we now
+with a similar distance and common proper motion,                turn to planets around mid-type M dwarfs. In our Ke-
+which we identify as probable binaries. In Figure 7              pler star sample, there are six planet systems containing
+we show 10′′ cutout images of these 15 targets from              12 confirmed planets. We also include Kepler-1650 b,
+the Panoramic Survey Telescope and Rapid Response                for which the host star has an r − J color of 3.167, just
+System survey (Pan-STARRS, Chambers et al. 2016).                missing our color cut. Muirhead et al. (2014) identify
+We do not discard these stars in our analysis, since             Kepler-1650 as an M3 V star from H and K-band spec-
+we use the G − Kp color selection to identify our pri-           tra. Our optical spectrum of this target gives us a clas-
+mary targets. In total, we have identified 21 binaries           sification of M3.5 V. Spectra for all planet host stars are
+and binary candidates, which is 3.65% of our total sam-          shown in Figure 8.
+ple. Duchêne & Kraus (2013) report a decreasing stellar            Additionally, there are four Kepler Objects of Interest
+multiplicity frequency with decreasing stellar mass, and         (KOI) within our sample: KOI-959, KOI-5237, KOI-
+estimate that 26 ± 3% of M dwarfs are in multiple sys-           6705, and KOI-8012. Based on our spectra, KOI-959
+tems. Winters et al. (2019) find an M dwarf multiplicity         (KIC 10002261), KOI-5327 (KIC 06776555), KOI-8012
+of 26.8 ± 1.4%, and also note that lower mass M dwarfs           (KIC 10452252) have spectral types of M3.5 V, M4 V,
+have fewer companions than higher mass M dwarfs. We              and M5 V, respectively. Using the spectral index typ-
+recognize that there are likely more unresolved binaries         ing system of Lépine et al. (2013), Gaidos et al. (2016a)
+in our sample since we detect a ∼4% binary fraction,             report KOI-6705 (KIC 06423922) to be an M3.4 V star
+much lower than the expected ∼27%, however, the as-              from a SNIFS optical spectrum.
+sessment of the effect of binaries on planet occurrence             Slawson et al. (2011) identify KOI-959 to be an eclips-
+rates is beyond the scope of this paper.                         ing binary, which makes this planet candidate an as-
+                                                                 trophysical false positive. Additionally, Furlan et al.
+                                                                 (2017) and Ziegler et al. (2018) find a nearby compan-
+                                                                 ion to KOI-959 at a separation of ∼0.′′ 77 using adap-
+        5. MID-TYPE M DWARF PLANETS
+                                 Mid-Type M Dwarf Planet Occurrence Rates                                                  11
+
+
+
+
+                                 (a)                                                             (b)
+
+Figure 8. (a) Planet host spectra for Kepler mid-type M dwarfs, ordered by spectral type from M3 V (top) to M5 V (bottom).
+These are the first published optical spectra for Kepler-1646 (M4 Ve) and Kepler-1582 (M5 V). (b) Orbital period versus planet
+radius for Kepler mid-type M dwarfs. The planet radii have been updated using our new stellar radius measurements. The
+radii of Earth and Mars are shown for reference.
+tive optics imaging. KOI-5327 is associated with three            ments, and compute insolation flux Sp using:
+nearby companions at separations of 1.′′ 88, 3.′′ 63, and
+3.′′ 96 (Ziegler et al. 2017; Furlan et al. 2017). The Ke-                               !            !        !2
+                                                                                    Sp           L⋆       AU
+pler pipeline data validation report for this system                                         =                      ,     (4)
+shows an out-of-transit centroid offset of 2.′′ 09 (6.3σ),                          S⊕           L⊙        a
+which might be due to the closest companion star. It is
+unclear which star the planet orbits, so we do not include        where (L⋆ /L⊙ ) = (R⋆ /R⊙ )2 (Teff /T⊙ )4 is the stellar lu-
+this system in our analysis. Gaidos et al. (2016a) iden-          minosity, and a is the semi-major axis in AU, com-
+tify KOI-6705.01 as a likely false positive due to charge         puted from Kepler’s third law using planet orbital pe-
+transfer inefficiency in a detector column on which a             riod from the literature and our stellar masses. The
+nearby eclipsing binary falls. Thompson et al. (2018)             planet with the lowest stellar irradiance in our sam-
+identify KOI-8012.01 as a Mercury-sized planet candi-             ple is Kepler-1649 b, an Earth-sized planet (Rp =
+date in the habitable zone of its host star. Our reassess-        0.985 ± 0.054 R⊕) receiving nearly twice the stellar ir-
+ment of the radius of KOI-8012 places it at 0.43 R⊙,              radiation as Earth. The habitable zone definitions of
+which in turn increases the planet candidate radius to            Kopparapu et al. (2013) place this planet above the
+0.83 R⊕. We do not include this planet candidate in our           maximum greenhouse stellar irradiance limit.
+analysis since the system parameters (e.g., period, semi-
+major axis) do not have reported uncertainties, which
+                                                                            6. PLANET OCCURRENCE RATE
+makes accurate analysis of this system difficult. Addi-
+tionally, the Kepler light curve for KOI-8012 shows sig-            With our updated stellar properties of 547 stars and a
+nificant variability and extreme flare activity, which sug-       population of 13 planets around mid-type M dwarfs, we
+gests that any planet candidates around this star could           now have the critical pieces necessary to compute planet
+be astrophysical false positives.                                 occurrence rates. We adopt the grid-based method (e.g,
+    Table 2 and Figure 8 show the confirmed planets               Howard et al. 2012; Dressing & Charbonneau 2013;
+around mid-type M dwarfs in the Kepler field. We                  Petigura et al. 2013) to compute planet occurrence
+note that all these planets are smaller than Neptune              rates, f (Rp , P ), which is the fraction of stars in a pop-
+(3.865 R⊕) and have orbital periods shorter than 10               ulation (e.g., mid-type M dwarfs) that have planets
+days. We update the planet parameters for all these               with specific radii Rp and orbital periods P . Using the
+systems based on our stellar radius and mass measure-             population of known planets around Kepler mid-type
+                                                                  M dwarfs, we count the number of Kepler mid-type M
+                                                                  dwarfs N⋆,i around which the ith known planet could
+                                                                  have been detected with sufficient photometric precision
+12                                                 Hardegree-Ullman et al.
+
+if it was at a transiting orbital inclination:                  (S/N − 6)/6 for 6 < S/N ≤ 12. The sum of the de-
+                                                                tection efficiencies, rounded to the nearest integer, then
+                                  Np
+                                  X  1/pi                       becomes N⋆,i .
+                  f (Rp , P ) =                ,        (5)
+                                        N⋆,i                      Our stellar selection criteria were chosen to isolate
+                                  i=1
+                                                                stars with a spectral type of M3 V and beyond, though
+where the sum is over the number of known planets Np            we observed 40 stars with earlier spectral types. In our
+from the Kepler data within the specified planet radius         planet sample, we have identified the Kepler planets
+and orbital period range. The probability p that planet         around M3 V to M5 V stars. For our planet occurrence
+i is in a transiting geometry, is defined as:                   rate calculations, we only consider the stars in this spec-
+                             !                 !                tral type range.
+                   R⋆,i + Rp     1 + ei sin ωi
+            pi =                                 ,  (6)
+                       ai           1 − e2i                                    6.1. Monte Carlo Analysis
+where ai is the semi-major axis of planet i, ei is the             The measured star and planet parameters found in
+eccentricity, and ωi is the longitude of periastron (Winn       Equations 7, 8, and 9 have uncertainties which con-
+2010; Stevens & Gaudi 2013). Typically, Rp ≪ R⋆ and             tribute to the total uncertainty of the planet occurrence
+small planets on close-in orbits are nearly circular, which     rate calculation. There is also spectral type uncertainty,
+makes pi ≈ R⋆,i /ai . However, an Earth-sized planet            which can move stars, including planet hosts, into or
+around a mid-type M dwarf is between 2.5 and 7.5%               out of a spectral type bin. Additionally, due to our
+of its host star diameter, which can have a small effect        small planet sample size, we need to account for count-
+on the transit probability. Assuming circular orbits, we        ing errors. In order to address these uncertainties we
+use:                                  !                         perform the following MC analysis. First, we address
+                           R⋆,i + Rp                            the ±1 spectral type uncertainty by drawing a random
+                   pi =                .                (7)     number from a uniform distribution between -1 and 1
+                               ai
+                                                                for each star in our sample and add those numbers to
+  We compute N⋆,i from the number of stars for which            each spectral type. Second, we draw a number of planet
+the S/N from the Kepler photometry is high enough               detections Np from a Poisson distribution with an expec-
+that a known planet could be detected. The S/N is               tation value (λ) equal to the detected planet sample size,
+calculated by:                                                  similar to the method used in Silburt et al. (2015) and
+                                                                Gaidos et al. (2016b). For example, our total Kepler
+                      Rp2 /R⋆2
+                               r
+                                 tobs
+               S/N =                  ,          (8)            mid-type M dwarf planet sample size is 13, so we ran-
+                     CDPPeff      P                             domly draw a number from a Poisson distribution with
+where CDPPeff is the Combined Differential Photomet-            λ = 13, then sample with replacement that number of
+ric Precision over the duration of the transit, tobs is the     planets from our mid-type M dwarf planet catalog to run
+total time spent observing the star with Kepler, and P is       the occurrence rate calculations. Next, for each parame-
+the known planet orbital period (Muirhead et al. 2015).         ter with an uncertainty measurement in Equations 7, 8,
+CDPPeff , more precisely, is an estimate of white noise         and 9, we generate 104 random samples from a Gaussian
+during a specific transit duration (Christiansen et al.         distribution and perform each calculation with these dis-
+2012). For each star, we fit a power law to the CDPP            tributions. We also account for the effect of transit du-
+values versus time for transits between 1.5 and 15 hours,       ration on S/N by assigning a random inclination angle
+and use this fit to determine CDPPeff for each planet           to compute the impact parameter in Equation 9. We
+transit duration, tdur . We compute tdur for known plan-        then run the results through Equation 5, and repeat this
+ets using:                                                      procedure 103 times for seven different bins: all mid-
+                         p                        !             type M dwarfs (M3 V to M5.5 V), individual spectral
+              P            (R   + R   )2 − (bR )2               types (M3 V to M3.5 V, M4 V to M4.5 V, and M5 V to
+                              ⋆     p         ⋆
+       tdur = sin−1                                 , (9)
+              π                     a                           M5.5 V), Earth-sized planets (0.5 R⊕ < Rp < 1.5 R⊕ ),
+                                                                super-Earths (1.5 R⊕ < Rp < 2.5 R⊕ ), and compact
+where b = a cos θ/R⋆ is the impact parameter with or-           multiples.
+bital inclination angle θ.                                         The resulting planet occurrence rates and planet de-
+  We use the linear ramp detection efficiency model             tection distributions are shown in Figure 9. The occur-
+from Mulders et al. (2015a), which was adapted from             rence rate distributions all exhibit positive skew, high-
+Fressin et al. (2013), where detection efficiency feff = 0      lighted by the box-and-whisker plots above each dis-
+for S/N ≤ 6, feff = 1 for S/N > 12, and feff =                  tribution. Due to our random selection of Np from a
+                                  Mid-Type M Dwarf Planet Occurrence Rates                                                     13
+
+
+
+
+Figure 9. (Left) Planet occurrence rate distributions from our Monte Carlo analysis for different spectral type bins, planet
+radius bins, and for compact multiple systems. Above each distribution we give the corresponding box-and-whisker plot, which
+show the quartiles of each distribution. The 16th and 84th percentiles are shown as blue circles, and any outliers beyond
+Q3 + 1.5 × IQR are shown as open circles. The M5 V upper whisker extends to ∼15, however, we restrict the horizontal range
+to just beyond the 84th percentile of the M5 V distribution for clarity in the other plots. All of these plots are normalized such
+that the peak of each distribution is equal to one. (Right) Planet detection distributions from the planet occurrence rate Monte
+Carlo analysis and corresponding box-and-whisker plots.
+
+Poisson distribution, an outcome of zero planets is pos-            zero for the planet occurrence rate. Even though the
+sible, which results in a planet occurrence rate of zero.           Np distributions have a non-zero median, drawing zero
+For our seven different bins, those with a smaller initial          planets will always result in an occurrence rate of zero,
+sample of planets are more likely to randomly draw zero             whereas drawing one or more planets can result in a dif-
+planets. This effect is most prominent for the individ-             ferent planet occurrence rate depending on the transit
+ual spectral type bins, which have prominent peaks at               probability of the randomly selected planets and number
+14                                               Hardegree-Ullman et al.
+
+of stars from the MC calculation, effectively smoothing       stars in the Kepler Stellar Catalog. For low mass stars,
+out other peaks. We report the results from the planet        Boyajian et al. (2012) found that evolutionary models,
+occurrence rate calculation in Table 1.                       which were largely used to determine radii in the Ke-
+                                                              pler Stellar Catalog, under predict stellar radii. Our ra-
+Table 1. Planet occurrence rates per spectral type, planet    dius measurements have a median value of 0.33 R⊙ , 58%
+radius, and compact multiples for mid-type M dwarfs.          larger than the median 0.21 R⊙ from the Kepler Stel-
+                                                              lar Catalog. The stellar radii reported in Gaidos et al.
+         Range           Planets per star   Np      N⋆,i
+                                                              (2016b) were a significant improvement over those de-
+    M3 V to M5.5 V           1.19+0.70
+                                 −0.49      11+5
+                                              −4   412+8
+                                                      −8      rived from evolutionary models, but they are still ∼20%
+    M3 V to M3.5 V           0.86+1.32
+                                 −0.68      3+3
+                                             −2    95+8
+                                                     −8       smaller than our measurements (Figure 4).
+    M4 V to M4.5 V           1.36+2.30
+                                 −1.02      3+3
+                                             −2    92+9
+                                                     −8          Ballard & Johnson (2016) assessed planet multiplicity
+    M5 V to M5.5 V           3.07+5.49
+                                 −2.49      2+3
+                                             −1    37+5
+                                                     −6       among Kepler M dwarfs, and found that half of these
+ 0.5 R⊕ < Rp < 1.5 R⊕        0.99+0.66
+                                 −0.50      8+5
+                                             −3    412+8
+                                                      −9
+                                                              systems contain five or more co-planar planets, while the
+ 1.5 R⊕ < Rp < 2.5 R⊕        0.27+0.25
+                                 −0.18      4+3
+                                             −3    412+7
+                                                      −9
+                                                              other half are either single or multiple planet systems
+   Compact Multiple          0.44+0.45      3+3    411+8      with large mutual planet inclinations. Of the seven con-
+                                 −0.33       −2       −8
+                                                              firmed Kepler mid-type M dwarf planet systems, three
+Note—We report the median, 16th , and 84th percentiles of
+                                                              of them contain at least three planets, whereas the other
+ each distribution from 103 Monte Carlo trials.
+                                                              four systems contain at least one planet. It is possi-
+                                                              ble that all of these systems could contain additional
+                                                              non-transiting planets or planets that fall below the
+                    7. DISCUSSION                             detection threshold of Kepler. The discovery of seven
+                                                              Earth-sized planets around the M8 V star TRAPPIST-
+  For early-type M dwarfs with orbital periods between
+                                                              1 shows that planet formation occurs through the end
+0.5 and 10 days and planets with 0.5 R⊕ < Rp < 2.5 R⊕ ,
+                                                              of the main sequence (Gillon et al. 2017), and supports
+DC15 derive a planet occurrence rate of 0.63+0.08
+                                               −0.06 plan-    both the increase in planet occurrence rates toward later
+ets per star. Similarly, Mulders et al. (2015b) compute
+                                                              spectral types and the large planet multiplicity from
+a planet occurrence rate for M dwarfs in this range to be
+                                                              Ballard & Johnson (2016).
+0.53 planets per star. Our total occurrence rate for mid-
+                                                                 Thompson et al. (2018) note that pipeline detection
+type M dwarfs is approximately double that of DC15
+                                                              efficiency, astrophysical reliability, and imperfect stel-
+and Mulders et al. (2015b) for early-type M dwarfs. We
+                                                              lar information must all be taken into account for
+show a comparison of occurrence rates from our MC
+                                                              planet occurrence rate calculations. Pipeline detec-
+analysis to values from DC15 and Mulders et al. (2015b)
+                                                              tion efficiency has been computed for Kepler F, G,
+in Figure 10. We also include in this figure the planet
+                                                              and K stars using pixel-level and flux-level transit in-
+occurrence rates for stars of each spectral type F, G,
+                                                              jection (Christiansen et al. 2016; Christiansen 2017;
+and K from Mulders et al. (2015b). There is a clear
+                                                              Burke & Catanzarite 2017). DC15 performed their own
+trend of increasing planet occurrence toward later spec-
+                                                              pipeline detection efficiency for Kepler M dwarfs by in-
+tral types. If we take the median values of planet oc-
+                                                              jecting transit signals into light curves for all their target
+currence rates from our MC analysis, this suggests an
+                                                              stars. For planets between 1 R⊕ and 3 R⊕ at orbital pe-
+increasing trend of small planets at short orbital periods
+                                                              riods less than 10 days, their pipeline was able to recover
+toward later-type M dwarfs. We also find that a typical
+                                                              between 80 and 90% of the injected transit signals. For
+mid-type M dwarf will host a short period Earth-sized
+                                                              planets below 1 R⊕ , recovery averaged 58%. Astrophys-
+planet (0.5 R⊕ < Rp < 1.5 R⊕ ), and larger planets are
+                                                              ical reliability tests are used to determine whether or
+about four times less common.
+                                                              not an observed event is due to instrumental or stellar
+  We revise the planet occurrence rate for compact mul-
+                                                              noise or other astrophysical events. Certain signals can
+tiples around mid-type M dwarfs to be 0.44+0.45
+                                              −0.33 . This    mimic a planet transit (e.g., eclipsing binaries, back-
+value is computed following the same MC procedure, but
+                                                              ground eclipsing binaries), so tools have been developed
+only considers the detectability of the outermost planet
+                                                              to automatically vet planet candidates (e.g., Robovetter,
+in the multi-planet system. Our occurrence rate for
+                                                              Thompson et al. 2018) and statistically validate planet
+compact multiples is consistent within 1σ to 0.21+0.07−0.05   candidates (e.g., vespa, Morton et al. 2016). Our work
+reported by Muirhead et al. (2015), though our me-
+                                                              has addressed the third issue of imperfect stellar infor-
+dian value is higher due to our revised stellar radii.
+                                                              mation, though we do take into account a simple linear
+Muirhead et al. (2015) assumed a uniform stellar radius
+                                                              ramp model of detection efficiency in our calculations.
+of 0.2 R⊙ , the peak of the radius distribution for these
+                                 Mid-Type M Dwarf Planet Occurrence Rates                                                  15
+
+
+
+
+Figure 10. Planet occurrence rate as a function of stellar effective temperature for planets with orbital periods shorter than
+10 days and radii between 0.5 and 2.5 R⊕ . The measurements from our Monte Carlo analysis are shown as box-and-whisker
+plots (see Figure 9), where the blue line indicates the median value, the blue dots are the 16th and 84th percentiles of the
+distributions, and the box width corresponds to the temperature uncertainty. The inset plot shows the planet occurrence rates
+for M3 V, M4 V, and M5 V, which show evidence for an increase of planet occurrence toward later M dwarfs.
+
+We also note that Silburt et al. (2015) and Gaidos et al.         borhood. Stelzer et al. (2013) conducted a survey of UV
+(2016b) caution placing planets into discrete radius and          and X-ray activity of M dwarfs within 10 parsecs of the
+period bins because it ignores information about the              Sun, in which they observed 159 M0 V through M8 V
+underlying planet distribution and will underestimate             stars, and estimated that their volume-limited M dwarf
+the planet occurrence rate. With a sample of only 13              sample was 90% complete. This sample includes 101
+planets, however, it is difficult to determine a practical        stars with spectral types between M3 V and M5.5 V,
+planet distribution without making some assumptions.              which means there are potentially 120+71−49 small, short
+Additionally, accounting for small planet sample size             period planets around these nearby stars. So far, there
+dominates the error budget for our occurrence rate cal-           have been 20 planets found around 9 of these nearby
+culations.                                                        mid-type M dwarfs, all discovered via the radial velocity
+  From our Kepler planet occurrence rates, we can pre-
+dict the number of planets in orbital periods less than
+10 days around mid-type M dwarfs in the local neigh-
+16                                              Hardegree-Ullman et al.
+
+technique12 . Of those 20 planets, 10 have orbital peri-           bital periods less than 10 days around bright (KS < 10)
+ods shorter than 10 days. The faintest mid-type M dwarf            mid-type M dwarfs, assuming the occurrence rates of
+around which a planet has been detected using the ra-              DC15. Based on our occurrence rates, we expect a more
+dial velocity technique has a V -band magnitude of 12.22           optimistic TESS yield of ∼100 planets around bright
+(GJ 3323), and the smallest radial velocity amplitude for          mid-type M dwarfs.
+a planet detected around these stars is 1.06 ± 0.15 m s−1
+(GJ 273 c, Astudillo-Defru et al. 2017). There are 51                            8. ACKNOWLEDGEMENTS
+nearby mid-type M dwarfs with V -band magnitudes
+                                                                         We would like to thank WIYN observing assistants
+less than 12.22. Our planet occurrence rates suggest
+                                                                      Amy Robertson, Anthony Paat, Christian Soto, Dave
+there are 61+35
+             −25 small, short period planets around these
+                                                                      Summers, Doug Williams, Karen Butler, and Malanka
+stars. Since 10 of these planets have already been
+                                                                      Riabokin, DCT telescope operators Andrew Hayslip,
+found, there may be around 50 additional planets or-
+                                                                      Heidi Larson, Jason Sanborn, and Teznie Pugh, and
+biting nearby mid-type M dwarfs which could be de-
+                                                                      IRTF telescope operators Brian Cabreira, Dave Griep,
+tected with current radial velocity instruments (e.g.,
+                                                                      Eric Volquardsen, Greg Osterman, and Tony Matulonis.
+HARPS, Pepe et al. 2011), assuming the planets are
+                                                                      We would also like to thank NOAO observing support
+massive enough to induce a 1 m s−1 signal. NEID and
+                                                                      scientists Daryl Willmarth, Dianne Harmer, Mark Ev-
+EXPRES aim to achieve even greater precision below
+                                                                      erett, and Susan Ridgway. K. Hardegree-Ullman would
+30 cm s−1 at optical wavelengths (Halverson et al. 2016;
+                                                                      like to thank Adam Schneider and Wayne Oswald for
+Jurgenson et al. 2016). The Habitable Zone Planet
+                                                                      conducting some of the observations herein at the DCT
+Finder (HPF; Mahadevan et al. 2012) will specifically
+                                                                      and WIYN, and Courtney Dressing, Gijs Mulders, and
+target mid- to late-type M dwarfs at near-infrared wave-
+                                                                      Jon Zink for informative discussions regarding planet
+lengths, with a goal of 1 m s−1 precision. Recent com-
+                                                                      occurrence rates and statistics.
+missioning observations with HPF have already achieved
+                                                                         Data presented herein were obtained at the WIYN
+1.3 m s−1 precision on Barnard’s Star (Mahadevan et al.
+                                                                      Observatory from telescope time allocated to NN-
+2018).
+                                                                      EXPLORE through the scientific partnership of the
+   Since the original Kepler mission was designed to de-
+                                                                      National Aeronautics and Space Administration, the
+tect Earth-like planets around Sun-like stars, less em-
+                                                                      National Science Foundation, and the National Optical
+phasis was placed on low-mass stars. The K2 mission
+                                                                      Astronomy Observatory. This work was supported by
+(Howell et al. 2014), however, was well suited for de-
+                                                                      a NASA WIYN PI Data Award, administered by the
+tecting planets around the latest type stars along the
+                                                                      NASA Exoplanet Science Institute.
+ecliptic plane, and has already produced dozens of con-
+                                                                         These results made use of the Discovery Channel Tele-
+firmed and candidate planets around M dwarfs, open-
+                                                                      scope at Lowell Observatory. Lowell is a private, non-
+ing up another rich data set to expand this planet oc-
+                                                                      profit institution dedicated to astrophysical research and
+currence rate study. The K2 M Dwarf Project (PIs
+                                                                      public appreciation of astronomy and operates the DCT
+Schleider, J.; Crossfield, I.; Dressing, C.) alone has over
+                                                                      in partnership with Boston University, the University
+25,000 targets in K2 Campaigns 4 through 19, about
+                                                                      of Maryland, the University of Toledo, Northern Ari-
+five times larger than the number of M dwarfs ob-
+                                                                      zona University and Yale University. The upgrade of
+served with Kepler. The ground based survey MEarth
+                                                                      the DeVeny optical spectrograph has been funded by a
+(Nutzman & Charbonneau 2008) is surveying M dwarfs
+                                                                      generous grant from John and Ginger Giovale.
+for planets, and the Search for habitable Planets EClips-
+                                                                         Guoshoujing Telescope (the Large Sky Area Multi-
+ing ULtra-cOOl Stars (SPECULOOS; Burdanov et al.
+                                                                      Object Fiber Spectroscopic Telescope LAMOST) is a
+2017) is starting to search for planets around 1,000 late-
+                                                                      National Major Scientific Project built by the Chinese
+type M dwarfs and brown dwarfs. Since small, short
+                                                                      Academy of Sciences. Funding for the project has
+period planets are more prevalent around smaller stars,
+                                                                      been provided by the National Development and Reform
+these surveys should be fruitful. The recently launched
+                                                                      Commission. LAMOST is operated and managed by the
+TESS mission is also expected to find 500 to 1,000
+                                                                      National Astronomical Observatories, Chinese Academy
+planets around bright M dwarfs across the entire night
+                                                                      of Sciences.
+sky (Barclay et al. 2018; Ballard 2018). Barclay et al.
+                                                                         This research has made use of the NASA Exoplanet
+(2018) predicted that 54 planets will be found with or-
+                                                                      Archive, which is operated by the California Institute
+                                                                      of Technology, under contract with the National Aero-
+                                                                      nautics and Space Administration under the Exoplanet
+  12 https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=planets,
+
+as of April 2019                                                      Exploration Program.
+                                  Mid-Type M Dwarf Planet Occurrence Rates                                                     17
+
+  This work has made use of data from the European         wan, the Space Telescope Science Institute, the National
+Space Agency (ESA) mission Gaia (https://www.cosmos.esa.int/gaia),
+                                                           Aeronautics and Space Administration under Grant No.
+processed by the Gaia Data Processing and Analysis         NNX08AR22G issued through the Planetary Science Di-
+                                                           vision of the NASA Science Mission Directorate, the
+Consortium (DPAC, https://www.cosmos.esa.int/web/gaia/dpac/consortium).
+Funding for the DPAC has been provided by national         National Science Foundation Grant No. AST-1238877,
+institutions, in particular the institutions participating the University of Maryland, Eotvos Lorand University
+in the Gaia Multilateral Agreement.                        (ELTE), the Los Alamos National Laboratory, and the
+  This work made use of the gaia-kepler.fun crossmatch     Gordon and Betty Moore Foundation.
+database created by Megan Bedell.                            The authors wish to recognize and acknowledge the
+  The Pan-STARRS1 Surveys (PS1) and the PS1 public         very significant cultural role and reverence that the sum-
+science archive have been made possible through contri-    mit of Maunakea has always had within the indigenous
+butions by the Institute for Astronomy, the University     Hawaiian community. We are most fortunate to have the
+of Hawaii, the Pan-STARRS Project Office, the Max-         opportunity to conduct observations from this moun-
+Planck Society and its participating institutes, the Max   tain.
+Planck Institute for Astronomy, Heidelberg and the Max
+                                                             Facilities: WIYN (Hydra), DCT (DeVeny), IRTF
+Planck Institute for Extraterrestrial Physics, Garching,
+                                                           (SpeX), NASA Exoplanet Archive
+The Johns Hopkins University, Durham University, the
+University of Edinburgh, the Queen’s University Belfast,     Software: dustmaps (Green et al. 2018), IDL Astron-
+the Harvard-Smithsonian Center for Astrophysics, the       omy User’s Library (Landsman 1993), IRAF (Tody 1986,
+Las Cumbres Observatory Global Telescope Network           1993),numpy(Oliphant2015),scikit-learn(Pedregosa et al.
+Incorporated, the National Central University of Tai-      2011), Spextool (Cushing et al. 2004), xtellcor (Vacca et al.
+                                                           2003)
+
+
+                                                         REFERENCES
+Abdul-Masih, M., Prša, A., Conroy, K., et al. 2016, AJ,        Bochanski, J. J., West, A. A., Hawley, S. L., & Covey,
+  151, 101, doi: 10.3847/0004-6256/151/4/101                      K. R. 2007, AJ, 133, 531, doi: 10.1086/510240
+Angelo, I., Rowe, J. F., Howell, S. B., et al. 2017, AJ, 153,   Borucki, W. J., Koch, D., Basri, G., et al. 2010, Science,
+  162, doi: 10.3847/1538-3881/aa615f                              327, 977, doi: 10.1126/science.1185402
+Astudillo-Defru, N., Forveille, T., Bonfils, X., et al. 2017,
+                                                                Boyajian, T. S., von Braun, K., van Belle, G., et al. 2012,
+  A&A, 602, A88, doi: 10.1051/0004-6361/201630153
+                                                                  ApJ, 757, 112, doi: 10.1088/0004-637X/757/2/112
+Bailer-Jones, C. A. L. 2015, PASP, 127, 994,
+                                                                Brown, T. M., Latham, D. W., Everett, M. E., & Esquerdo,
+  doi: 10.1086/683116
+                                                                  G. A. 2011, AJ, 142, 112,
+Bailer-Jones, C. A. L., Rybizki, J., Fouesneau, M.,
+  Mantelet, G., & Andrae, R. 2018, ArXiv e-prints.                doi: 10.1088/0004-6256/142/4/112
+  https://arxiv.org/abs/1804.10121                              Burdanov, A., Delrez, L., Gillon, M., et al. 2017,
+Ballard, S. 2018, arXiv e-prints, arXiv:1801.04949.               SPECULOOS Exoplanet Search and Its Prototype on
+  https://arxiv.org/abs/1801.04949                                TRAPPIST (Springer), 130
+Ballard, S., & Johnson, J. A. 2016, ApJ, 816, 66,               Burke, C. J., & Catanzarite, J. 2017, Planet Detection
+  doi: 10.3847/0004-637X/816/2/66                                 Metrics: Per-Target Flux-Level Transit Injection Tests of
+Barclay, T., Pepper, J., & Quintana, E. V. 2018, ArXiv            TPS for Data Release 25, Tech. rep., NASA
+  e-prints. https://arxiv.org/abs/1804.05050                    Chambers, K. C., Magnier, E. A., Metcalfe, N., et al. 2016,
+Barden, S. C., Armandroff, T., Muller, G., et al. 1994, in        ArXiv e-prints. https://arxiv.org/abs/1612.05560
+  Proc. SPIE, Vol. 2198, Instrumentation in Astronomy
+                                                                Christiansen, J. L. 2017, Planet Detection Metrics:
+  VIII, ed. D. L. Crawford & E. R. Craine, 87–97
+                                                                  Pixel-Level Transit Injection Tests of Pipeline Detection
+Batalha, N. M., Borucki, W. J., Koch, D. G., et al. 2010,
+                                                                  Efficiency for Data Release 25, Tech. rep., NASA
+  ApJL, 713, L109, doi: 10.1088/2041-8205/713/2/L109
+Berger, T. A., Huber, D., Gaidos, E., & van Saders, J. L.       Christiansen, J. L., Jenkins, J. M., Caldwell, D. A., et al.
+  2018, ArXiv e-prints. https://arxiv.org/abs/1805.00231          2012, PASP, 124, 1279, doi: 10.1086/668847
+Bochanski, J. J., Hawley, S. L., Covey, K. R., et al. 2010,     Christiansen, J. L., Clarke, B. D., Burke, C. J., et al. 2016,
+  AJ, 139, 2679, doi: 10.1088/0004-6256/139/6/2679                ApJ, 828, 99, doi: 10.3847/0004-637X/828/2/99
+18                                               Hardegree-Ullman et al.
+
+Cui, X.-Q., Zhao, Y.-H., Chu, Y.-Q., et al. 2012, Research      Kirkpatrick, J. D., Henry, T. J., & McCarthy, Jr., D. W.
+  in Astronomy and Astrophysics, 12, 1197,                        1991, ApJS, 77, 417, doi: 10.1086/191611
+  doi: 10.1088/1674-4527/12/9/003                               Kopparapu, R. K., Ramirez, R., Kasting, J. F., et al. 2013,
+Cushing, M. C., Rayner, J. T., & Vacca, W. D. 2005, ApJ,           ApJ, 765, 131, doi: 10.1088/0004-637X/765/2/131
+  623, 1115, doi: 10.1086/428040                                Kraus, A. L., Ireland, M. J., Huber, D., Mann, A. W., &
+Cushing, M. C., Vacca, W. D., & Rayner, J. T. 2004,                Dupuy, T. J. 2016, AJ, 152, 8,
+  PASP, 116, 362, doi: 10.1086/382907                              doi: 10.3847/0004-6256/152/1/8
+Dotter, A., Chaboyer, B., Jevremović, D., et al. 2008,         Landsman, W. B. 1993, in Astronomical Society of the
+  ApJS, 178, 89, doi: 10.1086/589654                               Pacific Conference Series, Vol. 52, Astronomical Data
+Dressing, C. D., & Charbonneau, D. 2013, ApJ, 767, 95,             Analysis Software and Systems II, ed. R. J. Hanisch,
+  doi: 10.1088/0004-637X/767/1/95                                  R. J. V. Brissenden, & J. Barnes, 246
+—. 2015, ApJ, 807, 45, doi: 10.1088/0004-637X/807/1/45          Lépine, S., Hilton, E. J., Mann, A. W., et al. 2013, AJ, 145,
+Duchêne, G., & Kraus, A. 2013, ARA&A, 51, 269,                    102, doi: 10.1088/0004-6256/145/4/102
+  doi: 10.1146/annurev-astro-081710-102602                      Mahadevan, S., Ramsey, L., Bender, C., et al. 2012, in
+Evans, D. W., Riello, M., De Angeli, F., et al. 2018, ArXiv      Ground-based and Airborne Instrumentation for
+  e-prints. https://arxiv.org/abs/1804.09368                     Astronomy IV, Vol. 8446, 84461S
+Fressin, F., Torres, G., Charbonneau, D., et al. 2013, ApJ,     Mahadevan, S., Anderson, T., Balderrama, E., et al. 2018,
+  766, 81, doi: 10.1088/0004-637X/766/2/81                       in SPIE Astronomical Telescopes + Instrumentation,
+Furlan, E., Ciardi, D. R., Everett, M. E., et al. 2017, AJ,      Vol. 10702. https://doi.org/10.1117/12.2313835
+  153, 71, doi: 10.3847/1538-3881/153/2/71
+                                                                Mann, A. W., Brewer, J. M., Gaidos, E., Lépine, S., &
+Gaia Collaboration, Brown, A. G. A., Vallenari, A., et al.
+                                                                 Hilton, E. J. 2013a, AJ, 145, 52,
+  2018, ArXiv e-prints. https://arxiv.org/abs/1804.09365
+                                                                 doi: 10.1088/0004-6256/145/2/52
+Gaia Collaboration, Prusti, T., de Bruijne, J. H. J., et al.
+                                                                Mann, A. W., Deacon, N. R., Gaidos, E., et al. 2014, AJ,
+  2016, A&A, 595, doi: 10.1051/0004-6361/201629272
+                                                                 147, 160, doi: 10.1088/0004-6256/147/6/160
+Gaidos, E. 2013, ApJ, 770, 90,
+                                                                Mann, A. W., Feiden, G. A., Gaidos, E., Boyajian, T., &
+  doi: 10.1088/0004-637X/770/2/90
+                                                                 von Braun, K. 2015, ApJ, 804, 64,
+Gaidos, E., Mann, A. W., & Ansdell, M. 2016a, ApJ, 817,
+                                                                 doi: 10.1088/0004-637X/804/1/64
+  50, doi: 10.3847/0004-637X/817/1/50
+                                                                Mann, A. W., Gaidos, E., & Ansdell, M. 2013b, ApJ, 779,
+Gaidos, E., Mann, A. W., Kraus, A. L., & Ireland, M.
+                                                                 188, doi: 10.1088/0004-637X/779/2/188
+  2016b, MNRAS, 457, 2877, doi: 10.1093/mnras/stw097
+                                                                Mann, A. W., Gaidos, E., Lépine, S., & Hilton, E. J. 2012,
+Gillon, M., Triaud, A. H. M. J., Demory, B.-O., et al. 2017,
+                                                                 ApJ, 753, 90, doi: 10.1088/0004-637X/753/1/90
+  Nature, 542, 456, doi: 10.1038/nature21360
+                                                                Mann, A. W., Dupuy, T., Muirhead, P. S., et al. 2017, AJ,
+Green, G. M., Schlafly, E. F., Finkbeiner, D., et al. 2018,
+                                                                 153, 267, doi: 10.3847/1538-3881/aa7140
+  ArXiv e-prints. https://arxiv.org/abs/1801.03555
+Halverson, S., Terrien, R., Mahadevan, S., et al. 2016, in      Mann, A. W., Dupuy, T., Kraus, A. L., et al. 2019, ApJ,
+  Proc. SPIE, Vol. 9908, Ground-based and Airborne               871, 63, doi: 10.3847/1538-4357/aaf3bc
+  Instrumentation for Astronomy VI, 99086P                      Martı́n, E. L., Cabrera, J., Martioli, E., Solano, E., & Tata,
+Henry, T. J., Jao, W.-C., Subasavage, J. P., et al. 2006, AJ,    R. 2013, A&A, 555, A108,
+  132, 2360, doi: 10.1086/508233                                 doi: 10.1051/0004-6361/201321186
+Howard, A. W., Marcy, G. W., Bryson, S. T., et al. 2012,        Mathur, S., Huber, D., Batalha, N. M., et al. 2017, ApJS,
+  ApJS, 201, 15, doi: 10.1088/0067-0049/201/2/15                 229, 30, doi: 10.3847/1538-4365/229/2/30
+Howell, S. B., Sobeck, C., Haas, M., et al. 2014, PASP, 126,    Merrill, P. W. 1922, ApJ, 56, 457, doi: 10.1086/142716
+  398, doi: 10.1086/676406                                      —. 1923, Publications of the Astronomical Society of the
+Huber, D., Silva Aguirre, V., Matthews, J. M., et al. 2014,      Pacific, 35, 217, doi: 10.1086/123312
+  ApJS, 211, 2, doi: 10.1088/0067-0049/211/1/2                  Morton, T. D., Bryson, S. T., Coughlin, J. L., et al. 2016,
+Jurgenson, C., Fischer, D., McCracken, T., et al. 2016, in       ApJ, 822, 86, doi: 10.3847/0004-637X/822/2/86
+  Proc. SPIE, Vol. 9908, Ground-based and Airborne              Muirhead, P. S., Hamren, K., Schlawin, E., et al. 2012,
+  Instrumentation for Astronomy VI, 99086T                       ApJL, 750, L37, doi: 10.1088/2041-8205/750/2/L37
+Kirk, B., Conroy, K., Prša, A., et al. 2016, AJ, 151, 68,      Muirhead, P. S., Becker, J., Feiden, G. A., et al. 2014,
+  doi: 10.3847/0004-6256/151/3/68                                ApJS, 213, 5, doi: 10.1088/0067-0049/213/1/5
+                                  Mid-Type M Dwarf Planet Occurrence Rates                                                19
+
+Muirhead, P. S., Mann, A. W., Vanderburg, A., et al. 2015,     Skinner, J. N., Morgan, D. P., West, A. A., Lépine, S., &
+  ApJ, 801, 18, doi: 10.1088/0004-637X/801/1/18                  Thorstensen, J. R. 2017, AJ, 154, 118,
+Mulders, G. D., Pascucci, I., & Apai, D. 2015a, ApJ, 798,        doi: 10.3847/1538-3881/aa83b5
+                                                               Skopal, A. 2005, A&A, 440, 995,
+  112, doi: 10.1088/0004-637X/798/2/112
+                                                                 doi: 10.1051/0004-6361:20034262
+—. 2015b, ApJ, 814, 130,
+                                                               Skrutskie, M. F., Cutri, R. M., Stiening, R., et al. 2006, AJ,
+  doi: 10.1088/0004-637X/814/2/130                               131, 1163, doi: 10.1086/498708
+Nutzman, P., & Charbonneau, D. 2008, PASP, 120, 317,           Slawson, R. W., Prša, A., Welsh, W. F., et al. 2011, AJ,
+  doi: 10.1086/533420                                            142, 160, doi: 10.1088/0004-6256/142/5/160
+Oliphant, T. E. 2015, Guide to NumPy, 2nd edn. (USA:           Stelzer, B., Marino, A., Micela, G., López-Santiago, J., &
+                                                                 Liefke, C. 2013, MNRAS, 431, 2063,
+  CreateSpace Independent Publishing Platform)
+                                                                 doi: 10.1093/mnras/stt225
+Pecaut, M. J., & Mamajek, E. E. 2013, ApJS, 208, 9,
+                                                               Stevens, D. J., & Gaudi, B. S. 2013, PASP, 125, 933,
+  doi: 10.1088/0067-0049/208/1/9                                 doi: 10.1086/672572
+Pedregosa, F., Varoquaux, G., Gramfort, A., et al. 2011,       Thompson, S. E., Coughlin, J. L., Hoffman, K., et al. 2018,
+  Journal of Machine Learning Research, 12, 2825                 ApJS, 235, 38, doi: 10.3847/1538-4365/aab4f9
+Pepe, F., Lovis, C., Ségransan, D., et al. 2011, A&A, 534,    Tody, D. 1986, in Proc. SPIE, Vol. 627, Instrumentation in
+  A58, doi: 10.1051/0004-6361/201117055                          astronomy VI, ed. D. L. Crawford, 733
+                                                               Tody, D. 1993, in Astronomical Society of the Pacific
+Petigura, E. A., Howard, A. W., & Marcy, G. W. 2013,
+                                                                 Conference Series, Vol. 52, Astronomical Data Analysis
+  Proceedings of the National Academy of Science, 110,
+                                                                 Software and Systems II, ed. R. J. Hanisch, R. J. V.
+  19273, doi: 10.1073/pnas.1319909110                            Brissenden, & J. Barnes, 173
+Rajpurohit, A. S., Reylé, C., Allard, F., et al. 2013, A&A,   Vacca, W. D., Cushing, M. C., & Rayner, J. T. 2003,
+  556, A15, doi: 10.1051/0004-6361/201321346                     PASP, 115, 389, doi: 10.1086/346193
+Rayner, J. T., Cushing, M. C., & Vacca, W. D. 2009, ApJS,      von Braun, K., Boyajian, T. S., van Belle, G. T., et al.
+  185, 289, doi: 10.1088/0067-0049/185/2/289                     2014, MNRAS, 438, 2413, doi: 10.1093/mnras/stt2360
+                                                               Wang, J., Fischer, D. A., Xie, J.-W., & Ciardi, D. R. 2014,
+Rayner, J. T., Toomey, D. W., Onaka, P. M., et al. 2003,
+                                                                 ApJ, 791, 111, doi: 10.1088/0004-637X/791/2/111
+  PASP, 115, 362, doi: 10.1086/367745
+                                                               West, A. A., Morgan, D. P., Bochanski, J. J., et al. 2011,
+Reid, I. N., Hawley, S. L., & Gizis, J. E. 1995, AJ, 110,        AJ, 141, 97, doi: 10.1088/0004-6256/141/3/97
+  1838, doi: 10.1086/117655                                    Winn, J. N. 2010, Exoplanet Transits and Occultations
+Ren, J. J., Rebassa-Mansergas, A., Luo, A. L., et al. 2014,      (University of Arizona Press), 55–77
+  A&A, 570, A107, doi: 10.1051/0004-6361/201423689             Winters, J. G., Henry, T. J., Jao, W.-C., et al. 2019, arXiv
+                                                                 e-prints, arXiv:1901.06364.
+Schwab, C., Rakich, A., Gong, Q., et al. 2016, in
+                                                                 https://arxiv.org/abs/1901.06364
+  Proc. SPIE, Vol. 9908, Ground-based and Airborne
+                                                               York, D. G., Adelman, J., Anderson, Jr., J. E., et al. 2000,
+  Instrumentation for Astronomy VI, 99087H                       AJ, 120, 1579, doi: 10.1086/301513
+Ségransan, D., Kervella, P., Forveille, T., & Queloz, D.      Ziegler, C., Law, N. M., Morton, T., et al. 2017, AJ, 153,
+  2003, A&A, 397, L5, doi: 10.1051/0004-6361:20021714            66, doi: 10.3847/1538-3881/153/2/66
+Silburt, A., Gaidos, E., & Wu, Y. 2015, ApJ, 799, 180,         Ziegler, C., Law, N. M., Baranec, C., et al. 2018, AJ, 155,
+                                                                 161, doi: 10.3847/1538-3881/aab042
+  doi: 10.1088/0004-637X/799/2/180
+                                                                                                                                                                20
+                                                          Table 2. Kepler Mid-Type M Dwarf Planets
+
+
+ Planet Name      Host Type          R⋆              Rp           a/R⋆              Period              tdur           Transit           Sp        References
+
+                 (This Work)        (R⊙ )           (R⊕ )                           (days)            (hours)        Probability        (S⊕ )
+ Kepler-42 b     M3 V           0.174 ± 0.005   0.757 ± 0.025   14.46+0.43                     −7
+                                                                              1.2137706 ± 2.4×10     0.57 ± 0.04   0.0719 ± 0.0021   26.86+3.31        2
+
+
+
+
+                                                                                                                                                                Hardegree-Ullman et al.
+                                                                     −0.40                                                                −3.08
+
+ Kepler-42 c                                    0.727 ± 0.023   7.49+0.23
+                                                                    −0.21
+                                                                                               −8
+                                                                             0.45328731 ± 5.0×10     0.44 ± 0.03   0.1385 ± 0.0041        +12.16
+                                                                                                                                     99.78−11.26       2
+ Kepler-42 d                                    0.662 ± 0.032   19.26+0.59
+                                                                     −0.54   1.86511236 ± 7.3×10−7   0.56 ± 0.09   0.0537 ± 0.0016    15.13+1.88
+                                                                                                                                           −1.75       2
+ Kepler-1650 b   M3.5 V         0.364 ± 0.010   1.044 ± 0.042   10.88+0.34
+                                                                     −0.31   1.53818001 ± 1.5×10−6   1.05 ± 0.11   0.0942 ± 0.0028    42.67+5.59
+                                                                                                                                           −4.88       2
+ Kepler-1646 b   M4 Ve          0.374 ± 0.011   1.809 ± 0.129   21.86+0.71
+                                                                     −0.65
+                                                                                               −5
+                                                                             4.48558383 ± 1.1×10     1.53 ± 0.07   0.0478 ± 0.0015     9.57+1.29
+                                                                                                                                           −1.11       3
+ Kepler-446 b    M4 V           0.217 ± 0.006   1.357 ± 0.073   14.94+0.46
+                                                                     −0.44     1.565409 ± 3.3×10−6   0.67 ± 0.09   0.0708 ± 0.0022    20.62+2.62
+                                                                                                                                           −2.50       4
+ Kepler-446 c                                   1.003 ± 0.051   23.23+0.71
+                                                                     −0.68     3.036179 ± 5.5×10−6   0.96 ± 0.10   0.0449 ± 0.0014     8.47+1.11
+                                                                                                                                           −1.00       4
+ Kepler-446 d                                   1.227 ± 0.063   33.02+1.03
+                                                                     −0.95     5.148921 ± 2.2×10−5   0.93 ± 0.13   0.0318 ± 0.0010     4.18+0.56
+                                                                                                                                           −0.49       4
+ Kepler-445 b    M4.5 V         0.305 ± 0.009   1.519 ± 0.079   18.63+0.59
+                                                                     −0.57    2.9841664 ± 9.1×10−6   1.27 ± 0.04   0.0561 ± 0.0018    11.87+1.62
+                                                                                                                                           −1.43      2, 4
+ Kepler-445 c                                   2.390 ± 0.092   25.82+0.83
+                                                                     −0.79   4.87122714 ± 6.3×10−6   1.54 ± 0.05   0.0415 ± 0.0013     6.17+0.83
+                                                                                                                                           −0.73      2, 4
+ Kepler-445 d                                   1.167 ± 0.098   36.38+1.17
+                                                                     −1.10   8.15272856 ± 6.7×10−5   1.75 ± 0.06   0.0284 ± 0.0009     3.11+0.42
+                                                                                                                                           −0.38      2, 4
+ Kepler-1649 b   M5 V           0.231 ± 0.007   0.985 ± 0.054   45.02+1.42
+                                                                     −1.36
+                                                                                               −5
+                                                                                8.68909 ± 2.4×10     1.38 ± 0.27   0.0231 ± 0.0007     1.82+0.25
+                                                                                                                                           −0.23       1
+ Kepler-1582 b   M5 V           0.217 ± 0.006   1.060 ± 0.071   31.41+0.96
+                                                                     −0.94     4.838177 ± 8.8×10−5   1.23 ± 0.04   0.0333 ± 0.0010     3.75+0.50
+                                                                                                                                           −0.46       3
+Note—References: (1) Angelo et al. (2017), (2) Mann et al. (2017), (3) Morton et al. (2016), (4) Muirhead et al. (2015)
+                              Mid-Type M Dwarf Planet Occurrence Rates                                                       21
+
+
+
+                              Table 3. Stellar parameters for spectroscopically classified targets.
+
+
+ KIC ID       Distance             MKS         Telescopea     Spec. Typeb    Teff c       [Fe/H]            R⋆             M⋆
+                 (pc)              (mag)                                     (K)          (dex)            (R⊙ )          (M⊙ )
+01995305   139.882 ± 1.253     6.784 ± 0.039       W/I        M3.5 V         3325     −0.426 ± 0.100   0.331 ± 0.010   0.320 ± 0.010
+02164791          ···                ···           D/I        M4.5 Ve        3157     −0.166 ± 0.099   0.218 ± 0.044   0.182 ± 0.064
+02283749   291.795 ± 6.182     5.546 ± 0.053        W         M4 Ve          3241           ···        0.516 ± 0.017   0.518 ± 0.015
+02693779   176.658 ± 1.632     6.308 ± 0.038        W         M4 V           3241           ···        0.399 ± 0.013   0.394 ± 0.011
+02832720   106.036 ± 5.989     6.352 ± 0.125       W/I        M4 Ve          3241     0.284 ± 0.152    0.398 ± 0.020   0.386 ± 0.022
+02834637   125.012 ± 0.700     6.406 ± 0.023       W/I        M4 Ve          3241     0.063 ± 0.073    0.387 ± 0.011   0.378 ± 0.009
+03219046    63.177 ± 0.308     8.621 ± 0.026        W         M5 Ve          3073           ···        0.166 ± 0.005   0.134 ± 0.003
+03232191          ···                ···            W         M4 V           3241           ···        0.258 ± 0.053   0.226 ± 0.075
+03330684          ···                ···            W         M7 V           2736           ···        0.126 ± 0.018   0.091 ± 0.018
+03340246   112.936 ± 0.784     7.414 ± 0.027        W         M4 V           3241           ···        0.265 ± 0.008   0.236 ± 0.006
+03453233   193.017 ± 4.811     7.819 ± 0.094        D         M4 V           3241           ···        0.226 ± 0.011   0.194 ± 0.010
+03561148    59.378 ± 0.128     6.319 ± 0.015        L         M4 V           3241           ···        0.398 ± 0.012   0.392 ± 0.009
+03629595   116.233 ± 0.590     7.001 ± 0.027       W/I        M4 V           3241     −0.070 ± 0.101   0.310 ± 0.009   0.289 ± 0.007
+03631048   351.484 ± 4.550     4.449 ± 0.033       W/I        M4 Ve          3241     0.118 ± 0.059    0.286 ± 0.054   0.260 ± 0.082
+03642851   200.723 ± 2.401     6.322 ± 0.038        W         M4 V           3241           ···        0.398 ± 0.013   0.391 ± 0.011
+03654827    94.367 ± 0.753     6.884 ± 0.027        W         M6 V           2904           ···        0.325 ± 0.010   0.305 ± 0.008
+03731321    86.438 ± 0.375     7.493 ± 0.022        I         M3.5 V         3325     0.044 ± 0.091    0.259 ± 0.007   0.227 ± 0.006
+03940072   107.897 ± 5.365     5.541 ± 0.110       W/I        M5 V           3073     −0.066 ± 0.097   0.514 ± 0.023   0.519 ± 0.021
+03941669   117.196 ± 0.621     6.969 ± 0.026       W/I        M4.5 V         3157     0.132 ± 0.075    0.317 ± 0.009   0.293 ± 0.008
+03954332   150.850 ± 2.368     7.894 ± 0.065        D         M5 V           3073           ···        0.220 ± 0.008   0.187 ± 0.007
+04078409    76.338 ± 0.596     8.739 ± 0.037        D         M6 V           2904           ···        0.158 ± 0.005   0.128 ± 0.003
+04248433    36.985 ± 0.072     7.593 ± 0.018       W/I        M5.5 Ve        2989     0.296 ± 0.075    0.252 ± 0.007   0.216 ± 0.006
+04270856   151.141 ± 2.118     6.432 ± 0.042        W         M2.5 V         3494           ···        0.382 ± 0.012   0.374 ± 0.011
+04448009   239.205 ± 4.375     6.246 ± 0.050        W         M4 V           3241           ···        0.409 ± 0.014   0.404 ± 0.012
+04470937    17.448 ± 0.033     6.131 ± 0.017        W         M2 V           3578           ···        0.425 ± 0.013   0.423 ± 0.010
+04545041   410.440 ± 23.898    4.064 ± 0.130       W/I        M3.5 Ve        3325     0.424 ± 0.110    0.357 ± 0.069   0.364 ± 0.108
+04545209   175.733 ± 2.422     6.146 ± 0.039        W         M4 V           3241           ···        0.423 ± 0.013   0.420 ± 0.011
+04568065    82.102 ± 0.425     6.941 ± 0.023        W         M5 V           3073           ···        0.318 ± 0.010   0.297 ± 0.007
+04726552   157.506 ± 1.591     7.180 ± 0.039        W         M4 V           3241           ···        0.290 ± 0.009   0.265 ± 0.008
+04730040   227.179 ± 4.623     7.371 ± 0.068        D         M4 V           3241           ···        0.270 ± 0.010   0.241 ± 0.010
+04741907   119.957 ± 1.334     7.656 ± 0.037        W         M5 V           3073           ···        0.241 ± 0.008   0.210 ± 0.006
+04815654    64.279 ± 0.356     8.931 ± 0.030      D/W         M6 V           2904           ···        0.148 ± 0.005   0.118 ± 0.003
+04856658   119.571 ± 1.044     7.346 ± 0.032        W         M3 V           3410           ···        0.272 ± 0.009   0.244 ± 0.007
+04913121    66.698 ± 0.471     8.960 ± 0.038      D/W         M6 Ve          2904           ···        0.146 ± 0.005   0.117 ± 0.003
+04917182    91.451 ± 0.495     7.119 ± 0.023        W         M5.5 V         2989           ···        0.297 ± 0.009   0.273 ± 0.007
+04946433   117.314 ± 3.026     4.866 ± 0.060        W         M3.5 V         3325           ···        0.636 ± 0.022   0.621 ± 0.017
+05002836    28.142 ± 0.020     6.916 ± 0.017       W/I        M4 V           3241     −0.183 ± 0.086   0.319 ± 0.009   0.301 ± 0.007
+05079348    76.937 ± 0.199     6.614 ± 0.020        W         M3.5 V         3325           ···        0.358 ± 0.011   0.345 ± 0.008
+
+
+                                                         Table 3 continued
+22                                             Hardegree-Ullman et al.
+                                                  Table 3 (continued)
+
+ KIC ID        Distance           MKS           Telescopea    Spec. Typeb    Teff c       [Fe/H]            R⋆             M⋆
+
+                  (pc)            (mag)                                      (K)          (dex)            (R⊙ )          (M⊙ )
+05122206     45.857 ± 0.080    6.689 ± 0.020       W          M4.5 V         3157           ···        0.349 ± 0.010   0.334 ± 0.008
+05126248    122.180 ± 1.109    6.441 ± 0.028       W          M5 V           3073           ···        0.381 ± 0.012   0.372 ± 0.009
+05175854     67.247 ± 0.371    8.789 ± 0.033      D/W         M7 Ve          2736           ···        0.156 ± 0.005   0.125 ± 0.003
+05181762    206.139 ± 2.134    5.703 ± 0.030       W          M4 V           3241           ···        0.491 ± 0.015   0.493 ± 0.012
+05256590    129.297 ± 1.581    8.145 ± 0.051        D         M5 V           3073           ···        0.199 ± 0.007   0.166 ± 0.005
+05304146     77.219 ± 0.772    6.464 ± 0.030       W          M6.5 Ve        2820           ···        0.378 ± 0.012   0.369 ± 0.009
+05341486    229.710 ± 23.293   5.717 ± 0.226       W          M5.5 Ve        2989           ···        0.488 ± 0.038   0.489 ± 0.038
+05353762     54.996 ± 0.374    9.361 ± 0.036       W          M7 V           2736           ···        0.129 ± 0.004   0.102 ± 0.003
+05354341     66.588 ± 0.183    7.420 ± 0.021       W          M4 Ve          3241           ···        0.265 ± 0.008   0.236 ± 0.006
+05438886    157.235 ± 1.454    6.946 ± 0.033       W          M4 V           3241           ···        0.317 ± 0.010   0.296 ± 0.008
+05513232    239.522 ± 3.730    5.296 ± 0.042       W          M4.5 Ve        3157           ···        0.558 ± 0.018   0.557 ± 0.015
+05513833    107.660 ± 1.513    6.412 ± 0.037       W          M4 V           3241           ···        0.385 ± 0.012   0.377 ± 0.010
+05515259    107.679 ± 0.724    7.660 ± 0.029       W          M3 Ve          3410           ···        0.241 ± 0.007   0.209 ± 0.005
+05602310    148.886 ± 2.970    5.862 ± 0.047       W/I        M4 V           3241     −0.054 ± 0.333   0.463 ± 0.014   0.467 ± 0.013
+05603484    108.713 ± 0.447    6.629 ± 0.022       W          M4 V           3241           ···        0.356 ± 0.011   0.343 ± 0.008
+05603847     80.025 ± 0.487    8.491 ± 0.030       W          M5 V           3073           ···        0.174 ± 0.005   0.142 ± 0.004
+05649085    124.787 ± 0.831    6.833 ± 0.029       W          M3 Ve          3410           ···        0.331 ± 0.010   0.313 ± 0.008
+05791720     70.692 ± 0.185    6.185 ± 0.019        L         M3.5 Ve        3325           ···        0.417 ± 0.012   0.414 ± 0.010
+05818116    123.847 ± 0.573    6.428 ± 0.025       W          M2 V           3578           ···        0.383 ± 0.012   0.374 ± 0.009
+05859112     95.371 ± 0.430    7.075 ± 0.025       W/I        M4.5 V         3157     0.572 ± 0.101    0.310 ± 0.009   0.278 ± 0.008
+05859124    154.233 ± 1.347    6.853 ± 0.033       W          M3.5 V         3325           ···        0.328 ± 0.010   0.310 ± 0.008
+05868793d    78.891 ± 0.440    7.949 ± 0.026       W          M5 V           3073     0.120 ± 0.200    0.217 ± 0.006   0.182 ± 0.005
+05868814    263.882 ± 5.816    6.214 ± 0.060       W          M3.5 V         3325           ···        0.413 ± 0.015   0.409 ± 0.013
+05943385     42.711 ± 0.089    7.360 ± 0.018       W/I        M4.5 V         3157     0.364 ± 0.172    0.276 ± 0.008   0.242 ± 0.006
+05944764    159.531 ± 1.214    6.400 ± 0.027       W          M3.5 V         3325           ···        0.387 ± 0.012   0.379 ± 0.009
+05953947    111.177 ± 0.590    6.918 ± 0.025       W/I        M4 V           3241     −0.296 ± 0.112   0.317 ± 0.009   0.301 ± 0.008
+06037009    133.160 ± 0.735    6.735 ± 0.027       W/I        M4 Ve          3241     −0.178 ± 0.140   0.340 ± 0.010   0.327 ± 0.009
+06102091    136.951 ± 1.412    7.243 ± 0.042       W          M4 Ve          3241           ···        0.283 ± 0.009   0.257 ± 0.008
+06102845    125.299 ± 1.256    7.562 ± 0.045       W          M4 V           3241           ···        0.251 ± 0.008   0.220 ± 0.007
+06117602     20.941 ± 0.027    8.769 ± 0.018        I         M5 V           3073     −0.035 ± 0.075   0.157 ± 0.004   0.126 ± 0.003
+06183400     74.079 ± 0.279    7.498 ± 0.023       W/I        M4 V           3241     −0.277 ± 0.098   0.254 ± 0.007   0.227 ± 0.006
+06183736    140.704 ± 1.436    6.808 ± 0.040       W/I        M4 Ve          3241     0.180 ± 0.095    0.337 ± 0.010   0.316 ± 0.009
+06187812    269.005 ± 3.559    5.038 ± 0.035       W/I        M3 Ve          3410     0.174 ± 0.195    0.607 ± 0.018   0.596 ± 0.016
+06214037    218.767 ± 5.960    7.682 ± 0.103        D         M4 V           3241           ···        0.239 ± 0.012   0.207 ± 0.011
+06233711     57.618 ± 0.142    7.717 ± 0.022        D         M5 Ve          3073           ···        0.236 ± 0.007   0.204 ± 0.005
+06264426    150.494 ± 1.242    6.621 ± 0.037       W/I        M3 V           3410     −0.148 ± 0.067   0.355 ± 0.011   0.344 ± 0.010
+06268411     95.286 ± 0.476    7.374 ± 0.023       W/I        M2.5 V         3494     −0.133 ± 0.105   0.269 ± 0.008   0.241 ± 0.006
+06424725    154.652 ± 2.072    6.764 ± 0.038       W          M4 V           3241           ···        0.339 ± 0.011   0.323 ± 0.009
+06444896e    92.191 ± 0.546    7.764 ± 0.029       W          M5 V           3073     −0.150 ± 0.110   0.231 ± 0.007   0.199 ± 0.005
+06471285           ···              ···             D         M5 V           3073           ···        0.190 ± 0.040   0.153 ± 0.052
+
+
+                                                         Table 3 continued
+                               Mid-Type M Dwarf Planet Occurrence Rates                                                     23
+                                                 Table 3 (continued)
+
+ KIC ID        Distance           MKS          Telescopea    Spec. Typeb    Teff c       [Fe/H]            R⋆             M⋆
+
+                  (pc)            (mag)                                     (K)          (dex)            (R⊙ )          (M⊙ )
+06605595     85.366 ± 0.301    6.337 ± 0.018      W/I        M4 V           3241     0.291 ± 0.083    0.401 ± 0.011   0.389 ± 0.010
+06665209    164.525 ± 3.590    8.293 ± 0.082      W          M5 V           3073           ···        0.188 ± 0.008   0.155 ± 0.007
+06672297     75.366 ± 0.294    7.468 ± 0.021      W          M4 V           3241           ···        0.260 ± 0.008   0.230 ± 0.006
+06676217    149.317 ± 1.230    7.113 ± 0.033      W          M4 V           3241           ···        0.298 ± 0.009   0.274 ± 0.007
+06693042    130.426 ± 1.071    5.818 ± 0.026      W/I        M4 V           3241     −0.299 ± 0.096   0.465 ± 0.013   0.474 ± 0.012
+06752213    163.992 ± 1.565    7.100 ± 0.037      W          M4 V           3241           ···        0.299 ± 0.010   0.275 ± 0.008
+06761765    142.006 ± 1.282    7.162 ± 0.031      W          M4 V           3241           ···        0.292 ± 0.009   0.267 ± 0.007
+06768613    185.719 ± 3.521    7.525 ± 0.060      W          M4 V           3241           ···        0.254 ± 0.009   0.224 ± 0.008
+06776555    108.690 ± 0.481    7.053 ± 0.031      W/I        M4 V           3241     −0.117 ± 0.096   0.304 ± 0.009   0.282 ± 0.008
+06783223     89.125 ± 0.913    8.602 ± 0.042       D         M7 Ve          2736           ···        0.167 ± 0.006   0.135 ± 0.004
+06784339    114.392 ± 1.100    8.140 ± 0.043      D/I        M6 V           2904     −0.074 ± 0.142   0.200 ± 0.006   0.166 ± 0.005
+06805049    224.585 ± 3.035    6.025 ± 0.039       D         M4 V           3241           ···        0.440 ± 0.014   0.440 ± 0.012
+06837702    250.199 ± 17.033   5.324 ± 0.148      W          M4 Ve          3241           ···        0.554 ± 0.030   0.552 ± 0.027
+06847171    170.189 ± 1.015    5.795 ± 0.023      W/I        M4 V           3241     0.568 ± 0.087    0.487 ± 0.014   0.477 ± 0.013
+07008143     47.933 ± 0.095    7.405 ± 0.012      W          M5 V           3073           ···        0.266 ± 0.008   0.237 ± 0.005
+07022137    114.244 ± 0.582    6.353 ± 0.019      W          M4 V           3241           ···        0.393 ± 0.012   0.386 ± 0.009
+07091150    124.185 ± 1.338    7.806 ± 0.038      W          M4.5 V         3157           ···        0.227 ± 0.007   0.195 ± 0.006
+07102366    200.921 ± 1.978    6.434 ± 0.035      W          M4 V           3241           ···        0.382 ± 0.012   0.373 ± 0.010
+07102500    152.605 ± 0.969    5.361 ± 0.022      W/I        M4 Ve          3241     0.185 ± 0.123    0.550 ± 0.015   0.547 ± 0.014
+07177371    195.153 ± 2.322    6.110 ± 0.036      W/I        M5 V           3073     0.226 ± 0.071    0.432 ± 0.013   0.425 ± 0.012
+07185487    245.782 ± 3.523    5.928 ± 0.039      W          M4 V           3241           ···        0.455 ± 0.014   0.456 ± 0.012
+07185789    110.923 ± 0.646    7.008 ± 0.023      W/I        M4 V           3241     0.011 ± 0.070    0.311 ± 0.009   0.288 ± 0.007
+07272205    166.472 ± 1.413    6.157 ± 0.026      W          M3.5 V         3325           ···        0.421 ± 0.013   0.418 ± 0.010
+07304449f   134.397 ± 0.721    6.555 ± 0.024      W          M3.5 V         3325     −0.110 ± 0.090   0.364 ± 0.010   0.355 ± 0.009
+07341653     19.169 ± 0.017    7.509 ± 0.016       L         M5 Ve          3073           ···        0.256 ± 0.008   0.226 ± 0.005
+07350067g   127.591 ± 0.617    6.498 ± 0.018      W          M4 Ve          3241           ···        0.374 ± 0.011   0.363 ± 0.009
+07352892     90.769 ± 0.461    7.235 ± 0.017      W          M4.5 V         3157           ···        0.284 ± 0.008   0.258 ± 0.006
+07500850    399.363 ± 12.883   4.935 ± 0.074      W          M4 Ve          3241           ···        0.623 ± 0.023   0.611 ± 0.018
+07505473     42.926 ± 0.759    7.737 ± 0.042      W/I        M5 Ve          3073     0.009 ± 0.095    0.235 ± 0.007   0.202 ± 0.006
+07505644    293.822 ± 4.143    5.111 ± 0.039      W/I        M3 Ve          3410     0.179 ± 0.094    0.594 ± 0.018   0.585 ± 0.016
+07517730     33.970 ± 0.078    8.889 ± 0.014      W          M6 V           2904           ···        0.150 ± 0.004   0.120 ± 0.003
+07582793    189.719 ± 2.246    7.172 ± 0.044     D/W         M3.5 V         3325           ···        0.291 ± 0.010   0.266 ± 0.008
+07596910     78.058 ± 0.347    5.968 ± 0.015      W          M4.5 V         3157           ···        0.449 ± 0.013   0.449 ± 0.010
+07659103     93.778 ± 0.371    6.971 ± 0.016      W/I        M4 V           3241     −0.266 ± 0.094   0.311 ± 0.009   0.293 ± 0.007
+07661403    154.592 ± 1.384    6.472 ± 0.023      W          M4 Ve          3241           ···        0.377 ± 0.011   0.367 ± 0.009
+07729309           ···              ···           D/I        M2 V           3578     −0.204 ± 0.093   0.410 ± 0.060   0.405 ± 0.094
+07734382    155.505 ± 2.173    7.255 ± 0.048      W          M4 Ve          3241           ···        0.282 ± 0.010   0.255 ± 0.008
+07799514           ···              ···           W          M4 V           3241           ···        0.258 ± 0.053   0.226 ± 0.075
+07799844    103.436 ± 1.095    8.559 ± 0.041       D         M6 V           2904           ···        0.169 ± 0.006   0.138 ± 0.004
+07809767    204.264 ± 6.670    7.960 ± 0.109       D         M5 V           3073           ···        0.214 ± 0.011   0.181 ± 0.010
+
+
+                                                        Table 3 continued
+24                                             Hardegree-Ullman et al.
+                                                  Table 3 (continued)
+
+ KIC ID        Distance           MKS           Telescopea    Spec. Typeb    Teff c       [Fe/H]            R⋆             M⋆
+
+                  (pc)            (mag)                                      (K)          (dex)            (R⊙ )          (M⊙ )
+07849191     57.455 ± 0.165    8.308 ± 0.023       W          M4 V           3241           ···        0.187 ± 0.006   0.154 ± 0.004
+07903237    439.487 ± 34.408   6.587 ± 0.173        D         M4 Ve          3241           ···        0.362 ± 0.025   0.349 ± 0.028
+07938787    154.623 ± 1.454    5.562 ± 0.023       W          M4 V           3241           ···        0.513 ± 0.015   0.515 ± 0.012
+07939565     65.472 ± 0.154    6.628 ± 0.012       W          M2.5 Ve        3494           ···        0.357 ± 0.010   0.343 ± 0.008
+08036551     93.164 ± 1.147    8.725 ± 0.047        D         M6 V           2904           ···        0.159 ± 0.005   0.128 ± 0.004
+08040522    253.639 ± 8.224    7.293 ± 0.097        D         M4 V           3241           ···        0.278 ± 0.013   0.251 ± 0.013
+08076831     48.598 ± 0.090    6.944 ± 0.012       W          M2.5 V         3494           ···        0.317 ± 0.009   0.297 ± 0.007
+08082302    157.362 ± 1.149    6.546 ± 0.029       W          M4 V           3241           ···        0.367 ± 0.011   0.356 ± 0.009
+08095972    114.779 ± 0.547    6.773 ± 0.020       W/I        M2 V           3578     −0.143 ± 0.093   0.336 ± 0.009   0.321 ± 0.008
+08167877    323.982 ± 11.181   6.646 ± 0.112       W          M3 V           3410           ···        0.354 ± 0.018   0.340 ± 0.019
+08190958     47.983 ± 0.090    6.501 ± 0.020       W          M3.5 V         3325           ···        0.373 ± 0.011   0.363 ± 0.009
+08197652           ···              ···            W          M4 Ve          3241           ···        0.258 ± 0.053   0.226 ± 0.075
+08213019    220.989 ± 2.549    5.429 ± 0.029       W          M4 V           3241           ···        0.536 ± 0.016   0.537 ± 0.013
+08233951    102.901 ± 0.504    6.994 ± 0.025       W/I        M4 V           3241     −0.332 ± 0.097   0.307 ± 0.009   0.290 ± 0.008
+08236114    140.875 ± 1.895    8.403 ± 0.082      D/W         M4 V           3241           ···        0.180 ± 0.008   0.147 ± 0.006
+08278279    183.522 ± 3.684    6.100 ± 0.047       W/I        M6 Ve          2904     0.530 ± 0.062    0.439 ± 0.014   0.427 ± 0.013
+08284382    136.937 ± 1.112    7.118 ± 0.034       W          M3.5 V         3325           ···        0.297 ± 0.009   0.273 ± 0.008
+08302467    181.216 ± 1.335    5.938 ± 0.028       W          M4 Ve          3241           ···        0.454 ± 0.014   0.454 ± 0.011
+08331947    137.376 ± 1.105    7.199 ± 0.032       W          M4 V           3241           ···        0.288 ± 0.009   0.262 ± 0.007
+08332355     52.667 ± 0.134    7.398 ± 0.019       W          M5 Ve          3073           ···        0.267 ± 0.008   0.238 ± 0.006
+08344757    126.858 ± 0.928    7.617 ± 0.031       W          M4 V           3241           ···        0.245 ± 0.008   0.214 ± 0.006
+08387281     54.841 ± 0.123    6.469 ± 0.016       W/I        M3 Ve          3410     −0.026 ± 0.125   0.377 ± 0.010   0.368 ± 0.009
+08416220           ···              ···            W          M4 Ve          3241           ···        0.258 ± 0.053   0.226 ± 0.075
+08423202     83.111 ± 0.762    8.728 ± 0.040        D         M6 Ve          2904           ···        0.159 ± 0.005   0.128 ± 0.004
+08428178    185.033 ± 7.618    6.056 ± 0.092       W/I        M2.5 V         3494     −0.163 ± 0.084   0.432 ± 0.018   0.435 ± 0.018
+08431077           ···              ···            W          M4 V           3241           ···        0.258 ± 0.053   0.226 ± 0.075
+08451881     4.661 ± 0.002     9.044 ± 0.018      W/D         M7 Ve          2736           ···        0.142 ± 0.004   0.113 ± 0.003
+08452193    132.652 ± 0.861    6.709 ± 0.036       W/I        M2.5 V         3494     0.034 ± 0.086    0.347 ± 0.010   0.331 ± 0.009
+08482923     72.997 ± 0.347    8.124 ± 0.023       W          M6.5 V         2820           ···        0.201 ± 0.006   0.167 ± 0.004
+08493421     44.741 ± 0.140    8.429 ± 0.017        I         M5 V           3073     0.358 ± 0.087    0.182 ± 0.005   0.145 ± 0.004
+08496410    138.102 ± 0.893    6.759 ± 0.027       W          M4 V           3241           ···        0.340 ± 0.010   0.323 ± 0.008
+08507979     52.761 ± 0.096    6.207 ± 0.015        L         M3 Ve          3410           ···        0.414 ± 0.012   0.410 ± 0.009
+08548052    190.722 ± 2.081    6.551 ± 0.034       W          M4 V           3241           ···        0.366 ± 0.011   0.355 ± 0.010
+08556831    154.952 ± 1.290    5.644 ± 0.021       W/I        M2 V           3578     0.451 ± 0.066    0.509 ± 0.014   0.502 ± 0.013
+08561063h    40.060 ± 0.065    8.451 ± 0.018       W          M3 V           3410     −0.500 ± 0.090   0.174 ± 0.005   0.144 ± 0.004
+08564198     69.174 ± 0.206    7.669 ± 0.017       W          M3 V           3410           ···        0.240 ± 0.007   0.209 ± 0.005
+08611599    153.221 ± 3.049    8.267 ± 0.073        D         M5 V           3073           ···        0.190 ± 0.008   0.157 ± 0.006
+08611876    103.041 ± 0.390    6.459 ± 0.015       W          M4 Ve          3241           ···        0.379 ± 0.011   0.369 ± 0.009
+08647238    146.637 ± 1.020    6.332 ± 0.032       W          M4 V           3241           ···        0.396 ± 0.012   0.390 ± 0.010
+08655334    111.451 ± 0.603    6.572 ± 0.022       W          M4 V           3241           ···        0.364 ± 0.011   0.352 ± 0.009
+
+
+                                                         Table 3 continued
+                                  Mid-Type M Dwarf Planet Occurrence Rates                                                     25
+                                                    Table 3 (continued)
+
+ KIC ID           Distance           MKS          Telescopea    Spec. Typeb    Teff c       [Fe/H]            R⋆             M⋆
+
+                    (pc)             (mag)                                     (K)          (dex)            (R⊙ )          (M⊙ )
+08669203       189.824 ± 2.944    6.528 ± 0.041      W          M4 V           3241           ···        0.370 ± 0.012   0.358 ± 0.010
+          i
+08733898       96.339 ± 0.511     7.908 ± 0.026      W          M4 V           3241     −0.300 ± 0.110   0.217 ± 0.006   0.186 ± 0.005
+08776305       78.547 ± 0.271     6.925 ± 0.031      W/I        M5 V           3073     −0.337 ± 0.123   0.315 ± 0.009   0.300 ± 0.008
+08804334       157.213 ± 2.042    7.150 ± 0.044      W          M5 Ve          3073           ···        0.294 ± 0.010   0.269 ± 0.008
+08815854       190.458 ± 4.039    7.482 ± 0.066       D         M4 V           3241           ···        0.258 ± 0.010   0.229 ± 0.009
+08837812       158.900 ± 1.929    7.139 ± 0.039      W          M4.5 V         3157           ···        0.295 ± 0.010   0.270 ± 0.008
+08869922       51.289 ± 0.145     7.475 ± 0.019       I         M4.5 V         3157     0.165 ± 0.113    0.262 ± 0.007   0.229 ± 0.006
+08872565       20.539 ± 0.030     7.464 ± 0.014      W          M4 V           3241           ···        0.260 ± 0.008   0.231 ± 0.005
+08888543       71.042 ± 0.362     5.821 ± 0.022    W/I/L        M2 V           3578     0.244 ± 0.117    0.476 ± 0.013   0.473 ± 0.012
+08933586             ···               ···           W          M5 V           3073           ···        0.190 ± 0.040   0.153 ± 0.052
+08937178             ···               ···           W          M4 V           3241           ···        0.258 ± 0.053   0.226 ± 0.075
+08939955       199.789 ± 1.981    6.324 ± 0.034      W          M4 V           3241           ···        0.397 ± 0.012   0.391 ± 0.010
+08956025       140.728 ± 1.180    6.504 ± 0.031      W          M4 Ve          3241           ···        0.373 ± 0.012   0.362 ± 0.009
+08977910       112.293 ± 0.557    6.267 ± 0.025      W/I        M4 Ve          3241     −0.011 ± 0.099   0.405 ± 0.011   0.400 ± 0.010
+09004724       105.523 ± 0.670    7.943 ± 0.033      W          M5 V           3073           ···        0.215 ± 0.007   0.182 ± 0.005
+09005690       106.161 ± 1.116    8.475 ± 0.055      W          M5 Ve          3073           ···        0.175 ± 0.006   0.143 ± 0.005
+09113974       132.711 ± 1.236    6.751 ± 0.028      W          M3 Ve          3410           ···        0.341 ± 0.010   0.324 ± 0.008
+09117378       115.224 ± 1.127    8.184 ± 0.055       L         M3 V           3410           ···        0.196 ± 0.007   0.163 ± 0.006
+09138406       227.707 ± 3.460    6.241 ± 0.046      W          M3 Ve          3410           ···        0.409 ± 0.014   0.404 ± 0.012
+09138452             ···               ···           W/I        M3 V           3410     −0.201 ± 0.119   0.328 ± 0.057   0.305 ± 0.088
+09202152       155.004 ± 1.659    6.995 ± 0.040      W          M2 V           3578           ···        0.311 ± 0.010   0.290 ± 0.008
+09202551       212.437 ± 2.933    6.354 ± 0.044      W          M3 V           3410           ···        0.393 ± 0.013   0.386 ± 0.011
+09203794       52.402 ± 0.095     6.464 ± 0.016     D/L/I       M4 V           3241     0.037 ± 0.067    0.379 ± 0.010   0.369 ± 0.009
+09222296       91.386 ± 0.334     6.661 ± 0.018      W          M4.5 V         3157           ···        0.352 ± 0.010   0.338 ± 0.008
+09265282       114.141 ± 0.814    7.399 ± 0.031      W          M4 V           3241           ···        0.267 ± 0.008   0.238 ± 0.006
+09328653       180.700 ± 2.079    6.692 ± 0.042      W          M3 Ve          3410           ···        0.348 ± 0.011   0.333 ± 0.010
+09346063       105.363 ± 0.427    6.941 ± 0.029      W/I        M2 V           3578     −0.163 ± 0.085   0.316 ± 0.009   0.297 ± 0.008
+09426508       92.564 ± 0.356     6.941 ± 0.025      W          M4.5 V         3157           ···        0.318 ± 0.010   0.297 ± 0.007
+09446620       358.768 ± 8.843    5.522 ± 0.066     D/W         M2.5 V         3494           ···        0.520 ± 0.018   0.522 ± 0.016
+09508489       78.168 ± 0.286     6.964 ± 0.014      W          M3 V           3410           ···        0.315 ± 0.009   0.294 ± 0.007
+09508904       188.176 ± 2.188    7.022 ± 0.042      W          M2 V           3578           ···        0.308 ± 0.010   0.286 ± 0.009
+09530511       167.032 ± 1.332    5.915 ± 0.026      W/I        M3 V           3410     −0.099 ± 0.075   0.455 ± 0.013   0.458 ± 0.011
+09531271       294.556 ± 6.679    6.096 ± 0.064      W          M3.5 V         3325           ···        0.430 ± 0.016   0.428 ± 0.014
+09532950       336.753 ± 8.495    5.330 ± 0.063      W          M6 Ve          2904           ···        0.552 ± 0.019   0.552 ± 0.016
+09533618      848.292 ± 157.725   5.598 ± 0.453      W          M2 V           3578           ···        0.506 ± 0.073   0.510 ± 0.073
+09582827       147.322 ± 1.323    6.338 ± 0.025    W/I/L        M4 V           3241     −0.329 ± 0.122   0.390 ± 0.011   0.389 ± 0.010
+09591560       224.479 ± 1.982    4.824 ± 0.031      W          M3.5 Ve        3325           ···        0.644 ± 0.020   0.627 ± 0.016
+09593432      359.228 ± 46.191    5.463 ± 0.291      W          M3 Ve          3410           ···        0.531 ± 0.050   0.532 ± 0.047
+09595546      178.491 ± 38.506    8.698 ± 0.511      W          M4 Ve          3241           ···        0.160 ± 0.029   0.129 ± 0.026
+09605714      250.049 ± 11.127    5.205 ± 0.100      W          M2 V           3578           ···        0.574 ± 0.024   0.571 ± 0.020
+
+
+                                                           Table 3 continued
+26                                              Hardegree-Ullman et al.
+                                                   Table 3 (continued)
+
+ KIC ID         Distance           MKS           Telescopea    Spec. Typeb    Teff c       [Fe/H]            R⋆             M⋆
+
+                  (pc)             (mag)                                      (K)          (dex)            (R⊙ )          (M⊙ )
+09605900     255.863 ± 3.131    4.997 ± 0.034       W          M2.5 V         3494           ···        0.612 ± 0.019   0.602 ± 0.015
+09611538     154.040 ± 1.457    6.512 ± 0.027       W          M4 V           3241           ···        0.372 ± 0.011   0.361 ± 0.009
+09612825     92.749 ± 0.443     7.296 ± 0.028       W          M4 V           3241           ···        0.278 ± 0.009   0.250 ± 0.007
+09642890     123.742 ± 1.108    6.388 ± 0.026       W/I        M4 V           3241     0.245 ± 0.077    0.393 ± 0.011   0.380 ± 0.010
+09643210     105.653 ± 0.498    6.894 ± 0.021       W/I        M3 Ve          3410     −0.135 ± 0.067   0.322 ± 0.009   0.304 ± 0.008
+09654450     194.946 ± 2.913    5.579 ± 0.039       W/I        M3 V           3410     0.098 ± 0.104    0.512 ± 0.015   0.513 ± 0.014
+09654642     118.885 ± 0.959    7.457 ± 0.030       W          M5 V           3073           ···        0.261 ± 0.008   0.231 ± 0.006
+09654803           ···               ···             D         M2 Ve          3578           ···        0.428 ± 0.074   0.427 ± 0.109
+09655532    227.689 ± 10.071    7.749 ± 0.130       W          M4.5 V         3157           ···        0.233 ± 0.014   0.200 ± 0.014
+09655679    504.443 ± 61.359    6.668 ± 0.320      D/W         M4 V           3241           ···        0.352 ± 0.042   0.338 ± 0.048
+09705079     117.070 ± 0.977    6.279 ± 0.021     W/I/L        M4.5 V         3157     −0.078 ± 0.126   0.402 ± 0.011   0.398 ± 0.010
+09715286    349.410 ± 26.335    7.452 ± 0.237        D         M4 V           3241           ···        0.262 ± 0.025   0.232 ± 0.027
+09715460     164.873 ± 1.773    6.461 ± 0.034       W          M4 V           3241           ···        0.379 ± 0.012   0.369 ± 0.010
+09715957    428.860 ± 22.777    6.763 ± 0.174       W          M3.5 V         3325           ···        0.340 ± 0.024   0.323 ± 0.027
+09715985    288.748 ± 12.699    7.147 ± 0.131       W          M5 V           3073           ···        0.294 ± 0.017   0.269 ± 0.018
+09716727    651.018 ± 80.781    5.954 ± 0.313       W          M3.5 V         3325           ···        0.452 ± 0.049   0.453 ± 0.052
+09717123    644.470 ± 83.958    4.975 ± 0.295       W          M4 V           3241           ···        0.616 ± 0.057   0.605 ± 0.046
+09717341    385.669 ± 11.992    6.055 ± 0.089      D/W         M3.5 V         3325           ···        0.436 ± 0.018   0.435 ± 0.018
+09726699     11.975 ± 0.005     7.381 ± 0.016      W/L         M4.5 Ve        3157           ···        0.269 ± 0.008   0.240 ± 0.006
+09730163j    127.201 ± 0.995    7.084 ± 0.033      W/L         M4.5 V         3157     0.270 ± 0.090    0.305 ± 0.009   0.277 ± 0.008
+09776037     260.188 ± 7.487    6.353 ± 0.074      D/W         M5 Ve          3073           ···        0.393 ± 0.015   0.386 ± 0.014
+09776485    388.865 ± 20.188    6.492 ± 0.143       W          M4.5 V         3157           ···        0.374 ± 0.022   0.364 ± 0.024
+09825426     138.628 ± 1.660    5.758 ± 0.029       W/I        M3 V           3410     −0.212 ± 0.114   0.476 ± 0.014   0.484 ± 0.012
+09836326    631.240 ± 79.199    6.300 ± 0.280      D/W         M4 V           3241           ···        0.400 ± 0.041   0.395 ± 0.045
+09836425     261.507 ± 4.515    6.206 ± 0.052       W          M4 V           3241           ···        0.414 ± 0.014   0.410 ± 0.012
+09836628    589.574 ± 42.705    5.360 ± 0.173      D/W         M4 Ve          3241           ···        0.548 ± 0.034   0.547 ± 0.030
+09836691     129.458 ± 5.277    7.395 ± 0.093       W          M7 Ve          2736           ···        0.267 ± 0.012   0.239 ± 0.012
+09836833    699.840 ± 82.937    5.650 ± 0.289        D         M4 Ve          3241           ···        0.499 ± 0.049   0.501 ± 0.048
+09836960    407.031 ± 31.267    6.493 ± 0.194       W          M4.5 Ve        3157           ···        0.375 ± 0.028   0.364 ± 0.031
+09838000     192.179 ± 2.047    6.485 ± 0.035       W          M3.5 V         3325           ···        0.375 ± 0.012   0.365 ± 0.010
+09838371    418.407 ± 29.991    6.460 ± 0.182       W          M4 V           3241           ···        0.378 ± 0.027   0.369 ± 0.030
+09880519     288.954 ± 5.492    5.343 ± 0.048       W          M5 Ve          3073           ···        0.551 ± 0.018   0.550 ± 0.015
+09897336    775.511 ± 131.215   5.153 ± 0.396       W          M4 V           3241           ···        0.582 ± 0.070   0.577 ± 0.062
+09897967     187.414 ± 2.125    6.008 ± 0.035       W          M4.5 V         3157           ···        0.443 ± 0.014   0.443 ± 0.012
+09953754     127.563 ± 0.721    6.334 ± 0.023       W          M3 V           3410           ···        0.396 ± 0.012   0.389 ± 0.009
+09957818     251.354 ± 7.707    6.418 ± 0.078       W          M4 V           3241           ···        0.384 ± 0.015   0.376 ± 0.015
+09992786     69.626 ± 0.244     7.604 ± 0.022       W          M5 V           3073           ···        0.246 ± 0.007   0.215 ± 0.005
+10017286           ···               ···            W          M4 V           3241           ···        0.258 ± 0.053   0.226 ± 0.075
+10024566     162.190 ± 1.261    6.502 ± 0.028       W          M2.5 V         3494           ···        0.373 ± 0.011   0.363 ± 0.009
+10063466           ···               ···            W/I        M2 V           3578     −0.361 ± 0.073   0.379 ± 0.054   0.366 ± 0.084
+
+
+                                                          Table 3 continued
+                               Mid-Type M Dwarf Planet Occurrence Rates                                                     27
+                                                 Table 3 (continued)
+
+ KIC ID        Distance           MKS          Telescopea    Spec. Typeb    Teff c       [Fe/H]            R⋆             M⋆
+
+                 (pc)             (mag)                                     (K)          (dex)            (R⊙ )          (M⊙ )
+10066002    104.355 ± 1.565    6.732 ± 0.035      W          M4 V           3241           ···        0.343 ± 0.011   0.327 ± 0.009
+10069097    86.155 ± 0.275     6.786 ± 0.018       I         M2.5 V         3494     −0.603 ± 0.116   0.328 ± 0.009   0.320 ± 0.009
+10193199    57.142 ± 0.090     5.842 ± 0.015      W          M3 V           3410           ···        0.469 ± 0.014   0.470 ± 0.011
+10251759   405.980 ± 130.481   4.793 ± 0.847     D/W         M4 V           3241           ···        0.648 ± 0.137   0.631 ± 0.126
+10258179    26.658 ± 0.084     6.475 ± 0.017       L         M2.5 V         3494           ···        0.377 ± 0.011   0.367 ± 0.009
+10275253    213.549 ± 2.694    6.073 ± 0.039      W          M5 V           3073           ···        0.433 ± 0.014   0.432 ± 0.012
+10285569    35.329 ± 0.061     8.261 ± 0.015      W          M5 Ve          3073           ···        0.190 ± 0.006   0.157 ± 0.004
+10318386    193.184 ± 2.005    6.250 ± 0.030      W          M4 Ve          3241           ···        0.408 ± 0.013   0.403 ± 0.010
+10324321    139.247 ± 1.106    6.695 ± 0.031      W          M4 V           3241           ···        0.348 ± 0.011   0.333 ± 0.009
+10330511    100.701 ± 0.534    7.471 ± 0.023      W          M4 V           3241           ···        0.259 ± 0.008   0.230 ± 0.006
+10339336    221.044 ± 3.362    6.616 ± 0.052      W          M2 V           3578           ···        0.358 ± 0.012   0.345 ± 0.011
+10351279    113.057 ± 0.790    7.801 ± 0.029      W          M5 V           3073           ···        0.228 ± 0.007   0.195 ± 0.005
+10384327    290.039 ± 4.988    5.507 ± 0.045      W          M3.5 V         3325           ···        0.522 ± 0.017   0.524 ± 0.014
+10396501    76.959 ± 0.220     6.748 ± 0.014      W          M4 V           3241           ···        0.341 ± 0.010   0.325 ± 0.008
+10448377    230.593 ± 3.718    5.117 ± 0.039      W/I        M5 Ve          3073     −0.105 ± 0.081   0.585 ± 0.017   0.585 ± 0.015
+10449173    198.284 ± 2.250    6.808 ± 0.039      W          M4 V           3241           ···        0.334 ± 0.011   0.316 ± 0.009
+10452252    101.197 ± 0.477    6.068 ± 0.020      W          M5 Ve          3073           ···        0.434 ± 0.013   0.433 ± 0.010
+10455009    123.820 ± 0.685    6.465 ± 0.025      W          M4 V           3241           ···        0.378 ± 0.011   0.368 ± 0.009
+10459524    142.149 ± 0.870    6.959 ± 0.027      W          M2 V           3578           ···        0.316 ± 0.010   0.295 ± 0.008
+10471434    108.065 ± 1.421    8.539 ± 0.059     D/W         M6.5 Ve        2820           ···        0.171 ± 0.006   0.139 ± 0.005
+10538002          ···               ···           W          M5 Ve          3073           ···        0.190 ± 0.040   0.153 ± 0.052
+10548640    145.942 ± 1.037    6.067 ± 0.024      W/I        M4 Ve          3241     0.138 ± 0.070    0.437 ± 0.012   0.433 ± 0.011
+10548992    218.466 ± 8.134    7.562 ± 0.110       D         M5 V           3073           ···        0.251 ± 0.013   0.220 ± 0.013
+10585782    172.808 ± 1.263    6.215 ± 0.029      W          M3.5 V         3325           ···        0.413 ± 0.013   0.409 ± 0.010
+10599274          ···               ···           W/I        M4 V           3241     0.084 ± 0.107    0.282 ± 0.055   0.252 ± 0.085
+10647081    19.622 ± 0.011     6.436 ± 0.016       L         M4 V           3241           ···        0.382 ± 0.011   0.373 ± 0.009
+10647233    362.733 ± 7.383    5.503 ± 0.062      W          M4 V           3241           ···        0.523 ± 0.018   0.524 ± 0.016
+10647424    135.812 ± 1.543    7.695 ± 0.048     D/W         M5 Ve          3073           ···        0.238 ± 0.008   0.206 ± 0.007
+10665619          ···               ···           W/I        M5 V           3073     0.202 ± 0.095    0.212 ± 0.043   0.176 ± 0.062
+10668092    243.884 ± 3.487    6.321 ± 0.053      W          M3 V           3410           ···        0.398 ± 0.014   0.391 ± 0.012
+10709619    99.795 ± 0.380     6.532 ± 0.019      W          M4 V           3241           ···        0.369 ± 0.011   0.358 ± 0.008
+10710233          ···               ···           W          M4 Ve          3241           ···        0.258 ± 0.053   0.226 ± 0.075
+10711003    127.830 ± 2.921    8.460 ± 0.086      W          M7 Ve          2736           ···        0.176 ± 0.008   0.144 ± 0.006
+10731839    26.153 ± 0.171     6.254 ± 0.023     W/L         M4.5 V         3157           ···        0.407 ± 0.012   0.402 ± 0.010
+10732063    154.612 ± 0.829    5.887 ± 0.023      W/I        M4 V           3241     0.071 ± 0.088    0.462 ± 0.013   0.463 ± 0.011
+10777226    96.893 ± 1.496     8.718 ± 0.060      W          M7 V           2736           ···        0.160 ± 0.006   0.129 ± 0.004
+10841791    126.918 ± 2.124    8.207 ± 0.067     D/W         M5 Ve          3073           ···        0.194 ± 0.008   0.161 ± 0.006
+10843766    262.771 ± 3.264    5.895 ± 0.041      W          M2.5 V         3494           ···        0.460 ± 0.015   0.461 ± 0.012
+10860741    30.758 ± 0.038     8.156 ± 0.014      W          M6 V           2904           ···        0.198 ± 0.006   0.165 ± 0.004
+10910277    217.363 ± 4.779    6.744 ± 0.063       D         M5 V           3073           ···        0.342 ± 0.013   0.325 ± 0.012
+
+
+                                                        Table 3 continued
+28                                           Hardegree-Ullman et al.
+                                                Table 3 (continued)
+
+ KIC ID       Distance          MKS           Telescopea    Spec. Typeb    Teff c       [Fe/H]            R⋆             M⋆
+
+                (pc)            (mag)                                      (K)          (dex)            (R⊙ )          (M⊙ )
+10960093   123.132 ± 0.529   6.430 ± 0.020       W          M3.5 V         3325           ···        0.383 ± 0.011   0.374 ± 0.009
+11013311   196.892 ± 6.684   8.954 ± 0.082        D         M5 V           3073           ···        0.146 ± 0.006   0.117 ± 0.004
+11137723   112.801 ± 0.445   6.281 ± 0.021       W          M4 Ve          3241           ···        0.403 ± 0.012   0.398 ± 0.010
+11137924   101.202 ± 2.217   6.449 ± 0.051       W          M4 V           3241           ···        0.380 ± 0.013   0.371 ± 0.011
+11145819   149.751 ± 0.892   4.989 ± 0.021       W/I        M5 Ve          3073     0.222 ± 0.134    0.617 ± 0.017   0.603 ± 0.016
+11187320   174.185 ± 3.601   7.995 ± 0.075        D         M3.5 V         3325           ···        0.211 ± 0.009   0.178 ± 0.007
+11288756   60.081 ± 0.192    7.587 ± 0.023        I         M5 V           3073     0.002 ± 0.068    0.249 ± 0.007   0.217 ± 0.005
+11341162   152.577 ± 0.895   6.092 ± 0.028        I         M3.5 V         3325     0.065 ± 0.069    0.431 ± 0.012   0.429 ± 0.011
+11356952   61.885 ± 0.556    8.639 ± 0.033        D         M7 Ve          2736           ···        0.164 ± 0.005   0.133 ± 0.003
+11462594   106.546 ± 0.421   6.728 ± 0.020       W          M4 V           3241           ···        0.344 ± 0.010   0.328 ± 0.008
+11462900   112.366 ± 0.447   6.431 ± 0.019       W/I        M4 V           3241     −0.149 ± 0.078   0.380 ± 0.011   0.374 ± 0.009
+11551165   151.267 ± 1.286   7.001 ± 0.038       W          M1.5 V         3662           ···        0.310 ± 0.010   0.289 ± 0.008
+11602561   82.303 ± 0.354    7.670 ± 0.028       W/I        M6.5 V         2820     0.149 ± 0.078    0.243 ± 0.007   0.208 ± 0.006
+11603184   244.989 ± 3.436   6.356 ± 0.046       W          M4 V           3241           ···        0.393 ± 0.013   0.386 ± 0.011
+11654343   222.610 ± 2.307   5.859 ± 0.036       W          M3.5 V         3325           ···        0.466 ± 0.015   0.467 ± 0.012
+11702373   177.349 ± 3.446   7.909 ± 0.085      D/W         M4 V           3241           ···        0.218 ± 0.010   0.185 ± 0.009
+11709473   203.356 ± 2.966   5.974 ± 0.039       W          M4 V           3241           ···        0.448 ± 0.014   0.448 ± 0.012
+11709752   46.157 ± 0.202    8.513 ± 0.026        I         M6.5 V         2820     0.015 ± 0.163    0.174 ± 0.005   0.140 ± 0.004
+11710163   226.710 ± 3.479   5.986 ± 0.044       W          M6 Ve          2904           ···        0.446 ± 0.015   0.446 ± 0.012
+11717068   187.740 ± 4.127   7.638 ± 0.082       W          M4.5 V         3157           ···        0.243 ± 0.010   0.212 ± 0.010
+11717289   119.830 ± 2.110   8.570 ± 0.076       W          M7 V           2736           ···        0.169 ± 0.007   0.137 ± 0.005
+11724582   64.260 ± 0.302    7.907 ± 0.023       W          M6 V           2904           ···        0.219 ± 0.007   0.186 ± 0.005
+11751991   148.861 ± 1.136   6.003 ± 0.030       W          M2.5 V         3494           ···        0.444 ± 0.014   0.443 ± 0.011
+11752690   96.867 ± 0.587    7.431 ± 0.027       W          M4.5 Ve        3157           ···        0.263 ± 0.008   0.234 ± 0.006
+11769369   257.784 ± 3.631   5.223 ± 0.038       W          M4 V           3241           ···        0.571 ± 0.018   0.569 ± 0.015
+11810611   126.222 ± 0.654   6.928 ± 0.026       W          M2 V           3578           ···        0.319 ± 0.010   0.299 ± 0.008
+11861787   74.669 ± 0.221    7.212 ± 0.028        I         M4.5 V         3157     −0.051 ± 0.079   0.287 ± 0.008   0.261 ± 0.007
+11868209   46.035 ± 0.086    7.680 ± 0.019       W          M4.5 V         3157           ···        0.239 ± 0.007   0.207 ± 0.005
+11876227   157.399 ± 1.130   6.036 ± 0.028       W          M4 Ve          3241           ···        0.439 ± 0.013   0.438 ± 0.011
+11918550   18.331 ± 0.020    6.832 ± 0.016        L         M3 V           3410           ···        0.331 ± 0.010   0.313 ± 0.007
+11920155   224.137 ± 2.734   5.829 ± 0.038       W          M4 V           3241           ···        0.471 ± 0.015   0.472 ± 0.012
+11925804   49.055 ± 0.086    6.935 ± 0.015       W          M4 Ve          3241           ···        0.318 ± 0.009   0.298 ± 0.007
+11957647   175.160 ± 1.275   6.012 ± 0.027       W/I        M2.5 Ve        3494     0.065 ± 0.127    0.443 ± 0.013   0.442 ± 0.011
+12059261   151.438 ± 0.984   6.100 ± 0.028       W/I        M4 V           3241     0.107 ± 0.081    0.431 ± 0.012   0.427 ± 0.011
+12066676   122.267 ± 0.803   6.761 ± 0.028       W/I        M4 V           3241     0.107 ± 0.114    0.342 ± 0.010   0.323 ± 0.008
+12068325   71.119 ± 0.282    8.501 ± 0.029       W          M5 V           3073           ···        0.173 ± 0.005   0.141 ± 0.004
+12108566   79.661 ± 0.439    7.831 ± 0.027       W/I        M6 Ve          2904     0.131 ± 0.106    0.228 ± 0.007   0.192 ± 0.005
+12159633   107.774 ± 0.472   6.140 ± 0.019       D/I        M4 V           3241     0.276 ± 0.080    0.428 ± 0.012   0.421 ± 0.010
+12166644   105.885 ± 0.339   6.235 ± 0.018       W          M4 V           3241           ···        0.410 ± 0.012   0.405 ± 0.009
+12204358   171.869 ± 1.549   6.501 ± 0.030       W          M4 V           3241           ···        0.373 ± 0.012   0.363 ± 0.009
+
+
+                                                       Table 3 continued
+                                     Mid-Type M Dwarf Planet Occurrence Rates                                                             29
+                                                          Table 3 (continued)
+
+  KIC ID           Distance                MKS        Telescopea    Spec. Typeb      Teff c         [Fe/H]                 R⋆           M⋆
+
+                      (pc)                 (mag)                                     (K)             (dex)                (R⊙ )        (M⊙ )
+ 12302994       161.881 ± 1.346       6.137 ± 0.028       W/I       M4.5 V           3157       −0.068 ± 0.137      0.422 ± 0.012   0.421 ± 0.011
+ 12306639       209.393 ± 6.284       7.839 ± 0.108        D        M6 V             2904               ···         0.224 ± 0.012   0.192 ± 0.011
+ 12351607       187.389 ± 1.884       6.315 ± 0.039        W        M4 V             3241               ···         0.399 ± 0.013   0.392 ± 0.011
+ 12505701       166.641 ± 1.431       5.930 ± 0.030       W/I       M5 V             3073        0.606 ± 0.070      0.467 ± 0.013   0.455 ± 0.013
+ 12506640        97.789 ± 0.393       6.634 ± 0.025       W/I       M2 V             3578       −0.313 ± 0.066      0.351 ± 0.010   0.342 ± 0.009
+ 12644136        43.998 ± 0.080       7.640 ± 0.020         I       M4.5 V           3157        0.141 ± 0.067      0.245 ± 0.007   0.211 ± 0.005
+ 12688403       110.782 ± 0.765       6.242 ± 0.030       W/I       M3 Ve            3410       −0.194 ± 0.079      0.405 ± 0.012   0.404 ± 0.011
+ 12689068       170.244 ± 1.519       6.650 ± 0.032        W        M2.5 V           3494               ···         0.354 ± 0.011   0.340 ± 0.009
+ 12735296       248.393 ± 35.087      5.459 ± 0.318        W        M2.5 V           3494               ···         0.531 ± 0.054   0.532 ± 0.052
+a D = DCT, I = IRTF, L = LAMOST, W = WIYN
+b Stars that exhibit Hα emission from a by-eye analysis are classified with the peculiar flag ‘e’ to denote emission.
+c We adopt a ±88 K uncertainty for all temperatures from our spectral type vs. T
+                                                                                           eff fit (Section 3.3).
+
+d Kepler-1582
+e Kepler-1649
+f Kepler-1650
+g Kepler-1646
+hKepler-42
+i Kepler-446
+j Kepler-445
+
+
+
+
+                                  Table 4. Stellar parameters for photometrically classified targets.
+
+
+                 KIC ID           Distance            MKS          Spec. Type     Teff a           R⋆                M⋆
+                                    (pc)              (mag)                       (K)             (R⊙ )             (M⊙ )
+                01433760      192.959 ± 2.769      6.697 ± 0.046     M3 V         3410        0.348 ± 0.012   0.333 ± 0.010
+                02831828      106.525 ± 1.537      8.923 ± 0.056     M5 V         3073        0.148 ± 0.005   0.119 ± 0.004
+                02971472      40.706 ± 0.059       6.979 ± 0.019     M5 V         3073        0.313 ± 0.009   0.292 ± 0.007
+                02983661      148.672 ± 1.211      6.832 ± 0.029     M3 V         3410        0.331 ± 0.010   0.313 ± 0.008
+                03101838      201.853 ± 2.262      5.846 ± 0.032     M3 V         3410        0.468 ± 0.014   0.469 ± 0.012
+                03228276      111.970 ± 0.562      6.865 ± 0.025     M3 V         3410        0.327 ± 0.010   0.308 ± 0.008
+                03443923      144.103 ± 0.963      5.575 ± 0.026     M4 V         3241        0.511 ± 0.015   0.513 ± 0.013
+                03545104      45.524 ± 0.073       7.464 ± 0.019     M5 V         3073        0.260 ± 0.008   0.231 ± 0.006
+                03556888      172.661 ± 1.983      6.683 ± 0.042     M4 V         3241        0.349 ± 0.011   0.335 ± 0.010
+                03629762      23.997 ± 0.023       6.578 ± 0.017     M4 V         3241        0.363 ± 0.011   0.351 ± 0.008
+                03735000      110.168 ± 0.877      7.226 ± 0.030     M5 V         3073        0.285 ± 0.009   0.259 ± 0.007
+
+
+                                                           Table 4 continued
+30                                   Hardegree-Ullman et al.
+                                          Table 4 (continued)
+
+     KIC ID        Distance           MKS           Spec. Type    Teff a        R⋆             M⋆
+
+                      (pc)            (mag)                       (K)          (R⊙ )          (M⊙ )
+     03838516   178.840 ± 2.708    7.298 ± 0.052       M4 V       3241     0.277 ± 0.010   0.250 ± 0.008
+     04037286   202.408 ± 3.214    6.687 ± 0.048       M4 V       3241     0.349 ± 0.012   0.334 ± 0.010
+     04039602   139.252 ± 1.341    7.816 ± 0.040       M4 V       3241     0.227 ± 0.007   0.194 ± 0.006
+     04068926   163.753 ± 2.285    7.340 ± 0.054       M5 V       3073     0.273 ± 0.010   0.245 ± 0.008
+     04137629    83.718 ± 0.346    7.454 ± 0.026       M4 V       3241     0.261 ± 0.008   0.232 ± 0.006
+     04142913    27.730 ± 0.093    4.948 ± 0.023       M4 V       3241     0.621 ± 0.018   0.609 ± 0.015
+     04173772    45.276 ± 0.066    6.568 ± 0.018       M4 V       3241     0.364 ± 0.011   0.352 ± 0.008
+     04466520   100.476 ± 0.332    5.642 ± 0.021       M2 V       3578     0.500 ± 0.015   0.503 ± 0.012
+     04581084    41.656 ± 0.077    6.385 ± 0.015       M5 V       3073     0.389 ± 0.011   0.381 ± 0.009
+     04644194    92.933 ± 0.480    7.493 ± 0.028       M4 V       3241     0.257 ± 0.008   0.227 ± 0.006
+     04862505   194.457 ± 2.170    5.798 ± 0.033       M4 V       3241     0.475 ± 0.015   0.477 ± 0.012
+     04909186   111.369 ± 0.366    5.665 ± 0.021       M3 V       3410     0.497 ± 0.015   0.499 ± 0.012
+     04921143   152.266 ± 3.613    5.281 ± 0.055       M3 V       3410     0.561 ± 0.019   0.560 ± 0.016
+     04938090    53.110 ± 0.185    7.916 ± 0.018       M5 V       3073     0.218 ± 0.006   0.185 ± 0.004
+     04997179   157.380 ± 1.758    5.677 ± 0.033       M2 V       3578     0.495 ± 0.015   0.497 ± 0.013
+     05112508   154.262 ± 0.864    5.767 ± 0.024       M3 V       3410     0.480 ± 0.014   0.482 ± 0.012
+     05256612    66.222 ± 0.241    8.122 ± 0.028       M4 V       3241     0.201 ± 0.006   0.168 ± 0.004
+     05435955   148.841 ± 3.469    6.083 ± 0.055       M4 V       3241     0.432 ± 0.015   0.430 ± 0.013
+     05435958   474.253 ± 13.718   4.958 ± 0.072       M3 V       3410     0.619 ± 0.022   0.608 ± 0.018
+     05522356   134.862 ± 4.891    8.752 ± 0.116       M6 V       2904     0.158 ± 0.008   0.127 ± 0.007
+     05597723   113.820 ± 0.971    7.749 ± 0.040       M5 V       3073     0.233 ± 0.008   0.200 ± 0.006
+     05608002   193.248 ± 11.800   5.710 ± 0.136       M4 V       3241     0.489 ± 0.026   0.491 ± 0.025
+     05630476    98.355 ± 0.637    7.433 ± 0.030       M4 V       3241     0.263 ± 0.008   0.234 ± 0.006
+     05716508          ···              ···            M3 V       3410     0.341 ± 0.064   0.321 ± 0.093
+     05802041   109.550 ± 0.667    7.198 ± 0.026       M4 V       3241     0.288 ± 0.009   0.263 ± 0.007
+     05855479    91.617 ± 0.936    8.983 ± 0.062       M5 V       3073     0.145 ± 0.005   0.116 ± 0.004
+     05855851    78.447 ± 0.189    6.411 ± 0.021       M3 V       3410     0.385 ± 0.012   0.377 ± 0.009
+     05941130   261.381 ± 4.693    6.178 ± 0.050       M3 V       3410     0.418 ± 0.014   0.415 ± 0.012
+     05966669    71.057 ± 0.363    8.367 ± 0.028       M4 V       3241     0.182 ± 0.006   0.150 ± 0.004
+     06029542   124.094 ± 0.960    7.314 ± 0.036       M4 V       3241     0.276 ± 0.009   0.248 ± 0.007
+     06060042   124.392 ± 0.785    6.448 ± 0.026       M3 V       3410     0.380 ± 0.012   0.371 ± 0.009
+     06099502    57.992 ± 0.161    7.144 ± 0.024       M4 V       3241     0.294 ± 0.009   0.270 ± 0.007
+     06110166   149.098 ± 1.591    6.428 ± 0.034       M4 V       3241     0.383 ± 0.012   0.374 ± 0.010
+     06181143    92.310 ± 0.508    6.470 ± 0.025       M4 V       3241     0.377 ± 0.011   0.368 ± 0.009
+     06201164    41.383 ± 0.113    8.606 ± 0.019       M5 V       3073     0.166 ± 0.005   0.135 ± 0.003
+     06209585    74.533 ± 0.310    8.121 ± 0.027       M4 V       3241     0.201 ± 0.006   0.168 ± 0.004
+     06365513    82.925 ± 0.595    5.800 ± 0.024       M4 V       3241     0.475 ± 0.014   0.477 ± 0.011
+     06423922    85.563 ± 0.277    6.720 ± 0.020       M4 V       3241     0.345 ± 0.010   0.329 ± 0.008
+     06431170   266.684 ± 26.668   8.573 ± 0.332       M4 V       3241     0.169 ± 0.021   0.137 ± 0.020
+     06460812   147.694 ± 1.953    6.097 ± 0.035       M3 V       3410     0.430 ± 0.013   0.428 ± 0.011
+
+
+                                              Table 4 continued
+                Mid-Type M Dwarf Planet Occurrence Rates                                           31
+                                    Table 4 (continued)
+
+KIC ID        Distance          MKS          Spec. Type   Teff a        R⋆             M⋆
+
+                (pc)            (mag)                     (K)          (R⊙ )          (M⊙ )
+06507276   133.950 ± 0.723   6.804 ± 0.027     M3 V         0      0.334 ± 0.010   0.317 ± 0.008
+06510539   188.951 ± 2.064   6.791 ± 0.035     M3 V       3410     0.336 ± 0.011   0.319 ± 0.009
+06580019   121.275 ± 1.934   8.594 ± 0.063     M5 V       3073     0.167 ± 0.006   0.136 ± 0.005
+06751111   94.861 ± 1.771    7.503 ± 0.046     M5 V       3073     0.256 ± 0.009   0.226 ± 0.007
+06784660   72.266 ± 0.235    7.645 ± 0.018     M4 V       3241     0.242 ± 0.007   0.211 ± 0.005
+06925256   132.365 ± 0.997   6.538 ± 0.026     M3 V       3410     0.368 ± 0.011   0.357 ± 0.009
+07025613   128.887 ± 3.234   8.661 ± 0.079     M5 V       3073     0.163 ± 0.007   0.132 ± 0.005
+07033670   18.131 ± 0.017    8.319 ± 0.017     M6 V       2904     0.186 ± 0.006   0.153 ± 0.004
+07094638   106.769 ± 0.708   7.346 ± 0.029     M4 V       3241     0.272 ± 0.008   0.244 ± 0.006
+07094777   123.682 ± 0.755   6.137 ± 0.023     M4 V       3241     0.424 ± 0.013   0.422 ± 0.010
+07100573   207.135 ± 2.117   6.014 ± 0.034     M4 V       3241     0.442 ± 0.014   0.442 ± 0.011
+07265390   103.052 ± 0.634   7.440 ± 0.027     M4 V       3241     0.262 ± 0.008   0.233 ± 0.006
+07298281   79.796 ± 0.328    6.875 ± 0.017     M4 V       3241     0.326 ± 0.010   0.306 ± 0.007
+07341517   129.666 ± 1.412   7.820 ± 0.048     M4 V       3241     0.226 ± 0.008   0.194 ± 0.006
+07350394   116.340 ± 0.643   6.926 ± 0.022     M3 V       3410     0.319 ± 0.010   0.299 ± 0.007
+07435842   37.067 ± 0.110    9.241 ± 0.020     M6 V       2904     0.133 ± 0.004   0.106 ± 0.003
+07663056   123.455 ± 1.233   7.755 ± 0.043     M5 V       3073     0.232 ± 0.008   0.200 ± 0.006
+07668390   155.626 ± 1.664   7.179 ± 0.035     M4 V       3241     0.290 ± 0.009   0.265 ± 0.007
+07676799   142.090 ± 1.472   6.786 ± 0.030     M4 V       3241     0.337 ± 0.010   0.319 ± 0.008
+07678417   122.180 ± 1.135   6.068 ± 0.024     M4 V       3241     0.434 ± 0.013   0.433 ± 0.010
+07691437   26.760 ± 0.056    9.649 ± 0.020     M7 V       2736     0.119 ± 0.003   0.094 ± 0.002
+07731089   166.665 ± 1.493   7.060 ± 0.035     M3 V       3410     0.304 ± 0.010   0.281 ± 0.008
+07731963   247.742 ± 4.437   6.357 ± 0.056     M3 V       3410     0.393 ± 0.014   0.386 ± 0.012
+07739468   201.036 ± 2.362   6.665 ± 0.036     M3 V       3410     0.352 ± 0.011   0.337 ± 0.009
+07757418   169.535 ± 1.359   6.560 ± 0.036     M4 V       3241     0.365 ± 0.012   0.354 ± 0.010
+07799941   69.023 ± 0.453    8.664 ± 0.028     M7 V       2736     0.163 ± 0.005   0.132 ± 0.003
+07820535   49.419 ± 0.128    7.307 ± 0.017     M4 V       3241     0.276 ± 0.008   0.249 ± 0.006
+07830804   95.992 ± 0.697    8.102 ± 0.035     M4 V       3241     0.202 ± 0.006   0.169 ± 0.005
+07941437   166.655 ± 2.091   5.236 ± 0.031     M4 V       3241     0.569 ± 0.017   0.567 ± 0.014
+07957625   120.601 ± 1.252   7.709 ± 0.036     M4 V       3241     0.236 ± 0.008   0.204 ± 0.006
+07960044   135.460 ± 1.997   5.981 ± 0.037     M5 V       3073     0.447 ± 0.014   0.447 ± 0.012
+08154114   29.472 ± 0.031    7.619 ± 0.011     M5 V       3073     0.245 ± 0.007   0.214 ± 0.005
+08221528   148.876 ± 1.703   7.754 ± 0.050     M3 V       3410     0.232 ± 0.008   0.200 ± 0.007
+08222581   154.952 ± 1.444   6.887 ± 0.031     M3 V       3410     0.324 ± 0.010   0.305 ± 0.008
+08247428   153.994 ± 3.140   8.380 ± 0.082     M4 V       3241     0.181 ± 0.008   0.149 ± 0.006
+08393988   97.377 ± 0.440    7.329 ± 0.029     M3 V       3410     0.274 ± 0.008   0.246 ± 0.006
+08408875   49.072 ± 0.108    6.258 ± 0.012     M4 V       3241     0.407 ± 0.012   0.402 ± 0.009
+08409924   299.875 ± 6.498   5.898 ± 0.055     M4 V       3241     0.459 ± 0.016   0.461 ± 0.014
+08414250   185.079 ± 2.646   6.258 ± 0.040     M4 V       3241     0.407 ± 0.013   0.402 ± 0.011
+08489264   108.453 ± 0.517   7.121 ± 0.018     M2 V       3578     0.297 ± 0.009   0.273 ± 0.006
+
+
+                                     Table 4 continued
+32                                   Hardegree-Ullman et al.
+                                          Table 4 (continued)
+
+     KIC ID        Distance           MKS           Spec. Type    Teff a        R⋆             M⋆
+
+                      (pc)            (mag)                       (K)          (R⊙ )          (M⊙ )
+     08526622   157.750 ± 2.551    7.179 ± 0.063       M4 V       3241     0.290 ± 0.011   0.265 ± 0.010
+     08557567   135.302 ± 1.259    7.180 ± 0.030       M4 V       3241     0.290 ± 0.009   0.265 ± 0.007
+     08573327   134.691 ± 1.544    7.412 ± 0.036       M4 V       3241     0.265 ± 0.009   0.237 ± 0.007
+     08604803   160.616 ± 1.523    6.733 ± 0.030       M3 V       3410     0.343 ± 0.011   0.327 ± 0.008
+     08631743   156.018 ± 2.201    7.973 ± 0.062       M4 V       3241     0.213 ± 0.008   0.180 ± 0.007
+     08673562    61.976 ± 0.229    8.266 ± 0.024       M6 V       2904     0.190 ± 0.006   0.157 ± 0.004
+     08735884    96.715 ± 0.356    7.167 ± 0.024       M3 V       3410     0.292 ± 0.009   0.267 ± 0.007
+     08738977   133.189 ± 1.951    8.346 ± 0.073       M5 V       3073     0.184 ± 0.007   0.151 ± 0.006
+     08825565   112.247 ± 0.735    6.959 ± 0.024       M4 V       3241     0.315 ± 0.010   0.295 ± 0.007
+     08846163    63.727 ± 0.388    5.555 ± 0.023       M4 V       3241     0.515 ± 0.015   0.517 ± 0.013
+     08878564   162.228 ± 1.783    7.327 ± 0.042       M3 V       3410     0.274 ± 0.009   0.247 ± 0.007
+     08881388   103.788 ± 0.687    7.296 ± 0.024       M5 V       3073     0.278 ± 0.008   0.250 ± 0.006
+     08888573    64.164 ± 0.117    6.434 ± 0.020       M3 V       3410     0.382 ± 0.011   0.373 ± 0.009
+     08935655    55.855 ± 0.103    6.231 ± 0.015       M4 V       3241     0.410 ± 0.012   0.406 ± 0.009
+     08935942   125.198 ± 1.113    6.975 ± 0.032       M5 V       3073     0.314 ± 0.010   0.292 ± 0.008
+     09006264    62.430 ± 0.179    6.662 ± 0.018       M5 V       3073     0.352 ± 0.010   0.338 ± 0.008
+     09028977   140.544 ± 5.408    5.749 ± 0.085       M3 V       3410     0.483 ± 0.019   0.485 ± 0.018
+     09033543    20.468 ± 0.026    8.824 ± 0.012       M6 V       2904     0.154 ± 0.004   0.123 ± 0.003
+     09048032   131.835 ± 1.344    6.756 ± 0.030       M4 V       3241     0.340 ± 0.011   0.324 ± 0.008
+     09090909          ···              ···            M3 V       3410     0.341 ± 0.064   0.321 ± 0.093
+     09111293    86.723 ± 0.351    7.479 ± 0.023       M3 V       3410     0.259 ± 0.008   0.229 ± 0.006
+     09153593   112.179 ± 0.678    6.790 ± 0.020       M4 V       3241     0.336 ± 0.010   0.319 ± 0.008
+     09153754    45.638 ± 0.186    6.799 ± 0.017       M5 V       3073     0.335 ± 0.010   0.317 ± 0.007
+     09201463          ···              ···            M5 V       3073     0.190 ± 0.040   0.153 ± 0.052
+     09210374   119.012 ± 0.546    6.359 ± 0.016       M3 V       3410     0.392 ± 0.012   0.385 ± 0.009
+     09268481          ···              ···            M4 V       3241     0.258 ± 0.053   0.226 ± 0.075
+     09282187    51.318 ± 0.253    9.200 ± 0.031       M7 V       2736     0.135 ± 0.004   0.107 ± 0.003
+     09326073    94.173 ± 4.937    7.818 ± 0.117       M4 V       3241     0.226 ± 0.012   0.194 ± 0.012
+     09391230   224.339 ± 2.964    6.478 ± 0.046       M4 V       3241     0.376 ± 0.013   0.366 ± 0.011
+     09396972    73.708 ± 0.309    7.960 ± 0.021       M4 V       3241     0.214 ± 0.006   0.181 ± 0.004
+     09401964   147.359 ± 1.008    6.556 ± 0.025       M4 V       3241     0.366 ± 0.011   0.354 ± 0.009
+     09471335    96.306 ± 0.391    6.662 ± 0.021       M4 V       3241     0.352 ± 0.011   0.338 ± 0.008
+     09475080   127.827 ± 1.532    7.709 ± 0.041       M5 V       3073     0.236 ± 0.008   0.204 ± 0.006
+     09476089   293.072 ± 13.572   7.729 ± 0.173       M4 V       3241     0.234 ± 0.017   0.202 ± 0.018
+     09516961   159.734 ± 1.168    6.194 ± 0.024       M4 V       3241     0.416 ± 0.013   0.412 ± 0.010
+     09517514   136.730 ± 2.445    8.302 ± 0.060       M5 V       3073     0.187 ± 0.007   0.154 ± 0.005
+     09530715    66.720 ± 0.540    7.928 ± 0.028       M5 V       3073     0.217 ± 0.007   0.184 ± 0.005
+     09533040   247.921 ± 9.317    7.445 ± 0.117       M4 V       3241     0.262 ± 0.014   0.233 ± 0.014
+     09579384          ···              ···            M3 V       3410     0.341 ± 0.064   0.321 ± 0.093
+     09581479   210.875 ± 6.580    8.099 ± 0.116       M4 V       3241     0.203 ± 0.011   0.169 ± 0.010
+
+
+                                              Table 4 continued
+                 Mid-Type M Dwarf Planet Occurrence Rates                                             33
+                                     Table 4 (continued)
+
+KIC ID        Distance           MKS           Spec. Type    Teff a        R⋆             M⋆
+
+                 (pc)            (mag)                       (K)          (R⊙ )          (M⊙ )
+09593909   226.925 ± 4.217    6.932 ± 0.061       M4 V       3241     0.319 ± 0.012   0.298 ± 0.011
+09631940   313.922 ± 6.353    5.747 ± 0.053       M4 V       3241     0.483 ± 0.016   0.485 ± 0.014
+09636945   420.348 ± 20.946   4.981 ± 0.115       M2 V       3578     0.615 ± 0.027   0.604 ± 0.022
+09645092    85.618 ± 0.379    7.770 ± 0.021       M4 V       3241     0.231 ± 0.007   0.198 ± 0.005
+09653548   158.912 ± 1.754    7.349 ± 0.044       M4 V       3241     0.272 ± 0.009   0.244 ± 0.008
+09654304   288.559 ± 7.006    6.307 ± 0.070       M4 V       3241     0.400 ± 0.015   0.394 ± 0.014
+09655322   720.455 ± 69.437   5.674 ± 0.251       M4 V       3241     0.495 ± 0.043   0.498 ± 0.042
+09655551   361.087 ± 31.610   6.927 ± 0.220       M4 V       3241     0.320 ± 0.027   0.300 ± 0.032
+09655667   290.477 ± 15.055   7.362 ± 0.155       M4 V       3241     0.271 ± 0.018   0.243 ± 0.019
+09659082    68.703 ± 0.299    6.731 ± 0.020       M4 V       3241     0.343 ± 0.010   0.328 ± 0.008
+09710717   256.815 ± 4.845    6.201 ± 0.058       M3 V       3410     0.415 ± 0.015   0.411 ± 0.013
+09711491    70.303 ± 0.291    7.921 ± 0.023       M4 V       3241     0.217 ± 0.007   0.184 ± 0.005
+09754582   151.578 ± 1.532    7.132 ± 0.040       M4 V       3241     0.296 ± 0.010   0.271 ± 0.008
+09784820   145.863 ± 1.518    6.948 ± 0.033       M4 V       3241     0.317 ± 0.010   0.296 ± 0.008
+09817857    80.399 ± 0.440    7.825 ± 0.025       M5 V       3073     0.226 ± 0.007   0.193 ± 0.005
+09826844   179.877 ± 1.265    5.744 ± 0.027       M2 V       3578     0.484 ± 0.015   0.486 ± 0.012
+09837302   382.284 ± 16.206   6.231 ± 0.117       M3 V       3410     0.410 ± 0.021   0.405 ± 0.021
+09912373   309.361 ± 7.530    5.641 ± 0.060       M4 V       3241     0.501 ± 0.017   0.503 ± 0.015
+09933524   175.961 ± 2.546    7.081 ± 0.051       M5 V       3073     0.301 ± 0.010   0.278 ± 0.009
+09942231   205.718 ± 3.203    6.260 ± 0.042       M5 V       3073     0.406 ± 0.013   0.401 ± 0.011
+10004407   112.784 ± 0.452    6.785 ± 0.019       M3 V       3410     0.337 ± 0.010   0.320 ± 0.008
+10053146    53.212 ± 0.844    9.637 ± 0.042       M8 V       2568     0.120 ± 0.004   0.094 ± 0.003
+10057002          ···              ···            M7 V       2736     0.126 ± 0.018   0.091 ± 0.018
+10057939    98.997 ± 0.415    7.139 ± 0.024       M4 V       3241     0.295 ± 0.009   0.270 ± 0.007
+10118794    95.844 ± 1.437    8.701 ± 0.056       M7 V       2736     0.161 ± 0.006   0.130 ± 0.004
+10158029   168.795 ± 9.600    6.010 ± 0.126       M4 V       3241     0.443 ± 0.023   0.442 ± 0.023
+10186824          ···              ···            M3 V       3410     0.341 ± 0.064   0.321 ± 0.093
+10267155   187.400 ± 2.037    6.571 ± 0.035       M4 V       3241     0.364 ± 0.012   0.352 ± 0.010
+10273058    99.972 ± 0.452    6.989 ± 0.020       M4 V       3241     0.312 ± 0.009   0.290 ± 0.007
+10274090   137.271 ± 0.831    6.116 ± 0.023       M4 V       3241     0.427 ± 0.013   0.425 ± 0.010
+10320084   111.810 ± 0.683    7.701 ± 0.035       M3 V       3410     0.237 ± 0.008   0.205 ± 0.006
+10322878    68.535 ± 0.294    7.530 ± 0.020       M5 V       3073     0.253 ± 0.008   0.223 ± 0.005
+10339105    43.328 ± 0.648    6.443 ± 0.036       M4 V       3241     0.381 ± 0.012   0.372 ± 0.010
+10345684   151.964 ± 2.231    7.610 ± 0.053       M5 V       3073     0.246 ± 0.009   0.215 ± 0.007
+10453314    36.548 ± 0.049    6.648 ± 0.019       M4 V       3241     0.354 ± 0.011   0.340 ± 0.008
+10456779   292.784 ± 5.106    5.960 ± 0.054       M3 V       3410     0.450 ± 0.015   0.450 ± 0.013
+10522057   214.971 ± 2.480    5.491 ± 0.035       M3 V       3410     0.525 ± 0.016   0.527 ± 0.013
+10557342   111.411 ± 0.502    6.599 ± 0.026       M3 V       3410     0.360 ± 0.011   0.348 ± 0.009
+10598142   106.170 ± 0.340    6.394 ± 0.017       M3 V       3410     0.388 ± 0.011   0.380 ± 0.009
+10649277    83.468 ± 2.980    7.424 ± 0.081       M5 V       3073     0.264 ± 0.011   0.235 ± 0.011
+
+
+                                         Table 4 continued
+34                                   Hardegree-Ullman et al.
+                                          Table 4 (continued)
+
+     KIC ID        Distance           MKS           Spec. Type    Teff a        R⋆             M⋆
+
+                      (pc)            (mag)                       (K)          (R⊙ )          (M⊙ )
+     10651319   281.639 ± 4.938    5.914 ± 0.052       M3 V       3410     0.457 ± 0.015   0.458 ± 0.013
+     10659335   202.974 ± 2.140    6.369 ± 0.032       M3 V       3410     0.391 ± 0.012   0.384 ± 0.010
+     10784750   199.051 ± 1.689    5.809 ± 0.031       M3 V       3410     0.474 ± 0.015   0.475 ± 0.012
+     10819154   134.956 ± 1.093    7.208 ± 0.039       M4 V       3241     0.287 ± 0.009   0.261 ± 0.008
+     10877432    48.968 ± 0.070    7.212 ± 0.017       M4 V       3241     0.287 ± 0.008   0.261 ± 0.006
+     10905192   113.531 ± 1.031    7.487 ± 0.035       M5 V       3073     0.258 ± 0.008   0.228 ± 0.006
+     10907400    99.376 ± 0.393    6.348 ± 0.019       M3 V       3410     0.394 ± 0.012   0.387 ± 0.009
+     10911018    30.428 ± 0.037    7.465 ± 0.022       M6 V       2904     0.260 ± 0.008   0.230 ± 0.006
+     10924100   314.613 ± 19.120   5.607 ± 0.136       M4 V       3241     0.506 ± 0.027   0.508 ± 0.025
+     10932417    97.838 ± 0.760    6.388 ± 0.024       M4 V       3241     0.388 ± 0.012   0.381 ± 0.009
+     10963537          ···              ···            M4 V       3241     0.258 ± 0.053   0.226 ± 0.075
+     10991155   244.474 ± 3.268    4.562 ± 0.037       M4 V       3241     0.258 ± 0.053   0.226 ± 0.075
+     11025770   109.753 ± 0.579    5.708 ± 0.024       M3 V       3410     0.490 ± 0.015   0.492 ± 0.012
+     11027877   132.839 ± 0.758    6.661 ± 0.030       M3 V       3410     0.352 ± 0.011   0.338 ± 0.009
+     11126343          ···              ···            M4 V       3241     0.258 ± 0.053   0.226 ± 0.075
+     11175934   144.056 ± 1.600    7.621 ± 0.051       M5 V       3073     0.245 ± 0.009   0.213 ± 0.007
+     11196417   231.232 ± 3.094    4.530 ± 0.034       M5 V       3073     0.190 ± 0.040   0.153 ± 0.052
+     11237082   144.070 ± 1.402    7.142 ± 0.036       M4 V       3241     0.294 ± 0.009   0.270 ± 0.008
+     11251839   132.847 ± 0.633    5.979 ± 0.020       M4 V       3241     0.447 ± 0.013   0.447 ± 0.011
+     11293949    51.681 ± 0.111    6.924 ± 0.019       M5 V       3073     0.320 ± 0.010   0.300 ± 0.007
+     11295657   187.969 ± 2.439    7.321 ± 0.052       M3 V       3410     0.275 ± 0.010   0.247 ± 0.008
+     11389346   317.078 ± 7.038    5.632 ± 0.060       M4 V       3241     0.502 ± 0.017   0.504 ± 0.015
+     11400756    60.038 ± 0.196    7.554 ± 0.027       M3 V       3410     0.251 ± 0.008   0.221 ± 0.006
+     11442458    85.439 ± 0.313    7.267 ± 0.026       M4 V       3241     0.281 ± 0.009   0.254 ± 0.006
+     11456603   157.833 ± 1.477    6.111 ± 0.030       M4 V       3241     0.428 ± 0.013   0.426 ± 0.011
+     11503101   134.850 ± 2.091    6.555 ± 0.042       M4 V       3241     0.366 ± 0.012   0.354 ± 0.010
+     11548779   192.349 ± 1.989    6.173 ± 0.034       M3 V       3410     0.419 ± 0.013   0.416 ± 0.011
+     11550104    97.104 ± 1.345    9.071 ± 0.070       M7 V       2736     0.141 ± 0.005   0.112 ± 0.004
+     11558721   173.528 ± 1.034    5.576 ± 0.022       M3 V       3410     0.511 ± 0.015   0.513 ± 0.012
+     11597669    58.284 ± 0.185    8.066 ± 0.019       M4 V       3241     0.205 ± 0.006   0.172 ± 0.004
+     11612157   183.820 ± 4.104    5.911 ± 0.052       M3 V       3410     0.458 ± 0.016   0.459 ± 0.013
+     11612159   190.314 ± 2.405    6.595 ± 0.041       M3 V       3410     0.361 ± 0.012   0.348 ± 0.010
+     11652732   107.877 ± 0.487    7.002 ± 0.025       M3 V       3410     0.310 ± 0.009   0.289 ± 0.007
+     11654120   101.497 ± 2.453    9.082 ± 0.080       M6 V       2904     0.140 ± 0.006   0.112 ± 0.004
+     11709022    64.302 ± 3.803    4.634 ± 0.131       M4 V       3241     0.681 ± 0.032   0.654 ± 0.025
+     11855853   219.865 ± 3.208    6.544 ± 0.050       M3 V       3410     0.367 ± 0.013   0.356 ± 0.011
+     11862609   159.117 ± 2.020    7.361 ± 0.050       M4 V       3241     0.271 ± 0.009   0.243 ± 0.008
+     12071873   217.540 ± 2.293    5.264 ± 0.030       M3 V       3410     0.564 ± 0.017   0.562 ± 0.014
+     12101934   141.893 ± 1.056    7.032 ± 0.033       M4 V       3241     0.307 ± 0.010   0.285 ± 0.008
+     12102994   301.489 ± 5.265    5.756 ± 0.052       M3 V       3410     0.482 ± 0.016   0.484 ± 0.014
+
+
+                                              Table 4 continued
+                      Mid-Type M Dwarf Planet Occurrence Rates                                              35
+                                          Table 4 (continued)
+
+     KIC ID         Distance           MKS         Spec. Type   Teff a        R⋆                M⋆
+
+                      (pc)            (mag)                     (K)          (R⊙ )             (M⊙ )
+    12117672    121.713 ± 1.296    8.153 ± 0.052     M5 V       3073     0.198 ± 0.007    0.165 ± 0.005
+    12156321    162.902 ± 1.262    6.223 ± 0.029     M4 V       3241     0.412 ± 0.013    0.407 ± 0.010
+    12168731    249.094 ± 6.406    7.181 ± 0.093     M4 V       3241     0.290 ± 0.013    0.265 ± 0.013
+    12305237     80.201 ± 0.205    6.560 ± 0.020     M3 V       3410     0.365 ± 0.011    0.354 ± 0.008
+    12508767     75.955 ± 0.209    6.763 ± 0.026     M3 V       3410     0.339 ± 0.010    0.323 ± 0.008
+    12645891    199.484 ± 3.660    7.136 ± 0.060     M4 V       3241     0.295 ± 0.011    0.271 ± 0.010
+    12735831     68.308 ± 0.228    7.990 ± 0.024     M4 V       3241     0.212 ± 0.006    0.178 ± 0.004
+    12784248     79.894 ± 0.657    8.889 ± 0.032     M6 V       2904     0.150 ± 0.005    0.120 ± 0.003
+    12884812    126.624 ± 1.008    7.013 ± 0.030     M2 V       3578     0.309 ± 0.010    0.287 ± 0.008
+a We adopt a ±88 K uncertainty for all temperatures from our spectral type vs. T
+                                                                                   eff fit (Section 3.3).
+

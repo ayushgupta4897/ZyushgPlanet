@@ -1,0 +1,113 @@
+{
+  "pipeline_vet_json": "/home/user/ZyushgPlanet/runs/poolA_main/vet/kic-006448637/vet.json",
+  "rows": [
+    {
+      "quantity": "period_d",
+      "pipeline": 35.587258263011776,
+      "mine": 35.58770476367139,
+      "note": "BLS refine; timing-fit P = 35.58777 +- 0.00045"
+    },
+    {
+      "quantity": "t0_bkjd",
+      "pipeline": 186.68617448583245,
+      "mine": 186.68037233260247,
+      "note": "my t0 moved to the pipeline's reference epoch"
+    },
+    {
+      "quantity": "duration_h",
+      "pipeline": 4.5,
+      "mine": 4.8409253088988216,
+      "note": "pipeline: fixed 4.5 h box; mine: trapezoid T14 (BLS box 4.13 h, box-SNR scan 4.32 h)"
+    },
+    {
+      "quantity": "depth_ppm",
+      "pipeline": 845.5843676570263,
+      "mine": 896.5150509065252,
+      "note": "pipeline 4.5-h box; mine 4.13-h box on masked re-detrend"
+    },
+    {
+      "quantity": "depth_err_ppm",
+      "pipeline": 84.72229005205996,
+      "mine": 44.899713023618844,
+      "note": "pipeline box_noise vs my random-phase-box std"
+    },
+    {
+      "quantity": "empirical_snr",
+      "pipeline": 9.980659955454858,
+      "mine": 19.967055255674495,
+      "note": "differs because of the error scale, not the depth"
+    },
+    {
+      "quantity": "n_in_transit",
+      "pipeline": 182,
+      "mine": 174,
+      "note": ""
+    },
+    {
+      "quantity": "odd_ppm",
+      "pipeline": 790.4328150194484,
+      "mine": 814.753574424385,
+      "note": ""
+    },
+    {
+      "quantity": "even_ppm",
+      "pipeline": 911.3675448993996,
+      "mine": 992.8187525648868,
+      "note": ""
+    },
+    {
+      "quantity": "odd_even_sigma",
+      "pipeline": 0.7137125885386215,
+      "mine": 1.9863786176778644,
+      "note": "same ~120-180 ppm difference; sigma differs with the error scale"
+    },
+    {
+      "quantity": "secondary_ppm",
+      "pipeline": 24.320211963413385,
+      "mine": 43.755372937750096,
+      "note": ""
+    },
+    {
+      "quantity": "secondary_sigma",
+      "pipeline": 0.2870580097453593,
+      "mine": 0.9847448396294055,
+      "note": ""
+    },
+    {
+      "quantity": "n_events",
+      "pipeline": 26,
+      "mine": 26,
+      "note": "epochs with any in-transit cadence; 24 have >=50% coverage"
+    },
+    {
+      "quantity": "event_chi2/dof",
+      "pipeline": "35.4/25",
+      "mine": "36.0/23",
+      "note": ""
+    },
+    {
+      "quantity": "depth_by_quartile_ppm",
+      "pipeline": [
+        713,
+        642,
+        807,
+        992
+      ],
+      "mine": [
+        944,
+        759,
+        691,
+        1067,
+        880
+      ],
+      "note": "pipeline: event quartiles; mine: calendar years 2009-2013"
+    }
+  ],
+  "disagreements": [
+    "Empirical depth error: pipeline box_noise 85 ppm vs my random-phase-box std 45 ppm (my single-box-noise/sqrt(N) = 42 ppm, per-event-scatter/sqrt(N) = 72 ppm). Hence empirical SNR 10.0 (pipeline) vs 20.0 (mine). The depth itself agrees; the pipeline's error is the more conservative.",
+    "Odd/even: same sense and size (odd shallower by ~120-180 ppm) but 2.0 sigma under my errors vs 0.7 sigma under the pipeline's.",
+    "Duration: pipeline holds 4.5 h fixed; my free fits give 4.1 h (BLS box), 4.3 h (box-SNR scan), 4.84 h (trapezoid T14, T23/T14 = 0.70).",
+    "Per-year depths are not fully consistent: 2011 = 691 +- 72 ppm vs 2012 = 1067 +- 82 ppm (chi2 13.0 for 4 dof about the weighted mean); the pipeline's event quartiles show the same drift (642 -> 992 ppm). Removing the Q13-edge outlier event (epoch 28, 2268 +- 349 ppm, 0.40 d after a gap) lowers 2012 to 896 +- 81 ppm and the chi2 to 4.5.",
+    "Period: 35.58770 (mine, BLS refine) vs 35.58726 (pipeline): differ by 4.4e-4 d, which is 1.0 sigma of my timing-fit period error."
+  ]
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+<script type="text/javascript" src="/includes/jquery-latest.js"></script> 
+<script type="text/javascript" src="/includes/jquery.tablesorter.js"></script>
+<script type="text/javascript" src="/includes/jquery.tablesorter.pager.js"></script>
+
+<script type="javascript">
+$(function())
+    { 
+        $("table")
+			.tablesorter()
+); 
+</script>
+-->
+
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Kepler Eclipsing Binaries</title>
+<link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+<link href="/includes/style.css" rel="stylesheet" type="text/css" media="screen" />
+
+
+<script src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+
+
+<script type="text/javascript">
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-34740719-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+  
+</script>
+<style>
+	#expandheader h2{
+		display:inline;	
+	}
+	#lightbox {
+		position:fixed; /* keeps the lightbox window in the current viewport */
+		top:0; 
+		left:0; 
+		width:100%; 
+		height:100%; 
+		background:url(/includes/wen/overlay.png) repeat; 
+		text-align:center;
+	}
+	#lightbox p {
+		text-align:right; 
+		color:#fff; 
+		margin-right:20px; 
+		font-size:12px; 
+	}
+	#lightbox img {
+		box-shadow:0 0 25px #111;
+		-webkit-box-shadow:0 0 25px #111;
+		-moz-box-shadow:0 0 25px #111;
+		max-width:940px;
+	}
+	.expandheader {
+		margin: 1px;
+		padding: 3px 10px;
+		cursor: pointer;
+		background-color:#F0F0F6;
+	}
+</style>
+
+</head>
+<body>
+	<div id="menu-wrapper">
+		<div id="menu">
+			<ul>
+				<li><a href="/">Catalog</a></li>
+				
+
+				
+
+				<li><a href="/search">Search</a></li>
+				
+
+				<li><a href="/papers">Papers</a></li>
+				
+
+				
+
+				<li><a href="/charter">Charter</a></li>
+				
+
+				<li><a href="/about">Help</a></li>
+				
+
+				
+					<li class='login'><a href="/accounts/login?next=/user/home">Login</a></li>
+				
+				
+				
+				
+<!--
+				
+-->
+			</ul>
+		</div>
+	</div><!-- end #menu-wrapper -->
+
+	<div id="page">
+		<div id="main" name="top">
+			<BR></BR>
+			
+	<H1>Page Not Found</H1>
+
+
+	
+
+		</div>
+
+		<div id="table", name="results">
+			
+
+		</div>
+		
+		
+	</div>
+	<!-- end #page -->
+</div>
+</body>
+
+
+<script type="text/javascript" src="/includes/jsscripts/jquery.expander.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$('div.readmore').expander({
+			slicePoint: 400,
+			expandText: 'Show More',
+			userCollapseText: 'Show Less',
+			widow: 40,
+			//detailClass: 'expandedtext',
+		});
+	});
+</script>
+<script>
+jQuery(document).ready(function($) {
+	
+	$('.lightbox_trigger').click(function(e) {
+		
+		//prevent default action (hyperlink)
+		e.preventDefault();
+		
+		//Get clicked link href
+		var image_href = $(this).attr("href");
+		
+		/* 	
+		If the lightbox window HTML already exists in document, 
+		change the img src to to match the href of whatever link was clicked
+		
+		If the lightbox window HTML doesn't exists, create it and insert it.
+		(This will only happen the first time around)
+		*/
+		
+		if ($('#lightbox').length > 0) { // #lightbox exists
+			
+			//place href as img src value
+			$('#content').html('<img src="' + image_href + '" style="max-width:80%;max-height:80%;"/>');
+		   	
+			//show lightbox window - you could use .show('fast') for a transition
+			$('#lightbox').show();
+		}
+		
+		else { //#lightbox does not exist - create and insert (runs 1st time only)
+			
+			//create HTML markup for lightbox window
+			var lightbox = 
+			'<div id="lightbox">' +
+				'<br><br><p>Click to close</p>' +
+				'<div id="content">' + //insert clicked link's href into img src
+					'<img src="' + image_href +'" style="max-width:80%;max-height:80%;"/>' +
+				'</div>' +	
+			'</div>';
+				
+			//insert lightbox HTML into page
+			$('body').append(lightbox);
+		}
+		
+	});
+	
+	//Click anywhere on the page to get rid of lightbox window
+	$('#lightbox').live('click', function() { //must use live, as the lightbox element is inserted into the DOM
+		$('#lightbox').hide();
+	});
+
+});
+</script>
+
+
+</html>
+

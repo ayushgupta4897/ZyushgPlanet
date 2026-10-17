@@ -4,6 +4,20 @@
 
 **How this repo implements it (as of 2026-10-17).** `pipeline/prereg_poolA.json` is the pre-registration with a revision log; `pipeline/batch_search.py` runs the identical screen on real and inverted flux for every star; `runs/controls*/` hold the positive controls, including the failed v1.0 run; the Modal deployment ships code per run so nothing is baked into an image; `pipeline/triage.py` applies the registered thresholds and ephemeris matching and labels post-hoc cuts as such.
 
+## Implemented in this repo vs. prescribed below
+
+| Prescribed in this chapter | Status in the repo (2026-10-17) |
+|---|---|
+| Pre-registration file with revision log | `pipeline/prereg_poolA.json` (JSON, not PREREG.md/git tag) |
+| Frozen target list with hash | `targets/poolA_kbonus_bg_dwarfs_ranked.csv`, SHA-256 in the prereg |
+| Null controls by default | Inverted flux on every star; scrambled/injection controls not yet |
+| Claim-sources tracing | Every number in `docs/00` and `docs/10` names its run directory; no `claim-sources.json` yet |
+| CLAUDE.md rules, hooks, skills, agents, params.toml, DAG build | `CLAUDE.md` only; no hooks/skills/agents/params.toml/DAG in this repo |
+| Workflow fan-out per star / per candidate | Used for research, reproduction, adversarial review and audit (session-level Workflow tool); the star batch ran on Modal via `pipeline/modal_app.py` |
+| Red-team before any public claim | Implemented as the adversarial workflow (`runs/<id>/adversarial/`) |
+| Zenodo deposit, CITATION.cff, SHA-256 manifest | **Not yet** |
+
+
 # Agentic workflow for an archival transit-candidate search with Claude Code (verified edition)
 
 Dimension: agentic-workflow. Verification date: 2026-10-17. Every command below marked **[run]** was executed in `/home/user/ZyushgPlanet/.venv` (Python 3.13.16, lightkurve 2.6.0, astropy 8.0.2, astroquery 0.4.11, TLS 2.0.1, numpy 2.5.4, scipy 1.18.1; uv 0.11.32; Claude Code 2.1.302; node 22.22.0; jq 1.7; 4 CPUs / 15 GB). Every doc claim marked **[doc]** was fetched live on 2026-10-17. Items marked **[unverified]** were not checked here. The researcher's draft files are in `/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/agentic-workflow/drafts/`; this pass's log is at `/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/verify-agentic-workflow/VERIFICATION_LOG.md`.

@@ -1,0 +1,18 @@
+--- KOI cumulative Teff<4000 by disposition (10.0s)
+koi_disposition   n
+      CONFIRMED 154
+      CANDIDATE  60
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/feasibility-stats/tap_counts.py", line 12, in <module>
+    q("""select case when koi_prad<1.5 then 'a_1.0-1.5' when koi_prad<2 then 'b_1.5-2' when koi_prad<4 then 'c_2-4' else 'd_>4' end as rbin,
+    ~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     case when koi_period<10 then 'P<10' when koi_period<50 then 'P10-50' when koi_period<200 then 'P50-200' else 'P>200' end as pbin, count(*) as n
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     from cumulative where koi_steff<4000 and koi_disposition in ('CANDIDATE','CONFIRMED') and koi_prad>=1 group by rbin,pbin order by rbin,pbin""","KOI cool hosts by Rp and P bin")
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/feasibility-stats/tap_counts.py", line 6, in q
+    r.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+case+when+koi_prad%3C1.5+then+%27a_1.0-1.5%27+when+koi_prad%3C2+then+%27b_1.5-2%27+when+koi_prad%3C4+then+%27c_2-4%27+else+%27d_%3E4%27+end+as+rbin%2C%0A+case+when+koi_period%3C10+then+%27P%3C10%27+when+koi_period%3C50+then+%27P10-50%27+when+koi_period%3C200+then+%27P50-200%27+else+%27P%3E200%27+end+as+pbin%2C+count%28%2A%29+as+n%0A+from+cumulative+where+koi_steff%3C4000+and+koi_disposition+in+%28%27CANDIDATE%27%2C%27CONFIRMED%27%29+and+koi_prad%3E%3D1+group+by+rbin%2Cpbin+order+by+rbin%2Cpbin&format=csv

@@ -1,0 +1,565 @@
+{
+  "fname": "kic-006448637",
+  "date": "2026-10-17",
+  "script": "/home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-006448637/rederive/rederive_kic006448637.py",
+  "fits": "/home/user/ZyushgPlanet/data/kbonus_batch/hlsp_kbonus-bkg_kepler_kepler_kic-006448637_kepler_v1.0_lc.fits",
+  "fits_sha256": "fbfdb14841d7a20aa9395ab468f20d30ac7a5574140081246068b64375658e64",
+  "env": {
+    "python": "3.13.16",
+    "numpy": "2.5.4",
+    "astropy": "8.0.2"
+  },
+  "method": {
+    "cadence_selection": "SAP_QUALITY == 0, finite TIME/FLUX/FLUX_ERR, FLUX>0",
+    "normalisation": "divide by per-quarter median",
+    "detrend": "per-quarter time-windowed running median, window 1.00 d, 2 iterations; points >4 sigma above the trend excluded from the trend estimate; dips never excluded",
+    "outlier_clip_for_search": "+4 sigma / -6 sigma (per-quarter robust sigma)",
+    "bls": "astropy BoxLeastSquares, objective=likelihood, log-uniform periods 1-50 d, dlnP = min(dur)/(3*baseline), durations [0.05, 0.07, 0.1, 0.14, 0.19, 0.25, 0.33, 0.42] d, dy = per-quarter robust scatter",
+    "depth": "out-of-transit mean minus in-box mean on a re-detrend with |phase|<dur masked; empirical error = std of same-duration boxes at random phases avoiding phases 0 and 0.5"
+  },
+  "data": {
+    "n_quality0": 33566,
+    "t_min_bkjd": 170.09242448583245,
+    "t_max_bkjd": 1591.0012335898355,
+    "baseline_d": 1420.908809104003,
+    "quarters": [
+      2,
+      4,
+      5,
+      8,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "n_after_outlier_clip": 33473,
+    "per_quarter_robust_sigma_ppm": {
+      "2": 494.7877038552689,
+      "4": 527.2856937939091,
+      "5": 464.623609710335,
+      "8": 506.4515964616954,
+      "10": 476.6335043235082,
+      "11": 484.69747528352315,
+      "12": 506.23798468049176,
+      "13": 873.8846956196405,
+      "14": 472.4743426377211,
+      "15": 505.94161533586123,
+      "16": 515.7268586729783,
+      "17": 867.6164816504023
+    },
+    "global_robust_sigma_ppm": 518.659286936231
+  },
+  "blind_bls": {
+    "n_periods": 333518,
+    "pmin_d": 1.0,
+    "pmax_d": 50.0,
+    "sde_raw_spectrum": 50.6182838287656,
+    "sde_trend_normalised_spectrum": 42.821774716336144,
+    "top3_peaks": [
+      {
+        "period_d": 35.587206539292275,
+        "power": 143.29793855130998,
+        "index": 304528,
+        "depth_ppm": 648.4122558840509,
+        "duration_h": 4.5600000000000005,
+        "t0_bkjd": 186.68742448583245,
+        "alias_of_ref": "= 35.5873",
+        "sde_local": 50.6182838287656
+      },
+      {
+        "period_d": 17.794007358918982,
+        "power": 80.84283787237747,
+        "index": 245436,
+        "depth_ppm": 353.50958891526426,
+        "duration_h": 4.5600000000000005,
+        "t0_bkjd": 186.67242448583244,
+        "alias_of_ref": "1/2 x 35.5873",
+        "sde_local": 27.415453714198584
+      },
+      {
+        "period_d": 11.862356642544071,
+        "power": 59.13447936078752,
+        "index": 210866,
+        "depth_ppm": 324.3972939712829,
+        "duration_h": 2.4000000000000004,
+        "t0_bkjd": 174.84242448583245,
+        "alias_of_ref": "1/3 x 35.5873",
+        "sde_local": 19.350534289924173
+      }
+    ],
+    "top3_peaks_trend_normalised": [
+      {
+        "period_d": 35.587206539292275,
+        "power": 16.294226410156828,
+        "index": 304528,
+        "alias_of_ref": "= 35.5873"
+      },
+      {
+        "period_d": 17.794007358918982,
+        "power": 10.577108569152804,
+        "index": 245436,
+        "alias_of_ref": "1/2 x 35.5873"
+      },
+      {
+        "period_d": 11.862356642544071,
+        "power": 8.248614673539555,
+        "index": 210866,
+        "alias_of_ref": "1/3 x 35.5873"
+      }
+    ],
+    "top_peak_is_ref_period": true,
+    "top_peak_alias_of_ref": "= 35.5873"
+  },
+  "inverted_null": {
+    "sde_raw_spectrum": 9.871645525161266,
+    "sde_trend_normalised_spectrum": 11.52474215665215,
+    "top3_peaks": [
+      {
+        "period_d": 47.984566111811375,
+        "power": 27.729221044478386,
+        "index": 330010,
+        "depth_ppm": 479.32893068333397,
+        "duration_h": 2.4000000000000004
+      },
+      {
+        "period_d": 1.0466482190532398,
+        "power": 21.698538853180978,
+        "index": 3887,
+        "depth_ppm": 29.383466009442873,
+        "duration_h": 10.08
+      },
+      {
+        "period_d": 32.87555654601813,
+        "power": 20.754041853155357,
+        "index": 297771,
+        "depth_ppm": 454.865765814407,
+        "duration_h": 1.2000000000000002
+      }
+    ]
+  },
+  "ephemeris": {
+    "period_d": 35.58770476367139,
+    "t0_bkjd": 862.8467628423589,
+    "t0_bjd": 2455695.8467628425,
+    "bls_duration_d": 0.17200000000000001,
+    "bls_duration_h": 4.128,
+    "box_snr_scan_best_duration_h": 4.32,
+    "trapezoid": {
+      "depth_ppm": 885.596176341274,
+      "T14_h": 4.8409253088988216,
+      "T23_h": 3.382106049413879,
+      "T23_over_T14": 0.6986486742930591,
+      "dt0_min": 2.8048993488621607,
+      "n_points_fit": 1886,
+      "chi2": 2130.622926679321,
+      "chi2_box_model": 2130.8173520004466
+    },
+    "duration_h_adopted": 4.8409253088988216,
+    "bls_refine_depth_ppm": 858.3665131197899,
+    "bls_refine_depth_err_ppm": 39.96665124656477,
+    "bls_refine_depth_ppm_unmasked_detrend": 704.9470785842158
+  },
+  "box_statistics_psf": {
+    "box_duration_h_used": 4.128,
+    "depth": {
+      "depth_ppm": 896.5150509065252,
+      "err_ppm": 44.899713023618844,
+      "err_mad_ppm": 45.78416190383447,
+      "err_similar_coverage_ppm": 44.70215128789766,
+      "white_err_ppm": 43.65507436524638,
+      "snr": 19.967055255674495,
+      "n_in": 174,
+      "n_random_boxes": 3887,
+      "null_mean_ppm": 0.28236789883568997
+    },
+    "depth_on_unmasked_detrend": {
+      "depth_ppm": 723.0166336028843,
+      "err_ppm": 47.562218387313564,
+      "err_mad_ppm": 47.64418246372709,
+      "err_similar_coverage_ppm": 47.40225742287216,
+      "white_err_ppm": 43.67503074341771,
+      "snr": 15.201490975781251,
+      "n_in": 174,
+      "n_random_boxes": 1453,
+      "null_mean_ppm": 0.6343884707001748
+    },
+    "odd": {
+      "depth_ppm": 814.753574424385,
+      "err_ppm": 67.54438578760607,
+      "err_mad_ppm": 66.08503858856547,
+      "err_similar_coverage_ppm": 67.09280172794541,
+      "white_err_ppm": 59.77197230733068,
+      "snr": 12.062491425806801,
+      "n_in": 94,
+      "n_random_boxes": 3907,
+      "null_mean_ppm": 0.29340438309964845
+    },
+    "even": {
+      "depth_ppm": 992.8187525648868,
+      "err_ppm": 58.93763681900603,
+      "err_mad_ppm": 57.147510148999565,
+      "err_similar_coverage_ppm": 58.57033182214891,
+      "white_err_ppm": 63.952944268248,
+      "snr": 16.845241956574778,
+      "n_in": 80,
+      "n_random_boxes": 3876,
+      "null_mean_ppm": -1.4685375731814303
+    },
+    "odd_even_sigma": 1.9863786176778644,
+    "secondary_phase_0p5": {
+      "depth_ppm": 43.755372937750096,
+      "err_ppm": 44.43320866166387,
+      "err_mad_ppm": 44.306008252403146,
+      "err_similar_coverage_ppm": 44.77793296643673,
+      "white_err_ppm": 47.82173795882192,
+      "snr": 0.9847448396294055,
+      "n_in": 145,
+      "n_random_boxes": 3898,
+      "null_mean_ppm": 0.24714244174328553
+    },
+    "secondary_sigma": 0.9847448396294055,
+    "deepest_box_phase_0p2_0p8": {
+      "phase": 0.6300000000000001,
+      "depth_ppm": 101.11260294225669
+    },
+    "per_year": {
+      "2009": {
+        "depth_ppm": 943.7435233673691,
+        "err_ppm": 169.89217353142985,
+        "err_mad_ppm": 148.74353881958825,
+        "err_similar_coverage_ppm": 150.36287743951166,
+        "white_err_ppm": 122.20010522212722,
+        "snr": 5.554955850822508,
+        "n_in": 19,
+        "n_random_boxes": 2376,
+        "null_mean_ppm": -8.601406863956983
+      },
+      "2010": {
+        "depth_ppm": 759.4764603593029,
+        "err_ppm": 106.71148146611614,
+        "err_mad_ppm": 97.77798587525315,
+        "err_similar_coverage_ppm": 114.65377640829207,
+        "white_err_ppm": 107.7957252256167,
+        "snr": 7.117101645716144,
+        "n_in": 23,
+        "n_random_boxes": 2419,
+        "null_mean_ppm": -4.843345857806543
+      },
+      "2011": {
+        "depth_ppm": 690.9353593017267,
+        "err_ppm": 71.81049199809941,
+        "err_mad_ppm": 64.95655120449213,
+        "err_similar_coverage_ppm": 72.02365146999516,
+        "white_err_ppm": 81.7070514595514,
+        "snr": 9.621649150099314,
+        "n_in": 40,
+        "n_random_boxes": 2417,
+        "null_mean_ppm": 0.9121242848505449
+      },
+      "2012": {
+        "depth_ppm": 1067.0963703257787,
+        "err_ppm": 81.60300501240843,
+        "err_mad_ppm": 75.08974000311227,
+        "err_similar_coverage_ppm": 80.2970884733737,
+        "white_err_ppm": 78.48842804427659,
+        "snr": 13.076679837507426,
+        "n_in": 64,
+        "n_random_boxes": 2431,
+        "null_mean_ppm": -5.318081387443654
+      },
+      "2013": {
+        "depth_ppm": 879.8880116687645,
+        "err_ppm": 156.47992439191952,
+        "err_mad_ppm": 143.99141844439058,
+        "err_similar_coverage_ppm": 132.90763149730273,
+        "white_err_ppm": 119.59290152965497,
+        "snr": 5.623008926467766,
+        "n_in": 28,
+        "n_random_boxes": 2418,
+        "null_mean_ppm": 3.714670574793622
+      }
+    },
+    "events": {
+      "n_epochs_in_baseline": 40,
+      "n_transits_with_>=50pct_coverage": 24,
+      "n_epochs_with_any_in_transit_point": 26,
+      "expected_points_per_transit": 8.417503840350186,
+      "single_event_weighted_mean_ppm": 840.4845281079884,
+      "chi2_events_about_mean": 36.02374080331259,
+      "dof": 23,
+      "max_single_event_depth_ppm": 2268.132520577393,
+      "max_single_event_snr": 6.495434864231194,
+      "fraction_of_total_depth_snr2_from_strongest_event": 0.10074660913747012
+    }
+  },
+  "sap_flux": {
+    "n_quality0": 33566,
+    "n_after_clip": 33484,
+    "global_robust_sigma_ppm": 562.828849298495,
+    "depth": {
+      "depth_ppm": 864.8750294100392,
+      "err_ppm": 49.02821124342131,
+      "err_mad_ppm": 49.57887649994352,
+      "err_similar_coverage_ppm": 49.08186732144161,
+      "white_err_ppm": 47.30887936142038,
+      "snr": 17.640354552524894,
+      "n_in": 174,
+      "n_random_boxes": 3881,
+      "null_mean_ppm": 2.661214424093629
+    },
+    "odd": {
+      "depth_ppm": 820.2711329293151,
+      "err_ppm": 74.28083402226042,
+      "err_mad_ppm": 68.06226242015299,
+      "err_similar_coverage_ppm": 74.63303199051533,
+      "white_err_ppm": 64.96947963002404,
+      "snr": 11.042836873418745,
+      "n_in": 94,
+      "n_random_boxes": 1460,
+      "null_mean_ppm": 2.4943468699180738
+    },
+    "even": {
+      "depth_ppm": 917.6066913718963,
+      "err_ppm": 68.9791463784118,
+      "err_mad_ppm": 67.16608151626835,
+      "err_similar_coverage_ppm": 69.08805604372039,
+      "white_err_ppm": 69.0820488908021,
+      "snr": 13.30266811853556,
+      "n_in": 80,
+      "n_random_boxes": 1450,
+      "null_mean_ppm": -1.103558394991634
+    },
+    "secondary_phase_0p5": {
+      "depth_ppm": 2.3703673152618494,
+      "err_ppm": 48.325440425778794,
+      "err_mad_ppm": 48.401820512595236,
+      "err_similar_coverage_ppm": 48.39932578649392,
+      "white_err_ppm": 51.64649542934146,
+      "snr": 0.04905009234012893,
+      "n_in": 146,
+      "n_random_boxes": 1468,
+      "null_mean_ppm": -0.865502791502267
+    },
+    "sap_over_psf_depth_ratio": 0.9647077631719706,
+    "sap_over_psf_depth_ratio_err": 0.07297304175017706,
+    "target_csv_crowdsap": 0.9389557537,
+    "target_csv_psffrac": 0.5006045397603304,
+    "median_sap_over_psf_flux_level": 0.8613172188993256
+  },
+  "summary": {
+    "period_d": 35.58770476367139,
+    "t0_bjd": 2455695.8467628425,
+    "duration_h": 4.8409253088988216,
+    "depth_ppm": 896.5150509065252,
+    "depth_err_ppm": 44.899713023618844,
+    "empirical_snr": 19.967055255674495,
+    "sde": 50.6182838287656,
+    "n_transits": 24,
+    "odd_even_sigma": 1.9863786176778644,
+    "secondary_ppm": 43.755372937750096,
+    "secondary_sigma": 0.9847448396294055,
+    "per_year_depths_ppm": {
+      "2009": 943.7435233673691,
+      "2010": 759.4764603593029,
+      "2011": 690.9353593017267,
+      "2012": 1067.0963703257787,
+      "2013": 879.8880116687645
+    },
+    "recovered_blind": true,
+    "sap_depth_ppm": 864.8750294100392,
+    "sap_over_psf_depth_ratio": 0.9647077631719706
+  },
+  "extras": {
+    "single_box_noise_ppm": 204.1233027190427,
+    "single_box_noise_over_sqrtN_ppm": 41.66649468944339,
+    "single_box_white_expectation_ppm": 198.45135973296934,
+    "n_single_boxes": 9129,
+    "per_event_scatter_ppm": 355.09499706192116,
+    "per_event_scatter_over_sqrtN_ppm": 72.4834627513999,
+    "per_event_mean_ppm": 879.9041666666667,
+    "per_event_median_ppm": 802.85,
+    "most_discrepant_event": {
+      "epoch": 28,
+      "tc_bkjd": 1183.13611,
+      "quarter": 13,
+      "depth_ppm": 2268.1,
+      "err_ppm": 349.2,
+      "gap_dist_d": 0.4,
+      "pull_vs_median": 4.1960194730813285
+    },
+    "odd_even_without_most_discrepant_event": {
+      "odd_ppm": 852.2138293200738,
+      "odd_err_ppm": 59.26106550591757,
+      "even_ppm": 815.4107077267364,
+      "even_err_ppm": 66.7967980499358,
+      "sigma": 0.41214979554273357
+    },
+    "depth_all_events_ppm": {
+      "depth_ppm": 897.0704238672887,
+      "err_ppm": 45.64423525797839,
+      "snr": 19.653531684715546
+    },
+    "depth_without_most_discrepant_event": {
+      "depth_ppm": 831.1805486972145,
+      "err_ppm": 43.97761365665014,
+      "snr": 18.900083010109537,
+      "per_year": {
+        "2009": {
+          "depth_ppm": 943.7435233673691,
+          "err_ppm": 167.7849017611784
+        },
+        "2010": {
+          "depth_ppm": 754.1820270903055,
+          "err_ppm": 106.64137045154266
+        },
+        "2011": {
+          "depth_ppm": 696.9611759560147,
+          "err_ppm": 73.64885909695252
+        },
+        "2012": {
+          "depth_ppm": 895.7275314183761,
+          "err_ppm": 80.71228525675494
+        },
+        "2013": {
+          "depth_ppm": 879.8880116687645,
+          "err_ppm": 161.1324571760274
+        }
+      },
+      "events_chi2_about_mean": 19.051977891968765,
+      "dof": 22
+    },
+    "per_year_chi2_about_weighted_mean_without_outlier": 4.528350312975533,
+    "per_year_chi2_about_weighted_mean_all": 13.038902800138658,
+    "per_year_dof": 4,
+    "linear_ephemeris_from_event_times": {
+      "n_events_timed": 24,
+      "P_d": 35.58776720655766,
+      "P_err_d": 0.0004498312517011688,
+      "P_err_unscaled_d": 0.00015182346427580117,
+      "error_inflation_factor": 2.962857249021859,
+      "t0_bkjd_epoch0": 186.680756773357,
+      "t0_err_d": 0.011491763000696192,
+      "chi2": 193.12750771779034,
+      "dof": 22,
+      "rms_timing_residual_min": 44.038749068229095,
+      "max_abs_timing_residual_min": 147.33767391218862
+    }
+  },
+  "comparison": {
+    "pipeline_vet_json": "/home/user/ZyushgPlanet/runs/poolA_main/vet/kic-006448637/vet.json",
+    "rows": [
+      {
+        "quantity": "period_d",
+        "pipeline": 35.587258263011776,
+        "mine": 35.58770476367139,
+        "note": "BLS refine; timing-fit P = 35.58777 +- 0.00045"
+      },
+      {
+        "quantity": "t0_bkjd",
+        "pipeline": 186.68617448583245,
+        "mine": 186.68037233260247,
+        "note": "my t0 moved to the pipeline's reference epoch"
+      },
+      {
+        "quantity": "duration_h",
+        "pipeline": 4.5,
+        "mine": 4.8409253088988216,
+        "note": "pipeline: fixed 4.5 h box; mine: trapezoid T14 (BLS box 4.13 h, box-SNR scan 4.32 h)"
+      },
+      {
+        "quantity": "depth_ppm",
+        "pipeline": 845.5843676570263,
+        "mine": 896.5150509065252,
+        "note": "pipeline 4.5-h box; mine 4.13-h box on masked re-detrend"
+      },
+      {
+        "quantity": "depth_err_ppm",
+        "pipeline": 84.72229005205996,
+        "mine": 44.899713023618844,
+        "note": "pipeline box_noise vs my random-phase-box std"
+      },
+      {
+        "quantity": "empirical_snr",
+        "pipeline": 9.980659955454858,
+        "mine": 19.967055255674495,
+        "note": "differs because of the error scale, not the depth"
+      },
+      {
+        "quantity": "n_in_transit",
+        "pipeline": 182,
+        "mine": 174,
+        "note": ""
+      },
+      {
+        "quantity": "odd_ppm",
+        "pipeline": 790.4328150194484,
+        "mine": 814.753574424385,
+        "note": ""
+      },
+      {
+        "quantity": "even_ppm",
+        "pipeline": 911.3675448993996,
+        "mine": 992.8187525648868,
+        "note": ""
+      },
+      {
+        "quantity": "odd_even_sigma",
+        "pipeline": 0.7137125885386215,
+        "mine": 1.9863786176778644,
+        "note": "same ~120-180 ppm difference; sigma differs with the error scale"
+      },
+      {
+        "quantity": "secondary_ppm",
+        "pipeline": 24.320211963413385,
+        "mine": 43.755372937750096,
+        "note": ""
+      },
+      {
+        "quantity": "secondary_sigma",
+        "pipeline": 0.2870580097453593,
+        "mine": 0.9847448396294055,
+        "note": ""
+      },
+      {
+        "quantity": "n_events",
+        "pipeline": 26,
+        "mine": 26,
+        "note": "epochs with any in-transit cadence; 24 have >=50% coverage"
+      },
+      {
+        "quantity": "event_chi2/dof",
+        "pipeline": "35.4/25",
+        "mine": "36.0/23",
+        "note": ""
+      },
+      {
+        "quantity": "depth_by_quartile_ppm",
+        "pipeline": [
+          713,
+          642,
+          807,
+          992
+        ],
+        "mine": [
+          944,
+          759,
+          691,
+          1067,
+          880
+        ],
+        "note": "pipeline: event quartiles; mine: calendar years 2009-2013"
+      }
+    ],
+    "disagreements": [
+      "Empirical depth error: pipeline box_noise 85 ppm vs my random-phase-box std 45 ppm (my single-box-noise/sqrt(N) = 42 ppm, per-event-scatter/sqrt(N) = 72 ppm). Hence empirical SNR 10.0 (pipeline) vs 20.0 (mine). The depth itself agrees; the pipeline's error is the more conservative.",
+      "Odd/even: same sense and size (odd shallower by ~120-180 ppm) but 2.0 sigma under my errors vs 0.7 sigma under the pipeline's.",
+      "Duration: pipeline holds 4.5 h fixed; my free fits give 4.1 h (BLS box), 4.3 h (box-SNR scan), 4.84 h (trapezoid T14, T23/T14 = 0.70).",
+      "Per-year depths are not fully consistent: 2011 = 691 +- 72 ppm vs 2012 = 1067 +- 82 ppm (chi2 13.0 for 4 dof about the weighted mean); the pipeline's event quartiles show the same drift (642 -> 992 ppm). Removing the Q13-edge outlier event (epoch 28, 2268 +- 349 ppm, 0.40 d after a gap) lowers 2012 to 896 +- 81 ppm and the chi2 to 4.5.",
+      "Period: 35.58770 (mine, BLS refine) vs 35.58726 (pipeline): differ by 4.4e-4 d, which is 1.0 sigma of my timing-fit period error."
+    ]
+  }
+}

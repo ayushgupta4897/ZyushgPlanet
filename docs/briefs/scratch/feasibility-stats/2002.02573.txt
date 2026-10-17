@@ -1,0 +1,1364 @@
+                                              MNRAS 000, 1–15 (2020)                             Preprint 4 August 2020              Compiled using MNRAS LATEX style file v3.0
+
+
+
+
+                                              Occurrence Rates of Planets Orbiting M Stars: Applying
+                                              ABC to Kepler DR25, Gaia DR2, and 2MASS Data
+
+                                              Danley
+                                              1
+                                                     C. Hsu,1,2,3,4 Eric B. Ford1,2,3,4 and Ryan Terrien5
+                                                  Department of Astronomy & Astrophysics, 525 Davey Laboratory, The Pennsylvania State University, University Park, PA, 16802, USA
+                                              2 Center for Exoplanets and Habitable Worlds, 525 Davey Laboratory, The Pennsylvania State University, University Park, PA, 16802, USA
+                                              3 Center for Astrostatistics, 525 Davey Laboratory, The Pennsylvania State University, University Park, PA, 16802, USA
+                                              4 Institute for Computational & Data Sciences, The Pennsylvania State University, University Park, PA, 16802, USA
+                                              5 Department of Physics and Astronomy, Carleton College, Northfield, MN 55057, USA
+arXiv:2002.02573v3 [astro-ph.EP] 2 Aug 2020
+
+
+
+
+                                              Accepted XXX. Received YYY; in original form ZZZ
+
+
+
+                                                                                 ABSTRACT
+                                                                                 We present robust planet occurrence rates for Kepler planet candidates around M
+                                                                                 stars for planet radii Rp = 0.5 − 4 R ⊕ and orbital periods P = 0.5 − 256 days using
+                                                                                 the approximate Bayesian computation (ABC) technique. This work incorporates the
+                                                                                 final Kepler DR25 planet candidate catalog and data products and augments them
+                                                                                 with updated stellar properties using Gaia DR2 and 2MASS PSC. We apply a set
+                                                                                 of selection criteria to select a sample of 1,746 Kepler M dwarf targets that host 89
+                                                                                 associated planet candidates. These early M dwarfs and late K dwarfs were selected
+                                                                                 from cross-referenced targets using several photometric quality flags from Gaia DR2
+                                                                                 and color-magnitude cuts using 2MASS magnitudes. We estimate a habitable zone
+                                                                                 occurrence rate of fM,HZ = 0.33+0.10
+                                                                                                                    −0.12 for planets with 0.75 − 1.5 R ⊕ size. We caution
+                                                                                 that occurrence rate estimates for Kepler M stars are sensitive to the choice of prior
+                                                                                 due to the small sample of target stars and planet candidates. For example, we find
+                                                                                 an occurrence rate of 4.2+0.6
+                                                                                                             −0.6
+                                                                                                                  or 8.4+1.2
+                                                                                                                         −1.1 planets per M dwarf (integrating over Rp =
+                                                                                 0.5 − 4 R ⊕ and P = 0.5 − 256 days) for our two choices of prior. These occurrence
+                                                                                 rates are greater than those for FGK dwarf target when compared at the same range
+                                                                                 of orbital periods, but similar to occurrence rates when computed as a function of
+                                                                                 equivalent stellar insolation. Combining our result with recent studies of exoplanet
+                                                                                 architectures indicates that most, and potentially all, early-M dwarfs harbor planetary
+                                                                                 systems.
+                                                                                 Key words: planets and satellites: fundamental parameters – planets and satellites:
+                                                                                 detection – methods: statistical – planetary systems – stars: statistics – stars: low-mass
+
+
+
+                                              1     INTRODUCTION                                                  timescales, observing clear differences in their exoplanet
+                                                                                                                  populations can give insight into the relative importance of
+                                              M dwarf stars represent an interesting stellar type for oc-
+                                                                                                                  the two timescales (Ercolano & Pascucci 2017). M dwarfs
+                                              currence rate studies. Transiting exoplanets are more easily
+                                                                                                                  also have significantly less luminosity compared to FGK
+                                              detectable around M stars than sun-like stars because tran-
+                                                                                                                  dwarfs, so differences in the exoplanet populations could
+                                              sit depth δ ∝ R∗−2 (where R∗ is the host star’s radius) and M
+                                                                                                                  point to the relative significance of stellar irradiance and disk
+                                              stars are smaller than FGK stars. The habitable zone (HZ)
+                                                                                                                  properties for planetary accretion and migration. For these
+                                              around M stars is also closer to the star due to their lower lu-
+                                                                                                                  reasons, many projects have and/or will search for exoplan-
+                                              minosity. Therefore, HZ planets around M stars have smaller
+                                                                                                                  ets orbiting M dwarfs, including the ground-based MEarth
+                                              periods in comparison to HZ planets around FGK stars, in-
+                                                                                                                  (Irwin et al. 2015) and SPECULOOS (Delrez et al. 2018)
+                                              creasing both their geometric transit probability and their
+                                                                                                                  transit surveys focusing on M dwarfs. Additionally, space-
+                                              transit SNR for a transit survey with fixed lifetime. Both
+                                                                                                                  based surveys by the K2 (Howell et al. 2014) and TESS
+                                              these considerations make small planets around M stars rel-
+                                                                                                                  (Ricker et al. 2015) missions have significant increased the
+                                              atively favorable targets for follow-up transit observations.
+                                                                                                                  number of nearby M dwarfs surveyed for transiting plan-
+                                                   Contrasting the M dwarf exoplanet population to the            ets with small orbital periods. Ground-based radial velocity
+                                              exoplanet population around FGK dwarfs can provide sig-             (RV) surveys using instruments such as HPF (Mahadevan
+                                              nificant insights to planet formation theories. Since the           et al. 2012), SPIRou (Artigau et al. 2014), and CARMENES
+                                              stellar types have different accretion and disk dissipation
+
+                                              © 2020 The Authors
+2     Hsu, Ford and Terrien
+(Quirrenbach et al. 2018) also will target M dwarfs to better     a significantly enhanced occurrence rate for planets with
+characterize their exoplanet population, extending to larger      Rp = 0.5 − 2.5 R ⊕ and P < 10 days compared to previous
+orbital periods.                                                  studies which computed occurrence rates based on samples
+     Several studies have attempted to quantify occurrence        dominated by of earlier stars (e.g., Dressing & Charbonneau
+rates for M stars using Kepler data. An early study by            (2015) and Mulders et al. (2015)). Hardegree-Ullman et al.
+Dressing & Charbonneau (2013) used the Inverse Detection          (2019) also concluded that occurrence rates decreased as a
+Efficiency Method (IDEM), which assigns a completeness            function of stellar type.
+“weight” to each detection to estimate the number of Kepler            A small number of studies have begun to characterize
+targets that needed to be observed to achieve that one detec-     the M dwarf exoplanet population via their planetary system
+tion. That study determined the occurrence rate of planets        architectures. Muirhead et al. (2015) calculated the occur-
+with radii < 4R ⊕ for stars believed to be cooler than 4000 K     rence rate of compact multiple systems (i.e., systems with
+from Q1-Q6 Kepler data. Kopparapu et al. (2013); Gaidos           multiple planets at P < 10 days) for mid-type M stars using
+(2013) used similar methods, but arrived at larger estimates      DR24 Kepler data, concluding that 21+7  −5
+                                                                                                             % of mid-M dwarfs
+for the HZ rate, primarily due to different HZ limits. Morton     host such systems. A separate study by Ballard & John-
+& Swift (2014) took a slightly different approach and mod-        son (2016) investigated planet multiplicity for a sample of
+eled each planet using a weighted kernel density estimator,       primarily early M dwarfs and concluded that the Kepler di-
+arriving at the conclusion that previous rates were underesti-    chotomy also exists in the exoplanet population around M
+mated by a factor of 1.6 due to incompleteness. Gaidos et al.     dwarf. The architectures inferred for M dwarf hosts can be
+(2014) made use of an iterative simulation model to charac-       compared to the architectures of FGK host stars (e.g., Mul-
+terize the dependence of occurrence rate on planet radius,        ders et al. 2018; He et al. 2019).
+concluding that the distribution of rates peaks at planet              This study aims to provide the most up-to-date occur-
+radius Rp ∼ 0.8 R ⊕ and that on average M dwarfs host ap-         rence rate estimates using the final Kepler DR25 planet cat-
+proximately 2 planets with planet radii Rp = 0.5 − 6 R ⊕ and      alog and associated data products and an enhanced set of
+orbital period P < 180 days.                                      stellar properties using Gaia DR2 measurements. In §2 we
+     A particularly influential study is that of Dressing &       briefly review how we adapt our previous methodology from
+Charbonneau (2015), which characterized occurrence rates          Hsu et al. (2019) to this study. In §3 we cover the selection
+for cool stars with Teff < 4000 K and log g > 3 using the Q1-     of our M dwarf catalog using Kepler DR25, Gaia DR2, and
+Q17 DR24 Kepler data and adding archival spectroscopic            2MASS 2MASS Point Source Catalog (PSC) measurements
+and photometric observations to improve their estimates of        as well as present our new occurrence rate estimates. Lastly,
+stellar parameters. Using a detection efficiency curve that       in §4 we discuss the implications of our results, focusing on
+accounts for their custom pipeline’s completeness as char-        comparisons with our previously estimated FGK rates and
+acterized by analyzing synthetic data with injected planets       other M dwarf occurrence rate studies.
+and applying a correction for contamination due to false
+positives, they produced smoothed maps of planet detec-
+tion completeness to arrive at binned occurrence rates for        2   METHODOLOGY
+P = 0.5 − 200 days and Rp = 0.5 − 4 R ⊕ . They conclude that
+on average there are 2.5 ± 0.2 planets with Rp = 1 − 4 R ⊕ and    We apply a Bayesian hierarchical model to perform inference
+P < 200 days. A study by Gaidos et al. (2016) also using the      using a flexible model for the occurrence rate of planets per
+DR24 Kepler data found occurrence rates of f = 2.2±0.3 over       star as a function of size and orbital period. We present re-
+Rp = 1−4 R ⊕ and P = 1.2−180 days, consistent with those of       sults using two parameterizations (and associated priors) for
+Dressing & Charbonneau (2015). A study by Mulders et al.          the occurrence rates (detailed in §2.4) to help assess the sen-
+(2015) which selected M dwarfs having Teff = 2400 − 3865 K        sitivity to our choice of priors. While our population model
+found systematically lower estimated occurrence rates than        is simple, we employ a sophisticated model for the detection
+Dressing & Charbonneau (2015) over Rp = 0.5 − 4 R ⊕ and           and vetting efficiency of the Kepler mission and pipeline.
+P = 0.5 − 50 days. Mulders et al. (2015) suggests this differ-    The complexity of the Kepler model makes it impractical
+ence is likely the result of both studies applying the Dressing   to write down a likelihood analytically. Therefore, we make
+& Charbonneau (2015) detection efficiency model, but hav-         use of Approximate Bayesian Computation (ABC) which is
+ing used different planet detection pipelines.                    designed to perform Bayesian inference for a real world prob-
+     M stars span a large range of stellar masses and tem-        lems when writing a rigorous likelihood is intractable or im-
+peratures. Given Kepler ’s aperture and target list, most oc-     practical. Our study follows most of the same methodology
+currence rate studies of M dwarfs using Kepler data have          that was described and validated in Hsu et al. (2019). Our
+been based on early-type M dwarfs and likely had signif-          ABC implementation (Ford et al. 2018) and Exoplanets Sys-
+icant contamination from late K dwarfs due to difficulties        tems Simulator (SysSim) forward model (Ford et al. 2020)
+in accurately dividing K dwarfs and M dwarfs using stel-          are publicly available on Github1 under the MIT Expat Li-
+lar properties derived from photometry prior to Gaia DR2.
+While Kepler only observed a small number of mid-type M           1 The cited releases used in this study implement an older
+dwarfs, very few studies have focused on occurrence rates
+                                                                  version (v0.6) of the Julia programming language. For code
+for this challenging sample. The latest study to focus on         that is compatible with the current release of Julia (v1.4),
+mid-type M dwarfs is Hardegree-Ullman et al. (2019), which        please use the code available at https://github.com/eford/
+used Kepler DR25 data and enhanced it with Gaia DR2               ApproximateBayesianComputing.jl and https://github.com/
+(Gaia Collaboration et al. 2018) and spectroscopic measure-       ExoJulia/ExoplanetsSysSim.jl for ABC and SysSim respec-
+ments to derive more accurate stellar properties. They found      tively.
+
+                                                                                                       MNRAS 000, 1–15 (2020)
+                                                                   Kepler DR25 M Star Planet Occurrence Rates                         3
+cense. We provide an overview of the the ABC methodology              each subsequent generation, the last set of particles are used
+below and identify updates for this study.                            to construct a sampling density for proposing new parti-
+                                                                      cles. Proposals are accepted or rejected based on whether
+                                                                      the resulting distance exceeds a distance threshold that is
+2.1   Approximate Bayesian Computing                                  gradually decreased with subsequent generations. The ABC-
+In ABC, one uses a forward model to generate many syn-                PMC algorithm calculates weights for each accepted particle
+thetic data sets and a distance function to evaluate how simi-        based on the ratio of the prior probability to the proposal
+lar the synthetic and observed data sets are. A simplistic im-        density for that particle’s parameter values, so as to ensure
+plementation of ABC would involve drawing parameters for              that a kernel density estimator (KDE) constructed from the
+the forward model from their priors, generating a synthetic           particles and their weights properly reflects the prior prob-
+data set for each set of parameters, computing summary                ability distribution. The ABC-PMC algorithm terminates
+statistics for each synthetic data set and evaluating the dis-        once the distance threshold is sufficiently small that addi-
+tance function (ρ(sobs, s∗ )) between the summary statistics          tional iterations would not result in significant changes to
+for each synthetic data set (s∗ ) and the summary statistics          the distribution of particles, using the criteria detailed in
+for the actual observations (sobs ). The empirical distribution       Hsu et al. (2018). The final set of particles is used to con-
+of the model parameters that result in synthetic data sets            struct a KDE for the ABC posterior distribution for the
+with a distance less than a distance threshold, , constitutes        model parameters. Notably, the ABC-PMC algorithm allows
+the ABC posterior. In toy problems, one can often identify a          us to characterize the uncertainties in model parameters, in-
+set of sufficient statistics that completely specify the proper-      cluding non-Gaussianity and asymmetries that are common
+ties of the simulated data set. For example, if the synthetic         when working with small sample sizes.
+data were draws from a normal distribution, then the sam-                  For a more complete description of the ABC-PMC al-
+ple mean and sample standard deviation of a sample would              gorithm, as well as the results of extensive validation for
+be sufficient statistics. By choosing a distance function that        characterizing exoplanet occurrence rates using our sum-
+goes to zero only when the sufficient statistics for the syn-         mary statistics and distance functions, see Hsu et al. (2018).
+thetic and observed data sets are identical, one can prove            For completeness, we note the choice of the algorithmic pa-
+that the ABC posterior approaches the true posterior as              rameters below. When applying ABC-PMC to the M dwarf
+goes to zero. For finite , the ABC posterior is broader than         catalog, we set the number of “particles” per generation to
+the true posterior, so the ABC posterior is conservative. In          500, larger than in Hsu et al. (2018) so as to ensure the tails
+practice, ABC is most useful for complex problems where               of the ABC posteriors for each parameter are well charac-
+the observed data is not drawn from an analytical distri-             terized. As shown in Hsu et al. (2018), it is important to
+bution, so it is not possible to identify sufficient statistics       generate simulated catalogs with the same number of target
+that completely describe the distribution of observations.            stars as in the selected sample of target stars, in order to ac-
+In these cases, expert knowledge must be used to identify             curately estimate uncertainties. Using a larger stellar sample
+summary statistics and a distance function that capture the           for simulated catalogs could provide a more precise estimate
+scientifically important features of the model and data.              of the expected value of detected planets per star, but would
+     In this study, we adopt summary statistics and distance          result in underestimating the expected sample variance. We
+functions that have already been developed, tested and val-           set τ = 2, where τ describes how much the proposal distribu-
+idated by Hsu et al. (2018) and Hsu et al. (2019). For sum-           tion is broadened relative to the sample variance of particles
+mary statistics, we set sk to the ratio of number of planet           in the current generation) for all generations.
+candidates detected (within the kth bin of orbital periods                 In this study, the model parameters ( fi, j ’s) are the
+and planet sizes) to the number of target stars searched. We          planet occurrence rates for each bin in a 2-D grid over or-
+adopt a distance function                                             bital period and planet radius. The bin edges for this study
+                   Õ |sobs,k − s∗ |                                   are: P = {0.5, 1, 2, 4, 8, 16, 32, 64, 128, 256} days & Rp =
+                                k
+ρ(sobs,k , sk∗ ) =   q              ,                        (1)      {0.5, 1, 1.5, 2, 2.5, 3, 4} R ⊕ . Note that in comparison to
+                   k   sobs,k + sk∗                                   the grid used in Hsu et al. (2019) the longest period bin
+                                                                      (P = {256, 500}) and the largest radii bins (Rp = {4, 6, 8,
+where sobs,k are summary statistics for Kepler observations           12, 16}) have been removed. This choice was made due to
+and sk∗ are summary statistics for the synthetic catalog.             the paucity of planet candidates within those ranges. Radius
+     In order to improve sampling efficiency relative to the          bins of 0.25 R ⊕ were merged into bins of 0.5 R ⊕ due to the
+simplistic ABC implementation described above, we follow              smaller number of targets and planet candidates in the M
+Hsu et al. (2018) and Hsu et al. (2019) and implement a               dwarf sample.
+Population Monte Carlo (PMC) sampler which effectively                     Next, we detail aspects of the forward model we con-
+converges on the ABC posterior for the planet occurrence              sidered and changed to account for the different stellar type
+rates. The ABC-PMC algorithm is based on sequential im-               being analyzed.
+portance sampling, where each “generation” consists of a set
+of “particles”. Each particle represents one set of the model
+parameters and a weight.2 For the initial generation, parti-
+cles are drawn from the prior and given equal weight. For             ple from a posterior, a Markov chain approaches a fixed target
+                                                                      distribution. In ABC-PMC, the particles within each generation
+                                                                      are drawn from a different sampling distribution. The sampling
+2 While one could make an analogy between particles and “walk-        distribution is adapted based on the previous generation, so par-
+ers” in ensemble-based MCMC samplers, there are important             ticles from the final generation provide a useful approximation to
+technical distinctions. For example, when using MCMC to sam-          the ABC posterior distribution.
+
+MNRAS 000, 1–15 (2020)
+4      Hsu, Ford and Terrien
+2.2    Stellar Properties                                                    Table 1. Parameters for pdet&vet
+In Hsu et al. (2019), we make use of the second Gaia data                                 Nt r               α             β            c
+release (DR2) (Gaia Collaboration et al. 2018) to provide
+improved stellar radii for our selection of FGK target stars.                           3                  33.3884   0.264472       0.699093
+In the case of our M dwarf sample, a significant fraction of                            4                  32.8860   0.269577       0.768366
+                                                                                        5                  31.5196   0.282741       0.833673
+the target stars do not have stellar radii provided by the
+                                                                                        6                  30.9919   0.286979       0.859865
+Gaia catalog.
+                                                                                      7-9                  30.1906   0.294688       0.875042
+     In order to get accurate stellar parameters for our en-                        10-18                  31.6342   0.279425       0.886144
+tire target catalog, we make use of empirical relations from                        19-36                  32.6448   0.268898       0.889724
+Mann et al. (2015) between the 2MASS K s absolute mag-                               ⩾ 37                  27.8185    0.32432       0.945075
+nitude (MK s ) and stellar radius/mass. These relations were
+fit using 183 K7-M7 single stars3 , with the relations show-
+                                                                                                     1.0
+ing scatter of 2-3%. We cross-matched the Kepler target list
+with Gaia DR2 and use the Gaia to 2MASS PSC cross-
+match results of Marrese et al. (2019). We estimate MK s by                                          0.8
+taking the (apparent) K s from 2MASS PSC and applying
+the distance modulus using the Gaia DR2 measured paral-
+
+                                                                             Detect on Probab l ty
+lax. Uncertainties from 2MASS K s and Gaia DR2 parallaxes                                            0.6
+were propagated to estimate uncertainties on MK s . We also
+make use of 2MASS J and K s as a color threshold to iden-
+tify our target sample of M dwarfs (and some late K dwarfs).                                         0.4
+We discuss our use of the 2MASS PSC to select our M dwarf
+sample in more detail in §3.1.                                                                                                           FGK Gamma Det. Eff., Ntr ≥ 37
+                                                                                                     0.2                                 FGK Gamma Det. Eff., Ntr = 10 − 18
+     Stellar radii estimates from Mann et al. (2015) are typ-                                                                            FGK Gamma Det. Eff., Ntr = 5
+ically larger than radii estimates listed in the Kepler DR25                                                                             FGK Gamma Det. Eff., Ntr = 3
+                                                                                                                                         M Injection Tests (All)
+stellar catalog. This discrepancy between model and empir-                                           0.0
+ically derived stellar radii has been previously attributed                                                  5.0     7.5       10.0     12.5      15.0      17.5       20.0
+                                                                                                                                 Expected MES
+to spots and magnetic activity of M dwarfs (e.g., Mullan
+& MacDonald 2001). The underinflation of model M dwarf
+radii is also noted more recently in the Mann et al. (2017)                  Figure 1. Transit injection results for the subset of our M dwarf
+study that investigated eight nearby M dwarf systems with                    sample tested by Christiansen (2017) (red) compared to four dif-
+confirmed exoplanets discovered by Kepler. That study con-                   ferent detection efficiency curves (black) used in Hsu et al. (2019)
+cludes that because Kepler-42 (an inactive, metal-poor star)                 for FGK dwarfs covering different ranges of expected number of
+was also inflated relative to model predictions, activity alone              transits (Nt r ). The M dwarf injection test results are reasonably
+may not explain the discrepancy.                                             bracketed by the FGK detection efficiency curves.
+
+
+
+2.3    Planet Detection Efficiency                                           Hsu et al. 2018, 2019) have found that this parameterization
+                                                                             continues to be useful when constructing a more detailed
+Similar to Hsu et al. (2019), we use a combined model for the                detection efficiency model that accounts for the number of
+probability of a transiting planet being detected and labeled                transits observed.
+as a planet candidate by the robovetter using the pixel-level                     A more accurate characterization of planet detection for
+transit injection tests (Christiansen 2017) and the associated               M dwarfs would require performing many more planet injec-
+robovetter results (Coughlin 2017):                                          tion tests similar to Christiansen (2017), but focusing on M
+                                                                             dwarf targets. In particular, one would need to: (1) gener-
+pdet&vet (SN R, Ntr ) = c Nt r × γ(α Nt r , β Nt r × SN R)/Γ(α Nt r ), (2)
+                                                                             ate tens of thousands of synthetic data sets where simulated
+where Ntr is the number of “valid” transits observed by Ke-                  planetary signals are injected into actual Kepler observa-
+pler, SN R is the estimated signal-to-noise ratio for the tran-              tions of M dwarf targets, so as to have realistic stellar noise
+∫ ∞ detection, Γ is the Gamma function defined as Γ(z) =
+sit                                                                          properties; (2) analyze the simulated pixel-level light curves
+ 0
+     x z−1 e−x dx, γ is the lower incomplete gamma function                  with the actual Kepler pipeline; (3) apply the robovetter to
+                       ∫x
+defined as γ(s, x) = 0 t s−1 e−t dt, and values for α, β, and c              the resulting data products to determine which simulated
+are given in Table 1. Eqn. 2 can be interpreted as the cu-                   planets would have been detected as planet candidates; and
+mulative distribution function (CDF) for a Gamma distri-                     (4) fit a new detection and vetting efficiency model to the
+bution, scaled by c Nt r . This Gamma CDF parameterization                   results for which planets are detected as a function of SN R
+of the detection efficiency curve was originally chosen due to               and Ntr . Unfortunately, the number of transit injections into
+its shape being a good fit to injection test results and pub-                M dwarf targets by Christiansen (2017) is too small to ac-
+lished by Christiansen et al. (2015). Subsequent studies (e.g.,              curately fit a new model for most ranges of Ntr . However,
+                                                                             comparing the injection test results for our M dwarf sample
+                                                                             to the FGK detection model curve shows the two are consis-
+3 Since these empirical relations were fit to single stars, they do          tent with one another as shown in Fig. 1. Given this result,
+not account for stellar binarity. We assume that our selected M              we have chosen to apply the FGK detection model directly
+dwarf targets are single stars.                                              to our M dwarf catalog.
+
+                                                                                                                                            MNRAS 000, 1–15 (2020)
+                                                                        Kepler DR25 M Star Planet Occurrence Rates                            5
+2.4   Model Parameterization                                               unstable if their initial semi-major axes are not sufficiently
+                                                                           well separated (e.g., Obertas et al. (2017) and references
+For our simulations, we perform five independent runs for                  therein). Given the chaotic nature of planetary systems and
+each period bin that simultaneously fit seven radius bins                  the large number of parameters for a three planet system,
+over the ranges: Rp = {0.25, 0.5, 1, 1.5, 2, 2.5, 3, 4} R ⊕ .              quantitative stability criteria are only available for special
+We have previously verified that seven bins simultaneously                 cases. Therefore, it is useful to look at the distribution of
+fit can still produce accurate estimates to within 10% of the              orbital period ratios among planetary systems identified by
+true occurrence rate (see Fig. 1 of Hsu et al. (2019)). We                 K epler with at least three planets. For each set of three
+discard the smallest radius bin due to a known bias that                   apparently adjacent planets, we compute the ratio of the or-
+overestimates the rate in edge bins when incorporating stel-               bital period of the outermost planet to orbital period of the
+lar parameter uncertainties (see §2.5 from (Hsu et al. 2019)).             innermost planet. We find that this ratio is less than two
+We perform five ABC-PMC calculations and calculate the                     for only 5% (13 out of 244) of systems. For the unusually
+relevant percentile (e.g., 50% for bins with ⩾ 2 planet can-               closely packed triples, the minimum ratio is 1.42 and the me-
+didates) for each of the five simulations. We then report the              dian ratio is 1.71. Our choice of prior reflects such systems
+median value of the five estimates as the final estimated rate.            being rare. Note that our prior does not strictly exclude rare
+Upper (lower) uncertainties indicate the difference between                systems with more than three planets with orbital periods
+the 15.87th (84.13th) percentiles and the 50th percentile of               within a factor two of each other. Instead, the prior excludes
+the posterior produced by the simulation that gives the re-                the rate of planets being so high that every star would have
+ported rate. In bins with zero or one planet candidates, we                3 planets within a single period bin (i.e., a factor of two of
+report the 84.13% percentile.                                              each other).
+      In Hsu et al. (2019) we showed that some occurrence                           For each frel,i, j (a vector with j fixed), we then adopt a
+rates (particularly those for small, long-period planets) were             Dirichlet prior with concentration parameters proportional
+sensitive to the choice of prior. Therefore, we analyze the M              to log(Rmax,i /Rmin,i ) with the parameters normalized so that
+dwarf sample using two different priors. The two priors use                the smallest parameter is unity. The Dirichlet (or multivari-
+two different model parameterizations, both chosen to ease                 ate beta) distribution is a conjugate prior for the multi-
+interpretation of results. Neither prior assumes a correlation             nomial distribution, facilitating the interpretability of the
+between occurrence rates in different bins a priori. Yet, the              model. For fitting seven radius bins, setting each concentra-
+hierarchical model still allows for the posterior distributions            tion parameter to unity would result in a assigning equal
+for the intrinsic occurrence rates to have correlations. Our               prior probability to each point on the 6-simplex (i.e., gen-
+forward model accounts for the expected correlation in the                 eralization of a triangle to 6 dimensions, so the sum of the
+observed rates of exoplanets for neighboring bins comes from               seven frel ’s is constrained to be unity) for relative occurrence
+imprecise determinations of planet radius that can result in               rates at a given period. Using equal concentration param-
+a planet candidate being assigned to the incorrect radius                  eters would result in the expected value for the number of
+bin. A correlation in the observed occurrence rates for two                planets in each radius bin being identical. In contrast, our
+bins that is stronger than expected based on the uncertain-                choice of concentration parameters results in a prior where
+ties in radius measurements would lead to correlations in                  the expected value for the number of planets in each radius
+the posterior distributions for the corresponding occurrence               bin is proportional to log(Rmax,i /Rmin,i ). Setting the smallest
+rates.                                                                     concentration parameter to one prevents the prior from be-
+      For the first prior and model parameterization, we as-               coming peaked at any corner of the 6-simplex for the relative
+sume that each period range has a total occurrence rate                    rates (i.e., avoids favoring all the planets being assigned to
+drawn from a uniform prior, and assign a fraction of those                 a single radius bin).
+planets to each radius bin. The total occurrence rate for                           For the second prior and model parameterization, we as-
+planets within a given range of orbital periods is treated                 sign each bin in period and radius its own occurrence rate,
+as one model parameter, and the rates occurrence rates for                  fi, j . This prior choice makes no assumptions about smooth-
+each radius bin are constrained so they sum to the total rate              ness of the planet occurrence rate as a function of size or dis-
+for the corresponding period bin. For each bin in orbital pe-              tance. It was selected to facilitate ease of interpretation and
+riod (indexed by j), we infer: 1) ftot, j , the total occurrence           to estimate occurrence rates using a minimal number of prior
+rate for all planets within the jth range of orbital periods               assumptions possible given our 2-D period-radius binned oc-
+and the full range of planet sizes being considered, and 2)                currence rate parameterization. We adopt a uniform prior
+a vector frel,i, j : the relative occurrence rates, or more pre-           for fi, j over [0, fmax,i,j ). The upper limit was set to fmax,i,j =
+cisely the fractions of planets in the jth orbital period bin              C × log(Pmax, j /Pmin, j )/log(2) × log(Rmax,i /Rmin,i )/log(2), with
+that have sizes falling within the range of each of the ith                C = 2 in most cases.4
+radius bins. Thus, the occurrence rate for planets in the ith                       While a uniform prior for each radius bin may seem
+radius bin and jth period bin is given by fi, j = ftot,j frel,i, j .       to be making minimal assumptions, the implied prior for
+The upper limit for the uniform prior over ftot,j is given by              the sum of the occurrence rates within a given period range
+ fmax,tot,j = 3 × log(Pmax, j /Pmin, j )/log(2). This prior choice is
+                                                                                                                              Í
+                                                                           is not uniform, but rather peaked near j fmax,i,j /2. This
+motivated by the desire for a minimally informative prior
+on the planet occurrence rate marginalized over planet size
+and the assumption that long-term orbital stability limits                 4  When we perform calculations over a period-radius grid with
+the total number of planets within a given period range.                   equivalent flux to the Hsu et al. (2019) grid for FGK targets, we
+      From a theoretical perspective, N-body simulations                   instead use C = 1.5. See §4.1 for details on how this equivalent
+show that systems with three or more planets typically go                  flux period-radius grid was determined.
+
+MNRAS 000, 1–15 (2020)
+6     Hsu, Ford and Terrien
+can be seen more simply by considering the sum of seven
+random variables (i.e., our number of radius bins for each
+                                                                             −4
+period range), each drawn independently from a uniform                                  M
+distribution between zero and one. The mean ofqthe resulting                            All
+                                                                             −2
+distribution is 72 and the standard deviation is 12 7 , just 22%
+
+of the mean. In contrast, a uniform distribution between zero
+                                                                              0
+and seven has the same mean, but a standard deviation 2.6
+times greater. Thus, choosing a uniform prior for each bin
+                                                                              2
+
+
+
+
+                                                                       MKs
+runs the risk of the prior exerting an undesirable influence on
+the posterior distribution for occurrence rates marginalized
+over planet size, particularly when working with a relatively                 4
+small sample of bf M dwarfs.
+                                                                              6
+
+     Given the above considerations, we consider results us-
+ing the Dirichlet prior to be the baseline results for this                   8
+                                                                               0.0            0.2     0.4                0.6         0.8         1.0
+study. Nevertheless, the results based on uniform priors for                                                 J   − Ks
+each occurrence rate, provide a useful contrast that can help
+assess the sensitivity of our result to the choice of prior
+choice.
+                                                                             −2         M
+                                                                                        All
+
+     Studies investigating the architecture of inner planetary                0
+systems around sun-like stars suggest that the typical inner
+                                                                              2
+planetary system contains multiple planets (e.g., Mulders
+et al. 2018; Zhu et al. 2018; He et al. 2019; Sandford et al.
+                                                                              4
+                                                                       MG
+
+
+
+
+2019; Zink et al. 2019). Studies focusing on the architectures
+of M dwarf planetary systems are also suggestive of multiple                  6
+planets being common (e.g., Muirhead et al. 2015; Ballard
+& Johnson 2016), but have made additional assumptions                         8
+in order to perform inference with the much smaller sam-
+ple of planetary systems observed around M dwarfs. In this                   10
+study, we focus on the question of inferring average num-
+ber of planets (within a given range of sizes and period) per                     0.0         0.5   1.0           1.5          2.0         2.5
+star and not the average number of planets per planetary                                                    GBP − GRP
+system or the fraction of stars with planets. Fortunately, in-
+ferences about the average number of planets per star are
+not affected by whether a given set of planets are orbiting a      Figure 2. Our full M dwarf target sample (red points) com-
+single star or spread over a set of stars (with the same stellar   pared to 5000 randomly sampled Kepler DR25-Gaia DR2 cross-
+                                                                   matched targets that pass our photometry quality cuts (Criteria
+properties). Thus, the distribution for the number of planets
+                                                                   1-5; black points). The axes in the top panel depict MK s and
+per planetary system and the distribution of mutual incli-         J − K s taken from 2MASS measurements. The axes in the bottom
+nations of planets in a given planetary system do not affect       panel depict MG and GBP − GRP which are derived from Gaia
+our median estimated rates. The existence of correlations,         measurements. MG does not include a correction using the in-
+however, could lead to underestimates of the uncertainties         ferred extinction from Gaia’s Apsis module (Andrae et al. 2018),
+of our rates.                                                      as these M dwarfs are quite nearby and have minimal extinction.
+
+
+
+     Previous studies of planets around sun-like stars have        3     APPLICATION TO DR25 M DWARFS
+also found that the sizes of planets within a planetary sys-
+                                                                   3.1       Catalog Selection
+tem are correlated with each other (e.g., Millholland et al.
+2017; He et al. 2019; Weiss & Petigura 2020). Such a cor-          In Hsu et al. (2019), we made use of the second Gaia data
+relation may also be present for planets around M stars. If        release (DR2) (Gaia Collaboration et al. 2018) to acquire
+present, such correlations would not affect the inferences for     significantly improved stellar parameters for the overwhelm-
+the occurrence rate per star in our study, but it could also       ing majority of the Kepler target stars. In the case of M
+lead to the uncertainty in occurrence rates being underes-         dwarfs, however, we lose a significant fraction of stars if
+timated. Investigating architectural questions such as those       we require the Gaia DR2 to have an estimated stellar ra-
+described above would require a model that includes param-         dius for every target. To that end, we incorporate J and
+eters to characterize the architectural properties of planetary    K s magnitude measurements from the 2MASS Point Source
+systems and either a likelihood or distance function that          Catalog (Skrutskie et al. 2006) adopting the best neighbor
+makes use of information about the observed properties of          cross match between Gaia DR2 and 2MASS performed by
+multiple planet systems (e.g., Mulders et al. 2018; He et al.      the Gaia mission team (Marrese et al. 2019). We use Gaia’s
+2019). Such an analysis is beyond the scope of this study.         precise parallax measurements and the 2MASS J and K s
+
+                                                                                                                        MNRAS 000, 1–15 (2020)
+                                                                  Kepler DR25 M Star Planet Occurrence Rates                     7
+magnitudes to accurately identify main-sequence M dwarfs             get list must be nearby, we expect dust to have a negligible
+based on their position in the color-luminosity diagram.             effect on the magnitude measurement and neglect extinc-
+     Our stellar catalog stars begins with a foundation of           tion. Reis et al. (2011) previously found a color excess of
+Kepler target stars. Then, the Kepler DR25 stellar proper-           Eb−y < 0.07 in the direction of the Kepler field within 500
+ties catalog is augmented with data from Gaia DR2 (Gaia              pc. Only one Kepler target in our final M dwarf catalog has
+Collaboration et al. 2018) and 2MASS PSC (Skrutskie et al.           a distance estimated using the Gaia DR2 parallax that is
+2006). We use many similar selection criteria to select main-        larger than 500 pc, KIC 10020298 at ≈ 514 pc. Adopting
+sequence M stars in this study as we did in Hsu et al. (2019).       reddening coefficients R of 4.3 for R(b − y) (used by Gaidos
+For completeness, we list the full selection criteria below (in      et al. (2016) in their extinction analysis in Appendix C), we
+order of application), along with explanations for additions         expect EB−V  0.016. Taking R(K s) = 0.306 from Yuan et al.
+and changes from our previous study:                                 (2013), we then arrive at an extinction A(K s)  0.005 that
+                                                                     is significantly less than the minimum uncertainty of 0.11 on
+   (i) Require that the Kepler magnitude and the                     K s for the selected targets.
+Gaia G magnitude are consistent. The Kepler and Gaia
+G bandpasses have a very high degree of overlap, so correctly             Using these cuts we arrive at a final M dwarf sample
+cross-matched targets should have Kp and G magnitudes                of 1,746 targets with 89 associated planet candidates within
+that are very similar. Indeed, the distribution of Kp − G for        our period-radius grid. In Fig. 2 we compare our M dwarf
+cross-matched target stars appears nearly Gaussian and cen-          population to the full Kepler population. We find that our
+tered close to zero. We reject targets if their Kp − G magni-        sample selection includes ∼ 70% of the Kepler targets with
+tude deviates by more than 1.5σ of the median of the Kp −G           GBP − GRP > 1.5 and MG > 7.5. In comparison with the
+distribution for the cross matched Kepler and Gaia catalogs          Dressing & Charbonneau (2015) catalog of 2,543 presumed
+where σ is the standard deviation of the Kp −G distribution.         M dwarf targets, we find a overlap of approximately 1,000
+   (ii) Require Gaia Priam processing flags that indi-               targets. We note that Dressing & Charbonneau (2015) ini-
+cate the parallax value is strictly positive and both                tially uses Te f f and log g measurements from the obsolete
+colors are close to the standard locus for main-                     Q1-Q16 Kepler stellar catalog, which are less accurate than
+sequence stars. This rejects Kepler targets which are un-            2MASS measurements in combination with Gaia parallaxes.
+likely to be main sequence stars or are so distant that Gaia
+does not have a good parallax measurement and the stellar
+radius will be highly uncertain.
+   (iii) Require Gaia parallax error is less than 30%
+the parallax value. We relax our error tolerance for the
+Gaia parallax relative to Hsu et al. (2019), so as to increase
+                                                                     3.2   Planet Occurrence Rates
+the completeness of our M dwarf sample Most M dwarf tar-
+gets are faint in the Gaia bands, so their parallax uncertain-       In Table 2 we list the derived occurrence rates using our M
+ties are expected to be larger than for similar distance FGK         dwarf sample for two different choices of prior as described
+stars.                                                               in §2.4. We also show the derived occurrence rates in Fig. 3.
+   (iv) Require that Kepler DR 25 provide Kepler                          A bin’s rate estimated using the uniform prior param-
+data span, duty cycle, and limb-darkening coeffi-                    eterization is generally larger than the same bin’s rate esti-
+cients.                                                              mated using the Dirichlet prior parameterization by a factor
+   (v) Require that the Kepler target was observed                   of ≃2. We caution that the actual ratio ranges from 1.1 to
+for > 4 quarters and must have been on the Exo-                      5.2 depending on the specific bin, so we recommend refer-
+planet target list for at least one quarter. The ma-                 ring to the specific result for each bin. We attribute this
+jority of target stars were observed by Kepler for exoplanet         difference to the different approaches the two priors take to
+identification, but some stars were selected for observation         the total occurrence rate over multiple radius bins with the
+for secondary goals (e.g. asteroseismology). We choose to ex-        same period range. The Dirichlet prior parameterization as-
+clude those stars not explicitly part of the exoplanet search        sumes a uniform prior over the total rate. In contrast, the
+target list.                                                         uniform prior assumes that the true rate of planets is inde-
+   (vi) Require the target to have a color J −K s ⩾ 0.779            pendent between all bins, which means that the total rate
+from 2MASS photometry. This color cut results in se-                 follows an Irwin-Hall distribution. The prior distribution of
+lecting cool stars (M stars and red giants) and is more ac-          each individual bin is therefore peaked at a larger occur-
+curate than using the temperature from the Kepler Input              rence rate when using the uniform prior than when using
+Catalog or the Gaia color GBP − GRP . The color thresh-              the Dirichlet prior, generally by a factor of ∼ 3 − 5. As ex-
+old corresponds to the K7 stellar type color for the main            pected, the ratio of the estimated rates with the two prior
+sequence fit described by Mamajek (2019); Pecaut & Ma-               choices is less extreme, since it combines information from
+majek (2013).                                                        the prior distributions and the constraints of the observed
+   (vii) Require the target star to have an absolute                 Kepler planet candidate data. The Dirichlet prior also has
+magnitude, MK s ⩾ 4.8. This MK s threshold corresponds               a broad tail towards rates smaller than its peak value in
+to the K7 stellar type for the main sequence fit described           contrast to the symmetric uniform prior. The combination
+by Mamajek (2019); Pecaut & Mamajek (2013). We com-                  of these differences in prior distribution and the constraints
+pute MK s by taking the 2MASS measured apparent magni-               of the observed Kepler planet candidate data produce the
+tude K s and applying the distance modulus using the Gaia            smaller average factor of 2 difference in estimated rates re-
+DR2 parallax. Given that all M dwarfs in the Kepler tar-             sulting from the two prior choices.
+
+MNRAS 000, 1–15 (2020)
+  8                  Hsu, Ford and Terrien
+
+                4.0
+                         <0.24%         <0.76%         <1.7%          <3.7%          <7.2%           11+7
+                                                                                                       −5%      <5.2%             <10%     <18%
+                             (0)             (0)            (0)            (0)            (1)            (3)           (0)           (0)      (0)
+                3.0                                                                                                                                    100
+                         <0.16%         <0.54%         <1.8%          3+3.2
+                                                                       −2 %          <5.5%       6.2+6.6
+                                                                                                    −3.5%       <3.9%         <7.8%        <13%
+                             (0)             (1)            (1)            (3)            (1)            (2)           (0)           (0)      (0)
+                2.5
+Planet Radi s (R⊕)
+
+
+
+
+                         <0.3%          <0.5%      1.2+1.2
+                                                      −0.6% 4.1−2.3%
+                                                               +2.7                  8+5.7
+                                                                                      −3.3%      16+10
+                                                                                                   −8 %         5.6+5.8
+                                                                                                                   −3.4%          <16%     <16%
+
+
+
+
+                                                                                                                                                              d(lnRp)d(lnP)
+                             (1)             (0)            (2)            (4)            (6)            (7)           (4)           (1)      (0)
+                2.0
+
+
+
+
+                                                                                                                                                                  d 2 fM
+                         <0.24%         <0.63%     1.5+1.2
+                                                      −0.7%           <3.7%      9.8+5.4
+                                                                                    −3.6% 8.8−4.4%
+                                                                                             +7.5               <6.3%             <18%     <34%        10−1
+                             (0)             (0)            (2)            (0)            (7)            (2)           (0)           (1)      (1)
+                1.5
+                         <0.34%         1+0.7
+                                         −0.6%     3.7+2.2
+                                                      −1.2%           11+5
+                                                                        −4%      6.4+3.5
+                                                                                    −2.8%        14+10
+                                                                                                   −6 %         <9.7%             <23%     <50%
+                             (0)             (5)            (8)           (12)            (2)            (2)           (0)           (0)      (1)
+                1.0
+                         <0.79%         <2.1%          4+2.6
+                                                        −1.8%         12+8
+                                                                        −5%          <25%            <62%           <20%          <48%     <67%
+                             (1)             (1)            (2)            (3)            (1)            (1)           (0)           (0)      (0)
+                0.50.5            1.0            2.0            4.0            8.0            16.0           32.0          64.0      128.0    256.0 10
+                                                                                                                                                       −2
+
+                                                                       Orbital Period (day)
+                4.0
+                         <0.51%         <1.1%          <2.2%          <3.1%          <9.1%       16+17
+                                                                                                   −8 %             <11%          <14%     <21%
+                             (0)             (0)            (0)            (0)            (1)            (3)           (0)           (0)      (0)
+                3.0                                                                                                                                    100
+                         <0.62%         <1.3%          <3.5%      5.4+3.2
+                                                                     −3.1%           <9.2%           11+9
+                                                                                                       −6%          <11%          <21%     <21%
+                             (0)             (1)            (1)            (3)            (1)            (2)           (0)           (0)      (0)
+                2.5
+Planet Radi s (R⊕)
+
+
+
+
+                         <0.97%          <1%       1.9+1.9
+                                                      −1.2%           7+5.1
+                                                                       −3.5%         17+9
+                                                                                       −7%       30+12
+                                                                                                   −12%         30+12
+                                                                                                                  −7 %            <36%     <22%
+
+
+                                                                                                                                                              d(lnRp)d(lnP)
+                             (1)             (0)            (2)            (4)            (6)            (7)           (4)           (1)      (0)
+                2.0
+
+                                                                                                                                                                  d 2 fM
+                         <0.6%          <0.92%     2.3+2.5
+                                                      −1.3%           <3.5%          22+8
+                                                                                       −7%       11+12
+                                                                                                   −8 %             <14%          <41%     <64%        10−1
+                             (0)             (0)            (2)            (0)            (7)            (2)           (0)           (1)      (1)
+                1.5
+                         <0.43%        −1.7% 7.7−3.1%
+                                    3.2+0.8     +5.5                  22+8
+                                                                        −7%      7.3+6.9
+                                                                                    −4.1%        16+12
+                                                                                                   −8 %             <19%          <49%     <96%
+                             (0)             (5)            (8)           (12)            (2)            (2)           (0)           (0)      (1)
+                1.0
+                         <1.7%          <3.6%      5.5+4.7
+                                                      −3.4%           18+13
+                                                                        −9 %         <59%        <122%          <117%         <125%        <83%
+                             (1)             (1)            (2)            (3)            (1)            (1)           (0)           (0)      (0)
+                0.50.5            1.0            2.0            4.0            8.0            16.0           32.0          64.0      128.0    256.0 10
+                                                                                                                                                       −2
+
+                                                                       Orbital Period (day)
+  Figure 3. Inferred occurrence rates for Kepler ’s DR25 planet candidates associated with high-quality M target stars with two choices
+  of prior: uniform prior on total rate over each period range and Dirichlet prior on fraction of total rate assigned to each radius bin (top
+  panel); and independent uniform priors per bin (bottom panel). These rates are based on a combined detection and vetting efficiency
+  model that was fit to flux-level planet injection tests. The numerical values of the occurrence rates ( fM ) are stated as percentage (i.e.,
+  10−2 ). The uncertainties shown are the differences between the median and the 15.87th or 84.13th percentile. The color coding of each
+  cell is based on (d 2 fM )/[d(ln R p ) d(ln P)], which provides an occurrence rate normalized to the width of the bin and therefore is not
+  dependent on choice of grid density. Cells colored gray have estimated upper limits for the occurrence rate. The number of DR25 planet
+  candidates within each bin is listed in parentheses in the bottom right corner of each bin. Note that the bin sizes are not constant. The
+  upper limits for planets of 3-4R⊕ also include the upper limits for larger planets (for the same period range and stellar sample), since the
+  Kepler sample contains no larger planets transiting M dwarfs and the detection efficiency for planets of this size is already high. Any
+  modest increase in the detection efficiency would only result in more strict upper limits on the occurrence rate of larger planets.
+
+
+
+
+                                                                                                                                             MNRAS 000, 1–15 (2020)
+                                                                  Kepler DR25 M Star Planet Occurrence Rates                    9
+
+Table 2. DR25 M Dwarf Planet Occurrence Rates and Ratios with FGK Rates
+
+              Period           Radius         Number of DR25             Dirichlet Prior               Uniform Prior
+              (days)            (R⊕ )         Planet Candidates          fM          fM / fFGK         fM         fM / fFGK
+
+            0.50 −     1.00   0.50 −   1.00                   1       < 7.9 × 10−3       < 2.5      < 1.7 × 10−2       < 6.4
+            0.50 −     1.00   1.00 −   1.50                   0       < 3.4 × 10−3       < 2.7      < 4.3 × 10−3       < 3.4
+            0.50 −     1.00   1.50 −   2.00                   0       < 2.4 × 10−3       < 2.2      < 6.0 × 10−3       < 6.7
+            0.50 −     1.00   2.00 −   2.50                   1       < 3.0 × 10−3       N/A        < 9.7 × 10−3       N/A
+            0.50 −     1.00   2.50 −   3.00                   0       < 1.6 × 10−3       N/A        < 6.2 × 10−3       N/A
+            0.50 −     1.00   3.00 −   4.00                   0       < 2.4 × 10−3       N/A        < 5.1 × 10−3       N/A
+
+            1.00 −     2.00   0.50 −   1.00                   1       < 2.1 × 10−2      < 4.3       < 3.6 × 10−2       < 7.8
+            1.00 −     2.00   1.00 −   1.50                   5    1.02+0.70
+                                                                       −0.57
+                                                                             × 10−2    3.0+2.8
+                                                                                          −1.7
+                                                                                                 3.18+0.77
+                                                                                                     −1.66
+                                                                                                           × 10−2    8.6+10.3
+                                                                                                                        −4.2
+            1.00 −     2.00   1.50 −   2.00                   0       < 6.3 × 10−3      < 4.7       < 9.2 × 10−3       < 8.0
+            1.00 −     2.00   2.00 −   2.50                   0       < 5.0 × 10−3     < 34.7       < 1.0 × 10−2      < 93.2
+            1.00 −     2.00   2.50 −   3.00                   1       < 5.4 × 10−3     < 38.8       < 1.3 × 10−2     < 107.4
+            1.00 −     2.00   3.00 −   4.00                   0       < 7.6 × 10−3       N/A        < 1.1 × 10−2        N/A
+
+            2.00 −     4.00   0.50 −   1.00                   2      4.0+2.6
+                                                                        −1.8
+                                                                             × 10−2    1.1+0.8
+                                                                                          −0.5
+                                                                                                   5.5+4.7
+                                                                                                      −3.4
+                                                                                                           × 10−2     1.4+1.5
+                                                                                                                         −0.9
+            2.00 −     4.00   1.00 −   1.50                   8      3.7+2.2
+                                                                        −1.2
+                                                                             × 10−2    3.2+2.2
+                                                                                          −1.4
+                                                                                                   7.7+5.5
+                                                                                                      −3.1
+                                                                                                           × 10−2     6.4+4.5
+                                                                                                                         −2.8
+            2.00 −     4.00   1.50 −   2.00                   2    1.50+1.20
+                                                                       −0.70
+                                                                             × 10−2    1.7+1.8
+                                                                                          −0.9
+                                                                                                   2.3+2.5
+                                                                                                      −1.3
+                                                                                                           × 10−2     2.8+2.7
+                                                                                                                         −1.6
+            2.00 −     4.00   2.00 −   2.50                   2        +1.23
+                                                                   1.20−0.55 × 10−2    5.1+7.3        +1.9
+                                                                                                   1.9−1.2 × 10−2   10.1+17.1
+                                                                                          −2.8                          −6.1
+            2.00 −     4.00   2.50 −   3.00                   1       < 1.8 × 10−2     < 37.5       < 3.5 × 10−2      < 82.6
+            2.00 −     4.00   3.00 −   4.00                   0       < 1.7 × 10−2     < 21.0       < 2.2 × 10−2      < 29.6
+
+            4.00 −     8.00   0.50 −   1.00                   3    1.19+0.84
+                                                                       −0.49
+                                                                             × 10−1    0.9+0.8
+                                                                                          −0.4
+                                                                                                 1.84+1.31
+                                                                                                     −0.88
+                                                                                                           × 10−1     1.6+1.3
+                                                                                                                         −0.8
+            4.00 −     8.00   1.00 −   1.50                  12        +0.49 × 10−1
+                                                                   1.05−0.35           2.5+1.4   2.20+0.75 × 10−1     5.8+3.6
+                                                                                          −1.2       −0.65               −2.4
+            4.00 −     8.00   1.50 −   2.00                   0       < 3.7 × 10−2      < 1.7       < 3.5 × 10−2       < 1.7
+            4.00 −     8.00   2.00 −   2.50                   4      4.1+2.7
+                                                                        −2.3
+                                                                             × 10−2    3.6+3.4
+                                                                                          −1.9
+                                                                                                   7.0+5.1
+                                                                                                      −3.5
+                                                                                                           × 10−2     7.8+6.0
+                                                                                                                         −4.4
+            4.00 −     8.00   2.50 −   3.00                   3      3.0+3.2
+                                                                        −2.0
+                                                                             × 10−2    2.5+3.1
+                                                                                          −1.5
+                                                                                                   5.4+3.2
+                                                                                                      −3.1
+                                                                                                           × 10−2     5.5+4.7
+                                                                                                                         −2.9
+            4.00 −     8.00   3.00 −   4.00                   0       < 3.7 × 10−2     < 17.1       < 3.1 × 10−2      < 19.4
+
+            8.00 −   16.00    0.50 −   1.00                   1       < 2.5 × 10−1      < 2.3       < 5.9 × 10−1       < 6.0
+            8.00 −   16.00    1.00 −   1.50                   2      6.4+3.5
+                                                                        −2.8
+                                                                             × 10−2    1.0+0.8
+                                                                                          −0.5
+                                                                                                   7.3+6.9
+                                                                                                      −4.1
+                                                                                                           × 10−2     1.0+1.2
+                                                                                                                         −0.8
+            8.00 −   16.00    1.50 −   2.00                   7      9.8+5.4
+                                                                        −3.6
+                                                                             × 10−2    3.4+2.8
+                                                                                          −1.5
+                                                                                                 2.18+0.82
+                                                                                                     −0.75
+                                                                                                           × 10−1     7.2+4.3
+                                                                                                                         −2.9
+            8.00 −   16.00    2.00 −   2.50                   6         +5.7
+                                                                     8.0−3.3 × 10−2    2.7+2.2       +0.95
+                                                                                                 1.73−0.74 × 10−1     5.3+4.0
+                                                                                          −1.2                           −2.3
+            8.00 −   16.00    2.50 −   3.00                   1       < 5.5 × 10−2      < 2.2       < 9.2 × 10−2       < 3.4
+            8.00 −   16.00    3.00 −   4.00                   1       < 7.2 × 10−2     < 12.0       < 9.1 × 10−2      < 17.2
+
+           16.00 −   32.00    0.50 −   1.00                   1       < 6.2 × 10−1      < 4.1         < 1.2 × 100      < 7.4
+           16.00 −   32.00    1.00 −   1.50                   2    1.39+0.98
+                                                                       −0.60
+                                                                             × 10−1    2.2+2.3
+                                                                                          −1.1
+                                                                                                 1.61+1.16
+                                                                                                     −0.84
+                                                                                                           × 10−1     2.5+2.8
+                                                                                                                         −1.5
+           16.00 −   32.00    1.50 −   2.00                   2      8.8+7.5
+                                                                        −4.4
+                                                                             × 10−2    3.1+3.1
+                                                                                          −1.8
+                                                                                                 1.06+1.22
+                                                                                                     −0.75
+                                                                                                           × 10−1     3.6+4.3
+                                                                                                                         −2.2
+           16.00 −   32.00    2.00 −   2.50                   7        +0.96
+                                                                   1.63−0.80 × 10−1    2.9+2.2        +1.2
+                                                                                                   3.0−1.2 × 10−1     5.7+2.7
+                                                                                          −1.3                           −2.4
+           16.00 −   32.00    2.50 −   3.00                   2      6.2+6.6
+                                                                        −3.5
+                                                                             × 10−2    1.7+1.4
+                                                                                          −1.1
+                                                                                                 1.15+0.91
+                                                                                                     −0.62
+                                                                                                           × 10−1     3.0+2.7
+                                                                                                                         −2.0
+           16.00 −   32.00    3.00 −   4.00                   3    1.09+0.73
+                                                                       −0.47
+                                                                             × 10−1    4.9+4.2
+                                                                                          −2.7
+                                                                                                 1.57+1.68
+                                                                                                     −0.82
+                                                                                                           × 10−1     7.1+6.4
+                                                                                                                         −3.9
+
+           32.00 −   64.00    0.50 −   1.00                   0       < 2.0 × 10−1      < 1.5        < 1.2 × 100       < 8.7
+           32.00 −   64.00    1.00 −   1.50                   0       < 9.7 × 10−2      < 1.5       < 1.9 × 10−1       < 3.6
+           32.00 −   64.00    1.50 −   2.00                   0       < 6.3 × 10−2      < 2.1       < 1.4 × 10−1       < 4.6
+           32.00 −   64.00    2.00 −   2.50                   4      5.6+5.8
+                                                                        −3.4
+                                                                             × 10−2    1.2+1.7
+                                                                                          −0.7
+                                                                                                 2.95+1.18
+                                                                                                     −0.73
+                                                                                                           × 10−1     6.3+4.6
+                                                                                                                         −3.0
+           32.00 −   64.00    2.50 −   3.00                   0       < 3.9 × 10−2      < 0.6       < 1.1 × 10−1       < 1.9
+           32.00 −   64.00    3.00 −   4.00                   0       < 5.2 × 10−2      < 2.8       < 1.1 × 10−1       < 5.8
+
+           64.00 − 128.00     0.50 −   1.00                   0       < 4.8 × 10−1       < 0.9       < 1.3 × 100       < 2.3
+           64.00 − 128.00     1.00 −   1.50                   0       < 2.3 × 10−1       < 2.0      < 4.9 × 10−1       < 5.2
+           64.00 − 128.00     1.50 −   2.00                   1       < 1.8 × 10−1       < 4.5      < 4.1 × 10−1      < 10.2
+           64.00 − 128.00     2.00 −   2.50                   1       < 1.6 × 10−1       < 2.9      < 3.6 × 10−1       < 6.5
+           64.00 − 128.00     2.50 −   3.00                   0       < 7.8 × 10−2       < 2.7      < 2.1 × 10−1       < 6.8
+           64.00 − 128.00     3.00 −   4.00                   0      < 10.0 × 10−2       < 3.3      < 1.4 × 10−1       < 4.8
+
+          128.00 − 256.00     0.50 −   1.00                   0       < 6.7 × 10−1       < 1.2      < 8.3 × 10−1       < 1.7
+          128.00 − 256.00     1.00 −   1.50                   1       < 5.0 × 10−1       < 4.8      < 9.6 × 10−1       < 9.5
+          128.00 − 256.00     1.50 −   2.00                   1       < 3.4 × 10−1       < 7.0      < 6.4 × 10−1      < 14.1
+          128.00 − 256.00     2.00 −   2.50                   0       < 1.6 × 10−1       < 3.4      < 2.2 × 10−1       < 4.3
+          128.00 − 256.00     2.50 −   3.00                   0       < 1.3 × 10−1       < 2.0      < 2.1 × 10−1       < 3.8
+          128.00 − 256.00     3.00 −   4.00                   0       < 1.8 × 10−1       < 8.4      < 2.1 × 10−1       < 9.6
+
+
+
+
+MNRAS 000, 1–15 (2020)
+10      Hsu, Ford and Terrien
+4     DISCUSSION                                                         ple indicate that the sample is primarily composed of early-
+                                                                         type M dwarfs, and we identify M2.5 as the representative
+4.1    Comparison to FGK Occurrence Rates
+                                                                         of Kepler M dwarfs. The resulting period limits for a typ-
+In Table 2 we additionally report ratios of M dwarf planet               ical M2.5 target after scaling for equivalent insolation are
+occurrence rates from this study with our previously es-                 P = {0.88, 1.8, 3.5, 7.1, 14, 28, 57, 113, 221} days that are used
+timated planet occurrence rates for FGK stars from Hsu                   for new simulations that recalculate occurrence rates over
+et al. (2019) Table 2 under the column “Combined Detection               the new period-radius grid. Here we have defined the typical
+& Vetting Efficiency.” These FGK planet occurrence rates                 FGK dwarf and typical M dwarf in our samples using Ma-
+are based on using the uniform prior. Experiments showed                 majek (2019) values associated with the G2 (log LFGK, = 0,
+that the uniform and Dirichlet prior results were consistent             MFGK = 1 M ) and M2.5 (log LM, = −1.7, MM = 0.4 M )
+within uncertainty for all but the bins with the smallest sizes          spectral types. While the insolation at a given period varies
+(Rp < 1.5R ⊕ ) and longest periods (P > 128 days).                       between targets, we find it valuable to compare occurrence
+     We find that using the Dirichlet prior M rates (and only            rates using these scaled period bins which are representative
+including occurrence rate bins with ⩾ 2 DR25 planet can-                 of the typical M dwarf target.
+didates), the M star rate is a factor of 3.1+5.5   −1.9
+                                                        larger than           When comparing the M dwarf occurrence rates to FGK
+the associated FGK star rate for the same period and ra-                 dwarf occurrence rates with bins chosen to have similar in-
+dius (as can be seen in the top panel of Fig. 4). In contrast,           solation, the ratios of M dwarf occurrence rates to associ-
+when using the M rates estimated with the uniform prior                  ated FGK dwarf binned occurrence rates averaged over all
+and again filtering on bins with ⩾ 2 DR25 planet candidates              period-radius bins with reported median rates are 0.9+1.6
+we instead find the M rate is 7.8+12.9        times as large as the                                                                 −0.2
+                                        −5.1                             and 1.7+1.2  for the Dirichlet and uniform prior M dwarf es-
+FGK rate over those bins (see bottom panel of Fig. 4).                           −0.8
+                                                                         timates respectively with the uncertainties representing the
+     Another useful comparison is to contrast integrated
+                                                                         standard deviation of the spread of ratios for those bins.
+rates calculated by summing over multiple period-radius
+                                                                         Integrating over the entire M dwarf period-radius grid (in-
+bins. Throughout the remainder of the discussion, integrated
+                                                                         cluding upper limit bins), we find fM = 3.9+0.5    and 7.0+0.9
+rates include all bins regardless of the number of DR25                                                                −0.5         −0.8
+                                                                         for planet candidates around M dwarfs with the Dirichlet
+planet candidates. Therefore, the posterior medians of upper
+                                                                         and uniform priors respectively. These rates can be com-
+limit bins are used in the integration and the uncertainties
+                                                                         pared to the associated integrated rate of fFGK = 4.9+0.8
+of each integrated rate are based on the difference of each                                                                         −0.7
+                                                                         for planet candidates around FGK dwarfs using a uniform
+median with the 15.87th and 84.13th percentiles from the
+                                                                         prior. Thus, the ratio of the integrated M dwarf occurrence
+same simulation. Integrating over the entire period-radius
+                                                                         rate to the integrated FGK dwarf occurrence rate is 0.8 ± 0.2
+grid (P = 0.5 − 256 days and Rp = 0.5 − 4 R ⊕ ), we find
+                                                                         with the Dirichlet prior, consistent with both unity and 0.9,
+ fM = 4.2+0.6
+           −0.6
+                 and 8.4+1.2
+                          −1.1
+                               for planet candidates around M
+                                                                         the typical ratio of occurrences for individual bins with well-
+dwarfs with the Dirichlet and uniform priors respectively
+                                                                         measured occurrence rates when using Dirichlet priors. Us-
+compared to the integrated rate of fFGK = 3.5+0.7    −0.6
+                                                          for planet
+                                                                         ing the uniform priors gives a ratio of integrated occurrence
+candidates around sun-like stars. For a more robust com-
+                                                                         rates for M and FGK dwarfs of 1.4 ± 0.3, similar to 1.7, the
+parison, we identify portions of the period-radius grid where
+                                                                         typical ratio of occurrences for individual bins with well-
+most bins have ⩾ 2 DR25 planet candidates per bin (i.e.,
+                                                                         measured occurrence rates using uniform priors. The ratios
+bins were we report median estimates). Integrating over all
+                                                                         of integrated occurrence rates for M and FGK dwarfs are
+bins with P = 2 − 32 days and Rp = 1 − 2.5 R ⊕ , we find an
+                                                                         close to and bracket unity for the two priors.
+integrated M dwarf planet occurrence rate of fM = 0.9+0.2        −0.1
+and 1.6+0.3
+         −0.2
+              given a Dirichlet and uniform prior respectively,               The host star plays an important role in the evolution of
+                                                                         its protoplanetary disc for multiple reasons, including deter-
+while the FGK dwarf integrated rate is fFGK = 0.37+0.04        −0.03
+                                                                     .
+                                                                         mining planetary compositions, affecting the location where
+Regardless of prior choice, if occurrence rates are compared
+                                                                         grains can condense from the disk, the clearing of the disc via
+in orbital period space then M dwarf occurrence rates are
+                                                                         stellar winds (Ercolano & Pascucci 2017), and the timescale
+elevated compared to FGK dwarf occurrence rates, with the
+                                                                         for the end of planetesimal accretion. The close agreement
+uniform prior M dwarf results suggesting a larger factor.
+                                                                         between M dwarf and FGK dwarf occurrence rates found in
+     We also compare our estimated M rates to FGK rates
+                                                                         this study when using an equivalent insolation-radius grid
+by scaling the two grids to cover equivalent insolation ranges
+                                                                         suggests that stellar irradiance either plays a significant role
+along the period axis. For this calculation, the period limits
+                                                                         in the planet formation process or is correlated with other
+for the FGK period-radius occurrence rate grid of Hsu et al.
+                                                                         planet formation processes. We caution that planet forma-
+(2019), P = {2, 4, 8, 16, 32, 64, 128, 256, 500} days are scaled to
+                                                                         tion occurs while an M star is still on the pre-main sequence
+the insolation of a “typical” M dwarf in our sample5 . We se-
+                                                                         and significantly more luminous than observed today. Ad-
+lect the G2 and M2.5 spectral types as representative types
+                                                                         ditionally, the time of planet formation relative to the stel-
+for FGK dwarfs and M dwarfs respectively. The Sun (G2)
+                                                                         lar evolution will depend on star and disk properties, and
+is representative of sun-like stars by construction. The dis-
+                                                                         photoevaporation depends primarily on the XUV irradiation
+tribution of K s magnitude and J − K s color for our sam-
+                                                                         environment, rather than the bolometric irradiation. Never-
+                                                                         theless, we make comparisons based on the main sequence
+5 The two shortest period bins from Hsu et al. (2019) are excluded       luminosity, as the luminosity at the time of planet formation
+from this grid because equivalent insolation periods for those bins      is highly uncertain given the challenges of measuring ages of
+are < 0.5 days, a range which our selection of window functions          pre-main sequence M stars relative to the onset of planet
+does not cover.                                                          formation.
+
+                                                                                                                MNRAS 000, 1–15 (2020)
+                                                                                                  Kepler DR25 M Star Planet Occurrence Rates                                      11
+
+                 4.0
+                         N/A           N/A             <21              <17              <12         4.9+4.2
+                                                                                                        −2.7           <2.8           <3.3      <8.4              10
+                 3.0
+                         N/A           <39             <38             2.5+3.1
+                                                                          −1.5          <2.2         1.7+1.4
+                                                                                                        −1.1           <0.61          <2.7          <2
+                                                                                                                                                                  5
+Pla et Radius (R()
+
+
+
+
+                 2.5
+                         N/A           <35            5.1+7.3
+                                                         −2.8          3.6+3.4
+                                                                          −1.9          2.7+2.2
+                                                                                           −1.2      2.9+2.2
+                                                                                                        −1.3       1.2+1.7
+                                                                                                                      −0.75           <2.9      <3.4
+
+
+
+
+                                                                                                                                                                        fM fFGK
+                 2.0                                                                                                                                              0
+
+
+
+
+                                                                                                                                                                        /
+                         <2.2         <4.7            1.7+1.8
+                                                         −0.88          <1.7            3.4+2.8
+                                                                                           −1.5      3.1+3.1
+                                                                                                        −1.8           <2.1           <4.5          <7
+
+                 1.5
+                                                                                                                                                                  −5
+                         <2.7         3+2.8
+                                       −1.7           3.2+2.2
+                                                         −1.4          2.5+1.4
+                                                                          −1.2          1+0.83
+                                                                                         −0.49       2.2+2.3
+                                                                                                        −1.1           <1.5            <2       <4.8
+
+                 1.0
+                         <2.5         <4.3            1.1+0.78
+                                                         −0.47     0.95+0.76
+                                                                       −0.45            <2.3            <4.1           <1.5           <0.88     <1.2              −10
+                 0.5
+                   0.5          1.0             2.0              4.0              8.0            16.0           32.0           64.0         128.0         256.0
+                                                                        Orbital Period (day)
+                 4.0
+                         N/A           N/A             <30              <19              <17         7.1+6.4
+                                                                                                        −3.9           <5.8           <4.8      <9.6              10
+                 3.0
+                         N/A          <107             <83             5.5+4.7
+                                                                          −2.9          <3.4            3+2.7
+                                                                                                         −2            <1.9           <6.8      <3.8
+                                                                                                                                                                  5
+Pla et Radius (R()
+
+
+
+
+                 2.5
+                         N/A           <93            10+17
+                                                        −6.1           7.8+6
+                                                                          −4.4          5.3+4
+                                                                                           −2.3      5.7+2.7
+                                                                                                        −2.4       6.3+4.6
+                                                                                                                      −3              <6.5      <4.3
+
+
+
+                                                                                                                                                                        fM fFGK
+                 2.0                                                                                                                                              0
+
+                                                                                                                                                                        /
+                         <6.7          <8             2.8+2.7
+                                                         −1.6           <1.7            7.2+4.3
+                                                                                           −2.9      3.6+4.3
+                                                                                                        −2.2           <4.6           <10           <14
+
+                 1.5
+                                                                                                                                                                  −5
+                         <3.4         8.6+10
+                                         −4.2         6.4+4.5
+                                                         −2.8          5.8+3.6
+                                                                          −2.4      0.99+1.2
+                                                                                        −0.79        2.5+2.8
+                                                                                                        −1.5           <3.6           <5.2      <9.5
+
+                 1.0
+                         <6.4         <7.8            1.4+1.5
+                                                         −0.89         1.6+1.3
+                                                                          −0.81          <6             <7.4           <8.7           <2.3      <1.7              −10
+                 0.5
+                   0.5          1.0             2.0              4.0              8.0            16.0           32.0           64.0         128.0         256.0
+                                                                        Orbital Period (day)
+
+Figure 4. Ratio of inferred occurrence rates for Kepler ’s DR25 planet candidates associated with high-quality M target stars to occurrence
+rates for DR25 planet candidates associated with high-quality FGK target stars taken from Hsu et al. (2019). M dwarf occurrence rates
+use (top) a Dirichlet prior over multiple radius bins per period range and (bottom) independent uniform priors for each bin. The FGK
+rates assume independent uniform priors per period-radius bin and make use of the same combined detection and vetting efficiency
+model that was fit to flux-level planet injection tests for high-quality FGK target stars explained in Hsu et al. (2019). The average ratio
+across the Dirichlet prior grid is ∼ 3 while the average ratio across the Dirichlet prior grid is ∼ 8, although the scatter of ratios is large
+regardless of prior.
+
+
+
+
+MNRAS 000, 1–15 (2020)
+12     Hsu, Ford and Terrien
+4.2   Occurrence Rates of Planets near the                          ors respectively. These estimated rates are larger than the
+      Habitable Zone                                                respective estimates from Dressing & Charbonneau (2015);
+                                                                    Gaidos et al. (2016), but the results using the Dirichlet prior
+Among M stars, the location of the habitable zone is a strong
+                                                                    are within 1σ agreement. The differences are likely explained
+function of each star’s luminosity. Thus, we cannot perform
+                                                                    by the differences in the target samples, the planet detection
+the same analysis as Hsu et al. (2019) wherein we estimate
+                                                                    and vetting processes, and the detection efficiency models
+the occurrence rate over a fixed radius and period range for
+                                                                    between the three studies. We also note that our analysis
+all stars in the catalog. Instead, we take the estimated rates
+                                                                    results in larger uncertainties. This is partially due to our
+for M stars over the period-radius grid and draw 500 sam-
+                                                                    cleaned stellar sample resulting in fewer target stars in our
+ple planetary systems for each star and estimate the average
+                                                                    sample. Another important factor is our rigorous accounting
+number of planets in the habitable zone (defined as between
+                                                                    of uncertainties due to finite sample size.
+the runaway greenhouse and maximum greenhouse limits
+from (Kopparapu et al. 2013)) on a star-to-star basis. To                Most previous studies chose to focus on occurrence rates
+report a single HZ occurrence rates, we marginalize over all        in period-space rather than insolation-space, making com-
+stars in our target M star catalog. Note that this marginal-        parisons over a radius-insolation grid difficult. Dressing &
+izes over occurrence rate for M dwarfs of different spectral        Charbonneau (2015) is one study, however, that also infers
+sub-types. Previous studies have reported significant varia-        occurrence rates over a radius-insolation grid. However, the
+tion in occurrence rates between early and mid M dwarfs             bin limits in insolation from Dressing & Charbonneau (2015)
+(e.g., Hardegree-Ullman et al. 2019). However, the potential        are not congruous with the period limits for equivalent in-
+impact of variation across M dwarf sub-types will likely be         solation selected in this study. The closest comparisons that
+reduced substantially since our sample is dominated by early        can be done between Dressing & Charbonneau (2015) and
+M dwarfs (∼ 80% of our M dwarf target stars are earlier than        our study use the Dressing & Charbonneau (2015) cumula-
+the M4.5 sub-type using the Mamajek (2019) main sequence            tive binned rates over 10 − 200 F⊕ in Table 7 and our binned
+fit over J − K s color and MK s magnitude).                         rates over PM = 3.5 − 28 days (equivalent insolation to ap-
+     We find an estimated habitable planet occurrence rate          proximately 10.2 − 163 F⊕ for an M2.5 dwarf). Our study’s
+for M stars of fM,HZ = 1.1+0.1−0.3
+                                   and 1.5+0.4
+                                          −0.4
+                                                for planet radii    rates are systematically larger than the Dressing & Charbon-
+Rp = 0.5 − 4R ⊕ when simulating catalogs with Dirichlet and         neau (2015) rates by factors > 2 regardless of prior choice.
+uniform prior estimated rates from Table 2 respectively. If         This systematic difference likely reflects the approximation
+one places stricter Earth-size constraints on planet radii re-      of our study to treat all stars in our M dwarf sample as
+quiring Rp = 0.75 − 1.5R ⊕ , then the habitable planet occur-       having an irradiance equivalent to a Mamajek (2019) M2.5
+                                                                    dwarf when in truth M dwarfs cover a wide range of irradi-
+rence rate for M stars is reduced to fM,HZ = 0.33+0.10 −0.12
+                                                              and
+                                                                    ance.
+0.44+0.29
+     −0.17
+           using  the Dirichlet and  uniform   prior rates   from
+                                                                         Additionally, Dressing & Charbonneau (2015) reported
+Table 2 respectively.
+                                                                    an occurrence rate of f = 0.56+0.06−0.05
+                                                                                                              for Earth-size (Rp =
+                                                                    1−1.5R ⊕ ) planets with periods < 50 days. For our occurrence
+4.3   Comparison to Previous Studies                                rate estimates, integrating over the same radii range and
+                                                                    P = 0.5 − 64 days produces fM = 0.43+0.13−0.10
+                                                                                                                   using the Dirich-
+For a comparison where our study can report a median es-            let prior, consistent with Dressing & Charbonneau (2015).
+timate, we choose to compare against occurrence rate esti-          However, we caution that using a uniform prior for each rate
+mates from Dressing & Charbonneau (2015); Mulders et al.            results in a higher estimate of fM = 0.74+0.22
+                                                                                                                −0.21
+                                                                                                                      .
+(2015) over the ranges P < 50 days and Rp = 1 − 2.5 R ⊕ . For
+                                                                         Dressing & Charbonneau (2015) also gives an estimated
+these period-radius ranges, Dressing & Charbonneau (2015)
+                                  +0.11 (taken from Table 5)        habitable zone occurrence rate using the Kopparapu et al.
+finds an occurrence rate of 1.38−0.09
+                                                                    (2013) limits that we apply in §4.2. For Dressing & Charbon-
+while Mulders et al. (2015) finds a rate of ∼ 1.2 ± 0.1 (es-
+                                                                    neau (2015) the habitable zone occurrence rate for Earth-size
+timated from Fig. 5). For this study, integrating over the
+                                                                    (Rp = 1−1.5R ⊕ ) planets was fHZ = 0.16+0.17    , whereas we find
+same radii range and P = 0.5 − 64 days results in estimates                                  +0.10
+                                                                                                              −0.07
+                                                                                                          +0.33
+of 1.13+0.20  and 2.16+0.30  respectively using the Dirichlet       a rate of fM,HZ = 0.18−0.05 or 0.17−0.07 for the same radius
+        −0.19         −0.34
+and uniform priors. Our preferred estimates based on the            range (for the Dirichlet and uniform priors, respectively).
+Dirichlet priors are consistent with the rates from Dressing        Given the associated uncertainties, the HZ occurrence rate
+& Charbonneau (2015); Mulders et al. (2015) while the uni-          estimates are consistent with the Dressing & Charbonneau
+form prior estimate is significantly higher. Regardless of the      (2015) estimate regardless of prior choice.
+best estimate, our results suggest that true uncertainties in            Hardegree-Ullman et al. (2019) finds an occurrence rate
+the M dwarf occurrence rate from Kepler are significantly           for mid-type M stars of 1.19+0.70
+                                                                                                    −0.49
+                                                                                                           with a limited range of
+larger than suggested by previous studies.                          P = 0.5 − 10 days and Rp = 0.5 − 2.5R ⊕ . For the same radius
+     Dressing & Charbonneau (2015) found an integrated              range and P = 0.5 − 8 days, we find an inconsistent rate of
+occurrence rate over their period-radius grid (P = 0.5 − 200        0.47+0.10
+                                                                         −0.09
+                                                                               with the Dirichlet prior and a more consistent rate
+days and Rp = 1 − 4 R ⊕ ) of 2.5 ± 0.2 planets. Gaidos et al.       of 0.86+0.22
+                                                                            −0.18
+                                                                                  with the uniform prior. The latter estimate from
+(2016) found a rate of f = 2.2 ± 0.3 over Rp = 1 − 4 R ⊕            this study is more consistent with Dressing & Charbonneau
+and P = 1.2 − 180 days, consistent with that of Dress-              (2015); Mulders et al. (2015). It is important to remem-
+ing & Charbonneau (2015). Over a comparable portion of              ber that Hardegree-Ullman et al. (2019) investigated mid-
+the period-radius grid in this study (P = 0.5 − 256 days            type M stars, so there is reason to anticipate differences in
+and Rp = 1 − 4 R ⊕ ) we find occurrence rate estimates of           this measurement. However, we caution that the Hardegree-
+ fM = 2.7+0.4
+         −0.4
+                     +0.7 using the Dirichlet and uniform pri-
+              and 5.3−0.7                                           Ullman et al. (2019) estimates are based on a small catalog
+
+                                                                                                          MNRAS 000, 1–15 (2020)
+                                                              Kepler DR25 M Star Planet Occurrence Rates                       13
+of only seven stars with 13 planets, so we anticipate large       law planet distribution function to large-separation planets
+uncertainties and cannot make a robust comparison of oc-          found by five surveys using microlensing, radial velocity, and
+currence rates for these two stellar samples.                     direct imaging. A SysSim model that takes multiple catalogs
+     The planet radius valley (Fulton et al. 2017; Van Eylen      would expand on Clanton & Gaudi (2016) by not requiring a
+et al. 2018; Hsu et al. 2019) for planets around FGK dwarfs is    simple parametric planet population model and would build
+often cited as evidence for the influence of stellar irradiance   on Clanton & Gaudi (2016) by not requiring a simple para-
+on planet formation. While photoevaporation (e.g., Owen &         metric planet population model and by incorporating rich
+Wu 2017; Lopez & Rice 2018) is often cited as a potential         information about closer-in planets from transit surveys.
+mechanism for the planet radius valley, other physical mech-            The model used in this study could also be improved
+anisms have been proposed including core-powered mass loss        further to account for additional effects and reduce the num-
+(Ginzburg et al. 2018; Gupta & Schlichting 2020, 2019), im-       ber of assumptions made. In addition to the limitations cov-
+pact erosion via planetesimals (Shuvalov 2009; Schlichting        ered in §4.3 of Hsu et al. (2019), we summarize additional im-
+et al. 2015; Wyatt et al. 2020), and the formation of two         provements future studies can make upon our model specif-
+distinct exoplanet populations due to a gas-poor environ-         ically for M star occurrence rates.
+ment for the rocky planets (Lee et al. 2014; Lee & Chiang               Detection Model: In this study, we performed tests to
+2016; Lopez & Rice 2018). Comparing the location of the           verify that the detection efficiency curve fit for FGK stars
+radius valley as a function of stellar type could be valuable     was consistent with the M star sample of this study based on
+for distinguishing between mechanisms for creating a radius       the available Kepler DR25 data products. Future research
+valley. In this study, we do not find a statistically signifi-    could perform more transit injection and recovery tests for
+cant planet radius valley at any period. This contrasts with      M dwarf targets to enable a more detailed characterization
+Cloutier & Menou (2019) who recently identified the planet        the detection efficiency specifically for M dwarfs. Addition-
+radius valley in occurrence rates inferred from Kepler and        ally, our current detection efficiency model uses the expected
+K2 planet candidates associated with cool stars. The slope        effective SNR and the number of transits observed to deter-
+of the valley estimated by that study supports the gas-poor       mine the probability that a planet is detected. As suggested
+formation theory explanation for the M dwarf planet radius        in Hsu et al. (2019), additional information (e.g., stellar
+valley, which is in contrast to the photoevaporation theory       properties, sky group6 ) could be incorporated to improve
+commonly invoked to explain the planet radius valley for          the model.
+exoplanets around FGK dwarfs. The differences in the sig-               Planet Search Pipeline: We use planet candidates identi-
+nificance of the radius valley found in this study and Cloutier   fied by the Kepler DR25 planet search pipeline as our sample
+& Menou (2019) is at least partially due to the inclusion of      of observed planets for estimating occurrence rates. Given
+K2 targets by Cloutier & Menou (2019). However, we cau-           that the Kepler pipeline and robovetter were optimized to
+tion that the significance of the radius valley may have been     search for planets around sun-like (i.e. FGK type) targets,
+overestimated due to details of the statistical methodology       there may be some M dwarf associated planets that were
+in the Cloutier & Menou (2019).                                   not properly identified or vetted. As a recent example, Van-
+                                                                  derburg et al. (2020) identified a habitable zone Earth-size
+                                                                  planet candidate associated with an M dwarf that was in-
+4.4   Future Prospects for Occurrence Rate Studies                correctly classified as a false positive by the pipeline pri-
+While this work has estimated robust occurrence rates for         marily due to improper photometric aperture selection. A
+M dwarf exoplanets, the limited number of M dwarfs in the         larger sample of identified planet candidates would improve
+Kepler target catalog restricts the precision of the rates.       occurrence rate precision, so future studies should consider
+Future work should consider applying ABC-PMC or alter-            constructing a custom planet search pipeline optimized for
+native Bayesian methodology with larger catalogs, both in         M dwarf targets.
+number of stars and number of planet candidates. Recent                 Contamination by Non-MS M Stars: Obtaining precise
+work in formulating a pipeline for identifying and vetting        planet occurrence rates requires having a large sample of tar-
+of exoplanet candidates from K2 datasets (Kostov et al.           get stars. Given the Kepler targets, one could avoid contam-
+2019; Zink et al. 2020) represents an important step in this      ination of late-K stars into the M dwarf sample by applying
+direction. Creating a homogeneous exoplanet catalog from          stricter cuts to select only targets with color and absolute
+the K2 observations could provide basis for future future         magnitude corresponding to spectral types later than M0.
+M dwarf occurrence rate calculations. In the near future,         Applying such cuts based on the main sequence from Ma-
+several ground-based RV (e.g. HPF, SPIRou, CARMENES)              majek (2019) would have significantly reduced the number
+and transit surveys (e.g. MEarth, SPECULOOS), as well as          of targets (to nearly a third of the current target list) and
+the space-based TESS mission, will increase the catalog of        further reduced the precision of occurrence rate estimates.
+exoplanet candidates associated with M dwarfs.                    Therefore, we chose cuts that balanced the desire for a suf-
+     If the sample of exoplanets from any single catalog is       ficiently large target star catalog with the desire to limit
+too small for precise occurrence rate estimates, then another     the contamination of late K dwarfs. While we expect that
+possible direction for future work is the development of a        the occurrence rates vary smoothly with spectral type and
+model that accounts for the unique detection pipelines for        thus the rates for late K dwarfs should be similar to those
+each survey. Such a model would enable multiple catalogs as
+inputs to the same occurrence rate inference process, boost-
+ing the sample size and therefore increasing the precision of     6 Sky group is an integer that groups target stars based on where
+any estimated rates. Previously the Clanton & Gaudi (2016)        they fall within the Kepler FOV and is defined in Thompson et al.
+study has done similar work by fitting a simple joint power-      (2016).
+
+MNRAS 000, 1–15 (2020)
+14     Hsu, Ford and Terrien
+of main-sequence M stars, we encourage future studies in-          respectively. Combining the integrated planet occurrence
+corporating additional data sources to identify and analyze        rates above with an the average multiplicity (i.e., planets
+planet occurrence rates for target star samples that include       per star with at least one planet), we can estimate the frac-
+a larger number of M dwarfs and have lower contamination           tion of M dwarfs with planets. If one adopts a multiplicity
+from late-K dwarfs.                                                of 6.1 ± 1.9 from Ballard & Johnson (2016), then the fraction
+     Stellar Multiplicity: In this study, we assume that the se-   of M dwarfs with planets (in the above range of sizes and
+lected Kepler targets are single stars. Ground-based follow-       periods) is estimated to be 0.7 ± 0.3 or 1.4 ± 0.5 when assum-
+up observations can effectively rule out many types of binary      ing the Dirichlet and uniform priors, respectively. Clearly,
+stars, given the small distance to the Kepler M dwarfs. Nev-       the fraction of stars with planets can not exceed unity. It
+ertheless, close binaries could have eluded detection and may      is important to note that the integrated planet occurrence
+result in spurious stellar and planetary radii. Future studies     rate includes bins with only upper limits. In our Bayesian
+could provide more precise constraints on a target-by-target       approach, we marginalize over the posterior distribution of
+basis and/or account for the potential effects of unrecognized     occurrence rates, extending to rates too high to be consis-
+binaries.                                                          tent with the assumed multiplicity. We conclude that the
+     Intrinsic Stellar Activity: Due to M stars having larger      observed number of M dwarf planet candidates is consistent
+convective zones (and later types being fully convective),         with all M dwarfs hosting a planetary system with either
+many M stars have significant amounts of stellar activity.         of our priors. When using the Dirichlet prior, the observed
+Our detection efficiency model makes use of the one-sigma          number of M dwarf planet candidates is also consistent with
+depth function for each star. Therefore, our model already         as few as half of M dwarfs hosting planetary systems. Re-
+accounts for a reduction in detection and vetting efficiency       cently, He et al. (2019) investigated the architectures of plan-
+due to increased stellar variability of M stars relative to FGK    etary systems around Sun-like (FGK) stars with a clustered
+stars. Nevertheless, it’s possible that the rate of false posi-    point process model built in the same SysSim framework as
+tives around M stars could be increased due to the different       this study. He et al. (2019) report a 68.3% credible interval
+nature of stellar activity for M dwarfs and the fact that          for the multiplicity of 2.28+0.94
+                                                                                               0.53
+                                                                                                     . Since this is less than the in-
+the robovetter parameters were tuned based on FGK stars,           tegrated rate of M dwarf planets (for both our priors), even
+rather than M stars mean that. We expect these differences         assigning every M dwarf such a planetary system would not
+to be small. In this study we make the assumption that all         be sufficient to explain the number of M dwarf planets de-
+planet candidates that pass the robovetter are true planets.       tected by Kepler. We caution that a substantial fraction of
+A future study could perform more detailed analyses to bet-        the integrated M dwarf planet occurrence rate comes from
+ter vet planet candidates accounting for the properties of M       bins with upper limits. Therefore, the observations do not
+dwarf targets.                                                     provide evidence the necessitates every M dwarf host a plan-
+     Tidal Locking: The original Kopparapu et al. (2013)           etary system. Collectively these three studies suggest that
+study defining HZ limits as a function of stellar temperature      most M dwarf hosts at least one Earth to sub-Neptune size
+did not consider the effects of tidal locking. The habitable       planet, if not several.
+zone around M stars is much closer to the host star (even in            We find that the planet occurrence rate around M
+units of stellar radii) than for FGK stars. Therefore, planets     dwarfs is substantially elevated relative to the planet occur-
+at the inner edge of the Kopparapu et al. (2013) HZ could          rence rate around FGK dwarfs at similar orbital periods or-
+become tidally locked, which has implications on the hab-          bital period. However, the planet occurrence rates are nearly
+itability of the planet. For our study we make use of the          consistent (to within statistical uncertainties) when compar-
+Kopparapu et al. (2013) HZ limits, but a future study may          ing at similar insolation values. This suggests that stellar
+consider an updated set of HZ limits that accounts for tidal       irradiance has a significant and possibly dominant role in
+locking (e.g., Kopparapu et al. 2016).                             planet formation processes regardless of spectral type.
+                                                                        Finally, we recommend that mission design concepts
+                                                                   with the goal of characterizing M star habitable zones select
+                                                                   science programs robust to a true rate of fHZ = 0.33+0.10       for
+4.5   Conclusions                                                                                                            −0.12
+                                                                   planets with 0.75 − 1.5 R ⊕ size.
+We have estimated occurrence rates for Earth to sub-
+Neptune sized planets over periods ranging from half a day
+to ∼ 70% a year using a cleaned sample of M dwarfs targeted
+by Kepler with stellar parameters updated using Gaia DR2           ACKNOWLEDGMENTS
+and 2MASS PSC. These planet occurrence rates were esti-            We thank the entire Kepler team for the many years of
+mated using ABC with a forward model that incorporates             work that has proven so successful and was critical to this
+the final Kepler DR25 data products to accurately repro-           study. We acknowledge valuable feedback from Suvrath Ma-
+duce the Kepler planet candidate identification and vetting        hadevan, Darin Ragozzine and Jason Wright. D.C.H and
+process.                                                           E.B.F. acknowledge support from NASA Origins of Solar
+     We find significant differences between estimated rates       Systems grant # NNX14AI76G and Exoplanet Research
+using two different priors, emphasizing the importance of          Program grant # NNX15AE21G. D.C.H and E.B.F. ac-
+prior choice in the inference of occurrence rate estimates         knowledge support from the Penn State Eberly College of
+for M dwarfs in the Kepler sample. Over the orbital pe-            Science and Department of Astronomy & Astrophysics, the
+riod range of P = 0.5 − 256 days and planet radius range of        Center for Exoplanets and Habitable Worlds and the Cen-
+Rp = 0.5 − 4 R ⊕ , we find an occurrence rate of fM = 4.2+0.6
+                                                         −0.6      ter for Astrostatistics. The citations in this paper have made
+and 8.4+1.2
+        −1.1
+             when   applying  the Dirichlet or uniform  prior      use of NASA’s Astrophysics Data System Bibliographic Ser-
+
+                                                                                                          MNRAS 000, 1–15 (2020)
+                                                                 Kepler DR25 M Star Planet Occurrence Rates                         15
+vices. This research has made use of the NASA Exoplanet               Irwin J. M., Berta-Thompson Z. K., Charbonneau D., Dittmann
+Archive, which is operated by the California Institute of                 J., Falco E. E., Newton E. R., Nutzman P., 2015, in 18th
+Technology, under contract with the National Aeronautics                  Cambridge Workshop on Cool Stars, Stellar Systems, and the
+and Space Administration under the Exoplanet Exploration                  Sun. pp 767–772 (arXiv:1409.0891)
+Program. This work made use of the gaia-kepler.fun cross-             Kopparapu R. K., et al., 2013, ApJ, 765, 131
+                                                                      Kopparapu R. k., Wolf E. T., Haqq-Misra J., Yang J., Kasting
+match database created by Megan Bedell. We acknowl-
+                                                                          J. F., Meadows V., Terrien R., Mahadevan S., 2016, ApJ, 819,
+edge the Institute for Computational and Data Sciences                    84
+(http://ics.psu.edu/) at The Pennsylvania State Univer-               Kostov V. B., et al., 2019, AJ, 157, 124
+sity for providing advanced computing resources and ser-              Lee E. J., Chiang E., 2016, ApJ, 817, 90
+vices that have contributed to the research results reported          Lee E. J., Chiang E., Ormel C. W., 2014, ApJ, 797, 95
+in this paper. This study benefited from the 2013 Statisti-           Lopez E. D., Rice K., 2018, MNRAS, 479, 5303
+cal and Applied Mathematical Sciences Institute (SAMSI)               Mahadevan S., et al., 2012, The habitable-zone planet finder: a
+workshop on Modern Statistical and Computational Meth-                    stabilized fiber-fed NIR spectrograph for the Hobby-Eberly
+ods for Analysis of Kepler Data, the 2016/2017 Program on                 Telescope. p. 84461S, doi:10.1117/12.926102
+Statistical, Mathematical and Computational Methods for               Mamajek E. E., 2019, A Modern Mean Dwarf Stel-
+                                                                          lar    Color    and    Effective    Temperature      Sequence,
+Astronomy, and their associated working groups.
+                                                                          http://www.pas.rochester.edu/~emamajek/EEM_dwarf_
+                                                                          UBVIJHK_colors_Teff.txt
+                                                                      Mann A. W., Feiden G. A., Gaidos E., Boyajian T., von Braun
+                                                                          K., 2015, ApJ, 804, 64
+REFERENCES                                                            Mann A. W., et al., 2017, AJ, 153, 267
+Andrae R., et al., 2018, A&A, 616, A8                                 Marrese P. M., Marinoni S., Fabrizio M., Altavilla G., 2019, A&A,
+Artigau É., et al., 2014, SPIRou: the near-infrared                      621, A144
+    spectropolarimeter/high-precision          velocimeter      for   Millholland S., Wang S., Laughlin G., 2017, ApJ, 849, L33
+    the     Canada-France-Hawaii        telescope.    p.   914715,    Morton T. D., Swift J., 2014, ApJ, 791, 10
+    doi:10.1117/12.2055663                                            Muirhead P. S., et al., 2015, ApJ, 801, 18
+Ballard S., Johnson J. A., 2016, ApJ, 816, 66                         Mulders G. D., Pascucci I., Apai D., 2015, ApJ, 814, 130
+Christiansen J. L., 2017, Technical report, Planet Detection Met-     Mulders G. D., Pascucci I., Apai D., Ciesla F. J., 2018, AJ, 156,
+    rics: Pixel-Level Transit Injection Tests of Pipeline Detection       24
+    Efficiency for Data Release 25                                    Mullan D. J., MacDonald J., 2001, ApJ, 559, 353
+Christiansen J. L., et al., 2015, ApJ, 810, 95                        Obertas A., Van Laerhoven C., Tamayo D., 2017, Icarus, 293, 52
+Clanton C., Gaudi B. S., 2016, ApJ, 819, 125                          Owen J. E., Wu Y., 2017, ApJ, 847, 29
+Cloutier R., Menou K., 2019, arXiv e-prints, p. arXiv:1912.02170      Pecaut M. J., Mamajek E. E., 2013, ApJS, 208, 9
+Coughlin J. L., 2017, Technical report, Planet Detection Metrics:     Quirrenbach A., et al., 2018, in Proc. SPIE. p. 107020W,
+    Robovetter Completeness and Effectiveness for Data Release            doi:10.1117/12.2313689
+    25                                                                Reis W., Corradi W., de Avillez M. A., Santos F. P., 2011, ApJ,
+Delrez L., et al., 2018, in Proc. SPIE. p. 107001I                        734, 8
+    (arXiv:1806.11205), doi:10.1117/12.2312475                        Ricker G. R., et al., 2015, Journal of Astronomical Telescopes,
+Dressing C. D., Charbonneau D., 2013, ApJ, 767, 95                        Instruments, and Systems, 1, 014003
+Dressing C. D., Charbonneau D., 2015, ApJ, 807, 45                    Sandford E., Kipping D., Collins M., 2019, MNRAS, 489, 3162
+Ercolano B., Pascucci I., 2017, Royal Society Open Science, 4,        Schlichting H. E., Sari R., Yalinewich A., 2015, Icarus, 247, 81
+    170114                                                            Shuvalov V., 2009, Meteoritics and Planetary Science, 44, 1095
+Ford E. B., He M., Hsu D. C., Ragozzine D., 2018, Approximate         Skrutskie M. F., et al., 2006, AJ, 131, 1163
+    Bayesian Computing with Julia, doi:10.5281/zenodo.1198716,        Thompson S. E., Fraquelli D., Van Cleve J. E., Caldwell D. A.,
+    https://doi.org/10.5281/zenodo.1198716                                2016, Kepler Archive Manual, Kepler Science Document
+Ford E. B., He M., Hsu D. C., Ragozzine D., 2020, Planetary Sys-      Van Eylen V., Agentoft C., Lundkvist M. S., Kjeldsen H., Owen
+    tems Simulation & Model of Kepler Mission for characteriz-            J. E., Fulton B. J., Petigura E., Snellen I., 2018, MNRAS,
+    ing the Occurrence Rates of Exoplanets and Planetary Archi-           479, 4786
+    tectures, doi:10.5281/zenodo.3820079, https://doi.org/10.         Vanderburg A., et al., 2020, ApJ, 893, L27
+    5281/zenodo.3820079                                               Weiss L. M., Petigura E. A., 2020, ApJ, 893, L1
+Fulton B. J., et al., 2017, AJ, 154, 109                              Wyatt M. C., Kral Q., Sinclair C. A., 2020, MNRAS, 491, 782
+Gaia Collaboration et al., 2018, A&A, 616, A1                         Yuan H. B., Liu X. W., Xiang M. S., 2013, MNRAS, 430, 2188
+Gaidos E., 2013, ApJ, 770, 90                                         Zhu W., Petrovich C., Wu Y., Dong S., Xie J., 2018, ApJ, 860,
+Gaidos E., et al., 2014, MNRAS, 443, 2561                                 101
+Gaidos E., Mann A. W., Kraus A. L., Ireland M., 2016, MNRAS,          Zink J. K., Christiansen J. L., Hansen B. M. S., 2019, MNRAS,
+    457, 2877                                                             483, 4479
+Ginzburg S., Schlichting H. E., Sari R., 2018, MNRAS, 476, 759        Zink J. K., Hardegree-Ullman K. K., Christiansen J. L., Dressing
+Gupta A., Schlichting H. E., 2019, MNRAS, 487, 24                         C. D., Crossfield I. J. M., Petigura E. A., Schlieder J. E.,
+Gupta A., Schlichting H. E., 2020, MNRAS, 493, 792                        Ciardi D. R., 2020, AJ, 159, 154
+Hardegree-Ullman K. K., Cushing M. C., Muirhead P. S., Chris-
+    tiansen J. L., 2019, AJ, 158, 75                                  This paper has been typeset from a TEX/LATEX file prepared by
+He M. Y., Ford E. B., Ragozzine D., 2019, MNRAS, 490, 4575            the author.
+Howell S. B., et al., 2014, PASP, 126, 398
+Hsu D. C., Ford E. B., Ragozzine D., Morehead R. C., 2018, AJ,
+    155, 205
+Hsu D. C., Ford E. B., Ragozzine D., Ashby K., 2019, AJ, 158,
+    109
+
+MNRAS 000, 1–15 (2020)
+

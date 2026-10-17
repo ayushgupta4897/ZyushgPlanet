@@ -1,0 +1,17 @@
+## 3. Yield
+
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/feasibility-stats/yield_model.py", line 170, in <module>
+    yield_table("Kepler primary cool dwarfs (DR25 Teff<4000, logg>4; official PDC photometry; 4-yr; known = cool-host KOIs cand+conf with P<50 d, 1-4 Re)", kep_counts, cdpp_kepler, 1460, 0.92, kepmap, koi_counts.to_dict())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/feasibility-stats/yield_model.py", line 159, in yield_table
+    C=detect_frac(noise_fn,mag,baseline,duty,rlo,rhi,m50,dilution)
+  File "/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/feasibility-stats/yield_model.py", line 66, in detect_frac
+    dens=dens_on_grid(rlo,rhi)[pmask]; Pm=P[pmask]
+         ~~~~~~~~~~~~^^^^^^^^^
+  File "/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/feasibility-stats/yield_model.py", line 27, in dens_on_grid
+    dens=occ_density(rlo,rhi); idx=np.clip(np.searchsorted(PEDGES,P,side='right')-1,0,len(dens)-1)
+  File "/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/feasibility-stats/yield_model.py", line 20, in occ_density
+    c=np.array(DC15_T5[(rlo,rhi)])/100.
+               ~~~~~~~^^^^^^^^^^^
+KeyError: (2.0, 4.0)

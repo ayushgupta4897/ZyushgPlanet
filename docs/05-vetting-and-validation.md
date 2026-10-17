@@ -4,6 +4,19 @@
 
 **How this repo implements it.** Stage 1 (`pipeline/batch_search.py`): SDE, empirical SNR, odd/even, secondary (astropy `depth_phased`), single-event dominance, duty cycle, inverted null. Stage 2 (`pipeline/vet_batch.py`, criteria in `pipeline/prereg_poolA.json` → `stage2_vetting`): masked re-detrend, per-event depths with gap proximity, per-quartile consistency, V-shape proxy, Lomb-Scargle variability, duration plausibility, TLS, ephemeris/known-object matching. Stage 3 (per candidate, by hand with `pipeline/run.py` and the checklist below): pixel-level localisation on the originating target-pixel file, dilution-vs-quarter, Gaia neighbours and RUWE, TRICERATOPS with neighbours passed in.
 
+## Implemented in this repo vs. prescribed below
+
+| Prescribed in this chapter | Status in the repo (2026-10-17) |
+|---|---|
+| Robovetter-style not-transit-like / odd-even / secondary / single-event tests | Implemented (stage 1: `pipeline/batch_search.py`; stage 2: `pipeline/vet_batch.py`) |
+| Inverted-light-curve null | Implemented on every star; scrambled-time null, injection-recovery, blind hold-out quarters: **not implemented** for Pool A |
+| Ephemeris / known-object matching (KOI, TCE, EB, confirmed) | Implemented (`pipeline/ephemeris_match.py`, catalogues via `pipeline/fetch_known.py` with a dated manifest) |
+| Pixel-level localisation | Implemented with an empirical point-source model (`pipeline/pixel_vet.py`), not the official Kepler PRF; registered verdict rules in the prereg |
+| LEO-Vetter / DAVE / exovetter | **Not run** on Pool A (TESS-oriented; planned for Pool B) |
+| TRICERATOPS with neighbours, MOLUSC, Gaia RUWE/NSS | **Not yet run**; next milestone for candidate-grade signals |
+| Decision log per candidate | Partial: `vet.json`, `pixel.json`, `runs/<id>/adversarial/` per survivor; no `decision_log.jsonl` yet |
+
+
 # Vetting and validation playbook: from a periodic dip to a credible candidate to a statistically validated planet
 
 Dimension: **vetting-validation**. Research date 2026-10-17; adversarial re-verification 2026-10-17. Markers: **[run]** = executed in the sandbox today (outputs under `/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/verify-vetting-validation/` and the sibling `.../scratchpad/vetting-validation/`); **[verified]** = primary source opened today; **[unverified]** = could not be checked, kept because it is useful and plausibly sourced. Kuber's repository (`/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/untrusted/planethunt`, read-only, never executed) is cited as "planethunt:<path>".

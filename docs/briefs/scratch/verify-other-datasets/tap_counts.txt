@@ -1,0 +1,56 @@
+## select koi_disposition, count(*) as n from cumulative group by koi_disposition
+koi_disposition,n
+"CONFIRMED",2748
+"CANDIDATE",1977
+"FALSE POSITIVE",4839
+## select count(*) as n from toi
+n
+8151
+## select tfopwg_disp, count(*) as n from toi group by tfopwg_disp
+tfopwg_disp,n
+"APC",490
+,5
+"KP",606
+"FP",1315
+"FA",100
+"CP",815
+"PC",4820
+## select count(*) as n from toi where st_tmag>13.5
+n
+457
+## select count(*) as n from toi where st_tmag>15
+n
+35
+## select count(*) as n from toi where st_tmag>16
+n
+9
+## select count(*) as n from k2pandc
+n
+4077
+## select count(distinct hostname) as n from k2pandc
+n
+1560
+## select count(*) as n from pscomppars
+n
+6451
+## select count(*) as n from k2targets
+n
+392245
+## select count(distinct epic_number) as n from k2targets
+n
+361770
+## select max(toi_created) as m from toi
+m
+"2026-10-08 21:21:31"
+## select count(*) as n from toi where toi_created>='2026-01-01'
+n
+330
+## select count(*) as n from toi where toi_created>='2026-07-01'
+n
+87
+## select count(*) as n from q1_q17_dr25_tce
+n
+34032
+## select count(*) as n from keplerstellar
+n
+990244

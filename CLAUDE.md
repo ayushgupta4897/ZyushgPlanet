@@ -36,13 +36,15 @@ This is an archival exoplanet search. The failure mode we are guarding against i
 - Activate `.venv` (`. .venv/bin/activate`); install with `uv pip install`.
 - One star: `python -m pipeline.run_batch --config pipeline/prereg_poolA.json --fnames <fname> --run-id <id>`
 - Pool slice: `python -m pipeline.run_batch ... --targets targets/poolA_kbonus_bg_dwarfs_ranked.csv --start A --stop B --run-id <id> --workers 3`
-- Triage: `python -m pipeline.triage --run-id <id>`; stage-2: `python -m pipeline.vet_batch --run-id <id> --skip-done`
+- Known-object catalogues first: `python -m pipeline.fetch_known` (writes `data/known/manifest.json`).
+- Triage: `python -m pipeline.triage --run-id <id> --config pipeline/prereg_poolA.json`; stage-2: `python -m pipeline.vet_batch --run-id <id> --skip-done`; re-verdict after a rule change: `python scripts/reverdict.py <id>`
+- Pixel localisation: `python scripts/pixel_vet_survivors.py <id> [pixel_v15]` (wraps `pipeline.pixel_vet`)
 - Modal (code shipped per run, HTTPS only): `python -m pipeline.modal_client start|status|fetch|stop`
 - Long jobs run with `nohup ... &` and a log in `runs/<id>/`; they are resumable.
 
 ## Before anything goes public
 1. Stage-2 pass with plots inspected by a human.
-2. Pixel-level localisation on the originating TPF (`pipeline/run.py` deep run).
+2. Pixel-level localisation on the originating TPF (`pipeline/pixel_vet.py`; `pipeline/run.py` is the deep light-curve run and does no pixel work).
 3. Ephemeris match against KOI/TCE/EB/confirmed within 3 arcmin and the TPF host.
 4. A second, independent re-derivation of depth and period (different agent, no shared code).
 5. A red-team review that tries to kill it.

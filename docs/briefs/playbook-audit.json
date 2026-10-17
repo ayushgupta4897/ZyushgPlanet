@@ -1,0 +1,219 @@
+{
+ "gaps": [
+  {
+   "where": "docs/10-roadmap.md L17 and L48; docs/00-executive-summary.md 'What we found'; runs/poolA_main/triage.md L4 and L453 ('the false-alarm floor'); pipeline/prereg_poolA.json L54 (null_calibration); pipeline/batch_search.py L209-217 and L363",
+   "gap": "The inverted-flux (2-f) null is read as the false-alarm rate of the whole screen ('roughly one in five first-screen passes is noise or a systematic', 'false-alarm rate measured rather than guessed'). Re-derived from runs/poolA_main/triage_all.csv by best-peak period: P 0.5-2 d real 24 vs inverted 25; 2-10 d 33 vs 36; 10-20 d 12 vs 4; 20-40 d 369 vs 30. So (a) below 10 d the stage-1 screen has zero discriminating power (real = inverted), exactly where kic-009520080 (2.38 d) and kic-001577049 (0.54 d) live; (b) the 12x excess at 20-40 d is the Kepler downlink/quarter-edge regime whose dips are sign-asymmetric (upward-only clipping in prepare(), SPSDs, thermal settling) and cannot be mimicked by 2-f. The null calibrates sign-symmetric noise and variability only. It is also biased low: the inverted best BLS peak is a 7-h box at P < 1 d in 5,841/6,365 stars (median P 0.62 d, dur 7.05 h) and is killed by the duty-cycle cut, whereas only 2,902/6,365 real best peaks are; the best *allowed* inverted peak is never evaluated.",
+   "why_it_matters": "The headline calibration claim of the whole project rests on this comparison; a referee will reject the 'one in five' statement and the 'measured false-alarm rate' phrasing immediately, and the asymmetry means the real-pass excess at long periods is systematics, not evidence.",
+   "fix": "Text: in docs/10 L17 and L48, the triage.md header and prereg L54 replace with 'the inverted run bounds the sign-symmetric noise/variability pass rate; it does not model dip-shaped systematics. Real vs inverted passes per period bin: 24/25, 33/36, 12/4, 369/30.' Code: in bls_one() mask res.power where duration/period > max_duty_cycle before argmax (both polarities), register as prereg v1.3 and label the re-triage post-hoc; have triage.py print the per-period-bin table; add a second null that targets systematics (same screen on light curves with quarters/months shuffled in time, or injected synthetic gap-edge ramps).",
+   "severity": "blocking"
+  },
+  {
+   "where": "pipeline/prereg_poolA.json L2 ('name': '..._v1.1'), L4-9 (revision_log ends at v1.2), L34, L41 (note); git history 90ae39a 12:44Z -> d04cfac 12:47Z; docs/10 \u00a71 ('v1.0 -> v1.2'); runs/*/triage.md thresholds",
+   "gap": "A stage-2 threshold was changed after registration without a revision_log entry: commit 90ae39a registered event_chi2_const_pvalue_min = 0.001; three minutes later d04cfac replaced it with event_reduced_chi2_max = 3.0 'calibrated on controls'. The positive control KIC 5689121 has event_chi2 140.5 / 72 dof (p ~ 3e-6) and would have failed the registered version, so the criterion was relaxed because a result was seen. It is described only in a note (L41), not in revision_log (L4-9). The file's name string still says v1.1 although the log records v1.2 and runs/*/triage.md thresholds include the v1.2 max_duty_cycle cut. The hand-typed registered_utc strings (12:05Z/12:20Z/12:40Z/13:05Z/13:20Z) are all later than the commits that contain them (12:02/12:12/12:18/12:44/12:47 +0000), so they cannot be write times.",
+   "why_it_matters": "The repo's central promise (CLAUDE.md: any later cut gets a dated revision_log entry and its results are labelled post-hoc) is violated in the one place a referee would check; the version string is what a reader uses to match a run to a registration, and the timestamp inconsistency undermines the audit trail.",
+   "fix": "Add revision_log entries: 'v1.3 (commit 90ae39a): stage2_vetting registered after 208-star stage-1 look' and 'v1.4 (commit d04cfac): event_chi2 p-value criterion replaced by reduced-chi2 <= 3.0 because the positive control (140.5/72 dof) failed the p >= 0.001 version; all stage-2 results are post-hoc with respect to this criterion'. Set name to ..._v1.4 (or add an explicit 'version' field) and log the rename. Replace hand-typed times with git commit hashes, or state that git commit times are authoritative. Mention the change explicitly in docs/10 L10 and the docs/00 caveats.",
+   "severity": "blocking"
+  },
+  {
+   "where": "pipeline/pixel_vet.py L138-150, L166-173, L189-213; runs/poolA_main/pixel/{kic-006699887,kic-009520080,kic-010213563}/pixel.json; docs/10 L23-25, L35; docs/00 L11 ('firmly')",
+   "gap": "Weakest link in the pixel argument: the target sits at or outside the stamp edge in most quarters (within 0.5 px of an edge or outside: 006699887 7/13 quarters, 009520080 12/17, 010213563 13/13; e.g. target_px x = -0.1/-0.2). The deficit centroid is built only from in-stamp pixels with SNR > 2 (typically 2-4 pixels), so it is pinned to the edge column, i.e. onto the target, and no uncertainty is attached to target_to_deficit_arcsec (1.1-2.3 arcsec claimed on 3.98-arcsec pixels at peak SNR 5-7). The 'closer to target than any other source' vote compares only Gaia sources whose pixel position is inside the stamp (in_stamp), so any source beyond the edge is never a competitor. The Gaussian sigma = 0.9 px is not the Kepler PRF (disclosed) and the best model still has summed chi2 839 over ~374 pixels for 009520080 (reduced ~2.2). Meanwhile the genuinely strong evidence computed per quarter (chi2_gauss_at_source for each neighbour) is never summarised: Gaussian at target vs at the brightest in-stamp neighbour sums to 536 vs 1047 (G 15.1) for 006699887, 839 vs 1568 (G 14.8) for 009520080, 1143 vs 1556 (G 14.3) for 010213563. The positive-control validation (one star, 13/13) had no negative control.",
+   "why_it_matters": "The three 'on target' verdicts are the basis for 'close to a candidate'; as written the quantitative test cannot exclude an off-stamp blend, and the test has never been shown to reject anything real.",
+   "fix": "Code: (1) skip or flag quarters where the target is < 0.5 px from a stamp edge; (2) bootstrap the centroid over events (or over the 24 random-phase maps) to get an error on target_to_deficit_arcsec and report an offset significance; (3) include Gaia sources up to 2 px outside the stamp as candidate positions with edge-truncated Gaussian models; (4) add a dilution/consistency check: expected missing light = depth x median KBONUS PSF FLUX (e/s) vs fitted amp_gauss_at_target x 2*pi*sigma^2; (5) put per-neighbour delta-chi2 and 'quarters neighbour wins' into summary and docs/10. Controls: run pixel_vet on the 15 SAME_TPF known FP/EB survivors in runs/poolA_main/survivors.csv (e.g. kic-009156588, KOI false positive on the same TPF) as negative controls before trusting any 'on target'. Text: drop 'firmly' (docs/00 L11); say 'deficit consistent with the target; off-stamp blends not excluded'.",
+   "severity": "blocking"
+  },
+  {
+   "where": "pipeline/prereg_poolA.json L49-50 (tls_sde_min, tls_snr_min) and stage2_vetting block; pipeline/vet_batch.py L121-132 (_tls, frac=0.02) and L272-277; docs/10 L33 (row kic-001577049, SNR 1.9, P 0.5379 d)",
+   "gap": "Two stage-2 statistics are ill-defined or inconsistent with stage 1. (1) tls_sde_min = 9.0 is applied to a TLS periodogram computed over +/-2 % of the known period; SDE = (max - median)/std is only meaningful for a full-range search, so in a narrow window it is arbitrary, yet it is the single biggest stage-2 killer (349 of 438 fail on tls_sde). (2) tls_snr is TLS's white-noise formal SNR, the kind of statistic stage 1 deliberately replaced with the empirical box noise; stage 2 has no empirical-SNR floor at all, so kic-001577049 'survives' with snr_emp_pass2 = 1.88 (box_noise 703 ppm, depth 1324 ppm) because tls_snr = 18.5. docs/10 prints SNR 1.9 for a stage-2 survivor without comment; a newcomer reads it as an error.",
+   "why_it_matters": "The survivor count of 11 is governed by a statistic with no defined null distribution, and a 1.9-sigma signal is carried as a survivor; a referee will ask why the stage-1 SNR floor disappears at stage 2.",
+   "fix": "Replace tls_sde in the narrow window with a full-range TLS SDE (or drop the criterion and rely on snr); add snr_emp_pass2 >= 7.1 to stage2_vetting, labelled post-hoc with a revision_log entry, and recount (kic-001577049 drops). At minimum, footnote in docs/10 that stage 2 has no snr_emp cut by registration, the signal passes on TLS formal SNR, and any added cut is post-hoc. State explicitly in docs/10 which TLS quantities are formal.",
+   "severity": "blocking"
+  },
+  {
+   "where": "pipeline/ephemeris_match.py L8-11, L30-44 (_load reads data/known/koi_cumulative.csv, dr25_tce.csv, J_AJ_151_68_catalog.csv, ps_keplerfield.csv); pipeline/triage.py L20 (import); .gitignore L4; README.md 'Data caches' paragraph",
+   "gap": "`python -m pipeline.triage` (the last README quick-start command) imports ephemeris_match, whose _load() reads four CSVs under data/known/. data/ is gitignored and nothing in pipeline/, scripts/, README.md or docs/ downloads these files (no URL, no TAP query, no script). A fresh clone cannot run triage, vet_batch or the ephemeris check at all.",
+   "why_it_matters": "The pre-registered pipeline's novelty/ephemeris step and every triage table in docs/10 depend on files that exist only in the original session; the README's claim 'everything is re-downloadable' gives no way to re-download them.",
+   "fix": "Add pipeline/fetch_known.py (or a documented scripts/ step) that pulls the four catalogues from the Exoplanet Archive TAP / VizieR, writes a manifest.json with URL, UTC and SHA-256 (CLAUDE.md already requires a download date), and reference it in README.md and docs/05 \u00a74.1.",
+   "severity": "blocking"
+  },
+  {
+   "where": "CLAUDE.md L39 ('Triage: python -m pipeline.triage --run-id <id>'); pipeline/triage.py L35-38 (--config defaults to runs/<run-id>/config_used.json); runs/poolA_main/ (no config_used.json); scripts/incremental_vet.sh",
+   "gap": "For any Modal run the triage command as written in CLAUDE.md fails with FileNotFoundError: runs/poolA_main/config_used.json (verified). Triage was in fact run against the live prereg file (config_sha ccca76e8 in results.jsonl equals the current file minus stage2_vetting, verified), which is fine but not reproducible from the run directory. Only scripts/incremental_vet.sh shows the needed `--config pipeline/prereg_poolA.json`, and that script is not mentioned in README or docs.",
+   "why_it_matters": "A newcomer cannot regenerate runs/poolA_main/triage.md, the file every headline number in docs/00 and docs/10 traces to.",
+   "fix": "Make modal_client fetch write config_used.json into runs/<id>/ (preferred), and/or change CLAUDE.md and README to `python -m pipeline.triage --run-id <id> --config pipeline/prereg_poolA.json`; document scripts/incremental_vet.sh and scripts/pixel_vet_survivors.py.",
+   "severity": "blocking"
+  },
+  {
+   "where": "docs/10-roadmap.md \u00a71 L11 row 'Positive controls'; runs/controls/vet_summary.csv; runs/controls/vet/kic-007603200/vet.json; runs/controls/pixel/ (only kic-005689121); commit d04cfac",
+   "gap": "docs/10 says 'KIC 5689121 and Kepler-138 c + d pass stage 1, stage 2 and pixel localisation'. runs/controls/vet_summary.csv and vet/kic-007603200/vet.json give stage2_pass = False (stage2_fails = known_object, by design; commit d04cfac itself says 'Kepler-138 flagged as known object'), and runs/controls/pixel/ contains no kic-007603200 directory. Only Kepler-138 c (13.78 d) was vetted; d was a stage-1 second signal (23.089 d in results.jsonl). The pixel test therefore has exactly one positive control and zero negative controls.",
+   "why_it_matters": "The control story is the repo's main credibility argument; a reader who opens the files finds the stage-2 and pixel claims for Kepler-138 unsupported, and the control coverage of both stage 2 and the pixel test is overstated.",
+   "fix": "Rewrite L11: 'KIC 5689121 passes stage 1, 2 and pixel localisation (13/13 quarters); Kepler-138 c and d pass stage 1, and c passes every stage-2 criterion except the (intended) known-object veto; no pixel run was made for Kepler-138.' Then actually run pixel_vet on kic-007603200 and on a known same-TPF false positive, and add the directories under runs/controls/pixel/.",
+   "severity": "important"
+  },
+  {
+   "where": "docs/10-roadmap.md \u00a71 L12 and L17 (rows 'Stage 1 screen', 'Stage 2 vetting'); docs/00-executive-summary.md L11 'What we found'; runs/poolA_main/triage_all.csv (ranks 101-6465, n = 6,365); runs/poolA_pilot/summary.json and triage.md L4; runs/poolA_pilot vet_summary.csv",
+   "gap": "Both docs present '6,465 stars on Modal (6,365) + locally (100)' and then '438 real vs 95 inverted' and '438 survivors re-derived -> 11 survive'. The 438/95 counts are the Modal-only run (6,365 stars). The 100 local pilot stars added 10 real + 2 inverted passes, all 10 vetted and rejected. The pool totals are 448 real / 97 inverted over 6,465 (6,334 with usable data), 448 vetted, 11 survive. docs/10 \u00a71 text later uses the 6,365 denominator (95/6,365 = 1.5 %), internally inconsistent with the table's 6,465.",
+   "why_it_matters": "The headline pass counts and false-alarm rate are quoted on a different sample than the stated pool size; a referee re-deriving 438/6,465 gets 6.8 %, 95/6,465 gets 1.47 %, neither matching the text, and CLAUDE.md requires every number to trace to a file on the stated data subset.",
+   "fix": "docs/10 L12 and docs/00 L11: 'Modal 6,365 stars: 438 real / 95 inverted; local pilot 100 stars: 10 / 2 (0 survive stage 2); pool total 448 / 97 over 6,465 (6.9 % vs 1.5 %); 11 stage-2 survivors.' Use one denominator consistently throughout docs/10 \u00a71. Have triage.py accept several run ids or write a pool-level summary file so the pooled numbers trace to a file.",
+   "severity": "important"
+  },
+  {
+   "where": "docs/10-roadmap.md L13 ('per-quartile consistency') and L24; docs/05-vetting-and-validation.md L5; pipeline/prereg_poolA.json L33-53 (stage2_vetting); pipeline/vet_batch.py L193-200 and stage2_verdict L237-283; runs/poolA_main/vet/kic-009520080/vet.json depth_by_quartile_ppm",
+   "gap": "docs/10 lists per-quartile depth consistency as a stage-2 test, but depth_by_quartile_ppm is only computed and reported; no criterion exists in stage2_vetting or stage2_verdict. For kic-009520080 the quartile depths are 1957, 1601, 1091, 1566 ppm (+/- ~110): chi2 = 31.6 for 3 dof with formal errors, still ~16 after inflating by the control-calibrated factor 1.95. Several other survivors also exceed 9 (011285493 14.7, 003963519 11.9, 001577049 16.2, 006367225 9.0).",
+   "why_it_matters": "A factor-1.8 secular depth change in a 2.4-d signal with 468 events is a classic contamination/systematics signature; the second-best survivor carries an unflagged red flag while the docs claim the test was applied.",
+   "fix": "Either register a criterion (e.g. quartile chi2/3 <= 3 using errors inflated by the event reduced chi2), label it post-hoc, and report it per star; or remove 'per-quartile consistency' from docs/10 L13 and docs/05 L5. Add the 009520080 quartile numbers to its row in docs/10 L24 next to the secondary note.",
+   "severity": "important"
+  },
+  {
+   "where": "pipeline/batch_search.py L356-358; pipeline/vet_batch.py L172-175 and L260-261; pipeline/prereg_poolA.json secondary_sigma_max; docs/10 L24 (row kic-009520080)",
+   "gap": "The secondary-eclipse test is one-sided (fails only if secondary_sigma > 3). kic-009520080 has secondary_sigma = -4.0 (a 222 ppm brightening at phase 0.5 in 468 events) and passes. A 4-sigma excursion at the one special phase means either a real astrophysical effect inconsistent with a planet or that box_noise (55 ppm) underestimates the noise, in which case snr_emp_pass2 = 28.3 is overstated by the same factor. The prereg wording 'secondary_sigma_max: 3.0' does not say signed.",
+   "why_it_matters": "The strongest-SNR survivor has an unexplained 4-sigma anomaly that the registered test is blind to by construction.",
+   "fix": "Add a two-sided flag |secondary_sigma| > 3 to stage2_verdict (labelled post-hoc) and record in prereg that the registered test was signed; run the phase-0.5 statistic through the same random-phase box null to quote an empirical p-value; state in docs/10 L24 what the brightening implies for the SNR.",
+   "severity": "important"
+  },
+  {
+   "where": "docs/10-roadmap.md L32 and docs/00 L11 ('5 are weak or off-target'); runs/poolA_main/pixel/kic-006448637/pixel.json; pipeline/pixel_vet.py L88-111, L154-161",
+   "gap": "kic-006448637 is labelled 'off target: no coherent deficit', but the test did not run meaningfully: stamps are 79x12, 51x13, 40x13 pixels (a bright tpforg with bleed columns), the target pixel position is outside the stamp in several quarters (target_px y = -10.3, -3.7, -3.3 in Q3/Q6/Q7), only 2-3 events per quarter at P = 35.6 d, peak SNR < 3.6, amp_gauss_at_target = -1.9e28 in Q3 (division by a near-zero model overlap), and the median target-to-deficit of 95 arcsec is the centroid of ~3-14 chance SNR > 2 pixels among 415-656 (expected false pixels ~0.023 x n_valid). The code has no guard for target-outside-stamp, for n_sig_pixels below the chance expectation, or for degenerate model amplitudes.",
+   "why_it_matters": "'Off target' is a disposition (blend) whereas the truth is 'not testable'; mislabelling it as a result inflates the apparent power of the pixel test and could wrongly kill a signal (or, in the opposite case, wrongly pass one).",
+   "fix": "In pixel_vet: skip a quarter when the target is > 0.5 px outside the stamp or when n_sig_pixels <= 1 + 0.023 x n_valid_px; cap/skip the Gaussian fit when sum(model^2/sigma^2) is tiny; add a summary field verdict = {on-target|offset|inconclusive} with the reason. In docs/10 L32 change to 'inconclusive: target off the collected pixels in several quarters, <= 3 events/quarter' and adjust docs/00 L11.",
+   "severity": "important"
+  },
+  {
+   "where": "pipeline/pixel_vet.py L112-133 (commit e7dc7a8 14:52Z) vs ad3cc1f 14:15Z (control validation) and a8236aa 14:18Z (first survivor results); runs/poolA_main/pixel/kic-010213563/pixel.json; CLAUDE.md 'Positive controls must pass any pipeline change'; docs/10 L14, L25",
+   "gap": "The analytic white-noise sigma-map fallback (used when fewer than 8 random-phase maps have >= 2 events) was added after the control had been validated and after the first survivors had been run. The control (P = 13.77 d, ~6 events/quarter) never exercises that branch; the long-period survivors (kic-010213563 at 36.8 d with 2-3 events/quarter, 'on target 8/13'; kic-006448637) plausibly do. pixel.json records nothing about which noise estimator was used.",
+   "why_it_matters": "A code path that decides 'on target' for one of the three best signals has never been control-tested, and the change is not labelled post-hoc in docs/10.",
+   "fix": "Record noise_method and n_random_maps per quarter in pixel.json; re-run the control with the fallback forced (e.g. --max-random-maps 0) to show it reproduces 13/13; state in docs/10 L25 and L14 that the fallback post-dates the control validation.",
+   "severity": "important"
+  },
+  {
+   "where": "docs/10-roadmap.md L21-35 ('on target / plausible / weak / off target', 'Reading guide'); pipeline/prereg_poolA.json L56; docs/05-vetting-and-validation.md \u00a71.3 L59-66",
+   "gap": "The pixel dispositions are post-hoc categories: nothing in the prereg or docs/05 fixes what offset, how many quarters, or what peak SNR counts as 'on target'; the boundaries (1.1 arcsec 12/13 -> on target; 2.9 arcsec 9/12 SNR 3.1 -> plausible; 4.6 arcsec 6 quarters -> weak) were drawn after seeing the 11 results, while docs/05 itself quotes the Kepler rules (>= 3 quarters with a discernible image; 3 sigma and > 2 arcsec, or 4 sigma and > 1 arcsec; 50 % sensitivity at 2 arcsec for MES 20).",
+   "why_it_matters": "Exactly the kind of after-the-fact threshold the repo promises never to use unlabelled.",
+   "fix": "Add a 'pixel_localisation' block to the prereg with explicit rules (minimum quarters, offset significance from a bootstrap error, delta-chi2 vs each neighbour), dated and labelled as registered after the first 11 results; in docs/10 L35 say the categories are descriptive and post-hoc.",
+   "severity": "important"
+  },
+  {
+   "where": "docs/10-roadmap.md L35 and L48; docs/00 L13; CLAUDE.md Language section; docs/10 \u00a73 item 4",
+   "gap": "docs/10 L35: 'The honest label for the best three, if the adversarial pass agrees, is planet candidate.' CLAUDE.md requires pixel localisation, ephemeris clearance AND a documented TRICERATOPS run before 'candidate'; docs/10 \u00a73 item 4 lists TRICERATOPS as still to do. docs/00 L13 gets it right ('pending the adversarial pass and a false-positive-probability run').",
+   "why_it_matters": "Internal contradiction in the one word the whole project is careful about.",
+   "fix": "L35: '... is signal; it becomes planet candidate only after the adversarial pass, Gaia/RUWE check and a documented TRICERATOPS run (section 3).'",
+   "severity": "important"
+  },
+  {
+   "where": "docs/10-roadmap.md L10 ('every change made before pool stars were judged') and L48 ('false-alarm rate measured rather than guessed'); docs/00 L9 ('validated on Kuber's star', 'never-searched'); README.md L9-10 ('neither the Kepler pipeline nor anyone else has searched'); docs/04 \u00a73; docs/00 L15",
+   "gap": "Overclaims: (a) L10 contradicts prereg L35 and docs/00 L15: the stage-2 criteria were written after a 208-star look at stage-1 results and one criterion was relaxed after the control. (b) 'validated on Kuber's star': one positive control, no negative control, is a check not a validation. (c) 'never-searched' / 'nor anyone else': docs/04 \u00a73 is titled 'how unsearched is it really?' and docs/00 L15 says the KBonus team expects several hundred candidates from the same data, so the strongest defensible claim is 'not in any public candidate list'. (d) 'measured rather than guessed': see the inverted-null gap.",
+   "why_it_matters": "Each phrase is the first thing a sceptical reader quotes back.",
+   "fix": "L10: 'first-screen thresholds frozen before any pool star was searched; stage-2 criteria registered after a 208-star stage-1 look and one criterion relaxed after control calibration (both logged)'. docs/00 L9 and README L9-10: 'checked on one positive control'; 'not previously published as candidates'. docs/10 L48: 'with the sign-symmetric false-alarm rate measured'.",
+   "severity": "important"
+  },
+  {
+   "where": "CLAUDE.md L45 ('Before anything goes public' step 2: pipeline/run.py deep run); docs/05-vetting-and-validation.md L5 ('Stage 3 ... by hand with pipeline/run.py ... pixel-level localisation'); pipeline/README.md; pipeline/pixel_vet.py; scripts/pixel_vet_survivors.py; README.md 'The search' table",
+   "gap": "Both say pixel-level localisation is done with pipeline/run.py ('deep run'). run.py contains no pixel/TPF code (grep returns nothing) and pipeline/README.md explicitly says the module 'does not do pixel-level centroid/PRF localisation'. The actual tool is pipeline/pixel_vet.py driven by scripts/pixel_vet_survivors.py, which no document names; pixel_vet.py, vet_batch.py and scripts/ are absent from the README table.",
+   "why_it_matters": "A newcomer following the public-release checklist would run the wrong program and never produce the pixel.json files that docs/10 \u00a72 is built from.",
+   "fix": "Point CLAUDE.md step 2 and docs/05 L5 to `python -m pipeline.pixel_vet --fname ... --period ... --t0-bjd ... --dur-h ... --ra ... --dec ... --tpforg ... --out runs/<id>/pixel/<fname>` (or `python scripts/pixel_vet_survivors.py <run-id>`), and add pixel_vet.py / vet_batch.py / scripts/ to the README 'The search' table.",
+   "severity": "important"
+  },
+  {
+   "where": "requirements.txt; pipeline/modal_app.py L38 (`import modal`) and docstring L11-20; pipeline/modal_client.py; README.md install line and 'The search' table; docs/08 \u00a73",
+   "gap": "`uv pip install -r requirements.txt` does not install `modal` (verified: pip show modal -> not found in .venv), and the one-time `modal deploy pipeline/modal_app.py` plus the `.modal_endpoints.json` format exist only in module docstrings. README and docs/08 never say how the Modal side is deployed or that modal_client needs a gitignored endpoint file.",
+   "why_it_matters": "The 6,365-star run cannot be reproduced from the docs; a newcomer hits 'missing .modal_endpoints.json' with no explanation.",
+   "fix": "Add a 'Running on Modal' subsection to README / docs/08 \u00a73: `uv pip install modal`, `modal deploy pipeline/modal_app.py`, the endpoint JSON schema, and `modal app stop zyushg-planet-screen`; list modal in a requirements-modal.txt.",
+   "severity": "important"
+  },
+  {
+   "where": "docs/05-vetting-and-validation.md \u00a78 (Stage 0-9 checklist); docs/08-agentic-workflow-with-claude-code.md \u00a72-\u00a74; repo tree (.claude/, drafts/, candidates/, vetting/ absent)",
+   "gap": "These sections prescribe artefacts and steps that do not exist in the repo and are not what produced runs/: blind hold-out quarters, scrambled nulls, injection-recovery, LEO-Vetter stage, vetting/<candidate>/decision_log.jsonl, novelty_check.py, PREREG.md + git tag, params.toml, prereg.yaml, .claude/{settings.json,rules,hooks,skills,agents,workflows}, candidates/<id>/, pipeline/claims.py, drafts/CLAUDE.md. grep for holdout/scramble in pipeline/ returns nothing. The 'How this repo implements it' preambles do not say which items were dropped.",
+   "why_it_matters": "A newcomer cannot tell the implemented method (prereg_poolA.json stage 1 + stage2_vetting + pixel_vet) from the aspirational playbook, and would look for files that were never created.",
+   "fix": "Add an 'Implemented vs not yet' table at the top of docs/05 \u00a78 and docs/08 \u00a72/\u00a74 mapping each prescribed item to the real file (prereg_poolA.json, batch_search.py, vet_batch.py, pixel_vet.py, ephemeris_match.py) or marking it 'not implemented in Pool A'.",
+   "severity": "important"
+  },
+  {
+   "where": "docs/10-roadmap.md L21 table header ('depth (ppm)', 'SNR', 'events'); CLAUDE.md Language rule 2",
+   "gap": "The survivors table does not say which statistic each column is. Tracing: depth = depth_pass2_ppm (masked re-detrend box depth), SNR = snr_emp_pass2 (empirical, stage 2; not TLS snr, which is 28.1 vs 20.0 for 006699887 and 18.5 vs 1.9 for 001577049), events = n_events (>= 2 in / >= 6 out points), P = refined BLS. '86 (100 % positive)' is given for 006699887 but the 86 %-positive figure for 009520080 is omitted.",
+   "why_it_matters": "CLAUDE.md requires naming the statistic and data subset; without it the SNR 1.9 vs TLS 18.5 discrepancy is invisible.",
+   "fix": "Add a header note under the table: 'depth = depth_pass2_ppm, SNR = snr_emp_pass2 (empirical box noise, masked re-detrend), events = n_events; TLS SDE/SNR (formal) in vet.json'; add frac_events_positive for every row.",
+   "severity": "minor"
+  },
+  {
+   "where": "docs/10-roadmap.md L17; docs/05; pipeline/batch_search.py L180-184 (_sde), L187-206; runs/poolA_main/triage.md L7-8",
+   "gap": "The headline thresholds do little work: the median inverted best peak already has SDE 11.5 (> 9.0) and snr_emp 7.09 (~ 7.1); 1,732 real vs 145 inverted stars pass SDE & SNR alone; it is the duty-cycle cut (5,841/6,365 inverted) that produces the 1.5 %. SDE here is (max - median)/std of the BLS likelihood power over a capped 400k-point log grid, not the Kovacs/Hippke definition, so 'SDE 9' and '7.1' borrow the authority of conventions they do not match. docs/10 L17 calls the 1.5 % 'what the registered thresholds mean'.",
+   "why_it_matters": "Misattributes the selectivity of the screen and invites comparison with Kepler's 7.1 MES that is not valid for the maximum over ~10^5 trials.",
+   "fix": "State in docs/10 L17 and docs/05 that the empirical SNR is the maximum over the trial grid (so 7.1 is reached by noise in half the stars) and that the duty-cycle and single-event cuts do most of the suppression; define SDE as implemented.",
+   "severity": "minor"
+  },
+  {
+   "where": "pipeline/batch_search.py L225-242 vs pipeline/vet_batch.py L162-175; pipeline/prereg_poolA.json L27-28 and L42-43; docs/05 L5",
+   "gap": "odd_even_sigma and secondary_sigma share names and the 3.0 threshold across stages but use different estimators: stage 1 uses the BLS weighted-fit depth_odd/depth_even/depth_phased, stage 2 uses unweighted box means on the masked re-detrend; stage-1 box noise uses 60 boxes, stage 2 80. Not wrong, but undocumented drift.",
+   "why_it_matters": "A reader comparing the triage.md and vet.json values for the same star will see different numbers under the same label.",
+   "fix": "Add one sentence to prereg stage2_vetting and docs/05 L5 defining each stage's estimator; rename stage-2 keys (e.g. odd_even_sigma_box).",
+   "severity": "minor"
+  },
+  {
+   "where": "docs/10-roadmap.md \u00a71 'Stage 1 screen ... 0 errors'; docs/00-executive-summary.md; runs/poolA_main/triage.md L3 ('ok 6365, errors 0, skipped 31'); runs/poolA_main/results.jsonl (e.g. kic-005200133)",
+   "gap": "31 Modal stars were skipped with too_few = True and n_after_quality = 0. Neither docs/00 nor docs/10 mentions them; '6,365 stars screened' is really 6,334 searched + 31 unsearched.",
+   "why_it_matters": "Pool coverage is a published number; 31 unsearched stars should be listed as such, not folded into 'screened'.",
+   "fix": "Add 'skipped 31 (no good cadences after quality cut; listed in runs/poolA_main/triage_all.csv where ok and too_few)' to docs/10 \u00a71 and the executive summary.",
+   "severity": "minor"
+  },
+  {
+   "where": "README.md L9-11 'Status (2026-10-17)' paragraph and L28 docs table row for docs/10",
+   "gap": "README says the pool 'is being screened (ranks 1-100 locally, 101-6,465 on Modal). Nothing has been called a candidate yet' and describes docs/10 as '(written once the first pool is fully vetted)'. docs/00 and docs/10, dated the same day, report the screen complete, 438/95 passes, 11 stage-2 survivors and pixel results.",
+   "why_it_matters": "The entry-point document contradicts the two summary chapters it tells the reader to open first.",
+   "fix": "Update README status to the docs/10 state (screen complete, 11 stage-2 survivors, adversarial pass in progress) and drop the parenthetical on docs/10.",
+   "severity": "minor"
+  },
+  {
+   "where": "docs/00-executive-summary.md 'What we found' ('6,365 stars screened on Modal in 2 h 17 m'); runs/poolA_main/modal_call.json (mtime 12:34:33 UTC); runs/poolA_main/incremental_vet.log",
+   "gap": "No file in runs/ records the batch wall time. The only evidence is modal_call.json mtime and incremental_vet.log fetch lines (6,162 rows at 14:50, 6,365 at 15:00), which bound it to 2 h 16-26 m.",
+   "why_it_matters": "CLAUDE.md requires every number in a write-up to trace to a produced file; this one does not.",
+   "fix": "Save the final `modal_client status` JSON (start/finish timestamps) as runs/poolA_main/modal_status.json and cite it, or soften to 'about 2.3 h'.",
+   "severity": "minor"
+  },
+  {
+   "where": "docs/05 Appendix A 'Files:'; docs/07 L331; docs/04 \u00a77; docs/04b 'Sandbox outputs'; docs/08 verification markers citing /tmp/claude-0/.../scratchpad/verify-*/ and scratchpad/untrusted/planethunt",
+   "gap": "Dozens of [run]/[sandbox] claims point to session-scratchpad paths that are not in the repo and vanish with the session.",
+   "why_it_matters": "The verified-brief evidence is unreproducible for anyone else; the 'verified' markers become unauditable.",
+   "fix": "Copy the small scratch scripts/outputs into docs/briefs/<dimension>/ (or runs/verification/) and rewrite the paths; mark the rest 'not preserved'.",
+   "severity": "minor"
+  },
+  {
+   "where": "pipeline/pixel_vet.py L16-18 docstring vs docs/10 L35 and runs/controls/pixel/kic-005689121",
+   "gap": "pixel_vet.py's docstring says the control gave 12/13 quarters (the independent agent's own implementation) while docs/10 L35 and runs/controls/pixel say 13/13 for this module.",
+   "why_it_matters": "Small audit-trail inconsistency that a referee will spend time on.",
+   "fix": "Update the docstring to 'this module: 13/13; independent agent's own implementation: 12/13'.",
+   "severity": "minor"
+  },
+  {
+   "where": "docs/00-executive-summary.md first sentence ('what Kuber Mehta did on 2026-10-11'); README.md L3-4; docs/01 \u00a76 timeline; docs/01b \u00a71",
+   "gap": "docs/01 \u00a76 and docs/01b \u00a71 date the KIC 5689121 detection to 10 Oct (Codex pilot, 64 stars) and the tweet to 11 Oct 11:12 UTC; the two intro documents say 11 Oct.",
+   "why_it_matters": "Small, but the two intro documents disagree with the two chapters that reconstruct the timeline.",
+   "fix": "Write 'announced on 2026-10-11 (found 2026-10-10)'.",
+   "severity": "minor"
+  },
+  {
+   "where": "README.md L20 docs table row for docs/02 ('Rabtsevich, Chopra, eumemic, Kuber and eight more') vs docs/02 \u00a71a (11 rows) + \u00a71b (10 rows)",
+   "gap": "README implies 12 projects; docs/02 tabulates 21 (docs/00 and docs/02 L5 hedge with 'at least twelve').",
+   "why_it_matters": "Minor count mismatch in the index.",
+   "fix": "Change to 'and about twenty more'.",
+   "severity": "minor"
+  }
+ ],
+ "contradictions": [
+  "docs/10 \u00a71 L11 ('Kepler-138 c + d pass stage 1, stage 2 and pixel localisation') vs runs/controls/vet_summary.csv and runs/controls/vet/kic-007603200/vet.json (stage2_pass = False, stage2_fails = known_object; commit d04cfac: 'Kepler-138 flagged as known object') and runs/controls/pixel/ containing only kic-005689121 (no kic-007603200 directory).",
+  "docs/00 L11 and docs/10 \u00a71 L12 quote 438 real / 95 inverted and '438 survivors re-derived' against a 6,465-star pool, but runs/poolA_main/triage_all.csv covers ranks 101-6465 only (6,365 stars); runs/poolA_pilot/summary.json and triage.md L4 add 10 / 2 for ranks 1-100, making the pool total 448 / 97; docs/10 \u00a71 text then switches to 95/6,365.",
+  "docs/10 L10 ('every change made before pool stars were judged') vs pipeline/prereg_poolA.json L35 and docs/00 L15 (stage-2 criteria registered after a 208-star partial triage) and git d04cfac (event_chi2 p-value criterion relaxed to reduced-chi2 <= 3.0 after the control failed the registered version).",
+  "pipeline/prereg_poolA.json L2 name 'v1.1' vs its revision_log ending at v1.2 and docs/10 \u00a71 ('v1.0 -> v1.2'); registered_utc strings (12:05Z, 12:20Z, 12:40Z, 13:05Z, 13:20Z) are all later than the git commits that contain them (12:02, 12:12, 12:18, 12:44, 12:47 +0000).",
+  "docs/10 L13 lists 'per-quartile consistency' as a stage-2 test vs prereg stage2_vetting / vet_batch.stage2_verdict, which contain no such criterion (kic-009520080 quartile depths 1957/1601/1091/1566 ppm, chi2 31.6 for 3 dof, passes).",
+  "docs/10 L33 shows a stage-2 'survivor' (kic-001577049) with SNR 1.9 vs prereg first_screen snr_emp_min 7.1 (stage 2 has no empirical-SNR floor; it passes on TLS formal snr 18.5).",
+  "docs/10 L35 ('planet candidate' once the adversarial pass agrees) vs CLAUDE.md Language section (candidate requires pixel localisation, ephemeris clearance and a documented TRICERATOPS run) and docs/10 \u00a73 item 4 / docs/00 L13 (TRICERATOPS still to do).",
+  "docs/10 L32 'off target' for kic-006448637 vs runs/poolA_main/pixel/kic-006448637/pixel.json (target pixel position outside the stamp in Q3/Q6/Q7, 2-3 events per quarter, degenerate fit amplitude -1.9e28): the test did not run, it did not find an offset.",
+  "docs/10 L35 and runs/controls/pixel (13/13 quarters) vs pipeline/pixel_vet.py L16-17 docstring (12 of 13 quarters).",
+  "README.md L9-10 / docs/00 L9 ('never-searched', 'nor anyone else has searched') vs docs/04 \u00a73 ('how unsearched is it really?') and docs/00 L15 (KBonus team expects several hundred candidates from the same data).",
+  "CLAUDE.md step 2 and docs/05 L5 attribute pixel-level localisation to pipeline/run.py; pipeline/README.md says run.py does not do pixel-level localisation; the files in runs/*/pixel/ were produced by pipeline/pixel_vet.py via scripts/pixel_vet_survivors.py.",
+  "README.md status paragraph says the pool 'is being screened' and docs/10 is 'written once the first pool is fully vetted', while docs/00 and docs/10 (same date) report the screen finished with 11 stage-2 survivors and pixel results.",
+  "docs/10 \u00a71 reports '0 errors' for the stage-1 screen while runs/poolA_main/triage.md L3 records 31 skipped stars (too_few, zero good cadences) that were never searched.",
+  "docs/00 and README.md date Kuber's find to 2026-10-11; docs/01 \u00a76 and docs/01b \u00a71 date the detection to 10 Oct and only the tweet to 11 Oct.",
+  "README docs index says docs/02 covers 'Kuber and eight more' (12 projects); docs/02 \u00a71a-1b tabulate 21."
+ ],
+ "runnability": "Merged from both audits (this pass was read-only: nothing in the repo was modified, no pipeline stage executed; the dedup map is at /tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/critic-merge/dedup_map.md). In the existing .venv every README/CLAUDE.md entry point parses: `python -m pipeline.run_batch --help`, `pipeline.triage --help`, `pipeline.vet_batch --help`, `pipeline.modal_client --help`, `pipeline.run --help`, plus `pipeline.pixel_vet --help` and `pipeline.ephemeris_match` (self-test prints the Kepler-169 e match). On a fresh clone the README quick-start works for `run_batch` (data re-downloaded from MAST) but `python -m pipeline.triage --run-id pilot` fails because triage imports ephemeris_match, which reads four CSVs under gitignored data/known/ that no script or doc downloads. For the Modal run, `pipeline.triage --run-id poolA_main` as written in CLAUDE.md fails (verified: FileNotFoundError runs/poolA_main/config_used.json; needs `--config pipeline/prereg_poolA.json`); triage was in fact run against the live prereg file (config_sha ccca76e8 in results.jsonl equals the current file minus stage2_vetting). `pipeline.modal_client` needs a gitignored .modal_endpoints.json and the `modal` package is neither in requirements.txt nor installed, so the Modal batch is not reproducible from the docs. Pixel localisation is reachable only via scripts/pixel_vet_survivors.py, which no document mentions. Target-list SHA-256 matches prereg (27052817...); pilot = ranks 1-100, Modal = 101-6465 as README states. All referee-lens numbers were re-derived with short pandas/json scripts from runs/poolA_main/{triage_all.csv,survivors.csv,vet_summary.csv}, the vet.json/pixel.json pairs for kic-006699887, kic-009520080, kic-010213563, kic-010213563, kic-001577049 and kic-006448637, runs/poolA_pilot and runs/controls outputs, and the git history of pipeline/prereg_poolA.json and pipeline/*.py; every stated number in docs/10 \u00a72 traced correctly to its file.",
+ "overall": "Two audits with complementary lenses (newcomer/reproducibility and sceptical referee) merged into 28 gaps (6 blocking, 12 important, 10 minor) and 15 contradictions; four pairs were duplicates (Kepler-138 control claim, 438/95 vs pool size, prereg name v1.1, kic-001577049 SNR 1.9) and one item split (config_used.json into the triage-command blocker, the 12/13 vs 13/13 docstring kept separately). Agreement between the audits: the quantitative core transcribes correctly (every docs/10 \u00a72 number for the 11 survivors, the 11 pixel summaries, the KIC 5689121 13/13 control, 438/95, 125 s/star, rank ranges and target hash trace to runs/poolA_main, runs/controls and prereg_poolA.json), and the bookkeeping (frozen list, hashed config, per-criterion reporting, controls kept) is better than most agent-run searches. The blocking problems are in inference, registration discipline and reproducibility, not transcription: (1) the inverted null is over-read as a false-alarm rate when per period bin real and inverted passes are equal below 10 d (24/25, 33/36) and differ 12x only in the 20-40 d gap-systematics regime that sign inversion cannot mimic, and it evaluates the inverted star's disallowed best peak; (2) a stage-2 criterion was relaxed after the control failed the registered version with no revision_log entry, the version string lags the log, and registration timestamps post-date their commits; (3) the pixel argument has the target on the stamp edge in most quarters, a centroid with no error bar built from 2-4 pixels, in-stamp-only competitors, no negative control, an untested noise fallback and post-hoc disposition categories, while the strong per-neighbour delta-chi2 evidence that exists is never reported and one 'off target' is really 'not testable'; (4) stage 2 applies TLS SDE in a +/-2 % window where it is undefined (the largest killer), has no empirical-SNR floor (a 1.9-sigma signal survives), is blind to a -4-sigma phase-0.5 brightening by a one-sided test, and never applies the per-quartile test it claims; (5) a fresh clone cannot run triage (gitignored data/known/ with no downloader) and the CLAUDE.md triage command fails on Modal runs. Important follow-ons are the unsupported Kepler-138 stage-2/pixel claim, pass counts quoted on the 6,365-star subset against a 6,465 pool, 'planet candidate' before TRICERATOPS, the overclaim phrases ('firmly', 'validated', 'never-searched', 'every change made before pool stars were judged'), run.py wrongly named for pixel work, undocumented Modal deployment, and docs/05 \u00a78 / docs/08 prescribing artefacts never built. Fixes are mostly a few lines of text and small code additions (duty-cycle-aware peak selection, centroid bootstrap, off-stamp competitors, deficit-vs-expected-flux check, noise-method logging, stage-2 SNR floor, two-sided secondary flag, config_used.json on fetch, a fetch_known.py), plus one afternoon of negative-control pixel runs on the 15 known same-TPF false positives already in survivors.csv; none changes a scientific result, but several change what the repo may claim."
+}

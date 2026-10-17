@@ -1,0 +1,16 @@
+# verify-kuber-method: sandbox verification log (2026-10-17, venv /home/user/ZyushgPlanet/.venv)
+- Tweet via api.fxtwitter.com: created Sun Oct 11 11:12:44 UTC 2026 (16:42 IST); text matches task statement; 239 likes / 9,649 views at fetch.
+- Selection reproduced independently: 29,800 -> 9,204 -> 6,477 -> 2,495 -> 1,836; live TAP `select distinct kepid from keplerstellar` (200,038 kepids, sha256 eae9e93b...) excludes 36 -> 1,800. Candidate rank 22 (0-based) among the 1,800 (= row 23 of pilot_targets.csv). G range of the 1,800: 14.19-19.00; rank 64 G=16.88; rank 576 G=18.21.
+- Exoplanet Archive TAP: Kepler-169 e cumulative koi_period 13.76710058 d, koi_time0bk 174.81089; pscomppars 13.767102 d, host RA 285.9999204 Dec 40.9193822 (separation 4.389'); KOIs within +-5': only Kepler-169 b-f, K03784.01 (FP, 23.87 d), Kepler-1369 b (25.87 d); DR25 TCEs same hosts; kepid 5689121 absent from keplerstellar/keplernames; 5689116 present; TOI table has no TIC 120686465; Kepler-138 c 13.7815 d, d 23.0923 d.
+- Gaia DR3 TAP: 2103792461826460288 G 16.2824, BP-RP 2.194, plx 3.4065+-0.0397 mas, RUWE 0.98412, NSS 0; neighbour 2103792427466721792 G 15.4776, plx 0.30+-0.23 mas, RUWE 8.73, excess-noise sig 976 (background star, not a physical companion). 19 Gaia sources within 60".
+- lightkurve 2.6.0: 3 KBONUS-BKG products within 60" (target, KIC 5689116 at 7.1", KIC 5689163 at 52.5"); 13 long-cadence TPFs for KIC 5689116; search by name 'Gaia DR3 2103792461826460288' works.
+- eumemic expected_duration(13.769 d, rho=5) -> a/R*=41.3, 2.54 h; TIC density 3.87 -> a/R* 38.0, 2.77 h. Period difference to Kepler-169 e = 0.002347 d = 32.8 sigma.
+- Zenodo API: 10.5281/zenodo.23325261 created 2026-10-12T19:49:40Z, version evidence-20261013-r2, CC-BY-4.0, one file 118,175,450 bytes.
+- GitHub releases page (WebFetch): evidence-20261010 10 Oct 15:41 UTC; evidence-20261013 12 Oct 19:39 UTC; -r2 12 Oct 19:49 UTC.
+- PyPI 2026-10-17: triceratops 1.1.0 (2026-09-02, pins pytransit==2.2), leo-vetter 1.2.0, wotan 2.0 (2026-10-11), transitleastsquares 2.0.1, lightkurve 2.6.0, batman-package 2.5.3, emcee 3.1.6, pytransit 2.9.3, numba 0.68.0 (2026-09-30), astropy 8.0.2, astroquery 0.4.11; 'molusc' not on PyPI; tess-prf 0.1.3.
+- TRICERATOPS master: mission in {TESS, Kepler, K2}; calc_probs has molusc_file, exptime, nsamples, contrast_curve_file list; 1.1.0 default dilution_corrected=True and Gaia-DR3 background by default.
+- RNAAS: 1,500 words total incl. abstract (150), one figure OR table, not peer reviewed, moderated (journals.aas.org guidelines via WebSearch).
+- Bienias & Szabo 2025 = A&A 694, A209, arXiv:2501.09152, 7 hot-Jupiter background candidates; Zenodo 14618891 is Appendix A (author listed: Bienias).
+- NASA-Keck 2027A call closed 10 Sep 2026 4 pm PT; PI must be US-based; co-Is any nationality.
+- CDS ftp table5.dat is behind an Anubis anti-bot page from this sandbox (4,375-byte HTML); VizieR TAP returned 503; Barber row not re-verified here (previous agent reported 80,264 bytes, 2022-11-08).
+- venv: batman 2.5.1 (not 2.5.3), wotan has no __version__, TLS 2.0.1, triceratops not installed.

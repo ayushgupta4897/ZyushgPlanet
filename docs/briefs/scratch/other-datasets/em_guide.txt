@@ -1,0 +1,329 @@
+Guide for TESS Extended Mission Planning
+This document accompanies the Call for Community Input into Extended Mission Planning for NASA's
+Transiting Exoplanet Survey Satellite (TESS). The intent of this document is to provide the community
+with information about the TESS mission and operational limitations that may be helpful during science
+pitch preparation. Note that substantial changes in operations may not be feasible in time for the start
+of Extended Mission 3 (EM3) in September 2025 but may be considered for future extended missions.
+Please direct questions to the TESS help desk at tesshelp@bigbang.gsfc.nasa.gov.
+
+Background on TESS
+TESS launched in 2018 to perform a near all-sky survey to search for planets transiting nearby stars. The
+below text summarizes TESS, and more information can be found at the TESS Science Support Center’s
+website1.
+The TESS observatory consists of the spacecraft and the payload. The TESS payload has a single
+instrument, a camera suite composed of four identical refractive cameras with a combined field-of-view
+(FOV) of 24x96 degrees. The observing strategy for TESS since launch is to tile the sky, observing a 24x96
+degree section of sky for two spacecraft orbits (each 13.7 days on average) over a ~27-day period of
+time known as a sector, before moving on to the next sector. During observations, the TESS cameras
+produce a continuous stream of images with an exposure time of 2 seconds. The onboard Data Handling
+Unit performs real-time processing on these data, including cosmic ray mitigation, collecting pixel subarrays for postage stamp targets (also referred to as Target Pixel Files or TPFs), and image stacking for
+the Full-Frame Images (FFIs).
+TESS data are downlinked from the spacecraft weekly via the Deep Space Network (DSN) and processed
+by the SPOC mission pipeline at NASA Ames and the TICA pipeline at MIT. The TPFs routinely achieve
+200 parts per million (ppm) photometric precision in 1 hour at T = 10 (TESS magnitude 10).
+During its 2-year prime mission (2018-2020), over 200,000 pre-selected stars were monitored at 2minute cadence as TPFs. FFIs of the entire 24 x 96 degrees FOV were obtained at a cadence of 30
+minutes to facilitate additional science. Most of the northern and southern ecliptic hemispheres were
+surveyed during the prime mission. In its first extended mission (2020-2022), TESS introduced a new 20second cadence mode for pre-selected targets, continued its 2-minute cadence mode for pre-selected
+targets, and shortened the FFI cadence to 10 minutes. In its second extended mission (2022-2025), TESS
+shortened the FFI cadence to 200 seconds and maintained the 20-second and 2-minute cadence mode
+for pre-selected targets. In both extended missions, the northern and southern ecliptic hemispheres
+were re-observed and parts of the ecliptic plane were surveyed for the first time. See Table 1 for a
+summary of the cadences and pointings to date.
+TESS's third extended mission (EM3) is expected to occur September 2025-September 2028, with
+operations contingent upon the outcome of the 2025 Astrophysics Senior Review.
+1
+
+https://heasarc.gsfc.nasa.gov/docs/tess/documentation.html
+1
+
+Table 1. Summary of TESS cadences and pointings.
+
+FFI Cadence
+
+Target
+Pixel File
+(TPF)
+Cadence
+
+Number of
+TPF Targets
+
+Pointing
+
+Prime
+Mission
+(20182020)
+
+30 min
+
+120 s
+
+20,000
+
+First
+Extended
+Mission
+(20202022)
+
+10 min
+
+120 s
+
+20,000
+
+20 s
+
+1,500
+
+Second
+Extended
+Mission
+(20222025)
+
+200 s
+
+120 s
+
+13,000
+
+20 s
+
+2,500
+
+Cumulative coverage of the
+sky
+≥1
+sector
+
+≥2 sectors
+
+≥3 sectors
+
+Baseline ≥ 1
+yr
+
+Southern
+Hemisphere,
+Northern
+Hemisphere
+
+70%
+
+22%
+
+10%
+
+1.6%
+
+Southern
+Hemisphere,
+Northern
+Hemisphere,
+Ecliptic Plane
+
+89%
+
+67%
+
+33%
+
+59%
+
+Southern
+Hemisphere,
+Northern
+Hemisphere,
+Ecliptic Plane
+
+97%
+
+87%
+
+68%
+
+84%
+
+Broad sky coverage, fast cadence, and exquisite photometric precision have enabled TESS to evolve
+from an exoplanet hunter in its prime mission to a general-purpose time-domain facility in its extended
+mission. There are currently >1700 peer-reviewed TESS publications, with 60% of these related to
+general astrophysics and 40% related to exoplanets.
+Examples of TESS science include:
+●
+●
+●
+●
+●
+●
+
+Transiting exoplanets around nearby, bright stars
+Asteroseismology of solar-type and giant stars
+Stellar flares and rotation
+Optical counterparts of gamma-ray bursts
+Supernovae
+Asteroids
+
+The TESS General Investigator (GI) program2 solicits TPF targets and funds science investigations every
+year following a dual-anonymous peer-review process. As a survey mission, TESS’s observing plan is
+fixed, but GI proposals may request TPF targets in TESS’s planned FOV. Anyone may propose for TPF
+targets, but only those at U.S. institutions may receive funding.
+
+2
+
+https://heasarc.gsfc.nasa.gov/docs/tess/proposing-investigations.html
+
+2
+
+The almost 1 PB of available TESS data are archived at the Mikulski Archive for Space Telescopes3
+(MAST). Official mission products include FFIs, TPFs, and high-quality light curves produced from the
+TPFs. The mission produces data release notes for every sector and several catalogs identifying
+transiting exoplanet candidates. Various tools exist to generate light curves directly from the FFIs for any
+target, including eleanor4 and TESSCut5. There are millions of light curves generated by the TESS
+community hosted on MAST as high-level science products6. MAST’s TIKE platform enables analysis of
+TESS data in the cloud.
+The TESS mission maintains a help desk7 dedicated to answering the community’s questions about the
+TESS mission, proposing to observe with TESS, instrument characteristics, data and calibration issues,
+and data analysis software. Please email: tesshelp@bigbang.gsfc.nasa.gov.
+
+Mission parameters and constraints to consider for extended mission
+science pitches
+See Table 2 (below) for a summary of possible changes to the TESS mission that could enable new
+science investigations. The following text describes restrictions imposed on the mission by the
+spacecraft and ground systems.
+
+Observatory pointing constraints
+Sector Durations
+The duration of each TESS sector is set by the need to keep the TESS payload pointed in the anti-solar
+direction to maintain thermal stability. This pointing requirement has historically been to keep the
+centerline of the camera array within ±15° of anti-solar, limiting the duration of a sector to two orbits, or
+~27 days. The TESS team is exploring whether it may be possible to relax this anti-solar pointing
+requirement to ±30°, allowing the duration of a sector to be increased to four spacecraft orbits, or ~54
+days. See Figure 1 for an example of how this would impact TESS’s sky coverage.
+
+Locations on the Sky
+TESS observations have generally tiled an ecliptic hemisphere in one year by orienting the FOV NorthSouth and centering camera 4 on the ecliptic pole, then alternating which hemisphere is observed every
+year (Figure 1). There is some flexibility that allows the fields to be shifted poleward along the
+centerline, as was done in Sectors 14-168: this results in observations that are roughly centered on the
+
+3
+
+https://archive.stsci.edu/missions-and-data/tess
+https://eleanor.readthedocs.io/en/latest/
+5
+https://mast.stsci.edu/tesscut/
+6
+https://mast.stsci.edu/hlsp
+7
+https://heasarc.gsfc.nasa.gov/docs/tess/helpdesk.html
+8
+https://heasarc.gsfc.nasa.gov/docs/tess/primary.html#sky-coverage
+4
+
+3
+
+poles, at the cost of not observing fields at lower ecliptic latitudes. Shifting the fields toward the equator
+is also possible.
+If the anti-solar requirement is relaxed from ±15° to ±30°, observations of a particular part of the sky in
+this orientation can be roughly doubled in duration.
+The FOV can also be rotated 90° and the long axis centered close to the ecliptic, as was done in Sectors
+42-469 and 70-72. The Earth and Moon live near the ecliptic, as seen from TESS, and both can be a very
+strong source of scattered light during ecliptic observations; however, these regions of high scattered
+light are typically ~120° in extent in ecliptic latitude and can be avoided by planning the observations for
+times of the year when the Earth and Moon are less of a problem. Ecliptic pointings to date were made
+to ensure coverage of 240° of ecliptic longitude over 2-3 sectors; however, there is some flexibility in
+ecliptic pointings that could allow longer observations of some parts of the ecliptic. Relaxation of the
+anti-solar requirement to ±30° will have no effect on ecliptic observations.
+
+Image cadence and data downlink constraints
+TESS has a solid state recorder (SSR) with a capacity of 192 GB for onboard storage. Science data stored
+on the SSR are currently downlinked twice every orbit (i.e., once a week) using TESS’s Ka-band antenna
+and the DSN, once at perigee and once at apogee. TESS is currently observing ~13,000 2-minute TPFs,
+~2,500 20-second TPFs, and is collecting FFIs every 200 seconds: this science plan fills the SSR roughly
+half-full each half-orbit, which allows for a data safety margin of ~100% (in case a DSN contact is
+missed). The vast majority of the data collected is in FFIs: currently, 20-second and 2-minute TPFs each
+contribute ~6% of the total collected data volume.
+Other cadences for the TPFs and FFIs can be considered, in principle: their impact on data management
+will scale roughly as the exposure time and the number of targets. A 2-second TPF mode is being
+investigated, which would be available to a limited number of targets. These changes are subject to both
+on-board data processing and storage considerations and downlink capacities, as well as cost
+considerations for changes to ground operations.
+The TESS team uplinks commands and downlinks housekeeping data from TESS four times per orbit (i.e.,
+twice a week) using TESS’s S-band antenna. The volume of information communicated is much smaller
+than the less frequent Ka-band downlinks. It may be possible to quickly downlink subarrays from a few
+TESS FFIs via this S-band interface for time-critical events that TESS may have observed (e.g., high energy
+transients such as kilonovae) in order to localize these events on the sky.
+Table 2. Summary of possible changes to the TESS mission for EM3 and beyond.
+Possible
+parameters to
+9
+
+Current (EM2)
+value(s)
+
+Notes
+
+https://heasarc.gsfc.nasa.gov/docs/tess/extended.html
+
+4
+
+change
+FFI cadence
+
+200 s
+
+Available Ka-band downlink resources and on-board
+storage capacity limit the FFI cadence to ≥200 seconds.
+Shortening the cadence would require additional financial
+and downlink resources, which may not be available.
+
+TPF cadence(s)
+
+120 s and 20 s
+
+Faster cadences will fill up on-board storage more quickly.
+A 2-second TPF cadence is being investigated.
+
+Pointing locations
+(sectors)
+
+Northern
+Hemisphere,
+Southern
+Hemisphere,
+Ecliptic Plane
+
+Observations to date have been made a) with the camera
+array oriented N-S and centered at either ±54° or ±85°
+ecliptic latitude or b) with the camera array oriented along
+the ecliptic, with all observations lasting 2 orbits. Possible
+changes include centering at different ecliptic latitudes,
+introducing a small roll (≲20°, if the anti-solar restriction is
+loosened) in the camera orientation, and ecliptic
+observations with significant overlap between sectors.
+
+Sector durations
+
+~27 days
+
+It may be possible to extend sector durations up to 54
+days.
+
+Science data
+availability
+
+All collected
+science data
+downlinked 1x per
+week
+
+For time-critical events, the TESS team is investigating the
+possibility that subarrays of a few FFIs could be
+downlinked 2x per week via existing S-band downlink
+resources. Data could be made available within a few days
+of downlink.
+
+Figure 1. Example pointings where the camera array is oriented N-S centered at +85° (blue) and -85°
+(green) ecliptic latitude. The blue pointings show three consecutive 27-day sectors, and the green
+pointings show three consecutive 54-day sectors.
+5
+
+

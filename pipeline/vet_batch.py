@@ -257,8 +257,16 @@ def stage2_verdict(r: dict, cfg: dict, both_polarity: bool = False) -> tuple[boo
             fails.append("event_chi2")
     if g("odd_even_sigma") is not None and g("odd_even_sigma") > c.get("odd_even_sigma_max", 99):
         fails.append("odd_even")
-    if g("secondary_sigma") is not None and g("secondary_sigma") > c.get("secondary_sigma_max", 99):
-        fails.append("secondary")
+    sec = g("secondary_sigma")
+    if sec is not None:
+        if sec > c.get("secondary_sigma_max", 99):
+            fails.append("secondary")
+        elif c.get("secondary_two_sided") and abs(sec) > c.get("secondary_sigma_max", 99):
+            fails.append("secondary_2sided")
+    if c.get("snr_emp_pass2_min") is not None:
+        s2 = g("snr_emp_pass2")
+        if s2 is None or s2 < c["snr_emp_pass2_min"]:
+            fails.append("snr_emp2")
     if g("core_to_box_depth_ratio") is not None and g("core_to_box_depth_ratio") < c.get("core_to_box_depth_ratio_min", 0):
         fails.append("v_shape")
     if g("ls_amp_over_depth") is not None and g("ls_amp_over_depth") > c.get("ls_amp_over_depth_max", 99):
@@ -271,7 +279,7 @@ def stage2_verdict(r: dict, cfg: dict, both_polarity: bool = False) -> tuple[boo
         fails.append("duration")
     tls = r.get("tls") or {}
     if isinstance(tls, dict) and "SDE" in tls:
-        if (tls.get("SDE") or 0) < c.get("tls_sde_min", 0):
+        if c.get("tls_sde_min") is not None and (tls.get("SDE") or 0) < c["tls_sde_min"]:
             fails.append("tls_sde")
         if (tls.get("snr") or 0) < c.get("tls_snr_min", 0):
             fails.append("tls_snr")

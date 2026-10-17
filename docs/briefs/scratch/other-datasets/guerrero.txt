@@ -1,0 +1,3843 @@
+Draft version March 25, 2021
+Typeset using LATEX twocolumn style in AASTeX631
+
+arXiv:2103.12538v2 [astro-ph.EP] 24 Mar 2021
+
+The TESS Objects of Interest Catalog from the TESS Prime Mission
+Natalia M. Guerrero,1 S. Seager,1, 2, 3 Chelsea X. Huang,1, ∗ Andrew Vanderburg,4, 5, † Aylin Garcia Soto,6
+Ismael Mireles,1 Katharine Hesse,1 William Fong,1 Ana Glidden,1, 2 Avi Shporer,1 David W. Latham,7
+Karen A. Collins,7 Samuel N. Quinn,7 Jennifer Burt,8 Diana Dragomir,9 Ian Crossfield,1, 10
+Roland Vanderspek,1 Michael Fausnaugh,1 Christopher J. Burke,1 George Ricker,1 Tansu Daylan,1, ‡
+Zahra Essack,2, 1 Maximilian N. Günther,1, ∗ Hugh P. Osborn,11, 1 Joshua Pepper,12 Pamela Rowden,13
+Lizhou Sha,1 Steven Villanueva Jr.,1, § Daniel A. Yahalomi,14, 7 Liang Yu,1 Sarah Ballard,15
+Natalie M. Batalha,16 David Berardo,1 Ashley Chontos,17, ¶ Jason A. Dittmann,1, ∗∗ Gilbert A. Esquerdo,7
+Thomas Mikal-Evans,1 Rahul Jayaraman,1 Akshata Krishnamurthy,3 Dana R. Louie,18 Nicholas Mehrle,1
+Prajwal Niraula,2 Benjamin V. Rackham,2, 1, ∗∗ Joseph E. Rodriguez,7 Stephen J. L. Rowden,19
+Clara Sousa-Silva,2, 1, ∗∗ David Watanabe,20 Ian Wong,2, 1, ∗∗ Zhuchang Zhan,2 Goran Zivanovic,21
+Jessie L. Christiansen,22 David R. Ciardi,22 Melanie A. Swain,22 Michael B. Lund,22 Susan E. Mullally,23
+Scott W. Fleming,23 David R. Rodriguez,23 Patricia T. Boyd,24 Elisa V. Quintana,24 Thomas Barclay,24, 25
+Knicole D. Colón,24 S. A. Rinehart,24 Joshua E. Schlieder,24 Mark Clampin,24 Jon M. Jenkins,26
+Joseph D. Twicken,27, 26 Douglas A. Caldwell,27, 26 Jeffrey L. Coughlin,27, 26 Chris Henze,26 Jack J. Lissauer,26
+Robert L. Morris,27, 26 Mark E. Rose,26 Jeffrey C. Smith,27, 26 Peter Tenenbaum,27, 26 Eric B. Ting,26
+Bill Wohler,27, 26 G. Á. Bakos,28 Jacob L. Bean,29 Zachory K. Berta-Thompson,30 Allyson Bieryla,7
+Luke G. Bouma,31 Lars A. Buchhave,32 Nathaniel Butler,33 David Charbonneau,7 John P. Doty,34 Jian Ge,15
+Matthew J. Holman,7 Andrew W. Howard,35 Lisa Kaltenegger,36 Stephen R. Kane,37 Hans Kjeldsen,38
+Laura Kreidberg,39 Douglas N.C. Lin,40 Charlotte Minsky,2 Norio Narita,41, 42, 43, 44 Martin Paegert,7
+András Pál,45, 46, 47, 1 Enric Palle,44 Dimitar D. Sasselov,7 Alton Spencer,48 Alessandro Sozzetti,49
+Keivan G. Stassun,50, 51 Guillermo Torres,7 Stephane Udry,52 and Joshua N. Winn31
+1 Department of Physics and Kavli Institute for Astrophysics and Space Research, Massachusetts Institute of Technology, Cambridge, MA
+
+02139, USA
+2 Department of Earth, Atmospheric, and Planetary Sciences, Massachusetts Institute of Technology, 77 Massachusetts Avenue,
+
+Cambridge, MA 02139, USA
+3 Department of Aeronautics and Astronautics, MIT, 77 Massachusetts Avenue, Cambridge, MA 02139, USA
+4 Department of Astronomy, The University of Wisconsin-Madison, Madison, WI 53706, USA
+5 Department of Astronomy, The University of Texas at Austin, Austin, TX 78712, USA
+6 Department of Physics and Astronomy, Dartmouth College Hanover, NH 03755
+7 Center for Astrophysics | Harvard & Smithsonian, 60 Garden Street, Cambridge, MA 02138, USA
+8 Jet Propulsion Laboratory, California Institute of Technology, 4800 Oak Grove Drive, Pasadena, CA 91109, USA
+9 Department of Physics and Astronomy, University of New Mexico, 1919 Lomas Blvd NE, Albuquerque, NM 87131, USA
+10 Department of Physics & Astronomy, 1082 Malott,1251 Wescoe Hall Dr., Lawrence, KS 66045
+11 NCCR/PlanetS, Centre for Space & Habitability, University of Bern, Bern, Switzerland
+12 Department of Physics, Lehigh University, 16 Memorial Drive East, Bethlehem, PA 18015, USA
+13 School of Physical Sciences, The Open University, Milton Keynes MK7 6AA, UK
+14 Department of Astronomy, Columbia University, 550 W 120th St., New York NY 10027, USA
+15 Bryant Space Science Center, Department of Astronomy, University of Florida, Gainesville, FL 32611, USA
+16 Department of Astronomy and Astrophysics, University of California, Santa Cruz, CA 95060, USA
+17 Institute for Astronomy, University of Hawai‘i, 2680 Woodlawn Drive, Honolulu, HI 96822, USA
+18 Department of Astronomy, University of Maryland, College Park, MD 20742, USA
+19 Department of Biochemistry, Hopkins Building, Downing Site, Tennis Court Road, University of Cambridge, Cambridge, CB2 1QW,
+
+UK
+20 Planetary Discoveries, Fredericksburg, VA 22405, USA
+21 Department of Electrical Engineering and Computer Science, Massachusetts Institute of Technology, Cambridge, MA 02139, USA
+22 Caltech/IPAC, 1200 E. California Blvd. Pasadena, CA 91125
+23 Space Telescope Science Institute, 3700 San Martin Drive, Baltimore, MD 21218, USA
+24 NASA’s Goddard Space Flight Center, Greenbelt, MD 20771, USA
+25 University of Maryland, Baltimore County, 1000 Hilltop Cir, Baltimore, MD 21250, USA
+
+Corresponding author: Natalia Guerrero
+nmg@mit.edu
+
+2
+
+Guerrero et al.
+26 NASA Ames Research Center, Moffett Field, CA 94035, USA
+27 SETI Institute, Mountain View, CA 94043, USA
+28 Department of Astrophysical Sciences, Princeton University, NJ 08544, USA
+29 Department of Astronomy & Astrophysics, University of Chicago, 5640 S. Ellis Avenue, Chicago, IL 60637, USA
+30 Department of Astrophysical and Planetary Sciences, University of Colorado, Boulder, CO 80309, USA
+31 Department of Astrophysical Sciences, Princeton University, 4 Ivy Lane, Princeton, NJ 08544, USA
+32 DTU Space, National Space Institute, Technical University of Denmark, Elektrovej 328, DK-2800 Kgs. Lyngby, Denmark
+33 School of Earth and Space Exploration, Arizona State University, Tempe, AZ 85287, USA
+34 Noqsi Aerospace Ltd, 15 Blanchard Avenue, Billerica MA, 01821
+35 California Institute of Technology, Pasadena, CA 91125, USA
+36 Carl Sagan Institute, Cornell University, 302 Space Science Building, Ithaca, NY 14850, USA
+37 Department of Earth and Planetary Sciences, University of California, Riverside, CA 92521, USA
+
+38 Stellar Astrophysics Centre, Department of Physics and Astronomy, Aarhus University, Ny Munkegade 120, 8000 Aarhus C, Denmark
+39 Max Planck Institute for Astronomy, Königstuhl 17, 69117 Heidelberg, Germany
+40 Department of Astronomy & Astrophysics, University of California Santa Cruz, 1156 High Street, Santa Cruz, CA 95064, USA
+41 Astrobiology Center, 2-21-1 Osawa, Mitaka, Tokyo 181-8588, Japan
+42 JST, PRESTO, 2-21-1 Osawa, Mitaka, Tokyo 181-8588, Japan
+43 National Astronomical Observatory of Japan, 2-21-1 Osawa, Mitaka, Tokyo 181-8588, Japan
+44 Instituto de Astrofı́sica de Canarias (IAC), 38205 La Laguna, Tenerife, Spain
+45 Konkoly Observatory, Research Centre for Astronomy and Earth Sciences, Konkoly-Thege Miklós út 15-17, 1121 Budapest, Hungary
+46 Eötvös Loránd University, Department of Astronomy, Pázmány Péter sétány 1/A, 1117 Budapest, Hungary
+47 ELTE Eötvös Loránd University, Institute of Physics, Pázmány Péter sétány 1/A, 1117 Budapest, Hungary
+48 Western Connecticut State University, Danbury, CT, 06811
+49 INAF - Osservatorio Astrofisico di Torino, Via Osservatorio 20, 10025 Pino Torinese, Italy
+50 Department of Physics and Astronomy, Vanderbilt University, Nashville, TN 37235, USA
+51 Department of Physics, Fisk University, Nashville, TN 37208, USA
+52 Geneva Observatory, University of Geneva, 51 ch des Maillettes, 1290 Vwesoix, Switzerland
+
+(Accepted Feb. 17, 2021)
+
+Submitted to ApJS
+ABSTRACT
+We present 2241 exoplanet candidates identified with data from the Transiting Exoplanet Survey
+Satellite (TESS) during its two-year prime mission. We list these candidates in the TESS Objects of
+Interest (TOI) Catalog, which includes both new planet candidates found by TESS and previouslyknown planets recovered by TESS observations. We describe the process used to identify TOIs and
+investigate the characteristics of the new planet candidates, and discuss some notable TESS planet
+discoveries. The TOI Catalog includes an unprecedented number of small planet candidates around
+nearby bright stars, which are well-suited for detailed follow-up observations. The TESS data products
+for the Prime Mission (Sectors 1–26), including the TOI Catalog, light curves, full-frame images, and
+target pixel files, are publicly available on the Mikulski Archive for Space Telescopes.
+
+Keywords: catalogs, exoplanets, transit method
+1. INTRODUCTION
+
+∗ Juan Carlos Torres Fellow
+† NASA Sagan Fellow
+‡ Kavli Fellow
+
+The Transiting Exoplanet Survey Satellite (TESS;
+Ricker et al. 2015) is an MIT-led NASA Astrophysics
+Explorer Mission designed to detect transiting exoplanets around the nearest, brightest stars. During its twoyear Prime Mission1 , TESS observed ∼ 70% of the ce-
+
+§ Pappalardo Fellow
+¶ NSF Graduate Research Fellow
+∗∗ 51 Pegasi b Fellow
+
+1 TESS launched on April 18, 2018 and the TESS Prime Mission
+
+ran from July 25, 2018 - July 4, 2020.
+
+TESS Prime Mission TOI Catalog
+lestial sphere in 26 observing “sectors,” resulting in observing times ranging from ∼1 month near the ecliptic
+to ∼1 year near the ecliptic poles.
+The primary goal of the TESS mission is to identify
+hundreds of small planets (Rp < 4R⊕ ) and determine
+the planetary mass for 50 of these small planets with
+follow-up spectroscopy. Simulations of the Prime Mission (Sullivan et al. 2015; Huang et al. 2018a; Barclay
+et al. 2018; Barclay 2020) predict how many planets
+TESS will detect for a range of periods up to 100 days.
+These simulations predict that TESS will find thousands
+of planets with periods less than 50 days.
+TESS builds on NASA’s Kepler (Borucki et al. 2010)
+and repurposed K2 missions (Howell et al. 2014). Kepler
+and K2 discovered nearly 3,000 confirmed exoplanets
+with thousands more awaiting confirmation or validation2 . While the original Kepler mission stared deeply
+into a single field of 116 square degrees to produce
+a statistical sample of exoplanets3 in the observation
+“cone,” TESS is conducting a survey of nearby, bright
+stars. These targets are the most accessible to both
+ground and space-based follow-up, necessary for measuring planet mass and density (i.e. Huang et al. 2018b;
+Dragomir et al. 2019), as well as characterizing atmospheres. Select TESS-discovered planets will likely be
+good targets for observing with the upcoming James
+Webb Space Telescope (JWST) for atmospheric characterization. Some TESS targets are already being characterized by the Hubble Space Telescope (HST), with 12
+HST programs awarded observing time for this purpose
+to date, e.g. TOI-1231 b (Kreidberg et al. 2020), AU
+Mic b (Newton et al. 2019a; Cauley et al. 2020), and
+many others.
+By reaching down to small planets transiting bright
+stars that are suitable for follow-up measurements,
+TESS is bridging one of the gaps in exoplanet science.
+The wide, red bandpass of the TESS cameras (600-1000
+nm) makes TESS capable of detecting Earth-sized and
+super-Earth-sized exoplanets (. 1.75R⊕ ) transiting Mdwarf stars, which are significantly smaller and cooler
+than our Sun. M-dwarfs make up the majority (around
+75%) of stars in our solar neighborhood4 (Henry et al.
+2018; Dole 1964). For FGK stars, TESS can find planets down to about Rp = 0.8R⊕ , depending on the planet
+period and star brightness.
+During the Prime Mission, two basic types of data
+were collected: 1) small summed image subarrays
+2 NASA Exoplanet Archive, accessed 14 August 2020
+3 Kepler targets were typically 700-1100 pc distant (Berger et al.
+
+2018)
+4 http://www.recons.org/census.posted.htm
+
+3
+
+(“postage stamps”) centered on 20,000 pre-selected targets every two minutes and 2) summed full-frame images (FFIs), measuring 24◦ × 24◦ , collected from each of
+the four TESS cameras every thirty minutes. During a
+typical observing sector, which lasts ∼26 days, ∼19,000
+sets of postage stamps and ∼ 1,200 sets of four FFIs
+are collected. These data are processed into calibrated
+light curves by two data processing pipelines described
+in Section 4: the Science Processing Operations Center
+(SPOC) pipeline for the postage stamps, and the Quick
+Look Pipeline (QLP) for the FFIs. These pipelines identify potential transiting planets by searching for periodic flux decreases, known as Threshold Crossing Events
+(TCEs), in both the short (two-minute) and long (30minute) cadence data.
+The TESS Science Office (TSO) examines TCEs using
+the TESS light curve and other information to identify
+planet candidates which would benefit from follow-up
+observation. The light curves are first run through software that eliminates obvious non-planetary signals; the
+remaining light curves are manually vetted to identify
+a set of TESS Objects of Interest, or TOIs. Thresholdcrossing events (TCEs) which fall under other categories
+(such as stellar eclipsing binaries, variable stars, instrument systematics, and non-planet transients) are not included in the TOI Catalog, but are included in the comprehensive TCE Catalog, to be archived at the Mikulski
+Archive for Space Telescopes (MAST). Follow-up observations, both imaging and radial-velocity, are then used
+to confirm the planet identification and measure planetary parameters.
+Over the course of the Prime Mission, the SPOC
+pipeline has produced flux time series (i.e. light curves)
+for > 200, 000 stellar objects at a two-minute cadence.
+The QLP has produced light curves for ∼16 million stars
+brighter than TESS-band magnitude, Tmag =13.5, observed in the Full-Frame Images (FFIs) at 30-minute
+cadence. Additionally, the community produces millions of time series (Bouma et al. 2019; Caldwell et al.
+2020; Feinstein et al. 2019; Lund et al. 2015, 2017; Montalto et al. 2020; Nardiello et al. 2019; Oelkers & Stassun 2019) from the FFIs which are not evaluated in this
+work.
+In the Prime Mission, the TSO examined 55, 281
+TCEs from 27, 822 two-minute targets, resulting in
+17, 296 candidates for manual vetting. The TSO examined ∼ 105, 400 TCEs from 82, 490 unique FFI targets,
+resulting in 14, 629 candidates for manual vetting. Taking into account the overlap in the data sets, the total
+number of TCEs subject to manual vetting was 32,814
+TCEs on 16,489 unique targets. In total, data collected
+during the Prime Mission yielded 2241 TOIs; of the 1676
+
+4
+
+Guerrero et al.
+
+TOIs not later ruled out as False Positives, 1575 TOIs
+had periods less than 50 days, and 654 TOIs had radii
+Rp < 4R⊕ .
+In this work, we first give an overview of TESS’s observing strategy (Section 2). Then, we discuss TESS’s
+data collection and processing (Section 3). Additional
+details about the TESS instrument, observing strategy,
+and data processing are described in greater detail in the
+TESS Instrument Handbook (Vanderspek et al. 2018),
+data release notes5 , and associated references. We also
+provide a brief description of light curve generation (Section 4) and the TCE search process (Section 5). The
+initial stages of the TOI triage and vetting process are
+discussed in Section 6 and Section 7. The process by
+which TOIs are delivered to the community is described
+in Section 8. The TOI Catalog is described in Section 9.
+Lastly, we turn to a discussion of the TESS mission
+planet candidates found to date, highlighting systems
+of particular scientific interest (Section 10).
+2. OBSERVING STRATEGY
+
+TESS is equipped with four wide-field cameras, each
+with a field-of-view (FOV) of 24◦ × 24◦ and a pixel angular size of 2100 square. The four FOVs are arranged to
+cover a 24◦ ×96◦ region of the sky, the long axis of which
+is oriented parallel to a line of ecliptic longitude. TESS
+observes each 24◦ ×96◦ field over the course of two orbits
+(about 27.4 days). Each ∼ 27-day observation period is
+called a sector.
+The instrument FOV is generally centered on an ecliptic latitude of −54◦ (Year 1) or +54◦ (Year 2), with six
+sectors in Year 2 centered at +85◦ (see Figure 1). The
+ecliptic longitude of the FOV is adjusted by ∼ 27◦ from
+one sector to the next, which results ∼ 27 days of observation over a large range of ecliptic longitude and an
+overlap region within 12◦ of the ecliptic poles that is
+observed for an entire year.
+Figure 1 shows the two-year sky coverage map for
+TESS. TESS’s Prime Mission covered 13 sectors in the
+Southern Ecliptic Hemisphere during the first year and
+13 sectors in the Northern Ecliptic Hemisphere during
+the second year. The observing period is longest for targets near the ecliptic poles, which were each observed for
+all 13 sectors.
+TESS collects an FFI from each camera every 30 minutes over the course of each observation sector. In addition, a set of stars is observed every two minutes in
+smaller “postage stamps”. A postage stamp typically
+measures 11 × 11 pixels, but is expanded for brighter
+5 https://archive.stsci.edu/tess/tess drn.html
+
+stars. These two-minute cadence “target stars” are chosen from the TESS Input Catalog (TIC, Stassun et al.
+2018, 2019) based on the Candidate Target Lists (CTLs)
+contributed by mission stakeholders (Vanderspek et al.
+2018). In order of priority, the categories are 1,920 engineering stars (Photometer Performance Assessment,
+PPA); all bright (I < 6) stars; additional potential exoplanet host stars; asteroseismic targets; Guest Investigator targets; and Director’s Discretionary Targets6 .
+In total, up to 20,000 stars from these categories are
+observed at two-minute cadence in each sector.7
+3. DATA COLLECTION AND PROCESSING
+
+TESS is in a unique 13.7-day, highly-inclined, highlyelliptical orbit in resonance with the Moon: an observation sector consist of two TESS orbits around the Earth.
+Science data, in the form of 30-minute FFIs and twominute postage stamps, are collected continuously during each orbit. At orbit perigee, the data are downlinked
+from the spacecraft to the Deep Space Network (DSN)
+and forwarded to the Payload Operations Center (POC)
+at MIT for decompression and reformatting.
+POC processing reformats the uncompressed data for
+use by two independent data processing pipelines: the
+Science Processing Operations Center (SPOC) pipeline
+and the Quick Look Pipeline (QLP). These pipelines
+each calibrate the pixel data and use them to produce
+light curves. In Section 4, we provide a brief overview
+of the pipelines.
+In a typical sector, TESS downlinks roughly 40 GB of
+compressed target data and 54 GB of compressed FFI
+data through the DSN. The postage stamp data products per sector typically expand to 380 GB of target
+pixel files, 290 GB of collateral pixels (used for calibration), and 18 GB of light curve files and various other
+data products. The FFI data per sector typically expand
+to 370 GB of raw FFIs and 710 GB of SPOC-calibrated
+data. MAST archives the FFI data and target pixel data
+as well as the ancillary data products SPOC creates.
+The full collection of full frame images used to search for
+TOIs from the Prime Mission are available at MAST via
+10.17909/t9-17nt-6c71 for Sectors 1-13 and 10.17909/t9t6cs-8p81 for Sectors 14-26. The full collection of twominute cadence data used to search for TOIs from the
+6 Full details of how the targets are selected can be found in the
+
+instrument handbook (§9.4, Vanderspek et al. 2018)
+7 Initially, the target list for two-minute cadence data was limited
+
+to the requirement-specified 16,000 target stars. However, after
+the first three sectors, the Science Operations Center (SOC) team
+expanded the target list to 20,000 targets beginning with Sector 4, based on tests of the spacecraft compression and pipeline
+throughput.
+
+5
+
+TESS Prime Mission TOI Catalog
+
+Figure 1. The TESS two-year target observation map. Each point in this map represents a target observed at two-minute
+cadence. The color of the dot represents the number of times it was observed. The U-shaped red curve shows the galactic
+plane, with the position of the galactic center shown by the red star. Over the course of its two-year primary mission, TESS
+observed 26 sectors for approximately 27 days each, covering ∼ 70% of the sky. Each sector is a 24◦ × 96◦ field of view. The
+TESS “continuous viewing zones” (∼ 351 days of observation) at each ecliptic pole are clearly visible, as are the regions of the
+sky observed during more than one sector. In Year 2, during Sectors 14-16 and 24-26, the camera boresight was shifted from
+the nominal +54◦ orientation northward to an +85◦ ecliptic latitude, due to excessive contamination by stray Earth-light and
+moonlight in cameras 1 and 2 in those sectors. These gaps will be filled in part during the first Extended Mission.
+
+Prime Mission are available at MAST via 10.17909/t9rm11-zz03 for Sectors 1-13 and 10.17909/t9-p87b-kk02
+for Sectors 14-26.
+4. LIGHT CURVE GENERATION
+
+The SPOC pipeline converts the postage stamp data
+into two-minute cadence light curves, while the QLP
+produces light curves at 30-minute cadence from the
+FFIs. Both pipelines are described in the following sections. Additional details can be found in Jenkins et al.
+(2020); Twicken et al. (2016), and Jenkins et al. (in
+prep.) for the SPOC pipeline, Huang et al. (2020a,b)
+for the QLP.
+4.1. SPOC Light Curve Generation
+The SPOC pipeline (Jenkins et al. (2020); Twicken
+et al. (2016) and Jenkins et al. (in prep.)) processes the
+two-minute postage stamp data on a per-sector basis.
+The pipeline calibrates the pixel data; extracts photometry and centroids for each target star; and identifies and
+removes instrumental signatures. The SPOC pipeline
+
+then searches each light curve for TCEs, fits each TCE
+with a limb-darkened transit light curve model, and performs diagnostic tests to assess the planetary nature of
+each TCE (Jenkins et al. 2016). The SPOC pipeline also
+calibrates the FFIs at the pixel level.
+4.1.1. Calibration
+The SPOC pipeline calibration module (CAL) operates first on both the postage stamp and FFI data to
+transform the digital counts from the CCDs into flux
+units (e− s−1 , Clarke et al. 2020).
+The sequence of operations is as follows: 1) the module subtracts 2-D fixed pattern noise (2-D black model);
+2) estimates and removes the CCD bias voltage (or black
+level) in each readout row; 3) corrects for non-linearity
+and gain; 4) measures and removes vertical smear flux
+due to the shutterless operation of the CCDs, along
+with the dark current from each column; and finally,
+5) corrects for the flat field. Note that the non-linearity,
+gain, and flat field are pre-flight, on-the-ground measurements. Uncertainties are propagated through each
+
+6
+
+Guerrero et al.
+
+numerical operation and provided with the calibrated
+pixel values.
+4.1.2. Photometry
+The pipeline module, Compute Optimal Apertures
+(COA), identifies the optimal aperture for each twominute target (Bryson 2008; Bryson et al. 2010, 2020).
+The module uses the TIC, models for the instrument,
+such as the Pixel Response Function (PRF), and observations to generate synthetic star scenes for each sector.
+The star scenes predict the average flux from each star
+in each pixel of the target star’s postage stamp. For
+sectors 1-13, the pipeline used stellar parameters from
+TICv7 (Stassun et al. 2018). For sectors 14 onward,
+the pipeline used parameters from TICv8 (Stassun et al.
+2019). The module analyzes the stellar scene to identify the aperture that maximizes the SNR of the flux
+measurement. Additionally, the module estimates the
+contamination due to nearby stars in the apertures, and
+the fraction of the flux from the target star contained in
+the optimal aperture.
+The aperture size is magnitude-dependent. For bright,
+saturated targets the photometric apertures can be quite
+large (2500 pixels). For stars that are not saturated, typical numbers of optimal aperture pixels in Year 1 range
+from 20 pixels at Tmag ≈ 7, to 11 pixels at Tmag ≈ 10,
+to 6 pixels at Tmag ≈ 13. The photometric apertures for
+target stars with Tmag < 11 were somewhat larger in
+Year 2 to reduce light curve variations due to pointing
+jitter. The crowding in each photometric aperture is estimated from the TIC magnitudes and (proper-motioncorrected) coordinates of nearby stars and a Pixel Response Function that is interpolated at the location of
+the given target. Flux levels are adjusted for crowding
+in the pre-search data conditioning (PDC) light curves.
+The CROWDSAP keyword in the FITS files reports the
+average fraction of the flux in the photometric aperture
+that is from the target star. As CROWDSAP decreases,
+the photometry becomes less reliable, especially for values . 0.8. The FLFRCSAP keyword reports the average fraction of the flux of the target star captured in the
+photometric aperture.
+The photometric analysis module (PA) identifies background pixels, then estimates and subtracts a local background from each target star postage stamp.8 The module then sums the pixels in the optimal aperture to estimate the brightness of each target star in each frame
+8 This is a new feature of the module for TESS as the postage
+
+stamps are typically 121 or more pixels (11 by 11), compared to
+Kepler’s nominal 32 pixels per postage stamp, which were too
+small to allow for local background estimation.
+
+(Twicken et al. 2010; Morris et al. 2020). The module also extracts brightness-weighted centroids for each
+target star in each frame. A subset of 120 bright, unsaturated stars are fitted to the local PRF to extract
+high-precision centroids that are used to calculate the
+World Coordinate System (WCS) coefficients for all targets and for the FFIs. Uncertainties are propagated
+through the numerical operations and reported with the
+flux and centroid measurements.
+The presearch data conditioning module (PDC)
+(Stumpe et al. 2012; Smith et al. 2012; Stumpe et al.
+2014) identifies and corrects for instrumental effects that
+are highly correlated across the star fields on each CCD.
+The module first conducts a singular value decomposition (SVD) analysis of the quietest half of the target
+stars on each CCD to identify the correlated instrumental signatures. The module then fits the most significant eigenvectors to the quiet stars’ light curves and
+formulates empirical prior probability density distributions for the fit coefficients. These distributions provide
+constraints in a Maximum A Posteriori (MAP) fit for
+the flux time series for each target star. The module
+also identifies and records outliers, corrects for the finite flux fraction of the target star’s PRF, and corrects
+for the crowding contamination from nearby stars. The
+SPOC pipeline propagates uncertainties for the photometry and centroids. The uncertainties for the flux time
+series are dominated by shot noise from the brightest
+targets at Tmag ≈ 2, where the ratio of the flux uncertainty to the star’s shot noise is ∼1.05, out to approximately Tmag = 9, where the flux uncertainty is 25%
+above that expected for shot noise from the star. The
+ratio of the uncertainties to the shot noise rises to 1.78
+at Tmag = 12, and attains a value of ∼4 at Tmag = 15.
+The uncertainties do not account for image motion on
+timescales less than 2 minutes, or for stellar variability.
+The uncertainties in the flux-weighted centroids
+(which are calculated for all stars) vary as a function of
+magnitude, with typical values of 1×10−4 pixels at Tmag
+= 6, 5 × 10−4 pixels at Tmag = 9, and 2.7 × 10−3 pixels
+at Tmag = 12. The uncertainties for the row centroids of
+stars brighter than Tmag = 6 grow with brightness due
+to saturation and bleed. The uncertainties do not account for short timescale pointing errors, however, and
+the typical short timescale scatter at the 2-min level is
+∼ 5×10−3 pixels after modeling out the pointing history.
+The SPOC pipeline has evolved over the course of
+Year 1 to adapt to changes in the instrument and target
+list. In Sectors 1-3, the spacecraft jitter impacted aperture photometry, but could be largely corrected using
+
+TESS Prime Mission TOI Catalog
+cotrending9 . An on-flight software patch reduced the
+spacecraft jitter for Sector 4 onward (Vanderspek et al.
+2018). However, systematic noise from spacecraft jitter
+continues to be a source of systematic error removed by
+PDC, along with rapidly varying scattered light features
+that occur when the Earth or Moon are within 25◦ of the
+boresight of any camera. The updated SPOC codebase,
+R4.0, processed Year 2 Sectors 20-26 and reprocessed
+the Year 1 data and Year 2 Sectors 14-19. The update
+automatically flags scattered light features at the target
+star/cadence level, which improves the specificity of the
+data gapping and preserves more data.
+4.2. QLP Light Curve Generation
+The Quick Look Pipeline (QLP; Huang et al.
+(2020a,b)) generates light curves from the FFIs, complementary to the SPOC pipeline which produces light
+curves from the postage stamp data. The QLP separately performs its own calibration of the raw FFIs. For
+each sector, the QLP produces about half a million light
+curves. In addition, the QLP always uses all sectors of
+available data to create light curves (i.e. the QLP runs
+over multiple sectors of data together).
+4.2.1. Calibration
+The QLP corrects the raw FFIs for amplifier bias,
+smear caused by shutter-less frame-transfer exposure,
+flat-fields, fixed-pattern noise, and non-linear response.
+Amplifier bias and smear corrections are calculated from
+overscan columns and virtual rows associated with individual FFIs. Flat-fields, fixed-pattern noise, and nonlinearity are corrected using models constructed from
+pre-launch measurements and on-orbit commissioning
+data. Vanderspek et al. (2019) describe these various
+instrumental effects. The associated calibration procedures and code are included in the tica package and are
+described more fully in (Fausnaugh et al. 2020). The
+calibrated images are in units of number of electrons.
+4.2.2. Photometry
+The QLP uses a circular aperture photometry method
+to extract light curves for all stars in the TIC with
+TESS-band magnitudes brighter than 13.5. The apertures centers are based on a predetermined astrometric
+solution derived for each observed frame using stars with
+TESS magnitudes between 8-10. The light curves are extracted using five circular apertures with radii of 1.75,
+9 The pointing errors for TESS are not stationary and exhibit spo-
+
+radic excursions on timescales 2 min that change the effective
+point spread function in each two-minute interval, making it difficult to fully correct such behavior on two-minute integrations.
+
+7
+
+2.5, 3.0, 3.5, 8.0 pixels. The aforementioned process as
+well as some of the further steps (see below) are implemented using the various tasks of the FITSH package
+(Pál 2012).
+The procedure to produce the target flux time series
+and background time series are as follows. The photometric reference frame is computed using the median of
+40 frames with minimal scattered light. The reference
+frame provides a high signal-to-noise image to compute
+the difference images, using a direct subtraction of the
+photometric reference frame from the observed frames.
+The final flux time series of the star is calculated as the
+sum of the constant flux of the star and the variability
+of the star over time. The constant flux is taken from
+the theoretical calculation in the TIC and the zero-point
+magnitude measured for TESS. This method effectively
+de-blends the light curve from contamination by an additional star inside the aperture. We measure the variability over time in the difference images. The flux measured in the aperture in the difference images is a sum of
+the stellar variability and the background variability. To
+calculate the background variability (from uniform faint
+background sources), we draw annuli around the target
+star in the difference images. The annuli are drawn to
+have approximately the same area as the aperture. The
+background variability at a given time point is calculated
+as the median of the background pixels in the annulus in
+the difference image after iterative outlier rejection. We
+estimate the background time series independently as a
+sum of some constant background flux and background
+variability over time. The constant term is calculated by
+subtracting the star flux (from the TIC catalog) from the
+total flux in the aperture. We assume the background
+per pixel is locally uniform in the vicinity of the target
+star, its aperture, and background annuli; therefore, the
+constant background per pixel in the aperture should be
+the same as in the annulus. The background variability
+is calculated as the difference between the background in
+the reference image annulus and in the difference image
+annulus.
+The QLP then selects one of the five light curves
+extracted from the five different apertures. Because
+the QLP’s primary goal is to detect transiting planets
+(as opposed to preserving stellar variability), the QLP
+selects the optimal aperture by minimizing photometric scatter in high-pass-filtered light curves. An optimal aperture for stars in each magnitude range (13 linear bins between TESS magnitudes of 6-13.5) is then
+selected by determining which aperture size produces
+the smallest photometric scatter in the magnitude bins.
+The photometric precision roughly follows the prediction from the Sullivan et al. (2015) estimation for the
+
+8
+
+Guerrero et al.
+
+majority of the stars and has a lower noise floor10 (approximately 20 ppm) for the brightest stars when the
+spacecraft operates nominally. TESS light curves usually contain low-frequency variability from stellar activity or instrumental noise, which must be filtered before
+the small, short-duration signals caused by transiting
+planets can be readily detected. Following Vanderburg
+& Johnson (2014) and Shallue & Vanderburg (2018), the
+QLP removes this variability by fitting a B-spline to the
+light curve and dividing the light curve by the best-fit
+spline. Outlier points caused by spacecraft momentum
+dumps or other instrumental anomalies are masked out
+prior to detrending. To avoid distorting any transits
+present, the spline is iteratively fit, 3σ outliers are removed, and the spline is refit while interpolating over
+these outliers (see Fig. 3 in Vanderburg & Johnson
+2014).
+5. TRANSIT SEARCH
+
+To search for transits, both the SPOC and QLP
+pipelines phase-fold processed light curves with a large
+number of trial periods to search for repeating transitlike drops in brightness. Any drop in brightness that
+passes a specified threshold requirement is called a
+threshold-crossing event or TCE. Each TCE has an associated Data Validation (DV) Report that provides a
+detrended and phase-folded light curve in addition to
+auxiliary data products.
+5.1. SPOC Transit Search
+For each sector, the SPOC pipeline conducts a search
+for transiting planet signatures in the systematic errorcorrected light curves from PDC11 using a module called
+Transiting Planet Search (TPS). Targets with transitlike features that exceed the threshold for statistical significance of 7.1 σ, have two or more transit signals, and
+that pass a number of other statistical vetoes (Seader
+et al. 2013, 2015; Twicken et al. 2016) are then processed
+by the Data Validation module (DV). The module runs
+a suite of tests on each transit signature to help inform
+the classification of the events. The SPOC pipeline also
+conducts periodic multi-sector searches, allowing for the
+detection of much-longer-period transiting planet signatures as described in Section 5.1.2.
+5.1.1. Transiting Planet Search Algorithm
+
+The Transiting Planet Search algorithm (TPS)
+searches for signatures of transiting planets by adaptively characterizing the power spectral density of the
+observation noise, then estimating the likelihood of a
+transit over a range of trial transit durations and orbital periods as a function of time over the observations,
+quantified as the Single Event Statistic (SES; Jenkins
+2002; Jenkins et al. 2010, 2020).
+TPS folds the SES time series over a range of trial
+orbital periods to identify the strongest peak in the
+folded SES time series and designates TCEs in the light
+curves with three requirements: a Multiple Event Statistic (MES) in excess of 7.1, a passing grade on a series
+of transit consistency tests, and at least two transits12 .
+The MES represents the transit SNR multiplied by the
+correlation coefficient between the true signal waveform
+and the trial waveform best matched over the grid-search
+parameter space (duration, period, epoch).
+TPS also provides an estimate of the effective noise
+“seen” by a transit of a given duration, called the combined differential photometric precision (CDPP – Christiansen et al. 2012; Jenkins et al. 2020). The CDPP can
+be used to infer a lower limit for transit depth detectable
+at a given duration and number of transits.
+5.1.2. Data Validation
+The Data Validation (DV) module fits a limbdarkened transit model to the light curve for each target
+with a TCE and employs the same whitening filter as is
+used by TPS to account for non-stationary correlation
+structure in the observation noise (Li et al. 2019). A
+number of diagnostic tests are conducted to inform the
+vetting process (Twicken et al. 2018).
+The DV module produces a one-page PDF summary
+report for each TCE, a PDF full report, and a PDF mini
+report for each target. The full report for each target
+with TCEs includes the results of all the tests along with
+diagnostic figures and run time warnings and errors.
+The mini-report for each target with TCEs combines
+the one-page summary along with the most informative
+diagnostic tests and graphics from the full report. An
+example one-page summary is shown in Figure 2. The
+DV module also produces a FITS file of the time series
+it analyzes as well as those presented in the diagnostic
+plots, and an XML file with numerical model fit and
+diagnostic test results (Tenenbaum & Jenkins 2018).
+The DV module generates several metrics used in the
+assessment of the TCEs to help eliminate background
+
+10 The on-orbit performance of the TESS photometers is better than
+
+pre-flight calculations from Sullivan et al. (2015), which has been
+traced to an underestimate in their assumed telescope aperture
+11 PDCSAP FLUX column in the light curve file
+
+12 The Kepler Science Pipeline transit search required a minimum
+
+of three transits to declare a TCE (Jenkins et al. 2020)
+
+9
+
+TESS Prime Mission TOI Catalog
+TIC: 259377017 Candidate: 1 of 3 Period: 5.660 d
+TOI: 00270 Corr: No Ephemeris Match
+10-3
+
+Tmag: 10.42
+
+Relative Flux
+
+R*: 0.41 Rs
+
+S3 [3.4]
+
+4
+
+Teff: 3551.0 K
+
+Logg: 4.84
+
+M/H: 0.000
+
+S4 [3.4]
+
+Rho: 6.078
+S5 [3.3]
+
+2
+0
+-2
+-4
+-6
+-8
+1380
+
+1390
+
+1400
+
+1410
+
+1420
+
+-0.125
+
+0
+
+0.125
+
+1430
+
+1440
+
+1450
+
+0.25
+
+0.375
+
+0.5
+
+0.625
+
+0.75
+10-3
+
+4
+
+1470
+
+Sec Depth: 421.7 [89.9] ppm
+Sec Phase: 0.226 Days Sec MES: 4.1
+
+5
+
+2
+
+Relative Flux
+
+Relative Flux
+
+1460
+
+Time [BJD - 2457000]
+
+Phase
+-0.2510-3
+
+0
+-2
+-4
+
+0
+
+-6
+-8
+
+-5
+-1
+
+-0.5
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+2.5
+
+3
+
+3.5
+
+4
+
+-0.02
+
+0
+
+0.02
+
+Phase [Days]
+6
+
+10
+
+Whitened Flux Value
+] [
+
+Relative Flux
+
+4
+2
+0
+-2
+-4
+-6
+-8
+
+0.06
+
+0.08
+
+0.1
+
+4
+2
+0
+-2
+-4
+
+-4
+
+-3
+
+-2
+
+-1
+
+0
+
+1
+
+2
+
+3
+
+4
+
+-4
+
+-3
+
+-2
+
+Phase [Hours]
+Difference Image
+Out of Transit Centroid Offsets
+
+Depth-sig: 14.2% [1.47 sigma]
+Odd
+
+Dec Offset (arcsec)
+
+10-3
+5
+
+Relative Flux
+
+0.04
+Phase
+
+MES: 41.6 Transits: 12
+SNR: 50.2 Depth: 3927.1 [83.7] ppm
+
+-3
+
+Even
+
+0
+
+-5
+
+-8
+
+-6
+
+-4
+
+-2
+
+0
+
+2
+
+4
+
+6
+
+8
+
+5
+S3
+(1) 259377017, 10.416
+S4
+S5
+
+0
+
+15
+
+10
+
+5
+
+0
+
+-5
+
+RA Offset (arcsec)
+
+-10
+
+-15
+
+2
+
+3
+
+4
+
+DV Fit Results:
+
+DV Diagnostic Results:
+
+Period = 5.66018 [0.00007] d
+Epoch = 1383.8424 [0.0006] BTJD
+Rp/R* = 0.0577 [0.0050]
+a/R* = 27.87 [12.80]
+b = 0.03 [14.34]
+
+ShortPeriod-sig: 100.0% [25.65 sigma]
+LongPeriod-sig: 100.0% [51.09 sigma]
+ModelChiSquare2-sig: 77.4%
+ModelChiSquareGof-sig: 100.0%
+Bootstrap-pfa: 0.00e+00
+GhostDiagnostic-chr: 8.423
+
+Seff = 11.06 [6.68]
+Teq = 465 [70] K
+Rp = 2.62 [0.48] Re
+a = 0.0471 [0.0148] AU
+Rho = 9.083 [12.513]
+
+-5
+
+Phase [Hours]
+
+-1
+0
+1
+Phase [Hours]
+
+Ag = 75.20 [49.48] [1.50 sigma]
+Tp = 2118 [152] K [9.87 sigma]
+
+OotOffset-rm: 0.232 arcsec [0.09 sigma]
+TicOffset-rm: 2.407 arcsec [0.80 sigma]
+OotOffset-tot: 3
+TicOffset-tot: 3
+DiffImageQuality-fgm: 1.00 [3/3]
+DiffImageOverlap-fno: 1.00 [3/3]
+
+Software Revision: spoc-3.3.63-20190411 -- Date Generated: 18-Apr-2019 12:07:51 Z
+This Data Validation Report Summary was produced in the TESS Science Processing Operations Center Pipeline at NASA Ames Research Center
+
+Figure 2. SPOC Data Validation (DV) summary report plots for TOI 270 b. Top row: The detrended TESS light curve with
+transits marked by blue triangles. Sector boundaries are marked with red vertical dashed lines. Momentum dumps (described in
+Section 7.3) are marked with green vertical dashed lines. Second row left: The TESS light curve folded on the planet candidate’s
+orbital period. The black points are all data points, cyan points show data binned at 1/5 the fitted transit duration, and the
+red line is a model fit to the transit. Second row right: The best candidate for a secondary transit found in the phase-folded
+light curve. Third row left: Zoom-in on the phase-folded light curve. Third row right: The whitened transit fit is indicated by
+the red line; the binned residuals from the fit are displayed in green, and the out-of-phase residuals from the fit are shown in
+magenta. Fourth row left: A comparison of the phase-folded odd transits with the phase-folded even transits. The red dashed
+lines indicate transit depths. The title line reports the significance of the difference between the odd and even transits. Fourth
+row center: The centroid offset plot showing the right ascension and declination offsets of a transit source with respect to the
+position of the target star (as determined by the out-of-transit image centroid). The centroid offsets for each sector are shown
+with green crosses; the mean centroid offset over all sectors is shown with a magenta cross. The location of the target star is
+marked by a red star. The 3σ radius of uncertainty for the transit source offset is shown by a blue circle. Fourth row right:
+Fitted planet parameters and data validation diagnostic test results. After its initial detection and vetting using these data
+products, a three-planet system around TOI 270 was eventually validated by Günther et al. (2019).
+
+eclipsing binaries and background scattered light features.
+Difference images for each sector that represent the
+difference between the out-of-transit fluxes adjacent to
+each putative transit and in-transit fluxes are used to
+obtain the difference image centroids to identify the location of the source of the transit-like features. These fit
+results are used to inform the difference image centroid
+offset statistics, which are averaged over multiple sectors
+where applicable and indicate whether the source of the
+
+transit-like feature is consistent with the location of the
+target star.
+The difference image centroid offsets are computed
+separately using two approaches for target reference location: (1) the mean-proper-motion-corrected catalog
+location of the target star during transit in the given
+sector, and (2) the PRF-based centroid of the mean outof-transit image in the given sector. The first method is
+robust against crowding (because the difference image
+features only the source of the transit signature), and
+
+10
+
+Guerrero et al.
+
+has been observed to be more reliable than the second
+for crowded TESS images. The second method is not
+robust against crowding, but is more accurate in uncrowded fields because the centroid bias common to the
+difference image and out-of-transit image is removed.
+Uncertainties in the centroid offsets are formally propagated from uncertainties in the calibrated pixels from
+which the centroid offsets are computed. In addition,
+an error term is added in quadrature to the propagated
+uncertainties in the centroid offsets to account for systematic effects in the centroid offsets. This was done
+in the Kepler Science Pipeline as well. For Kepler, the
+plate scale was smaller (4 arcsec/pixel) and most targets
+were observed in 17 quarters, permitting significant averaging of the quarterly centroid offsets; the quadrature
+error term was set so that the difference image centroid
+offsets were not significant at the 3-σ level if they were
+<0.2 arcsec. For TESS, the plate scale is larger (21 arcsec/pixel) and a majority of targets are only observed in
+a single sector; the quadrature error term is set so that
+the centroid offsets are not significant at the 3-σ level if
+they are < 7.5 arcsec.
+The ghost diagnostic is formulated as the ratio of the
+detection statistic of the flux time series obtained with
+the optimal photometric aperture to the detection statistic of the flux time series obtained from a halo about
+each target’s optimal aperture.
+After conducting the diagnostic tests (useful, e.g., for
+detecting contamination of the background by light scattered from nearby bright variable stars), the DV module
+masks out the transits of the current TCE 13 and calls
+TPS to search for additional TCEs in the light curve
+(up to a maximum of six TCEs per target star). DV
+also compares the orbital periods between TCEs associated with a given target star to flag cases where the
+periods are statistically identical; this can indicate that
+the TCEs are primary and secondary events in stellar
+eclipsing binaries rather than transiting planet signals.
+TPS and DV are also run on light curves for stars
+observed in multiple sectors, increasing sensitivity to
+longer-period and smaller planets. Multi-sector planet
+searches were run for Sectors 1-2, Sectors 1-3, Sectors
+1-6, Sectors 1-9, and for Sectors 1-13; in Year 2, for
+Sectors 14-16, 14-19, 14-23, and 14-26. In these multisector runs, TCEs could appear in each of the sectors
+searched for the multi-sector range, or in a subset. In
+SPOC/TPS, targets are processed in later multi-sector
+runs only if they were observed in sectors not included
+
+in a previous multi-sector run. For example, a target
+observed only in Sectors 1 and 2 would not have been
+included in the Sector 1-3 run.
+Following processing, the SPOC pipeline delivers the
+TCEs and data validation products to the POC. POC
+conducts a final review and quality assessment, then prepares the products for submission to MAST14 . MAST
+ingests these data, along with the FFIs, postage stamp
+data, light curves, and cotrending basis vectors (Tenenbaum & Jenkins 2018). The public data products are accompanied by POC-produced data release notes for each
+sector. For certain sectors before March 2019, MAST
+released the FFIs ahead of the TCEs and data validation products. This staggered release, which efficiently
+released early TESS data to the community, allowed observers to follow up target stars in the given sector while
+still visible for the given season.
+5.2. QLP Transit Search
+The QLP carries out a corresponding but independent analysis to the SPOC pipeline. Complementary
+to SPOC pipeline, the QLP also aims to identify TCEs
+along with diagnostic information.
+5.2.1. Box-Least Squares Transiting Planet Search
+The QLP begins by stitching light curves together
+from all available sectors for each target. The QLP then
+searches the light curves for periodic transits using the
+Box Least Squares algorithm (BLS; Kovács et al. 2002).
+The search is performed for periods ranging from 0.1
+days to half the length of the longest baseline expected
+for the given target star. The number and spacing of
+frequencies searched by BLS is adapted to the total
+baseline in the light curves, similar to Vanderburg et al.
+(2016a).
+Any signal with a signal-to-pink-noise ratio (SNR, as
+defined by Hartman & Bakos 2016) > 9 and BLS peak
+significance > 9 is designated as a TCE. The BLS peak
+significance is defined as the height of the BLS peak in
+the spectrum compared to the noise floor of the BLS
+spectrum.
+To search for additional transiting planets in a light
+curve with a detected signal, the QLP clips out transits
+with the period of the strongest BLS peak, masking one
+full transit duration prior to and following each transit
+along with the transit. QLP re-runs the search until no
+further significant peaks are found.
+5.2.2. QLP Data Validation
+
+13 One full transit duration prior to and following each transit are
+
+masked along with the transits in the search for additional TCEs
+in the SPOC pipeline.
+
+14 https://archive.stsci.edu/tess/bulk downloads.html
+
+TESS Prime Mission TOI Catalog
+The QLP data validation report provides diagnostic
+plots to aid in TCE classification. The first page, shown
+in Figure 3, is a summary page.
+Additional pages in the full QLP data validation
+report provide additional metrics for decision-making.
+These plots are useful for diagnosing whether the source
+of transit-like variability is on target or from a nearby
+blended source, which is particularly important for FFI
+targets. For example, the QLP compares the depth of
+the transit signal measured in multiple apertures of different size. If the depth of the transit increases with
+aperture size, that is usually a sign that the variation is
+from a nearby source and not from the target. The QLP
+also searches within 15500 of the target star for other
+light curves with transits which match in period and
+epoch. The QLP reports also check whether the epoch
+and period of the TCE matches with known planets or
+false positives (Coughlin et al. 2016; Triaud et al. 2017a;
+Collins et al. 2018a; Schanche et al. 2019).
+6. TCE TRIAGE
+
+Most of the signals detected by the SPOC/TPS and
+QLP pipelines are not due to transiting planets, but
+instead are caused by astrophysical phenomena such
+as stellar variability, eclipsing binary stars, or nonastronomical instrumental artifacts. We use a “triage”
+process to identify transit-like events in the TCEs produced by both the SPOC and QLP pipelines. The goal
+of triage is to separate out transit-like events from stellar
+variability and instrument noise.
+We identify the signals most likely to be planetary
+transits using a combination of automatic classification
+algorithms and visual inspection. We identify the best
+planet candidates in a two-step process: a partially automated triage in which the least-likely TCEs to be planet
+candidates are efficiently removed followed by a more
+labor-intensive team vetting process.
+6.1. Triage of SPOC TCEs
+TESS-ExoClass (TEC)15 provides an automated
+method for the vetting team at the TSO to identify potential planet candidates from the postage stamp TCEs
+generated by the SPOC pipeline. TEC borrows heavily
+from the successful automated planet candidate vetting
+tools from the Kepler Robovetter (Mullally et al. 2015;
+Coughlin et al. 2016; Thompson et al. 2018).
+Here we summarize the TEC process. We are actively
+improving TEC and describe here its latest form, which
+was largely stable in the latter half of the first year of
+TESS observations (Sectors 6-13), and had few changes
+15 https://github.com/christopherburke/TESS-ExoClass
+
+11
+
+in Year 2 of the Prime Mission. TEC changed rapidly
+during the first four TESS sectors as the tests and their
+thresholds were tuned in order to match the manual
+classification effort performed by the TSO. TEC python
+code is open source and classification tables from TEC
+for observed TESS sectors are available. However, due
+to the changing nature of the thresholds, detections from
+Sectors 1-6 are less uniformly selected relative to the latter sectors where TEC thresholds and algorithms were
+more stable.
+TEC establishes an initial filter that removes TCEs
+likely due to instrumental systematics. The initial filter
+criteria ensure that the signal continues to be significant when an alternative detrending is applied to the
+flux time series and individual transit events have the
+shape expected for a limb-darkened transiting planet.
+The TCEs that pass this initial triage step are subject
+to additional tests. These tests identify false positives
+due to stellar binaries, astrophysical variability, or instrument systematics (Brown 2003; Coughlin et al. 2016;
+Mullally et al. 2018). TEC also flags TCEs with large
+centroid offsets and those occurring at the same time as
+a spacecraft momentum dump (Li et al. 2019).
+Remaining TCEs are classified into three Tiers. Tier
+One corresponds to TCEs that passed all the above criteria and did not receive any warning flags. The Tier
+One TCEs represent the highest quality and most likely
+detections to result in planet candidates. Any TCE
+which receives at least one warning flag in the above
+tests is placed in the Tier Two category. However, TCEs
+with a warning flag for a significant secondary eclipse or
+a warning flag for coherent out-of-transit variability are
+assigned to the Tier Three category. The Tier Three
+category is predominantly made up of stellar eclipsing
+binary detections. An exception to prevent a candidate
+from inclusion in Tier Three is made if the secondary
+eclipse could be consistent with reflected light from a
+planet rather than a self-luminous body. Only the Tier
+One and Two lists are sent through to the team vetting
+stage.
+As an example of TEC processing results, for the original 1458 TCEs generated by the SPOC pipeline for Sector 12, 540 TCEs passed the initial TEC triage stage.
+Of those 540, 45 TCEs were assigned to the high quality
+Tier One list; 315 TCEs were assigned to the Tier Two
+list; and 180 were assigned to Tier Three.
+6.2. Triage of QLP TCEs
+TCEs generated by the QLP number in the tens of
+thousands per sector, as compared to typically 1500
+TCEs per sector from the SPOC pipeline. An aggressive
+triage process is therefore needed to cull these signals to
+
+12
+
+Guerrero et al.
+
+Figure 3. QLP Data Validation (DV) summary report plots for π Men c (Huang et al. 2018b). Top row: The detrended full
+light curve with all available sectors stitched together. Transits are marked by red vertical lines. Second row left: Phase-folded
+light curve. The grey points are all data points and the blue points are binned relative to the transit window size to guide
+the eye. Second row right: The phase-folded light curve at phase 0.5 for a secondary eclipse test. Third row: Even and odd
+transits. The model fit is shown in orange. The depths of even transits are marked by darker dashed lines, and odd transits by
+lighter dashed lines. A significant difference in the depths (> 5σ) would suggest that the TCE is an eclipsing binary at twice
+the period. Right-hand column: Planet and stellar parameters.
+
+a few hundred high-quality potential planet candidates
+to be reviewed by eye. We use Astronet-Triage (Yu et al.
+2019), a version of the AstroNet convolutional neural
+network (CNN) classifier (Shallue & Vanderburg 2018)
+modified to work on TESS data, to separate eclipse-like
+events from instrument systematics and stellar variability. Yu et al. (2019) uniformly labeled QLP TCEs (i.e.,
+careful manual vetting of an inclusive sample of TCEs)
+from sectors 1-5 to use as input training data for the
+new AstroNet-Triage CNN.
+For each sector, Astronet-Triage ingests tens of thousands of TCEs brighter than Tmag = 13.5 and selects
+several thousand (3000-4000) targets as potential planet
+candidates.
+Next, this number is further reduced by setting a
+brightness threshold of Tmag = 10.5, prioritizing target
+stars most accessible to ground-based observers. In addition, the TCEs with estimated planet radii greater
+than 35 R⊕ are removed. For TCEs with unknown stellar radius (and therefore unknown planetary radius), a
+transit depth cut is implemented at 6% for stars hotter
+
+than 3500 K or stars cooler than 4000 K with a proper
+motion of less than 10 milliarcseconds/year. In sectors
+1-11, stellar parameters for imposing these cuts (and for
+the QLP DV reports) came from Gaia DR2 (Gaia Collaboration et al. 2016, 2018). If Gaia DR2 data were
+unavailable, the most recent TIC catalog was used. For
+sectors 1-11, this was TICv7; for Sector 12 onward, the
+pipeline referred to TICv8 for stellar parameters. Following the release of TICv8, QLP reprocessed the light
+curves for the Year 1 TOIs using the updated stellar
+parameters.
+Following these cuts, only a few hundred TCEs remain
+for visual inspection. The QLP generates DV reports
+for these targets, including centroid information, difference image comparison, multi-aperture comparison, and
+an MCMC fit to the folded transit (Foreman-Mackey
+et al. 2013). Also, at this stage, the QLP flags candidates which match in period and epoch against catalogs
+of known eclipsing binary false positives (Collins et al.
+2018b; Triaud et al. 2017b).
+
+13
+
+TESS Prime Mission TOI Catalog
+7. VETTING
+
+Vetting refers to visual inspection of DV products
+at the MIT TSO to determine which TCEs will become part of the TOI Catalog. Group vetting is the
+main vetting process, while individual vetting is used
+to reduce the number of surviving planet candidates
+for cases where computer algorithm triage has passed
+a large number of candidates. The vetting process was
+“rehearsed” using K2 C17 data before TESS science operations began (Crossfield et al. 2018). Individual vetting was heavily used in sectors 1-5 before TEC and
+AstroNet-Triage were available. The vetters are a rotating team of about 40 volunteers from the TSO and
+wider exoplanet community at various levels of expertise. New vetters are trained extensively by the TSO.
+Figure 4 describes the flow of TCEs through the vetting process. In addition to inspecting TCEs from the
+two pipelines, the vetters examine candidates identified
+by the community (CTOIs, as explained in Section 8.4).
+The goal of vetting is to provide planet candidates to the
+community but is not intended to be 100% complete.
+7.1. Individual Vetting
+Individual vetting is visual inspection of TCE data
+products for classification by a team of vetters working independently. Individual vetting is used if a large
+number of TCEs make it past triage, with the goal of reducing the number of TCEs that must be inspected during the more definitive and labor-intensive group vetting
+process. In individual vetting, the vetters use custom
+software known as the TESS Exoplanet Vetter (TEV)
+to disposition TCEs. Dispositions are based on the DV
+products, including the raw light curve, phase-folded detrended light curve, odd-even plots, difference image and
+out of transit images, finder charts of nearby stars, and
+estimated planet radius based on reported stellar parameters (Twicken et al. 2018). TEV also provides vetters
+with a text box to provide comments for Group Vetting
+to review.
+Each target is vetted by at least three and no more
+than five vetters. To ensure all potential planet candidates are considered, any TCE vetted as a planet candidate (PC) or undecided (U) by any vetter is sent through
+to Group Vetting, where it will be carefully reviewed
+by a small group with more expertise. Individual vetters are trained to be generous in their dispositioning so
+that edge cases are preserved and sent to Group Vetting. TCEs vetted unanimously as not a planet candidate or undecided are assigned a disposition of eclipsing binary (EB), stellar variability (V), or instrument
+noise/systematic (IS) based on the majority rule and
+exit the vetting process. Table 1 lists all disposition
+
+Disposition
+
+Definition
+
+PC
+EB
+V
+IS
+U
+
+Planet Candidate; U-shaped transit
+Eclipsing Binary; V-shaped transit
+Stellar Variability; sinusoidal transit
+Instrument Noise or Systematic; often ramp- or transit-shaped
+Undecided; ambiguously transit-like
+
+Note— The vetting process uses features of the transit light curve, as well as
+other observables, to determine the disposition of each TCE.
+
+Table 1. Definitions for Vetting Dispositions.
+
+labels. In cases of a tie between non-planetary dispositions, eclipsing binary is used. TCEs that leave the
+vetting process as EB, V, or IS are not included in the
+final TOI Catalog.
+Early in the mission, before TCE triage was largely
+automated by TEC and AstroNet-Triage, individual vetting was part of the main process for identifying TOIs.
+By Sector 6, however, automatic triage had significantly
+reduced the need for individual vetting. Individual vetting remains useful for teaching vetters the characteristic appearance of TESS data and training them to make
+accurate classifications.
+7.2. Group Vetting
+The TCEs that pass through the triage process (and
+individual vetting, if applicable) proceed to a Group
+Vetting session where a team of at least three vetters
+visually inspect each TCE. Each sector typically yields
+about 200 TCEs for Group Vetting. The TSO vetting
+teams of experienced experts meet in up to four sessions
+per week, handling about 50 TCEs in two hours per session. Group vetters include persons with expertise on
+historical Kepler data analysis, and new vetters who are
+brought on board through extensive training, starting
+with participation in individual vetting.
+The main goal of Group Vetting is to promote suitable
+TCEs to the TOI list and to remove false positives from
+consideration. Vetting relies on a team of vetters who
+can visually discern subtleties in the data better than
+computers and can impose physicality and consistency
+priors. Vetting by eye also enables us to keep track of
+performance differences between the data pipelines. It is
+possible that Group Vetting will be partially automated
+in the future, but the TSO has focused on enhancing the
+automated triage stage so far.
+Group Vetting reviews key metrics in the DV reports
+that can expose false positives. For example, off-target,
+transit-like signals may be distinguished from on-target
+planets by examining the location of the centroid in and
+
+14
+
+Guerrero et al.
+SPOC TCEs
+
+TEC Triage
+
+QLP TCEs
+
+AstroNet Triage
+
+Individual vetting
+
+CTOIs
+
+No
+
+Unanimous?
+
+Yes
+
+>=1 PC
+dispositions?
+
+No
+
+Group vetting
+
+Yes (for veriﬁcation)
+
+Final
+disposition =
+PC?
+
+No
+
+TCE List
+
+Yes
+
+TOI List
+
+Figure 4. Flow chart of the TOI triage and vetting process. Orange blocks are sources of TCEs. Green blocks are process
+steps. Purple diamonds are decision points. Blue blocks are outcome products. The TOI process triages TCEs from the pipeline
+of record and the community, then vets any TCE with at least one Planet Candidate disposition from individual vetting. The
+TOI process produces the TOI List, which is a subset of the list of vetted TCEs.
+
+out of transit. Movement of the centroid in the difference images to a star 1 pixel away or more shows that
+the pipeline triggered on a TCE that is likely caused
+by a background eclipsing binary. Off-target TCEs can
+also be revealed by comparing the depth of transits in
+light curves extracted from differently sized apertures on
+the QLP DV reports, or using the ghost diagnostic flag
+in the SPOC/TPS DV reports. If the transit depth increases with aperture size, the TCE signal usually comes
+from a nearby source and can be removed from consideration for the TOI Catalog.
+During Group Vetting, supplementary information is
+considered such as parameters from Gaia DR2 (which
+were implemented by SPOC in Sector 14-26), and information from ExoFOP-TESS16 about known planets
+and/or previous observations.
+16 ExoFOP-TESS, or the Exoplanet Follow-up Observing Program,
+
+is the website which supports community follow-up of TESS targets by organizing community-gathered follow-up data and derived astrophysical parameters, https://exofop.ipac.caltech.edu/
+tess/
+
+In addition to setting the disposition of TCEs, Group
+Vetting assigns follow-up priority levels for each of the
+five subgroups (SGs) of the TESS Follow-Up Observing
+Program (TFOP). Planet candidates with Rp < 4R⊕
+are TESS’s highest priority, and those orbiting brighter
+stars are more likely than those orbiting fainter stars
+to be amenable to mass measurements with precise radial velocity instruments. To assign initial priorities, we
+consider the promise of each system for precise radial velocity (PRV) observations as well as the possibility that
+false positives remain that cannot be excluded by TESS
+data alone. We calculate the radial velocity (RV) semiamplitude using the Chen & Kipping (2017) planetary
+mass-radius relation, and then estimate the telescope
+time required to measure a 5-σ mass using a 4-m class
+precise RV facility such as HARPS.
+The most promising TOIs (typically with Vmag . 11)
+are assigned priority 1 for photometry (SG1) and reconnaissance spectroscopy (SG2) because it is necessary to know if they are false positives or not before
+investing in precise radial velocity follow-up. TOIs with
+SN R < 11 are assigned priority 2. Priority 2 targets
+
+TESS Prime Mission TOI Catalog
+often orbit fainter stars and have smaller expected RV
+signals. Larger planet candidates (Rp > 4R⊕ ), or small
+candidates orbiting stars which are likely too faint for
+RV follow-up are given priority 3 for SG1 and SG2.
+The other SGs (high-resolution imaging, precise radial
+velocities, and space-based photometry) have priorities
+initially set to 4 (meaning that observations are on hold),
+and priorities are updated on ExoFOP-TESS following
+results from SG1 and SG2. Known planets, discovered
+previously in surveys such as WASP, HAT, and KELT,
+are priority 5 for all follow-up groups (no further observations needed). Finally, we note that even low-priority
+planet candidates get observed by SG1 and SG2, and
+that many of the follow-up steps proceed in parallel because of the practical constraints imposed by telescope
+schedules and the scientific interests of those carrying
+out observations.
+
+7.3. False Positives
+We find false positives in the TCE light curves during
+vetting and triage. These false positive TCEs are not
+made into TOIs. However, vetting and triage cannot
+catch all false positives: we expect follow-up observations will find some fraction of TOIs to be false positives.
+In the Prime Mission, 565/2241 TOIs (about 25%) have
+been identified as False Positives from follow-up observations. We note which TOIs are false positives with a
+note in the “Public comment” field of the catalog, and
+lower the TFOP priority for those candidates.
+Though a full description of the characteristics of
+TESS false positives is beyond the scope of this paper,
+we list some common features of false positives here.
+Some light curve features indicative of non-planet signatures are specific to the TESS instrument and spacecraft.
+For example, spacecraft momentum dumps may create
+signals that mimic transit-like events in depth and duration. These momentum dumps occur when the reaction
+wheels on the spacecraft are periodically de-spun to relieve momentum built up from solar radiation pressure
+imbalance on the spacecraft. Momentum dumps briefly
+affect the spacecraft pointing for 1-2 frames. In the beginning of Year 1, there wer 3-4 momentum dumps per
+orbit. In Year 2, momentum dumps were reduced to 1-2
+times per orbit. For early sectors, the SPOC pipeline
+and the QLP were not able to distinguish transit-like
+events due to momentum dumps from actual transits.
+Visually, there is a slight distinction, in a sharp ingress
+and a slow egress different from a planet transit with
+ingress and egress having similar slopes. Vetters used
+the transit shape and the known occurrence times to
+
+15
+
+eliminate events suspected to be caused by momentum
+dumps.
+To aid vetting, the SPOC pipeline added momentum
+dump markers to the detrended light curves in the DV
+summary reports, starting with Sector 3. The QLP used
+the quaternion information (three-dimensional spacecraft orientation, velocity, and rotation) from the spacecraft to mask frames in which momentum dumps were
+occurring, starting with Sector 1. The SPOC pipeline
+masks data on cadences identified by the POC as directly associated with momentum dumps in PDCSAP
+light curves. Such cadences are identified in SPOC
+pipeline archive products with a dedicated reaction
+wheel desaturation event data quality bit (Tenenbaum
+& Jenkins 2018).
+In addition to spacecraft momentum dumps, the
+pipelines flagged and removed cadences affected by scattered light (Vanderspek et al. 2018). A full detailing of
+these features, in addition to occasional thermal and
+power events disrupting data acquisition, can be found
+in the TESS Data Release Notes 17 .
+Vetters can identify false positive TCEs by a few telltale signs: a visible secondary eclipse which cannot physically be planetary in nature; a mismatch between odd
+and even transit depths caused by a stellar binary at
+twice the indicated period; a shift of the centroid to
+another nearby star; and increasing transit depth with
+aperture size, indicative that a signal is from an object
+nearby on the sky and not the suspected target star.
+TCEs are especially prone to being false positives
+as TESS pixels are large enough to include multiple
+stars. Blended stellar signals from a single pixel can
+lead to confusion between on-target planetary transits
+with nearby eclipsing binaries and some types of stellar
+variability. For the majority of cases, we can recognize
+the contribution to a star at a minimum distance of 1
+pixel away.
+Some TCEs have only very subtle differences in transit
+depth between odd and even transits or weak secondary
+eclipses that require careful review via group vetting.
+Cases that cannot be resolved on TESS data alone are
+passed on to TFOP as TOIs for additional observations
+and detective work with the goal of improving reliability without compromising completeness. The follow-up
+efforts are described in depth in Section 10.3.
+We rely on follow-up observations to identify false positives which were not caught in triage or vetting. It is
+very difficult, if not impossible, to identify the star that
+is the source of the transit signal from the TESS data
+17 https://archive.stsci.edu/tess/tess drn.html
+
+16
+
+Guerrero et al.
+
+alone when there are two (or more) stars within the
+same TESS pixel. In these cases, where the transit signal could be planetary if on either star, we release the
+target as a TOI and follow-up observations (by subgroup
+1) are used to identify the star showing the transit signal. Reconnaissance spectroscopy (obtained by TFOP
+subgroup 2) is used to confirm the parameters of the
+primary star and identify TOIs which are stellar eclipsing binaries where both stars show lines in the spectrum
+(spectroscopic binary type 2). In addition, low-precision
+RVs, obtained from a few spectra, are used to identify
+TOIs showing large RV variation of a few 10 km/s, indicating that the transiting object is too massive to be a
+planet (spectroscopic binary type 1). The other common
+source of TOI False Positives is our improved understanding of host star parameters. The inclusion of Gaia
+DR2 data in TICv8 gave a more accurate determination
+of stellar radius compared to TICv7. For some stars,
+the new TICv8 stellar radius is bigger, which changes
+the transiting object radius to be much too large to be
+a planet.
+
+7.4. Numbers and Timeline
+Large numbers of TCEs are delivered per sector from
+each pipeline. The SPOC pipeline produces, on average,
+about 1,200 TCEs per sector, out of about 20,000 twominute cadence targets observed. Before triage, QLP
+produces 50,000 TCEs per sector (with a Tmag = 10.5
+cutoff for vetting), from about half a million FFI light
+curves. Each sector yields about 100 total TOIs from the
+SPOC pipeline and the QLP. Of the 1,250 TOIs released
+during Year 1, 761 were from the postage stamps and
+489 were from non-postage-stamp regions of the FFIs.
+651 TOIs had data from a single sector and 599 had data
+from two or more sectors. Of the 991 TOIs released during Year 2, 494 were from the postage stamps and 497
+were from the non-postage-stamp regions of the FFIs.
+274 TOIs from Year 2 had data from a single sector and
+717 had data from two or more sectors.
+Of the total 2241 TOIs from the full Prime Mission,
+256 TOIs were known planets and 1,985 were new planet
+candidates. We detected 251 of the 1,543 known planets (∼ 16%) around Tmag < 13.5 host stars originally
+detected via the transit method. We expect this fraction to be small, as many of these known planets were
+Kepler discoveries with the SNR of transits of many of
+these planets to be too low for TESS. For the 864 known
+planets detected via other methods and orbiting host
+stars with Tmag < 13.5, we detected 5 as new TOIs.
+We expect the number of radial velocity planets TESS
+re-observed to be low because of transit probabilities be-
+
+ing low in general for RV-detected planets. The known
+planet TOIs are discussed in more depth in Section 10.4.
+Given the different detrending and detection methods
+employed by the two different pipelines, we do not expect the two pipelines to always detect the same signals
+in the same data. Of the 230 TOIs SPOC detected in
+Sectors 6-1318 with Tmag < 10.5 host stars, the QLP
+BLS detected 206. The QLP AstroNet triage (see Section 6.2) excluded 58 of these in automatic triage and
+visual triage rejected an additional 29 TCEs, giving a
+total of 119 TOIs detected by both SPOC and QLP.
+Future upgrades to AstroNet will aim to improve its recall of small and low S/N planet candidates detected by
+SPOC. In sectors 14-26, of the 146 TOIs SPOC detected,
+QLP BLS detected 137. The QLP AstroNet triage excluded 35 of these in automatic triage, and visual triage
+rejected an additional 15, giving a total of 87 TOIs detected by both pipelines.
+TESS aims to survey nearby, bright stars rather than
+conduct an exhaustive census. When one signal is detected by one pipeline but not the other, we rely on the
+human vetters to determine if the transit detection is
+valid using the vetting criteria described in Sections 7.1
+and 7.2.
+TESS data are processed rapidly once they have been
+downloaded from the spacecraft. Once the raw FFIs arrive at the TSO, processing by the QLP is completed
+within about 7-10 days, yielding a large set of TCEs for
+triage. Concurrently, the SPOC pipeline produces calibrated FFIs and DV products for two-minute cadence
+TCEs within 7-14 days from receipt of data, including a
+formal review process. TEC triages the SPOC pipeline
+data to produce a reduced set of TCEs in 1-2 additional
+days. Vetting takes 1-2 weeks per sector and an additional 2-3 days to prepare the TOIs for release. Overall, TESS data and TOIs generally reach the public via
+MAST about a month after the end of a sector.
+8. RELEASING TOIS TO THE COMMUNITY
+
+Following group vetting, and a final check for accuracy, the TOIs are released to the community on a variety of platforms.
+8.1. TOI Delivery
+The TOI Catalog includes planet candidates suitable
+for follow-up observations, as well as a smaller number of previously-known exoplanets. TOIs are released
+on a public-facing webpage at https://tess.mit.edu/
+toi-releases/ and updated automatically (twice daily) on
+18 Because Sectors 1-5 did not use AstroNet triage, these sectors
+
+were not considered in this comparison.
+
+17
+
+TESS Prime Mission TOI Catalog
+ExoFOP-TESS. The first TOI Catalog was delivered to
+MAST on December 2, 2018 19 . MAST archives a static
+version of the TOI Catalog on a monthly basis. The
+living TOI Catalog, updated every sector and intermittently between sectors, is described by this paper.
+Targets are assigned consecutive TOI IDs. Multiplanet systems are assigned suffixes (.01, .02, etc.) mirroring the suffixes assigned for the TCE. TEV automatically generates a comma-separated values (CSV) file
+with all necessary parameters for each TOI from the
+vetted TOI list. Each TOI comes with a table of parameters, a DV summary page, and a full DV report.
+Some TOIs may be held back from delivery if, for
+example, the target requires reanalysis (for instance,
+to better constrain or confirm its orbital period or to
+identify/disentangle additional candidates in the light
+curve). Additionally, if a target shows a marginallydetected transit in a single sector of data, but is expected to be in the TESS field of view in a following
+sector, the team may opt to wait to see if the transit becomes more pronounced before releasing it. Even though
+SPOC/TPS and QLP/BLS are not designed to search
+for single-transit events, they are occasionally detected
+when the transit happens to line up with either spurious
+noise events or to a data gap in the phase-folded light
+curves examined by TPS/BLS. We do include these single transit candidates in the TOI catalog, with the orbital period parameter removed before release. If there
+is another transit of the candidate in a later sector, we
+update the TOI in the catalog with the correct period.
+8.2. TOI Updates
+The online TOI Catalog at tev.mit.edu and ExoFOPTESS is continuously updated to provide the most recent information to the community. We update entries
+in the TOI catalog in certain cases, including:
+1. TOIs which appear in several sectors accumulate
+more observations, which improve the determinations of period, epoch, and other parameters. The
+TOI catalog is therefore updated with parameters
+from the longest baseline of data for each TOI,
+with a preference for SPOC postage stamp data,
+largely due to its two-minute cadence and review
+process as the pipeline of record.
+2. TOIs on the ExoFOP-TESS platform have updated TFOP Working Group priorities as each
+working group makes progress with follow-up observations.
+19 http://archive.stsci.edu/tess/bulk downloads/bulk downloads
+
+tce.html
+
+3. When TFOP identifies TOIs as false positives,
+their initial disposition in the TOI catalog remains
+unchanged (to preserve the candidate’s history),
+but a separate TFOP working group disposition is
+updated on ExoFOP-TESS. The TFOP working
+group disposition is updated in the TOI catalog
+as well.
+8.3. Retired “Alerts” Process
+The TSO used an “Alerts” process to get candidates
+to the community as quickly as possible during Sectors
+1-3. The goal of the Alerts was to release TOIs for
+timely follow-up before the full data sets from the sector
+were publicly available on MAST. Alerts were posted
+on the MIT TEV Alerts Portal and on MAST as the
+first high-level science product of the mission. All the
+TESS-DATA-ALERTS products that were made public
+are available at MAST via https://doi.org/10.17909/t9wx1n-aw08. Following Sector 3, the FFI data were processed and released in advance of the completion of the
+TOI process.
+8.4. Community TOIs
+Community TOIs (CTOIs) are objects of interest
+identified by pipelines in the community and reported
+on ExoFOP-TESS, often in bulk uploads not tied to the
+official data release from any particular sector. ExoFOP
+emphasizes CTOIs should only be reported if there is no
+TOI with the same period. The TOI team periodically
+checks for matches on TIC ID and period between the
+CTOI list hosted on ExoFOP and the comprehensive
+collection of TCEs considered for vetting on the TEV
+platform.
+169 CTOIs from the Prime Mission are now TOIs; 106
+of these were recovered from TCEs mistakenly ruled out
+in pre-vetting triage 20 . All CTOIs which have been promoted to TOIs were also TCEs in the SPOC pipeline or
+the QLP, and recovered from those pipelines. For example, two CTOIs from the Planet Hunters TESS project
+21
+were promoted to CTOIs and then released as TOIs.
+In the Prime Mission, ∼ 40% of the 841 CTOIs reported on ExoFOP matched in period and epoch to
+TCEs with reports on TEV found by the TSO, meaning TCEs which passed triage and were considered for
+vetting. For the remaining ∼ 60% of CTOIs, which
+did not match with TCEs on TEV, about half corresponded to TCEs from either the QLP or SPOC analysis, and the other half did not have data products
+from either pipeline. For the CTOIs which did not
+20 ExoFOP-TESS, accessed 8 Oct. 2020
+21 http://www.planethunters.org
+
+18
+
+Guerrero et al.
+
+match in ephemeris to TCEs on TEV, but which had
+TCE data products from either SPOC or QLP, many
+were excluded from vetting in the standard pre-vetting
+triage process. For example, TCEs from the QLP below
+the Tmag = 10.5 threshold were not considered for vetting; other TCEs were ruled out as non-planetary transit events in pre-vetting triage. Single-transit events reported as CTOIs and which were also SPOC TCEs were
+sometimes mistakenly classified in triage as EB events
+(described in more detail in Section 10.6). These rejected TCEs are re-considered in the CTOI review process. The vetting team may promote a CTOI to a TOI
+if the CTOI identifies a quality planet candidate from
+the SPOC or QLP pipeline mistakenly ruled out in the
+triage or vetting process. CTOIs which do not match
+with TCEs on TEV, and which also do not have data
+products from either the QLP or SPOC pipeline, could
+still be valid events, but were not found in the initial
+run of either pipeline, and would need to be recovered
+manually in a reprocessing step.
+8.5. Naming TESS Planets
+The project will assign TESS planet names to TOIs
+which are confirmed planets, either with a mass measurement or validated by another method. The TESS
+planet name will have the same major number as the
+TOI ID. Planet suffixes (b, c, etc.) will follow the suffixes used for publication of the planet, under the general
+convention to assign first in order of validation, and then
+period. Said another way, if a planet is discovered with
+a shorter period than planet b in a given system, the
+new planet will get the next consecutive letter as a suffix. Planet names will be assigned by the project after
+a TOI has been confirmed and appears on the NASA
+Exoplanet Archive. TESS planet name will also appear as an additional column in the TOI Catalog and
+propagated to MAST and ExoFOP-TESS. TOIs which
+are known planets from other surveys and which meet
+the same requirement as TOIs of mass measurement or
+other validation will get a TESS planet name. Assigning TESS Planet names to known planets will highlight
+TESS’s ability to recover these planets. Although the
+TESS Prime Mission is focused on measuring sizes and
+masses for small exoplanets, the broader exoplanet community reaps the benefits of a diverse catalog of TESS
+planets which have been validated without a measured
+mass.
+9. TOI CATALOG DESCRIPTION
+
+The TOI Catalog is a living collection of the TESS
+mission planet candidates from the Prime Mission and
+beyond. The list includes both TESS-discovered planet
+
+candidates (denoted PC) and known planets (denoted
+KP) from past surveys. The living catalog is available
+online 22 . This same living list is the version of the catalog posted to MAST and ingested to ExoFOP-TESS to
+be augmented with information from follow-up observations. Archived versions of the catalog are available on
+MAST23 .
+9.1. Catalog Overview
+A TOI is a target initially considered by the project to
+be a planet candidate based on the TESS light curve and
+other information available at the time it is inspected by
+the TSO. As TOIs are followed up by additional observations, the project tracks the TFOP Working Group
+disposition for each target in the catalog, and whether
+the target is a known planet from a previous survey
+(KP), promoted to a confirmed planet (CP), retracted
+as a false alarm (FA), or demoted as a false positive
+(FP). The CP category includes planets with confirmed
+masses and statistically validated planets that do not
+yet have measured masses.
+The columns in the TOI catalog uniquely identify each
+candidate, its provenance, and, in the case of the comments column, particular issues or notable features of a
+TOI. The TOI team also provides to the community a
+“TOI+” table with a more expansive set of parameter
+columns useful for planning follow-up observations, including stellar log g, stellar radius, planet radius, planet
+equilibrium temperature, stellar effective temperature,
+signal-to-noise, centroid offset flag (“TRUE” when TOI
+had a centroid offset greater than 5 sigma), and TFOP
+priorities.
+We provide a sample of the TOI catalog with stellar
+and planetary parameters subdivided for ease of reading
+in Table 2 and Table 3, respectively. The TOI catalog
+columns (headers in bold-face type) are as follows:
+• Source Pipeline Name of pipeline which provided the TOI period, epoch, transit duration, and
+transit depth. Either “QLP” or “SPOC.”
+• Stellar Catalog Version of TIC or other catalog (e.g. Gaia) which sources the provided stellar
+parameters
+• TIC Unique identifier from the TESS Input Catalog.
+• Full TOI ID Unique identifier for each TOI
+planet candidate for the star.
+22 https://tess.mit.edu/toi-releases/
+23 https://archive.stsci.edu/missions/tess/catalogs/toi/previous/
+
+TESS Prime Mission TOI Catalog
+• Signal ID Identifier for each planet candidate in
+a system; ordered by time of release as a TOI.
+• TESS name TESS planet name for confirmed
+planets (see Section 8.5)
+• TOI Disposition “PC” for planet candidate and
+“KP” for known planet from a previous survey
+• EXOFOP Disposition Provided by ExoFOPTESS. TFOP Working Group disposition following additional observation (CP for confirmed
+planet, PC for planet candidate, FP for false positive, FA for false alarm, and KP for known planet).
+Updated on TEV each time new TOIs are released.
+• TIC Right Ascension In degrees. All coordinates in equinox J2000.0, and epoch 2000.0.
+• TIC Declination In degrees. All coordinates in
+equinox J2000.0, and epoch 2000.0.
+• Tmag In magnitude. Includes uncertainty.
+• Vmag In magnitude. Includes uncertainty.
+• Epoch Barycentric-corrected epoch of first transit
+in TESS Julian Days. BTJD = BJD − 2457000 24 .
+Includes uncertainty.
+• Orbital Period In days. Can be blank, as is the
+case for single transits. Includes uncertainty.
+• Transit Duration In hours. Transit duration
+from first to fourth contact. Uncertainty column
+can be blank if duration is an estimate.
+• Transit Depth In ppm. Uncertainty column can
+be blank if transit depth is an estimate.
+• Sectors Space-separated string of sectors contributing data to TOI parameters.
+• Public Comment From TOI group vetting, including whether follow-up is in progress, if the
+event is a single transit, and the catalog name of
+the planet if it is previously known. Can be blank.
+• Alerted Date TOI was released for the first time.
+• Edited Date of most recent update to TOI parameters.
+The TOI list is provided in the AAS Journals machinereadable format and also as a CSV file with header rows
+detailing the contents and creation of the list.
+24 Tenenbaum & Jenkins (2018)
+
+19
+
+#TESS Objects of Interest
+# File Created: 2020-10-18
+# Sectors: S0001-S0026
+# Date of previous TOI list release: 2020-08-12
+Source Pipeline,Stellar Catalog,TIC,
+Full TOI ID, Signal ID, TESS Name, TOI Disposition,
+EXOFOP Disposition,TIC Right Ascension,
+TIC Declination,TMag Value,TMag Uncertainty,
+VMag Value,VMag Uncertainty,
+Orbital Epoch Value,Orbital Epoch Error,
+Orbital Period Value,Orbital Period Error,
+Transit Duration Value,Transit
+Duration Error,
+Transit Depth Value,Transit Depth Error,
+Sectors,Public Comment,Alerted,Edited
+Usually, all of these fields are populated in the TOI
+catalog with the exception of period and period uncertainty (for single transits), the TESS name field, and
+the comments field.
+
+TICv7
+
+TICv7
+
+TICv7
+
+TICv7
+
+TICv7
+
+TICv7
+
+Gaia DR2
+
+TICv7
+
+TICv7
+
+TICv7
+
+spoc
+
+spoc
+
+spoc
+
+spoc
+
+spoc
+
+qlp
+
+spoc
+
+spoc
+
+spoc
+
+278683844
+
+278683844
+
+266980320
+
+322307342
+
+238176110
+
+281541555
+
+25155310
+
+97409519
+
+388104525
+
+355703913
+
+281459670
+
+TIC
+
+119.02
+
+119.01
+
+118.01
+
+117.01
+
+116.01
+
+115.01
+
+114.01
+
+113.01
+
+112.01
+
+111.01
+
+110.01
+
+TOI ID
+
+Full
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+ID
+
+Signal
+
+118 b
+
+117 b
+
+116 b
+
+115 b
+
+114 b
+
+113 b
+
+112 b
+
+111 b
+
+110 b
+
+Name
+
+TESS
+
+PC
+
+PC
+
+PC
+
+PC
+
+KP
+
+KP
+
+KP
+
+KP
+
+KP
+
+KP
+
+KP
+
+Disp.
+
+TOI
+
+CP
+
+KP
+
+KP
+
+KP
+
+KP
+
+KP
+
+KP
+
+KP
+
+KP
+
+Disp.
+
+EXOFOP
+
+99.237983
+
+99.237983
+
+349.556843
+
+15.005896
+
+357.84526
+
+6.702439
+
+63.37389
+
+332.714323
+
+55.93344
+
+0.774485
+
+5.618692
+
+(deg)
+
+TIC RA
+
+-58.015237
+
+-58.015237
+
+-56.903885
+
+-58.90478
+
+-70.152863
+
+-56.316124
+
+-69.226789
+
+-30.749674
+
+-65.193856
+
+-62.469342
+
+-59.942551
+
+(deg)
+
+TIC Dec
+
+9.234
+
+9.234
+
+9.154
+
+11.734
+
+10.991
+
+12.98
+
+10.555
+
+12.143
+
+11.547
+
+13.129
+
+11.632
+
+(mag)
+
+Tmag
+
+0.018
+
+0.018
+
+0.017
+
+0.019
+
+0.019
+
+0.018
+
+0.018
+
+0.018
+
+0.018
+
+0.018
+
+0.018
+
+(mag)
+
+Tmag Unc.
+
+10.07
+
+10.07
+
+9.809
+
+12.312
+
+11.98
+
+13.783
+
+10.994
+
+12.724
+
+12.314
+
+13.857
+
+12.283
+
+(mag)
+
+Vmag
+
+0.003
+
+0.003
+
+0.003
+
+0.046
+
+0.022
+
+0.126
+
+0.012
+
+0.092
+
+0.057
+
+0.137
+
+0.057
+
+(mag)
+
+Vmag Unc.
+
+Note— The TOI catalog table lists the parameters of each TOI and its host star. This table (Part I) gathers together the stellar parameters selected
+from the TOI catalog. The planet parameters continue on the table on the following page.
+
+TICv7
+
+spoc
+
+Catalog
+
+Pipeline
+
+spoc
+
+Stellar
+
+Source
+
+Table 2. Example selection from the TOI catalog (Part1)
+
+...
+
+...
+
+...
+
+...
+
+...
+
+...
+
+...
+
+...
+
+...
+
+...
+
+...
+
+20
+Guerrero et al.
+
+1326.106369
+
+1327.40960
+
+1327.053085
+
+1327.520787
+
+1329.90069
+
+1326.689274
+
+1328.4809
+
+1329.199631
+
+1327.61510
+
+1328.046433
+
+...
+
+...
+
+...
+
+...
+
+...
+
+...
+
+...
+
+...
+
+...
+
+0.001592
+
+0.002023
+
+0.001235
+
+0.00133
+
+0.00026
+
+0.001812
+
+0.000121
+
+0.000623
+
+0.000119
+
+0.001084
+
+0.000446
+
+10.691632
+
+5.54109
+
+6.036061
+
+3.5855
+
+2.798594
+
+4.742745
+
+3.288783
+
+3.372877
+
+2.499804
+
+2.106098
+
+3.174305
+
+Val. (days)
+
+Orbital Period
+
+0.000083
+
+2.30E-05
+
+0.000637
+
+0.00038
+
+4.90E-05
+
+0.000262
+
+2.30E-06
+
+0.000147
+
+2.47E-06
+
+6.90E-05
+
+4.40E-05
+
+Err. (days)
+
+Orbital Period
+
+3.17746
+
+2.721801
+
+2.123832
+
+3.173
+
+2.366459
+
+2.408768
+
+3.408833
+
+2.63426
+
+2.885454
+
+1.574766
+
+2.723339
+
+Duration (hrs)
+
+Transit
+
+0.415448
+
+0.194735
+
+0.09961
+
+0.123
+
+0.022664
+
+0.137056
+
+0.014136
+
+0.043644
+
+0.0141
+
+0.083967
+
+0.030983
+
+Err. (hrs)
+
+Transit Dur.
+
+519.241028
+
+580.71457
+
+1704.034261
+
+6130
+
+16879.44984
+
+13420.03179
+
+7061.865079
+
+17163.60419
+
+15075.418
+
+12430.50297
+
+15603.6931
+
+(ppm)
+
+Transit Depth
+
+26.40276
+
+20.75554
+
+56.202583
+
+3.88166
+
+101.11358
+
+517.9781
+
+20.379316
+
+212.40587
+
+53.067
+
+528.39557
+
+151.40271
+
+Err. (ppm)
+
+Transit Depth
+
+1,2,...,13
+
+1,2,...,13
+
+1
+
+1,2
+
+1
+
+1,2
+
+1,2,...,13
+
+1
+
+1,2,3,4,7,11
+
+1,2
+
+1,2
+
+Sectors
+
+Note— The TOI catalog table lists the parameters of each TOI and its host star. This table (Part II) gathers together the planetary parameters
+selected from the TOI catalog with the stellar parameters on a previous page.
+
+1328.040464
+
+...
+
+Err. (TJD)
+
+Val. (TJD)
+
+...
+
+Epoch
+
+Epoch
+
+Table 3. Example selection from the TOI catalog (Part 2)
+
+HD 219666 b
+
+HATS-68 b
+
+WASP-91 b
+
+HATS-46 b
+
+WASP-126 b
+
+WASP-124 b
+
+WASP-119 b
+
+HATS-34 b
+
+HATS-30 b
+
+Comment
+
+Public
+
+2019-05-17
+
+2019-05-07
+
+2018-09-05
+
+2018-09-05
+
+2018-09-05
+
+2018-10-22
+
+2019-05-07
+
+2018-09-05
+
+2019-05-07
+
+2018-10-22
+
+2018-10-22
+
+Alerted
+
+2020-08-03
+
+2020-08-03
+
+2020-08-03
+
+2020-08-03
+
+2020-08-03
+
+2020-08-03
+
+2020-08-03
+
+2020-08-03
+
+2020-08-03
+
+2020-08-03
+
+2020-08-03
+
+Edited
+
+TESS Prime Mission TOI Catalog
+21
+
+22
+
+Guerrero et al.
+9.2. Known Issues with TOI parameters
+
+TOI parameters reflect the best possible analysis available at the time of vetting. The “Comments” field in
+the TOI catalog often records remarks from the vetting
+team on the reported parameters.
+Common remarks include:
+• Ambiguous period (twice/half): the flagged transits in the light curve do not clearly determine
+the correct period. The period may be a multiple
+or a fraction of the reported period. This often
+happens when transits are missed because of data
+gaps.
+• Revised epoch: the first transit flagged in the DV
+Reports is not the first true transit in the light
+curve and has been revised in the TOI table.
+• Target period and epoch match with a nearby
+TCE
+• Transit is suspected to be due to an eclipse or transit on a nearby star (often with an ambiguous centroid offset)
+• Two stars in the same pixel
+• Low SNR or a marginal candidate
+• Possible EB or stellar variability
+• Possible single transit
+• Possible grazing transit
+• V-shaped transit
+9.3. Vetted TCE List
+The TOI vetting team also maintains a larger TCE
+List of SPOC and QLP TCEs considered for vetting,
+and includes the TOIs. The TCE list has the columns
+listed below.
+• TIC ID
+• Candidate ID. Identifier for the signal in the
+light curve (1, 2, etc.)
+• Full TOI ID. Optional, if available.
+• Epoch Barycentric-corrected epoch of first transit
+in TESS Julian Days. BTJD = BJD − 2457000 25 .
+Includes uncertainty.
+
+• Orbital Period In days. Can be blank, as is the
+case for single transits. Includes uncertainty.
+• TCE Disposition Optional.
+• Comment Optional. Describes provenance and
+reasoning behind the disposition assigned.
+• Sector Tag Identifies in which sector and vetting
+collection a candidate appeared.
+• Updated Date of most recent update of candidate
+parameters.
+The TCE list is available online alongside the TOI
+list26 . Separately, MAST archives all the TCEs the
+SPOC pipeline finds for each sector and multi-sector
+run27 . The SPOC TCE list is part of the public data
+release for each sector.
+10. DISCUSSION
+
+We now turn to a qualitative description of the planet
+candidates in the TOI list The TOI list is not corrected
+for completeness so the conclusions we can draw about
+the underlying planet populations are limited. Nevertheless, we do present some figures of TOI parameter
+space distributions. The positions of the 2241 TOIs released in the TESS Prime Mission are shown in Figure 5.
+10.1. TOI Host Stars
+The TOIs are found in a diverse stellar population,
+from hot A stars to cool M dwarf stars. The majority
+of the TOI host stars are on the main sequence, while
+some are sub-giants (Figure 6).
+TOIs appear around primarily FGK stars, as shown in
+the spectral type distribution in Figure 7. Short-period
+TOIs predominate across all spectral types, as shown in
+Figure 8. Figure 9 shows that for M and K-type stars,
+small TOIs (Neptune-sized and smaller) predominate,
+whereas for F, and A-type stars, TOIs with large radii
+are more common. This distribution is expected, as the
+transit depth TESS measures for a planet of a certain
+radius is shallower for larger stars than for smaller stars;
+small planets are more difficult to detect around larger
+stars.
+10.2. TOI Planet Parameters
+In Figure 10, we plot the TOIs in period-radius space.
+We include the simulated planet distribution from Barclay (2020) to compare to the TOI catalog. We only
+26 https://tess.mit.edu/toi-releases/
+
+25 Tenenbaum & Jenkins (2018)
+
+27 https://archive.stsci.edu/tess/bulk downloads/bulk downloads
+
+tce.html
+
+TESS Prime Mission TOI Catalog
+
+23
+
+Figure 5. Sky positions of the TESS Prime Mission TOIs. RA is on the horizontal axis and declination is on the vertical axis.
+The black points are TOIs. The blue points are previously known planets (NASA Exoplanet Archive, accessed 14 August 2020).
+The points within the multi-colored swaths are stars (Tmag < 13.5) observed in the TESS Prime Mission. Fewer TOIs appear
+in Sectors 11 and 12 because the field of view was crowded and this limited the number of viable TCEs for vetting.
+
+include predicted planets with Tmag < 10.5 host stars,
+as the vetting team only searches for TOIs for QLP targets above this magnitude threshold. The period and
+radius distributions for the TOIs, the Barclay (2020)
+prediction, and the false positives from follow-up as of 8
+Oct. 2020 are shown at the top and right of Figure 10.
+There are 820 TOIs with Rp < 6R⊕ out of 1625 with
+calculated planet radius values. The majority of the
+TOIs have periods less than 30 days, which is expected
+considering the single-sector baseline is 27 days. The
+median period is 4.5 days and the median planet radius
+is 5 R⊕ . The TOIs appear to be in in good qualitative
+agreement with the predicted yield estimations by Barclay (2020). The majority of the false positives (plotted
+in grey in Figure 10) appear at P < 6 days and Rp > 5
+R⊕ . This is expected due to the contribution of nearby
+or on-target eclipsing binaries.
+Looking at the TOIs in period-Teq space in Figure 11,
+we see that the TOI Catalog and TESS confirmed
+planets are contributing to the population of temperate planets orbiting their host stars at short periods
+(P < 10 days).
+10.3. Follow-Up Observations of TOIs
+TESS aims to provide small planets around bright
+stars that can be characterized in-depth via follow-up
+
+observations within three years of the survey onset.
+TESS is delivering on its promise, by discovering many
+small planet candidates within 100 pc of the solar system (see Figure 12). Over the course of the TESS Prime
+Mission, 2241 TOIs have been sorted through by followup observers, 654 of which are planet candidates with
+radii smaller than 4R⊕ , so there will be no shortage of
+viable targets for mass measurements.
+The majority of the TOIs in the catalog are accessible
+to RV follow-up, as shown in Figure 13. To date, 25
+planets28 discovered by TESS smaller than 4 R⊕ have
+published mass measurements in peer-reviewed publications and dozens more such measurements are underway.
+An additional 21 larger planets29 have measured masses,
+again with many more mass measurements underway.
+With numerous new planet candidates and confirmed
+planets added to the TOI catalog in the Prime Mission,
+TESS has made progress towards its primary goal, to
+deliver fifty small (Rp < 4R⊕ ) planets with measured
+masses to the community.
+28
+
+NASA Exoplanet Archive, accessed 8 Oct. 2020
+29 28
+
+24
+
+Guerrero et al.
+
+Figure 6. TOI host stars on the Gaia color-magnitude diagram. The horizontal axis is the difference between the Gaia DR2
+magnitudes in the GRP and GBP bands and the vertical axis is the absolute G magnitude. The blue points are the bright stars
+(brighter than Tmag = 13.5) TESS observed in the Prime Mission matched in Gaia DR2. The same sample of stars is plotted
+as points in multi-colored swaths in Figure 5. The grey points are TOIs. The grey X’s are TOIs which have been found to be
+false positives from follow-up observing and revised vetting. The majority of the TOI host stars fall on the main sequence. All
+the TOIs identified for giant stars brighter than the red clump have proven to be false positives, as expected.
+600
+
+575
+
+Prime Mission TOIs
+(FPs removed)
+Barclay (2020) prediction
+Tmag<10.5
+
+Number of planets per bin
+
+500
+400
+
+463 469
+
+351
+
+300
+
+274
+
+200
+133
+
+100
+0
+
+101 117
+
+59
+
+26
+
+M
+
+K
+
+G
+
+F
+
+Host Star Spectral Type
+
+A
+
+Figure 7. Spectral type distribution for TOI host stars. The
+number of TOIs for each spectral type (M,K,G,F,A) is on the
+vertical axis. The grey bars are the Barclay (2020) predicted
+yield for each spectral type for stars brighter than Tmag =
+10.5. The orange bars are the numbers of TOIs actually
+identified in the TESS Prime Mission for each spectral type.
+False positive TOIs have been removed. The TOIs roughly
+track to the abundance of each spectral type, but the data
+are not corrected for completeness.
+
+The TOI catalog also identifies planets which will
+be candidates for in-depth atmospheric characterization
+with transmission and emission spectroscopy. Many
+of the small planets TESS discovered have host stars
+with apparent H-band magnitudes brighter than 9 (Figure 14) and for fainter host stars, have large transit
+depths.
+Figure 15 shows the transmission spectroscopy metric (TSM) (Kempton et al. 2018) values for TOIs in a
+range of radius bins. The TSM is the signal-to-noise expected for spectral features in a transmission spectrum.
+Kempton et al. (2018) estimated TSM threshold values that would provide a statistical sample of the best
+TESS targets across the full radius range for the JWST
+observations, based on the predicted TESS yield from
+Sullivan et al. (2015). For a quantitative calculation of
+the observing time needed to reach a certain TSM with
+JWST, see Kempton et al. (2018); Louie et al. (2018).
+Figure 15 shows updated TSM threshold values from the
+Prime Mission TOI catalog. Although the updated TSM
+thresholds are lower than predicted for sub-Neptunes
+(with radii below 4R⊕ ), this may be in part due to an
+overprediction of the number of short-period planets in
+yield estimations. With the current TOI catalog, more
+
+25
+
+TESS Prime Mission TOI Catalog
+
+<1 day
+1-10 days
+10-27 days
+27-100 days
+>100 days
+
+Number of planets per bin
+
+500
+400
+300
+200
+100
+0
+
+<1 day
+1-10 days
+10-27 days
+27-100 days
+>100 days
+
+M
+21
+83
+23
+4
+1
+
+K
+27
+221
+75
+17
+2
+
+G
+31
+371
+109
+30
+8
+
+F
+24
+329
+77
+21
+7
+
+A
+8
+96
+8
+2
+0
+
+Figure 8. Period distribution for TOIs, subdivided by host star spectral type (M,K,G,F,A). False positive TOIs and TOIs
+with P = 0 are not included. For each spectral type, TESS has detected many TOIs in the 1-10 day period regime. These data
+are not corrected for completeness.
+
+observing time than expected may be required to characterize a statistical sample of small planets. However,
+additional planets may be found with further vetting.
+The highest TSM planets have already provided a rich
+source of targets suitable for atmospheric characterization with HST: pi Men c (King et al. 2020); LTT 1445A
+b (Sing et al. 2019); TOI 1726.01 and 1726.02 (Zhang
+et al. 2020); AU Mic b (Newton et al. 2019a; Cauley
+et al. 2020); TOI-674 b (Crossfield et al. 2017); DS Tuc
+A b (Dos Santos et al. 2020); HD 219666 b (Beatty et al.
+2019; Fu et al. 2019); TOI-270 c and d (Mikal-Evans
+et al. 2019); TOI-1231b (Kreidberg et al. 2020); and LP
+98-59 b, c, and d (Barclay et al. 2019).
+10.4. Previously-Known Exoplanets in the TOI Catalog
+By systematically observing the sky, TESS is monitoring many of the stars already known to harbor exoplanets (blue stars in Figure 5). For known transiting exoplanets, TESS provides improved transit ephemerides.
+The improvements reduce the transit timing uncertainty
+in the JWST era from tens of minutes down to a few
+
+minutes. The TOI catalog includes 256 Known Planet
+TOIs observed in the Prime Mission.
+The known exoplanet host stars were included as a
+special catalog in the originally released version of the
+TIC (Stassun et al. 2018, 2019). Several selected programs from the TESS Guest Investigator Program for
+Cycle 1 and Cycle 2 included known exoplanet host
+stars, ensuring that they would be monitored with twominute cadence by TESS.
+Using data from the NASA Exoplanet Archive30 (Akeson et al. 2013) and cross-matching with the TESS camera locations, we estimate that ∼ 920 known hosts of
+transiting exoplanets brighter than Tmag = 13.5 were
+observed by TESS during the Prime Mission. We detected 251 of the 1,543 total known planets around
+Tmag < 13.5 host stars originally detected via the transit
+method. This smaller number is expected, as many of
+these known planets were discovered by Kepler and the
+30 Accessed 8 Oct. 2020
+
+26
+
+Guerrero et al.
+
+Number of planets per bin
+
+600
+
+<1.5 R
+1.5-4 R
+4-10 R
+>10 R
+
+500
+400
+300
+200
+100
+0
+
+<1.5 R
+1.5-4 R
+4-10 R
+>10 R
+
+M
+39
+61
+23
+9
+
+K
+28
+176
+68
+74
+
+G
+14
+225
+115
+217
+
+F
+5
+99
+127
+237
+
+A
+0
+8
+29
+54
+
+Figure 9. Radius distribution for TOIs, subdivided by host star spectral type (M,K,G,F,A). False positive TOIs and TOIs
+with no Rp are not included. The majority of TOIs on M and K-type stars are sub-Neptunes, demonstrating TESS’s ability to
+detect small planets around small stars. These data are not corrected for completeness.
+
+SNR for transits of many of these planets is too low for
+TESS. We released TOIs for 5 of the 864 known planets detected via other methods and orbiting host stars
+with Tmag < 13.5. We expect the number of TOIs initially detected by radial velocity measurements to be
+low because of low transit probabilities for radial velocity targets (Dalba et al. 2019; Kane et al. 2021).
+10.5. Multi-Planet Systems and Multi-Planet False
+Positive Probability
+The TOI planet candidates includes several dozen systems containing up to four planet candidates each. This
+is despite TESS’s shorter observing baseline compared
+to Kepler and K2. The architectures of the TOI multiplanet systems are summarized in Figure 16.
+Early on in the Kepler mission, Latham et al. (2011);
+Lissauer et al. (2011) noticed that planet candidates in
+systems with multiple transiting planet candidates (i.e.
+multi-transiting systems) were considerably more likely
+to be genuine transiting exoplanets than those in single planet candidate systems (i.e. singly-transiting sys-
+
+tems). This observation was formalized into a statistical framework (Lissauer et al. 2012) and used in the
+validation of hundreds of planetary candidates in multitransiting systems (Lissauer et al. 2014; Rowe et al.
+2014). Here, we investigate whether multi-transiting
+systems discovered by TESS are similarly more likely to
+be genuine transiting planets than their singly-transiting
+counterparts.
+We followed a procedure similar to Lissauer et al.
+(2012) to determine how much more likely multitransiting candidates are to be true positives than
+singly-transiting candidates. In particular, we calculated a “multiplicity boost” - a multiplicative factor that
+can be applied to the false positive probability of any
+given transiting planet candidate to reflect the a priori higher likelihood of a candidate in a multi-transiting
+system to be a real planet.
+We consider only TOIs found by the SPOC pipeline
+because the search target list for these TOIs is welldefined. Over the Prime Mission, TESS observed
+232,705 unique stars for at least one sector at two-minute
+
+27
+
+N planets per bin
+
+TESS Prime Mission TOI Catalog
+Prime Mission TOIs
+Barclay (2020) prediction Tmag<10.5
+Prime Mission TFOP FPs
+
+400
+200
+0
+
+Planet Radius (R )
+
+10
+
+sub-Jovian
+sub-Neptune
+
+terrestrial
+
+1
+Barclay (2020) prediction Tmag<10.5
+TOIs
+TOI Known Planets
+Confirmed TESS planets
+
+1
+
+10
+
+Period (days)
+
+100
+
+0
+
+100 200 300 400
+
+N planets per bin
+
+Figure 10. TOIs in period-radius space. The period in days is on the horizontal axis and the planet radius in Earth radii
+is on the vertical axis. The solid dark orange circles are TESS planets confirmed either with a mass measurement or another
+validation method. The red diamonds are known planets from other surveys re-detected by TESS. The open orange circles are
+TOI planet candidates excluding confirmed TESS planets, known planets, and false positives. The light blue open circles are
+the predicted TESS planet yield from Barclay (2020) for stars brighter than Tmag = 10.5. The banding in the simulated points,
+for example at 4R⊕ , is an artifact of the period-radius bins in which occurrence rates were calculated. The top histogram shows
+the distribution of TOIs in period space. The histogram at right shows the distribution of TOIs in radius space. The TOIs,
+including known planets and confirmed TESS planets, are the orange histogram. The predicted planet yield from Barclay (2020)
+is in light blue, and the false positives as of 8 Oct. 2020 are in grey.
+
+cadence. From the stars observed at two-minute cadence, the TOI process identified 1023 total planet candidates in 930 systems. There were 855 single-planetcandidate systems, 61 systems with two planet candidates, 10 with three candidates, and 4 with four candidates.
+The multiplicity boost is given by the ratio of probability any star is a TOI and the probability that any TOI
+has more than one planet candidate. In this case, the
+multiplicity boost is roughly (75/930) / (930/232705)
+≈ 20. This is lower than the multiplicity boost estimated from both Kepler and K2 (about 30, Lissauer
+et al. 2012; Sinukoff et al. 2016; Vanderburg et al.
+2016b), likely because of TESS’s higher false positive
+rate (due to larger pixels), and the increased difficulty
+in detecting and disentangling multi-transiting systems
+given TESS’s shorter observing baselines.
+The multiplicity boost is stronger when we restrict our
+analysis to only planets smaller than 6 R⊕ , which are intrinsically more common and therefore have lower false
+alarm rates. From the two-minute postage stamps, we
+identified 630 planet candidates smaller than 6 R⊕ in 545
+
+systems. The majority of TESS multi-planet systems
+(69/76) have more than one small planet candidate: 56
+systems with two planet candidates, 9 with three, and 4
+with four planet candidates. Calculating the multiplicity boost for this set of smaller planet candidates gives
+(69/545)/(545/232705) ≈ 54. The presence of multiple
+small planet candidates is a strong indicator that the
+system is genuine.
+We advise caution when applying the multiplicity
+boost to candidate multi-transiting systems in crowded
+regions like the galactic plane because the likelihood of
+many false positives in the same pixel is higher. Our
+multiplicity boost was calculated as an average over the
+whole sky but is likely lower in crowded regions. We
+also note that these estimates for the multiplicity boost
+do not apply to planet candidates detected only by the
+QLP. Because the QLP searches all stars observed in the
+full frame images, regardless of their evolutionary state
+and suitability for detecting transiting planets (such as
+red giants), QLP planet candidates have a higher false
+positive rate. Any multiplicity boost present for multiplanet systems detected only by the QLP will likely be
+
+28
+
+Guerrero et al.
+
+Planet Equilibrium Temp (K)
+
+10000
+
+TOIs
+TOI Known Planets
+Confirmed TESS planets
+Confirmed non-TESS transiting planets
+
+1000
+
+Mercury
+
+Venus
+
+100
+
+1
+
+4
+
+10
+
+Period (days)
+
+Earth
+
+100
+
+Figure 11. Orbital period vs. planet equilibrium temperature. The planet orbital period in days is on the horizontal axis
+and the planet Teq is on the vertical axis. The open orange circles are planet candidate TOIs which have not been confirmed.
+The solid dark orange circles are planets confirmed either with a mass measurement or are validated by other means. The
+red diamonds are TOIs which were known planets prior to the TESS mission. The light blue open circles are known planets
+from outside the TESS mission (NASA Exoplanet Archive, accessed 8 Oct. 2020). Mercury, Venus, and Earth are visible in
+the bottom right. The TOI catalog has greatly increased the number of temperate, short-period planet candidates available for
+follow-up.
+
+much weaker than the boost for SPOC pipeline-detected
+multi-planet systems. So far, the QLP has only detected
+one system with multiple candidates (TOI 1130, Huang
+et al. 2020c) for which the stars were not pre-selected
+for two-minute cadence observations and searched by
+the SPOC pipeline, so we cannot estimate a multiplicity boost for candidates only detected by the QLP.
+10.6. Single Transits
+Planet candidates which transit only once during
+TESS observations are of interest because they can be
+followed up to yield rare, long-period transiting planets.
+The QLP and SPOC pipelines search for at least two
+transits to make a TCE and therefore do not purposefully generate a list of single-transit planet candidates.
+However, occasionally the pipeline finds a single transit
+and folds it on a transit-like noise feature elsewhere in
+the light curve. When this happens, we include these
+single transit events in the TOI Catalog with P = 0. It
+is possible for a TOI which is a single-transit planet candidate with a single sector of data to be updated with a
+measured period if additional transits are found in later
+sectors.
+There are separate, dedicated efforts to purposefully
+identify and follow-up single transits from the QLP and
+
+SPOC and also from these independent searches. In the
+latter case of single-transit planet candidates from independent searches, these candidates fall into the category
+of community TOIs.
+The follow-up efforts for single-transit planet candidates fall into two categories. The first is photometric follow-up of a list of target stars with single transits (for example Cooke et al. 2018). The second is a
+dedicated radial-velocity campaign for a list of target
+stars, using an initial estimate of the period (Seager &
+Mallén-Ornelas 2003) by using transit and stellar properties and assuming a circular orbit (e.g., Villanueva et
+al., in prep.).
+10.7. Some Notable TESS Firsts
+Here we present a few highlights of TESS exoplanet
+discoveries, selected because they are TESS “firsts” or
+appear in an otherwise scarce parameter space in stellar
+parameters or planet parameters.
+π Mensae c —The mission’s first planet discovery
+(Huang et al. 2018b), π Men c (TOI 144), delivered
+on TESS’s promise to find small planets around bright
+stars. π Men c orbits a very bright host star (Vmag =
+5.7). The planet is a sub-Neptune with an average den-
+
+29
+
+TESS Prime Mission TOI Catalog
+
+5
+
+TOIs
+TOI Known Planets
+Confirmed TESS planets
+Confirmed non-TESS planets
+
+Planet Radius (R )
+
+4
+
+3
+
+2
+
+1
+
+10
+
+100
+
+Star distance (pc)
+
+1000
+
+Figure 12. Planet radius (in R⊕ ) vs. host star distance (in pc). Solid dark orange circles are TESS planets confirmed either
+with a mass measurement or other validation method; orange open circles are TOIs (with known false positives removed); the
+solid red diamonds are known planets from other surveys re-detected by TESS; and blue open circles are known exoplanets from
+outside the TESS mission (NASA Exoplanet Archive, accessed 8 Oct. 2020). Point size is scaled by transit depth.
+
+sity too low (M = 4.82+0.84
+−0.86 M⊕ , R = 2.042 ± 0.050 R⊕ ,
+ρ = 2.97+0.57
+ρ
+)
+for
+the planet to be predominately
+⊕
+−0.55
+rocky. Instead the planet likely has a thick envelope.
+The quick π Mensae c mass determination was possible
+due to a rich radial-velocity data set already archived
+(Jones et al. 2002). The system was observed in multiple sectors in TESS Year 1. Additional observations and
+analysis have provided more precise mass measurement
+for planets b and c, their large orbit misalignment, and
+possible theories for the formation of the system (Kane
+et al. 2020; Xuan & Wyatt 2020; Kunovac Hodžić et al.
+2020; Damasso et al. 2020; De Rosa et al. 2020). Although π Men is a bright star, it is a viable candidate
+for JWST observation.
+TOI 125 —TOI 125 is a three-planet system (Quinn
+
+et al. 2019) and was TESS’s first multi-planet system
+released. The system contains three sub-Neptune planets, and two possible additional small planets detected
+in further analysis with low (5.2-σ and 5.1-σ) signal-tonoise. The system orbits a K0 dwarf (V=10.9).
+TOI 700 d —TOI 700 d is the first TESS discovery of
+an Earth-sized planet in the habitable zone of its star.
+The host star is an M2 red dwarf star. The planet is
+1.144+0.062
+−0.061 R⊕ with a period of P = 37.42 days and
+an equilibrium temperature of Teq ∼ 269 K (Rodriguez
+et al. 2020; Gilbert et al. 2020; Suissa et al. 2020). The
+
+system has two other Earth-sized planets interior to TOI
++0.16
+700 d (Rb = 1.037+0.065
+−0.064 R⊕ and Rc = 2.65−0.15 R⊕ ) and
+lies in the southern TESS continuous viewing zone. The
+system was one of the last targets Spitzer observed.
+TOI 1338 —TOI 1338 b is the first TESS circumbinary
+planet (Kostov et al. 2020). The planet orbits two stars
+with masses 1.1M and 0.3M and a 14.6-day orbit.
+The planet has a nearly-circular orbit, an orbital period
+of 95.2 days and a radius of 6.85±0.19R⊕ . The discovery
+relied on visual inspection to identify the planet transits
+as distinct from the secondary transits of the eclipsing
+binary.
+LHS 3844 b —The first ultra-short-period (USP) planet
+from TESS, LHS 3844 b (Vanderspek et al. 2019) is a
+hot super-Earth orbiting its host star every 11 hours.
+The M dwarf host star is 14.9 parsecs away. This candidate demonstrated TESS’s ability to detect small planets around nearby small stars. LHS 3844 b was later
+found to likely be a bare rock planet with little or no
+detectable atmosphere (Kreidberg et al. 2019).
+HD 21749 —TOI 186.01, or HD 21749 b, is TESS’s first
+long-period planet, with P = 35.61 days (Dragomir
+et al. 2019). The host star is a bright (Vmag =8.5) K
+dwarf at 16 parsecs distance. TOI 186.01 was initially
+a single-transit TOI in Sector 1 until additional transits
+
+30
+
+Guerrero et al.
+>7000
+6500
+
+10.0
+
+5500
+5000
+4500
+
+1.0
+
+Teff (K)
+
+RV semi-amplitude (m/s)
+
+6000
+
+4000
+3500
+3000
+
+0.1
+4
+
+2500
+
+6
+
+8
+
+10
+TESS magnitude
+
+12
+
+14
+
+Figure 13. Estimated RV semi-amplitudes for TOIs. RV semi-amplitude (in meters per second) is on the vertical axis and
+TESS magnitude is on the horizontal axis. False positives (of all sizes) from follow-up and revised vetting are small gray points
+in the background. Planets (both TESS confirmed and known planets) and TESS planet candidates which are smaller than 4R⊕
+are filled circles; those larger than 4R⊕ are open circles. The color bar is host star Teff . The semi-amplitude calculation uses
+estimated planet masses derived from radii based on the probabilistic Chen and Kipping mass-radius relation (Chen & Kipping
+2017) and uses stellar masses and radii from TICv8 when available. For radii not in TICv8, we use Gaia DR2 or assume 1 R . If
+the stellar mass is not in TICv8, it is approximated to equal the radius of the star, with the exception of evolved stars, for which
+we assign a maximum stellar mass of 1.5 M . The dashed line indicates an approximate threshold for measurable RV signals,
+using 1 m/s as the lower limit for detectability, increasing with photon noise for fainter host stars. Most TESS candidates fall
+above this threshold for mass measurement, but we note that in practice, stellar activity correction will be needed for many of
+the smallest signals.
+
+occurred in following sectors. A second, shorter-period
+planet, TOI 186.02, or HD 21749 c, (P=7.9 days) appeared in multi-sector analysis of SPOC pipeline postage
+stamp data from Sectors 1-3. TOI 186.02 is the first
+Earth-sized planet (Rp = 0.892R⊕ ) from TESS. HD
++0.17
+21749b is sub-Neptune-sized (Rp = 2.61−0.16
+R⊕ ). The
+two planets are on either side of the radius valley (Fulton
+et al. 2017).
+TOI 200.01 —DS Tuc A b (Newton et al. 2019b) is
+TESS’s first young planet (τ ∼ 45 Myr). The host star,
+DS Tuc A, is part of a bright (Vmag =8.5) visual binary in
+the young (τ ∼ 45 Myr) Tucana-Horologium association.
+The planet is 5.86 ± 0.17R⊕ with an 8.1 day period, a
+rare size-period combination. This young planet can be
+a point of comparison against older planets with future
+measurements of its mass and atmosphere.
+
+TOI 704 —TOI 704 b, or LHS 1815 b, is TESS’s first
+thick disk star with a transiting planet (Gan et al. 2020).
+In other words, TOI 704 b’s host star has a much higher
+expected maximal height (Zmax = 1.8 kpc) above the
+Galactic plane as compared to other TESS planet host
+stars. This TOI will enable studies on whether interior structure and atmospheric properties of a thick disk
+planet differs from planets in the thin disk (or Galactic
+halo). TOI 704 b transits an M dwarf star with P = 3.8
+days and radius 1.088±0.064R⊕ with a 3−σ mass upper
+limit of 8.7 M⊕ .
+TOI 813 —Members of the public can label transit-like
+
+features of TESS light curves on the Planet Hunters
+TESS platform31 . TOI 813 b was the first TESS planet
+discovered by Planet Hunters TESS (Eisner et al. 2020).
+31 https://www.planethunters.org
+
+31
+
+TESS Prime Mission TOI Catalog
+
+2
+
+TOIs
+TOI Known Planets
+Confirmed TESS planets
+Confirmed non-TESS planets
+
+4
+
+H-Band Magnitude
+
+6
+8
+10
+12
+14
+1
+
+4
+
+Planet Radius (R )
+
+10
+
+Figure 14. Host star magnitude (in Hmag ) vs. planet radius (in R⊕ ). The solid dark orange circles are TESS planets confirmed
+either with a mass measurement or validated by other means; the open orange circles are TOIs (non-validated, but with known
+false positives removed); the solid red diamonds are known planets from other surveys re-detected by TESS; and the pale blue
+open circles are known exoplanets (dominated by validated planets, i.e. without mass measurements) from outside the TESS
+mission (NASA Exoplanet Archive, accessed 8 Oct. 2020). The point size is scaled by transit depth. TESS is discovering
+planet candidates with bright host stars amenable to follow-up observations. We plot the host star’s Hmag because currently,
+atmospheric follow-up with the HST Wide Field Camera 3 instrument is often carried out in the H band.
+
+The Planet Hunters TESS team identified the candidate
+and released it as a community TOI. The planet orbits
+a bright, sub-giant star at a long orbital period of 83.4
+days and has a radius of 6.71 ± 0.38R⊕ .
+10.8. Some Notable TESS Exoplanets
+In addition to being TESS firsts, a few planets are
+very unusual and deserve special attention.
+TOI 1690 (WD 1856+534) —TOI 1690 b is a giant planet
+candidate transiting a white dwarf star (Vanderburg
+et al. 2020). TOI 1690 b is a landmark discovery because
+its existence demonstrates that planets can survive migration into orbits close to white dwarf stars. With an
+orbital period of 1.4 days, TOI 1690 b (Rp = 10.4±1R⊕ ,
+Mp . 14MJupiter ) is close enough to its white dwarf host
+star that it must have formed at larger planet-star separations in order to avoid destruction when the white
+dwarf precursor star evolved into a red giant star.
+TOI 849 —TOI 849 b is a dense and unusually massive
+planet (40.8+2.4
+−2.5 M⊕ ) for its size (smaller than Neptune,
++0.164
+3.447−0.122 R⊕ ), such that it is considered a planetary
+core of a hot Jupiter (Armstrong et al. 2020). Of further
+interest is that TOI 849 b resides in the hot-Neptune
+
+“desert,” a region in exoplanet mass-radius period parameter space that contains few planets. TOI 849 b
+transits a G-type star with an orbital period of 18.4
+hours.
+TOI 1266 —The TOI 1266 system consists of two planets
+orbiting a nearby M-dwarf star (Stefansson et al. 2020;
+Demory et al. 2020). TOI 1266 is a key find because it
+will provide a strong test of photoevaporation models,
+as the outer planet (P = 18.8 days; Rp = 1.67+0.09
+−0.11 R⊕ )
+is very atypically smaller than the inner planet (P =
+10.9 days, Rp = 2.46 ± 0.08R⊕ ). The outer and inner
+planets have upper mass limits of 6.4M⊕ and 15.9M⊕
+respectively.
+11. SUMMARY
+
+This paper described the process to identify TESS Objects of Interest, targets the project deems as promising
+planet candidates. The TOI process has yielded 2241
+TOIs over the course of the TESS prime mission. We
+gave an overview of the two major pipelines contributing
+targets for consideration as TOIs, the SPOC and QLP.
+The SPOC pipeline uniquely detected 1255 TOIs in the
+postage-stamp data and the QLP pipeline uniquely detected 986 TOIs in the FFI-only data.
+
+32
+
+Guerrero et al.
+
+Transit Spectroscopy Metric
+
+Terrestrial
+
+Large Sub-Jovian
+Small
+sub-Neptune subNeptune
+
+102
+
+101
+
+actual threshold
+predicted threshold
+1
+
+2
+3 4 5 6 7 8 910
+Planet radius [Earth radii]
+
+Figure 15. The Transmission Spectroscopy Metric (TSM) (Kempton et al. 2018) as a function of planet radius for TESS
+candidate planets from the Prime Mission (including known planets, but excluding false positives). The solid blue lines indicate
+the threshold TSM required to obtain a sample of 37 terrestrial planets, 100 small sub-Neptunes, 100 large sub-Neptunes, and
+50 sub-Jovians over the entire TESS mission. The dashed blue lines indicate the predicted threshold TSM from Kempton
+et al. (2018). These results suggest that the TSM values for TESS sub-Neptunes (Rp < 4R⊕ ) are lower than predicted by
+(Kempton et al. 2018), and that more observing time than expected may be required to build a statistical sample of planets
+in each category. The difference between the actual and predicted values, however, may be in part due to an overprediction of
+short-period planets in the yield simulations. The actual TSM values may shift as the TESS data continue to be vetted and
+more TOIs are found.
+
+We illustrated the distribution of planets and planet
+candidates amassed over the TESS Prime Mission into
+the TOI Catalog and highlighted several TESS planets.
+Ongoing follow-up efforts are adding to the growing collection of confirmed TESS planets As of 8 Oct. 2020,
+72 TOIs have been confirmed and 1343 TOIs remain as
+active planet candidates.
+Simulations of the first extended mission yield of planets predict the total number of planet candidates will
+double again. The two-year extended mission will run
+from July 2020 to September 2022. In the first year,
+TESS will re-observe the Southern Hemisphere in 13
+sectors filling in the gaps from the Prime Mission. In
+the second year, TESS will observe 11 Northern Hemi-
+
+sphere sectors and 5 sectors on the ecliptic, covering
+two-thirds of the ecliptic plane. Additionally, the TESS
+ecliptic observations will overlap with 15 of the 20 K2
+campaigns. The extended mission will increase the total
+sky coverage of the TESS mission overall from ∼ 70% to
+88%. With the addition of extended mission data, the
+TOI Catalog will gain additional TOIs and CTOIs, as
+well as improved planetary parameters for known shortand long-period TOIs.
+The TOI Catalog is posted online at the tess.mit.edu/
+toi-releases TOI portal. The TOI Catalog is a living
+list that is continually updated. An augmented version
+of the TOI catalog (updated twice daily) can be found
+at ExoFOP-TESS. MAST also hosts archived versions
+
+TESS Prime Mission TOI Catalog
+of the catalog (saved monthly). The TOI Catalog will
+support the enduring legacy of the TESS mission by
+providing the list of planet systems which the exoplanet
+investigations of the next few decades will target.
+
+ACKNOWLEDGEMENTS
+We thank the referee for their thoughtful comments
+which greatly improved the clarity of the paper.
+Funding for the TESS mission is provided by NASA’s
+Science Mission directorate.
+We thank William Fong and Martin Owens for their
+contributions to the TSO software.
+This research has made use of the TESS Exoplanet
+Follow-up Observation Program website (ExoFOPTESS), which is operated by the California Institute
+of Technology, under contract with the National Aeronautics and Space Administration under the Exoplanet
+Exploration Program.
+This research has made use of the NASA Exoplanet
+Archive, which is operated by the California Institute
+of Technology, under contract with the National Aeronautics and Space Administration under the Exoplanet
+Exploration Program.
+This paper includes data collected with the TESS mission, obtained from the MAST data archive at the Space
+Telescope Science Institute (STScI). The analysis for
+this paper was done in part on the TESS Science Platform, a JupyterHub environment on Amazon Web Services that was deployed by the Space Telescope Science
+Institute (STScI). STScI is operated by the Association
+of Universities for Research in Astronomy, Inc., under
+NASA contract NAS 5–26555.
+This work has made use of data from the European Space Agency (ESA) mission Gaia (https://www.
+cosmos.esa.int/gaia), processed by the Gaia Data Processing and Analysis Consortium (DPAC, https://www.
+cosmos.esa.int/web/gaia/dpac/consortium). Funding
+for the DPAC has been provided by national institutions, in particular the institutions participating in the
+Gaia Multilateral Agreement.
+This research has made use of NASA’s Astrophysics
+Data System.
+Resources supporting this work were provided by the
+NASA High-End Computing (HEC) Program through
+the NASA Advanced Supercomputing (NAS) Division
+at Ames Research Center for the production of the
+SPOC data products.
+A portion of this research was carried out at the Jet
+Propulsion Laboratory, California Institute of Technology, under a contract with the National Aeronautics and
+Space Administration (80NM0018D0004)
+
+33
+
+AV’s work was performed under contract with the California Institute of Technology / Jet Propulsion Laboratory funded by NASA through the Sagan Fellowship
+Program executed by the NASA Exoplanet Science Institute.
+D. D.’s work was supported in part by TESS Guest
+Investigator Program grant 80NSSC19K1727, and by
+NASA through Hubble Fellowship grant HST-HF251372.001-A awarded by the Space Telescope Science
+Institute, which is operated by the Association of Universities for Research in Astronomy, Inc., for NASA, under contract NAS5-26555.
+HK acknowledges funding for the Stellar Astrophysics
+Centre provided by The Danish National Research
+Foundation (Grant agreement no.: DNRF106)
+I.J.M.C. acknowledges support from the NSF through
+grant AST-1824644, and from NASA through Caltech/JPL grant RSA-1610091. This work is partly
+supported by JSPS KAKENHI Grant Numbers
+JP18H01265 and JP18H05439, and JST PRESTO
+Grant Number JPMJPR1775.
+KS acknowledges support from NASA 17-XRP17 20024.
+CXH and MNG acknowledges support from MIT’s
+Kavli Institute as a Juan Carlos Torres Fellow.
+TD acknowledges support from MIT’s Kavli Institute
+for Astrophysics and Space Research as a Kavli postdoctoral fellow.
+We acknowledge Indigenous Peoples as the traditional
+stewards of the land, and the enduring relationship that
+exists between them and their traditional territories.
+The land on which this research was conducted is the
+traditional unceded territory of the Wampanoag Nation. We acknowledge the painful history of genocide
+and forced occupation of their territory, and we honor
+and respect the many diverse indigenous people connected to this land on which we gather from time immemorial.
+
+Facility: TESS, MAST, NASA Exoplanet Archive,
+Gaia
+
+Software: QLP (Huang et al. 2020a,b), SPOC,
+(Jenkins et al. 2020; Twicken et al. 2016), tica (Fausnaugh et al. (in prep.)), FITSH (Pál 2012), astronet
+(Yu et al. 2019), TEC, TEV, batman (Kreidberg 2015),
+nebuliser (Irwin 1985), emcee (Foreman-Mackey et al.
+2013), vartools (Hartman & Bakos 2016), go (Meyerson 2014), TensorFlow (Abadi et al. 2015), h5py (Collette 2013), Astropy (Astropy Collaboration et al. 2013;
+Price-Whelan et al. 2018), astroquery (Ginsburg et al.
+2019), matplotlib (Hunter 2007), pandas (pandas devel-
+
+34
+
+Guerrero et al.
+opment team 2020), Scipy (Virtanen et al. 2020), Numpy
+(Oliphant 2006–)
+APPENDIX
+
+A. LIST OF ACRONYMS
+
+• BLS, Box Least Squares (algorithm)
+• BTJD, Barycentric-corrected TESS Julian Date
+• CAL, Calibration (module)
+• CDPP, Combined Differential Photometric Precision
+• CNN, Convolutional Neural Network
+• COA, Compute Optimal Apertures (module)
+• CP, Confirmed Planet (disposition)
+• CTL, Candidate Target List
+• CTOI, Community TOI
+• DSN, Deep Space Network
+• DV, Data Validation
+• EB, Eclipsing Binary (disposition)
+• ExoFOP, Exoplanet Follow-up Observing Program
+• FFI, Full-Frame Image
+• FP, False Positive (disposition)
+• IS, Instrument Noise/Systematic (disposition)
+• JWST, James Webb Space Telescope
+• KP, Known Planet (disposition)
+• MAP, Maximum A Posteriori (fit)
+• MAST, Mikulksi Archive for Space Telescopes
+• MES, Multiple Event Statistic
+• PA, Photometric Analysis (module)
+• PC, Planet Candidate (disposition)
+• PDC, Presearch Data Conditioning (module)
+• PDCSAP, PDC Simple Aperture Photometry (light curve)
+• POC, Payload Operations Center
+• PPA, Photometer Performance Assessment
+• PRF, Pixel Response Function
+
+TESS Prime Mission TOI Catalog
+
+Figure 16. Multi-planet TOI systems. The horizontal axis
+is period in days, and the TOIs are ordered from longest to
+shortest minimum period. The color of each planet marker
+maps to the effective temperature of each system’s host star
+and the planet markers are scaled by planet radius. The
+multi-planet systems TESS has discovered have host stars
+across a wide range of spectral types.
+
+35
+
+36
+
+Guerrero et al.
+• PRV, precise Radial Velocity
+• QLP, Quick Look Pipeline
+• RV, Radial Velocity
+• SES, Single Event Statistic
+• SNR, Signal-to-Noise Ratio
+• SOC, Science Operations Center
+• SPOC, Science Processing Operations Center
+• SVD, Singular Value Decomposition
+• TCE, Threshold Crossing Event
+• TEC, TESS-ExoClass
+• TEV, TESS Exoplanet Vetter
+• TESS, Transiting Exoplanet Survey Satellite
+• TSM, Transmission Spectroscopy Metric
+• TFOP, TESS Follow-Up Observing Program
+• TIC, TESS Input Catalog
+• TJD, TESS Julian Date
+• TOI, TESS Object of Interest
+• TPS, Transiting Planet Search (module)
+• TSO, TESS Science Office
+• U, Undecided (disposition)
+• V, Stellar Variability (disposition)
+
+REFERENCES
+Abadi, M., Agarwal, A., Barham, P., et al. 2015,
+TensorFlow: Large-Scale Machine Learning on
+Heterogeneous Systems, software available from
+tensorflow.org
+Akeson, R. L., Chen, X., Ciardi, D., et al. 2013, PASP, 125,
+989
+Armstrong, D. J., Lopez, T. A., Adibekyan, V., et al. 2020,
+Nature, 583, 39
+Astropy Collaboration, Robitaille, T. P., Tollerud, E. J.,
+et al. 2013, A&A, 558, A33
+Barclay, T. 2020, TESS Extended Mission Yield
+Simulations, doi:10.6084/m9.figshare.11775081.v1
+Barclay, T., Pepper, J., & Quintana, E. V. 2018, ApJS,
+239, 2
+
+Barclay, T., Arney, G. N., Brande, J., et al. 2019,
+Searching for Secondary Atmospheres in a System of
+Benchmark Worlds, HST Proposal
+Beatty, T. G., Fortney, J., Greene, T. P., et al. 2019,
+Reconnaissance of the Hottest Neptune-Class Planet
+Transiting a Bright Parent Star, HST Proposal
+Berger, T. A., Huber, D., Gaidos, E., & van Saders, J. L.
+2018, ApJ, 866, 99
+Borucki, W. J., Koch, D., Basri, G., et al. 2010, Science,
+327, 977
+Bouma, L. G., Hartman, J. D., Bhatti, W., Winn, J. N., &
+Bakos, G. Á. 2019, ApJS, 245, 13
+Brown, T. M. 2003, ApJL, 593, L125
+
+TESS Prime Mission TOI Catalog
+Bryson, S. T. 2008, Target Optimal Aperture Selection,
+Tech. Rep. KADN–26108, NASA KPO@Ames Design
+Note
+Bryson, S. T., Jenkins, J. M., Klaus, T. C., et al. 2010, in
+Proc. SPIE, Vol. 7740, Software and Cyberinfrastructure
+for Astronomy, 77401D
+Bryson, S. T., Jenkins, J. M., Klaus, T. C., et al. 2020,
+Kepler Data Processing Handbook (KSCI-19081-003):
+Target and Aperture Definitions: Selecting Pixels for
+Kepler Downlink
+
+37
+
+Eisner, N. L., Barragán, O., Aigrain, S., et al. 2020,
+MNRAS, 494, 750
+Fausnaugh, M. M., Burke, C. J., Ricker, G. R., &
+Vanderspek, R. 2020, Research Notes of the American
+Astronomical Society, 4, 251
+Feinstein, A. D., Montet, B. T., Foreman-Mackey, D., et al.
+2019, PASP, 131, 094502
+Foreman-Mackey, D., Hogg, D. W., Lang, D., & Goodman,
+J. 2013, PASP, 125, 306
+
+Caldwell, D. A., Tenenbaum, P., Twicken, J. D., et al.
+2020, Research Notes of the American Astronomical
+Society, 4, 201
+
+Fu, G., Crossfield, I., Deming, D., Ih, J., & Kempton, E.
+M. R. 2019, Exploring the relation between aerosol
+formation and temperature with the TESS hot-Neptune
+HD 219666b, HST Proposal
+
+Cauley, P. W., France, K., Gaidos, E., et al. 2020,
+Measuring mass loss via metal lines from the very young
+planet AU Mic b, HST Proposal
+
+Fulton, B. J., Petigura, E. A., Howard, A. W., et al. 2017,
+AJ, 154, 109
+
+Chen, J., & Kipping, D. 2017, ApJ, 834, 17
+Christiansen, J. L., Jenkins, J. M., Caldwell, D. A., et al.
+2012, PASP, 124, 1279
+Clarke, B. D., Caldwell, D. A., Quintana, E. V., et al. 2020,
+Kepler Data Processing Handbook (KSCI-19081-003):
+Pixel Level Calibrations
+Collette, A. 2013, Python and HDF5 (O’Reilly)
+Collins, K. A., Collins, K. I., Pepper, J., et al. 2018a, AJ,
+156, 234
+—. 2018b, AJ, 156, 234
+Cooke, B. F., Pollacco, D., West, R., McCormac, J., &
+Wheatley, P. J. 2018, A&A, 619, A175
+Coughlin, J. L., Mullally, F., Thompson, S. E., et al. 2016,
+ApJS, 224, 12
+Crossfield, I., Kreidberg, L., Mikal-Evans, T., et al. 2017,
+The Atmospheric Diversity of Mini-Neptunes in
+Multi-planet Systems, HST Proposal
+Crossfield, I. J. M., Guerrero, N., David, T., et al. 2018,
+ApJS, 239, 5
+Dalba, P. A., Kane, S. R., Barclay, T., et al. 2019, PASP,
+131, 034401
+Damasso, M., Sozzetti, A., Lovis, C., et al. 2020, A&A, 642,
+A31
+
+Gaia Collaboration, Prusti, T., de Bruijne, J. H. J., et al.
+2016, A&A, 595, A1
+Gaia Collaboration, Brown, A. G. A., Vallenari, A., et al.
+2018, A&A, 616, A1
+Gan, T., Shporer, A., Livingston, J. H., et al. 2020, AJ,
+159, 160
+Gilbert, E. A., Barclay, T., Schlieder, J. E., et al. 2020, AJ,
+160, 116
+Ginsburg, A., Sipőcz, B. M., Brasseur, C. E., et al. 2019,
+AJ, 157, 98
+Günther, M. N., Pozuelos, F. J., Dittmann, J. A., et al.
+2019, Nature Astronomy, arXiv:1903.06107
+Hartman, J. D., & Bakos, G. Á. 2016, Astronomy and
+Computing, 17, 1
+Henry, T. J., Jao, W.-C., Winters, J. G., et al. 2018, AJ,
+155, 265
+Howell, S. B., Sobeck, C., Haas, M., et al. 2014, PASP, 126,
+398
+Huang, C. X., Shporer, A., Dragomir, D., et al. 2018a,
+arXiv e-prints, arXiv:1807.11129
+Huang, C. X., Burt, J., Vanderburg, A., et al. 2018b, ApJ,
+868, L39
+
+De Rosa, R. J., Dawson, R., & Nielsen, E. L. 2020, A&A,
+640, A73
+
+Huang, C. X., Vanderburg, A., Pál, A., et al. 2020a,
+Research Notes of the American Astronomical Society, 4,
+204
+
+Demory, B. O., Pozuelos, F. J., Gómez Maqueo Chew, Y.,
+et al. 2020, A&A, 642, A49
+
+—. 2020b, Research Notes of the American Astronomical
+Society, 4, 206
+
+Dole, S. H. 1964, Habitable planets for man (Blaisdell)
+
+Huang, C. X., Quinn, S. N., Vanderburg, A., et al. 2020c,
+ApJL, 892, L7
+
+Dos Santos, L., Allart, R., Bourrier, V., et al. 2020,
+Atmospheric escape in the young transiting planet DS
+Tuc A b, HST Proposal
+Dragomir, D., Teske, J., Günther, M. N., et al. 2019, ApJL,
+875, L7
+
+Hunter, J. D. 2007, Computing in Science & Engineering, 9,
+90
+Irwin, M. J. 1985, MNRAS, 214, 575
+Jenkins, J. M. 2002, ApJ, 575, 493
+
+38
+
+Guerrero et al.
+
+Jenkins, J. M., Tenenbaum, P., Seader, S., et al. 2020,
+Kepler Data Processing Handbook (KSCI-19081-003):
+Transiting Planet Search
+Jenkins, J. M., Chandrasekaran, H., McCauliff, S. D., et al.
+2010, in Society of Photo-Optical Instrumentation
+Engineers (SPIE) Conference Series, Vol. 7740,
+Proc. SPIE, 77400D
+Jenkins, J. M., Twicken, J. D., McCauliff, S., et al. 2016, in
+Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 9913, Software and
+Cyberinfrastructure for Astronomy IV, 99133E
+Jones, H. R. A., Paul Butler, R., Tinney, C. G., et al. 2002,
+MNRAS, 333, 871
+Kane, S. R., Yalçınkaya, S., Osborn, H. P., et al. 2020, AJ,
+160, 129
+Kane, S. R., Bean, J. L., Campante, T. L., et al. 2021,
+PASP, 133, 014402
+Kempton, E. M. R., Bean, J. L., Louie, D. R., et al. 2018,
+PASP, 130, 114401
+King, G., Bourrier, V., Ehrenreich, D., Louden, T., &
+Wheatley, P. J. 2020, The irradiation and atmospheric
+escape of the brightest gaseous super-Earth, HST
+Proposal
+Kostov, V. B., Orosz, J. A., Feinstein, A. D., et al. 2020,
+AJ, 159, 253
+Kovács, G., Zucker, S., & Mazeh, T. 2002, A&A, 391, 369
+Kreidberg, L. 2015, PASP, 127, 1161
+Kreidberg, L., Koll, D. D. B., Morley, C., et al. 2019,
+Nature, 573, 87
+Kreidberg, L., Burt, J., Crossfield, I., et al. 2020, Exploring
+the Demographics of Exo-Neptunes: Atmospheric
+Characterization of a Cool Sub-Neptune from TESS,
+HST Proposal
+Kunovac Hodžić, V., Triaud, A. H. M. J., Cegla, H. M.,
+Chaplin, W. J., & Davies, G. R. 2020, arXiv e-prints,
+arXiv:2007.11564
+Latham, D. W., Rowe, J. F., Quinn, S. N., et al. 2011,
+ApJL, 732, L24
+Li, J., Tenenbaum, P., Twicken, J. D., et al. 2019, PASP,
+131, 024506
+Lissauer, J. J., Ragozzine, D., Fabrycky, D. C., et al. 2011,
+ApJS, 197, 8
+Lissauer, J. J., Marcy, G. W., Rowe, J. F., et al. 2012, ApJ,
+750, 112
+Lissauer, J. J., Marcy, G. W., Bryson, S. T., et al. 2014,
+ApJ, 784, 44
+Louie, D. R., Deming, D., Albert, L., et al. 2018, PASP,
+130, 044401
+Lund, M. N., Handberg, R., Davies, G. R., Chaplin, W. J.,
+& Jones, C. D. 2015, ApJ, 806, 30
+
+Lund, M. N., Handberg, R., Kjeldsen, H., Chaplin, W. J.,
+& Christensen-Dalsgaard, J. 2017, in European Physical
+Journal Web of Conferences, Vol. 160, European Physical
+Journal Web of Conferences, 01005
+Meyerson, J. 2014, IEEE software, 31, 104
+Mikal-Evans, T., Crossfield, I., Daylan, T., et al. 2019,
+Atmospheric characterization of two temperate
+mini-Neptunes formed in the same protoplanetary
+nebula, HST Proposal
+Montalto, M., Borsato, L., Granata, V., et al. 2020,
+MNRAS, 498, 1726
+Morris, R. L., Twicken, J. D., Smith, J. C., et al. 2020,
+Kepler Data Processing Handbook (KSCI-19081-003):
+Photometric Analysis
+Mullally, F., Thompson, S. E., Coughlin, J. L., Burke,
+C. J., & Rowe, J. F. 2018, AJ, 155, 210
+Mullally, F., Coughlin, J. L., Thompson, S. E., et al. 2015,
+ApJS, 217, 31
+Nardiello, D., Borsato, L., Piotto, G., et al. 2019, MNRAS,
+490, 3806
+Newton, E. R., Batalha, N., Berta-Thompson, Z. K., et al.
+2019a, A deep look into the atmosphere of an exoplanet
+around a pre-main sequence star, HST Proposal
+Newton, E. R., Mann, A. W., Tofflemire, B. M., et al.
+2019b, ApJL, 880, L17
+Oelkers, R. J., & Stassun, K. G. 2019, Research Notes of
+the AAS, 3, 8
+Oliphant, T. 2006–, NumPy: A guide to NumPy, USA:
+Trelgol Publishing, [Online; accessed ¡today¿]
+Pál, A. 2012, MNRAS, 421, 1825
+pandas development team, T. 2020, pandas-dev/pandas:
+Pandas, doi:10.5281/zenodo.3509134
+Price-Whelan, A. M., Sipőcz, B. M., Günther, H. M., et al.
+2018, AJ, 156, 123
+Quinn, S. N., Becker, J. C., Rodriguez, J. E., et al. 2019,
+AJ, 158, 177
+Ricker, G. R., Winn, J. N., Vanderspek, R., et al. 2015,
+Journal of Astronomical Telescopes, Instruments, and
+Systems, 1, 014003
+Rodriguez, J. E., Vanderburg, A., Zieba, S., et al. 2020, AJ,
+160, 117
+Rowe, J. F., Bryson, S. T., Marcy, G. W., et al. 2014, ApJ,
+784, 45
+Schanche, N., Collier Cameron, A., Almenara, J. M., et al.
+2019, MNRAS, 488, 4905
+Seader, S., Tenenbaum, P., Jenkins, J. M., & Burke, C. J.
+2013, ApJS, 206, 25
+Seader, S., Jenkins, J. M., Tenenbaum, P., et al. 2015,
+ApJS, 217, 18
+Seager, S., & Mallén-Ornelas, G. 2003, ApJ, 585, 1038
+
+TESS Prime Mission TOI Catalog
+Shallue, C. J., & Vanderburg, A. 2018, AJ, 155, 94
+Sing, D. K., Lothringer, J. D., Mayne, N. J., et al. 2019,
+Characterizing the outstanding super-Earth LTT
+1445Ab, HST Proposal
+Sinukoff, E., Howard, A. W., Petigura, E. A., et al. 2016,
+ApJ, 827, 78
+Smith, J. C., Stumpe, M. C., Van Cleve, J. E., et al. 2012,
+PASP, 124, 1000
+Stassun, K. G., Oelkers, R. J., Pepper, J., et al. 2018, AJ,
+156, 102
+Stassun, K. G., Oelkers, R. J., Paegert, M., et al. 2019, AJ,
+158, 138
+Stefansson, G., Kopparapu, R., Lin, A., et al. 2020, arXiv
+e-prints, arXiv:2006.11180
+Stumpe, M. C., Smith, J. C., Catanzarite, J. H., et al. 2014,
+PASP, 126, 100
+Stumpe, M. C., Smith, J. C., Van Cleve, J. E., et al. 2012,
+PASP, 124, 985
+Suissa, G., Wolf, E. T., Kopparapu, R. k., et al. 2020, AJ,
+160, 118
+Sullivan, P. W., Winn, J. N., Berta-Thompson, Z. K., et al.
+2015, ApJ, 809, 77
+Tenenbaum, P., & Jenkins, J. M. 2018, TESS Science Data
+Products Description Document:
+EXP-TESS-ARC-ICD-0014 Rev D
+Thompson, S. E., Coughlin, J. L., Hoffman, K., et al. 2018,
+ApJS, 235, 38
+
+39
+
+Triaud, A. H. M. J., Martin, D. V., Ségransan, D., et al.
+2017a, A&A, 608, A129
+—. 2017b, A&A, 608, A129
+Twicken, J. D., Clarke, B. D., Bryson, S. T., et al. 2010, in
+Proc. SPIE, Vol. 7740, Software and Cyberinfrastructure
+for Astronomy, 774023
+Twicken, J. D., Jenkins, J. M., Seader, S. E., et al. 2016,
+AJ, 152, 158
+Twicken, J. D., Catanzarite, J. H., Clarke, B. D., et al.
+2018, PASP, 130, 064502
+Vanderburg, A., & Johnson, J. A. 2014, PASP, 126, 948
+Vanderburg, A., Latham, D. W., Buchhave, L. A., et al.
+2016a, ApJS, 222, 14
+Vanderburg, A., Bieryla, A., Duev, D. A., et al. 2016b,
+ApJL, 829, L9
+Vanderburg, A., Rappaport, S. A., Xu, S., et al. 2020,
+Nature, 585, 363
+Vanderspek, R., Doty, J. P., Fausnaugh, M., et al. 2018,
+TESS Instrument Handbook, TESS Science Office
+Vanderspek, R., Huang, C. X., Vanderburg, A., et al. 2019,
+ApJL, 871, L24
+Virtanen, P., Gommers, R., Oliphant, T. E., et al. 2020,
+Nature Methods, 17, 261
+Xuan, J. W., & Wyatt, M. C. 2020, MNRAS, 497, 2096
+Yu, L., Vanderburg, A., Huang, C., et al. 2019, AJ, 158, 25
+Zhang, M., Chachan, Y., Dai, F., Knutson, H. A., &
+Vissapragada, S. 2020, Probing mass loss from two
+mini-Neptunes orbiting a young solar analogue, HST
+Proposal
+
+

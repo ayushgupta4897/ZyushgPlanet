@@ -1,0 +1,669 @@
+arXiv:1208.0595v1  [astro-ph.EP]  2 Aug 2012
+Submitted to the PASP.
+The Derivation, Properties and Value of Kepler’s Combined
+Diﬀerential Photometric Precision
+Jessie L. Christiansen 1
+Jon M. Jenkins 1
+Thomas S. Barclay 1
+Christopher J. Burke 1
+Douglas A. Caldwell 1
+Bruce D. Clarke 1
+Jie Li 1
+Shawn Seader 1
+Jeﬀrey C. Smith 1
+Martin C. Stumpe 1
+Peter Tenenbaum1
+Susan E. Thompson 1
+Joseph D. Twicken 1
+Jeﬀrey Van Cleve 1
+jessie.l.christiansen@nasa.gov
+1SETI Institute/NASA Ames Research Center, M/S 244-30, Moﬀe tt Field, CA 94035
+ABSTRACT
+The Kepler Mission is searching for Earth-size planets orbiting solar-like stars
+by simultaneously observing >160,000 stars to detect sequences of transit events
+in the photometric light curves. The Combined Diﬀerential Photomet ric Preci-
+sion (CDPP) is the metric that deﬁnes the ease with which these weak terrestrial
+– 2 –
+transit signatures can be detected. An understanding of CDPP is in valuable for
+evaluating the completeness of the Kepler survey and inferring the underlying
+planet population. This paper describes how the Kepler CDPP is calculated,
+and introduces tables of rms CDPP on a per-target basis for 3-, 6-, and 12-hour
+transit durations, which are now available for all Kepler observations. Quarter 3
+is the ﬁrst typical set of observations at the nominal length and co mpleteness for
+a quarter, from 2009 September 18 to 2009 December 16, and we e xamine the
+properties of the rms CDPP distribution for this data set. Finally, we describe
+how to employ CDPP to calculate target completeness, an important use case.
+Subject headings: techniques: photometric — methods: data analysis — mis-
+sions: Kepler
+1. Introduction
+The Kepler Mission is a NASA Discovery mission designed to detect transiting ex-
+trasolar planets, performing near-continuous photometric obse rvations of >160,000 carefully
+selected target stars in Kepler’s 115 square degree ﬁeld of view, as reviewed in Borucki et al.
+(2010) and Koch et al. (2010). Scores of planets have been conﬁr med thus far 1, and three
+catalogues of planet candidates have been released: 705 candidat es discovered in the ﬁrst
+month of observations (Borucki et al. 2011a), 1235 candidates d iscovered in the ﬁrst 15
+months of observations (Borucki et al. 2011b), and 2321 candida tes discovered in the ﬁrst 18
+months of observations (Batalha et al. 2012). Although individual p lanetary systems con-
+tinue to surprise and intrigue—see for example the Kepler-36 syste m (Carter et al. 2012)—
+we are now able to shift towards broader analysis of the underlying p lanetary populations
+(Borucki et al. 2011a; Howard et al. 2011; Youdin 2011; Catanzar ite & Shao 2011) and
+trends, such as comparing single planet candidate systems to thos e with multiple planet can-
+didates (Latham et al. 2011), and the environments of small planet candidates compared
+to large planet candidates (Buchhave et al. 2012).
+The primary goal of the Kepler Mission is to ascertain the value of η⊕, the frequency
+of Earth-size planets orbiting in the habitable zones of solar-like sta rs. Inferring the value
+of η⊕ from the planet sample discovered by Kepler requires careful quantiﬁcation of the
+detectability of each planetary candidate across the entire set of target stars. An essential
+aspect of measuring η⊕ is accounting for the observation noise speciﬁc to each target sta r,
+1See http://kepler.nasa.gov/Mission/discoveries/
+– 3 –
+and the subsequent impact on the detectability of the transit signa ture of the candidate,
+which is the topic of this paper.
+Kepler ’s transiting planet search (TPS) pipeline module (Jenkins et al. 2010; Tenenbaum et al.
+2012), which searches through the data for evidence of transit s ignatures, empirically deter-
+mines the level of non-stationary noise for each light curve. This no ise estimate is called the
+combined diﬀerential photometric precision (CDPP); it is a time series of the eﬀective white
+noise as seen by a speciﬁc transit duration for each target star. T o facilitate analysis and
+interpretation of the Kepler data, tables of the rms CDPP metrics on a per-target basis for
+transit durations of 3, 6, and 12 hours are provided online at the Mik ulski Archive for Space
+Telescopes (MAST) website 2. Section 2 of this paper describes how CDPP is calculated by
+the Kepler pipeline. Section 3 provides a guide to the format and content of the tables.
+Section 4 discusses the general characteristics of the Q3 rms CDP P values, and examines the
+distribution as a function of stellar type and position in the Kepler ﬁeld. Section 5 describes
+some of the ways in which CDPP can be used for further analysis, and Section 6 contains
+the conclusions of the paper.
+2. How CDPP is Calculated
+The details of the pipeline processing prior to the CDPP calculation for a single quarter
+of data have been described in detail elsewhere; for an overview se e Jenkins et al. (2010b).
+Brieﬂy, they involve pixel-level calibrations, including bias and dark cu rrent subtraction,
+ﬂatﬁelding, and shutterless readout smear correction by the Calib ration (CAL) module
+(Quintana et al. 2010); cosmic ray correction, background subtr action and simple aperture
+photometry by the Photometric Analysis (PA) module (Twicken et al. 2010a); systematic
+error removal and crowding correction of the ﬂux time series by th e Presearch Data Con-
+ditioning (PDC) module (Smith et al. 2012, Stumpe et al. 2012 for Relea se 12 onwards 3);
+and ﬁnally, harmonic removal of strongly sinusoidal variations and ﬂ ux time series exten-
+sion (the latter for eﬃcient fast Fourier transforms) by the Tran siting Planet Search (TPS)
+module (Jenkins et al. 2010). When searching multiple quarters of da ta, TPS has several
+additional steps: median-normalize the ﬂux level from quarter to q uarter; ﬁll the gaps be-
+tween quarters (to enable the wavelet-based detection method d escribed below); and detrend
+the discontinuities at the quarter boundaries (Jenkins et al. 2010) . The signal detection is
+performed, generating threshold crossing events (TCEs) for fu rther analysis; for example,
+2http://http://archive.stsci.edu/kepler/
+3A data release is the delivery to MAST of a set of data products prod uced in a given processing run.
+– 4 –
+Tenenbaum et al. (2012) presents the set of TCEs produced by TP S in the Q1–Q3 observa-
+tions. We deﬁne a threshold crossing event as a signal which, when f olded at a given period,
+gives rise to a signal of ≥ 7.1σ.
+CDPP is calculated as a by-product of TPS, when determining the SNR of each transit
+pulse for which we search. Simply stated, the CDPP produced by TPS can be thought of as
+the eﬀective white noise seen by a transit pulse of a given duration. A CDPP of 20 ppm for
+3–hour transit duration indicates that a 3–hour transit of depth 2 0 ppm would be expected
+to have an SNR of 1, and hence, produce a signal of strength 1 σ on average. Thus, CDPP
+is a characterization of the noise in the Kepler data.
+Typically, the noise is non-white (that is, does not have a uniform pow er spectral density
+distribution) and non-stationary (that is, the power spectral de nsity changes with time).
+The noise is typically dominated by 1 /f -type noise processes (where f is frequency) due to
+stellar variability and instrumental eﬀects; for a thorough breakd own and discussion of the
+noise sources contributing to CDPP see Gilliland et al. (2011) and Van C leve & Caldwell
+(2009). Therefore, we need a way of characterising the noise in th e data in a moving fashion
+in order to preserve the time-variability; we achieve this by decompo sing the data in the
+time-frequency domain using the wavelet approach. The theoretic al basis of the approach is
+described in Jenkins (2002). We measure the time-varying noise in a s et of time-frequency
+bands, with equal spacing in log( f ), and use this estimate to adjust the noise level in each
+band to produce a ‘ﬂat’ power spectrum; that is, we ﬁlter the data to produce white noise.
+For consistency, the resulting whitening ﬁlter is also applied to the tr ial transit signal in
+order to reproduce and match any distortion created by the white ning. The detection of the
+whitened transit signal in the whitened data is therefore simpliﬁed to the well-understood
+problem of detecting a signal in the presence of white noise, and CDP P is a measure of the
+noise in the whitened data.
+Full details of the calculation of CDPP in the SOC pipeline are given in Jenk ins et al.
+(2010); we brieﬂy describe it here. For a given time series, x(n), which is composed of a
+zero-mean, Gaussian noise process w(n), with a power spectrum P (ω) and a corresponding
+autocorrelation matrix R, we want to detect a signal, s(n) (a transit pulse in the context of
+Kepler ). CDPP, the noise seen by the transit pulse, is quoted in ppm (parts per million),
+and is calculated from the detection statistic, l, by:
+CDPP = 1 × 106/ ⟨l ⟩ (1)
+The detection statistic is deﬁned as:
+– 5 –
+l = xT R−1s√
+sT R−1s = ˜xT˜s√˜sT˜s, (2)
+where ˜x = R− 12 x and ˜s = R− 12 s are data and signal vectors distorted or “whitened” by the
+inverse square root of the autocorrelation matrix R. The expected value of the detection
+statistic, ⟨l⟩, under the hypothesis (H1) that the signal s is present, is given by:
+⟨l⟩H1 = E
+{
+( ˜w + ˜s)T˜s√
+˜sT˜s
+}
+= E
+{
+˜wT˜s} + ˜sT˜s√
+˜sT˜s = 0 + ˜sT˜s√˜sT˜s (3)
+=
+√
+˜sT˜s = √sT R−1s.
+For white noise, the auto-correlation matrix R is diagonal, with R = σ2I, where σ2
+is the variance of the white noise and I is the identity matrix. Therefore, the mean value
+of the detection statistic in the presence of signal s(n) is the signal-to-noise ratio (SNR) of
+the whitened signal to the whitened noise, as expected. Stated an other way, the detection
+statistic is equivalent to measuring the signiﬁcance of the signal fro m the chi-squared ﬁt over
+the null hypothesis between the whitened light curve and the whiten ed transit signal. Under
+the null hypothesis (H0), ⟨l⟩H0 = 0. The two hypotheses have diﬀerent mean values of l, but
+the same standard deviation of unity—this can be used to readily est imate the false alarm
+rate and detection rates, or their complements, using the error f unction.
+We calculate the time series of detection statistics l for a given target over a set of trial
+durations; that is, we measure the detectability of given transit sig nals for each observation of
+each target. The CDPP time series is a natural by-product of this p rocedure, from Equation
+1. We obtain CDPP on 14 time scales from 1.5–15 hours, which covers t he transit durations
+of interest—for a central crossing event, an Earth-Sun analogu e transit would take 13 hours,
+although for the average value of the impact parameter it would tak e 6.5 hours. The depth
+of an undiluted signal produced by such as system is 84 ppm: in a typic al quarter of Kepler
+data, 12 th magnitude dwarfs (the benchmark Kepler target) have a median rms CDPP value
+of 34 ppm for a transit duration of 6.5 hours. Although we produce a set of CDPP time
+series for each target, in practice we ﬁnd that the amplitude of the variation in the CDPP
+over the time series for a given time scale is relatively small in a given qua rter of data,
+and that to ﬁrst-order, the detectability of a given transit signal is well described by the
+– 6 –
+rms of the CDPP time series for that quarter. This motivated our pr oduction of the tables
+described in Section 3.
+2.1. Some examples
+To illuminate the process described above, we show the light curves a nd resulting CDPP
+time series for several Kepler targets. The data presented are from the Q3 Kepler observa-
+tions.
+Figure 1 shows the detrended ﬂux time series for target KIC 93924 16, with magnitude
+Kp=11.7, and a 6-hour rms CDPP of 56 ppm. The power spectrum of t his target is plotted
+as the red dashed line in Figure 2, and we see that it is relatively uniform over all timescales,
+especially less than one day (i.e. the dominant noise source is white nois e). An increase in
+noise in the ﬂux time series can be seen at approximately days 113–11 4. The CDPP time
+series that are derived from this ﬂux time series for transit pulse du rations of 3, 6 and 12
+hours are shown in Figure 3. The aforementioned increase in noise at around days 113–114
+manifests here as an increase in CDPP in the 3-hour time series at the same epoch. For the
+longer transit durations, the increased noise is averaged out and is not so apparent in the
+resulting 6-hour and 12-hour CDPP time series. This eﬀect is also evid ent when considering
+the CDPP time series on the whole—note the decrease in the magnitud e and ﬂattening of the
+CDPP time series with increasing transit duration. The rms CDPP for t his target decreases
+from 72 ppm for the 3-hour transit duration time series to 43 ppm fo r the 12-hour time
+series, as the signal is integrated over longer time spans.
+Figure 4 shows the detrended ﬂux time series for KIC 9328434, whic h is a variable star
+with magnitude Kp=11.2. The blue dashed line in Figure 2 shows the powe r spectrum of
+this target, which is relatively quiet on short time scales (the 6-hour rms CDPP is 41 ppm),
+but contains signiﬁcant correlated noise on longer time scales due to the stellar variability,
+which has a characteristic period of ∼2.5 days. Figure 5 shows the CDPP time series for this
+variable target. In this case, note that the 6-hour and 12-hour C DPP values are typically
+higher than the corresponding 3-hour CDPP. This arises, contrar y to the previous, white-
+noise-dominated example, due to the fact that the multi-periodic ﬂu x time series has a
+characteristic period much longer than three hours. When integra ting the ﬂux time series
+on 6 and 12 hour time scales, we are integrating over larger changes in the stellar signal,
+which increases the scatter in the observations, and therefore t he measured CDPP.
+Finally, Figures 6 and 7 show the detrended ﬂux time series and CDPP t imes series
+respectively for target KIC 9390653, which is also identiﬁed as KOI 2 49 in Borucki et al.
+– 7 –
+(2011a). This is a target with magnitude Kp=14.5, and a transiting pla net candidate with
+an orbital period of 9.549 days. The detrended ﬂux time series in Figu re 6 clearly shows
+the transits, which have an average depth of 1775 ppm. The trans its have a duration of
+1.84 hours, and although they have a high SNR, there is no evidence o f their presence in the
+CDPP time series in Figure 7, that is, they do not perturb the locally me asured noise; this
+is achieved by using a normalized median absolute deviation (MAD) rath er than a true rms
+in the calculation of the in-band noise. Note that we also calculate CDP P time series for
+1.5- and 2-hour transit pulses and the transits are not evident in th ese time series either; due
+to the nature of the whitening, transits should not generally increa se the measured CDPP
+unless they are very closely spaced in time.
+3. Description of online rms CDPP tables
+For users interested in the ensemble noise statistics, for instance those performing com-
+pleteness calculations, tables of the rms CDPP values for the planet ary targets are being
+made available from the MAST Kepler website4, starting with all the publicly released data
+up to Quarter 10. In Table 1 we show an extract of the table for Qua rter 3, described below,
+demonstrating the format and content. For users working with ind ividual targets, the 3-, 6-,
+and 12-hour rms CDPP values are stored in the headers of the individ ual light curve FITS
+ﬁles, also available at the MAST website. As the data are reprocesse d with improved ver-
+sions of the SOC pipeline, the FITS ﬁles are replaced at MAST and will co ntain updated rms
+CDPP values. See the Kepler Archive Manual (KDMC-10008-004; Fr aquelli & Thompson
+2012)5 for details of the FITS headers.
+4. Quarter 3 rms CDPP values
+The summary statistics for the CDPP values are included in the Data R elease Notes
+(DRN) for each quarter, available from the MAST website 6. Here we discuss in more de-
+tail the characteristics of the Q3 rms CDPP values, as a guide for an alysis of subsequent
+quarters. Q3 was the ﬁrst ‘typical’ data set obtained by Kepler ; the ﬁeld was observed
+near-continuously from 2009 September 18 to 2009 December 16, for a total of 89 days.
+4For example http://archive.stsci.edu/pub/kepler/catalogs/cdpp quarter3.txt.gz
+5http://archive.stsci.edu/kepler/manuals/archive manual.pdf
+6http://archive.stsci.edu/kepler/datarelease.html
+– 8 –
+Table 1: An extract from the Q3 table of rms CDPP values available at t he MAST website. Shown are the Kepler
+ID, the Kepler magnitude, the module and output on which the target is located in th at quarter, the column and row
+location of the KIC position of the target, the fraction of the ﬂux in the target aperture that is not from the target star,
+the stellar parameters from the KIC, including eﬀective temperatu re ( Teﬀ), surface gravity (logg), stellar radius ( R⋆),
+and colors (G-R and J-K); the data release number from the proce ssing with which the CDPP values were calculated,
+the 3-hour, 6-hour and 12-hour rms CDPP values as described in th e text, and the program ID of the target.
+KIC Kp m o i j Contam Teﬀ logg R⋆ G-R J-K DRN rms CDPP PID
+3-hour 6-hour 12-hour
+757076 11.678 16 4 27 106 0.020 5174 3.601 3.029 0.765 0.567 14 107.014 82.634 62.615 EX
+757099 13.152 16 4 27 101 0.050 5589 3.817 2.288 0.648 0.563 14 620.885 515.472 424.305 EX
+757137 9.196 16 4 19 71 0.002 4879 2.578 10.242 0.942 0.744 14 55.411 55 .892 55.359 EX
+757280 11.901 16 4 45 59 0.015 6648 4.082 1.683 0.341 0.225 14 53.880 45 .545 40.292 EX
+757450 15.264 16 4 77 52 0.138 5101 4.48 0.933 0.791 0.546 14 365.001 27 6.686 239.324 EX
+891901 13.306 16 4 20 209 0.062 6051 4.411 1.085 0.419 0.286 14 83.043 6 2.044 50.276 EX
+891916 14.799 16 4 21 206 0.184 5407 4.591 0.834 0.585 0.440 14 269.777 220.659 224.819 EX
+892010 11.666 16 4 25 182 0.022 4665 2.413 12.342 1.024 0.743 14 90.958 91.752 92.047 EX
+892107 12.38 16 4 26 155 0.029 5029 3.355 4.118 0.845 0.577 14 106.053 8 0.336 62.534 EX
+892195 13.757 16 4 39 148 0.090 5553 3.972 1.865 0.704 0.502 14 114.754 84.893 64.444 EX
+– 9 –
+Thus it was the ﬁrst opportunity to examine the distribution of rms C DPP values. Table 2
+is an updated version of the Q3 values in Table 1 from the Kepler Data R elease 14 Notes
+(KSCI-19054-001; Christiansen et al. 2012) 7, listing rms CDPP values for 6-hour transit
+durations instead of median CDPP values for 6.5-hour transit durat ions. The trends therein
+are discussed below.
+Table 2: Aggregate statistics for the Quarter 3 rms CDPP values fo r 6-hour transit durations.
+Column Deﬁnitions: (1) Kepler Magnitude at the center of the bin. Bin s are 0.25 mag, for
+a bin of width 0.5 mag centered on this value. (2) Number of dwarfs (lo g g > 4) in the bin.
+(3) 10th percentile rms CDPP for dwarfs in the bin. (4) Median rms CD PP for dwarfs in
+the bin. (5) Number of all stars in the bin. (6) 10th percentile rms CD PP of all observed
+stars in the bin. (7) Median rms CDPP for all stars in the bin.
+Kp mag No. dwarfs 10th prctile Median No. stars 10th prctile Median
+9.0 54 12.0 32.4 323 14.8 58.6
+10.0 169 12.3 38.5 947 16.7 85.9
+11.0 657 18.9 37.0 2573 22.7 78.2
+12.0 2319 26.0 41.7 5810 28.9 70.7
+13.0 7259 37.9 54.5 13003 39.9 67.6
+14.0 14740 58.2 80.8 19420 59.2 86.2
+15.0 27832 100.3 139.1 27904 100.2 139.1
+4.1. Distribution with stellar type
+Figure 8 shows the distribution of the 6-hour rms CDPP values with ma gnitude in the
+Kepler bandpass (Kp) for all the planetary targets in Q3, 165,441 target s in total. All stellar
+parameters discussed in this section are drawn from the Kepler Input Catalog (KIC; Brown et
+al. 2011). There are three distinct features visible in Figure 8. The ﬁ rst is the discontinuity in
+the number of targets at Kp= 14—this is an artifact of the Kepler target selection, whereby
+targets with Kp > 14 and log g ≤ 4 are excluded to reduce the number of populous faint
+giants in the target list. The second is the increase in rms CDPP with inc reasing magnitude.
+The lower bound on this distribution is the minimum noise ﬂoor, with cont ributions from
+shot noise, which increases with increasing magnitude, and the typic al read noise. The
+third is that there is a faint population separated vertically from the main body of targets.
+7http://archive.stsci.edu/kepler/release notes/release notes14/DataRelease 14 2012032116.pdf
+– 10 –
+The diﬀerence in the populations can be attributed directly to the st ars (i.e. it is not an
+instrumental eﬀect). The upper panel of Figure 9 shows the distr ibution of rms CDPP for
+dwarf stars with log g > 4, and the lower panel shows the distribution for giant stars with log
+g ≤ 4 (note the cut-oﬀ at Kp= 14, as stated previously). The bin sizes a re 2 ppm for the rms
+CDPP and 0.05 magnitudes for the Kepler magnitude. The observed noise levels for the giant
+stars are signiﬁcantly higher on average; in particular the populatio n between 160–240 ppm
+which is virtually absent in the dwarf stars 8he lower population will include sub-giants that
+are not fully evolved oﬀ the main sequence and possibly some number o f stars with incorrect
+log g values in the KIC.. This was ﬁrst noted for the Kepler targets by Koch et al. (2010).
+This is also observed when plotting the rms CDPP values as shown in Figu re 10, with the
+surface gravity plotted against the eﬀective temperature of the target. The giant stars,
+with low surface gravities, are distinct as the relatively high rms CDPP population in the
+top right of the ﬁgure. The coolest dwarf stars are also highly activ e, which increases the
+observed noise. These stars comprise another relatively high rms C DPP population in the
+bottom right. Solar-type stars, with Teﬀ ∼ 5500K and log g ∼ 4, are typically well-behaved
+on the timescales over which we are measuring the noise, and compris e the relatively low
+rms CDPP population in the center. Batalha et al. (2012) noted that there are systematic
+problems with the stellar parameters in the KIC, with combinations of surface gravities and
+eﬀective temperatures that do not lie on any modelled isochrone. As a result, there are
+likely to be signiﬁcant numbers of misclassiﬁed stars in this ﬁgure (see Mann et al. (2012)
+and Brown et al. (2011) for more discussion on these biases), howe ver the intent here is to
+demonstrate the behavior of CDPP as a broad function of stellar pa rameters, to allow users
+to investigate the parameter space for selecting targets for fur ther analysis.
+Figure 11 shows the distribution of the rms CDPP values for the targ ets from the upper
+panel of Figure 9, i.e. dwarf stars with log g > 4, around which Kepler can expect to ﬁnd
+transits of Earth-size planets; this is also the subset of targets c onsidered in the ‘dwarfs’
+columns of Table 2. Although bright targets are preferable for follo w-up observations, the
+large increase in the number of Kepler targets with increasing magnitude is clear; in fact
+most Kepler planets will be found around stars fainter than Kp= 14. The mode of the rms
+CDPP values increases with increasing magnitude largely due to increa sed contributions
+from shot noise.
+8T
+– 11 –
+4.2. Distribution with position in the ﬁeld of view
+Figure 12 shows the distribution of the Quarter 3 rms CDPP values ac ross the Kepler
+ﬁeld of view, for the same targets as Figure 10. The 21 modules can b e seen projected onto
+the sky coordinates, each with two CCDs. The black arrow points in t he direction of the
+Galactic plane. Although it is a fairly uniform distribution overall, two slig ht trends are
+evident. The ﬁrst is a correlation between rms CDPP and the quality o f the focus. In order
+to maximize the number of targets with good focus across the ﬁeld, Kepler ’s best focus is
+found in the modules surrounding the central module. The central module itself and the
+outer modules are slightly out of focus compared to these modules. The modules with the
+best focus have lower rms CDPP values on average due to the result ant lessening of aperture
+eﬀects introduced by pointing jitter and diﬀerential velocity aberr ation. The second trend is
+a function of Galactic latitude—modules closest to the Galactic plane h ave a slightly higher
+rms CDPP on average. This is most notable in the southern-most mod ule in Figure 12.
+This is a result of the increased stellar density toward the Galactic pla ne, which increases
+the amount of noise in a given pixel contributed by background star s relative to modules at
+higher Galactic latitudes.
+5. Using rms CDPP to estimate completeness
+As described in Section 2, CDPP is a direct, empirical measurement of the detectability
+of a given transit signature in the Kepler data. Using the CDPP time series for a target,
+it is possible to calculate the probability that a sample transit signal of a given depth and
+duration, occurring at a given time, could be detected by the pipeline . The rms of that
+CDPP time series represents, to ﬁrst-order, the average detec tability of that sample transit
+signal for that target.
+For the simplest derivation, we set tobs to the total span of time encompassed by ob-
+servations of the target, and fo to the fraction of the total time the target was observed 9.
+For a given period, this gives us the average number of transits, Ntr = ( tobs ∗ fo)/P , ob-
+served for a signal with period P . The total SNR that would be measured for a planet at
+period P over the whole time series is then √Ntr × σ1, where σ1 is the SNR of a single
+transit event. In an assumed white noise regime, the eﬀective rms C DPP, CDP Peﬀ, for
+a given transit duration, tdur, can be estimated by ﬁnding the closest provided duration,
+9The typical observation duty cycle for targets observed continu ously is ∼92% when accounting for gaps
+due to data downlink and spacecraft operations.
+– 12 –
+tCDPP (out of 3, 6 and 12 hours), and scaling the rms CDPP of that duratio n, CDP PN, such
+that CDP Peﬀ =
+√
+tCDPP/tdur × CDP PN. See the discussion in Section 2.1 for a caution
+regarding applying this estimation to variable targets. For a planet o f radius Rp, the transit
+depth is δ = (Rp/RS)2 for a target star of radius RS. For a single transit, σ1 is then simply
+δ/CDP P eﬀ, and the SNR of a putative planet with period P and radius RP over the set of
+observations is:
+SN R =
+√
+tobs ∗ fo
+P
+δ
+CDP Peﬀ
+(4)
+similarly to Equation 1 of Howard et al. (2011).
+In the Kepler pipeline, the SNR threshold for detection is 7.1 σ (Jenkins, Caldwell & Borucki
+2002). Using the above calculation, it is then possible to estimate whe ther the putative planet
+signal would have been detected by the pipeline. This estimation can b e performed over a
+grid of planet parameters for a target star, for which the detect ion completeness can then be
+calculated. See Section 7.1 of Batalha et al. (2011) for a worked exa mple of a typical 12 th
+magnitude target star. For informed analyses of the planet popula tion produced by Kepler
+thus far, the tables of rms CDPP are a necessary resource.
+6. Conclusion
+We have presented here an introduction to the rms CDPP values bein g made available
+on a per-target, per-quarter basis at the MAST website for the Kepler planetary targets.
+For each set of data, these values provide a measure of the obser ved noise, which for each
+individual target translates to a limit on the detectability of transitin g planets. These values
+are extremely important for the characterisation of the underlyin g planet population, since
+to ﬁrst order, they provide on a star-by-star basis the observa tional noise level that sets the
+limiting planet signal detectable by Kepler.
+Funding for the Kepler Discovery Mission is provided by NASA’s Science Mission Di-
+rectorate. We thank the thousands of people whose eﬀorts made Kepler’s grand voyage of
+discovery possible. Some/all of the data presented in this paper we re obtained from the
+Mikulski Archive for Space Telescopes (MAST). STScI is operated b y the Association of
+Universities for Research in Astronomy, Inc., under NASA contrac t NAS5-26555. Support
+for MAST for non-HST data is provided by the NASA Oﬃce of Space Sc ience via grant
+NNX09AF08G and by other grants and contracts.
+– 13 –
+REFERENCES
+Batalha, N. B., et al. 2012, arXiv:1202.5852
+Batalha, N. B., et al. 2011, ApJ, 729, 27
+Borucki, W. J., et al. 2010, Science, 327, 977
+Borucki, W. J., et al. 2011a, ApJ, 736, 19
+Borucki, W. J., et al. 2011b, ApJ, accepted
+Brown, T. M., et al. 2011, AJ, 142, 112
+Buchhave, L. A., et al. 2012, Nature, 486, 375
+Carter, J. A., et al. 2012, accepted in Science, arXiv:1206.4718
+Catanzarite, J., & Shao, M. 2011, ApJ, 738, 151
+Christiansen, J. L., et al. 2012, Kepler Data Release 14 Notes, KSCI 19054-001 (Moﬀett
+Field, CA: NASA Ames Research Center), ( http://archive.stsci.edu/kepler)
+Fischer, D. A., et al. 2011, arXiv:1109.4621v3
+Fraquelli, D. & Thompson, S. E. 2012, Kepler Archive Manual, KDMC-
+10008-004 (Baltimore, MD: Space Telescope Science Institute),
+(http://archive.stsci.edu/kepler)
+Gilliland, R. L., et al. 2011, ApJS, 197, 6
+Howard, A. W., et al. 2011, arXiv:1103.2541H
+Jenkins, J. M. 2002, ApJ, 575, 493
+Jenkins, J. M., Caldwell, D. A., & Borucki, W. J. 2002, ApJ, 564, 495
+Jenkins, J. M., et al. 2010, SPIE, 7740, 10
+Jenkins, J. M., et al. 2010, ApJ, 713, L87
+Koch, D. G., et al. 2010, ApJ, 713, 79
+Latham, D. W., et al. 2011, ApJ, 732, 24
+Lissauer, J. J., et al. 2011, Nature, 470, 53
+– 14 –
+Mann, A. W., et al. 2012, ApJ, 753, 90
+Quintana, E. V., et al. 2010, SPIE, 7740, 64
+Santerne, A., et al. 2011, ˚ a, 536, 70
+Smith, J. C., et al, 2012, arXiv:1202.1383
+Stumpe, M. C., et al, 2012, arXiv:1202.1382
+Tenenbaum, P. et al, 2012, ApJS, 199, 24
+Twicken, J. D., et al. 2010, SPIE, 7740, 69
+Twicken, J. D., et al. 2010, SPIE, 7740, 62
+Van Cleve, J., & Caldwell, D. A. 2009, Kepler Instrument Handbook,
+KSCI 19033-001 (Moﬀett Field, CA: NASA Ames Research Center),
+(http://archive.stsci.edu/kepler)
+Youdin, A. N. 2011, ApJ, 742, 38
+This preprint was prepared with the AAS L ATEX macros v5.2.
+– 15 –
+90 100 110 120 130 140 150 160 170 180 190
+−8
+−6
+−4
+−2
+0
+2
+4
+6
+x 10
+−4
+MJD−55000
+Relative flux
+Fig. 1.— The Q3 detrended ﬂux time series for KIC 9392416, covering 89 days of observation.
+This target has a relatively uniform noise power spectrum.
+– 16 –
+10
+−2
+10
+−1
+10
+0
+10
+1
+10
+−9
+10
+−8
+10
+−7
+10
+−6
+10
+−5
+10
+−4
+10
+−3
+10
+−2
+Time Scale, Days
+Energy/Power Density
+ 
+ 
+6−hour Transit
+12−hour Transit
+White−noise dominated target
+ Red−noise dominated target
+Fig. 2.— A comparison of the noise power spectra of two Kepler targets with similar Kp
+magnitudes. The red dashed line is KIC 9392416 (see Figure 1), which has a 6-hour rms
+CDPP of 56 ppm, Kp=11.6, and a roughly uniform power spectrum. Th e blue dashed line
+is the variable star KIC 9328434 (see Figure 4), which has a 6-hour r ms CDPP of 41 ppm,
+Kp=11.2, and a highly correlated power spectrum. Despite the signiﬁ cantly lower rms CDPP
+at approximately the same Kp magnitude, the variable target conta ins signiﬁcantly more
+power at longer time scales. For comparison, we also show the energ y over the same time
+scales for square pulse signals of 6- and 12-hours duration as blue a nd black solid lines
+respectively.
+– 17 –
+90 100 110 120 130 140 150 160 170 180 190
+40
+45
+50
+55
+60
+65
+70
+75
+80
+85
+MJD−55000
+CDPP (ppm)
+ 
+ 3hr time series
+3hr rms
+6hr time series
+6hr rms
+12hr time series
+12hr rms
+Fig. 3.— The CDPP time series for KIC 9392416, shown for transit puls e durations of 3, 6,
+and 12 hours. The solid line shows the rms CDPP value for the 3-hour C DPP time series,
+the dotted line for the 6-hour CDPP time series, and the dashed line f or the 12-hour CDPP
+time series.
+90 100 110 120 130 140 150 160 170 180 190
+−0.01
+−0.008
+−0.006
+−0.004
+−0.002
+0
+0.002
+0.004
+0.006
+0.008
+0.01
+MJD−55000
+Relative flux
+Fig. 4.— The Q3 detrended ﬂux time series for the variable star, KIC 9 328434.
+– 18 –
+90 100 110 120 130 140 150 160 170 180 190
+34
+36
+38
+40
+42
+44
+46
+48
+50
+52
+54
+MJD−55000
+CDPP (ppm)
+ 
+ 3hr time series
+3hr rms
+6hr time series
+6hr rms
+12hr time series
+12hr rms
+Fig. 5.— The CDPP time series and rms CDPP for KIC 9328434, shown fo r transit pulse
+durations of 3, 6, and 12 hours.
+90 100 110 120 130 140 150 160 170 180 190
+−2
+−1.5
+−1
+−0.5
+0
+0.5
+1
+1.5
+2
+x 10
+−3
+MJD−55000
+Relative flux
+Fig. 6.— The Q3 detrended ﬂux time series for planet candidate KIC 93 90653/KOI 249.
+– 19 –
+90 100 110 120 130 140 150 160 170 180 190
+80
+90
+100
+110
+120
+130
+140
+150
+MJD−55000
+CDPP (ppm)
+ 
+ 3hr time series
+3hr rms
+6hr time series
+6hr rms
+12hr time series
+12hr rms
+Fig. 7.— The CDPP time series and rms CDPP for KIC 9328683, shown fo r transit pulse
+durations of 3, 6, and 12 hours.
+– 20 –
+Kp magnitude
+rms CDPP (ppm)
+ 
+ 
+9 10 11 12 13 14 15 16
+40
+80
+120
+160
+200
+240
+280
+320
+Number of targets
+0
+10
+20
+30
+40
+50
+60
+70
+80
+Fig. 8.— The distribution of the 6-hour rms CDPP values with Kp magnitu de for all
+Quarter 3 planetary targets.
+– 21 –
+Kp magnitude
+rms CDPP (ppm)
+ 
+ 
+9 10 11 12 13 14 15 16
+80
+160
+240
+320
+Number of targets
+0
+20
+40
+60
+80
+Kp magnitude
+rms CDPP (ppm)
+ 
+ 
+9 10 11 12 13 14 15 16
+80
+160
+240
+320
+Number of targets
+0
+20
+40
+60
+80
+Fig. 9.— The distribution of the 6-hour rms CDPP values with Kp magnitu de for Quarter 3
+dwarf targets (upper panel) and giant targets (lower panel).
+– 22 –
+Fig. 10.— The distribution of 6-hour rms CDPP values with KIC stellar pa rameters.
+– 23 –
+0 20 40 60 80 100 120 140 160 180 200
+0
+0.5
+1
+1.5
+2
+2.5
+3
+rms CDPP
+log10(Number of targets)
+ 
+ 
+Kp = 13
+Kp = 12
+Kp = 11
+Kp = 10
+Kp = 9
+Fig. 11.— The distribution of rms CDPP values for 6-hour transit dura tions in magnitude
+bins listed in Table 2. These distributions are used for the rms CDPP st atistics in that table.
+[[page 23 failed: Reached maximum number of tokens per stream.]]
+This figure "q3_cdpp_hrdiagram.png" is available in "png"
+ format from:
+http://arxiv.org/ps/1208.0595v1

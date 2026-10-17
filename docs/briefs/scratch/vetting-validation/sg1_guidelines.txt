@@ -1,0 +1,1161 @@
+                                               TFOP SG1
+                                         Observation Guidelines
+                                               Revision 6.4
+                                            September 4, 2020
+                                            Dennis M. Conti
+                                    email: dennis@astrodennis.com
+Introduction
+This document provides guidelines that are recommended for observers participating in the TESS Follow-up
+Observing Program Working Group (TFOP WG) Sub Group 1 (SG1). Substantive changes since the last X.Y
+revision are denoted in red. SG1 is focused on seeing-limited imaging and primarily provides time-series
+photometric follow-up of TESS Objects of Interest (TOIs). Targets from Kepler's follow-on mission, K2, are
+also available for follow-up when no TOIs are available for a specific time and observatory location. TESS
+targets are identified with a TIC number; K2 targets are identified with an EPIC number. TFOP SG1
+observation planning, coordination, and data submission web tools are available and are described herein.
+
+Observers will use the TESS Transit Finder (TTF) for determining observable targets at their location. Using
+their sign-in credentials, SG1 members can access the TTF via the following link:
+https://astro.swarthmore.edu/telescope/tess/find_tess_transits.cgi. A description on use of the TTF can be
+found as the first entry by Karen Collins at the following Google Groups link:
+https://groups.google.com/forum/#!topic/tfop-sg1/u2IiQYveVSg.
+
+All observers should record their intention to observe a target, prior to the observation, by completing an
+entry in the TESS Observations Coordinator (TOC). The TOC can be found at the bottom of the TTF target
+entries, or via the following link: https://www.astro.louisville.edu/tessplanner. Some of the fields in the
+TOC can easily be populated by selecting “Add to TOC” that appears in the left column of the TTF entry for
+the target to be observed. Observers should read the Help link at the top of the TOC for instructions on how
+to use the TOC.
+
+Observers should always review the last couple of sentences in the TTF comments field when planning
+observations to understand what is needed next, whether it is a "deep" observation or a specific filter, or
+something else. Deep observations mean that increased exposure times are needed in order to determine
+if there are any events associated with faint stars that are close-in neighbors of the target, and if such
+events could potentially be the cause of a false positive detection. Deep exposures may mean that the
+target star itself becomes saturated, which may be warranted in order to increase the SNR of surrounding
+faint stars.
+
+It should be noted that the predicted transit depths in the TTF are in parts-per-thousand (ppt) rather than
+milli-magnitude (mmag). This is because TESS depth units themselves are in parts-per-million (ppm), so the
+ppt values can be easily directly compared to the ppm values (namely, by just applying a factor of 1000).
+Furthermore, because 1 ppt = 1.0863 mmag, ppt and mmag are sometimes used interchangeably for
+shallow transit depths. Also be aware of the timing uncertainty in the TTF since a transit you are attempting
+to detect may fall outside of the TTF predicted Start/End times.
+
+SG1 ground-based observations will help serve the following purposes:
+                                                                                                              1
+    1. Verification that the target star was the source of the TESS or K2 detected event.
+
+    2. Identification of situations that might be causing the TESS or K2 detected event to be a “False
+       Positive.” Common sources of such False Positives and the nomenclature associated with their
+       classification are:
+
+        •   NEB (Nearby Eclipsing Binary): Indicates that the TESS detection was caused by a nearby
+            eclipsing binary contaminating the TESS aperture, as determined from follow-up photometry
+            that resolved the nearby eclipsing binary.
+
+        •   BEB (Blended Eclipsing Binary): Indicates that an eclipsing binary blended in both the follow-up
+            and TESS apertures caused the TESS detection. These systems are generally classified as BEB as
+            a result of a chromatic transit depth in follow-up photometry.
+
+        •   EB (Eclipsing Binary): Indicates that the TESS detection is caused by an event on target, but the
+            event is too deep to be caused by an orbiting planet.
+
+    3. Confirmation for TESS or K2 events, which are too shallow to be detected from the ground, that all
+       stars bright enough and close enough to the target star to potentially be NEBs are not NEBs
+       contaminating the TESS aperture. In this case, if all the target and nearby star light curves are flat,
+       then the target may be passed on to other TFOP sub-groups to conduct spectroscopy, radial
+       velocity measurements, or adaptive optics observations. For K2 targets, bright stars in the field-of-
+       view (FOV) are checked to determine if they might be contaminating the K2 detector column that
+       contains the target (i.e., the so-called “Kepler column anomaly”).
+
+    4. Since TESS will only be observing a large part of the sky for 28 days, further follow-up observations
+       of confirmed planets will help refine their ephemerides.
+
+In addition to helping to classify TESS events as one of the three False Positives (i.e., NEB, BEB or EB),
+follow-up observations will help classify TESS events into additional disposition classifications (see Appendix
+A). Appendix B is a flow chart that shows the typical progression from one disposition to another as more
+information is obtained.
+
+Because some of the analysis and file upload steps are dependent upon the purpose and results of the
+observation, the following cases are defined and will be referred to in later sections:
+
+Case 1: An event was detected with a high level of confidence in the target star’s aperture.
+
+Case 2: A nearby star was identified as an NEB.
+
+Case 3: No events were detected with either the target or with any nearby stars that were checked.
+
+Although this guide is based on AstroImageJ (AIJ), the concepts herein should be applicable to other data
+reduction tools and pipelines as well. IMPORTANT: Observers who are using AIJ should upgrade their
+version of AIJ to the latest daily build. This can be done as follows: from the main AIJ toolbar, select Help-
+>Upgrade AstroImageJ… and then in the “Upgrade to” box, scroll UP and select “daily build.”
+
+
+                                                                                                                 2
+References to “A Practical Guide to Exoplanet Observing” (hereinafter referred to as the “Practical Guide”)
+will be made in this document. The latest version of the Practical Guide can be found at:
+http://astrodennis.com/Guide.pdf.
+
+A copy of this document can be found at http://astrodennis.com/TFOP_SG1_Guidelines_Rev_6-4.pdf. Since
+this document is subject to change as modifications are made to SG1 submission requirements, the reader
+is encouraged to check the following location periodically to obtain the latest updated version of this
+document: http://astrodennis.com/TFOP_SG1_Guidelines_Latest.pdf.
+
+The author would like to thank Karen Collins for her valuable comments. Comments and suggestions to
+further improve this document can be forwarded to: dennis@astrodennis.com.
+
+As seen below, there are two distinct communications to be done by the observer after the analysis of each
+target: (1) an email describing the observation and (2) an upload of a set of data products to either ExoFOP-
+TESS or ExoFOP-K2.
+
+Section 1 describes the various files that will need to be uploaded, as well as their naming conventions,
+since reference will be made to them in later sections. Section 2 provides guidance on the differential
+photometry, model fitting, and analysis part of the observation, as well as on the creation of most of the
+files that are to be uploaded. Section 3 describes how some additional files are created that also must be
+uploaded. Section 4 discusses the contents of the observation emails and reports. And Sections 5 and 6
+describe the guidelines for making an entry in and uploading files to ExoFOP-TESS and ExoFOP-K2,
+respectively.
+
+1. Files and File naming conventions
+
+As a minimum, the first eight (8) of the files below will need to be uploaded to ExoFOP-TESS or ExoFOP-K2.
+Depending upon factors described in Section 3, the following files may or may not have to be uploaded:
+plot of the delta magnitude vs. RMS of stars within a 2.5’ radius of the target (File 9), an NEB report table
+(File 10), a .zip file of “shallowest event” plots (File 11), and a Zoomed-in FOV file (File 12).
+
+        File 1: An AstroImageJ Photometry Measurement Table, usually with an extension of .tbl, .csv,
+                .txt, or .xls (Note: It is preferred that AIJ measurement tables be created with an extension
+               of .tbl. This extension can be chosen as the default for AIJ’s measurement tables by selecting
+               Edit->Options->Input/Output… from the main AIJ toolbar, and then entering .tbl for “File
+               extension for tables.”)
+
+        File 2: An AstroImageJ Plot Configuration File, with an extension of .plotcfg.
+
+        File 3: An AstroImageJ Photometry Aperture File, with an extension of .apertures.
+
+        File 4: Light Curve Plots, with and extension of .png. Note: when it is not possible to easily fit the
+               light curves of the final set of comparison stars underneath the light curves associated with
+               the target star, then a separate file associated only with such comparison star plots may be
+               necessary.
+
+        File 5: A Field Image with Apertures, with an extension of .png showing the full field-of-view
+                along with the final selection of target(s) and comparison stars shown.
+
+        File 6: A Plate Solved Image (i.e., containing WCS FITS keywords), with an *.fit, or preferably a
+               *.fits, extension.
+                                                                                                                 3
+        File 7: A Seeing Profile, with an extension of .png.
+
+        File 8: A Notes and Results Text file, with a .txt extension, is a plain text copy of the body of the
+               email observation report (see Section 4 below).
+
+        File 9: A Delta Magnitude (Dmag) vs. RMS plot .png file depicting a plot of the delta magnitude vs.
+               RMS of stars (see Section 2.1 below).
+
+        File 10: An NEB Table .txt file showing which stars within a user-specified radius of the target star
+               are cleared, or likely cleared, as potential NEBs (see Section 2.1 and Case 3 of Section 2.2
+               below).
+
+        File 11: A .zip file of NEB Depth Plot files for all measured stars within a user-specified radius of the
+               target, where the star’s plot shows the shallowest event required for that star to mimic the
+               TESS predicted transit depth.
+
+        File 12: A Zoomed-in FOV .png file showing the information described in Section 3 below.
+
+Files 1-5 are automatically created when the results of an AIJ analysis are saved – see Section 2.1, item 12.b
+below. As described below, AIJ can also be used to generate files 6, 7, and 9-12. File 8 can be created by a
+text editor.
+
+Each of the above files should have a file name of the form
+targetname-pp_yyyymmdd_observatory_filter_filetype.ext, where:
+
+    •   targetname-pp is the TIC ID or EPIC ID, including the planet number (pp),
+    •   yyyymmdd is the UT date/time of the beginning of the observation,
+    •   observatory is the name of the observatory,
+    •   filter is the filter used,
+    •   filetype is an abbreviated description of the type of file (see the examples below), and
+    •   ext is the appropriate extension for the type of file.
+
+If the target has a decimal suffix for the planet number (e.g., “.01”), it is important to include this suffix as
+part of the targetname-pp by prefixing the planet number (pp) with a “-“ instead of a “.” As an example, for
+TESS target TIC32090583.01, the target name used in each file name would be TIC32090583-01. This suffix
+is important because it will help distinguish this planet candidate from others in a multiple planetary
+system. Also, for observatory and filetype, include dashes between words if the observatory name or file
+type is more than one word.
+
+An example of filetype for each of the above files can be seen in the following filename examples:
+
+        File 1: TIC32090583-01_20181225_LCO-CTIO-1m_ip_measurements.tbl
+
+        File 2: TIC32090583-01_20181225_LCO-CTIO-1m_ip_measurements.plotcfg
+
+        File 3: TIC32090583-01_20181225_LCO-CTIO-1m_ip_measurements.apertures
+
+        File 4: TIC32090583-01_20181225_LCO-CTIO-1m_ip_lightcurve.png
+
+        File 5: TIC32090583-01_20181225_LCO-CTIO-1m_ip_field.png
+
+        File 6: TIC32090583-01_20181225_LCO-CTIO-1m_ip_WCS.fit
+
+                                                                                                                    4
+        File 7: TIC32090583-01_20181225_LCO-CTIO-1m_ip_seeing-profile.png
+
+        File 8: TIC32090583-01_20181225_LCO-CTIO-1m_ip_notes.txt
+
+        File 9: TIC32090583-01_20181225_LCO-CTIO-1m_ip _measurements_dmagRMS-plot.png
+
+        File 10: TIC32090583-01_20181225_LCO-CTIO-1m_ip_measurements_NEB-table.txt
+
+        File 11: TIC32090583-01_20181225_LCO-CTIO-1m_ip_measurements_NEBcheck.zip
+
+        File 12: TIC32090583-01_20181225_LCO-CTIO-1m_ip _field-zoom.png
+
+As mentioned earlier for File 4, if a separate set of light curve plots are needed, then another file containing
+such plots would be labelled as:
+
+TIC TIC32090583-01_20181225_LCO-CTIO-1m_ip_compstar-lightcurves.png
+
+
+
+2. Analysis
+
+This section is divided into two parts: those guidelines that are common to all three (3) observational cases
+identified earlier, and those guidelines that are case-specific.
+
+B.1. Case-Independent Guidelines
+
+The following guidelines are to be followed for all cases:
+
+1. The time system to be used in all observations and analyses should be BJD_TDB (see Sections 7.2.2 and
+   7.6 of the Practical Guide how to include these values in an AIJ measurement table). Furthermore,
+   when practical, it is best to keep a total cadence to no more than 2 minutes (including the time
+   between exposures). However, if the transit duration is less than 30 minutes, then a cadence of 1
+   minute would be preferred, and if the duration of the overall observation is longer than 3-4 hours, then
+   a cadence of 3 minutes would be acceptable.
+
+2. Plate solve at least the first image in your ensemble of calibrated images. This will correctly set the
+   North/East (N/E) arrows on AIJ’s Image Display so that any subsequent images will also show the
+   correct orientation. Copy this plate-solved image to a file and name the file using the naming
+   conventions for File 6 as described in Section 1 above. This plate-solved image will later be uploaded to
+   ExoFOP-TESS or ExoFOP-K2. It is desired that the image be oriented such that North is as close to
+   pointing “up” in the vertical direction as possible, and East is as close to “left” as possible (see the
+   example in Attachment C). In AIJ, this can be done using the View menu options on the Image Display.
+
+3. Create a Seeing Profile plot, based on the target star, from the first calibrated (and plate-solved) image.
+   If the target star is saturated, then a near-by bright star would be used as the basis for the Seeing
+   Profile plot. Section 7.5.1 of the Practical Guide discusses how to create such a plot. Once created in
+   AIJ, the plot may be saved to a .png file by clicking on the Save button on the lower left of the Seeing
+   Profile plot screen. Name this file using the naming conventions for File 7 as described in Section 1
+   above. This file will also later be uploaded to ExoFOP-TESS or ExoFOP-K2.
+
+
+
+                                                                                                               5
+4. If a TESS event has not previously been confirmed to occur in the target star from prior follow-up
+   observations, it is best to define the stars within 2.5' of the original target as “target” stars. This can be
+   done in AIJ by holding the shift key when placing apertures on them. Comp stars with brightness
+   similar to the target should then be chosen outside the 2.5' radius. Although this approach is contrary
+   to the common practice of choosing comp stars nearest the target, it is appropriate for doing a search
+   of potential NEBs. However, if comp stars are in short supply, it is fine to choose bright stars within the
+   2.5' as comps, but they should then be individually checked for NEBs.
+
+    AIJ users should use the tools described in 9. below and in Appendix D to place apertures within 2.5’ of
+    the target.
+
+5. A circle of 2.5’ radius can be drawn around the target star (see Appendix C as an example), by
+   performing the following steps:
+            a. Under Annotate at the top of the Image Display, make sure that the “Right click in image
+                 opens annotation dialogue” option is selected.
+            b. Right click on the target star and a dialogue box opens up.
+            c. For “Custom Text,” enter Radius=2.5’
+            d. Check only the Show Circle option
+            e. Enter the number of pixels that equates to 2.5’ (i.e., 150 arc-seconds). For example, if the
+                 pixel scale is 1.5 arc-seconds per pixel, then 100 should be entered for the number of
+                 pixels.
+            f. Clicking OK will then put a circle of radius 2.5’ around the target star.
+
+6. To improve readability, especially when selecting many comparison stars and when creating the
+   zoomed-in field (File 12), it is advisable to only display the photometry aperture and not the annulus.
+    This can be done by deselecting (if it is gray) the    icon on AIJ’s Image Display , as well as by turning
+    off the display of the integrated counts using the icon     .
+
+7. All field-of-view images should be saved at very high contrast so that the faintest stars can be easily
+   seen. This typically also means that the noise in the dark portion of the image can be seen. This allows
+   reviewers to clearly see all faint stars in the images. Observers can do this by using a new feature that
+   has recently been added to the AIJ daily build. To use it, display the first image in an image stack and
+   then adjust the contrast sliders in the histogram below the image until all of the detail in the faint parts
+   of the image can be seen. If more fine-grained control of the histogram is needed, enable Scale->"Use
+   fixed min and max histogram values" and then enter a custom number, such as 3000, in the "max" box
+   at the bottom-right of the histogram. Next, at the top of the Image Display, select Scale->"Grab auto
+   brightness & contrast from histogram". Now when images are scrolled though in the stack, the same
+   relative contrast and brightness will be maintained. When finished, use Scale->"Reset auto brightness &
+   contrast to defaults" to return the histogram to its previous settings. Finally, the “Auto-grab auto
+   brightness and contrast from histogram” option, which is enabled by default, automates the “Grab auto
+   brightness and contrast from histogram” feature any time a histogram change occurs, without the user
+   having to go back to the Scale menu and clicking “Grab auto brightness and contrast from histogram.”
+
+
+
+
+                                                                                                                 6
+8. From the plot of each comparison star, note which ones have a lot of scatter. Using AIJ’s Multi-plot
+   Reference Star Settings screen, deselect such stars (this will cause each star’s annotation to go from Cx
+   to Tx).
+
+9. Two new tools are now available that work together to assist AIJ users (and reviewers) in analyzing
+   which stars might potentially be an NEB that is producing an event that could be the source of the TESS
+   detection (i.e., is the cause of a “false positive” detection). Unless the user knows that an event has
+   already been detected on target (i.e., has a classification of VPC or VPC+) or all of the potential NEBs
+   have been cleared from the field (i.e., has a classification of CPC), using these tools will help determine
+   which Case (1, 2, or 3) should be followed.
+
+    The first tool is implemented as a web-based application. This tool creates an AIJ *.radec aperture file
+    for all stars in the Gaia database that need to be checked as possible NEBs. Using this tool to define the
+    apertures around the target will also help make the aperture numbers uniform from observer to
+    observer. In addition to this web-based application, the TTF now includes a link that allows the user to
+    directly download this aperture file. Appendix D contains instructions for using both of these methods
+    for obtaining the *.radec aperture file.
+
+    The second tool is implemented as an AIJ macro that takes as input the AIJ measurement table
+    produced from the multi-aperture photometry based on the Gaia star apertures created from the first
+    tool. It creates a number of products that help determine which stars, within a nominal 2.5’ radius of
+    the target, can be cleared as not being an NEB that could cause the TESS detected event. Appendix E
+    includes instructions for using this NEB analysis tool.
+
+10. If a particular star that you are trying to select as a comp or target star is too close to another star, you
+    may find that, with “centroid apertures” turned on, AIJ will not put the aperture on the subject star, but
+    rather will keep putting it on the nearby star. If this is the case, the following approach can be tried. On
+    the Image Display, you will see the following icon when “centroid apertures” is selected:       .
+    When it is gray’ed out, then AIJ will attempt to place the aperture on the centroid of a star. However,
+    for stars close to each other, AIJ may always place it on one and not the other. In such a case, to force
+    AIJ to place the aperture on a particular star, select the above icon, which will un-gray it. Once you have
+    manually placed the aperture on the center of the star, select the icon again where it will turn back to
+    the state as shown above. For the remaining comp star selections, AIJ will then use the automatic
+    “centroid aperture” mode. This allows you in one photometry run to use both the automatic and
+    manual aperture selection modes on different stars, during which the uncentroided apertures will track
+    the relative motions of the centroided apertures (note that T1 must be a centroided aperture to enable
+    this feature).
+
+11. Create a Light Curve image showing on it the following time series plots (Section 2.2 describes
+    additional plots that should be included and that are case-specific):
+            a. In all cases, the predicted ingress/egress times obtained from the TTF should initially be
+                entered in the Left and Right boxes under the Fit and Normalization Region Selection
+                screen, as well as in the V.Marker fields. The V.Markers should then not be changed during
+                the analysis, however, the left and right markers in the Fit and Normalization Region area
+                can be adjusted to mark the apparent ingress and egress if either doesn't seem to happen
+                                                                                                               7
+     on time.
+
+b. In all cases, an unfitted plot of the light curve of the original target, with no detrending,
+   should be the first plot. This is accomplished in AIJ by selecting the Fit Mode of “off.” In
+   addition, the associated RMS should also be displayed. This is done as follows: on AIJ’s
+     Multi-plot Main screen under the Legend section, click the “wrench” icon          and select
+     “Append Std. Dev. to legend for all absolute curves.” Finally, this raw, unfitted undetrended
+     light curve should always be plotted with Bin Size=1 and a Shift value of 0.0 on AIJ’s Mulit-
+     plot Y-data screen.
+
+c. The following two other Light Curve plots of the target should then be included for all
+   cases, except when an NEB has been detected (i.e., Case 2). For both plots, start with an
+   initial Bin Size that when multiplied by the exposure time, results in a value close to 3-5
+   minutes.
+         i. A plot of the target’s raw data with out-of-transit (OOT) data detrended. This is
+             accomplished in AIJ by using the Fit Mode of       and a Norm/Mag Ref selection of
+                , and making sure that the Right and Left values have been appropriately
+             entered in the Fit and Normalize Region Selection area on AIJ’s Multi-plot Main
+             screen.
+         ii. A transit model fitted plot of the target with appropriate detrending.
+
+d. If a meridian flip occurred, this should be so indicated on the plot.
+
+e. The Title at the top of the Light Curve should ideally be of the form:
+                          TIC NNNNNNNNN.pp UTyyyy.mm.dd
+   where NNNNNNNNN is the TIC number, pp is the planet number, and yyyy, mm, dd are the
+   year, month, and day of the beginning of the observation.
+
+     Also, the Subtitle underneath the Title should ideally be of the form:
+                    Observatory (f filter, nn exp, fap aa-bb-cc) where,
+     Observatory is the name of the observatory, f is the type of filter used, nn is the exposure
+     time in seconds, and aa,bb,cc are the aperture radius, inner annulus radius, and outer
+     annulus radius respectively (note: “fap” stands for follow-up aperture).
+
+     The following is an example of such a Title and Subtitle:
+                            TIC 32090583.01 UT2018.12.25
+                        LCO-CTIO-1m0 (ip filter, 120 exp, fap 12-27-41)
+
+f.   The bottom of the Light Curve image should contain the following additional plots:
+
+         i. A plot of Width_T1 – this is the mean of the X- and Y- direction FWHM of the
+            target.
+
+
+
+                                                                                                    8
+                    ii. A plot of Sky/Pixel_T1 – this will show changes in the background sky that is
+                        frequently associated with systematics.
+
+                    iii. A plot of (inverted) AIRMASS with tot_C_cnts overlaid on it - this will show what
+                         the transparency was like at the time of the observation.
+
+                    iv. Plots of X(FITS)_T1 and Y(FITS)_T1 – this will reflect the image shift during the
+                        observation.
+
+                HINT: Due to the wide range of values for items i-iv, it is advisable to select Page Rel on
+                AIJ’s Multi-plot Y data screen for these items. When Page Rel is selected, Scale is
+                interpreted as the % of the plot’s Y-range that the data should be scaled, and Shift is
+                interpreted as the % of the plot’s Y-range that the data should be shifted. To invert a data
+                item, such as AIRMASS, the value for Scale should be negative. Suggested Scale and Shift
+                values for items i-iv, as well as colors, are:
+                                                Scale      Shift Color
+                             Width_T1              15      -42 light gray
+                             Sky/Pixel_T1          15      -42 yellow
+                             AIRMASS              -15      -42 teal
+                             tot_C_cnts            15      -42   brown
+                             X(FITS)_T1            15      -42 pink
+                             Y(FITS)_T1            15      -42 light blue
+
+12. After completing the differential photometry and model fitting:
+            a. Create and append to the currently open measurement table the relative, normalized flux
+               values, and their associated errors, for the target star – see Section 7.12 of the Practical
+               Guide how to do this.
+
+            b. Finally, save all relevant files by selecting File->Save all… in the upper left on the Multi-plot
+               Main screen. When the “Save all” dialogue screen appears, enter in the “File name” section
+               the file name and extension of the measurement table. If the file naming convention
+               described in Section 1 above is followed for the measurement table, then this same file
+               name will also be used for Files 2-5 that AIJ will also automatically create at this time.
+
+
+2.2. Case-Dependent Guidelines
+
+The following guidelines dealing with the analysis phase are case-specific:
+
+Case 1 –An event was detected with a high level of confidence in the target star’s aperture
+
+In cases where there is a clear detection of an event on the target, and no False Positive was found, then
+
+include in the Light Curve image the fitted light curve of the target. This is done by selecting the    icon
+as the Fit Mode on AIJ’s Multi-plot Y data screen. Also make sure that the Scale entry on the Multi-plot Y-
+
+                                                                                                               9
+Data screen for this row is set to 1.0. If there is no detection of an event on-target, then a second run
+should be run to try to clear the field of possible NEBs (see Case 3).
+
+If attempting to detect sub 3-4ppt transits, include in-transit model residuals, which should be much
+smaller than the transit depth being measured, so that a reasonable shallow detection can be claimed.
+
+To optimize a full transit model fit, move the Left and Right Fit and Normalize values to what visually
+appears to be the ingress and egress respectively. The Left and Right markers should generally be separated
+by the same distance as between the predicted ingress and egress markers (i.e., the V.Markers). Then,
+initially select AIRMASS as the only detrend parameter, sequentially deselect/select comparison stars to
+achieve the lowest RMS, and then try detrending again with other parameters until the lowest BIC
+(Bayesian Information Criterion) is achieved (note: this value appears on AIJ’s Data Set Fit Settings
+screen). If adding the best detrend parameter reduces BIC by more than 2.0, then keep the detrend
+parameter. Otherwise, do not detrend the light curve. A second detrend parameter can be considered if it
+reduces the BIC by more than 2 below the single detrend parameter’s BIC. Use at most two (2) detrend
+parameters. Following the selection of any new detrend parameters, complete another round of
+sequentially deselecting/selecting comparison stars to see which ones achieve the lowest RMS.
+
+For partial transits, detrending may produce undesirable results since out-of-transit (i.e., “baseline”) data
+are not available to constrain the fit on both ends. If there is an obvious curvature in the out-of-transit data
+of the partial transit, then AIRMASS detrending may be warranted. If a straight line trend is obvious in the
+baseline, then time (e.g., BJD_TDB) detrending may be warranted as a detrend parameter. If a meridian flip
+(MF) occurred, then only the MF should be used as a detrend parameter, UNLESS there is a strong trend in
+the light curve affected when either AIRMASS or time is also selected as a detrend parameter. In any case,
+for a partial transit, if the transit shape changes dramatically, detrending may not be giving a valid result.
+
+The light curves of 5-6 comparison stars, each of which are detrended only with Airmass, should be
+included. Since for this case there is a detection of an event on target, there is no need to search for events
+in nearby, faint stars.
+
+For this case, observers should first determine the photometric aperture that results in the smallest scatter
+(i.e., RMS) of the fitted light curve. This is the light curve that should be included in the Light Curve image
+described in Section 2.1, item 11. However, smaller apertures should be tested to determine the smallest
+aperture that will result in a light curve shape and depth that is similar to the light curve produced by an
+aperture with the smallest scatter. This second aperture size should also be reported in the observation
+email and report (see Section 4.2, Case 1 below).
+
+Case 2 – A nearby star was identified as an NEB
+
+If a comparison or nearby “target” star shows an event, it could be an NEB or a Nearby Planet Candidate
+(NPC) – see Appendix A for a complete definition of an NPC. If observational data exists for the full
+predicted transit duration, along with sufficient pre-ingress and post-egress out-of-transit data, then the Fit
+
+Mode using the icon         should be used with no detrending, unless a meridian flip occurred. To select
+meridian flip as a “trend”, perform the following for the NEB’s entries on AIJ’s Multi-plot Y data screen:
+
+    1. Click on a box under Trend Select to turn it green.
+
+
+                                                                                                              10
+    2. If the circle in the box is selected, then the detrend parameter associated with that box appears
+       under the Trend Dataset column for that row.
+    3. Select meridian flip as the appropriate detrend parameter in the Trend Dataset dropdown menu.
+
+In addition, a fitted version of the NEB light curve can be included by selecting the   icon as the Fit
+Mode, as described for on-target events in Case 1. This is optional depending on observer preferences and
+plotting space available.
+
+Just as in Case 1 above, make sure that the Scale entry on AIJ’s Multi-plot Y-data screen is set to 1.0 for the
+NEB plot. Otherwise, the visual representation of the NEB’s depth will be scaled to whatever value you have
+in the Scale entry.
+
+If an NEB is detected, there is no need to include the light curves of other comparison stars, or to upload
+Files 9, 10, and 11.
+
+When the NEB is deselected as a comparison star and therefore becomes a “target,” you may also see that
+this dramatically affects the light curve of the original target, as well as the other comparison stars, since its
+deep depth as a comparison star was disproportionally affecting the target star, as well as the other
+comparison stars.
+
+
+Case 3 – No clear detection of an event associated with the target or any nearby stars
+
+This is likely to be the case where the transit is too shallow to be detected from the ground. In this case, we
+are generally trying to exclude as NEBs all of the stars that are within a 2.5’ radius of the target. The fainter
+a nearby star is, the deeper the event for that star has to be in order to produce the predicted target depth.
+However, the fainter the star, the greater is the light curve scatter (i.e., its RMS).
+
+The differential photometry run in this case generally is done with a smaller aperture and fainter
+comparison stars than in Case 1.
+
+In order to know which stars within the 2.5’ radius are “cleared” as not being a potential NEB, an “NEB
+Table” should be created, as described below. First, however, consider Table 1 that shows, for a given
+predicted depth, the delta magnitude (Δmag) down to which nearby stars should be checked.
+
+                                                     Table 1.
+
+                                               Predicted        Δmag
+                                                 Depth          (mag)
+                                                 (ppt)
+                                                  0.1           10.0
+                                                  0.2            9.2
+                                                  0.3            8.8
+                                                  0.4            8.5
+                                                  0.5            8.3
+                                                  1.0            7.5
+                                                  2.0            6.7
+                                                  3.0            6.3
+                                                                                                               11
+                                                   4.0           6.0
+                                                   5.0           5.8
+                                                   10            5.0
+                                                   20            4.2
+                                                   30            3.8
+                                                   40            3.5
+                                                   50            3.3
+                                                   100           2.5
+
+Thus, given the predicted depth of the original target, stars that are within 2.5’ of the original target star
+and are brighter than the Δmag associated with this predicted depth, should be included in the NEB Table.
+For each star that meets this criterion, the NEB Table should include the following information:
+
+    1.   The distance (d) in m’ss” (arc-minutes and arc-seconds) from the original target to the star.
+    2.   The delta magnitude (Δmag ) of the star relative to the original target.
+    3.   The position angle (PA) in degrees of the star.
+    4.   The star’s RMS in ppt. The Fit Mode for the star’s light curve should be “off” or the straight line, all
+
+       green icon      . In the case of the all green icon, no detrend parameters should be enabled,
+       except meridian flip, if one occurred. The RMS value used should be after the data is binned to
+       approximate three-minute equivalent exposures.
+    5. The depth of an NEB (“NEBdepth”) that would be needed to produce the predicted target depth
+       (PredTargetDepth). This is calculated for each star by the following formula:
+
+               Let X = 10^(- Δmag/2.5)
+               NEBdepth = PredTargetDepth/X.
+
+        In order to compensate for the difference between the TESS band and the filters typically used in
+       the follow-up observations, a -0.5 mag correction is made to Δmag in the above calculation.
+    6. The value NEBdepth/RMS is calculated for each star.
+    7. And finally one of the following dispositions should be noted for the star, based on the
+       accompanying criteria:
+             Cleared-too faint         - the star is too faint to have caused the TESS event detection
+             Cleared                    - NEBdepth /RMS >=5
+             Likely cleared            - NEBdepth/RMS is between 3 and 5
+             Not cleared-flux too low - there is not enough flux in the aperture to measure a
+                                          reasonable Δmag
+             Not cleared                - if none of the above apply.
+
+In the case of the star being ”Likely cleared,”, its undetrended light curve should still be checked to see if an
+NEB event occurred. The quantitative criteria used for the “Not cleared-flux too low” disposition is if the
+(weighted) average of the star’s Source-Sky counts per aperture pixel is less than 10. The quantitative
+criteria used for “Cleared-too faint” is if NEBdepth is >= 1000 ppt. Finally, if a star is not cleared by simple
+RMS analysis, inspect the star's light curve for obvious eclipse events.
+
+Consider the example in Appendix C for a sample target T1. Assume that the predicted depth of the target
+is 50 ppt. Table 1 then suggests that nearby stars that have a delta Δmag of 3.3 mag or less than the target
+star should be included in the NEB Table. From the example in Appendix C, at least two stars, T4 and T10
+
+                                                                                                                12
+with Δmag ’s of 2.91 and 1.06 respectively, should thus be considered.
+
+Assuming that the RMS values (in ppt) for stars T4 and T10 are 3.01 and 4.02, respectively, then the NEB
+Table rows for the two stars in this example would be:
+
+Star       Separation from target (“) PA (deg.) Δmag RMS (ppt) NEBdepth (ppt) NEBdepth/RMS
+T4                  00’49”              298      2.91 3.01        729.4          242.3
+T10                 01’59”              165     1.06  4.02        132.7           33.0
+
+Because NEBdepth/RMS > 5 for both stars, they would be cleared as not being a source of a False Positive.
+
+For AIJ users, an AIJ aperture file can be automatically created from Gaia data that essentially uses the
+equivalent calculations of Table 1 to find those stars that need to be checked as possible NEBs causing the
+TESS detection. This is done using one of two methods (see Appendix D) that extracts all of the Gaia stars
+that need to be checked for NEBs and produces an AIJ *.radec aperture file that the user can use during the
+multi-aperture photometry process. The aperture file can then be dragged and dropped onto the first
+image of an AIJ stack prior to conducting the multi-aperture photometry. Conducting the multi-aperture
+photometry with the star locations in the aperture file thus covers all stars that need to be checked for
+NEBs.
+
+Furthermore, using a new AIJ NEB analysis tool (see Appendix E), the NEB Table can be automatically
+created from an AIJ measurement file, ideally from one resulting from the multi-aperture photometry that
+employed the above tool. A .txt file is automatically generated by this tool and can directly be used as File
+10 above (see Appendix E, Figure E-2). The NEB table feature of this tool will also provide the user with
+statistics on the average aperture radius and the amount of image shift in X and Y during the observation,
+both of which will be helpful in filling out other information required for the observation report. Appendix
+E provides detailed instructions on the use of this NEB analysis tool.
+
+As a companion to the NEB Table, the above-mentioned AIJ NEB analysis feature can also produce a plot
+for each star within a user-specified radius, showing the star’s data points and an overlay depicting the
+“shallowest event” that could produce the TESS detection (see Appendix E, Figure E-3). The user can then
+visually judge if the marginal “Likely cleared” stars are truly cleared. A subfolder containing a .png file for
+each such plot is generated. Files in the subfolder can then be zipped by the user and submitted as File 11
+above.
+
+Finally, this NEB analysis feature also allows for a plot of dmag vs. RMS to be produced for all measured
+stars within a user-defined radius (see Appendix E, Figure E-4). Such plots are typically of an exponential
+nature and will help indicate which comparison or target star might be an EB or NEB. Such stars typically are
+“off the curve” shown for the other stars. A .png file is automatically generated for this product and can
+directly be used as File 9 above. The user can optionally select that the plot be generated as Dmag vs.
+log10(RMS), which typically produces a straight line vs. an exponential plot.
+
+If this new AIJ NEB analysis feature is not used, then AIJ users can manually gather the above NEB Table
+information as follows:
+
+       1. Items 1-3 above can be found by performing the following steps on a plate-solved image (note:
+          make sure that you have the latest AIJ daily build): (1) place the cursor on the original target star,
+          (2) hold the center or right mouse button down, or hold alt and use the left mouse button (or for
+
+
+                                                                                                                   13
+       Mac users, control-command-click drag), (3) move to the nearby star, and release the mouse
+       button.
+    2. The RMS for a star’s fit is available from AIJ’s light curve legend for that star. RMS in ppt is obtained
+       by multiplying this value by 1,000. Binning of the data to achieve RMS values for the equivalent of
+       a three minute cadence (for exposures shorter than 1 minute) can be done by knowing the
+       exposure time and employing the corresponding "Bin Size" control on the Multi-plot Y-data panel
+       to get this three-minute equivalent.
+
+The NEB Table should be included in the observation email and report, as well as uploaded to ExoFOP (see
+Section 4.2, Case 3).
+
+
+3. Create Additional Upload Files
+
+After the above steps in Section 2 are completed, Files 1-7 should have been created. In addition, a plain
+text file should be created by the observer that contains the body of the observation email described in
+Section 4 below. The file name of this file should conform to that of File 8 in Section 1 above.
+
+If there was no event detected on target (i.e., Case 3), then an NEB Table as described above should have
+been created
+
+Finally, an optional file, a Zoomed-in FOV (File 12), should be created under the following circumstances:
+
+    1. If an event is detected with the target and its photometry aperture overlaps with a nearby star.
+
+    2. If an event is not detected with the target. The Zoomed-in FOV image should then show the stars
+       within 2-3 arcminutes of the target. Ideally, this would be a 6’x6’ view around the target star. It is
+       also best for this view to turn off the background annulus rings in order to provide less clutter in the
+       view.
+
+    3. If an event is detected with a star near the target. The Zoomed-in FOV image should then show the
+       Δmag and distance vector to the star relative to the target. This can be done in AIJ by Ctrl, right
+       mouse click and drag, or click on mouse scroll wheel and drag.
+
+    4. If there is no detection of an event in the target or in a nearby star. The Zoomed-in FOV should
+       then show the Δmag and distance vector to the faintest star checked by the observer that is cleared
+       by the NEBdepth/RMS.
+
+The contrast for the Zoomed-in FOV should be increased so that the faintest stars can be seen in the image.
+The feature described in Section 2.1, item 7 describes how this can be accomplished.
+
+4. Observation Email
+
+Emails describing the observation should be sent to tfopsg1@gmail.com and should contain the following
+information. Just as with the Light Curve plot, there is some information independent of the observation
+case that should be included in the body of the observation email, as well as information that is case-
+dependent.
+
+4.1. Case-Independent Information
+
+                                                                                                              14
+The following guidelines apply to all observation emails:
+
+    1. The subject line of the email should be of the form as shown in the following example:
+       TIC 32090583.01 (TOI-218.01) on UT2018.12.25 from LCO-CTIO-1m in ip.
+       That is, the target name, the associated TOI number, the UT date of the beginning of the
+       observation, the name of the observatory, and the filter used in the observation. Make sure that
+       there is a space between “TIC” and the TIC number.
+
+    2. A short statement describing the goals of the submitted run.
+
+    3. A short statement describing your interpretation of the results.
+
+    4. The radius of the photometry aperture in arc-seconds.
+
+    5. The predicted transit center time from the TTF.
+
+    6. An indication of any Gaia stars that are contaminating the aperture and FWHM of the target star.
+
+    7. A statement indicating if the appropriate files have yet been uploaded to ExoFOP-TESS or ExoFOP-
+       K2.
+
+    8. Other observation notes such as if a meridian flip occurred, maximum and standard deviation of
+       image shift in pixels and arc-seconds, seeing conditions, other local conditions (e.g., light wind), any
+       detrend parameters used.
+
+    9. If other observations have been done of this target, then a copy of the notes in the TESS Transit
+       Finder (TTF) entry for this target
+
+    10. For all cases, attachments to the email should include Files 1, 2, 4, 5, and 7.
+
+4.2. Case-dependent Information
+
+The following guidelines apply to case-specific information that should be included in the observation
+email.
+
+Case 1 – An event was detected with a high level of confidence in the target star’s aperture
+
+The size in pixels and arc-seconds of the smallest aperture that produces a light curve shape and depth
+comparable to the light curve reported for the aperture that produced the light curve with the smallest
+scatter (see Section 2.2, Case 1).
+
+Differences between predicted vs. observed mid-point transit times, as well as any differences between
+predicted vs. observed transit durations.
+
+The approximate depth of the event in the target star.
+
+
+                                                                                                            15
+Include as an attachment File 12, a Zoomed-in FOV if one was created (see Section 3).
+
+Case 2 – A nearby star was identified as an NEB
+
+If an NEB is discovered, then the depth of the NEB’s event as estimated from its light curve, and distance
+and between the target and the NEB, as well as the direction of the NEB relative to the original target (e.g.,
+South-Southwest “SSW”).
+
+Case 3 – No clear detection of an event associated with the target or any nearby stars
+
+If the predicted depth is too shallow to be detected by the observer and there are no events in nearby
+stars, then the NEB Table described in Section 2.2, Case 3 should be reported.
+
+Include as attachments File 10 (the NEB table) and File 12 (a Zoomed-in FOV) - see Section 3.
+
+
+5. Uploads to ExoFOP-TESS
+
+The following is the procedure for uploading the appropriate files to ExoFOP-TESS
+(https://exofop.ipac.caltech.edu/tess/). Note, this presumes that the observer already has login credentials
+to ExoFOP-TESS; if not they can be applied for by clicking on “Request an account.”
+
+To upload a TESS (i.e., TIC) observation to ExoFOP-TESS:
+
+    1. Login to ExoFOP-TESS and enter into the search box the TIC ID (that is the TIC number WITHOUT
+       the “TIC”) or using the TOI number.
+
+    2. Under the Time Series Observation section for this TIC, click “Add new.”
+
+    3. Enter the appropriate information in the pop-window:
+
+            a. For “Estimated PSF” enter the FWHM in arc-seconds of the target star at the beginning of
+               the observation. The FWHM in arc-seconds can be found at the top of the Seeing Profile
+               image of a plate-solved image. For Faintest Neighbor Δ Magnitude, if an NEB is found, enter
+               the magnitude difference between the target and the NEB, otherwise enter the magnitude
+               difference between the target and the faintest star in the field for which you checked for an
+               NEB and the NEBdepth/RMS>5 test passed.
+            b. When entering a “Tag,” see the notes on the bottom of the pop-window Data Tagging. A
+               suggested template for each new tag is: YYYYMMDD_username _timeseriesplot_0001,
+               where only the date might change. However, if more than one observation is uploaded per
+               night, then 0001 would change to 0002, etc. Note that the four text substrings must be
+               separated by three underscores.
+            c. For the Notes item, enter any relevant information such as weather conditions, whether a
+               meridian flip occurred, etc. If you don’t care that the public will be able to see your
+               assessment of the nature of your observation (e.g., if an NEB was found), then you may also
+               include this information in the Notes section as well. However, do not include any
+
+
+                                                                                                            16
+               information in the Notes section that you want to keep protected within the TFOP team
+               and covered by the TFOP Publication Policy.
+            d. When you have completed your entry, click “Add Time Series.”
+
+    4. The file uploads should then take place as follows. Under the Files section, click “Add new.” Select
+       “Light_Curve” as the Type for ALL files. File names should be of the format described in Section 1
+       above. Furthermore, the Description fields for the various file types should be as follows:
+
+            File 1: AstroImageJ Photometry Measurement Table
+            File 2: AstroImageJ Plot Configuration File
+            File 3: AstroImageJ Photometry Aperture File
+            File 4: Light Curve Plot
+            File 5: Field Image with Apertures
+            File 6: Plate Solved Image
+            File 7: Seeing Profile
+            File 8: Notes and Results Text
+            File 9: Dmag vs. RMS plot
+            File 10: NEB Table
+            File 11: NEB Depth Plots
+            File 12: Zoomed-in FOV
+
+            If there is a separate file for comparisons star plots, upload it is as well with a description field
+            of “Compstar Light Curve Plots.”
+
+    5. The Tag for each file would be the short-hand, integer version that was created for the associated
+       Time Series Observation entry. This short-hand version is the integer value to the far right of the
+       associated Time Series Observation entry.
+
+    6. For files that you upload to ExoFOP-TESS, there is a dialog option to select a 0 or 12 month
+       proprietary period (note: ExoFOP-K2 has no such proprietary period). You should choose the 12
+       month proprietary period and the Group designation should be “tfopwg.”
+
+    7. Click Upload when ready to upload a file.
+
+    8. Repeat steps 4-7 for each file to be uploaded.
+
+Note: Work is ongoing with NExScI to provide an alternative to the upload method described above that
+will simplify the upload process.
+
+
+6. Uploads to ExoFOP-K2
+
+The following is the procedure for uploading the appropriate data products to ExoFOP-K2
+(https://exofop.ipac.caltech.edu/k2/) for K2 targets. The same credentials for ExoFOP-TESS can also be
+used for ExoFOP-K2.
+
+To upload a K2 (i.e., EPIC) observation to ExoFOP-K2:
+
+                                                                                                                17
+1. Login to ExoFOP-K2 and enter into the target name search box the EPIC ID (that is the EPIC number
+   WITHOUT the “EPIC” and WITHOUT any decimal numbers).
+
+2. Under the Imaging Observations section, click “Add new.”
+
+3. Enter the appropriate information in the pop-window. Note, for “Estimated PSF” enter the FWHM
+   in arc-seconds of the target star at the beginning of the observation, since it may change
+   throughout. The FWHM in arc-seconds can be found at the top of the Seeing Profile image of a
+   plate-solved image. For Estimated Contrast, if an NEB is found, enter the magnitude difference
+   between the target and the NEB, otherwise enter the magnitude difference between the target and
+   the faintest star in the field for which you checked for an NEB. Also, enter here the separation (in
+   arc-seconds) between the target star and either the NEB or the faintest star checked. For the
+   Notes item, enter information as described above for ExoFOP-TESS entries. When you have
+   completed your entry, click “Add Imaging.”
+
+4. The file uploads should then take place as follows. Under the Files section, click “Add new.” Select
+   “Photometry” as the Type for ALL files (NOTE: this is different than the Light_Curve type entered
+   above for ExoFOP-TESS entries). File names should be of the format described in Section 1 above.
+   Furthermore, the Description fields for the various file types should be as described above for
+   ExoFOP-TESS file uploads.
+
+5. Click Upload when ready to upload a file.
+
+6. Repeat steps 4-5 for each file to be uploaded.
+
+
+
+
+                                                                                                      18
+                              Appendix A: Additional Classifications
+
+VPC (Verified Planet Candidate): Indicates that the event has been verified by SG1 follow-up to occur on
+target and that there are no other obvious or Gaia DR2 stars contaminating the follow-up aperture. These
+planet candidates will generally be retired from the TTF, but may sometimes be left active if there is a need
+to collect light curves in other filter bands for the purposes of publication (or to potentially reclassify the
+target as a False Positive if chromaticity is found).
+
+VPC+: This is a VPC with no obvious depth chromaticity.
+
+VPC-: This is a VPC, but the follow-up aperture is contaminated.
+
+CPC (Cleared Planet Candidate): Indicates that the TESS detected event is too shallow to be detected with
+ground-based photometry, but that follow-up observations have ruled out all obvious and Gaia DR2 stars as
+potential causes of the TESS detection. In other words, no NEBs have been found in stars that are close
+enough and bright enough to have caused the TESS detection. These planet candidates will generally be
+retired from the TTF.
+
+PPC (Promising Planet Candidate): Indicates that all nearby stars have not been rigorously ruled out as
+being the potential cause of the TESS detection, but that follow-up observations have found no NEBs in
+obvious nearby sources. These planet candidates will be left active on the TTF in hopes of eventually ruling
+out all potential sources of NEBs and promoting the candidates to CPC status. TOIs with a transit deep
+enough to firmly detect from the ground will also be classified as PPC if the transit event has possibly been
+detected in follow-up observations at low significance, or if a transit is detected with high significance, but
+the follow-up aperture is contaminated with a nearby star that is bright enough to have produced the TESS
+detection. SG2 (and other Subgroups) will be notified that the planet candidate has been promoted to PPC
+status, which may provide more incentive for SG2 observers to collect recon spectroscopy simultaneous to
+the continued SG1 observations.
+
+PC (Planet Candidate): Indicates a new planet candidate with no follow-up observations, or with follow-up
+observations that are so far inconclusive.
+
+NPC (Nearby Planet Candidate): Indicates that the TESS event is caused by an event on a nearby star, but
+the event is still consistent with a potential planet around the nearby star. The nearby star will be assigned
+a new TOI number, and will have an initial disposition of PC. When the new TOI is assigned, the NPC TOI will
+be retired as a False Positive.
+
+PNEB (Possible NEB): A possible NEB was detected in a single epoch.
+
+P (Confirmed Planet): Indicates a confirmed planet with a mass measurement.
+
+STPC (Single Transit PC): Indicates that there was a single transit detected in the TESS data.
+
+VP (Validated Planet): Indicates a statistically validated planet that does not have a mass measurement.
+
+KP (Known Planet): Indicates an already known and confirmed planet.
+
+SB1 (Spectroscopic Binary - Single-lined): Indicates that the RV measurements from SG2 are too large to be
+
+                                                                                                             19
+caused by an orbiting planet.
+
+SB2 (Spectroscopic Binary - Multi-lined): Indicates that the target star(s) spectrum is multi-lined which
+suggests that the TESS event is caused by a blended or hierarchical eclipsing system. These are not
+necessarily false positives, but usually prove to be false positives, so additional spectroscopy is often not
+pursued.
+
+FA (False Alarm): Indicates that the TESS detection was deemed to be a false alarm.
+
+
+
+
+                                                                                                                20
+            Appendix B:
+Flow Chart of Disposition Categories
+
+
+
+
+                                       21
+Flow Chart of Disposition Categories (cont’d)
+
+
+
+
+                                                22
+                                      Appendix C:
+Sample plate-solved image with 2.5’ radius circle and distance, Δmag, and PA measurements
+
+
+
+
+                                                                                        23
+                                                 Appendix D:
+
+                     Instructions for Using the Gaia Aperture Generating Features
+The following describes two methods for generating an AIJ *.radec aperture file from Gaia data. The
+aperture locations in this file will be for those stars that need to be checked as NEBs which could be the
+source of the TESS detection. As described below, this use of such apertures work hand-in-hand with the
+new AIJ NEB analysis feature described in Appendix E.
+
+Just as Table 1 is used in Section 2.2, Case 3 to determine stars visible in the user’s images that need to be
+checked for a given predicted depth, generating apertures using one of the two methods below is much
+more comprehensive in that Gaia data will be queried for all stars that need to be checked. In fact, it may
+likely be the case that apertures will be returned of faint stars that are not even visible in the user’s images.
+Thus, when AIJ’s multi-aperture photometry is run, the apertures of these very faint stars may register very
+small, if not in some cases negative, integrated counts. This is the intended result since the new NEB
+analysis feature (see Appendix E) will then flag these Gaia stars a ***Not Cleared-flux too low***, which
+indicates that the complete field had not been cleared of NEBs.
+
+It should be noted that a large number of Gaia stars included in AIJ’s multi-aperture photometry may result
+in the need to increase AIJ’s working memory. This can be done from the main AIJ toolbar by selecting
+Edit->Options->Memory&Threads… and then increasing the maximum memory amount.
+
+The two methods for creating the *.radec aperture file are: use of a link in the TTF entry for a target, or use
+of a web-based tool.
+
+Method 1. Use of a TTF link
+
+The TTF now includes a link labelled “AIJ apertures” in the Name column for each TTF entry. Clicking on this
+link will cause the aforementioned *.radec aperture file to be generated for the target represented by the
+entry. The user can then save this file for later use during the multi-aperture photometry run, as described
+in the “Loading Aperture File” section below.
+
+Method 2. Use of a Web-based Tool
+
+To use the web-based tool for generating the *.radec file, the user would navigate via a browser to:
+https://www.astro.louisville.edu/gaia_to_aij/. A web form as depicted in Figure D-1 would then be
+displayed.
+
+
+
+
+                                                                                                              24
+                                         Figure D-1. Web-based Tool
+
+The user would first select the correct UTC date of the observation. Next, the user enters the RA and Dec of
+the target star, as well as its TESS magnitude (not V magnitude or any other magnitude) and predicted
+depth (the latter in ppt). The TESS magnitude can be found in the “T mag” column of the TTF entry for the
+target, and the predicted depth can be found in the “Depth” column. Figure D-2 is an example showing
+sample user inputs:
+
+
+
+
+                            Figure D-2. Example of User Inputs to Web-based Tool
+
+Upon clicking on Submit, a message will appear indicating that the Query is finished and will include a link
+from where the AIJ *.radec aperture file can be downloaded.
+
+Loading the Aperture File
+
+Prior to loading the aperture file, the user should first create a 2.5’ circle around the target star. See Section
+2.1, item 5, how to do this. The aperture file created from either the TTF or the web-based tool can then be
+drag and dropped on the first image in a stack of images for which the user wishes to conduct multi-
+aperture photometry. (Note: this first image should be a plate-solved image.) Instead of drag and dropping
+it, the aperture file can also be loaded from the Image Display by selecting File->Import apertures from
+
+                                                                                                               25
+RA/Dec list … . Whether the file is drag and dropped or selected with the Import or Open menu items,
+apertures are automatically created over those stars that needed to be checked as potential NEBs causing
+the TESS detection. Next, the user should select AIJ’s multi-aperture photometry feature, select “Use
+previous nn apertures,” turn on “Use RA/Dec to locate aperture positions,” and then click on Place
+Apertures. All of the Gaia apertures will then be placed on their respective locations. The user can now click
+other stars as additional comparison stars before the photometry run is initiated.
+
+The AIJ measurements file created can then be used as input to the AIJ NEB analysis featured described in
+Appendix E.
+
+Please refer all comments and questions regarding this feature to John Kielkopf at jkielkopf@gmail.com
+
+
+
+
+                                                                                                           26
+                                                      Appendix E:
+
+                               Instructions for Using the AIJ NEB Analysis Feature
+The purpose of this AIJ feature is to assist the user in analyzing measured stars in the vicinity of a target star
+so as to determine whether they are potential sources of “false positives.” That is, whether stars that are in
+close proximity to the target star, when blended in TESS’ aperture, have an event that mimic’s a TESS
+detection. This feature can be accessed from either an AIJ Image Display screen or from the Multi-plot Main
+screen, by selecting File-> Create NEB search reports and plots… The feature is implemented as an ImageJ
+macro. (Note: make sure that AIJ is updated to the latest “daily build”.)
+
+An AIJ measurement table, and optionally a plate-solved image, are used as input to the macro. As can be
+seen in the user dialogue depicted in Figure E-1, the user can select one or more output products. The
+entries for the predicted ingress time, egress time and depth default to the last values entered in AIJ’s
+Mulit-plot Main V.Marker fields. They should therefore represent the predicted ingress and egress times for
+this observation. Also, as seen in the example in Figure E-1, if the "day" “rolls over from the predicted
+ingress time, then the predicted egress will have a “1” in front of the decimal part and should be entered as
+such. NOTE: it may also be the case that the user data starts a “day” before the predicted ingress time, in
+which case BOTH the predicted ingress and egress times should have a “1” in front of the decimal part. For
+example, if the data starts on 2458504.95 and the predicted ingress and egress times are 2458505.033 and
+2458505.410 respectively, then the entries for ingress and egress should be 1.033 and 1.410.
+
+
+
+
+                                                                                                               27
+                                     Figure E-1. User Dialogue Screen
+
+If Option 1 is chosen, an NEB Table will be generated as a .txt file and will have a file name of
+XXXX_NEB_table.txt, where XXXX is the file name of the measurement table, excluding its extension, that
+was used as input to the macro. Figure E-2 shows an example of such an NEB Table. The top portion
+contains relevant information entered by the user, as well as other useful information such as the binning
+used, the average aperture size used during the observation, and the -0.5 mag correction to the delta-
+magnitude when computing the NEB predicted depth in order to compensate for the difference between
+the TESS band and the filters typically used in the follow-up observations. A detailed description of the
+contents of the NEB Table and the meaning of each disposition can be found in Section 2.2, Case 3 of these
+guidelines. Note: stars with a disposition of ***Not Cleared-flux too low*** will show N/A for both
+NEBdepth and NEBdepth/RMS.
+
+                                                                                                        28
+                                       Figure E-2. Sample NEB Table
+
+For Option 2, for each star within the user-specified radius, a plot will be generated showing measured data
+points for that star overlaid with the shallowest transit that could produce the TESS detected event (see
+Figure E-3). The latter is the same depth displayed in the NEB Table under the heading NEBdepth.
+Optionally, each plot can be saved to a .png file, where the file name is XXXX_NN_NEBdepth_plot.png,
+where XXXX is the file name of the measurement table used by the macro, and NN is the name of the star.
+If selected as an option, all such saved plots will be stored in a subfolder called XXXX_NEBcheck that will be
+created under the folder containing the measurement table. Note: stars with a disposition of ***Not
+Cleared-flux too low*** will show a straight red line for the transit depth.
+
+Each star plot will also show the distance of the star to the nearest aperture. The user may optionally place
+a limit on the number of neighbors to be searched. This may be used to limit the processing time needed to
+generate the plots, especially in the case of a dense star field.
+
+
+
+
+                                                                                                           29
+                                Figure E-3. Sample “shallowest event” plot
+
+For Option 3, a plot of delta magnitude vs. RMS will be generated for each star within the user-specified
+radius (see Figure E-4).
+
+
+
+
+                                   Figure E-4. Sample Dmag vs. RMS plot
+                                                                                                            30
+ Such a plot will typically be of an exponential nature, where the fainter a star is, the greater its RMS. This
+plot is useful in identifying potential NEBs and EBs, since such stars are typically outliers that are “off the
+curve.” Two boundary lines are also generated for this plot in order to give the user a visual idea of the
+disposition of stars in the field. Stars to the right of the green boundary line indicate stars that are
+“cleared,” and stars in between the magenta and green boundary lines indicate stars that are “likely
+cleared.” Stars not cleared are to the left of the magenta line.
+
+A related option, Option 4, allows the user to plot delta magnitude vs. log base 10 of RMS. This will typically
+produce a straight line vs. an exponential curve and may be more useful for identifying NEBs or EBs. Note:
+stars with a disposition of ***Not Cleared-flux too low*** will not be included in the Dmag vs. RMS plots.
+
+Option 5 allows plots to be generated of detrended data if the AIJ measurement table includes such data.
+Note that when these columns are generated by AIJ, the Bin Size, Scale, and Shift values on the AIJ Mulit-
+plot Y panel should be set to 1, 1, and 0 respectively.
+
+User data inputs include the AIJ name of the target star (default is T1), the radius of stars around the target
+that will be included in the analysis (default is 2.5’), and the cadence desired when calculating RMS (default
+is 180 seconds). The macro will calculate the number of binned images such that the total of their exposure
+(plus delay) times comes closest to the Cadence entered and will use this binning to compute a star’s RMS.
+Additional user inputs include the predicted ingress time, egress time, and the transit depth. As mentioned
+earlier, the ingress and egress times default to the last values entered in AIJ’s Multi-plot Main V.Marker
+fields. Of course, these values, as well as the transit depth, should be the same values as those that are in
+the TESS Transit Finder associated with this observation. Note that for the ingress and egress time, only the
+decimal parts are included. Finally, a multiple of RMS (default is 5) is used when deciding which stars to
+exclude as outliers from the Option 2 plots.
+
+There are also two additional optional selections. One option allows the user to select a plate-solved image
+as the source for the pixel scale and for use in generating the Position Angles (PA’s) that are included in the
+NEB Table. Another option allows the user to generate informational messages at the end of the run.
+
+The user will be asked to select the AIJ measurement file associated with this observation. The macro also
+has the option of using a plate-solved *.fit or *.fits file to automatically compute the pixel scale for the
+observation, as well as the Position Angles (PA’s) of each star. The checkbox should be selected for this
+option. If the user wishes to manually enter the pixel scale without using a plate-solved image, then the
+checkbox should remain unchecked and the pixel scale should be manually entered. In this case, however,
+no PA’s will be calculated.
+
+Once the above information is entered and the user selects OK, the user will then be prompted to select
+the AIJ measurement file associated with the observation. If the selection was made to use a plate-solved
+image to derive the pixel scale and the PA’s for the NEB Table, then the user will also be asked to choose a
+plate-solved *.fit or *.fits associated with the observation.
+
+After execution, the macro will: (1) create the NEB Table file, if Option 1 was selected; (2) display the
+“shallowest event” plots if Option 2 was selected, as well as optionally save each plot to the NEBcheck
+subfolder; and (3) will display and save to a file the dmag vs. RMS plot if either Option 3 or 4 was selected.
+
+
+
+
+                                                                                                                  31
+If the user runs into operational problems, it is recommended that a run be made with the log file option
+selected so that detailed diagnostics can be generated. The log file and a description of the problem can
+then be forwarded to the email address below for further help.
+
+Please refer all comments and questions regarding the NEB analysis feature to Dennis Conti at
+dennis@astrodennis.com. If the user experiences any unexplained errors, it is requested that Dennis be
+notified at this email address and that a log file be attached.
+
+
+
+
+                                                                                                            32
+

@@ -1,0 +1,791 @@
+Development and construction of MAROON-X
+Andreas Seifahrta , Jacob L. Beana , Julian Stürmera , Luke Gersb , Deon S. Groblerb , Tony
+Reedb , and Damien J. Jonesc
+a University of Chicago, USA;
+b KiwiStar Optics, Callaghan Innovation, New Zealand;
+
+arXiv:1606.07140v1 [astro-ph.IM] 22 Jun 2016
+
+c Prime Optics, Australia
+
+ABSTRACT
+We report on the development and construction of a new fiber-fed, red-optical, high-precision radial-velocity
+spectrograph for one of the twin 6.5m Magellan Telescopes in Chile. MAROON-X will be optimized to find and
+characterize rocky planets around nearby M dwarfs with an intrinsic per measurement noise floor below 1 m s−1 .
+The instrument is based on a commercial echelle spectrograph customized for high stability and throughput. A
+microlens array based pupil slicer and double scrambler, as well as a rubidium-referenced etalon comb calibrator
+will turn this spectrograph into a high-precision radial-velocity machine. MAROON-X will undergo extensive
+lab tests in the second half of 2016.
+Keywords: echelle spectrograph, radial velocity, etalon, optical fibers, pupil slicer
+
+1. INTRODUCTION
+The radial velocity (RV) method has been one of the most important observational techniques in the history of
+exoplanet science, and while it no longer drives the field, the technique will continue to be critical for making
+many of the most significant exoplanet discoveries anticipated over the next two decades through support of
+other experiments. For example, ground-based radial velocity measurements can deliver confirmation and mass
+measurement of candidate transiting planets, both from ground-based surveys and from space missions such as
+Kepler, K2, and TESS. This is important because masses should be known for targets of follow-up atmospheric
+studies using HST, Spitzer, and JWST. Knowing both the mass and radius of a planet constrains its bulk composition and surface gravity, which are crucial boundary conditions for the interpretation of spectra. Furthermore,
+populating the mass-radius diagram for exoplanets is currently a major topic in the field, especially in the regime
+of small planets.1
+In addition to the synergy with the transit technique, the radial velocity technique is also needed to support
+direct imaging efforts to study planets at intermediate to large separations. Simulations for WFIRST-AFTA
+and a hypothetical flagship telescope with next-generation imaging capabilities (e.g., HabEx or LUVOIR) have
+shown that such missions would be much more successful if the planets were known ahead of time and had
+well-constrained masses and orbits.2, 3
+It is thus not surprising that the field is seeing a variety of new RV spectrograph projects come to fruition. New
+ultra-stable instruments following the blueprint of HARPS have been commissioned or are being currently built,
+both for mid-size telescopes (e.g., HARPS-N/TNG, CARMENES/CAHA3.5m, SPIROU/CFHT, EPDS/WIYN)
+and large telescopes (e.g., ESPRESSO/VLT, IRD/Subaru, HPF/HET, G-CLEF/GMT) alike.
+Our instrument, the Magellan Advanced Radial velocity Observer Of Neighboring eXoplanets, or MAROONX, is following suit by providing the US community access to a precision RV instrument at a 6.5m telescope in
+the southern hemisphere. The scientific driver for MAROON-X is to detect the reflex motion of very low-mass
+stars due to the gravitational influence of an Earth-size planet orbiting in its habitable zone. For a 0.15 M star,
+the middle of the habitable zone is 0.055 AU.4 A 1 M⊕ planet at this distance around such a star would have an
+orbital period of 12.2 d, and would impart a radial velocity signal of 1 m s−1 semi-amplitude assuming an edge-on
+orbit. This metric sets the desired level of precision for MAROON-X.
+Further author information: (Send correspondence to A.S.)
+A.S.: E-mail: seifahrt@uchicago.edu, Telephone: 1 773 702 9877
+
+Figure 1: M dwarf radial velocity information content as a function of wavelength interval. We calculated the
+radial velocity information content in a Teff = 2800 K (M? ≈ 0.12 M ) model spectrum scaled to give a V-band magnitude
+of 16.5. We assumed a 30 min exposure with a R = 80,000 spectrograph on a 6.5m telescope. We used a complete
+system throughput model including the telescope, fiber feed, spectrograph, and detector over the MAROON-X bandpass
+(red lines). This model yields a peak throughput of 11%, which is consistent with what has been achieved by existing
+optical spectrographs that deliver similar resolving power. We assumed a constant total system efficiency of 10% outside
+this bandpass (blue optical: blue line; Y-band: purple line). The grey bar at the top indicates the strength of telluric
+absorption (white is fully opaque). Our calculations include masking off regions of strong telluric contamination. The
+number under each line gives the percentage of each spectral interval that is not contaminated. These results indicate
+that the optimum wavelength interval to observe M dwarfs for high-precision radial velocities is not the near-infrared,
+but the red part of the optical. The red optical outperforms the Y-band for stars down to 0.10 M , and outperforms the
+J-, H-, and K-bands (not shown) down to the substellar limit. These findings have been verified using flux-calibrated
+empirical spectra of Barnard’s Star taken with the HARPS, UVES, and CRIRES spectrographs, and they also confirm
+other previous studies based on model spectra.8, 9
+
+Beyond the required precision, we also aim for MAROON-X to have the reach necessary to take maximum
+advantage of the wealth of transiting planet candidates expected from the TESS mission.5 In particular, we
+want to be able to obtain mass measurements for potentially habitable planets identified by TESS. Such planets
+would be ideal targets for JWST spectroscopy to search for Earth-like environments.6 The limiting factor for
+this experiment is the expectation for the distances to the nearest transiting, habitable-zone, Earth-size planets
+because these planets will be around stars that are farther away than the nearest such non-transiting planets.
+Based on the planet occurrence statistics from the Kepler mission, TESS is expected to find 20 planets with
+radii less than 2 R⊕ and receiving between 0.2 and 2 times the Earth’s insolation around mid M dwarfs that
+are brighter than V=16.5.5, 7 Therefore, we aim to build an instrument that will enable on-sky radial velocity
+measurements with a precision of 1 m s−1 for mid M dwarfs as faint as V=16.5 in 30 minutes or less.
+
+2. INSTRUMENT CONCEPT
+Our concept for MAROON-X was driven by finding the most efficient solution to the technical requirements
+identified in our science case as outlined above. We have carried out detailed simulations to identify the optimum
+wavelength range to observe low-mass M dwarfs for radial velocity measurements to minimize the telescope
+aperture that is needed. Surprisingly, our conclusion is that the red part of the optical contains more radial
+velocity information than the near-infrared for stars down to masses of 0.10 M (Teff ≈ 2600 K). See Figure 1
+for results of our simulations. The reason for this is that radial velocity measurements depend not just on the
+number of collected photons, but also on the spectral line density and the distribution of telluric lines in our own
+atmosphere. Although M dwarfs are brighter around 1 µm, the very high line density at shorter wavelengths and
+the increased transparency of the Earths atmosphere at optical wavelength more than compensates for this.
+Beyond pure efficiency, there is also likely little to be gained in terms of reducing the influence of stellar activity
+on radial velocity measurements from going to longer wavelengths. Simulations of star spots on M dwarfs suggest
+that there is no further reduction in radial velocity jitter beyond 1 µm due to the reduced contrast between the
+
+normal stellar surface and the spots.8 Also, there is the possibility that the increased sensitivity of stellar lines
+at longer wavelengths to Zeeman splitting means that near-infrared spectra of M dwarfs could exhibit higher
+jitter due to activity than optical spectra, which is the opposite of the usual assumption.10 Also, late M dwarfs
+are often faster rotators.11 The detrimental influence of stellar rotation on radial velocity precision is a function
+of wavelength, again favoring the red optical over infrared wavelengths.
+All this taken together suggests that a high-resolution spectrograph operating at red optical wavelengths
+is a good option for high-precision radial velocity measurements of very low-mass stars. We will observe at
+wavelengths of maximum radial velocity measurement efficiency for these stars, and we don’t expect to be at a
+disadvantage in terms of activity-related jitter compared to other instruments.
+Our calculations have shown that the intrinsic RV content of our targets is limited to about 0.7 m s−1 for a
+V=16.5 M dwarf in a 30 min exposure. Our instrumental stability budget must be under 0.7 m s−1 as well in
+order to achieve our overarching goal of 1 m s−1 on-sky performance.
+Stabilizing a spectrograph to below 1 m s−1 over long timescales requires a wide range of measures. The
+optical design has to eliminate moving parts and must deliver the needed spectral bandpass in one fixed setting.
+The spectrograph has to be mechanically and thermally decoupled from its environment to maintain pressure
+and temperature stability of ≤ 10−3 mbar and ≤ 1 mK at the echelle grating. Therefore, it must be mounted in
+a vacuum chamber that is in turn housed in a temperature controlled enclosure. The instrument also must be
+fed with fiber optics for mechanical separation from the telescope and to stabilize the light injection both in the
+near field (light distribution in the slit) as well as the far field (light distribution in the pupil will change the
+PSF of the spectrograph). Additionally a fiber shaker is required to suppress modal noise and reduce speckle
+effects. Even at this extreme level of stability, RV drifts are expected, and simultaneous reference spectra with
+a dense comb spectrum are required to track and correct the long term zero-point of the spectrograph.
+The main components and features that allow MAROON-X to achieve its technical specifications are thus:
+• An echelle spectrograph with high throughout and thermo-mechanical stability (see Section 4).
+• Fiber feed with low focal-ratio-degradation and high scrambling efficiency (see Section 5).
+• Pupil slicer and image scrambler to match the slit-resolution product to the AΩ product of a 6.5 m telescope
+and increase the near- and far-field stability of the light injection (see Section 5).
+• Fiber agitator to suppress modal noise and speckle effects.
+• A Fabry-Pérot etalon as a wavelength calibrator capable of delivering < 10 cm s−1 stability over timescales
+of minutes to months and a high information density to measure and correct for instrumental drifts (see
+Section 7).
+• Environmental control with a temperature stability of the air surrounding the spectrograph of dT < 10 mK.
+(see Section 8)
+
+3. PROJECT OUTLINE
+Our project execution can be considered somewhat unusual in at least two aspects, owing to the limited available
+manpower and the challenging funding environment for a project of this size. For one, we decided to outsource
+the detailed technical design and construction of the core spectrometer to KiwiStar Optics, a subsidiary of
+Callaghan Innovation, a New Zealand government-owned Crown entity.
+KiwiStar Optics has developed an implementation of a versatile echelle spectrograph with 100 mm beam
+diameter, 1:3 pupil compression and multiple camera arms, dubbed “KiwiSpec R4-100”.12 Our trade study
+has shown that this concept is very well suited for MAROON-X after some major modifications over their first
+prototype13 and custom input optics to match it to a 6.5 m telescope.
+In answer to funding realities, we split the project in three phases. In phase 1, which we are now nearing
+completion, we modified the design of KiwiSpec R4-100 to match our requirements for throughput and stability.
+We held a PDR for the core spectrograph in June 2014 and ordered a two-arm version of KiwiSpec R4-100 (with
+
+only the blue arm executed) in June 2015. An internal FDR and kick-off meeting was held in August 2015 in
+Wellington, New Zealand. As of this writing all of the optics have been procured and delivered, the vacuum
+chamber has been completed, and integration is underway. We expect delivery of the spectrograph to Chicago
+in September 2016.
+In lieu of a large format (4k×4k) detector and custom cryo- and readout systems we purchased only an
+off-the-shelf detector system with a smaller (2k×2k) CCD for initial lab testing (see Section 6).
+In phase 1 we also developed the pupil slicer and image scrambler (see Section 5), a Fabry-Pérot etalon as
+the wavelength calibrator system (see Section 7), characterized the fiber properties of octagonal and rectangular
+fibers (see Section 5), and built an actively controlled environmental enclosure to house the spectrograph (see
+Section 8).
+In phase 2, which we hope to start in early 2017, we will complete the spectrograph with the red arm and
+build the two large-format science grade detector systems. Finally, in phase 3 we will build the telescope front
+end (ADC, guiding system, tip-tilt fiber feed) and commission the instrument at Magellan.
+
+4. KIWISPEC R4-100 AS THE CORE OF MAROON-X
+4.1 Optics
+In our implementation for MAROON-X, the KiwiSpec R4-100 delivers a resolving power of R≈80,000 for a
+100 µm wide pseudo-slit at f /10 with 3.5 pixel sampling across a wide wavelength range of 500 – 900 nm spread
+over two camera arms. A Zemax layout of the spectrograph is shown in Figure 2.
+The main disperser is a Richardson Gratings R4 echelle with a nominal blaze of 76◦ and a line frequency of
+31.6 g/mm. Our echelle was replicated from master MR263 on a 116 mm × 420 mm Zerodur substrate with a
+102 mm × 408 mm ruled area and coated with protected silver. Measurements at Richards Gratings (see Figure 3)
+show peak efficiencies of up to 85% at blaze. The grating was remeasured in all orders from 400–1020 nm at
+
+Figure 2: Zemax raytrace of the KiwiSpec R4-100 spectrograph for MAROON-X. The blue arm (to
+the right) covers 500–670 nm, the red arm (top) covers 650–900 nm. The insert shows the telecentric input relay
+optics which convert the f /5 input to the f /10 accepted by the spectrograph. A wedge prism at the fiber exit
+introduces a field-dependent focus shift as part of the aberration control of the camera optics.
+
+485-525 nm
+510-545 nm
+535-567 nm
+562-592 nm
+580-608 nm
+605-613 nm
+
+615
+
+610
+
+605
+
+600
+
+595
+
+590
+
+585
+
+580
+
+575
+
+570
+
+565
+
+560
+
+555
+
+550
+
+545
+
+540
+
+535
+
+530
+
+525
+
+520
+
+515
+
+510
+
+505
+
+500
+
+495
+
+Zero Order
+
+490
+
+Diﬀrac'on Eﬃciency
+
+VPH gra'ng eﬃciency for 29.2° AOI
+(on uncoated glass substrate)
+1
+0.95
+0.9
+0.85
+0.8
+0.75
+0.7
+0.65
+0.6
+0.55
+0.5
+0.45
+0.4
+0.35
+0.3
+0.25
+0.2
+0.15
+0.1
+0.05
+0
+
+Wavelength (nm)
+
+Figure 3: Measured efficiency of the echelle grating (left) and the blue VPH grating (right). The
+echelle grating was measured at Richardson Gratings. Shown is order 90. Measurements of the blue VPH grating
+by KiwiStar Optics (right) match the measurements by KOSI. The Fresnel losses on the uncoated glass substrate
+have not been corrected in this plot. In both cases peak efficiencies of 85% were recorded.
+KiwiStar Optics, confirming the excellent efficiency. From the blaze maxima, a blaze angle of (75.29 ± 0.25)◦
+was determined, slightly lower than specified.
+The collimator mirror, pupil transfer mirror, and both fold mirrors are made from Zerodur class 1 and coated
+with protected enhanced silver.
+A dichroic beam splitter separates the dispersed light into the two camera arms. The crossover wavelength is
+660 nm. Theoretical coating performance based on data from Cascade Optical Corp. is shown in Figure 4. The
+range of transmission and reflection efficiencies (including the BBAR coating on the backside) favor either the
+blue or the red wavelength channel. We have expressed a preference for the “red optimized” case, but will likely
+see an as-built performance intermediate between the two cases.
+Two VPH cross-disperser grisms and camera arms cover 500–670 nm and 650–900 nm, respectively, with a
+considerable order overlap to minimize the losses on the slope of the dichroic. The blue VPH grating was
+produced by KOSI. Its line frequency is 1652.4 l/mm and the AOI is 29.2◦ . The peak efficiency was measured
+to be 85% (see Figure 3). Two prisms will be bonded onto the VPH grating that have BBAR coatings on the
+air-glass surfaces. We thus expect the efficiency of the VPH grism assembly to be slightly higher than the one
+measured for the bare grating.
+Our cameras have a focal length of f = 174 mm and hence a moderate f /5.22. The large height of the slit
+image (2.7 mm at f /10) in combination with the large field angles and the anamorphism of the VPH grism makes
+achieving a homogeneous optical quality over the whole field and for all wavelengths challenging and required a
+
+Figure 4: Theoretical performance of the dichroic beam
+splitter. The minimum and maximum of the expected performance
+are shown as “blue optimized” and
+“red optimized” case, respectively.
+The yellow shaded region shows
+the order-overlap between the two
+spectrograph arms.
+
+Figure 5: PSF simulations for the blue (left) and red (right) camera arm. The half-width of the 80%
+encircled-energy in the dispersion direction is shown as the color-coded map. For reference, one detector element
+is 15 µm and the average slit sampling is 3.5 pixel or 53 µm.
+compromise between number of optical elements and requirements towards the PSF size and homogeneity. Our
+efforts resulted in two 9-element cameras, each with two aspheric surfaces. The last element of each camera is a
+plano-cylindric field flattener lens that serves as the dewar window for the detector. Part of both cameras is a
+small wedge prism at the input slit (directly bonded onto the fiber slit plate, see below), that introduces a field
+dependent focus shift, which slightly eases the aberration control in the main camera optics.
+We achieve typical PSF widths of ≤ 15 µm (80% EE) in the dispersion direction and ≤ 23 µm (80% EE) in
+the spatial direction at the center of the field (see Figure 5). Towards the edges of the field (the calibration and
+sky fibers) some regions in the spectrum, particularly at the edges of the FSR do exceed these limits.
+Most gratifyingly, the PSF shape in the dispersion direction is very symmetric, as is the change of the PSF
+shape over a given order. This greatly reduces RV shifts induced by varying pupil illuminations (e.g. from
+changing FRD properties of the fibers) which otherwise could amount to several km s−1∗ .
+We only use a moderate anamorphism on the crossdisperser grisms of 1.23 to slightly compress the spectrum
+in spatial direction. The slit image is sampled by 3.5 pixel
+per slit-width on average for both cameras (2.91 pixel minimum). Due to the large separation of the individual fibers
+forming our slit (see Section 5), the separation of individual spectral traces in the same order (from the pupil slicer
+as well as from sky and calibration fibers) is > 10 pixels.
+The minimum inter-order separation is equally large (see
+Figure 6).
+A pupil stop in the pre-optics and baffles around the
+beam footprint on the echelle grating and collimator mirror
+as well as in the camera barrel suppress unwanted stray
+light. Optical ghost analysis showed optical ghosts to be
+< 0.1% of the intensity of the parent order for both cameras.
+∗
+
+Gabor Furesz, private communications.
+
+Figure 6:
+Zemax
+image simulation of
+the five rectangular
+fibers forming the
+input slit for two
+wavelengths (505.35
+and 509.55 nm) at
+the edge of the bluest
+orders (121 and 122).
+The order separation
+at this point is almost
+equal to the separation of the individual
+fibers.
+
+MAROON-X / KIWISPEC R4-100 Eﬃciency Model
+0.65
+Dip due to Echelle
+data measured
+with diﬀerent
+spectrometers
+
+0.6
+0.55
+0.5
+0.45
+
+Eﬃciency
+
+0.4
+0.35
+0.3
+BLUE Channel Best Case
+
+0.25
+
+BLUE Measured Values
+
+0.2
+
+BLUE Channel Worst Case
+Red Channel Best Case
+
+0.15
+
+RED Channel Median Case
+
+0.1
+
+Red Channel Worst Case
+
+0.05
+900
+
+890
+
+880
+
+870
+
+860
+
+850
+
+840
+
+830
+
+820
+
+810
+
+800
+
+790
+
+780
+
+770
+
+760
+
+750
+
+740
+
+730
+
+720
+
+710
+
+700
+
+690
+
+680
+
+670
+
+660
+
+650
+
+640
+
+630
+
+620
+
+610
+
+600
+
+590
+
+580
+
+570
+
+560
+
+550
+
+540
+
+530
+
+520
+
+510
+
+500
+
+490
+
+0
+
+Wavelength (nm)
+
+Figure 7: Instrument efficiency (intermediate slit to detector) for the blue and red arm, respectively.
+Worst, median, and best estimates are based on vendor specifications for reflection and anti-reflection coatings,
+grating efficiencies, etc. Median cases pertain to average specifications, while worst and best cases pertain to
+minimum specs and goal values for all surfaces, respectively. The efficiency model is updated on the as-built
+version with measured efficiencies for the echelle grating, blue VPH grism and some of the blue camera optics
+(blue solid line) demonstrating the excellent throughput of the instrument.
+The current projections for the instrument efficiency are shown in Figure 7. We expect peak throughputs for
+both arms to exceed 50% (measured from f /10 slit image to detector plane). For the blue channel we already
+have as-built measured values for most of the critical items (echelle grating, cross-dispersers, mirror coatings)
+and find a peak throughput in excess of 60%.
+For the exposure meter we collect part of the 0th order of the echelle grating with an off-the-shelf OAP
+(76 mm diameter, 152 mm EFL) mounted behind the echelle. The OAP refocuses the un-dispersed image of the
+input slit onto a 300 µm diameter high-NA optical fiber which then guides the light outside the vacuum chamber.
+The size of the fiber is chosen to only accept the images of the three object fibers, rejecting the light from the sky
+and calibration fiber in order to avoid contamination of the spectro-photometric signal of the exposure meter.
+
+4.2 Mechanics
+A considerable effort went into numerical simulations of the spectrograph opto-mechanics to optimize thermomechanical stability vs. complexity and thus cost. These simulations have shown that a uniform application of
+stainless steel SS420 for all mounts and almost all structural components offers the best compromise between
+performance (thermal conductivity and CTE) and cost compared to other choices such as aluminum and Invar.
+We choose Invar only for the three legs of the internal table to minimize the impact of non-common expansion
+between the legs which would lead to beam steering on the cross-disperser and cameras exceeding our tolerances
+for RV stability.
+
+Figure 8: 3D CAD rendering of KiwiSpec R4-100 for MAROON-X. A transparent version of the top
+lid of the vacuum chamber reveals the main optical elements. The beam is shown in red and white. The two
+camera arms with small interim detector systems are shown to the top left. A small rectangular extension to
+the cylindrical vacuum chamber will house the pupil slicer. The pre-optics are mounted onto the internal bench
+but extend through the chamber wall into the extension chamber. The footprint of the spectrograph including
+the outside optical table is only 1.2 m × 2.1 m.
+The complete optical train from the input fibers up to and including the dichroic are enclosed in a vacuum
+chamber and will be held at p < 10−3 mbar and dT ≤ 1 mK with a combination of active and passive temperature
+control. The cross-dispersers and camera optics are enclosed in a sealed barrel outside the vacuum chamber† .
+This is permissible given their lower sensitivity to pressure and temperature changes compared to the echelle
+grating and minimizes the volume of the vacuum chamber. It also allows us to add the red wavelength arm and
+replace the detector modules at a later stage in the project without opening the vacuum chamber.
+We expect the pressure stability in the camera barrel to be still better than dp < 10−1 mbar and long term
+temperature drifts smaller than dT ≤ 20 mK. The vacuum chamber is mechanically and thermally decoupled
+from the spectrograph optics. The optical components inside the vacuum chamber are mounted on an optical
+bench that rests on three Invar legs through vacuum bellow feedthroughs. The legs, as well as the separately
+mounted vacuum chamber, are bolted onto a commercial optical bench that sits on actively vibration dampened
+legs and is thermally insulated from the floor. There is no direct mechanical contact between the vacuum chamber
+†
+
+We thank Francesco Pepe for this suggestion made during the PDR.
+
+and the optics (aside from the two vacuum windows) and a layer of PEEK between the top of the internal legs
+and the inner optical bench serves as thermal insulation. The vacuum chamber thus acts as a passive thermal
+insulation layer for the main optics.
+Part of our characterization campaign in the lab, scheduled for the last quarter of 2016, is to determine the
+thermo-mechanical stability of the as-built spectrograph and implement modifications, if necessary. For example,
+the camera optics are not athermalized since we place them in a tightly thermally controlled environment.
+However, provisions are in place to add an athermalization mechanism to correct for focus and plate scale
+changes by changing the distance between the detector system and the camera barrel. Likewise, an additional
+passive or active insulation layer can be added to the vacuum vessel and the camera barrels to further dampen
+temperature fluctuations.
+The main characteristics of MAROON-X are summarized in Table 1.
+
+5. PUPIL SLICER & IMAGE SCRAMBLER
+KiwiSpec R4-100 would have a resolution-slit product of Rφ ≈ 25, 400” on the 6.5m Magellan Telescope. To
+achieve the desired resolving power of 80,000, we need to either slice the image or the pupil to reach an acceptable
+FOV on sky. Either technique will boost the efficiency of the spectrograph at the cost of an increase in slit height
+and thus spectral coverage and optical aberrations.
+We decided against image slicing, since throughput and alignment of image slicers are critical and the latter
+remains practically untested in the context of high-precision radial velocity work. It is important to realize
+that an image slicer effectively works as an anti-scrambler, as it non-linearly amplifies small changes in the fiber
+output illumination at the slicer edges. Moreover, being directly in the imaging plane of the spectrograph, a
+sub-m s−1 stability requirement translates into nanometer levels of positional stability, which is challenging to
+control both on a mechanical and thermal level.
+We thus decided to build a pupil slicer, which is much less critical in terms of (thermo-)mechanical stability.
+This technique has been selected for the next generation of large spectrographs (i.e. G-CLEF/GMT14, 15 and
+ESPRESSO/VLT16, 17 ).
+The median seeing on Cerro Manqui, the site of the twin Magellan Telescopes, is 0.62” and the 75-percentile
+is 0.79”.18 We thus found a 3x slicer the best compromise between instrument throughput, allowable slit-height,
+and available fiber core sizes. With a 100 µm diameter octagonal fiber operated at f /3.33 we accept a 0.95”
+FOV on the f /11 focus of Magellan with a geometrical coupling efficiency between 81% (under median seeing
+conditions) and 64% (for the 75-percentile).
+Our design implementation of a pupil slicer uses microlens arrays (MLAs) to slice the pupil into three sections
+and to re-image the pupil slices onto three rectangular fibers with 1:3 aspect ratio. By feeding a pupil image
+into the slit-forming fibers, we are effectively incorporating a double scrambler into the pupil slicer as we use
+the octagonal fiber to scramble the stellar input image and the rectangular fibers to scramble the (sliced) pupil
+image. This also benefits the illumination stability of the slicer itself, as temporal instabilities in the slicing
+geometry will effectively be greatly reduced by the subsequent scrambling of the pupil images.
+The design parameters of the fibers and the slicer were again a compromise between a number of requirements
+and practical considerations, most notably to minimize focal-ratio-degradation (FRD) effects, achieve a good
+scrambling gain, keep the curvature of the microlenses within a manageable range, all the while working with
+non-custom fiber core geometries to avoid a costly custom fiber preform.
+Our final design uses a 100 µm diameter octagonal fiber from CeramOptec (OCT-WF100/140/250, NA=0.22)
+at f /3.33 to guide the light from the telescope into the spectrograph through a custom vacuum feedthrough.
+We position all the optics of the pupil slicer inside the vacuum chamber. A small collimator forms a pupil image
+and two MLAs slice the telescope pupil into three sections and re-image these sections at f /5 with a separation
+of 300 µm onto three CeramOptec fibers with 50 µm × 150 µm rectangular cores. These fibers are positioned in
+a fused silica plate in a linear arrangement with the short sides of each fiber core lined up. After a fiber run of
+approximately 1 m, in which the fibers are rotated by 90◦ , another linear stack is formed, this time with the long
+sides of the fiber cores lined up to form the physical entrance slit of the spectrograph. At this point two more
+
+Figure 9: Prototype of the pseudo
+slit for MAROON-X. Shown here
+is a FEMTOprint fiber slit plate with
+five Ceramoptec 50 µm × 150 µm rectangular fibers after polishing and before the
+wedge prism is glued on.
+rectangular fibers are added to the three object fibers to add sky- and calibration light. An image of a slit plate
+prototype with five of the rectangular fibers forming a pseudo-slit is shown in Figure 9.
+While technically within specification, the prototype slit plate has still sub-optimal alignment. The fibers
+were etched slightly too long, making them 5 µm to 6 µm smaller than the holes in the plate, which leads to
+offsets. Likewise, rotational alignment of two fibers is off by ±1.5◦ . Achievable tolerances are 2 µm to 3 µm in
+relative position and ±0.3◦ in rotation and the final slit plates will be produced to these specs.
+A detailed description of the design, prototyping, and testing of our pupil slicer is presented elsewhere in
+these proceedings.19 Likewise, a discussion of the scrambling and FRD properties of our fibers can be found in
+another article in the same proceedings.20
+Custom relay optics, consisting of a doublet and a triplet, form a 2x magnified, telecentric, image of the slit
+plate at the nominal f /10 focus of the spectrograph. The small wedge prism, part of the spectrograph camera
+optics, is directly bonded onto the fiber slit plate with Norland 61. The relay optics are fully diffraction limited
+over the full field and for all wavelengths. Typical rms radii range from 1 µm to 3 µm.
+The expected geometrical efficiency of the pupil slicer and double scrambler is limited by the achievable
+tolerances on the MLA optics and their alignment but is still ≥90%. The pupil slicer and double scrambler unit
+has only four air-glass surfaces, three of which are BBAR coated. Five more air-glass surfaces, all of which are
+BBAR coated, are part of the spectrograph’s pre-optics. Specifications on the BBAR coatings call for R ≤ 0.5%
+over 500–900 nm. We thus estimate the efficiency of the optics that form the input slit of the spectrograph to
+be ≈78%.
+Additional losses from FRD effects are hard to fully quantify in advance, as they depend on a number of
+factors related mainly to the mechanical stress of the fibers at their mount points. We estimate 90% here,19
+which brings the combined efficiency of the light injection down to ≈70%. Given the excellent throughput of the
+spectrograph itself, we still have enough margin left for the telescope front end in order to reach our combined
+throughput requirement of ≥11%.
+
+6. DETECTOR SYSTEM
+The final detector systems for MAROON-X will consist of two 4k×4k 15 µm CCD detectors. For the red channel
+(650–900 nm) we will use a deep-depletion, thick sensor to boost the quantum efficiency at the red end of the
+spectrum and to suppress fringing. We plan to use either two e2v CCD231-84 or two STA 4150 devices and a
+STA Archon readout system.
+During assembly and initial lab testing we will use a commercial off-the-shelf CCD camera, a ProLine PL230
+from Finger Lakes Instrumentation (FLI). This detector system is based on an e2v CCD 230-42 with 2k×2k
+15 µm pixels. The camera uses a Peltier cooler and the chip can be operated at −25 ◦C with a chilled water
+circulator to remove the excess heat.
+We have removed the standard window of the ProLine PL230 camera and replaced it with a smaller version
+of our field-flattener lens, using a modified window holder. The inner chamber housing the CCD was pumped
+out for 48 hrs. After subsequent back-filling with pure argon to atmospheric pressure, we re-sealed the CCD
+chamber. The expected thermo-mechanical stability and the performance of the readout system of our interim
+
+detector system will likely limit the achievable RV precision. However, this camera will still be useful for initial
+testing.
+
+7. WAVELENGTH CALIBRATOR
+Our main calibration system is a custom bulk Fabry-Pérot etalon (FPI) from SLS with a finesse of 40 and a
+FSR of 15 GHz. Illuminated by an Energetiq EQ-99XFC laser-driven light source (LDLS), the etalon produces
+a comb of unresolved lines across the entire bandpass of MAROON-X.
+The etalon is housed in a custom vacuum chamber with in-built liquid circulation channels by Lesker. We
+achieve vacuum levels of < 10−6 mbar with a 0.5 l s−1 ion pump. A PolyScience PD07R-40 refrigerated circulator
+is used to stabilize the temperature of the etalon to < 10 mK P-V. We monitor the temperature of the etalon
+with two PT100 sensors and a Lakeshore temperature controller.
+A grating stabilized external cavity diode laser (ECDL) from Toptica and a Rubidium cell from TEM
+Messtechnik is used to monitor one of the etalon lines for short- and long-term drifts. We scan the laser at
+a scan rate of 4 Hz over a spectral range of 6.6 GHz (≈ 5 km s−1 ) near 780.25 nm to simultaneously measure one
+etalon line, three transition groups of Rb85 and Rb87 D2, and about 30 lines of a custom confocal etalon. The
+latter is used to linearize the scan axis and correct for piezo hysteresis effects.
+White light and laser light are combined and sent in a single mode fiber to the etalon. Vacuum compatible
+versions of Thorlab’s off-axis paraboloid collimators are used to illuminate the etalon with collimated light. A
+50 µm multi-mode fiber collects the light from the etalon and brings it out of the vacuum chamber.
+An Ondax SureBlock ultra narrow-band notch filter is used to remove the laser line from the white light
+comb and reflect it onto a photo diode for measurement. The OD of the notch filter is about 4 and the FWHM
+is 0.45 nm. This is sufficient to block the laser light and only lose etalon comb lines for about 5% of the FSR in
+order 79 of the spectrograph.
+We achieve a rms frequency stability of the etalon of 0.13 MHz, hence ∼ 10 cm s−1 within a few seconds. After
+binning 1 min worth of data we reach a limit of 3 cm s−1 . For longer timescales we find a linear drift of about
+30 cm s−1 d−1 , which we identify as the aging of the Zerodur spacer in the etalon, in full agreement to known
+shrinkage rates of Zerodur.21 Thanks to the rubidium frequency standard, we can track the etalon zero point
+and either compensate or account for drifts and instabilities at the few cm s−1 level for timescales longer than
+60 s.
+A more detailed description of the design and performance of our etalon comb calibrator can be found
+elsewhere in these proceedings.22
+For in-depth characterization and initial testing of MAROON-X we will also use a classical ThAr lamp from
+Photron as well as an iodine absorption cell from Thorlabs. The ThAr lamp will provide a wavelength zero
+point as the etalon can only deliver relative positions until the order number of at least one etalon peak per
+echelle order is established and the true cavity length of the etalon is determined. The iodine cell will allow us
+to monitor the stability of the line spread function in the blue wavelength arm of the spectrograph, a useful tool
+for RV stability diagnostics.
+
+8. ENVIRONMENTAL CONTROL CHAMBER
+In order to provide a tightly temperature controlled environment for the spectrograph, we installed a commercial
+walk-in freezer unit (Masterbilt 761012, 10 ’ × 12 ’) in the lab. A dual-fan Lytron heat exchanger with 2.7 kW
+capacity and 700 CFM air movement receives a temperature controlled water supply from a PolyScience PD15R40 refrigerated circulator with 1.1 kW heating and cooling power. An external sensor at the output of the heat
+exchanger drives the PID loop of the circulator. Several temperature sensors, as well as pressure and humidity
+sensors inside and outside of the chamber allow a detailed monitoring of the conditions inside the chamber.
+We have not yet optimized the PID parameters and see air temperature fluctuations of 30 mK P-V which
+even over weeks are fully dominated by 15 min oscillations and clearly show the need for a re-tuning of the PID
+parameters. We currently run the chamber at a set-point 5 ◦C lower than the average lab temperature, hence
+with a moderate but permanent forcing.
+
+Figure 10: Environmental enclose in
+the lab in Chicago. We currently
+achieve 30 mK P-V inside the enclosure
+with a custom circulating bath and heat
+exchanger system. Enclosure floor and
+air temperatures are monitored at various locations. Pressure and humidity
+sensors provide complete environmental
+control.
+Our lab environment is in two aspects similar to the foreseen location at the Magellan Telescope. The lab we
+placed the chamber in regularly sees temperature changes with up to 2 ◦C h−1 gradients due to malfunctioning
+HVAC supplies. These gradients are dampened to less than 20 mK inside the chamber. The lab is in the subbasement of a building and the temperature of the lab floor shows seasonal variations over timescales of months
+that change the floor temperature of the chamber by ≈ 200 mK. Only about 20 mK of long-term temperature
+changes are recorded at a sensor farthest away from the heat exchanger. We thus clearly see the need of either
+actively controlling the floor temperate of the chamber or to thermally insulate the spectrograph from the
+chamber floor.
+Before the arrival of the spectrograph we will tune the PID parameters of the circulator to improve our
+short-term temperature stability to better than 5 mK. We will ultimately change the location of the temperature
+sensor for the PID loop to the location of the spectrograph to improve the long-term temperature stability
+under seasonal temperature forcings. We anticipate both long- and short-term stability of the air temperature
+surrounding the spectrograph of ≤ 10 mK.
+All active (and hence heat dissipating) equipment (accept for the CCD detector systems) will be placed
+outside of the environmental chamber to minimize time-variable heat loads. The FLI camera, our interim
+detector system, is water cooled with a chiller and kept at a constant temperature. An additional layer of
+insulating foam panels is used to minimize the influence of the static temperature gradient between the CCD
+camera and the surrounding air.
+
+ACKNOWLEDGMENTS
+The University of Chicago group acknowledges funding for this project from the David and Lucile Packard
+Foundation through a fellowship to J.L.B.
+
+Table 1: MAROON-X main characteristics
+Spectral resolution
+Acceptance angle
+Wavelength range
+Number and reach of arms
+Cross-disperser
+Beam diameter
+Main fiber
+Number and type of slicer
+Slit forming fibers
+Inter-order and inter-slice spacing
+Average sampling
+Blue detector
+Red detector
+Calibration
+Environment for main optics
+Environment for camera optics
+Long-term instrument stability
+Total efficiency
+Observational efficiency
+
+R = 80,000 for 100 µm slit image at f /10
+FOV = 0.95” at the Magellan 6.5m Telescope
+500 nm – 900 nm (in 56 orders)
+2 (500–670 nm and 650–900 nm)
+anamorphic VPH grisms
+100 mm (at echelle grating), 33 mm (at cross-disperser)
+100 µm octagonal (CeramOptec)
+3x pupil slicer
+5× 50 µm × 150 µm rectangular (CeramOptec)
+≥ 10 pixel
+3.5 pixel per FWHM
+Standard 4k×4k e2v or STA CCD (15 µm pixel size)
+Deep-depletion 4k×4k e2v or STA CCD (15 µm pixel size)
+Fabry-Pérot etalon for simultaneous reference (fed by 2nd fiber)
+Vacuum operation, 1 mK temperature stability
+Pressure sealed operation, 20 mK temperature stability
+0.7 m s−1 (requirement), 0.5 m s−1 (goal)
+11% (requirement) to 15% (goal) at 700 nm (at median seeing)
+S/N=100 at 750 nm for a V=16.5 late M dwarf in 30 min
+
+REFERENCES
+[1] Gettel, S., Charbonneau, D., Dressing, C. D., Buchhave, L. A., Dumusque, X., Vanderburg, A., Bonomo,
+A. S., Malavolta, L., Pepe, F., Collier Cameron, A., Latham, D. W., Udry, S., Marcy, G. W., Isaacson,
+H., Howard, A. W., Davies, G. R., Silva Aguirre, V., Kjeldsen, H., Bedding, T. R., Lopez, E., Affer, L.,
+Cosentino, R., Figueira, P., Fiorenzano, A. F. M., Harutyunyan, A., Johnson, J. A., Lopez-Morales, M.,
+Lovis, C., Mayor, M., Micela, G., Molinari, E., Motalebi, F., Phillips, D. F., Piotto, G., Queloz, D., Rice, K.,
+Sasselov, D., Ségransan, D., Sozzetti, A., Watson, C., Basu, S., Campante, T. L., Christensen-Dalsgaard, J.,
+Kawaler, S. D., Metcalfe, T. S., Handberg, R., Lund, M. N., Lundkvist, M. S., Huber, D., and Chaplin, W. J.,
+“The Kepler-454 System: A Small, Not-rocky Inner Planet, a Jovian World, and a Distant Companion,”
+ApJ 816, 95 (Jan. 2016).
+[2] Stark, C. C., Roberge, A., Mandell, A., and Robinson, T. D., “Maximizing the ExoEarth Candidate Yield
+from a Future Direct Imaging Mission,” ApJ 795, 122 (Nov. 2014).
+[3] Brown, R. A., “Science Parametrics for Missions to Search for Earth-like Exoplanets by Direct Imaging,”
+ApJ 799, 87 (Jan. 2015).
+[4] Selsis, F., Kasting, J. F., Levrard, B., Paillet, J., Ribas, I., and Delfosse, X., “Habitable planets around the
+star Gliese 581?,” A&A 476, 1373–1387 (Dec. 2007).
+[5] Sullivan, P. W., Winn, J. N., Berta-Thompson, Z. K., Charbonneau, D., Deming, D., Dressing, C. D.,
+Latham, D. W., Levine, A. M., McCullough, P. R., Morton, T., Ricker, G. R., Vanderspek, R., and Woods,
+D., “The Transiting Exoplanet Survey Satellite: Simulations of Planet Detections and Astrophysical False
+Positives,” ApJ 809, 77 (Aug. 2015).
+[6] Deming, D., Seager, S., Winn, J., Miller-Ricci, E., Clampin, M., Lindler, D., Greene, T., Charbonneau, D.,
+Laughlin, G., Ricker, G., Latham, D., and Ennico, K., “Discovery and Characterization of Transiting Super
+Earths Using an All-Sky Transit Survey and Follow-up by the James Webb Space Telescope,” PASP 121,
+952–967 (Sept. 2009).
+[7] Dressing, C. D. and Charbonneau, D., “The Occurrence of Potentially Habitable Planets Orbiting M Dwarfs
+Estimated from the Full Kepler Dataset and an Empirical Measurement of the Detection Sensitivity,”
+ApJ 807, 45 (July 2015).
+[8] Reiners, A., Bean, J. L., Huber, K. F., Dreizler, S., Seifahrt, A., and Czesla, S., “Detecting Planets Around
+Very Low Mass Stars with the Radial Velocity Method,” ApJ 710, 432–443 (Feb. 2010).
+
+[9] Rodler, F., Del Burgo, C., Witte, S., Helling, C., Hauschildt, P. H., Martı́n, E. L., Álvarez, C., and
+Deshpande, R., “Detecting planets around very cool dwarfs at near infrared wavelengths with the radial
+velocity technique,” A&A 532, A31 (Aug. 2011).
+[10] Reiners, A., Shulyak, D., Anglada-Escudé, G., Jeffers, S. V., Morin, J., Zechmeister, M., Kochukhov, O.,
+and Piskunov, N., “Radial velocity signatures of Zeeman broadening,” A&A 552, A103 (Apr. 2013).
+[11] Reiners, A. and Basri, G., “Chromospheric Activity, Rotation, and Rotational Braking in M and L Dwarfs,”
+ApJ 684, 1390–1403 (Sept. 2008).
+[12] Barnes, S. I., Gibson, S., Nield, K., and Cochrane, D., “KiwiSpec - an advanced spectrograph for high
+resolution spectroscopy: optical design and variations,” in [Ground-based and Airborne Instrumentation for
+Astronomy IV], Proc. SPIE 8446, 844688 (Sept. 2012).
+[13] Gibson, S., Barnes, S. I., Hearnshaw, J., Nield, K., Cochrane, D., and Grobler, D., “KiwiSpec - an advanced
+spectrograph for high resolution spectroscopy: prototype design and performance,” in [Ground-based and
+Airborne Instrumentation for Astronomy IV ], Proc. SPIE 8446, 844648 (Sept. 2012).
+[14] Szentgyorgyi, A., Barnes, S., Bean, J., Bigelow, B., Bouchez, A., Chun, M.-Y., Crane, J. D., Epps, H.,
+Evans, I., Evans, J., Frebel, A., Furesz, G., Glenday, A., Guzman, D., Hare, T., Jang, B.-H., Jang, J.-G.,
+Jeong, U., Jordan, A., Kim, K.-M., Kim, J., Li, C.-H., Lopez-Morales, M., McCracken, K., McLeod, B.,
+Mueller, M., Nah, J., Norton, T., Oh, H., Oh, J. S., Ordway, M., Park, B.-G., Park, C., Park, S.-J., Phillips,
+D., Plummer, D., Podgorski, W., Rodler, F., Seifahrt, A., Tak, K.-M., Uomoto, A., Van Dam, M. A.,
+Walsworth, R., Yu, Y. S., and Yuk, I.-S., “A preliminary design for the GMT-Consortium Large Earth
+Finder (G-CLEF),” in [Ground-based and Airborne Instrumentation for Astronomy V ], Proc. SPIE 9147,
+914726 (Aug. 2014).
+[15] Fżrész, G., Epps, H., Barnes, S., Podgorski, W., Szentgyorgyi, A., Mueller, M., Baldwin, D., Bean, J.,
+Bergner, H., Chun, M.-Y., Crane, J., Evans, J., Evans, I., Foster, J., Gauron, T., Guzman, D., Hertz,
+E., Jordán, A., Kim, K.-M., McCracken, K., Norton, T., Ordway, M., Park, C., Park, S., Plummer, D.,
+Uomoto, A., and Yuk, I.-S., “The G-CLEF spectrograph optical design,” in [Ground-based and Airborne
+Instrumentation for Astronomy V ], Proc. SPIE 9147, 91479G (July 2014).
+[16] Conconi, P., Riva, M., Pepe, F., Zerbi, F. M., Cabral, A., Cristiani, S., Megevand, D., Landoni, M., and
+Spanó, P., “ESPRESSO APSU: simplify the life of pupil slicing,” in [Novel Optical Systems Design and
+Optimization XVI], Proc. SPIE 8842, 88420P (Sept. 2013).
+[17] Spanò, P., Delabre, B., Dekker, H., Pepe, F., Zerbi, F. M., Di Marcantonio, P., Cristiani, S., and Mégevand,
+D., “Very high-resolution spectroscopy: the ESPRESSO optical design,” in [Ground-based and Airborne
+Instrumentation for Astronomy IV ], Proc. SPIE 8446, 84467V (Sept. 2012).
+[18] Thomas-Osip, J. E., McCarthy, P., Prieto, G., Phillips, M. M., and Johns, M., “Giant Magellan Telescope
+site testing: summary,” in [Ground-based and Airborne Telescopes III], Proc. SPIE 7733, 77331L (July
+2010).
+[19] Seifahrt, A., Stürmer, J., and Bean, J. L., “A micro-lens array based pupil slicer and double scrambler for
+MAROON-X ,” in [Advances in Optical and Mechanical Technologies for Telescopes and Instrumentation ],
+Proc. SPIE 9912, 991261 (June 2016).
+[20] Sutherland, A., Stürmer, J., Miller, K., Seifahrt, A., and Bean, J. L., “Characterizing octagonal and
+rectangular fibers for MAROON-X,” in [Advances in Optical and Mechanical Technologies for Telescopes
+and Instrumentation], Proc. SPIE 9912, 9912185 (June 2016).
+[21] Bayer-Helms, F., “Langzeitige Längenänderungen der Glaskeramik ”Zerodur” als Auswirkung eines Diffusionsvorganges,” Metrologia 23, 145–151 (Jan. 1987).
+[22] Stürmer, J., Seifahrt, A., Schwab, C., and Bean, J. L., “A laser-locked white-light etalon calibrator for
+MAROON-X,” in [Advances in Optical and Mechanical Technologies for Telescopes and Instrumentation ],
+Proc. SPIE 9912, 991279 (June 2016).
+
+

@@ -1,0 +1,131 @@
+[
+{
+"quarter": 1,
+"n": 1450,
+"psffrac": 0.8149089756891917,
+"crowdsap": 0.8131334524,
+"flfrcsap": 0.9128600638,
+"median_flux": 4126.1134469820245,
+"ptp_ppm": 1030.9183510621647
+},
+{
+"quarter": 2,
+"n": 3690,
+"psffrac": 0.685087119336938,
+"crowdsap": 0.7484572313,
+"flfrcsap": 0.9547344105,
+"median_flux": 4308.864147201084,
+"ptp_ppm": 1024.670301964365
+},
+{
+"quarter": 3,
+"n": 3876,
+"psffrac": 0.8712159653204101,
+"crowdsap": 0.9059001749,
+"flfrcsap": 0.8893766567,
+"median_flux": 3684.49504756063,
+"ptp_ppm": 982.2590443398051
+},
+{
+"quarter": 4,
+"n": 3844,
+"psffrac": 0.7991371176945362,
+"crowdsap": 0.8908542731,
+"flfrcsap": 0.8840759695,
+"median_flux": 4147.685381677169,
+"ptp_ppm": 782.8711304375189
+},
+{
+"quarter": 6,
+"n": 3976,
+"psffrac": 0.6757009579294657,
+"crowdsap": 0.7472471618,
+"flfrcsap": 0.9532782865,
+"median_flux": 4193.626174384613,
+"ptp_ppm": 1021.0111977118872
+},
+{
+"quarter": 7,
+"n": 3931,
+"psffrac": 0.866314417392134,
+"crowdsap": 0.7984616252,
+"flfrcsap": 0.9423375604,
+"median_flux": 3711.053046292397,
+"ptp_ppm": 973.1428014050863
+},
+{
+"quarter": 8,
+"n": 2956,
+"psffrac": 0.7970577546488454,
+"crowdsap": 0.8967737994,
+"flfrcsap": 0.8887717026,
+"median_flux": 4170.801753689126,
+"ptp_ppm": 802.3156881795538
+},
+{
+"quarter": 10,
+"n": 3950,
+"psffrac": 0.6729635448449048,
+"crowdsap": 0.8673521584,
+"flfrcsap": 0.7405962473,
+"median_flux": 4131.126014179346,
+"ptp_ppm": 1037.155504736248
+},
+{
+"quarter": 11,
+"n": 3884,
+"psffrac": 0.8617641631872588,
+"crowdsap": 0.905892946,
+"flfrcsap": 0.8868524012,
+"median_flux": 3655.9870448778647,
+"ptp_ppm": 960.0690503328525
+},
+{
+"quarter": 12,
+"n": 3267,
+"psffrac": 0.8265257321273747,
+"crowdsap": 0.883795552,
+"flfrcsap": 0.7818269173,
+"median_flux": 4085.166270792722,
+"ptp_ppm": 880.8122021219256
+},
+{
+"quarter": 14,
+"n": 4051,
+"psffrac": 0.6661181206211804,
+"crowdsap": 0.7481767119,
+"flfrcsap": 0.9509742361,
+"median_flux": 4178.345063776075,
+"ptp_ppm": 971.9109637728268
+},
+{
+"quarter": 15,
+"n": 4213,
+"psffrac": 0.8591304023608807,
+"crowdsap": 0.9063473346,
+"flfrcsap": 0.8851424374,
+"median_flux": 3595.924936600712,
+"ptp_ppm": 935.3388125717216
+},
+{
+"quarter": 16,
+"n": 3435,
+"psffrac": 0.8017121243805302,
+"crowdsap": 0.9597207545,
+"flfrcsap": 0.6881423515,
+"median_flux": 4033.502285025079,
+"ptp_ppm": 822.9273632481709
+}
+]
+N points 46523 baseline d 1426.4464908549562 quarters [1, 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15, 16]
+wotan biweight on 46523 pts: 4.37s
+after clip N 45648 robust sigma ppm 1033.1011961038848
+BLS grid: 499259 periods, 8 durations
+BLS objective=snr: 185.7s best P=13.76953 d, t0=136.3098, dur=2.45 h, depth=1649 ppm, power=29.36
+BLS SDE (global) of top peak 27.6; 2nd-best period 13.7693
+BLS objective=likelihood: 150.4s best P=13.76953, depth 1649 ppm, dloglike 434.2 -> sqrt(2*dll)=29.5
+compute_stats keys ['depth', 'depth_even', 'depth_half', 'depth_odd', 'depth_phased', 'harmonic_amplitude', 'harmonic_delta_log_likelihood', 'per_transit_count', 'per_transit_log_likelihood', 'transit_times']
+depth (np.float64(0.0016486165457020782), np.float64(5.615570693110386e-05)) depth_odd (np.float64(0.0016342577032423908), np.float64(8.106415986131414e-05)) depth_even (np.float64(0.001661765373347747), np.float64(7.758616926308326e-05)) depth_half (np.float64(0.0008013172135723528), np.float64(4.0149365921484904e-05)) depth_phased (np.float64(-7.104556615429508e-05), np.float64(5.699294600249605e-05)) harmonic_dll -429.9366966725065 n transits with data 74
+catalog_info failed: IndexError('list index out of range')
+TLS 1 thread: 198.2s, 180849 periods; P=13.769643 +- 0.001299 d, T0=136.30486, SDE=105.27, SNR=27.50, depth=0.99800 (1-depth=1999 ppm), dur=1.55 h, rp_rs=0.0402, odd_even_mismatch=0.21 sigma, transit_count=104, distinct=74, FAP=8.0032e-05
+TLS top 5 peaks: [(np.float64(13.7696), np.float64(105.3)), (np.float64(13.7693), np.float64(103.9)), (np.float64(13.7689), np.float64(88.2)), (np.float64(13.77), np.float64(84.2)), (np.float64(13.7685), np.float64(67.0))]

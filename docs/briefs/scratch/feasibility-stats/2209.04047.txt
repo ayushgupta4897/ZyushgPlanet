@@ -1,0 +1,1596 @@
+                                                Draft version September 12, 2022
+                                                Typeset using LATEX twocolumn style in AASTeX631
+
+
+
+
+                                                           The Demographics of Kepler ’s Earths and super-Earths into the Habitable Zone
+                                                Galen J. Bergsten,1 Ilaria Pascucci,1 Gijs D. Mulders,2, 3 Rachel B. Fernandes,1 and Tommi T. Koskinen1
+                                                                     1 Lunar and Planetary Laboratory, The University of Arizona, Tucson, AZ 85721, USA
+                                                    2 Facultad de Ingenierı́a y Ciencias, Universidad Adolfo Ibáñez, Av. Diagonal las Torres 2640, Peñalolén, Santiago, Chile
+                                                                                           3 Millennium Institute for Astrophysics, Chile
+arXiv:2209.04047v1 [astro-ph.EP] 8 Sep 2022
+
+
+
+
+                                                                       (Accepted for publication in The Astronomical Journal; September 5th, 2022)
+
+                                                                                                           ABSTRACT
+                                                         Understanding the occurrence of Earth-sized planets in the habitable zone of Sun-like stars is essential
+                                                      to the search for Earth analogues. Yet a lack of reliable Kepler detections for such planets has forced
+                                                      many estimates to be derived from the close-in (2 < Porb < 100 days) population, whose radii may have
+                                                      evolved differently under the effect of atmospheric mass loss mechanisms. In this work, we compute
+                                                      the intrinsic occurrence rates of close-in super-Earths (∼ 1 − 2 R⊕ ) and sub-Neptunes (∼ 2 − 3.5 R⊕ )
+                                                      for FGK stars (0.56 − 1.63 M ) as a function of orbital period and find evidence of two regimes:
+                                                      where super-Earths are more abundant at short orbital periods, and where sub-Neptunes are more
+                                                      abundant at longer orbital periods. We fit a parametric model in five equally populated stellar mass
+                                                      bins and find that the orbital period of transition between these two regimes scales with stellar mass,
+                                                      like Ptrans ∝ M∗1.7±0.2 . These results suggest a population of former sub-Neptunes contaminating the
+                                                      population of Gyr-old close-in super-Earths, indicative of a population shaped by atmospheric loss.
+                                                      Using our model to constrain the long-period population of intrinsically rocky planets, we estimate an
+                                                      occurrence rate of Γ⊕ = 15+6−4 % for Earth-sized habitable zone planets, and predict that sub-Neptunes
+                                                      may be ∼ twice as common as super-Earths in the habitable zone (when normalized over the natural
+                                                      log orbital period and radius range used). Finally, we discuss our results in the context of future
+                                                      missions searching for habitable zone planets.
+
+
+                                                      Keywords: Exoplanets (498) — Exoplanet atmospheres (487) — Habitable planets (695) — Super
+                                                                Earths (1655) — Mini Neptunes (1063)
+
+                                                                1. INTRODUCTION                                       bital period range around a star for which a planet with
+                                                The modern field of exoplanet science is built in part                a CO2 -H2 O-N2 atmosphere could sustain liquid water
+                                              upon the success of the Kepler mission (Borucki et al.                  on its surface (e.g., Huang 1959; Hart 1978; Kopparapu
+                                              2010; Borucki 2017), which detected thousands of extra-                 et al. 2013). Ideally, detections of reliable rocky planet
+                                              solar planets over the course of a ∼ four-year duration.                candidates within a star’s habitable zone would be used
+                                              Both before and after the renaissance of exoplanet infor-               to directly estimate η⊕ , where confirmed and candidate
+                                              mation provided by Kepler , many have explored ques-                    planets are weighted by the inverse of their complete-
+                                              tions about the formation, evolution, and occurrence of                 ness.
+                                              exoplanets.                                                                However, only a minute fraction of Kepler ’s small
+                                                One such open question is the occurrence rate (or fre-                planet detections reside in the habitable zone (Thomp-
+                                              quency) of Earth-sized planets in the habitable zone of                 son et al. 2018). This is likely not due to an absence
+                                              a Sun-like star, a quantity commonly denoted as η⊕ .                    of these planets, but rather due to the difficulties of
+                                              The habitable zone is conventionally defined as the or-                 detecting small planets at large orbital periods. As a
+                                                                                                                      transit mission, Kepler detections rely on the geomet-
+                                                                                                                      ric probability that a planet will occult its host star,
+                                              Corresponding author: Galen J. Bergsten                                 and this probability decreases with increasing orbital pe-
+                                              gbergsten@email.arizona.edu                                             riod. Kepler ’s completeness falls off drastically outside
+2                                                 Bergsten et al. 2022
+
+of 100 days, which means that very few terrestrial-sized       of the Kepler sample. These classifications are further
+habitable zone planet candidates were detected. Those          motivated by density: in the subset of planets with both
+that Kepler did find are typically of low reliability (i.e.,   mass and radius estimates, those larger than 1.6 R⊕ are
+a high likelihood of being false alarms due to instru-         not likely to be rocky (Rogers 2015).
+ment statistics; Thompson et al. 2018), though reliabil-          Many works have explored the radius valley as an evo-
+ity is difficult to estimate for year-long orbital period      lutionary feature carved out over time as intermediate-
+planets with only three transits during Kepler ’s short        sized planets lose their atmospheres and appear obser-
+four-year duration. Nonetheless, many works attempt            vationally smaller in size (e.g., Berger et al. 2020a; San-
+to use this sample directly, both with (e.g., Bryson et al.    doval et al. 2021). In models of XUV photoevaporation
+2021) and without (e.g., Hsu et al. 2019) considerations       (e.g., Owen & Wu 2013, 2017) and/or core-powered mass
+of candidate reliability. The already-small sample size,       loss (e.g., Ginzburg et al. 2016, 2018; Gupta & Schlicht-
+poor mission completeness at long orbital periods, and         ing 2019, 2020), the close-in population of super-Earths
+variable treatment of reliability have led to an order-of-     would be riddled with once-larger planets that lost their
+magnitude range in occurrence estimates with compa-            atmospheres, shrinking in planet radius. The distinction
+rably large uncertainties (see e.g., the discussion in Ku-     of “close-in” is critical, because models of atmospheric
+nimoto & Matthews 2020). These discrepancies persist           loss are typically flux-limited (see Rogers et al. 2021)
+even when the occurrence is normalized over the planet         and thus have some decreasing orbital period depen-
+radius and orbital period ranges used for the calculation      dence. This means that the most likely processes that
+(denoted as Γ⊕ ).                                              sculpt the radius valley and hot-Neptune desert are not
+   A much larger sample of transiting exoplanets can be        efficient at larger orbital periods − most notably, the
+found at orbital periods far smaller than the habitable        habitable zone. As a result, the radius distribution of
+zone (Thompson et al. 2018). The majority of reliable          close-in and habitable zone planets may evolve differ-
+small planet detections have orbital periods less than         ently with orbital period. sub-Neptunes at large orbital
+100 days, well outside the 150 day innermost bound for         periods will not evolve into super-Earths. Hence the oc-
+the habitable zone of lower-mass K-type stars. To cir-         currence of small close-in planets is not representative
+cumvent the low number of habitable zone detections,           of small planets in the habitable zone.
+previous works have relied on fitting the period-radius           Lopez & Rice (2018) note that the use of separable
+distribution of the small close-in planet population, and      and/or uncorrelated power laws in planet radius and or-
+extrapolating this to longer habitable zone orbital pe-        bital period for the population of close-in planets may
+riods (e.g., Petigura et al. 2013a). However, the close-       lead to over-estimations of terrestrial planet occurrence
+in population of small planets does not come without           at large orbital periods. Here, the planet radius dis-
+caveats, as these planets may be shaped by processes           tribution would be dominated by the close-in planets
+which do not apply to the habitable zone. One such             (many of which are remnant cores), while the orbital
+example process is the mechanism of planetary atmo-            period distribution is dominated by sub-Neptunes. Pas-
+spheric mass loss.                                             cucci et al. (2019) demonstrate and quantify this effect
+   Atmospheric loss entails that planets close-in to their     by excluding the subset of close-in planets that are most
+host stars are exposed to large amounts of stellar radia-      affected by atmospheric loss. Their Model #6 removes
+tion which can lead to a reduction of their atmospheric        planets with orbital periods less than 25 days (beyond
+envelopes. One signature of this process is the “hot-          which theoretical models predict minimal photoevapo-
+Neptune desert,” or a dearth of Neptune-sized planet de-       ration) and produces a decrease in η⊕ from ∼ 40% down
+tections at very close-in (< 4 days) orbital periods in the    to ∼ 5%. Understanding how atmospheric loss shapes
+Gyr-old Kepler distribution (Beaugé & Nesvorný 2013).        the size and orbital period distributions of Gyr-old plan-
+Atmospheric loss is also likely to play a role in creating     ets is critical to understanding how the close-in popula-
+the observed “radius valley” feature shown by Fulton           tion extends towards the habitable zone for estimating
+et al. (2017) in the population of small close-in Kepler       occurrence rates.
+planets. The radius valley refers to a relative dearth            The atmospheric evolution of these planets is further
+of intermediate-sized planets (∼ 1.5 − 2 R⊕ ) separating       coupled with differences in planet formation driving the
+an abundance of super-Earths (∼ 1 − 1.5 R⊕ ) from an           overall orbital period distribution. Hence, characteriz-
+abundance of sub-Neptunes (∼ 2 − 3.5 R⊕ ). Evidence            ing how atmospheric loss shapes the planet size distri-
+for the radius valley has also been seen in K2 data            bution, along with disentangling the processes of forma-
+(Hardegree-Ullman et al. 2020), suggesting that this fea-      tion and evolution, is critical to understanding how the
+ture is caused by some physical process and not a quirk
+                              Earths and super-Earths into the Habitable Zone                                         3
+
+close-in population extends towards the habitable zone        currence to study the super-Earth versus sub-Neptune
+for estimating occurrence rates.                              relationship. We detail our results in Section (3) for a
+   The aforementioned processes of planet formation and       sample of stellar mass bins encompassing FGK stars,
+atmospheric evolution are not identical for every star-       and explore how trends in occurrence rates differ with
+planet system, as there are many aspects which depend         host star mass. In Section (4), we discuss our findings in
+on stellar mass. In the context of planet formation, stud-    the context of atmospheric loss mechanisms, and calcu-
+ies of young (Myr-old) stars show that protoplanetary         late the occurrence of Earth-sized planets in the habit-
+disk mass reservoirs are stellar mass dependent (e.g.,        able zone for different bins of stellar mass. We conclude
+Pascucci et al. 2016). Additionally, exoplanet surveys        with a summary in Section (5), where we also consider
+of Gyr-old stars find occurrence rates for small planets      ongoing and future efforts to refine our understanding
+which decrease for hotter (more massive) stars (Howard        of atmospheric loss and the search for Earth analogues
+et al. 2012; Mulders et al. 2015; Yang et al. 2020; He        in the habitable zones of Sun-like stars.
+et al. 2021). Host star mass is also relevant to atmo-
+spheric loss, as heavier/brighter stars provide more flux                 2. SAMPLE AND METHODS
+with which to heat up a planet and eventually remove            Here we describe the methodology of our exoplanet
+part of its atmospheric envelope. Previous work by Wu         occurrence rate study, and introduce the tools used to
+(2019) shows evidence for a radius valley which depends       calculate occurrence rates with a dependence on stellar
+on stellar mass, where the boundary between super-            mass.
+Earths and sub-Neptunes moves to larger planet radii
+around heavier stars.                                                      2.1. Star and Planet Samples
+   The convolution of the above factors makes constrain-
+                                                                 Our stellar sample stems from the Berger et al.
+ing habitable zone occurrence a complicated endeav-
+                                                              (2020b) Gaia-Kepler Stellar Properties Catalog, which
+our, so it is not unsurprising that recent occurrence
+                                                              uses photometry and Gaia parallaxes to derive stellar
+rate estimates span almost two orders of magnitude
+                                                              masses for 186,301 Kepler stars with a median uncer-
+(0.03 . Γ⊕ . 1.4; see Section 4.2.1). However, none
+                                                              tainty of 7%. We limit our sample to contain only Sun-
+of these works have attempted to study habitable zone
+                                                              like or FGK type stars, encompassing a stellar mass
+occurrence as a function of stellar mass. Yet with the
+                                                              range of 0.56 − 1.63 M based on the relation between
+now-standard dataset of the final Kepler DR25 release
+                                                              spectral type and stellar mass for main-sequence stars
+(Thompson et al. 2018), updated host star properties
+                                                              in Pecaut & Mamajek (2013). We exclude M dwarfs
+based on Gaia data (Berger et al. 2020a), and a mod-
+                                                              due to the small number of both M stars and confirmed
+ernized treatment of reliability (Bryson et al. 2020a),
+                                                              planets orbiting M stars in the Kepler sample.
+it is time for us to analyze the Kepler exoplanet pop-
+                                                                 We limit our planet sample to include those with or-
+ulation in the context of stellar mass dependence with
+                                                              bital periods of 2 ≤ Porb ≤ 100 days, beyond which
+insights from atmospheric loss.
+                                                              the completeness of small planets is low (e.g., Fulton
+   One avenue of exploration is the interaction between
+                                                              et al. 2017). While theoretical models predict the effects
+the super-Earth and sub-Neptune populations as a func-
+                                                              of photoevapoaration to be negligible beyond 50 days
+tion of orbital period. In this work, we confirm and
+                                                              (Owen & Wu 2017), we include planets out to 100 days
+quantify a transition between a short-period regime
+                                                              to allow for multiple data points at long orbital periods
+dominated by super-Earths and a longer-period regime
+                                                              in log space. Because we wish to encompass the radius
+dominated by sub-Neptunes, previously seen in both ob-
+                                                              valley feature seen in the population of small planets
+servations (see e.g., Fig. 7 in Petigura et al. 2018; Fig.
+                                                              within Kepler (e.g.,Fulton et al. 2017), we select plan-
+1 in Pascucci et al. 2019) and theory (see e.g., Fig. 2
+                                                              ets with radii between 1 ≤ Rp ≤ 3.5 R⊕ . This choice is
+in Gupta & Schlichting 2019; Fig. 7 in Rogers & Owen
+                                                              made to specifically include the definitions used in Ful-
+2021). We adopt a parametric approach to characterize
+                                                              ton et al. (2017) to denote super-Earths (1 − 1.75 R⊕ )
+the effects of atmospheric loss and the presence of rem-
+                                                              and sub-Neptunes (1.75 − 3.5 R⊕ ). We exclude planets
+nant cores, which we explore in both the combined suite
+                                                              smaller than 1.0 R⊕ , for which the Kepler completeness
+of FGK stars and as a function of stellar mass. Our
+                                                              is low beyond even 30 days (see e.g., Thompson et al.
+analysis is the first to reveal a scaling between host star
+                                                              2018; Mulders et al. 2018). We also do not include plan-
+mass (hence luminosity) and the orbital period where
+                                                              ets beyond 3.5 R⊕ , which is beyond the radius “cliff”
+this transition occurs.
+                                                              where there is a noticeable drop in planet occurrence.
+   In Section (2), we describe our sample and occurrence
+                                                              The process(es) that form the cliff are most likely re-
+rate calculations, and introduce a metric of fractional oc-
+                                                              lated to the accretion phase from the gaseous disk (see
+4                                                     Bergsten et al. 2022
+
+        Table 1. Stellar Mass Bins and Planet                        To calculate exoplanet occurrence rates as a function
+        Counts                                                    of stellar mass, we use a modified version of epos, the
+                                                                  Exoplanet Population Observation Simulator (Mulders
+          M∗ Range       N∗     Rvalley   NsE   NsN
+                                                                  et al. 2018). epos is a well documented and tested
+            [M ]                 [R⊕ ]                            Python code developed by the “Earths in Other Solar
+          0.56 - 0.81   22841    1.82     217   294               Systems” team1 , it is available on GitHub2 , and has
+          0.81 - 0.91   22929    1.93     186   230               already been used in several publications to compute
+          0.91 - 1.01   22904    1.98     205   219               occurrence rates as well as to compare planet formation
+          1.01 - 1.16   22912    2.04     237   197               models to the Kepler exoplanetary systems (e.g., Kop-
+          1.16 - 1.63   23026    2.17     174   140               parapu et al. 2018; Pascucci et al. 2018; Fernandes et al.
+        Note—We adopt a radius valley which scales                2019; Mulders et al. 2019; Pascucci et al. 2019; Mulders
+         with average stellar mass using the relation             et al. 2020).
+         of Wu (2019), normalized to Rvalley = 2 R⊕                  In this work, we employ the classic inverse detection
+         at M∗ = 1.0 M . The valley is considered
+         the boundary between super-Earths and                    efficiency method (Mode1 within epos) for calculating
+         sub-Neptunes, with counts denoted under                  planet occurrence rates. In short, a given planet’s con-
+         NsE and NsN , respectively.                              tribution to the occurrence of similar planets is weighted
+                                                                  by a survey’s ability to detect that specific planet, or the
+                                                                  survey’s “completeness”. For a survey with N∗ stars,
+                                                                  the occurrence η of planets in a bin of orbital period
+e.g., the review by Bean et al. 2021) and are not relevant        and radius is given by:
+for smaller planets (Kite et al. 2019).                                                            Npl
+  Using the stellar masses presented in Berger et al.                                      1 X 1
+                                                                                    ηbin =            .                   (1)
+(2020b), we also divide the FGK sample and correspond-                                     N∗ j compj
+ing planets into five stellar mass bins, with ranges chosen
+to have comparable numbers of stars per bin. Details              Here, compj is the survey completeness evaluated at the
+of these bins are included in Table (1). The number               orbital period and radius of the j th planet in a bin con-
+of super-Earths or sub-Neptunes is listed in the last two         taining Npl planets. For details on the elements of sur-
+columns and indicates all confirmed and candidate plan-           vey completeness used in Kepler occurrence rates, see
+ets in a given stellar mass bin. Because bins were chosen         Mulders et al. (2018). In a given bin, we treat the un-
+based on stellar counts, the number of planet detections          certainty on ηbin as the occurrence rate divided by the
+varies from bin to bin, but counts are still numerous             square root of the number of planet candidates in that
+enough for our statistical purposes. Additionally, Wu             bin.
+(2019) has shown that the location of the valley in planet           Full details of the modifications to epos for this work
+radius (Rp ) changes with stellar mass (M∗ ), and sug-            are described in Appendix (B), though we include a
+gests a scaling where Rp,adj. = Rp ( M  M∗ 1/4
+                                            ) . We adopt          summary here for convenience. We have updated epos
+                                                                  to employ the Gaia-Kepler Stellar Properties Catalog
+this scaling to re-position the radius valley (and thus
+                                                                  (Berger et al. 2020b). Using these updated stellar prop-
+the boundary between super-Earths and sub-Neptunes)
+                                                                  erties when selecting a sample, epos now accepts speci-
+based on the average stellar mass of each bin. The
+                                                                  fied ranges of stellar mass and computes the relevant sur-
+normalized position is chosen to be Rvalley = 2 R⊕ at
+                                                                  vey completeness maps internally - an external routine
+M∗ = 1 M by visual inspection of the completeness-
+                                                                  is also available3 . In short, we adopt the methodology
+weighted two-dimensional planet orbital period and ra-
+                                                                  of Mulders et al. (2018) which includes generating 2D
+dius distribution - see Appendix (A). The Rvalley values
+                                                                  detection efficiency contours via KeplerPORTS4 (Burke
+per stellar mass bin are provided in Table (1). Previous
+                                                                  & Catanzarite 2017).
+works (e.g., Van Eylen et al. 2018; Martinez et al. 2019)
+                                                                     epos uses the Kepler DR25 catalog (Thompson et al.
+have found evidence for a radius valley which scales in-
+                                                                  2018) to select confirmed and candidate planets as clas-
+versely with orbital period, though the dependence is
+                                                                  sified through an automated pipeline known as Robovet-
+shallow (roughly Rvalley ∝ P −0.1 ) and not seen in our
+weighted period-radius distributions, so we do not con-
+sider such a scaling in this work.                                  1 http://eos-nexus.org/epos/
+
+                                                                    2 https://github.com/GijsMulders/epos
+                                                                    3 https://github.com/gbergsten
+
+2.2. Exoplanet Occurrence and Fractional Occurrence                 4 https://github.com/nasa/KeplerPORTs
+                              Earths and super-Earths into the Habitable Zone                                                  5
+
+ter (Coughlin 2017), which also provides disposition          assumptions on the functional form of the underlying
+scores. These scores describe the fraction of iterations      planet distribution.
+in which a threshold crossing event is classified as a           Previous works have shown that features of the Kepler
+planet candidate, with iterations based on perturbing         planet population are well-described by (broken) power
+the event’s Robovetter metrics about their uncertainties      laws when using parametric distributions. In this work,
+(see Thompson et al. 2018 for further details). Dispo-        we adopt the approach of Youdin (2011) and Burke et al.
+sition score cuts have been used to produce more reli-        (2015). This method is chosen for their Poisson likeli-
+able samples of planet candidates, though recent work         hood approach (useful for detections of varying sensi-
+by Bryson et al. (2020b) suggests that score cuts are an      tivity), and implementation of Bayesian Markov chain
+imperfect metric which loses diagnostic value upon the        Monte Carlo (MCMC) parameter estimation (useful for
+implementation of a direct reliability treatment.             fitting more complex parametric models). We briefly
+   As such, epos now includes an optional treatment of        summarize here the salient components and refer the
+vetting reliability as described by Bryson et al. (2020b).    reader to Appendix (C) for details.
+We calculate each candidate’s reliability score as the           Following Youdin (2011), we adopt a parametric de-
+product of RFA · (1 − FPP), where RFA is the false alarm      scription of the planet distribution function (PLDF) of
+reliability calculated for this work following the meth-      the form:
+ods of Bryson et al. 2020b, and FPP is the false posi-
+                                                                              d2 f
+tive probability calculated by Morton et al. (2016). We                               = F0 Cn g(Porb , Rp ).                  (2)
+then take each candidate’s reliability score and treat this                 dPorb dRp
+as a multiplicative factor on the occurrence calculated       where F0 can be treated as the average number of plan-
+through the inverse detection efficiency method.              ets per star, Cn is a normalization factor, and g(x) is
+   In addition to calculating the occurrence rates of ex-     the highly customizable shape function used to describe
+oplanets, we introduce a metric of “fractional occur-         the behavior of the planet distribution.
+rence” to better describe the relative behavior between         In our case, the shape function consists of two compo-
+the super-Earth and sub-Neptune populations. Here, ei-        nents, g(x) = g1 · g2 . The first is a broken power law in
+ther the super-Earth or sub-Neptune occurrence distri-        orbital period which governs the overall distribution of
+butions are divided by the combined occurrence of both        the combined super-Earth and sub-Neptune population:
+groups. This can be thought of as the relative spacing
+between the two group’s occurrence profiles with orbital                         
+period, where the fractional occurrence of super-Earths                          (P                   β1
+                                                                                       orb /Pbreak )        if P < Pbreak
+defines how much they contribute to the combined oc-              g1 (Porb ) =                                                (3)
+                                                                                                       β2
+currence of both super-Earths and sub-Neptunes. Tak-
+                                                                                 (P
+                                                                                       orb /Pbreak )        if P ≥ Pbreak .
+ing a ratio allows us to divide out any broader distri-
+                                                              The exponents β1 and β2 govern the slope of the power
+butions with orbital period affecting both groups. Such
+                                                              law on either side of a break in orbital period Pbreak .
+an estimation can be affected by detection limits (larger
+                                                              This form has been shown to reproduce well the overall
+planets are more easily found than smaller planets at
+                                                              occurrence of small Kepler planets vs. orbital period
+larger orbital periods), but we will next employ a for-
+                                                              (e.g., Petigura et al. 2018; Mulders et al. 2018).
+ward model that is less affected by this bias in order to
+                                                                 The second component governs the fractional occur-
+show a robust feature of the planet population.
+                                                              rence. We will first describe the functional form of
+                                                              this component here, then later motivate our choice of
+                                                              parameterization with Kepler occurrence rates in Sec-
+ 2.3. Parametric Modeling of Exoplanet Distributions          tion (3.1.1) and fits to the planetary parameters in Sec-
+   The inverse detection efficiency method described in       tion (3.2). We choose to model the fractional occurrence
+the previous section is intuitive and computationally ef-     of super-Earths via a functional form which simultane-
+ficient, but not without shortcomings: it cannot predict      ously constrains three regimes: short orbital periods,
+occurrence rates in regimes without planet detections,        long orbital periods, and a transition between the two.
+and results may still harbor observational biases in ar-      For this, we adopt the form of a hyperbolic tangent (sim-
+eas of poor completeness. To complement this, we also         ilar to an “S-curve”) in log10 Porb , which allows for the
+calculate occurrence rates via a forward model using          transition between two asymptotic values via a smooth
+a parametric distribution to describe our planet pop-         curve centered on a specific orbital period. The tran-
+ulation. This approach is more statistically sound, at        sition function itself includes two free parameters - one
+the cost of increased computational time and specific         for the location of the central period of this curvature
+6                                                   Bergsten et al. 2022
+
+                                                                   Using the function t = t(Porb ) to transition between
+                                                                 short- and long-period regimes, we define the component
+                                                                 governing fractional occurrence via a piece-wise func-
+                                                                 tion:
+                                                                                   
+                                                                                   t · χ1 + [1 − t] · χ2 if Rp < Rvalley
+                                                                                   
+                                                                                   
+                                                                   G(Porb , Rp ) = t · (1 − χ1 ) +
+                                                                                   
+                                                                                                           if Rp > Rvalley
+                                                                                        [1 − t] · (1 − χ2 )
+                                                                                   
+                                                                                                                          (5)
+                                                                 which is represented graphically in Figure (1) along-
+                                                                 side the broken power law component g1 . Implement-
+                                                                 ing the behavior of G into the shape function via g2 is
+                                                                 not trivial, as constraining fractional occurrence requires
+                                                                 the calculation of occurrence for both super-Earths and
+                                                                 sub-Neptunes, which is the result of the PLDF itself
+                                                                 - details of this implementation are included in Ap-
+                                                                 pendix (C). We opt to consider and fit this fractional oc-
+                                                                 currence metric, rather than fitting super-Earth and/or
+                                                                 sub-Neptune occurrence rates individually, to reduce the
+Figure 1. Graphical representation of the functional form        number of free parameters.
+adopted in this work to describe the close-in population of        To summarize, the eight free parameters of our model
+exoplanets. Top: A broken power law governs the overall
+                                                                 are:
+orbital period distribution. Bottom: A transition function
+describes how the fractional occurrence behaves with period         • F0 : Average number of planets per star.
+for super-Earths (green; 1 R⊕ − Rvalley ) and sub-Neptunes
+(blue; Rvalley − 3.5 R⊕ ). Dots represent the relevant period       • Pbreak : Location of the break in the orbital period
+free parameters (top: Pbreak ; bottom: Pcentral ). The purple         power law.
+line indicates the point Ptrans where sub-Neptunes become
+more common than super-Earths.                                      • β1 : Exponent governing the power law for orbital
+                                                                      periods P < Pbreak .
+Pcentral , and one for the log-period width s between the
+central period and an asymptotic plateau on either side             • β2 : Exponent governing the power law for orbital
+- and is given by the form:                                           periods P ≥ Pbreak
+
+                                                                    • Pcentral : Central point of the hyperbolic tangent
+                                                                    transition curve.
+                               log10 Porb − log10 Pcentral
+  t(Porb ) = 0.5 − 0.5 tanh                                 .
+                                         log10 s                    • s: Smoothness of the transition function about
+                                                           (4)        Pcentral .
+   The plateaus both before and after the transition can
+be normalized independently, for which we adopt two                 • χ1 : Fractional occurrence of super-Earths at P 
+additional free parameters. The fraction χ1 represents                Pcentral ; in the same regime, sub-Neptune frac-
+the asymptotic fractional occurrence of super-Earths at               tional occurrence is given by the complement
+short orbital periods (well before Pcentral ), and the frac-          (1 − χ1 ).
+tion χ2 denotes a similar asymptote at long orbital pe-             • χ2 : Fractional occurrence of super-Earths at P 
+riods (well after Pcentral ). In this sense, the smoothness           Pcentral ; in the same regime, sub-Neptune frac-
+parameter s governs how quickly the curve levels off to-              tional occurrence is given by the complement
+wards χ1 or χ2 when moving away from Pcentral . By                    (1 − χ2 ).
+definition, fractional occurrence compares either super-
+Earths or sub-Neptunes to the combined occurrence of             The PLDF is fit to the Kepler DR25 sample through
+both, such that the two size regimes are always com-             maximum likelihood estimation techniques in an MCMC
+plementary (i.e., sum to unity). Thus, at short periods          approach using emcee (Foreman-Mackey et al. 2013).
+sub-Neptunes should approach (1 − χ1 ), and at long pe-          While we do not expressly fit a dependence in stellar
+riods approach (1 − χ2 ).                                        mass using a PLDF, we utilize the methods of Youdin
+                              Earths and super-Earths into the Habitable Zone                                             7
+
+(2011) and Burke et al. (2015) to describe the planet
+population in each stellar mass bin independently. As
+such, we stress that the value and interpretation of each
+parameter is dependent on the relevant mass range (e.g.,
+F0 in the lightest stellar mass bin should be considered
+the average number of planets per star for stars with
+0.58 < M∗ < 0.81 M ).
+   As noted in Bryson et al. (2020a), the methodology of
+Youdin (2011) and Burke et al. (2015) considers survey
+completeness but not reliability. To implement the lat-
+ter, we follow the approach of Bryson et al. (2020a) by
+performing multiple independent fits where the input
+population of planets is drawn based on their reliabil-
+ity (e.g., a planet candidate with a reliability of 0.8 is
+included in 80% of these fits). In each mass bin, we
+perform 100 fits, each with 16 walkers run for 10, 000        Figure 2. The occurrence of super-Earths (green; 1 R⊕ −
+steps (discarding 500 steps of burn-in), then concate-        Rvalley ) and sub-Neptunes (blue; Rvalley −3.5 R⊕ ) as a func-
+nate the posteriors to produce reliability-informed free      tion of orbital period, calculated for all planets in the full
+parameter distributions. The impacts of our reliability       FGK sample (0.56 − 1.63 M ). The colored numbers indi-
+considerations are discussed in Appendix (D).                 cate the number of observed candidate planets of a given
+                                                              type within a particular orbital period bin. The black verti-
+                                                              cal line indicates the approximate location where the super-
+                      3. RESULTS                              Earth and sub-Neptune curves cross.
+  Here we report the results of our occurrence rate
+calculations, first using the inverse detection efficiency      3.1.1. A stellar-mass dependent transition period from
+method, followed separately by the results from our                              super-Earths to sub-Neptunes
+parametric modeling.
+                                                                We then test if these two distinct orbital period
+                                                              regimes persist as a function of stellar mass by repeat-
+  3.1. Occurrence Rates from the Inverse Detection            ing our occurrence rate calculations for each of our five
+                   Efficiency Method                          stellar mass bins. The occurrence of super-Earths and
+   We calculate the occurrence of super-Earths (1−2 R⊕ )      sub-Neptunes vs. orbital period per stellar-mass bin is
+and sub-Neptunes (2 − 3.5 R⊕ ) separately in several or-      presented in Figure (3), and the details on bin ranges,
+bital period bins for our entire FGK sample with epos.        counts, and planet samples can be found in Table (1).
+When comparing the occurrence of super-Earths and             The same trend seen in the FGK sample can be seen in
+sub-Neptunes as a function of orbital period (Fig. 2),        each stellar mass bin, suggesting it is a common feature
+we note that at short orbital periods (Porb < 20 days)        of small planets around dwarf stars. We note that the
+super-Earths are more common than sub-Neptunes,               orbital period out to which super-Earths are more abun-
+while at longer orbital periods (Porb > 20 days) the con-     dant shows a stellar mass dependence: sub-Neptunes be-
+verse is true.                                                come more common than super-Earths within 10 days
+   This trend has been shown previously by Petigura           for the lowest mass bins (where Rvalley ≈ 1.8 R⊕ , in
+et al. (2018) who characterize hot versus warm plan-          agreement with Petigura et al. 2018 and Pascucci et al.
+ets with stellar metallicity, and by Pascucci et al. (2019)   2019), but not until Porb ≈ 20 days for the heavier mass
+while investigating the impact of bare cores in η⊕ es-        bins. This may be indicative of an atmospheric loss front
+timates. The aforementioned works observe this tran-          (or “cosmic shoreline,” Zahnle & Catling 2017) which
+sition at an orbital period of 10 days while using a ra-      produces more remnant cores out to larger orbital peri-
+dius valley of 1.8 R⊕ . Our increased estimate of 20 days     ods around heavier, more luminous stars.
+stems from placing the radius valley at ∼ 2.0 R⊕ in Fig-        To better understand this variation in orbital period,
+ure (2) due to our adoption of a radius valley which          we employ our metric of fractional occurrence. The
+scales with average stellar mass. The qualitative re-         super-Earth or sub-Neptune occurrence rates from epos
+sult is the same: there is an orbital period-dependence       are divided by the sum of both, and are presented in
+and transition which separates the super-Earth and sub-       Figure (4) for both the entire FGK sample and each stel-
+Neptune dominated regimes.                                    lar mass bin. Again two distinct regimes can be seen,
+8                                                    Bergsten et al. 2022
+
+                                                                  where the short-period super-Earth dominated regime
+                                                                  and long-period sub-Neptune dominated regime are sep-
+                                                                  arated by a transition period which increases with stellar
+                                                                  mass.
+                                                                    A small number of planets detected at large orbital
+                                                                  periods leads to an apparent upturn with wide uncer-
+                                                                  tainties in the fractional occurrence of super-Earths (or
+                                                                  downturn in the sub-Neptunes) for bins with M∗ >
+                                                                  0.91 M (see Figure 4). The upturn is not present in the
+                                                                  epos calculation of fractional occurrence for the com-
+                                                                  bined FGK sample (lower right panel of Figure 4), so
+                                                                  we do not comment with certainty on the implications
+                                                                  of this trend.
+                                                                   3.2. Occurrence Rates from the Parametric Forward
+                                                                                            Model
+
+
+
+                                                                     The PLDF in Equation (2) is fit to the planet sample
+                                                                  via MCMC independently for each stellar mass bin, and
+                                                                  we present the median and 1σ posteriors of each param-
+                                                                  eter in Table (2). We use the distributions of these best-
+                                                                  fit parameters to evaluate Equation (2) over the radius
+                                                                  ranges corresponding to super-Earths and sub-Neptunes
+                                                                  to calculate the posterior distributions of their relative
+                                                                  fractional occurrence as a function of orbital period. We
+                                                                  plot the median and 1σ curves from these distributions
+                                                                  in Figure (4), where we show how our forward model for
+                                                                  calculating occurrence rates compares to the fractional
+                                                                  occurrence trends seen with the inverse detection effi-
+                                                                  ciency method. We find that our choice to account for
+                                                                  reliability improves consistency between the two meth-
+                                                                  ods in some bins while widening discrepancies in oth-
+                                                                  ers — further discussion and an additional comparison
+                                                                  without reliability are included in Appendix (D). In both
+                                                                  cases, the two methods are consistent (at the 1σ level)
+                                                                  for the majority of bins, so we conclude that our adopted
+                                                                  shape function provides a reasonable match to observed
+                                                                  trends in fractional occurrence.
+                                                                     In Appendix (C.1), we integrate Equation (2) over the
+                                                                  radius range of our sample to affirm that our model is
+                                                                  able to capture known trends in the overall occurrence
+                                                                  distribution of small planets (in addition to new trends
+                                                                  in fractional occurrence) seen with the inverse detection
+Figure 3. The occurrence of super-Earths (green; 1 R⊕ −           efficiency method. We find that the adopted broken
+Rvalley ) and sub-Neptunes (blue; Rvalley −3.5 R⊕ ) as a func-    power law form of g1 reproduces well the overall small
+tion of orbital period. Each panel represents a different stel-   planet distribution with orbital period and comment on
+lar mass bin, increasing from top to bottom. The colored          key values in the Appendix.
+numbers in each panel indicate the number of observed can-
+didate planets of a given type within a particular orbital              3.2.1. Parametric Dependence on Stellar Mass
+period bin (and stellar mass bin). Black vertical lines in-         Because the PLDF approach allows us to characterize
+dicate the approximate orbital period where the occurrence
+                                                                  the small planet population and corresponding occur-
+curves cross.
+                                                                  rence trends independently for each stellar mass bin, we
+                                   Earths and super-Earths into the Habitable Zone                                               9
+
+
+
+
+Figure 4. The fractional occurrence of super-Earths (green) and sub-Neptunes (blue) relative to their combined planet occur-
+rence. Each panel represents a different stellar mass bin, with the full FGK sample in the lower-right. The colored numbers in
+each panel indicate the number of observed candidate planets of a given type within a particular orbital period bin (and stellar
+mass bin). Dashed points represent the observed occurrence as calculated by epos for a selection of orbital period bins. Solid
+lines indicate the best fit distributions as evaluated for that bin. The horizontal grey line marks a fractional occurrence of 0.5,
+corresponding to an equal abundance of super-Earths and sub-Neptunes, and the orbital period where each fit matches this
+condition is marked by a vertical purple line. Shaded regions indicate 1σ envelopes.
+
+
+
+
+              Table 2. Parameter Fits with 68% Uncertainties for the Distribution Function from Section (2.3)
+
+
+            M∗ Range          F0        Pbreak         β1          β2         Pcentral        s          χ1          χ2
+
+               [M ]                      [days]                                [days]      [days]
+
+             0.56 - 0.81   0.89+0.05
+                               −0.05   14.29+2.63
+                                            −2.76   0.15+0.15
+                                                        −0.11   −1.15+0.17
+                                                                     −0.17   7.54+0.76
+                                                                                 −0.84    1.46+0.28
+                                                                                              −0.31   0.75+0.05
+                                                                                                          −0.05   0.33+0.04
+                                                                                                                      −0.04
+
+            0.81 - 0.91    0.70+0.05
+                               −0.05   6.13+2.57
+                                           −1.37    1.19+0.83
+                                                        −0.54   −0.68+0.10
+                                                                     −0.13   11.26+2.87
+                                                                                  −2.35   2.02+0.62
+                                                                                              −0.47   0.73+0.05
+                                                                                                          −0.05   0.36+0.06
+                                                                                                                      −0.06
+
+            0.91 - 1.01    0.63+0.04
+                               −0.04   6.92+1.25
+                                           −0.85    0.91+0.32
+                                                        −0.31   −0.84+0.09
+                                                                     −0.11   12.98+2.22
+                                                                                  −2.34   2.53+0.48
+                                                                                              −0.48   0.83+0.05
+                                                                                                          −0.05   0.26+0.08
+                                                                                                                      −0.08
+
+            1.01 - 1.16    0.61+0.04
+                               −0.04   12.02+1.78
+                                            −1.34   0.44+0.15
+                                                        −0.14   −1.10+0.13
+                                                                     −0.15   17.57+3.59
+                                                                                  −3.21   2.16+0.57
+                                                                                              −0.48   0.83+0.05
+                                                                                                          −0.05   0.31+0.08
+                                                                                                                      −0.08
+
+            1.16 - 1.63    0.50+0.04
+                               −0.04   6.96+0.70
+                                           −0.82    1.90+0.50
+                                                        −0.39   −0.69+0.10
+                                                                     −0.11   16.57+3.62
+                                                                                  −2.83   2.15+0.54
+                                                                                              −0.44   0.87+0.05
+                                                                                                          −0.05   0.39+0.07
+                                                                                                                      −0.08
+
+            0.56 - 1.63    0.63+0.02
+                               −0.02   9.98+1.42
+                                           −1.79    0.58+0.20
+                                                        −0.12   −0.90+0.09
+                                                                     −0.09   11.33+1.71
+                                                                                  −1.36   2.49+0.41
+                                                                                              −0.34   0.84+0.02
+                                                                                                          −0.02   0.38+0.04
+                                                                                                                      −0.04
+
+           Note—Each stellar mass bin is fit individually for the average number of planets per star F0 , exponents β1 and β2
+            in a broken power law on either side of Pbreak , and smoothness s of a transition from χ1 to χ2 about Pcentral .
+10                                                  Bergsten et al. 2022
+
+are able to compare the best-fit parameters as a func-
+tion of stellar mass. The results of our fitting suggest
+three parameters with stellar mass dependencies, which
+we describe here.
+  First, we find that the average number of planets per
+star, F0 , decreases with increasing stellar mass (see 2nd
+column in Table 2). Previous works (Howard et al. 2012;
+Mulders et al. 2015; Yang et al. 2020; He et al. 2021)
+have found similar trends for small planets within the
+FGK sample using stellar effective temperature, which is
+a good proxy for stellar mass when dealing with main-
+sequence stars. Each work considers different ranges
+of planet orbital period and radius space, but produces
+the same qualitative trend seen in this work: an anti-
+correlation between the number of small planets per star
+versus stellar temperature and thus stellar mass.
+  Second, we note that the orbital period Pcentral (i.e.
+the center of curvature separating the short- and longer-
+period regimes) depends on stellar mass. There is a clear
+increase from Pcentral = 8+1  −1 days at the lowest stellar
+mass bin (0.56 − 0.82 M ) to Pcentral ≈ 17+4      −3 days in
+the heaviest stellar mass bin (1.16 − 1.63 M ). We fit          Figure 5. Top: The best-fit values of Pcentral as calculated
+a log-log relationship to the best-fit values reported in       for each stellar mass bin. Vertical error bars represent the
+Table (2) and find that Pcentral ∝ M∗1.4±0.5 , shown in         1σ uncertainties in Pcentral as drawn from their posteriors.
+Figure (5). We also convert the best-fit central periods        In orange, we present log-log fits between stellar mass and
+to semi-major axes using Kepler ’s third law, employing         orbital period, which has a dependence on stellar mass of
+the average stellar mass for each bin. A log-log rela-          α = 1.4 ± 0.5. Bottom: Similar to above, but now plotting
+tionship is again fit to return a modified exponent of          the median and 1σ uncertainties of Ptrans evaluated from the
+                                                                best-fit fractional occurrence curves; the orange line repre-
+acentral ∝ M∗1.1±0.3 , producing as expected a slightly
+                                                                sents represents a log-log fit between stellar mass and tran-
+shallower relationship with semi-major axis a.                  sition period with α = 1.7 ± 0.2. In both panels, the right-
+  However, while the central period is insightful to            most vertical axis presents the same information converted
+a shift in behavior within the super-Earth and sub-             to semi-major axis, with log-log fits in dot-dashed blue (top:
+Neptune populations, the precise period location is con-        α = 1.1 ± 0.3; bottom: α = 1.5 ± 0.1).
+tingent on our adopted parameterization (i.e., a hyper-
+bolic tangent). A more robust metric could be the or-           orated to super-Earth sizes increases with stellar mass
+bital period where super-Earths and sub-Neptunes are            as discussed in Section (4.1). Within the 1σ uncertain-
+present in equal abundance, which also marks the transi-        ties, the fraction χ2 appears to be independent of stellar
+tion where the dominant species switches from the for-          mass, suggesting that at long periods, the relative frac-
+mer to the latter. In each stellar mass bin, we evalu-          tion of super-Earths is constant with stellar mass.
+ate the distribution of this transition period (hereafter
+Ptrans ) from the posterior fractional occurrence distribu-                          4. DISCUSSION
+tions, plotting the median and 1σ ranges in Figure (4).
+                                                                  In this work, we analyse the population of small
+To estimate how Ptrans scales with stellar mass, we re-
+                                                                (1 − 3.5 R⊕ ), close-in (2 − 100 days) planets and their
+peat the above procedure for fitting log-log relationships
+                                                                dependence on stellar mass. We show a trend in which
+and plot the results in the lower panel of Figure (5). We
+                                                                super-Earth-sized planets are more common than sub-
+highlight a steeper stellar mass dependence as compared
+                                                                Neptunes out to a certain orbital period, beyond which
+to Pcentral , noting that Ptrans ∝ M∗1.7±0.2 , which persists
+                                                                the opposite is true. When this trend is fit indepen-
+in semi-major axis as atrans ∝ M∗1.5±0.1 .
+                                                                dently across several bins of host star mass, we find
+  Finally, we note that the fraction χ1 , which repre-
+                                                                evidence that the orbital period where super-Earths
+sents the fraction of super-Earths at short orbital peri-
+                                                                and sub-Neptunes are equally abundant moves outward
+ods, increases with stellar mass. This behavior can be
+                                                                with increasing stellar mass. Furthermore we find that,
+explained if the relative amount of sub-Neptunes evap-
+                                                                within this transition, the fraction of small planets com-
+                             Earths and super-Earths into the Habitable Zone                                                11
+
+prised of super-Earths increases around heavier stars.       eters and high energy emission. We then do a log-log fit
+However, outside this transition, the relative fraction of   to measure how the cumulative XUV luminosity changes
+super-Earths appears to be independent of stellar mass.      with stellar mass, and how this dependence evolves with
+                                                             system age. The tracks themselves are shown in the up-
+  4.1. Connection to Atmospheric Loss Mechanisms             per panels of Figure (6), along with approximate values
+                                                             for the exponential dependence of the XUV luminosity
+   A common explanation for the existence of the radius
+                                                             on stellar mass (i.e., the value of exponent ξ in a rela-
+valley and the bimodal size distribution of small planets
+                                                             tionship for LXU V ∝ M∗ξ ). We repeat a similar process
+is atmospheric mass loss. Because the dependence be-
+                                                             for the dependence on bolometric luminosity, which is
+tween planet radius and envelope mass is strongly non-
+                                                             relevant for core-powered mass loss, using the tracks of
+linear (e.g., Lopez & Fortney 2014, Fig. 13 in Fulton
+                                                             Baraffe et al. (2015), displayed in the lower panels of Fig-
+et al. 2017), a sub-Neptune-size planet (∼ 2.5 R⊕ ) with
+                                                             ure (6). At the modern age of the Kepler field - reported
+just 0.5% of its total mass in a H/He envelope could
+                                                             as 4.58 Gyr in Berger et al. (2020b), which we approxi-
+shrink in size down to a super-Earth (∼ 1.5 R⊕ ) if it
+                                                             mate as 4.6 Gyr due to resolution limits in the adopted
+were to lose this atmospheric envelope.
+                                                             luminosity tracks - we note that LXU V ∝ M∗2.0±0.1 and
+   There are two prevalent mechanisms of atmospheric
+                                                             LBOLO ∝ M∗4.4±0.2 based on this simple characteriza-
+loss which differ in the source of energy driving hydro-
+                                                             tion.
+dynamic escape. Photoevaporation relies on high energy
+                                                               It is important to note that Johnstone et al. (2021)
+X-ray and EUV (also known as XUV) photons from the
+                                                             provide XUV luminosity tracks for different stellar ini-
+host star to heat the upper atmosphere (Lammer et al.
+                                                             tial rotation rates based on percentiles of an observed
+2003; Lopez & Fortney 2013; Owen & Wu 2013; Jin et al.
+                                                             rotation distribution for stars with an age of 150 Myr.
+2014). In contrast, core-powered mass loss involves an
+                                                             Because the differences in these rotation rates are most
+outflow of the upper atmosphere driven by a mix of the
+                                                             pronounced for stellar masses lower than what is used
+planet core’s residual heat from the accretion phase and
+                                                             in this work (i.e., M∗ < 0.56 M ), we find no significant
+the bolometric luminosity of the star (Ginzburg et al.
+                                                             change when comparing the 16th, 50th, and 84th rota-
+2016, 2018; Gupta & Schlichting 2019, 2020). In the
+                                                             tion percentiles with time. Thus we employ only the
+former, a planet’s mass loss rate is assumed to be di-
+                                                             50th percentile (or “medium” rotation rate) stars, but
+rectly proportional to the XUV luminosity of its host
+                                                             note that considerations of stellar rotation rates may be
+star; in the latter, the mass loss rate is dependent on
+                                                             important for detailed modeling efforts in the future,
+the planet’s equilibrium temperature which (partially)
+                                                             especially for planets orbiting lower mass stars.
+depends on the bolometric luminosity of the star.
+                                                               In light of these mass-luminosity relations, we consider
+   Both XUV and bolometric luminosity increase with
+                                                             a scenario where the transition between super-Earths
+stellar mass, so because more massive stars provide
+                                                             and sub-Neptunes occurs at a fixed incident flux. For
+higher relevant flux than low mass stars for a given
+                                                             a planet orbiting a star of luminosity L∗ at semi-major
+orbital separation, both models predict that more at-
+                                                             axis a, the incident flux I on the planet can be written
+mospheric mass can be lost to farther orbital periods
+                                                             as:
+around heavier, more luminous stars. In turn, the limit
+                                                                                     I ∝ L∗ a−2 .                     (6)
+where super-Earths no longer appear more abundant
+than sub-Neptunes should increase with stellar mass in       Kepler’s third law allows us to relate this flux to an
+both photoevaporation and core-powered mass loss, in         orbital period P for a planet around a star of mass M∗ :
+agreement with what is observed in Figure (5).
+                                                                                                          −2/3
+   The dependence on stellar mass presented in this work               a3 ∝ M∗ P 2 −→ I ∝ L∗ M∗                  P −4/3 .   (7)
+is difficult to contextualize, because neither model has
+an easy proxy for the population-level metric of a tran-     If the relevant luminosity (wavelength-ambiguous for
+sition period as used here. However, it is still useful to   generality) scales with stellar mass following L∗ ∝ M∗ξ ,
+consider how the relevant luminosities scale with stellar    then the flux would scale as:
+mass. Because we are interested in how the cumulative                                      ξ−2/3
+                                                                                   I ∝ M∗          P −4/3 .                 (8)
+effects of atmospheric loss have led to the modern popu-
+lation of exoplanets and trends therein, we focus on the
+                                                             Adopting two planets at the same flux I1 = I2 but or-
+cumulative or time-integrated luminosity. For photoe-
+                                                             biting different stars M∗,1 and M∗,2 allows us to write:
+vaporation which relies on XUV luminosity, we employ
+the evolutionary tracks of Johnstone et al. (2021) which                                 ξ−2/3         −4/3
+                                                                        I1         M∗,1              P1
+are based on empirical relations between stellar param-                    =                                       =1       (9)
+                                                                        I2         M∗,2              P2
+12                                                       Bergsten et al. 2022
+
+
+
+
+Figure 6. Evolutionary tracks and stellar mass dependence for XUV and bolometric luminosity. Colors and corresponding
+ages are the same for all panels. Top Left: Time-integrated cumulative XUV luminosity (relevant for photoevaporation) for
+a selection of key ages, including the approximate age (∼ 4.6 Gyr, Berger et al. 2020b) of the Kepler field, using evolutionary
+tracks from Johnstone et al. (2021). Grey dashed lines indicate log-log relations fit independently at each time. Top Right:
+The exponential dependence ξ of integrated XUV luminosity on stellar mass for the log-log fits of L ∝ M∗ξ as a function of
+stellar age. Bottom Left: Similar to the XUV luminosity panel, but now using bolometric evolutionary tracks (relevant for
+core-powered mass loss) using data from Baraffe et al. (2015). Bottom Right: Similar to the integrated XUV exponent panel,
+but now using integrated bolometric luminosity.
+
+                                                                    field (predicting α = 1.0 ± 0.1 or α = 2.8 ± 0.1, respec-
+                                    34 ·[ξ− 32 ]                  tively). One caveat of this simple comparison is that
+                  P1         M∗,1
+                     =                               ,      (10)    atmospheric loss is time-dependent, as both host star lu-
+                  P2         M∗,2
+                                                                    minosity and planetary conditions will evolve with sys-
+where we note that these orbital periods correspond to              tem age. The novel discrepancy between observations
+the fixed flux where this transition occurs. Thus, we               and predictions from either model may be resolved with
+would expect the orbital period of this transition to fol-          more detailed time-dependent modeling efforts beyond
+                                                        α
+low a relationship
+            3
+                   2
+                       stellar mass like Ptrans ∝ M∗
+                    with                                            the scope of this work. We advocate that this orbital
+where α = 4 · ξ − 3 .                                               period of transition with a dependence on stellar mass
+  In this work we observe α = 1.7 ± 0.2, correspond-                (and therefore luminosity) may serve as a useful metric
+ing to a mass-luminosity relation with ξ = 2.9 ± 0.3.               by which to compare modeling efforts with the Kepler
+This is distinct from both the XUV (ξ = 2.0 ± 0.1)                  sample. Additionally, Ptrans could provide a useful con-
+and bolometric (ξ = 4.4 ± 0.2) luminosity relations pre-            straint by which to distinguish (or reconcile) the photo-
+sented in Figure (6) for the median age of the Kepler
+                               Earths and super-Earths into the Habitable Zone                                         13
+
+evaporation and core-powered mass loss models in the            the 100 day cut-off modeled in this work, barring an in-
+future.                                                         crease in the relative number of super-Earths at longer
+                                                                orbital periods which cannot be discerned from current
+ 4.2. Implications for Small Planets in the Habitable           data.
+                          Zone                                     Therefore, we argue that the asymptotic fraction χ2
+   The frequency of Earth-sized habitable zone planets is       (which the fractional occurrence plateaus towards even
+a valuable science result for population studies, as it is      within 100 days; see Figure 4) is a suitable constraint
+a critical input to determine the yield of future missions      for measuring how much of the small planet population
+aiming to discover and characterize Earth analogues. A          is comprised of super-Earths at longer orbital periods.
+typical metric for habitable zone exoplanet studies is η⊕ ,     Because this fraction is apparent in the regime where
+or the occurrence rate of Earth-sized (≈ 1 R⊕ ) plan-           atmospheric loss is ineffective, it may represent an un-
+ets within the habitable zone. Because the planet ra-           derlying population of intrinsically rocky super-Earths
+dius range defining “Earth-sized” and the orbital period        present at all periods. In this sense, the short-period
+range of the habitable zone differ across the community,        fraction χ1 could consist of at least two groups: a frac-
+the ExoPAG Study Analysis Group 135 suggests the use            tion (χ1 − χ2 ) of planets which have lost their atmo-
+of the differential (normalized) occurrence rate Γ⊕ , de-       spheres, and a fraction χ2 contributed by the true rocky
+fined as:                                                       super-Earths (∼ 33%, independent of stellar mass; see
+                                                                Table 2). This interpretation is supported by the work of
+                      ∂2N                                       Neil & Rogers (2020), in which an evaluation of various
+         Γ⊕ =                                       .    (11)
+                ∂ ln Porb ∂ ln Rp Porb =1 yr,Rp =R⊕             mixture models favors a combination of planets shaped
+                                                                by envelope mass loss alongside an independent popula-
+This is akin to calculating η⊕ in some orbital period and       tion of rocky planets. We note that while χ1 increases
+radius bin, then dividing the occurrence by the dimen-          with stellar mass and χ2 does not (see bottom row of
+sions of the bin in units of natural log Earth years and        Figure 10), we do not find any clear stellar mass depen-
+radii.                                                          dence in the fraction of planets which have lost their
+  As mentioned in Section (1), the lack of long-period          atmospheres (e.g., the distribution of χ1 − χ2 peaks in
+reliable detections with Kepler means that typical              the [0.91, 1.01] M bin with ∼ 56%) due to larger vari-
+completeness-weighted occurrence rate calculations are          ations in the estimated values of χ2 .
+not applicable to the habitable zone. Instead, many                The long-period fraction is insightful, but is not par-
+works opt to describe the behavior of exoplanet popula-         ticularly useful for occurrence calculations without also
+tions in the short-period regime (where there are numer-        knowing what the overlaying (non-fractional) occurrence
+ous detections) and extrapolate these functions out to          of small planets is at a given orbital period. Our model
+longer habitable zone orbital periods. However, failing         also includes this distribution (via Equation 3), such
+to consider the over-representation of Earth-sized plan-        that we may first assess the occurrence of small planets
+ets at short orbital periods due to atmospheric loss may        via a broken power law, then further divide this between
+lead to overestimates in the occurrence of Earth-sized,         super-Earths and sub-Neptunes with our fractional oc-
+longer-period planets (Lopez & Rice 2018; Pascucci et al.       currence model, as a function of orbital period. Because
+2019).                                                          the behavioural shifts at Pbreak and Ptrans occur while
+  In this work, we expand upon previous studies of small        still within the close-in population, we conclude that the
+planet habitable zone occurrence by specifically account-       long-period components of our model are suitable for ex-
+ing for the effects of remnant cores at short orbital pe-       trapolation to longer orbital periods - most notably, the
+riods. Because our fractional occurrence model probes           habitable zone.
+the interchange between super-Earth and sub-Neptune
+populations with orbital period, it also serves to sep-
+arate two physically distinct regimes: the short-period           For each bin of stellar mass, we compute the average
+(Porb < Ptrans ) regime where atmospheric loss converts         stellar effective temperature (using values from Berger
+a large fraction of sub-Neptunes into super-Earths,             et al. 2020b) and use this to estimate the orbital pe-
+and the long-period (Porb > Ptrans ) regime where atmo-         riod range of the habitable zone corresponding to the
+spheric loss is inefficient. The latter is presumably rep-      maximum and moist greenhouse boundaries as defined
+resentative of all orbital periods beyond both Ptrans and       in Kopparapu et al. (2013); the orbital period bounds
+                                                                are included in Table (3). We then extrapolate Equa-
+  5 https://exoplanets.nasa.gov/exep/exopag/sag/#sag13          tion (2), integrating in orbital period from the inner- to
+14                                                     Bergsten et al. 2022
+
+                                              Table 3. Habitable Zone Occurrence
+
+       Stellar Mass Range   Habitable Zone       ΓsE           ΓsN         ηsE+sN          ΓsE+sN          η⊕           Γ⊕
+             [M ]               [days]                                              [%]
+                                                   +6.95
+           0.56 - 0.81         151 - 360      13.29−4.80   23.29+11.06
+                                                                −8.55     20.43+8.94
+                                                                               −6.60      18.75+8.20
+                                                                                               −6.06    8.80+4.61
+                                                                                                            −3.18    13.28+6.95
+                                                                                                                          −4.80
+
+           0.81 - 0.91         276 - 629     28.52+11.51
+                                                  −9.45    56.50+20.60
+                                                                −18.73   44.39+13.64
+                                                                              −14.52      42.93+13.19
+                                                                                               −14.04   17.93+7.24
+                                                                                                             −5.95   28.51+11.51
+                                                                                                                          −9.46
+
+           0.91 - 1.01         370 - 826      11.28+6.23
+                                                   −4.27   40.63+15.15
+                                                                −12.46    25.22+9.03
+                                                                               −7.54      25.11+8.99
+                                                                                               −7.51    6.88+3.81
+                                                                                                            −2.61    11.26+6.24
+                                                                                                                          −4.27
+
+           1.01 - 1.16        497 - 1088      5.95+4.68
+                                                  −2.52    18.45+10.55
+                                                                −7.74     11.33+6.74
+                                                                               −4.44      11.56+6.87
+                                                                                               −4.53    3.54+2.79
+                                                                                                            −1.50     5.94+4.67
+                                                                                                                          −2.52
+
+           1.16 - 1.63        859 - 1822     24.95+14.72
+                                                  −8.75    64.36+35.54
+                                                                −21.71   38.59+19.39
+                                                                              −13.02
+                                                                                               +20.57
+                                                                                          40.94−13.81   14.28+8.44
+                                                                                                             −5.00
+                                                                                                                          +14.72
+                                                                                                                     24.91−8.72
+                                                   +5.56
+           0.56 - 1.63         363 - 811      15.30−4.05   33.27+11.90
+                                                                −8.70     23.16+8.23
+                                                                               −5.83      22.98+8.16
+                                                                                               −5.79    9.37+3.40
+                                                                                                            −2.48    15.29+5.55
+                                                                                                                          −4.05
+
+     Note—Habitable zone occurrence rates are computed by extrapolating our distribution function in orbital period to the
+      maximum and moist greenhouse boundaries as defined in Kopparapu et al. (2013). Because Γ is normalized by the width
+      of the relevant natural log radius bin, ΓsE+sN (corresponding to the radius range of Rp = 1 − 3.5 R⊕ ) is smaller than the
+      sum of ΓsE and ΓsN , which are both calculated for smaller radius ranges. η⊕ and Γ⊕ are calculated for the conventional
+      Earth-sized range of Rp = 0.7 − 1.5 R⊕ . This involves extrapolation for radii Rp < 1.0 R⊕ which are not included in the
+      fitting range of this work.
+
+
+
+
+outer-edge of the habitable zone, and separately inte-                currence rate studies (as discussed in Section 4.2.1). We
+grate over three radius regimes: super-Earths (1 R⊕ ≤                 note that both groups are subjected to the same general
+Rp ≤ Rvalley ), sub-Neptunes (Rvalley ≤ Rp ≤ 3.5 R⊕ ),                distribution - therefore providing comparable trends in
+and the combination of the two (1 ≤ Rp ≤ 3.5 R⊕ ).                    η - and that normalizing by different d ln Rp widths co-
+The results are then normalized by the period-width of                incidentally produces near-identical values of Γ.
+the habitable zone (in years) and radius-width of the                    The variation in Γ⊕ , ΓsE , ΓsN , and ΓsE+sN with stellar
+relevant size regime to provide estimates for ΓsE , ΓsN ,             mass follows closely that of the power law slope β2 in
+and ΓsE+sN , respectively, in Table (3). We also provide              orbital period (see Figure 10). This implies that the un-
+ηsE+sN (i.e., the occurrence before normalizing by inte-              certainty and variation in Γ⊕ is dominated by the uncer-
+gration ranges), from which ηsE and ηsN can be approx-                tainty in how the overall orbital period distribution ex-
+imately recovered by multiplying with χ2 and (1 − χ2 ),               tends to long periods, more so than any other component
+respectively. This is not the case for Γ, as the radius               of our model (such as the long-period super-Earth frac-
+range used to normalize the occurrence varies between                 tion). The poor constraints on β2 in each bin are largely
+classifications.                                                      driven by a small number of long-period detections, as
+  Additionally, we follow the method outlined above to                combining the entire FGK sample into a single fit -
+estimate the habitable zone occurrence of Earth-sized                 thereby increasing the number of detections - provides
+planets (conventionally listed as 0.7 ≤ Rp ≤ 1.5 R⊕ ).                tighter constraints on both β2 and Γ⊕ ; see Table (2). To
+We note that the range of radii used in this work ex-                 assess if the increased precision on Γ⊕ from broader bins
+tends only down to Rp = 1.0 R⊕ , so to evaluate the                   may come at the cost of smoothing over any trends with
+Earth-sized regime, we must extrapolate our occurrence                stellar mass (e.g., the average number of planets per star
+function down to smaller radii. To do this, we assume                 F0 ), we repeat the procedure outlined in Section (2) us-
+a marginalized radius distribution that is constant in                ing three stellar mass bins (instead of one or five). We
+log Rp for Rp < Rvalley , consistent with the occurrence              find Γ⊕ = {18.51+6.65           +4.44        +7.16
+                                                                                         −4.63 , 11.46−3.54 , 10.39−4.44 }% for bins
+rate calculations of both Fulton & Petigura (2018) and                with boundaries {0.56, 0.88, 1.05, 1.63} M , all consis-
+our work with epos (see Figure 9; Appendix C.1). After                tent with that of the combined FGK sample. We af-
+extrapolating both out in orbital period and down in ra-              firm that the uncertainty on β2 and thus Γ⊕ is smallest
+dius, we integrate across the habitable zone to provide               when the sample of long-period planets is largest, and
+both the exact η⊕ and normalized Γ⊕ for each of our five              note that the Kepler detected population of small, long-
+stellar mass bins in Table (3). The distinction between               period planets is presently too sparse to confidently as-
+Γ⊕ and ΓsE persists mostly as a formalism to clarify                  sess any trends with stellar mass in the habitable zone.
+that the former properly includes smaller planets down
+to 0.7 R⊕ , and because Γ⊕ is more conventional for oc-                          4.2.1. Comparisons to Previous Works
+                               Earths and super-Earths into the Habitable Zone                                                 15
+
+
+
+
+Figure 7. Comparison of habitable zone occurrence rates for Earth-sized planets. Our result for the combined [0.56, 1.63] M
+sample is plotted at full opacity, and lower-opacity points denote results from individual fits to five stellar mass bins with
+boundaries spanning {0.56, 0.81, 0.91, 1.01, 1.16, 1.63} M (increasing in mass from top to bottom). Circles indicate values
+assuming the occurrence follows a functional form (our work, Bryson et al. 2021, 2020b; Neil & Rogers 2020; Pascucci et al.
+2019; Zink et al. 2019; Garrett et al. 2018, and Mulders et al. 2018), and squares indicate values from grid-based occurrence
+rates (Kunimoto & Matthews 2020; Hsu et al. 2019). Left-pointing arrows indicate upper limits. The blue region represents
+works directly considering an underlying population of intrinsically rocky planets, the yellow region represents works considering
+reliability, and our work (shown in green) implements both considerations. The vertical grey line indicates the occurrence values
+from ExoPAG SAG13 via Kopparapu et al. (2018) used in the final reports of the LUVOIR and HabEx missions. A similar plot
+for Γ⊕ estimates prior to Bryson et al. (2021) appears in Kunimoto & Matthews (2020) (their Figure 14).
+
+   Our result for Γ⊕ from the combined FGK sample and               ulation within 100 days (where Kepler detections are
+five stellar mass bins are compared with other Γ⊕ values            numerous) may indeed be a suitable indicator for the
+from recent literature in Figure (7). We exclude works              longer-period planet population (where detections are
+prior to 2018 which did not include the full Kepler DR25            sparse) when implementing proper considerations of both
+catalog (Thompson et al. 2018). The combined FGK                    reliability and trends in fractional occurrence. However,
+value of Γ⊕ ≈ 15+6  −4 % reported in this work is consis-           simplifying the latter with a flat orbital period cut for all
+tent at the 1σ level with Bryson et al. (2021), Bryson              FGK stars may not be suitable due to the strong stellar-
+et al. (2020b), and Pascucci et al. (2019), and is not              mass dependence of Ptrans described in Section (3.2.1).
+excluded by the upper limits of Kunimoto & Matthews                 For example, Pascucci et al. (2019) show that Γ⊕ es-
+(2020) or Hsu et al. (2019). As suggested by Lopez &                timates may be sensitive to the minimum fitted orbital
+Rice (2018), works adopting independent broken power                period by considering cuts at 12 and 25 days (their mod-
+laws in orbital period and radius (e.g., Zink et al. 2019;          els 4 and 6, respectively). Thus, a more robust consid-
+Mulders et al. 2018) may be overestimating η⊕ due                   eration of fractional occurrence trends (e.g., the model
+to atmospheric loss effects. Predictions by Zink et al.             used in this work) may be necessary when including any
+(2019) seem particularly large by comparison, which is              of the close-in population for extrapolations to longer
+attributable to their considerations of how transit mul-            orbital periods.
+tiplicity can lead to a detection-order-based decrease in             Noting the sensitivity of habitable zone extrapola-
+detection efficiency, and perhaps additionally a lack of            tions to the value of orbital period power law expo-
+reliability treatment.                                              nents, Bryson et al. (2021) characterize occurrence in
+   The estimate of Kunimoto & Matthews (2020) comes                 terms of instellation flux rather than orbital period.
+from an occurrence evaluated in a [237, 500] day orbital            The flux-based approach allows for more direct inclu-
+period bin and extrapolated to 860 days (the outer edge             sions of observed planets in the habitable zones of more
+of their habitable zone). The agreement with values re-             stars (while an orbital period approach might require
+ported in this work suggests that the small planet pop-             unbounded extrapolations for some stars with no re-
+16                                                      Bergsten et al. 2022
+
+liable detections in long-period regimes). As derived                   Γ⊕ ≈ 5.6+4.4
+                                                                                  −2.5 %. Their sample of stars uses a more trun-
+in Bryson et al. (2021), a power law in orbital period                  cated stellar mass range (4700 < Teff < 6500 K, or ap-
+with slope β has a corresponding    flux slope of approxi-              proximately 0.75 < M∗ < 1.33 M ; Pecaut & Mamajek
+mately ν = − 43 β + 73 , which is accompanied by a stel-
+                        
+                                                                        2013), for which the average stellar mass falls near the
+lar temperature-dependent term when converting from                     boundary of our [0.91, 1.01] and [1.01, 1.16] M bins. As
+df /dP to df /dI. The 1σ range of β2 values presented                   these bins are most likely to be reminiscent of the pop-
+in Table (2) spans a range of −0.78 < ν < −1.14, con-                   ulation studied by Neil & Rogers (2020), it is encour-
+sistent with the findings of Bryson et al. (2021) for the               aging that we find consistent values of Γ⊕ = 11.3+6.2
+                                                                                                                           −4.3 %
+flux-dependent power law component of their model(s).                   and 5.9+4.7
+                                                                                −2.5 %. Their Γ ⊕ prediction does  not change sig-
+As a comparison, Bryson et al. (2020b) adopt a single                   nificantly when further limiting their occurrence calcu-
+power law in orbital period (fit down to 50 days, beyond                lation to within 50% of Earth’s mass, suggesting that
+the break in our broken power law) with a typical expo-                 at habitable zone orbital periods (a) our extrapolation
+nent of β ≈ −0.8 ± 0.2 (ν ≈ −1.15 ± 0.15), consistent                   down in planet radius and (b) the interpretation of
+with all values of β2 found in this work.                               χ2 as representing a true rocky population are consis-
+   Given the consistency in long-period / low-instellation              tent with higher-dimensional approaches incorporating
+occurrence rate slopes between works, an additional fac-                planet mass.
+tor is needed to explain the wide range in habitable zone
+differential occurrence rate estimates when calculated                              4.2.2. Impact on Future Missions
+in orbital period versus instellation flux - though (as
+                                                                          It is useful to discuss our value of Γ⊕ for the com-
+Bryson et al. note) it remains to be shown if Γ⊕ is equiv-
+                                                                        bined FGK sample in the context of the consensus study
+alent in these regimes. One explanation may be that
+                                                                        “Pathways to Discovery in Astronomy and Astrophysics
+the instellation flux approach is biased towards shorter
+                                                                        for the 2020s” (National Academies of Sciences, En-
+orbital periods where there are more Kepler planet de-
+                                                                        gineering, and Medicine 2021, hereafter “decadal sur-
+tections, corresponding to lower-mass stars where the
+                                                                        vey”). In light of two mission concept studies - the Large
+habitable zone is closer-in. If lower mass (K-type) stars
+                                                                        Ultraviolet / Optical / Infrared Surveyor (LUVOIR; The
+have a higher number of small planets per star (e.g., F0 ,
+                                                                        LUVOIR Team 2019) and the Habitable Exoplanet Ob-
+see Figure 10), such a bias could cause inflated predic-
+                                                                        servatory (HabEx; Gaudi et al. 2020) - the decadal rec-
+tions of Γ⊕ for bounded extrapolations to hotter stars.
+                                                                        ommends a ∼ 6 m-class telescope for exoplanet detec-
+   On the subject of instellation, recent work by Loyd
+                                                                        tion and characterization. This recommendation is not
+et al. (2020) suggests that the stellar mass-dependent
+                                                                        dissimilar to the proposed LUVOIR-B, which had an in-
+scaling of the radius valley by Wu (2019) adopted in
+                                                                        scribed diameter of 6.7m (and a circumscribed diameter
+this work may vanish when correcting for differences in
+                                                                        of 8m), and thus we expect that the two would produce
+instellation flux. Adopting an instellation-adjusted ra-
+                                                                        comparable yields.
+dius valley persistent at 1.8 R⊕ for all relevant stellar
+                                                                          The proposed sample of ∼ 25 potentially habitable
+masses would cause fewer planets to be labelled as super-
+                                                                        exoplanets stems from an occurrence rate of η⊕ = 24%
+Earths around heavier stars (for which we have adopted
+                                                                        for planets of radius [0.6, 1.4] R⊕ with semi-major axes
+Rvalley > 1.8 R⊕ ; see Table 1). This would lead to a de-
+                                                                        of [0.95, 1.67] AU around Sun-like stars (The LUVOIR
+crease in the super-Earth fractions χ1 and χ2 — and by
+                                                                        Team 2019; Gaudi et al. 2020; taken from the Ex-
+extension of the latter, a decrease in Γ⊕ — which would
+                                                                        oPAG SAG13 synthesis of Kopparapu et al. 2018.) This
+be more pronounced for heavier stars. In any case, we
+                                                                        equates to a differential occurrence rate of Γ⊕ = 33%
+affirm that estimates of η⊕ and Γ⊕ are sensitive to the
+                                                                        (grey line in Figure 7) which is larger than most pre-
+adopted parameterization.
+                                                                        dictions in recent literature, including this work. A
+   Our interpretation of the population described by χ2
+                                                                        re-scaling of LUVOIR-B’s predicted mission yield for
+as a group of intrinsically rocky planets is supported by
+                                                                        Earth-sized habitable zone planets (28+30−17 ) by our dif-
+the calculations of Neil & Rogers (2020). When con-
+                                                                        ferential occurrence rate for the combined FGK sample
+sidering a mixture model6 with components for both an
+                                                                        suggests a smaller yield of 13+2 −1 such planets. Follow-
+intrinsically rocky population and planets which expe-
+                                                                        ing the values presented in Table (3), we would predict
+rience atmospheric loss, they find an occurrence rate of
+                                                                        a comparable yield of super-Earths and roughly twice
+                                                                        as many sub-Neptunes (the dominant species of long-
+  6 Values cited are from Model #4 of Table 2 in Neil & Rogers
+                                                                        period small planets). It will be interesting to explore
+     (2020), which the authors suggest better matches the radius dis-   the habitability of these larger planets at relevant sep-
+     tribution for Rp < 1.5 R⊕ .
+                                                                        arations. Finally, surveys targeting single-star systems
+                              Earths and super-Earths into the Habitable Zone                                          17
+
+could see a factor of ∼ 2 increase in Γ⊕ by avoiding the       of atmospheric loss motivate a treatment accounting for
+formation-suppressing and transit depth-diluting effects       the presence of remnant cores at close-in orbital peri-
+of binary systems (Moe & Kratter 2021).                        ods, when using the close-in population to extrapolate
+                                                               out towards the habitable zone. Such extrapolations are
+         5. SUMMARY AND CONCLUSIONS
+                                                               in good agreement with works fitting the orbital period
+  In this work, we explore the occurrence of super-            distribution of longer-period planets supplemented with
+Earths (∼ 1 − 2 R⊕ ) and sub-Neptunes (∼ 2 − 3.5 R⊕ )          considerations of planet reliability.
+as a function of orbital period in several stellar mass bins      The range of occurrence rates from recent works illus-
+spanning 0.56−1.63 M and corresponding to FGK-type             trates that our knowledge of η⊕ remains limited based
+stars.                                                         on current data, and we note that our interpretations
+                                                               are further limited by our understanding of planet for-
+   • We confirm evidence of a transition in the occur-
+                                                               mation and evolution. The true value of η⊕ could be
+     rence rates between two regimes of close-in Kepler
+                                                               larger than what is presented here if the population of
+     planets: where super-Earths are more abundant at
+                                                               0.7 − 1 R⊕ planets increases with orbital period. How-
+     shorter orbital periods, and where sub-Neptunes
+                                                               ever, this cannot be assessed using current data due to
+     are more abundant at longer orbital periods.
+                                                               low completeness and reliability for planets smaller than
+   • Using a parametric model including a metric of            Earth at long orbital periods. Thus, more reliable esti-
+     fractional occurrence, we find that the orbital pe-       mates of η⊕ will require a better determination of the
+     riod beyond which super-Earths are no longer              overall distribution of small planets at long orbital peri-
+     more common than sub-Neptunes moves further               ods, and their further distribution with stellar mass.
+     out around heavier, more luminous stars. This                Future works exploring the features and trends pre-
+     period follows a relation like Ptrans ∝ M∗1.7±0.21 ,      sented here, in both the Kepler dataset and beyond
+     increasing from Ptrans ≈ 8+1−1 days around M∗ =           (e.g., K2 ), will be invaluable to resolving the many open
+     0.56−0.82 M stars to Ptrans ≈ 27+18−7 days around         questions in exoplanets today. The continuing efforts of
+     M∗ = 1.16 − 1.63 M stars.                                 the TESS mission and team will serve to better refine
+                                                               our understanding of possible stellar mass dependencies
+   • We find a stellar mass dependence for the fraction
+                                                               by expanding the baseline of host star masses. Recent
+     of short-period planets which are super-Earth-
+                                                               TESS discoveries have already begun to populate the
+     sized. This fraction χ1 increases from 0.75+0.05
+                                                  −0.05
+                                                               hot-Neptune desert and radius valley with young plan-
+     to 0.87+0.05
+            −0.05  while increasing stellar mass  from
+                                                               ets, so the targeting of younger (∼ Myr) systems will
+     M∗ = 0.56 − 0.82 M to M∗ = 1.16 − 1.63 M .
+                                                               allow us to probe an era before atmospheric loss fully
+   • We extrapolate our parametric model to report the         molds the exoplanet population. The recent launch of
+     differential occurrence of Earth-sized planets in         JWST (Gardner et al. 2006) brings a new tool with
+     the habitable zone of FGK stars as Γ⊕ = 15+6   −4 %.      which to characterize planetary atmospheres for a range
+     Kepler ’s poor sampling of small planets at long or-      of ages and planet radii, further clarifying how the mech-
+     bital periods is the primary source of uncertainty        anism(s) of atmospheric mass loss cause close-in planets
+     preventing the resolution of any discernible trends       to evolve with time.
+     with Γ⊕ on stellar mass.                                     At present, a major focus of astrobiology and the ex-
+                                                               oplanet community is to find Earth-sized planets in the
+   The evidence of an orbital period-dependent transi-
+                                                               habitable zones of Sun-like stars. An additional goal is
+tion positively correlated with stellar mass (and there-
+                                                               to search for and characterize biosignatures in the atmo-
+fore luminosity) is predicted by both models of pho-
+                                                               spheres of these Earth analogues. The high-resolution
+toevaporation and core-powered mass loss. This sup-
+                                                               requirement of studying biosignatures means that this
+ports the idea that the population of close-in planets
+                                                               process can only be carried out for nearby planets, yet
+is sculpted by atmospheric loss. However, more detailed
+                                                               - following the results of this work - a ∼ 6 m-class tele-
+work is needed to discern which mechanism(s) can prop-
+                                                               scope surveying 100 nearby stars would likely lend only
+erly recover the observed trend in Ptrans presented here.
+                                                               ∼ 13 Earth-sized habitable zone planets for character-
+The increased fraction χ1 with stellar mass suggests that
+                                                               ization. Furthermore, there are presently few compre-
+higher planetary atmospheric mass loss around F-type
+                                                               hensive lists or metrics for which nearby stars might host
+stars produces more close-in super-Earths. This does
+                                                               these target planets. To produce realistic mission yields
+not lead to more Earth-sized habitable zone planets be-
+                                                               and informed target selection criteria, it is thus imper-
+cause the strength of the mechanism(s) driving atmo-
+                                                               ative to understand both the occurrence rate η⊕ and
+spheric loss falls off with orbital period. Thus, models
+18                                                    Bergsten et al. 2022
+
+how this occurrence may change with host star proper-              We would like to thank the anonymous referee for
+ties, including mass. Future missions should continue            their insightful feedback regarding the adopted param-
+to account for uncertainties in η⊕ estimates to verify           eterization of our fractional occurrence model. I.P.,
+their science cases are resilient to pessimistic outcomes,       G.B, and R.B.F. acknowledge support from the NASA
+or otherwise advocate for future statistical missions to         Astrophysics Data Analysis Program under Grant No.
+reduce these uncertainties. We are excited by the exo-           80NSSC20K0446. G.D.M. acknowledges support from
+planet community’s fervent efforts to understand, con-           ANID — Millennium Science Initiative — ICN12 009.
+strain and implement habitable zone occurrence rates             This material is based upon work partly supported
+while working towards the next generation of exoplanet           by NASA under Agreement No. NNX15AD94G for
+science.                                                         the program “Earths in Other Solar Systems” and un-
+                                                                 der Agreement No. 80NSSC21K0593 for the program
+  Software: NumPy (van der Walt et al. 2011),
+                                                                 “Alien Earths”. The results reported herein benefited
+SciPy (Jones et al. 2001–), Matplotlib (Hunter 2007),
+                                                                 from collaborations and/or information exchange within
+emcee (Foreman-Mackey et al. 2013), corner (Foreman-
+                                                                 NASA’s Nexus for Exoplanet System Science (NExSS)
+Mackey 2016), epos (Mulders et al. 2018)
+                                                                 research coordination network sponsored by NASA’s
+              6. ACKNOWLEDGEMENTS                                Science Mission Directorate.
+
+
+
+                                                          REFERENCES
+Baraffe, I., Homeier, D., Allard, F., & Chabrier, G. 2015,       Foreman-Mackey, D. 2016, The Journal of Open Source
+  A&A, 577, A42                                                    Software, 24, doi:10.21105/joss.00024
+Bean, J. L., Raymond, S. N., & Owen, J. E. 2021, Journal         Foreman-Mackey, D., Hogg, D. W., Lang, D., & Goodman,
+  of Geophysical Research (Planets), 126, e06639                   J. 2013, PASP, 125, 306
+Beaugé, C., & Nesvorný, D. 2013, ApJ, 763, 12                  Fulton, B. J., & Petigura, E. A. 2018, AJ, 156, 264
+Berger, T. A., Huber, D., Gaidos, E., van Saders, J. L., &       Fulton, B. J., Petigura, E. A., Howard, A. W., et al. 2017,
+  Weiss, L. M. 2020a, AJ, 160, 108                                 AJ, 154, 109
+Berger, T. A., Huber, D., van Saders, J. L., et al. 2020b,       Gardner, J. P., Mather, J. C., Clampin, M., et al. 2006,
+  AJ, 159, 280                                                     SSRv, 123, 485
+                                                                 Garrett, D., Savransky, D., & Belikov, R. 2018, PASP, 130,
+Borucki, W. J. 2017, Proceedings of the American
+                                                                   114403
+  Philosophical Society, 161, 38
+                                                                 Gaudi, B. S., Seager, S., Mennesson, B., et al. 2020, arXiv
+Borucki, W. J., Koch, D., Basri, G., et al. 2010, Science,
+                                                                   e-prints, arXiv:2001.06683
+  327, 977
+                                                                 Ginzburg, S., Schlichting, H. E., & Sari, R. 2016, ApJ, 825,
+Bryson, S., Coughlin, J., Batalha, N. M., et al. 2020a, AJ,
+                                                                   29
+  159, 279
+                                                                 —. 2018, MNRAS, 476, 759
+Bryson, S., Coughlin, J. L., Kunimoto, M., & Mullally,
+                                                                 Gupta, A., & Schlichting, H. E. 2019, MNRAS, 487, 24
+  S. E. 2020b, AJ, 160, 200
+                                                                 —. 2020, MNRAS, 493, 792
+Bryson, S., Kunimoto, M., Kopparapu, R. K., et al. 2021,
+                                                                 Hardegree-Ullman, K. K., Zink, J. K., Christiansen, J. L.,
+  AJ, 161, 36
+                                                                   et al. 2020, ApJS, 247, 28
+Burke, C. J., & Catanzarite, J. 2017, Planet Detection           Hart, M. H. 1978, Icarus, 33, 23
+  Metrics: Per-Target Detection Contours for Data Release        He, M. Y., Ford, E. B., & Ragozzine, D. 2021, AJ, 161, 16
+  25, Kepler Science Document KSCI-19111-002, id. 19.            Howard, A. W., Marcy, G. W., Bryson, S. T., et al. 2012,
+  Edited by Michael R. Haas and Natalie M. Batalha                 ApJS, 201, 15
+Burke, C. J., Christiansen, J. L., Mullally, F., et al. 2015,    Hsu, D. C., Ford, E. B., Ragozzine, D., & Ashby, K. 2019,
+  ApJ, 809, 8                                                      AJ, 158, 109
+Coughlin, J. L. 2017, Planet Detection Metrics: Robovetter       Huang, S.-S. 1959, American Scientist, 47, 397
+  Completeness and Effectiveness for Data Release 25,            Hunter, J. D. 2007, Computing in Science & Engineering, 9,
+  Kepler Science Document KSCI-19114-002                           90
+Fernandes, R. B., Mulders, G. D., Pascucci, I., Mordasini,       Jin, S., Mordasini, C., Parmentier, V., et al. 2014, ApJ,
+  C., & Emsenhuber, A. 2019, ApJ, 874, 81                          795, 65
+                               Earths and super-Earths into the Habitable Zone                                              19
+
+Johnstone, C. P., Bartel, M., & Güdel, M. 2021, A&A, 649,      Neil, A. R., & Rogers, L. A. 2020, ApJ, 891, 12
+  A96                                                           Owen, J. E., & Wu, Y. 2013, ApJ, 775, 105
+Jones, E., Oliphant, T., Peterson, P., et al. 2001–, SciPy:     —. 2017, ApJ, 847, 29
+  Open source scientific tools for Python, [Online; accessed    Pascucci, I., Mulders, G. D., Gould, A., & Fernandes, R.
+  ¡today¿]                                                        2018, ApJL, 856, L28
+Kite, E. S., Fegley, Bruce, J., Schaefer, L., & Ford, E. B.     Pascucci, I., Mulders, G. D., & Lopez, E. 2019, ApJL, 883,
+  2019, ApJL, 887, L33                                            L15
+Kopparapu, R. K., Ramirez, R., Kasting, J. F., et al. 2013,     Pascucci, I., Testi, L., Herczeg, G. J., et al. 2016, ApJ, 831,
+  ApJ, 765, 131                                                   125
+Kopparapu, R. K., Hébrard, E., Belikov, R., et al. 2018,       Pecaut, M. J., & Mamajek, E. E. 2013, ApJS, 208, 9
+  ApJ, 856, 122                                                 Petigura, E. A., Howard, A. W., & Marcy, G. W. 2013a,
+Kunimoto, M., & Matthews, J. M. 2020, AJ, 159, 248                Proceedings of the National Academy of Science, 110,
+Lammer, H., Selsis, F., Ribas, I., et al. 2003, ApJL, 598,        19273
+  L121                                                          Petigura, E. A., Marcy, G. W., & Howard, A. W. 2013b,
+Lee, E. J., Karalis, A., & Thorngren, D. P. 2022, arXiv           ApJ, 770, 69
+  e-prints, arXiv:2201.09898                                    Petigura, E. A., Marcy, G. W., Winn, J. N., et al. 2018,
+Lopez, E. D., & Fortney, J. J. 2013, ApJ, 776, 2                  AJ, 155, 89
+—. 2014, ApJ, 792, 1                                            Rogers, J. G., Gupta, A., Owen, J. E., & Schlichting, H. E.
+Lopez, E. D., & Rice, K. 2018, MNRAS, 479, 5303                   2021, MNRAS, 508, 5886
+Loyd, R. O. P., Shkolnik, E. L., Schneider, A. C., et al.       Rogers, J. G., & Owen, J. E. 2021, MNRAS, 503, 1526
+  2020, ApJ, 890, 23                                            Rogers, L. A. 2015, ApJ, 801, 41
+Martinez, C. F., Cunha, K., Ghezzi, L., & Smith, V. V.          Sandoval, A., Contardo, G., & David, T. J. 2021, ApJ, 911,
+  2019, ApJ, 875, 29                                              117
+Moe, M., & Kratter, K. M. 2021, MNRAS, 507, 3593                The LUVOIR Team. 2019, arXiv e-prints, arXiv:1912.06219
+Morton, T. D., Bryson, S. T., Coughlin, J. L., et al. 2016,     Thompson, S. E., Coughlin, J. L., Hoffman, K., et al. 2018,
+  ApJ, 822, 86                                                    ApJS, 235, 38
+Mulders, G. D., Mordasini, C., Pascucci, I., et al. 2019,       van der Walt, S., Colbert, S. C., & Varoquaux, G. 2011,
+  ApJ, 887, 157                                                   Computing in Science & Engineering, 13, 22
+Mulders, G. D., O’Brien, D. P., Ciesla, F. J., Apai, D., &      Van Eylen, V., Agentoft, C., Lundkvist, M. S., et al. 2018,
+                                                                  MNRAS, 479, 4786
+  Pascucci, I. 2020, ApJ, 897, 72
+                                                                Wu, Y. 2019, ApJ, 874, 91
+Mulders, G. D., Pascucci, I., & Apai, D. 2015, ApJ, 798, 112
+                                                                Yang, J.-Y., Xie, J.-W., & Zhou, J.-L. 2020, AJ, 159, 164
+Mulders, G. D., Pascucci, I., Apai, D., & Ciesla, F. J. 2018,
+                                                                Youdin, A. N. 2011, ApJ, 742, 38
+  AJ, 156, 24
+                                                                Zahnle, K. J., & Catling, D. C. 2017, ApJ, 843, 122
+National Academies of Sciences, Engineering, and
+                                                                Zhu, W., & Dong, S. 2021, ARA&A, 59, 291
+  Medicine. 2021, Pathways to Discovery in Astronomy
+                                                                Zink, J. K., Christiansen, J. L., & Hansen, B. M. S. 2019,
+  and Astrophysics for the 2020s (Washington, DC: The
+                                                                  MNRAS, 483, 4479
+  National Academies Press), doi:10.17226/26141
+20                                                Bergsten et al. 2022
+
+
+                                                       APPENDIX
+
+
+                             A. SCALING THE RADIUS VALLEY BY STELLAR MASS
+  This work adopts a scaling of the radius valley which depends on the average stellar mass in each bin, of the form
+                M∗ 1/4
+Rp,adj. = Rp ( M    )    following the suggestion of Wu (2019). Figure (8) shows two-dimensional density contour plots
+based on the completeness-weighted planet orbital period and radius distributions in each stellar mass bin. With the
+exception of the [1.01, 1.16] M bin, each panel shows the clear presence of a low-density region between super-Earth
+and sub-Neptune peaks, which we interpret as the radius valley. The scaling relation’s normalization of Rvalley = 2 R⊕
+at M∗ = 1 M is chosen by visual inspection to comply with the observed low-density regions of Figure (8).
+  While the [1.01, 1.16] M bin lacks such a pronounced valley, the fractional occurrence curves in this bin still follow
+the same functional form of other bins in this work (see Figure 4). As there is no compelling evidence suggesting a
+lack of radius valley around this particular sample of stars, we adopt the same normalization for all bins. The stellar
+mass-scaled values of Rvalley for each bin are presented in Table (1), and are considered as the boundary between the
+super-Earth and sub-Neptune populations.
+  Lopez & Rice (2018) suggest that, if the remnant cores of sub-Neptunes comprise most of the bare rocky planet
+population, then the radius valley (or “transition radius” between super-Earths and sub-Neptunes) should decrease
+with increasing orbital period. Additionally, both models of photoevaporation and core-powered mass loss predict a
+relatively flat, slightly negative slope in the log orbital period - log radius plane: d ln Rvalley /d ln P = −0.16 or −0.11,
+respectively (Rogers et al. 2021). These predictions have been validated by observational works which also recover the
+weak trend with orbital period (Van Eylen et al. 2018; Martinez et al. 2019). There are also suggestions of different
+forms for the radius valley’s dependence on stellar mass (Rogers 2015), but degeneracy with planet core mass make
+their validity difficult to discern. In terms of both orbital period and stellar mass, we opt for the relation of Wu (2019)
+which matches our data well. Incorporating a radius valley that scales with orbital period would significantly alter the
+functional form, dependencies, and normalization of our occurrence distribution model. Thus, testing various forms of
+the radius valley would be a compelling exercise beyond the scope of this work.
+
+                                       B. UPDATES TO THE EPOS PACKAGE.
+   In this section, we outline the new additions and modifications to epos, the Exoplanet Population Observation
+Simulator (Mulders et al. 2018). These changes are only relevant to the Kepler transit survey, and do not apply to
+epos’s handling of radial velocity survey data. We have updated the catalog of stellar properties within epos to those
+provided by the Gaia-Kepler Stellar Properties Catalog (Berger et al. 2020b). Previously, epos users could select a
+generic subset of FGKM dwarf stars using a predetermined set of internal classifications. Because definitions of spectral
+type differ across the community, users can now specify their own samples based on custom stellar mass ranges. The
+epos package has been updated to automatically calculate the corresponding detection and vetting efficiencies, which
+are then stored locally. Detailed descriptions of these calculations can be found in Section 2.3 and Appendix B of
+Mulders et al. (2018).
+   Recent works have shown that different Kepler catalogs produce statistically inconsistent occurrence rates unless
+they are corrected by both completeness and reliability (Bryson et al. 2020b). Because of this, we have added an option
+within epos to include vetting reliability in planet occurrence calculations. Normally, epos calculates occurrence rates
+using the inverse detection efficiency method. For each observed planet, the survey completeness (including the vetting
+efficiency) is evaluated at that planet’s radius and orbital period. If the reliability argument is supplied, the per-planet
+occurrence rate will then be multiplied by the per-planet vetting reliability. The updated version of epos contains a
+file of the per-planet vetting reliability for the Kepler sample, calculated following the methods and code of Bryson
+et al. (2020b). As mentioned in Section (2), vetting reliability is intended to circumvent the typical disposition score
+cuts used to isolate highly reliable planets. Thus by accounting for vetting reliability, the vetting efficiency component
+is not necessary, and so we do not limit our sample by disposition score in this work.
+
+                                C. DESCRIPTION OF THE PARAMETRIC MODEL.
+  Here we detail the process used to fit a parametric model to the small Kepler exoplanet population, including
+descriptions of the functional form and fitting procedure. Youdin (2011) outlines how a planet population can be
+                               Earths and super-Earths into the Habitable Zone                                                  21
+
+
+
+
+Figure 8. Orbital period and radius distributions for the planets in our samples, with density contours weighted by planet
+completeness. Each panel represents a different stellar mass bin, with the full FGK sample shown in the lower-right. The
+location of the radius valley (black dashed line) follows the scaling of Wu (2019), and is used to separate the super-Earth (green)
+and sub-Neptune (blue) populations.
+
+
+described through a planet distribution function (PLDF) by way of a parametric model which depends on planet
+properties. This approach is adapted by Burke et al. (2015) to allow for more complicated or higher dimensional
+models, and is used to fit a PLDF to a sample of Kepler planets (0.75 ≤ Rp ≤ 2.5 R⊕ , 50 ≤ Porb ≤ 300 days)
+around GK dwarf stars. In both works, the distribution function is tailored to an observed data set through likelihood
+estimation techniques, which we describe in Section (C.2).
+
+                                           C.1. The Planet Distribution Function
+  As mentioned in Section (2.3), the general form of a PLDF used to calculate planet occurrence can be written as
+
+                                                  d2 f
+                                                          = F0 Cn g(Porb , Rp ).                                             (C1)
+                                                dPorb dRp
+
+F0 can be treated as the average number of planets per star, while Cn is a normalization factor with the requirement:
+                                             PZmax R
+                                                   Zmax
+                                                        Cn g(Porb , Rp )dPorb dRp = 1.                                       (C2)
+                                            Pmin Rmin
+
+
+The PLDF is specifically defined (and fit) over the domain Pmin ≤ Porb ≤ Pmax and Rmin ≤ Rp ≤ Rmax . In our case,
+the domain is 2 < Porb < 100 days and 1 ≤ Rp ≤ 3.5 R⊕ as chosen in Section (2.1).
+   The greatest appeal for this definition of the PLDF lies in the fully customizable description of the distribution’s
+behavior, the shape function g(x). In the case of Burke et al. (2015), the shape function consists of a power law in Porb
+and a broken power law in Rp . In this work, the shape function is the product of two components: a broken power law
+in orbital period, g1 (Porb ), which governs the overall distribution of small planets; and an orbital period-dependent
+function for the fractional occurrence of either super-Earths or sub-Neptunes, g2 (Porb , Rp ). Therefore, the distribution
+is governed by:
+                                           g(Porb , Rp ) = g1 (Porb ) · g2 (Porb , Rp ),                              (C3)
+22                                                  Bergsten et al. 2022
+
+
+
+
+Figure 9. The occurrence of small planets marginalized over orbital period (2 ≤ Porb ≤ 100 days) as a function of planet
+radius. Each panel represents a different stellar mass bin, with the full FGK sample shown in the lower-right. Black points are
+the observed marginalized occurrence as calculated by epos for a selection of planet radius bins. Blue lines indicate the best fit
+distributions evaluated for that bin.
+
+where the occurrence at a given orbital period provided by g1 is further distributed among the super-Earth and sub-
+Neptune bins by their orbital period-dependent fractions in g2 . The overarching small planet distribution is written
+as:
+                                                 
+                                                 (P /P         β1
+                                                    orb  break )   if P < Pbreak
+                                    g1 (Porb ) =                                                                (C4)
+                                                                β2
+                                                 (P /P
+                                                         orb   )   if P ≥ P
+                                                               break             , break
+
+
+
+where the two Porb power law exponents (β1 and β2 ) govern the distribution on either side of the orbital period break
+Pbreak .
+  Unlike Burke et al. (2015), we do not see strong evidence for features more complex than a constant occurrence
+distribution in log Rp when evaluating the marginalized radius distributions with epos (see Figure 9, similar to Figure
+5 in Fulton & Petigura 2018). This “plateau” (Petigura et al. 2013b) in the size distribution of small planets is often
+seen with the inverse detection efficiency method as used in this work and in Fulton & Petigura (2018). However,
+this method may underestimate the occurrence of sub-Earth planets in the size regime where sensitivity is low (Zhu
+& Dong 2021). Other methods (e.g., the approximate Bayesian approach of Hsu et al. 2019) may be more accurate
+in their predictions of increasing occurrence at smaller sizes, as discussed in Lee et al. (2022). As there is not yet a
+clear consensus for the functional form of this complex size distribution for small close-in planets, we do not adopt any
+functional dependence on the planet radius outside of what is described below.
+  Fractional occurrence is a metric which involves first computing the occurrence of super-Earths and sub-Neptunes,
+then dividing either by the sum of both. Yet the approach outlined above computes the occurrence (not fractional
+occurrence). Thus, we require a method of incorporating some behavior into the shape function such that, when
+fractional occurrence is computed, the desired trend is recovered. We first define some function G(Porb , Rp ) to describe
+the trend in fractional occurrence, and then reverse the calculation of fractional occurrence to discern the form
+of g2 (Porb , Rp ), the shape function component applied to normal occurrence which recovers the observed trend in
+fractional occurrence.
+                             Earths and super-Earths into the Habitable Zone                                             23
+
+  For the function G(Porb , Rp ), we opt to describe the behavior seen in Figure (4) with four free parameters. The
+short-period regime is constrained by the asymptotic fraction χ1 , which is fit simultaneously as χ1 for super-Earths
+and (1 − χ1 ) for sub-Neptunes. Similarly, the long-period population is fit by a separate fraction χ2 for super-Earths
+and (1 − χ2 ) for sub-Neptunes. These two regimes are separated by an orbital period Pcentral central to the adopted
+curvature, which has a smoothness s constraining how quickly the curve flattens off towards χ1 or χ2 (or their
+complements, in the case of sub-Neptunes) moving away from Pcentral . The curve itself is described by a hyperbolic
+tangent in log10 orbital period, which is normalized on y = [0, 1] with plateaus scaled by χ1 for Porb  Pcentral and χ2
+for Porb  Pcentral . The function is thus:
+                                            
+                                            t · χ + [1 − t] · χ               if Rp < Rvalley
+                                                  1              2
+                            G(Porb , Rp ) =                                                                         (C5)
+                                            t · (1 − χ ) + [1 − t] · (1 − χ ) if R > R        ,
+                                                         1                           2   p      valley
+
+
+where                                                                                        
+                                                                  log10 Porb − log10 Pcentral
+                                  t(Porb ) = 0.5 − 0.5 tanh                                     .                      (C6)
+                                                                            log10 s
+By these definitions, the super-Earth and sub-Neptune curves are always complementary. We note that Pcentral is not
+necessarily the intersection point Ptrans where super-Earths and sub-Neptunes are present in equal abundance, except
+in the case where χ1 = 1 − χ2 such that the curve is vertically symmetric about the fraction 0.5.
+  To implement this behavior into the PLDF via the shape function, we consider the definition of fractional occurrence
+as the occurrence of either super-Earths or sub-Neptunes divided by the occurrence of both. Since we do not adopt
+any planet radius dependence outside of binning super-Earths or sub-Neptunes, G is only a function of orbital period
+when remaining within one of the two planet radius bins. We assume the same of g2 , confirmed by the final derivation.
+We also introduce a shorthand for bounds of integration where a = Rmin , b = Rvalley and c = Rmax . As an example
+case, the fractional occurrence of super-Earths is:
+                                                              Rb     df
+                                                                            dR
+                                                    G(P ) = Rac dPdfdR           .                                     (C7)
+                                                                  a dP dR
+                                                                            dR
+
+Because the normalization parameters and broken power law g1 are independent of planet radius, they can be pulled
+from the integrals and divided out, such that:
+                                Rb
+                                    g2 (P )dR   g2 (P )[R]ba               g2 (P )(b − a)
+                        G(P ) = Rac           =           c
+                                                             =                                        .                (C8)
+                                 a
+                                    g2 (P )dR   g2 (P )[R]a    g2 (P )(b − a)  + (1 − g2 (P ))(c − b)
+
+In the denominator of the RHS, we note that the integral of g2 is split into the super-Earth and sub-Neptune regimes,
+where the shape function must return the complement (1 − g2 ) in the latter case. Solving for g2 , we find:
+
+                                                             G(P )(c − b)
+                                     g2 (P ) =                                         .                               (C9)
+                                                 (b − a) + G(P )(c − b) − G(P )(b − a)
+
+This is the form which is included in the shape function of our PLDF. Note that by their complementary nature,
+(1 − g2 ) recalls the sub-Neptune behavior.
+   As an additional caveat, the PLDF we use is defined in linear space for dPorb and dRp . However the default output
+of epos is binned in natural log space for d ln Porb and d ln Rp . We choose to fit directly to Kepler data in linear space,
+and then match the binned occurrence data in epos after the fact, which is done with two modifications. We leave g1 ,
+the broken power law in orbital period, as-is and append an extra factor of orbital period (analogous to adding +1 to
+the exponents β1 and β2 ) when plotting the fit results in log-orbital period. We approximate the marginalized radius
+distribution as constant in log-radius, which corresponds to an additional factor of 1/R in linear space appended to
+g2 . This suggests the integration in Equation (C8) is not independent of R, but the adjustment is a replacement of R
+with ln R in the final product. Thus there is a modification which involves replacing a, b, and c in Equation (C9) with
+ln a, ln b, and ln c.
+   In summary, the contribution of super-Earths to the combined pool of super-Earths and sub-Neptunes is expected to
+change as a function of orbital period, from χ1 (P  Pcentral ) to χ2 (P  Pcentral ). Here we have used “” and “”
+24                                                Bergsten et al. 2022
+
+to indicate being far enough away from the central period Pcentral such that the fractional occurrence has sufficiently
+plateaued towards the asymptotic fractions and is not still dominated by curvature close to Pcentral . The sub-Neptunes
+follow a similar fractional distribution of (1 − χ1 ), and (1 − χ2 ), respectively. Both super-Earths and sub-Neptunes
+are further subjected to the broken power law with g1 (Porb ) - we do not make any requirements on the relationship
+between Pbreak and Pcentral .
+
+                            C.2. Fitting the PLDF through Maximum Likelihood Estimation
+  The PLDF has eight free parameters: F0 , Pbreak , β1 , β2 , Pcentral , s, χ1 , and χ2 . To fit these parameters within each
+stellar mass bin, we adopt the maximum likelihood estimation (MLE) approach of Youdin (2011) and Burke et al.
+(2015). The Poisson likelihood function for a survey that detects Npl planets around N∗ stars is given by Equation
+(18) of Youdin (2011) and Equation (9) of Burke et al. (2015) as:
+                                                                       
+                                                     Npl
+                                           N    N
+                                                     Y
+                                             pl   pl
+                                   L ∝ F0 Cn            g(Porb , Rp ) exp(−Nexp ),                                    (C10)
+                                                       i=a
+
+where the PLDF predicts the number of survey detections with
+                                      PZmax R
+                                                                   
+                                            Zmax XN∗
+                         Nexp = F0 Cn               ηj (Porb , Rp ) g(Porb , Rp )dPorb dRp .                        (C11)
+                                          Pmin Rmin   j=1
+
+
+In the above equation, the expected number of planets is converted to an expected number of detections by modifying
+the PLDF with the per-star survey effectiveness ηj summed over N∗ sample targets (the term in brackets). Where
+Burke et al. (2015) treat ηj as the pipeline completeness, we consider it as the detection efficiency and compute it
+separately for each stellar mass bin via epos.
+   We begin by specifying uniform priors for all parameters. By definition of χ1 and χ2 as fractions, their values are
+bound between 0 and 1. To reflect the behavior of the observed small planet population described in Section (3.1.1),
+we also require that χ1 > χ2 such that super-Earths decrease in frequency around Pcentral . We require some small
+orbital period region on either edge of our domain where G is mostly flat - i.e. the smoothness around Pcentral is
+bounded to level off within a few days of either orbital period extreme. Because Pcentral is always a few factors of s
+greater than 2 days and less than 100 days in log10 orbital period, we believe this is an appropriate requirement. We
+maximize the likelihood function (rather, minimize the negative log likelihood) through the Markov chain Monte Carlo
+(MCMC) program emcee (Foreman-Mackey et al. 2013).
+   As mentioned in Section (2.3), the likelihood function of Equation (C10) accounts for survey completness but not
+reliability. Therefore, we use the method of Bryson et al. (2020a) outlined in Section (2.3), where the model is fit
+repeatedly while varying the input planet sample as weighted linearly by their reliability scores. The posteriors of each
+fit are then concatenated to produce reliability-informed posteriors.
+   We take the median value of the emcee posteriors for each parameter and report them in Table (2) for each stellar
+mass bin. Using the MCMC approach allows us to numerically evaluate the posteriors and provide estimates of the
+68% credible intervals for each parameter. Some parameter posteriors are not conventional Gaussian distributions, so
+we use the phrase “1σ” with caution. We include these uncertainties in Table (2) and use them as vertical error bars in
+Figure (10), which shows how all fit parameters vary across stellar mass bins. Aside from the stellar mass dependencies
+of F0 , Pcentral and χ1 listed previously, we note no clear stellar mass dependence beyond the typical uncertainties.
+   The marginalized orbital period distributions are calculated by using each bin’s best-fit parameters to integrate
+Equation (2) over the radius range in our sample. These distributions are presented in Figure (11), where we include
+the observed marginalized occurrence rates for a number of orbital period bins calculated with epos. The broken power
+law form chosen here is well-suited for describing the relationship between normalized occurrence and orbital period
+for the five stellar mass bins investigated here. We also include a “biased” version of our fits, where the predicted
+occurrence is scaled by the detection efficiency, to illustrate that the inverse detection efficiency method typically
+underestimates occurrence in regions of low completeness.
+   The parameters governing the marginalized orbital period distribution are mostly consistent with previous works
+adopting the same form of a broken power law in orbital period. The power law exponents β1 and β2 (with an added
++1 for the dP to d ln P conversion) are similar to those of Mulders et al. (2018) (their Table 1) and Pascucci et al.
+                               Earths and super-Earths into the Habitable Zone                                                   25
+
+
+
+
+Figure 10. Best-fit parameters as a function of stellar mass. Each panel represents a different free parameter, and each mass
+bin was fit independently. Vertical error bars indicate 1 σ uncertainties as the 16th and 84th percentile values from the posterior.
+Horizontal error bars represent the stellar mass range of each bin.
+26                                                 Bergsten et al. 2022
+
+
+
+
+Figure 11. The occurrence of small planets marginalized over planet radius (1 ≤ Rp ≤ 3.5 R⊕ ) as a function of orbital period.
+Each panel represents a different stellar mass bin, with the full FGK sample shown in the lower-right. Black points are the
+observed marginalized occurrence as calculated by epos for a selection of orbital period bins. Blue lines indicate the best fit
+distributions evaluated for that bin. Grey lines represent the best fit distributions scaled by the average detection efficiency
+computed for stars in that bin.
+
+
+(2019) (their Table 1). Both works fit directly to epos occurrence rates while this work fits to Kepler data directly. In
+our largest mass bin, an unusually large value for β1 produces a steeper slope which appears to match the data well.
+Values of β2 in our first and fourth mass bins (lightest and super-Solar respectively) appear low, but are consistent
+with flat distributions to 1σ so we do not comment on implications of a decreasing distribution with orbital period.
+As for the orbital period break Pbreak , many works suggest a value around 10 days as originally presented by Youdin
+(2011) and Howard et al. (2012). We find a dichotomy of orbital period breaks, with some at ∼ 7 days and others
+at ∼ 12 days, which appears independent of stellar mass. There is little evidence of a bimodal distribution in the
+posteriors of any one mass bin, which presents an interesting behavior meriting further study.
+                                D. EFFECTS OF RELIABILITY IMPLEMENTATION
+  To assess the impact of reliability on our forward model, we also perform a set of fits and inverse-detection efficiency
+calculations (via epos) without reliability. The latter follows the conventional inverse detection efficiency method,
+where the contribution of a planet candidate is not weighted by its reliability. For the former, likelihood estimation is
+performed in each stellar mass bin with 64 walkers and 50, 000 steps (with 1, 000 discarded for burn-in). The results
+for both methods neglecting reliability are shown in Figure (12).
+  The model parameters are only slightly affected by reliability — for example, incorporating reliability causes a ∼ 6%
+decrease in the value of F0 for all stellar mass bins — and all parameters remain consistent at the 1σ level to the
+case without reliability. This contrasts with the fractional occurrence rates derived from epos, where the effects of
+reliability implementation may produce marked changes in a given bin - however, there is no clear trend in the direction
+of such changes regarding agreement with our forward model. This is partially due to our consideration of fractional
+occurrence: while incorporating reliability can only ever decrease a planet’s contribution to the total occurrence, down-
+weighting a low-reliability sub-Neptune would increase the fractional occurrence of super-Earths (or vice versa) in a
+given bin of orbital period and stellar mass. Thus the effects of reliability implementation on the fractional occurrence
+rates computed with the standard method are dependent on the underlying reliability distribution of candidates, for
+which there is no discernible trend by virtue of reliability as a per-candidate metric.
+                               Earths and super-Earths into the Habitable Zone                                                27
+
+
+
+
+Figure 12. Similar to Figure (4), but without considerations of reliability for both the best-fit model and the epos-derived
+occurrence rates. The results of the inverse detection efficiency method change more under the effects of reliability implemen-
+tation than those of our forward model, likely due to the former’s stronger susceptibility to biases in bins with a low number of
+observations.
+
+   The inverse detection efficiency method’s susceptibility to reliability when compared to our forward model may
+be explained by noting that reliability is a statistical factor affecting the observed number of planets (directly used
+in the former), while our forward model attempts to constrain the intrinsic and unbiased population. It follows
+that reliability implementation should produce some of the strongest variations when considering the long-period
+population, for which there is a marked decrease in Kepler detection efficiency and thus a lower number of small
+planet detections. This is confirmed by a comparison with Bryson et al. (2020a), in which they fit to a further-out
+population (50 < Porb < 400 days) and find that F0 decreases by ≈ 30% when implementing reliability, whereas we
+find only a ∼ 6% change in F0 when considering the closer-in population within 100 days. Nevertheless, we follow the
+recommendations of previous occurrence rate studies and focus on the model(s) which include reliability in this work.
+

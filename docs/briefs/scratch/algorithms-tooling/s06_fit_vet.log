@@ -1,0 +1,33 @@
+points within 0.4 d of transit 2637
+emcee 32 walkers x 2500 steps on 2637 points with supersample 7: 109s; acceptance 0.38
+t0: 797.245442 +0.001171 -0.001066
+per: 13.769444 +0.000038 -0.000038
+rp_rs: 0.044258 +0.001681 -0.001035
+a_rs: 43.688721 +2.918177 -7.540990
+b: 0.348802 +0.282707 -0.240729
+f0: 1.000169 +0.000023 -0.000024
+lnjit: -8.054948 +0.141828 -0.194521
+stellar density from transit: 5.91 +1.26 -2.56 rho_sun (M dwarf 0.505 Msun/0.507 Rsun -> 3.87)
+Rp = 2.45 +0.09 -0.06 Re (for R*=0.507 Rsun, no dilution correction)
+(Rp/R*)^2 = 1959 +152 -91 ppm
+
+=== LEO-vetter 1.2.0 flux-level vetting
+Estimating SES and MES time series...
+Fitting linear, trapezoid, and transit models...
+Running SWEET test...
+Getting odd-even metrics...
+Checking individual transit events...
+Running modshift...
+Estimating derived parameters...
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/algorithms-tooling/s06_fit_vet.py", line 45, in <module>
+    tlc.compute_flux_metrics(star)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/leo_vetter/main.py", line 214, in compute_flux_metrics
+    parameters.derived_parameters(self, star, A=A)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/leo_vetter/parameters.py", line 92, in derived_parameters
+    Rs_err = star["e_rad"]
+             ~~~~^^^^^^^^^
+KeyError: 'e_rad'
+metrics so far ['tic', 'planetno', 'per', 'epo', 'dur', 'qtran', 'N_transit', 'n_in', 'n_before', 'n_after', 'zpt', 'dep', 'sig_w', 'sig_r', 'err', 'MES', 'SHP', 'line_chisqr', 'line_aic', 'trap_chisqr', 'trap_aic', 'trap_per', 'trap_per_err', 'trap_epo', 'trap_epo_err', 'trap_dep', 'trap_dep_err', 'trap_qtran', 'trap_qtran_err', 'trap_qin', 'trap_qin_err', 'trap_zpt', 'trap_zpt_err', 'trap_qtran_left', 'trap_qtran_err_left', 'trap_qtran_right', 'trap_qtran_err_right', 'transit_u1', 'transit_u2', 'transit_chisqr']

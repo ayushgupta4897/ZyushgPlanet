@@ -63,14 +63,23 @@ def main():
         os.makedirs(run_dir, exist_ok=True)
         with open(os.path.join(run_dir, "modal_call.json"), "w") as fh:
             json.dump(r.json(), fh)
+        with open(os.path.join(run_dir, "config_used.json"), "w") as fh:
+            json.dump(cfg, fh, indent=1)
     elif a.cmd == "status":
         r = requests.get(_url(c, "status"), headers=h, params={"run_id": a.run_id}, timeout=60)
         r.raise_for_status()
         print(json.dumps(r.json(), indent=1))
+        run_dir = os.path.join(ROOT, "runs", a.run_id)
+        if os.path.isdir(run_dir):
+            with open(os.path.join(run_dir, "modal_status.json"), "w") as fh:
+                json.dump(r.json(), fh, indent=1)
     elif a.cmd == "fetch":
         run_dir = os.path.join(ROOT, "runs", a.run_id)
         os.makedirs(run_dir, exist_ok=True)
         out = os.path.join(run_dir, "results.jsonl")
+        if not os.path.exists(os.path.join(run_dir, "config_used.json")):
+            with open(os.path.join(run_dir, "config_used.json"), "w") as fh:
+                json.dump(json.load(open(os.path.join(ROOT, a.config))), fh, indent=1)
         off_p = os.path.join(run_dir, ".fetch_offset")
         offset = int(open(off_p).read()) if os.path.exists(off_p) else 0
         r = requests.get(_url(c, "results"), headers=h, params={"run_id": a.run_id, "offset": offset}, timeout=300)

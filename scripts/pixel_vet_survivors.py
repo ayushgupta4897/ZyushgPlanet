@@ -1,12 +1,13 @@
 """Run pixel-level localisation on every stage-2 survivor of a run (skips ones already done)."""
 import glob, json, os, subprocess, sys
 run = sys.argv[1] if len(sys.argv) > 1 else "poolA_main"
+outroot = sys.argv[2] if len(sys.argv) > 2 else "pixel"
 for vf in sorted(glob.glob(f"runs/{run}/vet/*/vet.json")):
     r = json.load(open(vf))
-    if not r.get("stage2_pass"):
+    if not (r.get("stage2_pass") or r.get("stage2_pass_v14")):
         continue
     fname = r["fname"]
-    out = f"runs/{run}/pixel/{fname}"
+    out = f"runs/{run}/{outroot}/{fname}"
     if os.path.exists(os.path.join(out, "pixel.json")):
         continue
     print(f"pixel_vet {fname} P={r['P']:.4f}", flush=True)
