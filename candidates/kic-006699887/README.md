@@ -1,6 +1,6 @@
 # kic-006699887 (Gaia DR3 2077554781499350144, KIC 6699887) — evidence pack
 
-_Built 2026-10-17T18:21:46Z from run `poolA_main` at commit `87e2c804b64e`. Status under `CLAUDE.md` language: **candidate**. Nothing here is a planet; nothing is 'discovered'. Search, vetting, localisation, re-derivation, red team and FPP were run by Claude Code (Anthropic) agents under human direction; every number below names the file it comes from._
+_Built 2026-10-17T18:40:02Z from run `poolA_main` at commit `d469a05ff07b`. Status under `CLAUDE.md` language: **candidate**. Nothing here is a planet; nothing is 'discovered'. Search, vetting, localisation, re-derivation, red team and FPP were run by Claude Code (Anthropic) agents under human direction; every number below names the file it comes from._
 
 ## Key numbers
 
@@ -31,7 +31,7 @@ _Built 2026-10-17T18:21:46Z from run `poolA_main` at commit `87e2c804b64e`. Stat
 
 ## Second signal (post-hoc, label P47)
 
-Found by the red team outside the registered 0.5–40 d window. Stage 2 under current rules: P 47.69006 d, depth 951 ppm, SNR 21.3, 28 events (100 % positive), odd/even 2.72 σ, secondary 0.20 σ, verdict PASS; known matches 0. Pixel v1.6: inconclusive (4 quarters: null-target dchi2 70, best-alternative-target dchi2 24 (rule: both >= 25 over >= 5 quarters)). Files: second_signal_P47/.
+Found by the red team outside the registered 0.5–40 d window. Stage 2 under current rules: P 47.69006 d, depth 951 ppm, SNR 21.3, 28 events (100 % positive), odd/even 2.72 σ, secondary 0.20 σ, verdict PASS; known matches 0. Pixel v1.6: inconclusive (4 quarters: null-target dchi2 70, best-alternative-target dchi2 24 (rule: both >= 25 over >= 5 quarters)). TRICERATOPS on this signal alone: FPP 0.0237 ± 0.0053, NFPP 0.00000 (8 seeds). Two independent signals on one star would, if both are real, lower the false-positive prior for both (the published multiplicity boost is a factor of order 20); that boost is NOT applied anywhere in this pack because the second signal's pixel verdict is inconclusive. Files: second_signal_P47/.
 
 ## Deep single-target run (`pipeline/run.py`, `deep_run/results.json`)
 

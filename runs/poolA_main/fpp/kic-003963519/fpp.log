@@ -13,3 +13,21 @@ stars that could host the dip (tdepth = eclipse depth they would need):
    neighbour TIC 1877175570: {"TIC": 1877175570, "Tmag": 19.8981, "fluxratio": 0.004664916715938444, "required_depth": 0.1469370955500129, "excluded": false, "lc_used": "gaia-dr3-2052383524355069184", "note": "no KBONUS light curve (RuntimeError)"}
    neighbour TIC 138479101: {"TIC": 138479101, "Tmag": 14.4561, "fluxratio": 0.3063409583389896, "required_depth": 0.002237537275261108, "excluded": true, "lc_used": "kic-003963530", "note": "687 in-transit cadences", "measured_depth_ppm": -19.867096201942047, "measured_err_ppm": 17.31788403150396, "exclusion_sigma": 130.3510502412694, "why": "own light curve at the ephemeris: -20 +- 17 ppm vs 2238 ppm required (130 sigma)"}
    neighbour TIC 1877175569: {"TIC": 1877175569, "Tmag": 19.9644, "fluxratio": 0.004318892036953702, "required_depth": 0.1587095272022998, "excluded": false, "lc_used": "gaia-dr3-2052383524355060480", "note": "no KBONUS light curve (RuntimeError)"}
+[2026-10-17T18:34:54.147070Z] kic-003963519: P=6.815624 d, D=2.438 h, t0_bkjd=138.28256, depth=1124 ppm (stage 2, poolA_kbonus_background_dwarfs_v1.7)
+light curve: 60 binned points from 4084 cadences; flux_err 289 ppm
+TRICERATOPS target row 0: TIC 138479103 Tmag 16.73 Teff 5472.0 R 1.62516 M 0.96 plx 0.20921; 31 TIC stars within 10 px; build 15s
+row-0 offset from Gaia position: 0.04 arcsec (must be < 1)
+stars that could host the dip (tdepth = eclipse depth they would need):
+   TIC 138479103 Tmag 16.73 fluxratio 0.6099 tdepth 0.0011
+   TIC 1877175566 Tmag 18.00 fluxratio 0.0720 tdepth 0.0095
+   TIC 1877175570 Tmag 19.90 fluxratio 0.0047 tdepth 0.1469
+   TIC 138479101 Tmag 14.46 fluxratio 0.3063 tdepth 0.0022
+   TIC 1877175569 Tmag 19.96 fluxratio 0.0043 tdepth 0.1587
+   TIC 138479095 Tmag 16.43 fluxratio 0.0027 tdepth 0.2556
+   neighbour TIC 1877175566: {"TIC": 1877175566, "Tmag": 18.0, "fluxratio": 0.07203916014366274, "required_depth": 0.009514954253433204, "excluded": false, "lc_used": "gaia-dr3-2052383520062387200", "note": "no KBONUS light curve (RuntimeError)"}
+   neighbour TIC 1877175570: {"TIC": 1877175570, "Tmag": 19.8981, "fluxratio": 0.004664916715938444, "required_depth": 0.1469370955500129, "excluded": false, "lc_used": "gaia-dr3-2052383524355069184", "note": "no KBONUS light curve (RuntimeError)"}
+   neighbour TIC 138479101: {"TIC": 138479101, "Tmag": 14.4561, "fluxratio": 0.3063409583389896, "required_depth": 0.002237537275261108, "excluded": true, "lc_used": "kic-003963530", "note": "687 in-transit cadences", "measured_depth_ppm": -19.867096201942047, "measured_err_ppm": 17.31788403150396, "exclusion_sigma": 130.3510502412694, "why": "own light curve at the ephemeris: -20 +- 17 ppm vs 2238 ppm required (130 sigma)"}
+   neighbour TIC 1877175569: {"TIC": 1877175569, "Tmag": 19.9644, "fluxratio": 0.004318892036953702, "required_depth": 0.1587095272022998, "excluded": false, "lc_used": "gaia-dr3-2052383524355060480", "note": "no KBONUS light curve (RuntimeError)"}
+   neighbour TIC 138479095: {"TIC": 138479095, "Tmag": 16.4253, "fluxratio": 0.002682023682168369, "required_depth": 0.2555716855820325, "excluded": false, "lc_used": "gaia-dr3-2052383520062393600", "note": "no KBONUS light curve (RuntimeError)"}
+   dropped TIC 138479101 from the scenario list: own light curve at the ephemeris: -20 +- 17 ppm vs 2238 ppm required (130 sigma)
+scenario hosts after exclusions: TIC 138479103 (0.0011), TIC 1877175566 (0.0095), TIC 1877175570 (0.1469), TIC 1877175569 (0.1587), TIC 138479095 (0.2556)

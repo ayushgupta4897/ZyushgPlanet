@@ -74,6 +74,7 @@ tg = pd.read_csv("targets/poolA_kbonus_bg_dwarfs_ranked.csv")
 star = tg[tg.fname == a.fname].iloc[0].to_dict()
 second = jload(f"{R}/vet_posthoc/{a.fname}_{a.second_signal}/vet.json") if a.second_signal else None
 second_pix = jload(f"{R}/pixel_v16_posthoc/{a.fname}_{a.second_signal}/pixel.json") if a.second_signal else None
+second_fpp = jload(f"{R}/fpp_posthoc/{a.fname}_{a.second_signal}/fpp_summary.json") if a.second_signal else None
 deep = jload(os.path.join(a.deep, "results.json")) if a.deep else None
 
 # ---- copy
@@ -100,6 +101,7 @@ if a.deep:
 if a.second_signal:
     cp(f"{R}/vet_posthoc/{a.fname}_{a.second_signal}", f"second_signal_{a.second_signal}/stage2")
     cp(f"{R}/pixel_v16_posthoc/{a.fname}_{a.second_signal}", f"second_signal_{a.second_signal}/pixels")
+    cp(f"{R}/fpp_posthoc/{a.fname}_{a.second_signal}", f"second_signal_{a.second_signal}/fpp")
 # drop bulky scratch binaries from the copy
 for pat in ["**/*.npz", "**/*.fits", "**/__pycache__", "deep_run/lightcurve_*.csv", "deep_run/nohup.log"]:
     for p in glob.glob(os.path.join(out, pat), recursive=True):
@@ -181,7 +183,8 @@ if second:
              f"P {f(second['P'], 5)} d, depth {f(second['depth_pass2_ppm'], 0)} ppm, SNR {f(second['snr_emp_pass2'])}, {second.get('n_events')} events "
              f"({f(100*(second.get('frac_events_positive') or 0), 0)} % positive), odd/even {f(second.get('odd_even_sigma'), 2)} σ, secondary {f(second.get('secondary_sigma'), 2)} σ, "
              f"verdict {'PASS' if second.get('stage2_pass') else 'FAIL ' + str(second.get('stage2_fails'))}; known matches {len(second.get('known_matches') or [])}. "
-             f"Pixel v1.6: {(second_pix or {}).get('summary', {}).get('verdict', 'not run')} ({(second_pix or {}).get('summary', {}).get('verdict_reason', '')}). Files: second_signal_{a.second_signal}/.")
+             f"Pixel v1.6: {(second_pix or {}).get('summary', {}).get('verdict', 'not run')} ({(second_pix or {}).get('summary', {}).get('verdict_reason', '')}). TRICERATOPS on this signal alone: {('FPP %.4f ± %.4f, NFPP %.5f (%d seeds)' % (second_fpp['FPP_mean'], second_fpp['FPP_std'], second_fpp['NFPP_mean'], second_fpp['seeds_done'])) if second_fpp else 'not run'}. "
+             f"Two independent signals on one star would, if both are real, lower the false-positive prior for both (the published multiplicity boost is a factor of order 20); that boost is NOT applied anywhere in this pack because the second signal's pixel verdict is inconclusive. Files: second_signal_{a.second_signal}/.")
     L.append("")
 if deep:
     L.append("## Deep single-target run (`pipeline/run.py`, `deep_run/results.json`)")
