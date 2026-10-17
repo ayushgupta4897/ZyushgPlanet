@@ -1,8 +1,9 @@
+# virtualenv
 .venv/
+# downloaded archival data (re-fetched by pipeline/fetch.py)
 data/
+# python
 __pycache__/
 *.pyc
-*.fits
-*.fits.gz
+# large binary outputs inside run directories
 runs/**/*.fits
-.ipynb_checkpoints/
