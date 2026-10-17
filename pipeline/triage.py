@@ -93,6 +93,9 @@ def main():
                          + (f" dphase={h.epoch_offset_phase:.3f}" if pd.notna(h.epoch_offset_phase) else "")
                          for _, h in hits.iterrows()) if len(hits) else ""
         d = s.to_dict()
+        # both-polarity veto (variability): same period or 1:2 / 2:1 harmonic found in the inverted run
+        pr, pi = s.real_period_d, s.get("inv_period_d")
+        d["both_polarity"] = bool(pd.notna(pi) and any(abs(pr - k * pi) / (k * pi) < 0.01 for k in (1.0, 2.0, 0.5)))
         d["known_matches"] = note
         d["known_match_flag"] = "SAME_STAR" if any(hits.same_kic) else ("SAME_TPF" if any(hits.same_tpf) else ("NEARBY" if len(hits) else "none"))
         surv_rows.append(d)
@@ -101,10 +104,10 @@ def main():
         sv = sv.sort_values("real_snr_emp", ascending=False)
         sv.to_csv(os.path.join(run_dir, "survivors.csv"), index=False)
         lines.append(f"## Real first-screen survivors ({len(sv)})\n")
-        lines.append("| rank | fname | G | type | d (pc) | P (d) | depth (ppm) | dur (h) | SDE | SNR_emp | Ntr | o/e σ | sec σ | maxSE | inv SDE | known |")
-        lines.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+        lines.append("| rank | fname | G | type | d (pc) | P (d) | depth (ppm) | dur (h) | SDE | SNR_emp | Ntr | o/e σ | sec σ | maxSE | inv SDE | both-pol | known |")
+        lines.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
         for _, s in sv.iterrows():
-            lines.append(f"| {s.get('rank','')} | {s.fname} | {s.get('G', float('nan')):.1f} | {s.get('sptype','')} | {s.get('dist_pc', float('nan')):.0f} | {s.real_period_d:.4f} | {s.real_depth_ppm:.0f}±{s.real_depth_err_ppm:.0f} | {s.real_duration_h:.1f} | {s.real_sde:.1f} | {s.real_snr_emp:.1f} | {s.real_n_transits} | {s.real_odd_even_sigma if s.real_odd_even_sigma is None else round(s.real_odd_even_sigma,1)} | {s.real_secondary_sigma if s.real_secondary_sigma is None else round(s.real_secondary_sigma,1)} | {s.real_max_single_event_frac:.2f} | {s.inv_sde:.1f} | {s.known_match_flag}: {s.known_matches[:90]} |")
+            lines.append(f"| {s.get('rank','')} | {s.fname} | {s.get('G', float('nan')):.1f} | {s.get('sptype','')} | {s.get('dist_pc', float('nan')):.0f} | {s.real_period_d:.4f} | {s.real_depth_ppm:.0f}±{s.real_depth_err_ppm:.0f} | {s.real_duration_h:.1f} | {s.real_sde:.1f} | {s.real_snr_emp:.1f} | {s.real_n_transits} | {s.real_odd_even_sigma if s.real_odd_even_sigma is None else round(s.real_odd_even_sigma,1)} | {s.real_secondary_sigma if s.real_secondary_sigma is None else round(s.real_secondary_sigma,1)} | {s.real_max_single_event_frac:.2f} | {s.inv_sde:.1f} | {'YES' if s.both_polarity else ''} | {s.known_match_flag}: {s.known_matches[:90]} |")
     inv = ok[ok.pass_inv.fillna(False)]
     if len(inv):
         lines.append(f"\n## Inverted (null) passes ({len(inv)}) — the false-alarm floor\n")
