@@ -1,0 +1,156 @@
+{
+ "corrections": [
+  {
+   "claim": "DC15 occurrence rates imply 76.5 transiting 1-4 Re planets with P<50 d per 1000 M dwarfs (25.8 with Rp 2-4 Re) for a 0.5 Msun/0.5 Rsun host with 1.08 R*/a transit probability; total 2.48 planets/star",
+   "verdict": "confirmed",
+   "correction": "All 30 cumulative values in the agent's DC15_T5 dictionary match Table 5 of arXiv:1501.01623 (text lines 1374-1400 of the pdftotext dump); the 1.08 Kipping (2013) eccentricity factor is DC15's own (lines 829-834); the <26.54% upper-limit cell exists (line 1298). Note the brief ignores DC15's 0.5-1.0 Re row (51.4% per star at P<50 d), which matters for Kepler-depth sensitivity at Kp<15.",
+   "evidence": "grep/sed on /tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/feasibility-stats/dl/1501.01623.txt; yield_model.out arithmetic re-read (2.48/83.4/76.5/25.8); a/R* recomputed = 38.0 for M*=0.505, R*=0.507"
+  },
+  {
+   "claim": "Kuber's KBONUS funnel 29,800 -> 9,204 -> 6,477 -> 2,495 -> 1,836 reproduces; KIC 5689121 is rank 52 by ascending G; median G 18.47; 104 stars brighter than G 17",
+   "verdict": "confirmed",
+   "correction": "Counts match Kuber's 13 Oct audit table (analysis/editorial-audit-20261013/README.md, which also adds the 1,800 after primary-target exclusion). The agent's CSV has 1,836 rows; sorted by G, KIC 5689121 is row 52 (G 16.282); bins 2/10/24/26/42/341/1,391, median 18.47, 104 with G<17.",
+   "evidence": "pandas on kbonus_eligible_background_mdwarfs.csv; audit README section 1"
+  },
+  {
+   "claim": "KBONUS-BKG PSF light curve of KIC 5689121: 6-h CDPP ~405 ppm, 2.3-h 571 ppm (SAP 315/454); fold gives 76 transits, depth 1,856 ppm, white-noise SNR ~33",
+   "verdict": "confirmed",
+   "correction": "Independently re-measured from the cached FITS (header KEPMAG 16.332, GMAG 16.282, TPFORG 5689116; 50,182 cadences; quarters 1-4,6-8,10-12,14-16) with my own code: FLUX 571/534/405/285 ppm (2.3/3/6/12 h), SAP 454/420/315/215, PSF_FLAT 543/507/374/251 -- exact match. Fold at P=13.769448, T0=BJD 2455630.245431: 76 transits confirmed; box depth is window-dependent: 1,968 ppm with +/-1.15 h in-transit and 2.3-8 h out-of-transit windows (white SNR 26) versus the agent's 1,856 ppm / 33.7. Quote 1,850-1,970 ppm, white-noise SNR 26-34.",
+   "evidence": "verify script output (astropy.io.fits + wotan biweight 1 d)"
+  },
+  {
+   "claim": "KBONUS background M dwarfs are typically as quiet as Kepler targets of the same magnitude (median ratio 0.84 over 13 stars, range 0.23-4.97); ratios 0.23-0.36 indicate PSF flux dominated by the brighter neighbour",
+   "verdict": "confirmed",
+   "correction": "The inference is now backed by a direct measurement: the raw PSF flux in e/s implies a Kepler magnitude via the zero point Kp + 2.5 log10(F) = 25.31 +/- 0.20 (10 cached files with valid KEPMAG). Normal stars have G - Kp(implied) = -0.2 to +0.2 (KIC 5689121: -0.03, i.e. its PSF flux is its own). The two 'impossibly quiet' stars have G - Kp(implied) = +2.26 (KIC 10198500, 26,899 e/s at G 16.49) and +2.30 (KIC 8565344, 4,393 e/s at G 18.50): the PSF flux is ~8x too bright, i.e. dominated by the originating target (KIC 10198505 / 8565347). Two more are 2.3x too bright (+0.9: KIC 3658797 and the Gaia-only G 18.5 source). Both quiet stars also lack a KEPMAG (header 1e+20). So the pre-filter should be flux-based (G - Kp_implied > 0.5), not only CDPP-based.",
+   "evidence": "kbonus_flux_vs_G.txt in verify-feasibility-stats/; header and column checks (FLUX != SAP_FLUX in those files, so it is not a column-duplication artefact)"
+  },
+  {
+   "claim": "Kepler DR25 cool dwarfs (Teff<4000, logg>4; 4,821 stars) have median 6-h rms CDPP 78/102/104/132/234/417/912 ppm in Kp bins 11-12 through 17-20",
+   "verdict": "corrected",
+   "correction": "Medians reproduce exactly from dl/dr25_cool_dwarfs.csv, but the first bin is Kp 10-12 (n=68: 26 at 10-11 with median 74 ppm, 42 at 11-12 with 79 ppm), not 11-12. Means are far larger in the bright bins because of active stars (6-h mean 221 ppm at Kp 12-13 and 237 at 13-14 vs medians 102/104), so a model that uses medians is optimistic for the bright, active cool dwarfs. 4 of 4,821 stars have no CDPP. TAP counts re-run: Q1_Q17_DR25_KS teff<4000 & logg>4 = 4,821 (3,876 with Kp<16.5); note the TAP table is Q1_Q17_DR25_KS (q1_q17_dr25_stellar does not exist).",
+   "evidence": "pandas re-binning; TAP re-query 2026-10-17"
+  },
+  {
+   "claim": "Christiansen 2012 Table 2 all-dwarf 6-h rms CDPP medians: Kp 9: 32.4, 10: 38.5, 11: 37.0, 12: 41.7, 13: 54.5, 14: 80.8, 15: 139.1 ppm; CDPP defined so a transit of depth = CDPP has SNR 1",
+   "verdict": "confirmed",
+   "correction": "Table 2 column (4) 'Median rms CDPP for dwarfs (log g>4)' in 0.5-mag bins, Q3; values match. Definition sentence confirmed at line 101 of the pdftotext dump.",
+   "evidence": "dl/christiansen2012.txt lines 240-269"
+  },
+  {
+   "claim": "TESS 1-hour noise model (Stassun 2018 via ticgen 1.0.4): 595 ppm at T 12, 2,285 at T 14, 5,190 at T 15; measured TESS-SPOC FFI noise 506 ppm at T 11.5 and 2,200-2,400 at T 13.6-13.7; no TESS-SPOC product exists for TIC 120686465 (its light curves are cutouts/TGLC)",
+   "verdict": "corrected",
+   "correction": "Polynomial coefficients in yield_model.py match ticgen/ticgen.py get_oneHourNoiseLnsigma (lnA 3.29685, B 0.85002...); values 94/132/203/336/595/1122/2285/5190/13957 ppm at T 8-16 confirmed. The three TESS-SPOC measurements were not re-run. The product statement is wrong: lk.search_lightcurve('TIC 120686465') returns 10 HLSP light curves by author 'TARS' (sectors 14,26 at 1800 s; 40,41,53,54 at 600 s; 74,75,80,81 at 200 s). TARS = TESS All-Sky Rotation Survey (Boyle, Bouma & Mann; DOI 10.17909/2sff-fn29), CPM-corrected FFI light curves for T<16, parallax>2 mas stars, sectors 1-96, ~0.14 MB per star-sector. Sector 81 file: TESSMAG 15.21, 200-s cadence, 11,033 points, 1-h noise 5,029 ppm after a 0.75-d biweight (Stassun model ~5,900 ppm at T 15.2). It is still true that no TESS-SPOC or QLP product exists for this star.",
+   "evidence": "lightkurve search + astropy read of hlsp_tars_tess_ffi_s0081-0000000120686465_tess_v01_lc.fits; archive.stsci.edu/hlsp/tars"
+  },
+  {
+   "claim": "Yield model (realistic completeness): Kepler primaries 356 detectable vs 129 known; KBONUS 1,836 stars 111 detectable; TESS GCNS 100 pc 1,029-2,534 detectable vs 258 TOIs; K2 proxy 691 detectable vs 132 known; realism factor 0.36",
+   "verdict": "corrected",
+   "correction": "Numbers reproduce from yield_model_realistic.out and the inputs are verified, but three inputs change the reading: (1) the Kepler known/model ratio is strongly magnitude dependent: 114/255.6 = 0.45 for Kp<16 and 15/100.4 = 0.15 for Kp>16, so for a pool with median G 18.5 (KBONUS) the realistic expectation is ~0.15 x 111 = ~15-20 planets, not ~40; (2) the K2 star count is wrong: K2TARGETS does have k2_teff/k2_logg/k2_rad (EPIC parameters), and k2_lcflag=1 & k2_teff<4000 & k2_logg>4 gives 47,749 campaign-rows / 27,666 unique EPICs with Kp<16.5 (rows by Kp: 13: 2,323; 14: 6,881; 15: 11,002; 16: 12,229), about 2x the brief's 13,891 colour+PM proxy, so the K2 model yield roughly doubles (EPIC Teff/logg for faint cool stars are photometric and uncertain); (3) the TESS GCNS 100-pc pool is NOT an 'unsearched' regime: TESS-SPOC FFI target selection explicitly includes every TIC star with distance <= 100 pc (or H <= 10) that has T <= 16 and crowding >= 0.5, before the T <= 13.5 field-star fill, capped at 10,000 per CCD, and SPOC has run TPS on FFI targets since May 2021 (single-sector DV from S36, multi-sector from S56; no multi-sector search of Prime/EM1 FFI data).",
+   "evidence": "Kepler table arithmetic; TAP K2TARGETS queries 2026-10-17; ar5iv 2011.05495 selection list; archive.stsci.edu/hlsp/tess-spoc"
+  },
+  {
+   "claim": "GCNS M-dwarf candidates (BP-RP>1.84, M_G>8) within 100 pc: 213,665; 118,970 with G<15.7; 36,700 with G<13.7; within 30 pc 5,025 (4,161 with G<15.7)",
+   "verdict": "confirmed",
+   "correction": "All five counts re-run on external.gaiaedr3_gcns_main_1 and reproduced exactly. The T ~ G - 0.7 proxy is too conservative for M dwarfs: TIC 120686465 has T = 15.21 vs G = 16.28 (T - G = -1.07), so use T ~ G - 1.0; the brief's own G<16 count (131,614) is then the better 'T<15' figure.",
+   "evidence": "astroquery.gaia COUNT queries 2026-10-17; TARS header TESSMAG"
+  },
+  {
+   "claim": "Known planets around cool hosts (Teff<4000) as of 2026-10-17: 214 KOIs on 143 hosts (129 with P<50 d, 1-4 Re; 49 with Rp>2); 581 TOIs excl FP/FA (258 within 100 pc, P<50, 1-4 Re); 223 K2 planets, 132 with P<50 d and 1-4 Re",
+   "verdict": "corrected",
+   "correction": "KOI and TOI numbers re-queried via TAP and confirmed exactly (TOI dispositions: PC 307, CP 219, KP 28, APC 27; excluded FP 100, FA 13). K2: 223 unique planets confirmed, but the P<50 d & 1-4 Re subset is 134 (first/default parameter row; 51 of 223 lack a radius in that row) to 150 (any parameter row), not 132. TOI Tmag histogram for Rp<4 recomputed as 28/57/114/78/28/7/0 (bins <10 ... >15) versus the brief's 23/46/113/73/27/7 (brief likely also applied Rp>=1). KOI median depth 870 ppm and model SNR 28, TOI median depth 4,700 ppm confirmed.",
+   "evidence": "TAP re-queries + pandas on dl/k2pandc.csv, dl/toi.csv, dl/koi_cumulative.csv"
+  },
+  {
+   "claim": "White-noise BLS over 4-yr Kepler with 1.4e5-2.7e5 trial periods yields max SNR 5.7-6.1 and SDE 4.4-5.5; TLS docs give SDE 7.0 = 1% FAP and 9.1 = 0.01%; autoperiod default produces ~5e7 periods for a 4-yr baseline",
+   "verdict": "corrected",
+   "correction": "TLS FAQ table (5.7/6.1/7.0/8.3/9.1 from >10,000 white-noise runs, with the red-noise warning) confirmed verbatim. Analytic numbers confirmed: sqrt(2 ln 6e7) = 5.98; isf(1e-4/6e7) = 6.96; 6e7 x sf(9) = 6.8e-12. The Monte Carlo values are taken from the agent's bls_timing2.out (not re-run). The autoperiod figure is wrong by 2x: astropy's grid is df = frequency_factor x min_duration / baseline^2, which for a 1-h minimum duration and 1,460-d baseline over 0.5-25 d gives 1.0e8 periods (5e7 only for a 2-h minimum duration).",
+   "evidence": "inspect.getsource(BoxLeastSquares.autoperiod); scipy arithmetic; transitleastsquares FAQ fetch"
+  },
+  {
+   "claim": "Kuber's inverted null: first screen passed 32 signals/28 stars vs real 31/29 over 1,736 stars (1.8%, 90% CI 1.3-2.5%); 2 inverted stars (KIC 8701308, KIC 5283912) exceed the candidate's scores (per-star 1.2e-3, 90% CI 2e-4 to 3.6e-3); expected ~2 equivalent events, P(>=1) ~0.86",
+   "verdict": "confirmed",
+   "correction": "All counts match the audit README tables (64: 2/2 vs 0/0; 65-576: 10/9 vs 10/9; 577-1800: 19/18 vs 22/19; totals 31/29 vs 32/28; thresholds P>1.5 d, BLS SNR>=26.7, holdout SNR>=15.5). Intervals recomputed: Poisson 90% CI for k=2 is 0.355-6.30 (per-star 2.0e-4 to 3.6e-3); binomial 90% CI for 32/1736 is 1.35-2.47%; 1-exp(-2) = 0.865; binomial p(31 vs 32) = 1.00.",
+   "evidence": "audit README sections 1-2; scipy.stats"
+  },
+  {
+   "claim": "Chopra: 743 real vs 752 flipped search passes (SDE>=7, SNR>=6, >=3 transits); 31 vs 39 no hard flags; 10 vs 17 flag-free; strongest flag-free flipped SDE 8.4 vs real 11.3/10.3; zero flipped flag-free SDE>=9 in 526 stars (<3 fakes per survey, 95%); 38 scrambles best fakes 8.5/9.3; TRICERATOPS never completed; 1.5 h on 12 cores; ~1e6 trial periods",
+   "verdict": "confirmed",
+   "correction": "All figures present in docs/GUIDE.md as fetched 2026-10-17 (candidates TIC 370612437 SDE 11.3/SNR 8.4 and TIC 252721481 SDE 10.3/SNR 8.1; 'zero fakes in 526 flipped stars only caps the rate at about 3 per survey (95%)'; 0.01/0.2 figures withdrawn as 'unsupported'; 'No calibrated false-alarm probability'). 3/526 = 5.7e-3 confirmed.",
+   "evidence": "WebFetch of raw GUIDE.md"
+  },
+  {
+   "claim": "eumemic: 798,769 inverted stars scaled to 4,039,203 searched predict 96 clean SNR>=9 false alarms (19 found; 2,462 including neighbour/centroid classes) vs 9,938 real SNR>=9 signals; SNR 7.5-9: 2,756 vs 3,482; ~9 s/star; c8g.4xlarge 2.6x; 130 GB/12 GB; 645 candidates",
+   "verdict": "confirmed",
+   "correction": "Stated verbatim in the README (16 Oct 2026 release: 645 = 587 full-sky + 58 earlier; 644 belongs to an earlier table). 2,462 (=96+202+2,164), 9,938 (=726+1,294+7,918), 2,756 and 3,482 are column sums the agent computed, not quoted figures. Faint-M samples are 22,448 at 11.5<T<=12.5 and 84,863 at 12.5<T<=13.5. Validation tier: FPP<0.015 & NFPP<0.001 for <8 Re; counted tier FPP<0.5 & NFPP<0.1.",
+   "evidence": "WebFetch of raw README.md"
+  },
+  {
+   "claim": "astropy BLS runtimes on 1 core: Kepler 4-yr 46k pts 0.5-25 d OS=2 (274k periods x 6 durations) 124 s; OS=1 54 s; one quarter 3.8 s; TESS 2 sectors 2.8 s; 10 sparse TESS sectors 54-178 s; Kuber's pipeline 18.7 s/star median",
+   "verdict": "confirmed",
+   "correction": "Runtimes read from bls_timing2.out (not re-timed; CPUs are shared, so treat as +/-30%). Kuber's pilot.log: 64 stars, median 18.69 s, mean 20.03 s, range 9.3-35.4 s -- confirmed.",
+   "evidence": "bls_timing2.out; evidence/codex/database_expansion/kbonus/pilot.log 'seconds' fields"
+  },
+  {
+   "claim": "Follow-up for Kp 16 M dwarf at 300 pc: RV K ~3.4 m/s on V~16.6 (impossible; MAROON-X design goal 1 m/s at V=16.5 in 30 min on an 8-m); 0.1 arcsec = 30 au; speckle limits per Scott+2021 (R 6-15 typical, R>16 needs 30-45 min, r~18 limit); no CTOI route exists for Kepler-field stars; Tmag 12 at 30 pc routine TFOP",
+   "verdict": "corrected",
+   "correction": "Masses/amplitudes confirmed (Chen & Kipping: 2.7 Re -> 7.8 Me, K = 3.3 m/s at P 13.77 d, M* 0.505; 1.4 Re -> 2.5 Me, K = 2.3 m/s at 3.18 d, M* 0.33). Speckle attributions were mixed: 'r~18 in good observing conditions' is Scott et al. 2021; 'R magnitudes in the range of 6-15' and '30-45 min for fainter sources (R > 16)' are Howell & Furlan 2022, which also give contrast 4-5 mag near the diffraction limit (20-30 mas) and 7-10 mag at 1 arcsec. The MAROON-X sentence ('1 m/s for mid M dwarfs as faint as V=16.5 in 30 minutes or less') is in arXiv:1606.07140 but assumed a 6.5-m telescope; the instrument is on 8.1-m Gemini North and reports a ~30 cm/s floor. The CTOI statement is outdated: ExoFOP's 19 Aug 2026 policy 'reopened support for community planet candidates from TESS, Kepler, K2, and beyond', but only for candidates already published in a peer-reviewed journal (or an RNAAS citing a previously published detection/vetting methodology), after approval via the 'Published Candidate Upload Request'; candidates are named TID.nn (TIC ID), carry a 'discovery data source' field (TESS = cTOI, otherwise 'Other Discovery Data Source'), need >=2 of {period, epoch, depth} (all four incl. duration for cTOI consideration), supporting plots, and a cross-check against TOIs/candidates. So a Kepler-field candidate has an ExoFOP route, but it starts with a refereed paper.",
+   "evidence": "exofop.ipac.caltech.edu/tess (news) and candidate_help.php fetched 2026-10-17; frontiersin.org fetches; pdftotext of 1606.07140"
+  },
+  {
+   "claim": "File sizes: KBONUS stitched light curve 5-11 MB per star (mean ~8.5 MB); Kepler PDC long-cadence 0.47 MB/quarter; TESS-SPOC FFI light curve 1.1 MB/sector",
+   "verdict": "confirmed",
+   "correction": "16 cached KBONUS files: mean 7.9 MB, range 1.1-11.5 MB (the 1.1 MB file is a short, few-quarter source). Kepler/TESS-SPOC sizes not re-measured. Addition: TARS FFI light curves are 0.14 MB per star-sector.",
+   "evidence": "find/du on lkcache; os.path.getsize on the TARS file"
+  },
+  {
+   "claim": "Published rates: Hsu+2020 4.2 (Dirichlet) / 8.4 (uniform) planets per star, 0.5-4 Re, 0.5-256 d from 1,746 M dwarfs/89 PCs; Ment & Charbonneau 2023 0.61 (+0.24/-0.19) per star P 0.4-7 d, <0.07 for >1.5 Re, 14:1; Hardegree-Ullman 2019 1.19 (+0.70/-0.49), M5 3.07 (+5.49/-2.49); Bergsten 2022 eta_Earth 15 (+6/-4)%, M*^(1.7+/-0.2), ~2x",
+   "verdict": "confirmed",
+   "correction": "All abstracts confirm; Hsu's Dirichlet-baseline/uniform assignment is in the body (lines 322-395 of the text dump).",
+   "evidence": "arXiv abstract fetches; dl/2002.02573.txt"
+  },
+  {
+   "claim": "KBONUS paper: CDPP '<100 ppm for G<16', PSF photometry up to 40% better than aperture for G>13.25, 606,900 light curves, 406,548 new background sources; EVEREST 2.0 recovers Kepler precision to Kp 14 (15 for C1,5,6)",
+   "verdict": "confirmed",
+   "correction": "Abstract: 'comparable quality ... with CDPP values <100 ppm for sources G<16'; Summary: 'PSF photometry performs up to 40% better, in CDPP value, compared to aperture photometry for sources fainter than G=13.25'; Section III.2 says 'almost 27,500 new light curves in the M-type dwarf region' and ~3,700 Kepler-targeted M dwarfs (the 29,800-row catalogue = both). EVEREST quote confirmed.",
+   "evidence": "arxiv.org/html/2310.17733v1 and arxiv.org/abs/1702.05488 fetches"
+  },
+  {
+   "claim": "TESS is in Sector 109 (Sector 110 begins 2026-10-31); SPOC FFI light curves cover up to 160,000 targets per sector; QLP covers T<13.5; T>13.5 is the 'never searched by official pipelines' regime",
+   "verdict": "corrected",
+   "correction": "Sector 109 / Sector 110 start 31 Oct 2026 confirmed; 160,000 per sector (10,000 per CCD x 16) confirmed. QLP: T<13.5 confirmed for EM1 (Kunimoto et al. 2021/2022 HLSP notes), and 'starting in Sector 41, QLP also produces light curves for select fainter M dwarfs'. The 'never searched' statement is wrong for nearby stars: TESS-SPOC FFI targets include all d<=100 pc (or H<=10) stars with T<=16 and crowding>=0.5 before the T<=13.5 field-star fill, and SPOC runs TPS/DV on FFI targets since May 2021. The genuinely unsearched regime is T>13.5 AND d>100 pc (or crowding<0.5), or any star dropped by the 10,000-per-CCD cap in crowded fields, or P too long for single-sector searches in Prime/EM1 data.",
+   "evidence": "tess.mit.edu/observations; ar5iv 2011.05495; archive.stsci.edu/hlsp/tess-spoc; WebSearch on Kunimoto QLP notes"
+  },
+  {
+   "claim": "The K2TARGETS table has no Teff; M-dwarf proxy via J-K, Kp-J, PM gives 13,891 stars Kp<16.5 out of 392,156 long-cadence targets",
+   "verdict": "refuted",
+   "correction": "K2TARGETS has k2_teff, k2_logg, k2_rad, k2_mass (EPIC stellar parameters), populated for 236,785 of 392,156 long-cadence rows. k2_teff<4000 & k2_logg>4 gives 47,749 rows and 27,666 unique EPICs with Kp<16.5 (k2_rad<0.6 gives the same set). The 392,156 long-cadence count is confirmed (392,245 total rows, 89 short-cadence-only).",
+   "evidence": "TAP_SCHEMA.columns and COUNT queries on k2targets, 2026-10-17"
+  }
+ ],
+ "additions": [
+  "ExoFOP policy changed on 2026-08-19: community candidates from TESS, Kepler, K2 'and beyond' are accepted again, but only after publication in a peer-reviewed journal (or an RNAAS that cites a previously published detection+vetting methodology), with upload approval requested via the 'Published Candidate Upload Request' form; names are TID.nn (TIC ID), a 'discovery data source' field distinguishes cTOIs (TESS) from 'Other Discovery Data Source' candidates, and >=2 of period/epoch/depth (all four incl. duration for cTOI consideration) plus supporting plots and a TOI/candidate cross-check are required (exofop.ipac.caltech.edu/tess/candidate_help.php). Practical consequence: the realistic end state for ANY solo candidate is 'refereed paper first, ExoFOP listing second'; the brief's 'CTOI -> TOI' path for a Rabtsevich-type star is no longer an unreviewed upload.",
+  "TESS-SPOC FFI target selection (Caldwell et al. 2020, ar5iv 2011.05495; MAST HLSP page): (1) all 2-min targets; (2) 'include' targets with H<=10 OR distance<=100 pc, crowding>=0.5 and T<=16; (3) field stars in T order with T<=13.5, logg>=3.5, crowding>=0.8; cap 10,000 per CCD (152,359-160,000 per sector). SPOC has run TPS on FFI targets since May 2021 (single-sector DV products from Sector 36, multi-sector from Sector 56; no multi-sector search of Prime/EM1 FFI data). Therefore every GCNS M dwarf within 100 pc with T<=16 and crowding>=0.5 is nominally a SPOC-searched star; novelty checks must include TESS-SPOC DV/TCE products on MAST, not only TOIs. The real gaps are: d>100 pc faint stars, crowding<0.5 stars, cap-dropped stars in dense fields, and periods needing multi-sector coverage in Sectors 1-55.",
+  "TARS (TESS All-Sky Rotation Survey; Boyle, Bouma & Mann; DOI 10.17909/2sff-fn29) is a ready-made HLSP of CPM-corrected FFI light curves for ~7.5 million TIC stars with T<16 and parallax>2 mas (d<500 pc), Sectors 1-96, 0.14 MB per star-sector, FFI cadence (200 s in S81). It covers KIC 5689121 (TESSMAG 15.21) in all 10 of Kuber's sectors; measured 1-h noise 5,029 ppm in S81 (Stassun model ~5,900 ppm). For a faint-M-dwarf TESS search this removes the TESScut/TGLC extraction cost, with the caveat that the causal-pixel-model detrending was tuned for rotation periods 0.1-20 d and must be injection-tested for transit preservation.",
+  "QLP (T<13.5 for EM1 Years 1-2 per Kunimoto et al. 2021/2022 HLSP notes) 'also produces light curves for select fainter M dwarfs' from Sector 41 onward; and the TESS Faint-star Search (Kunimoto et al. 2022, ApJS 259, 33) vetted 10.5<T<13.5 QLP signals (1,617 TOIs, Sectors 1-26). Current QLP faint limits for EM2/EM3 remain unverified (no published note found).",
+  "A flux-based contamination pre-filter for KBONUS light curves, measured here: the Kepler zero point Kp + 2.5 log10(median FLUX e/s) = 25.31 +/- 0.20 (10 files with valid KEPMAG). For an uncontaminated M dwarf G - Kp_implied is within +/-0.2 (KIC 5689121: -0.03). The two anomalously quiet stars have G - Kp_implied = +2.26 (KIC 10198500) and +2.30 (KIC 8565344): their PSF flux is ~8x too bright, i.e. the originating target's light; two more are 2.3x too bright. Flag any file with G - Kp_implied > 0.5 (also: missing KEPMAG = 1e+20 in the header is itself a warning) before searching.",
+  "The Kepler known/model realism ratio is magnitude dependent: 0.45 for Kp<16 (114 known vs 255.6 model) and 0.15 for Kp>16 (15 vs 100.4). For a pool with median G 18.5 the appropriate discount is ~0.15, giving ~15-20 expected planets in Kuber's 1,836 stars rather than ~40, which narrows the gap to his harvest of 1 candidate + ~5 unresolved leads.",
+  "Astrophysical false-positive rates are missing from the brief: Fressin et al. 2013 (arXiv:1301.0842) find a global Kepler FP rate of 9.4%, 12.3% for Earth-size (0.8-1.25 Re), 6.7% for small Neptunes (2-4 Re), 17.7% for giants (6-22 Re). These are for Kepler primary targets dominating their apertures; for KBONUS background sources extracted from a brighter neighbour's TPF the blended-EB/contaminant probability is much higher (TRICERATOPS FPP 0.069 for KIC 5689121 is the concrete example), so any yield model should carry an FP fraction of >=10% and a per-candidate FPP calculation, not just detection completeness.",
+  "DC15 Table 5 also gives a 0.5-1.0 Re row (51.4% per star at P<50 d, 59.7% at P<200 d); the brief restricts to 1-4 Re. In Kepler/KBONUS data at Kp<15 the minimum detectable radius is 0.4-0.7 Re, so sub-Earths contribute ~25 extra transiting planets per 1000 M dwarfs in the bright bins (with only 36-54% injection recovery in DC15's own cells).",
+  "Exoplanet Archive TAP table names verified on 2026-10-17 (TAP_SCHEMA.tables): cumulative, Q1_Q17_DR25_KOI, Q1_Q17_DR25_TCE, Q1_Q17_DR25_SUP_KOI, Q1_Q17_DR25_KS, Q1_Q17_DR25_SUP_KS, KEPLERSTELLAR, K2TARGETS, k2pandc, k2names, toi, ps, pscomppars, stellarhosts. There is no TAP table for the Kepler certified-false-positive or FPP tables (web interface only). q1_q17_dr25_stellar does not exist; use Q1_Q17_DR25_KS.",
+  "For M dwarfs T - G is about -1.0 to -1.1 (TIC 120686465: T 15.21, G 16.28), so convert GCNS G to Tmag with T ~ G - 1.0; the brief's G - 0.7 undercounts the T<15 pool by ~10% (G<16 within 100 pc = 131,614).",
+  "tess-point (pip install tess-point; tess_stars2px.py) is the standard way to replace the 2/4/8-sector scenario with a measured sector-count histogram for a target list; it is not installed in the sandbox (unverified here, but it is the tool the TESS GI office distributes).",
+  "Kuber's 'first screen' BLS SNR is not Kepler's MES: Kepler's 7.1-sigma MES threshold and DR25 completeness curves refer to the TPS matched-filter statistic on whitened data, while astropy BoxLeastSquares objective='snr' uses the supplied dy; red-noise-inflated dy (as in Kuber's 'aperture local SNR 13.7' vs '26.7 BLS SNR') changes the number by 2x. Any yield model or threshold must state which statistic it uses."
+ ],
+ "remaining_uncertainties": [
+  "The TESS-SPOC 10,000-per-CCD cap: how many GCNS M dwarfs within 100 pc were actually dropped in crowded sectors is unknown; the HLSP lists the selection rules but not per-sector completeness. A direct check (search TESS-SPOC products for a GCNS subsample via lightkurve author='TESS-SPOC') was not run.",
+  "Current QLP magnitude limit in Extended Missions 2-3 (Sectors 56+): only the EM1 notes (T<13.5, plus 'select fainter M dwarfs' from S41) were found; if QLP now reaches T~14-15 the TESS residual shrinks further.",
+  "The BLS runtimes and white-noise Monte Carlo were taken from the agent's output file and not re-timed; the sandbox CPUs are shared (+/-30%).",
+  "EPIC k2_teff/k2_logg for faint K2 stars are photometric (Huber et al. 2016) and known to misclassify some giants/reddened dwarfs; the 27,666-star K2 cool-dwarf count is an upper bound on genuine M dwarfs, and which of them were already searched end-to-end (Dressing+2017/2019, Hardegree-Ullman+2020, Zink+2021) was not established.",
+  "The flux-based contamination test (G - Kp_implied) was calibrated on only 10 files (zero-point scatter 0.2 mag); a scan of all 1,836 eligible stars (~4 h of downloads) is needed before adopting the 0.5-mag threshold.",
+  "Whether TARS CPM light curves preserve 2-h transits at full depth was not tested (injection-recovery needed); their 1-h noise for T~15 matched the Stassun model within 15%, but transit-depth fidelity is a separate question.",
+  "The physical nature of Kuber's two inverted stars at candidate strength (KIC 8701308, KIC 5283912) remains unexamined; if they would fail his pixel/dilution tests the inverted-null rate at candidate strength overstates the risk for the real candidate.",
+  "The realism-factor split (0.45 vs 0.15 by Kp) conflates DR25 pipeline completeness, Robovetter losses, KOI-host Teff crossmatch issues and the use of CDPP medians that hide active stars; it was derived from the agent's model table, not from an independent injection study.",
+  "K2 known-planet count differs by parameter row (134 vs 150); the K2 candidate catalogues from Zink et al. 2021 and Kruse et al. 2019 were not merged, so 'already found' in K2 is a lower bound.",
+  "ExoFOP's new policy page does not say whether a declined-then-revised RNAAS (Kuber's AAS82222) would qualify; the RNAAS clause requires a cited, previously published methodology paper."
+ ]
+}

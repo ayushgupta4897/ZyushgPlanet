@@ -1,0 +1,172 @@
+{
+ "corrections": [
+  {
+   "claim": "Kuber's search orchestration re-used per-star JSON checkpoints only when status=='ok', pipeline_version matched and input_sha256 matched (acquire.py, run_search.py, watch_search.py / pilot.py).",
+   "verdict": "corrected",
+   "correction": "True only for the TESS wrapper run_search.py (checks status=='ok', pipeline_version==3 and input_sha256). The Kepler Bonus pilot.py, which is the search that found KIC 5689121, caches with `if dest.exists(): return json.loads(dest.read_text())` -- no status, version or hash check; its results carry only a string label 'kbonus_pilot_v1'. pilot.py also requires only >=6 usable quarters (acquire(row, min_quarters=6)); the '>=8 PSF quarters' cut is a catalogue-level cut on psf_avail. It detrends with window=1.0 d (R.L.clean(..., window=1.)), inverts both PSF and SAP flux (d['sap_flux']=2-d['sap_flux']) and passes holdout_was_unseen=True to the independent vetter.",
+   "evidence": "Read evidence/codex/database_expansion/kbonus/pilot.py (one(): `if dest.exists():return json.loads(dest.read_text())`; `def acquire(row,min_quarters=6)`) and evidence/codex/run_search.py (`if cached.get('status')=='ok' and cached.get('pipeline_version')==3 and cached.get('input_sha256')==...`) in the read-only clone @09f4aa0 on 2026-10-17."
+  },
+  {
+   "claim": "Per-star runtimes: Kepler Bonus median 16.0 s (p90 27 s, max 35 s, 129 files, 0.60 CPU-h); TESS 0.5-25 d median 6.1 s; TESS 0.2-0.5 d median 3.0 s.",
+   "verdict": "confirmed",
+   "correction": "",
+   "evidence": "Recomputed over the 'seconds' field: kbonus/results/*.json n=129 median 16.0 p90 27.0 max 35.4 total 0.60 h; results/*_regular.json (non-inverted) n=175 median 6.1 p90 11.6 max 19.7; *_usp.json n=176 median 3.0. Candidate file 2103792461826460288.json: status ok, 26.8 s, rank-1 P=13.769414 d, BLS SNR 26.7, holdout SNR 15.5, holdout quarters [12,14,15,16]."
+  },
+  {
+   "claim": "Kuber's post-hoc practices: stricter screen 'chosen after seeing these results'; 2/1,736 first called an empirical FAP, corrected 13 Oct; extension ran in Python 3.10 with unpinned deps vs the 3.12 lock.",
+   "verdict": "confirmed",
+   "correction": "",
+   "evidence": "analysis/kbonus-extension-20261011/README.md: 'This screen was chosen after seeing the earlier batch, so it is descriptive, not a clean test' and 'Environment here was Python 3.10 with unpinned recent numpy/scipy/astropy/lightkurve, not the Codex lock file'; analysis/editorial-audit-20261013/README.md: 'The original SCIENCE.md interpretation of 2/1,736 as an empirical false-alarm rate has been corrected'; SCIENCE.md line 63 carries the corrected wording '(Interpretation corrected 13 October 2026.)'."
+  },
+  {
+   "claim": "Analysis scripts carry absolute /root/ph/... paths and /tmp imports ('not a one-command rerun').",
+   "verdict": "confirmed",
+   "correction": "The /root/ph paths are in analysis/validation-20261011/scripts/post/*.py and independent_check/n.py (not in the extension's batch2.py/inv.py, which are clean).",
+   "evidence": "grep -rln '/root/ph' in the clone; README.md line 35 'Historical TESS scripts retain their original scratch paths and are not a one-command rerun'; planethunt.md line 91."
+  },
+  {
+   "claim": "Chopra's audits: Codex + a fresh Claude session, read-only; findings 8.2 sigma -> 7.2/7.7, Jacobian, brightening-locating pixel test, hold-out box width changed after a failed fold, flipped test skipped triage, FAP 0.01/0.2 withdrawn, HIP 114417 detector-coordinate artefact, 'never searched by SPOC' false (S36/2021, multi-sector S56), UTC off by 6.5 min; 0.75 d window chosen by injection 10/16; 40-box noise cut misfires 15-25% -> 5%; 526 stars ~1.5 h on 12 cores; RESPONSE_TO_CODEX F1-F8 all Accepted, two reproduced by re-running reviewer scripts.",
+   "verdict": "confirmed",
+   "correction": "README states 'The code was written with the AI coding agent Claude Code (Anthropic). Independent reviews used OpenAI Codex and a separate Claude session.' GUIDE: 'since 2021 (sector 36) it has searched those too, including multi-sector searches from sector 56'. RESPONSE_TO_CODEX marks three findings (F2, F4, F6) as reproduced although the sentence says 'Two were reproduced independently by re-running the reviewer's scripts'.",
+   "evidence": "WebFetch of raw GUIDE.md, README.md and results/review/RESPONSE_TO_CODEX.md on 2026-10-17."
+  },
+  {
+   "claim": "eumemic params.toml values (fpp_max 0.5, nfpp_max 0.1, mes_min 10, b_max 0.9, ruwe_max 1.4, rp_eb_min 20, fa_score_h_min 0.8, centroid_reject_p 0.001; triceratops runs 10, min_survivors 20000; freshness period_d 2e-6) and README facts (645 candidates, 586 vs 587 inconsistency, 2.6x c8g vs c6i, 200 stars/70 s on c8g.4xlarge, ~17/4/9 s per star, 798,769 inverted stars, ~20x faster from S3 in us-east-1, Python 3.11 TRICERATOPS env, transit-diffImage http->https).",
+   "verdict": "confirmed",
+   "correction": "test_dag.py assertions were not re-fetched in this pass (taken from the brief's earlier fetch).",
+   "evidence": "WebFetch of https://raw.githubusercontent.com/eumemic/exoplanets/main/pipeline/params.toml and https://github.com/eumemic/exoplanets README on 2026-10-17 (release line 'TRICERATOPS recomputed, every input recorded (16 October 2026): 645 candidates')."
+  },
+  {
+   "claim": "eumemic cloud.py: default c8g.4xlarge, 'Nothing launches without --approve', credential-less instance with SigV4 presigned URLs, heartbeat.json/done.json/logs, `shutdown -h +{limit_min}`, follow every 30 s, 20-min heartbeat timeout, terminate checks batch tag, '270 signals (5,400 runs) took 34 min on 64 vCPUs on 15 October'.",
+   "verdict": "confirmed",
+   "correction": "`--hours` has no argparse default; the effective limit is the plan's `limit_hours = round(max(1.0, 3*hours), 1)`; the heartbeat timeout fires only after 25 min elapsed (`el > 25`).",
+   "evidence": "WebFetch of raw pipeline/cloud.py on 2026-10-17."
+  },
+  {
+   "claim": "ExoFOP since 2026-08-19: 'candidates must first be published in a peer-reviewed journal with online access' and 'approval to upload candidates is required'; forms candidate_help.php and pub_candidate_upload_request.php.",
+   "verdict": "confirmed",
+   "correction": "The notice speaks of 'community planet candidates from TESS, Kepler, K2, and beyond' (so a Kepler Bonus candidate is in scope) and never uses the term 'CTOI'.",
+   "evidence": "WebFetch https://exofop.ipac.caltech.edu/tess/ News item dated August 19, 2026."
+  },
+  {
+   "claim": "Workflow runtime: up to 16 concurrent agents by default, fewer with fewer CPUs (skill: min(16, CPUs-2)); CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS 1-256 (v2.1.269+); 4,096 items per call; 1,000 agents per run; Date.now()/Math.random() throw; saved scripts in .claude/workflows/ run as /<name> with args.",
+   "verdict": "confirmed",
+   "correction": "Additional facts that change the design: in `claude -p` / SDK runs the Workflow launch is subject to permission rules, so add `Workflow` or `Workflow(<name>)` to allow rules; the default size guideline is `medium` (<10 agents; `small` on Pro) so a 20-batch fan-out should set `workflowSizeGuideline` or be requested explicitly; a run with >25 agents shows a 'Large workflow' warning; edited saved scripts need `/reload-skills`; `/workflow-authoring` needs v2.1.248+; a usage-limit pause only happens in interactive subscription sessions, not in `-p`.",
+   "evidence": "WebFetch https://code.claude.com/docs/en/workflows 2026-10-17 ('Up to 16 concurrent agents by default, fewer when Claude Code has fewer CPUs available ... 1 to 256, which requires Claude Code v2.1.269 or later'); /workflow-authoring skill loaded in-session ('capped at min(16, available CPUs - 2) per workflow')."
+  },
+  {
+   "claim": "Background Bash in unattended sessions: 30 min default, 2 h max, raisable with BASH_DEFAULT_TIMEOUT_MS/BASH_MAX_TIMEOUT_MS; interactive sessions unlimited; never restored on resume.",
+   "verdict": "corrected",
+   "correction": "Correct for cloud sessions, CI and SDK, but 'In a run with the -p flag whose prompt you pass as text ... both defaults are 10 minutes instead of 30', and BASH_DEFAULT_TIMEOUT_MS must exceed 600000 to replace that. A `-p` run also waits at most 10 minutes of idle for background work (CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS) unless a main-conversation background command is still running. Monitor watches: 5 min default, at most 30 min, at most 10 min in `-p`. CLAUDE_CODE_TOOL_MEMORY_LIMIT requires v2.1.233+.",
+   "evidence": "WebFetch https://code.claude.com/docs/en/tools-reference (lines 192-210, 376) and https://code.claude.com/docs/en/headless ('Background tasks at exit') on 2026-10-17."
+  },
+  {
+   "claim": "Cloud VM: 4 vCPUs, 16 GB RAM, 30 GB disk, Ubuntu 24.04 x86_64; pauses after a few idle minutes; background work lost on reclaim; setup cached only if ~5 min; default allowlist lacks stsci.edu / ipac.caltech.edu / esa.int / zenodo.org hosts.",
+   "verdict": "confirmed",
+   "correction": "Cache expires after roughly seven days; `raw.githubusercontent.com` is in the default list; the GitHub proxy rejects GraphQL subcommands such as `gh pr` and `gh issue` (use `gh api` REST).",
+   "evidence": "WebFetch https://code.claude.com/docs/en/cloud-environments (lines 275, 361, 407-409, 421, 455, 549-741); grep of the default-domains list for stsci|ipac|esa.int|zenodo|arxiv|unistra returned nothing."
+  },
+  {
+   "claim": "Routines: min interval 1 h, fresh clone, no permission prompts, 100 scheduled runs/hour/account, 30 fires/hour/routine, bearer-token /fire endpoint, <routine-fire-payload> wrapping; /loop session-scoped with 7-day expiry.",
+   "verdict": "confirmed",
+   "correction": "The 30/hour/routine limit is one count shared by Run now, API fires and re-arming a one-off; API fires are additionally capped at 100/hour/account. The /fire call needs `anthropic-beta: experimental-cc-routine-2026-04-01`. Since v2.1.213 the saved prompt is treated as the assigned task (not untrusted content), but fire `text` stays wrapped as untrusted. /loop recurring tasks run up to 30 min late (jitter); minimum 1 minute.",
+   "evidence": "WebFetch https://code.claude.com/docs/en/routines and /scheduled-tasks on 2026-10-17."
+  },
+  {
+   "claim": "lightkurve.search_tesscut at RA 285.907827 Dec +40.941988 returns [14,26,40,41,53,54,74,75,80,81] (15 s); TESS search_lightcurve 10\" returns 14 HLSP products (TARS, TASOC); KBONUS-BKG search returns Gaia DR3 2103792461826460288 at 0.0\" and 2103792427466721792 at 3.07\".",
+   "verdict": "confirmed",
+   "correction": "Timings vary with MAST load: this run took 28.4 s (tesscut), 213.7 s (KBONUS-BKG radius search) and 30.3 s (TESS LC search).",
+   "evidence": "Executed in /home/user/ZyushgPlanet/.venv (lightkurve 2.6.0) on 2026-10-17."
+  },
+  {
+   "claim": "Kepler Bonus M-star catalogue is 2.4 MB with 29,800 rows and 5 columns; the full source catalogue has 606,900 rows and 24 columns including psffrac, crowdsap, psf_avail, tpforg, phot_g_mean_mag.",
+   "verdict": "confirmed",
+   "correction": "HEAD request gives Content-Length 2,390,400 bytes (the HLSP page lists it as '2.0 MB'); row/column counts not re-read here. HLSP page describes psffrac as 'Minimum detected PSF fraction' and crowdsap as 'Minimum detected SAP crowding' (minimum over quarters, so the per-quarter header values differ).",
+   "evidence": "curl -sI of the mstars catalogue URL; WebFetch https://archive.stsci.edu/hlsp/kbonus-bkg."
+  },
+  {
+   "claim": "Kepler Bonus is CC BY 4.0, DOI 10.17909/7jbr-w430; MAST Kepler/TESS and Gaia DR3 acknowledgement texts as quoted; Zenodo uses .zenodo.json and ignores CITATION.cff when both exist; CITATION.cff requires cff-version, message, title, authors.",
+   "verdict": "confirmed",
+   "correction": "The HLSP page cites the paper as 'Martinez-Palomera et al. 2023' with the arXiv bibcode 2023arXiv231017733M; the 'AJ 166, 265' journal reference is not on the MAST page (take it from ADS). CFF: type is 'software' or 'dataset' (default software); multiple licences are OR, not AND.",
+   "evidence": "WebFetch of the HLSP page, archive.stsci.edu/publishing/mission-acknowledgements, the Gaia DR3 credit page, help.zenodo.org/docs/github/describe-software/ and the raw CFF schema-guide.md on 2026-10-17."
+  },
+  {
+   "claim": "Zenodo REST flow (POST depositions -> PUT bucket -> PUT metadata -> POST actions/publish; scopes deposit:write + deposit:actions; sandbox 10.5072; 100 req/min authenticated).",
+   "verdict": "confirmed",
+   "correction": "Also 5,000 requests/hour authenticated; 50 GB per record (and per file) and 100 files per record on the new Files API; license defaults to cc-zero for datasets and cc-by otherwise.",
+   "evidence": "WebFetch https://developers.zenodo.org/ on 2026-10-17."
+  },
+  {
+   "claim": "AAS LLM policy posted 2026-09-09 (disclose tool and use; no unsupervised generation; caption names tool and prompt; no plots from LLM-supplied data; AI not an author; verify references). RNAAS: 1,500 words incl. title/headers/captions/references, 150-word abstract, one figure or table, moderated not peer reviewed, no charges, CC BY 4.0.",
+   "verdict": "confirmed",
+   "correction": "",
+   "evidence": "WebFetch https://journals.aas.org/author-llm-guidelines/ ('initially posted on 9 September 2026') and https://journals.aas.org/research-note-preparation-guidelines/ on 2026-10-17."
+  },
+  {
+   "claim": "64-vCPU prices: c8g.16xlarge ~$2.55 (spot 0.66-0.83); c6i.16xlarge ~$2.72 (spot 0.72-0.93); GCP c4a-standard-64 ~$2.87 (spot ~1.51); Azure D64ps_v6 ~$2.25 (spot 0.70-0.81); Hetzner CCX63 ~$1.56/h; Modal $0.0000131/core-s + $0.00000222/GiB-s, $30/month free.",
+   "verdict": "corrected",
+   "correction": "On-demand figures hold (vantage: c8g.16xlarge $2.552, c6i.16xlarge $2.720; holori/devzero: c4a-standard-64 $2.8736 us-central1, D64ps_v6 $2.246 East US). Spot moves: c8g.16xlarge $0.712 and c6i.16xlarge $1.155 on 2026-10-17 (vantage); c4a spot 0.78-1.51 across snapshots; D64ps_v6 spot 0.638-0.81. Hetzner CCX63: sparecores lists $1.5582/h (June 2026 listing), but Hetzner's June-15-2026 repricing moved the monthly price to EUR 853.49 for new orders (~EUR 1.17/h implied, my arithmetic), so treat the hourly figure as unconfirmed. Modal figures confirmed (Starter: 100 containers).",
+   "evidence": "WebFetch instances.vantage.sh/aws/ec2/c8g.16xlarge and c6i.16xlarge; WebSearch results from holori.com, devzero.io, gcloud-compute.com, cloudoptimo, sparecores.com, wz-it.com; WebFetch modal.com/pricing (2026-10-17)."
+  },
+  {
+   "claim": "TRICERATOPS 1.1.0 (PyPI 2026-09-02, Requires-Python >=3.8) pins pytransit==2.2 and needs numba, celerite, lightkurve, arviz, corner; leo-vetter 1.2.0 (2026-07-29) depends on numpy, scipy, brokenaxes, batman-package, lmfit.",
+   "verdict": "confirmed",
+   "correction": "TRICERATOPS also carries environment markers: numpy<2 and scipy<1.14 on Python <3.13, numpy>=2.1 and scipy>=1.14 on Python >=3.13, setuptools<81 on >=3.12, plus mechanicalsoup, pyrr, seaborn, beautifulsoup4, emcee. LEO-Vetter README: flux-level vetting 'can work on light curves from any source, including (but not limited to) Kepler, K2, and TESS'; pixel-level vetting is TESS-only; cite Kunimoto et al. 2025, AJ 170, 280.",
+   "evidence": "curl https://pypi.org/pypi/triceratops/json and leo-vetter/json in the sandbox; WebFetch https://github.com/mkunimoto/LEO-Vetter."
+  },
+  {
+   "claim": "The drafted PreToolUse guard hook denies untrusted execution, sealed-holdout reads, params.toml edits during a run and claim language; the workflow script parses under node.",
+   "verdict": "corrected",
+   "correction": "All five positive tests reproduce, and node --check passes with stubbed hooks. But the hook is bypassable: `cd third_party/untrusted/planethunt/evidence/codex && python run_search.py` returns no decision; the matcher 'Bash|Edit|Write' never sees the Read tool, so `Read runs/r1/holdout/x.json` is not blocked; hooks never fire for @-mentioned files. The permissions docs say deny rules (e.g. `Read(./runs/*/holdout/**)`) are evaluated regardless of the hook and are the harder layer, while even they do not catch a Python script that opens the file. The SessionStart hook's `timeout: 300` lowers the default of 600 s rather than raising it.",
+   "evidence": "Ran drafts/hooks/guard.sh with jq-built PreToolUse JSON in the sandbox; WebFetch https://code.claude.com/docs/en/hooks ('Defaults: 600 for command ...'; 'no PreToolUse hook fires for them, including hooks matching Read') and /permissions ('PreToolUse hook decisions don't bypass permission rules'; Read/Edit deny rules 'don't apply ... to arbitrary subprocesses that read or write files indirectly, like a Python or Node script')."
+  },
+  {
+   "claim": "The memory docs say CLAUDE.md is 'context, not enforced configuration' and the hooks docs call the `if` filter 'best-effort' and the hook 'a guardrail, not a security boundary'.",
+   "verdict": "corrected",
+   "correction": "The CLAUDE.md quote and the 'under 200 lines' target are verbatim. The hooks page says 'Because the if filter is best-effort, use the permission system rather than a hook to enforce a hard allow or deny'; the phrase 'guardrail, not a security boundary' does not appear there. 'Isn't a security boundary' appears on the permissions page about Bash rules: 'a deny or ask rule covers the invocation Claude usually produces and isn't a security boundary around the program'.",
+   "evidence": "WebFetch of https://code.claude.com/docs/en/memory, /hooks (three 100k-char chunks) and /permissions on 2026-10-17."
+  },
+  {
+   "claim": "The developer's repo has data/, docs/01-anatomy-of-kubers-discovery.md, an empty pipeline/ and runs/kic5689121/.",
+   "verdict": "corrected",
+   "correction": "As of this check pipeline/ is no longer empty: it holds README.md, run.py, fetch.py, prep.py, search.py, vet.py, triage.py, batch_search.py, run_batch.py, modal_app.py, report.py, ephemeris_match.py and prereg_poolA.json; runs/ has kic5689121/ (PNGs, run.log) and controls/ (config_used.json, results.jsonl, summary.json); targets/poolA_kbonus_bg_dwarfs_ranked.csv and a pinned requirements.txt exist. The layout in the brief must be merged with this, not imposed.",
+   "evidence": "ls /home/user/ZyushgPlanet/{pipeline,runs,targets}; head pipeline/README.md on 2026-10-17."
+  },
+  {
+   "claim": "uv pip compile needs -o to write a file; uv pip sync makes the environment exactly match; --generate-hashes availability on uv 0.11.32 untested.",
+   "verdict": "confirmed",
+   "correction": "`uv pip compile --help` on uv 0.11.32 lists `--generate-hashes`, `-o, --output-file` and `-P, --upgrade-package`, so the open question is closed.",
+   "evidence": "Ran `uv pip compile --help` in the sandbox; WebFetch https://docs.astral.sh/uv/pip/compile/."
+  },
+  {
+   "claim": "MAST holdings page: ingest 'typically takes about 20 hours' and TESScut/bulk/exo.MAST follow 'after another day or two'.",
+   "verdict": "corrected",
+   "correction": "Verbatim: 'One sector of TESS data takes approximately 20 hours to archive and make available in the MAST Portal' and 'After all data are archived, MAST services such as the bulk downloads, TESScut, and exo.MAST take another 1-2 days to bring online.'",
+   "evidence": "WebFetch https://outerspace.stsci.edu/display/TESS/TESS+Holdings+Available+by+MAST+Service."
+  }
+ ],
+ "additions": [
+  "Enforcement layering per the Claude Code docs: deny rules in settings.json are evaluated regardless of what a PreToolUse hook returns; a blocking hook (exit 2) also beats allow rules. Read/Edit deny rules use gitignore syntax (`Read(./runs/*/holdout/**)`), cover the file tools plus recognised Bash file commands (cat/head/tail/sed/tee) and redirections, but not Python/Node scripts that open files; `Write(path)` rules are ignored (use `Edit(path)`); OS-level enforcement needs sandboxing. Hooks never fire for @-mentioned files. So the holdout seal needs a `Read(...)` deny rule plus the hook, and the untrusted-code rule is a guardrail only; the real protection is to keep third-party clones outside the working tree (as the scratchpad already does) and never `--add-dir` them.",
+  "`-p`/headless specifics that change the orchestration: background Bash defaults drop to 10 minutes when the prompt is passed as text; the run waits at most 10 idle minutes for background work (CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS); `--permission-prompts none` denies anything that would prompt; `--bare` skips project hooks/skills/CLAUDE.md (and a non-bare `-p` run executes a repo's .claude/settings.json hooks even in an untrusted folder, which matters when auditing third-party repos); a Workflow launch in `-p` needs `Workflow` or `Workflow(<name>)` in allow rules.",
+  "Kepler-specific vetting a professional expects and the brief under-specifies: per-quarter channel rotation (KBONUS LIGHTCURVE_Q headers carry QUARTER, SEASON, MODULE, OUTPUT, CHANNEL, FLFRCSAP, CROWDSAP, NPIXSAP, PSFFRAC, PERTRATI, PERTSTD; APERTURE_Q masks are in the originating TPF frame, TPFORG in the primary header) so difference images and centroids must be done per season and the dilution model must use per-quarter FLFRCSAP/CROWDSAP; 29.4-min cadence (XPOSURE 1765.464 s) requires exposure-time integration (supersampling) in any transit fit; timing conventions BKJD = BJD - 2454833, BTJD = BJD - 2457000, so BTJD = BKJD - 2167 exactly; Kepler DR25 Robovetter-style tests (odd/even, secondary, model-shift/ghost, rolling-band 'Skye') and the KOI false-positive flags (koi_fpflag_nt/ss/co/ec in `cumulative`) and Kepler EB catalogue (Villanova; Kuber's provenance.json records villanova_home.html) belong in the ephemeris-match step.",
+  "Exact NASA Exoplanet Archive TAP table names verified live: pscomppars, ps, toi, cumulative, q1_q17_dr25_koi, q1_q17_dr25_sup_koi, q1_q17_dr25_tce, k2pandc, keplerstellar, q1_q17_dr25_ks, keplernames, k2names (names are case-insensitive). `fpwg` and `koi` are NOT TAP tables (QUERY_STATUS ERROR). ExoFOP bulk CSVs: https://exofop.ipac.caltech.edu/tess/download_toi.php?sort=toi&output=csv and download_ctoi.php?sort=ctoi&output=csv (both returned headers on 2026-10-17).",
+  "LEO-Vetter is usable on Kepler for flux-level vetting (README: 'any source, including ... Kepler, K2, and TESS'); only its pixel-level (difference-image) vetting is TESS-only. Cite Kunimoto et al. 2025, AJ 170, 280. This closes the brief's open question 7 for the flux-level metrics.",
+  "TRICERATOPS 1.1.0 dependency markers decide the env: on Python >=3.13 it requires numpy>=2.1 and scipy>=1.14 (so it can share a modern stack), on <3.13 it pins numpy<2 and scipy<1.14; keep it in its own venv either way because pytransit==2.2 is pinned.",
+  "Checkpoint design lesson from Kuber's own code: the cache key must include a hash of the pipeline code and parameters, not an integer version (SEARCH_AUDIT.md: 'Cache filenames contain only TIC/mode/inversion ... otherwise old JSON is silently reused'); write results atomically (acquire.py writes `.tmp.npz` then `replace`); record RNG seeds; record which SNR statistic is quoted (eumemic `refine` BLS SNR vs astropy `depth_snr` vs TLS SDE) because the three are not interchangeable.",
+  "Secrets handling for publishing: never give the agent a Zenodo token (a `Bash(curl * -X POST *zenodo.org*)` deny only matches that spelling, and Python `requests` is invisible to Bash rules); keep the token in a file covered by a `Read(...)` deny rule and let the human run the publish.",
+  "Routine prompts must explicitly say to act on the `<routine-fire-payload>` block; the /fire endpoint requires `anthropic-beta: experimental-cc-routine-2026-04-01`; in cloud sessions `gh pr` (GraphQL) is rejected by the GitHub proxy, so a sector-watcher routine should open PRs with `gh api` or push a branch and let the UI create the PR.",
+  "Workflow sizing: with the default `medium` size guideline Claude aims for <10 agents; set `workflowSizeGuideline` (or `/config workflowSizeGuideline=large`) and `CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS` explicitly; on 4 CPUs the effective concurrency is min(16, 4-2) = 2 agents.",
+  "The developer's repo already contains a working single-star pipeline (pipeline/run.py with BLS 1-60 d ~2.5 min and TLS 1-30 d ~5 min per light curve on 3 threads, per pipeline/README.md) plus batch_search.py, modal_app.py, triage.py, ephemeris_match.py and a prereg_poolA.json; the agentic layer should wrap these modules rather than the brief's hypothetical module names."
+ ],
+ "remaining_uncertainties": [
+  "Effective Workflow concurrency on 4-CPU hardware (formula says 2) not measured empirically.",
+  "Whether a Routine's Custom allowlist with *.stsci.edu / *.ipac.caltech.edu covers TESScut redirect hosts; needs one live run.",
+  "Exact Modal cost for a CPU-bound BLS sweep; needs a timed pilot.",
+  "RNAAS decline reason inferred from Kuber's audit, not from the decision letter.",
+  "LEO-Vetter flux-level thresholds on Kepler 29.4-min cadence untested (README says flux-level vetting works on Kepler, pixel-level is TESS-only).",
+  "eumemic tests/test_dag.py assertions and candidates/allsky folder layout not re-fetched in this pass.",
+  "Hetzner CCX63 hourly price after the June-2026 repricing (sparecores $1.5582/h vs EUR 853.49/month for new orders) unresolved.",
+  "Spot prices quoted (c8g.16xlarge $0.712, c6i.16xlarge $1.155 on 2026-10-17) move daily; on-demand figures are stable.",
+  "The hooks docs' 'Security considerations' section (chunk 3 of the page) was located but not quoted; the brief now cites the permissions page for the 'isn't a security boundary' wording."
+ ]
+}

@@ -1,0 +1,144 @@
+{
+ "key_claims": [
+  {
+   "claim": "Kuber's search orchestration was three small scripts (acquire.py, run_search.py, watch_search.py / pilot.py): per-star JSON checkpoints re-used only when status=='ok', pipeline_version matches and input_sha256 matches; holdout split written to manifests/<id>_split.json before searching; inverted null via flux->2-flux before identical detrending; thresholds inline constants.",
+   "source": "planethunt clone: evidence/codex/run_search.py, acquire.py, watch_search.py, database_expansion/kbonus/pilot.py",
+   "confidence": "high",
+   "how_checked": "Read the files directly in the read-only clone"
+  },
+  {
+   "claim": "Per-star runtimes in Kuber's saved results: Kepler Bonus 0.5-25 d search median 16.0 s (p90 27 s, max 35 s, 129 files, 0.60 CPU-h); TESS 0.5-25 d median 6.1 s; TESS 0.2-0.5 d median 3.0 s.",
+   "source": "evidence/codex/database_expansion/kbonus/results/*.json and evidence/codex/results/*.json 'seconds' field",
+   "confidence": "high",
+   "how_checked": "Computed with a Python script over the JSON files in the sandbox"
+  },
+  {
+   "claim": "Kuber's post-hoc practices: a stricter screen (P>1.5 d, 12.5-14.5 d excluded, holdout SNR>=5) 'chosen after seeing these results'; the 2/1,736 inverted count was first called an empirical FAP and corrected on 13 Oct to 'descriptive, not a calibrated false-alarm probability'; the 11 Oct extension ran in Python 3.10 with unpinned deps versus the 3.12 lock.",
+   "source": "analysis/kbonus-extension-20261011/README.md; analysis/editorial-audit-20261013/README.md",
+   "confidence": "high",
+   "how_checked": "Quoted from the files"
+  },
+  {
+   "claim": "Chopra's audit rounds found: noise underestimated (8.2 sigma -> 7.2/7.7), missing Jacobian and correlated noise, pixel test locating brightenings as easily as dimmings, hold-out box width adjusted after a failed fold, flipped test that skipped triage, withdrawn FAP 0.01/0.2, centroid shift that was a detector-coordinate artefact, 'never searched by SPOC' false (SPOC FFI since S36/2021), UTC times off by 6.5 min; detrending window 0.75 d chosen by injection-recovery (10/16 vs 3/16, 8/16, 5/16); empirical 40-box noise cut false flags from 15-25% to 5%; 526 stars ~1.5 h on 12 cores.",
+   "source": "https://raw.githubusercontent.com/paraschopra/tess-planet-candidates/main/docs/GUIDE.md and results/review/RESPONSE_TO_CODEX.md",
+   "confidence": "high",
+   "how_checked": "WebFetch 2026-10-17"
+  },
+  {
+   "claim": "eumemic's dag build: @rule(inputs, outputs, params) with ctx.input/output/param; dag.lock.json hashes inputs, params, the code of every function called and installed packages; comment-only edits don't rerun; hand-edited outputs are marked 'edited' and stop the build; undeclared reads fail; params.toml holds thresholds (fpp_max 0.5, nfpp_max 0.1, mes_min 10, ruwe_max 1.4, b_max 0.9, triceratops runs 10).",
+   "source": "https://github.com/eumemic/exoplanets README; raw pipeline/rules.py, pipeline/params.toml, tests/test_dag.py",
+   "confidence": "high",
+   "how_checked": "WebFetch 2026-10-17"
+  },
+  {
+   "claim": "eumemic cloud.py: AWS spot c8g.4xlarge default, instance has no AWS credentials (presigned URLs), 'Nothing launches without --approve', heartbeat.json/done.json, hard shutdown -h; measured 270 signals (5,400 TRICERATOPS runs) in 34 min on 64 vCPUs; README: 2.6x speed-up c8g vs c6i, 200 stars in 70 s on 16-core c8g.4xlarge, S3 open bucket ~20x faster than MAST in us-east-1.",
+   "source": "https://raw.githubusercontent.com/eumemic/exoplanets/main/pipeline/cloud.py; README",
+   "confidence": "high",
+   "how_checked": "WebFetch 2026-10-17"
+  },
+  {
+   "claim": "ExoFOP policy since 2026-08-19: 'candidates must first be published in a peer-reviewed journal with online access before being uploaded to ExoFOP' and 'approval to upload candidates is required'.",
+   "source": "https://exofop.ipac.caltech.edu/tess/ News item 2026-08-19 (also stated in Chopra's GUIDE.md)",
+   "confidence": "high",
+   "how_checked": "WebFetch of the ExoFOP TESS front page 2026-10-17"
+  },
+  {
+   "claim": "Claude Code Workflow runtime: agent/pipeline/parallel/log/phase/args/budget hooks; up to 16 concurrent agents by default, fewer with fewer CPUs (skill text: min(16, CPUs-2)); override CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS 1-256 (v2.1.269+); 4,096 items per call; 1,000 agents per run; Date.now()/Math.random() throw; saved scripts in .claude/workflows/ run as /<name> with args.",
+   "source": "https://code.claude.com/docs/en/workflows and the /workflow-authoring bundled skill",
+   "confidence": "high",
+   "how_checked": "WebFetch 2026-10-17 and skill loaded in-session"
+  },
+  {
+   "claim": "Claude Code background Bash in unattended sessions (cloud, -p, CI): 30 min default, 2 h max via timeout, raisable with BASH_DEFAULT_TIMEOUT_MS/BASH_MAX_TIMEOUT_MS; local interactive sessions have no background time limit; background tasks are never restored on resume.",
+   "source": "https://code.claude.com/docs/en/tools-reference",
+   "confidence": "high",
+   "how_checked": "WebFetch 2026-10-17 (persisted output grepped)"
+  },
+  {
+   "claim": "Cloud session VM: 4 vCPUs, 16 GB RAM, 30 GB disk, Ubuntu 24.04 x86_64; VM pauses after a few idle minutes and background work is lost when reclaimed; setup script cached only if under ~5 min; Default/Trusted network allowlist does not include stsci.edu, ipac.caltech.edu, esa.int or zenodo.org hosts (Custom allowlist needed).",
+   "source": "https://code.claude.com/docs/en/cloud-environments; https://code.claude.com/docs/en/claude-code-on-the-web",
+   "confidence": "high",
+   "how_checked": "WebFetch 2026-10-17; grepped the default-allowed-domains section for stsci/ipac (no hits)"
+  },
+  {
+   "claim": "Routines: cloud, min interval 1 hour, fresh clone per run, no permission prompts, 100 scheduled runs/hour/account, 30 fires/hour/routine, API fire endpoint with bearer token and <routine-fire-payload> wrapping; /loop and CronCreate are session-scoped with 7-day expiry.",
+   "source": "https://code.claude.com/docs/en/routines; https://code.claude.com/docs/en/scheduled-tasks",
+   "confidence": "high",
+   "how_checked": "WebFetch 2026-10-17"
+  },
+  {
+   "claim": "lightkurve.search_tesscut at RA 285.907827 Dec +40.941988 returns sectors [14,26,40,41,53,54,74,75,80,81] (15 s) and search_lightcurve(mission='TESS', 10 arcsec) returns 14 HLSP products (TARS, TASOC); KBONUS-BKG search returns Gaia DR3 2103792461826460288 at 0.0 arcsec and 2103792427466721792 at 3.07 arcsec; astroquery Observations.query_criteria(target_name='120686465', ...) returned nothing.",
+   "source": "sandbox run with lightkurve 2.6.0 / astroquery 0.4.11",
+   "confidence": "high",
+   "how_checked": "Executed in the sandbox 2026-10-17"
+  },
+  {
+   "claim": "Kepler Bonus M-star catalogue has 29,800 rows and only 5 columns (gaia_designation, ra, dec, kic, fname; SHA-256 406563951c36...); the full source catalogue has 606,900 rows and 24 columns including psffrac, crowdsap, psf_avail, tpforg, phot_g_mean_mag, flfrcsap; the funnel cuts must be applied after a join on gaia_designation.",
+   "source": "https://archive.stsci.edu/hlsps/kbonus-bkg/catalogs/ (both FITS files)",
+   "confidence": "high",
+   "how_checked": "Downloaded the 2.4 MB M-star catalogue and lazily read the 140 MB catalogue header with astropy fsspec in the sandbox"
+  },
+  {
+   "claim": "Kepler Bonus HLSP is CC BY 4.0 with DOI 10.17909/7jbr-w430; MAST Kepler/TESS acknowledgement texts and the Gaia DR3 DPAC acknowledgement are quoted verbatim in the brief; Zenodo uses .zenodo.json and ignores CITATION.cff when both exist; CITATION.cff 1.2.0 requires cff-version, message, title, authors.",
+   "source": "https://archive.stsci.edu/hlsp/kbonus-bkg; https://archive.stsci.edu/publishing/mission-acknowledgements; Gaia DR3 credit page; https://help.zenodo.org/docs/github/describe-software/; CFF schema-guide",
+   "confidence": "high",
+   "how_checked": "WebFetch 2026-10-17"
+  },
+  {
+   "claim": "Zenodo REST deposit flow: POST /api/deposit/depositions -> PUT <bucket>/<file> -> PUT metadata -> POST actions/publish; scopes deposit:write + deposit:actions; sandbox.zenodo.org with 10.5072 DOIs; 100 req/min authenticated.",
+   "source": "https://developers.zenodo.org/",
+   "confidence": "high",
+   "how_checked": "WebFetch 2026-10-17"
+  },
+  {
+   "claim": "AAS LLM policy (posted 2026-09-09): disclose tool and purpose; no unsupervised generation; captions for AI-assisted visualisations name the tool and prompt; AI cannot be an author. RNAAS: 1,500 words incl. title/headers/captions/references, ~150-word abstract, one figure or table, moderated not peer reviewed, no author charges.",
+   "source": "https://journals.aas.org/author-llm-guidelines/; https://journals.aas.org/research-note-preparation-guidelines/",
+   "confidence": "high",
+   "how_checked": "WebFetch 2026-10-17"
+  },
+  {
+   "claim": "64-vCPU on-demand prices roughly: AWS c8g.16xlarge ~$2.55/h (spot ~$0.66-0.83), c6i.16xlarge ~$2.72/h (spot ~$0.72-0.93), GCP c4a-standard-64 ~$2.87/h (spot ~$1.51), Azure D64ps_v6 ~$2.25/h East US (spot ~$0.70-0.81); Hetzner CCX63 48 vCPU ~$1.56/h after the June-2026 repricing; Modal $0.0000131 per physical-core-second + $0.00000222 per GiB-second, $30/month free credits.",
+   "source": "holori.com, devzero.io, doit.com, cloud-mercato, sparecores.com, wz-it.com snapshots Jul-Sep 2026; modal.com/pricing",
+   "confidence": "medium",
+   "how_checked": "WebSearch/WebFetch of third-party price trackers; vendor price lists not reached"
+  },
+  {
+   "claim": "TRICERATOPS 1.1.0 (PyPI, 2026-09-02, Requires-Python >=3.8) pins pytransit==2.2 and depends on numba, celerite, lightkurve, arviz, corner; leo-vetter 1.2.0 (PyPI, 2026-07-29) depends on numpy, scipy, brokenaxes, batman-package, lmfit, GitHub mkunimoto/LEO-Vetter.",
+   "source": "https://pypi.org/pypi/triceratops/json; https://pypi.org/pypi/leo-vetter/json",
+   "confidence": "high",
+   "how_checked": "curl of PyPI JSON in the sandbox"
+  },
+  {
+   "claim": "The drafted PreToolUse guard hook denies: executing scripts under third_party/untrusted/, reading runs/<id>/holdout/ while STATE says phase: discovery (except pipeline.holdout), editing pipeline/params.toml while any run exists, and writing claim language such as 'found a new planet' into candidates/*/report.md; the workflow script skeleton parses under node when wrapped in the runtime's async body.",
+   "source": "drafts/hooks/guard.sh, drafts/search-batch.workflow.js",
+   "confidence": "high",
+   "how_checked": "Ran the hook with sample PreToolUse JSON via jq and node --check in the sandbox"
+  }
+ ],
+ "actionable_steps": [
+  "Create CLAUDE.md (<200 lines) from drafts/CLAUDE.md and .claude/rules/{provenance,vetting,publication}.md with paths: frontmatter; keep rules concrete and verifiable.",
+  "Install .claude/settings.json + .claude/hooks/guard.sh (PreToolUse on Bash|Edit|Write) from the drafts; add permission deny rules for Edit(./third_party/untrusted/**), Edit(./runs/*/prereg.yaml) and Bash(curl * -X POST *zenodo.org*); set OMP_NUM_THREADS=1 and BASH_*_TIMEOUT_MS in env.",
+  "Lay out the repo: pipeline/ (params.toml, sample/fetch/search/nulls/triage/holdout, vet/*, claims.py, manifest.py, sectors.py, tests/), runs/<run-id>/ (prereg.yaml, STATE, manifest.json, SHA256SUMS, results/, triage/, holdout/, injrec/), candidates/<id>/ evidence packs, docs/decisions/, third_party/untrusted/ read-only clones, data/ gitignored.",
+  "Write runs/<run-id>/prereg.yaml from drafts/prereg.template.yaml (Kepler Bonus cuts: join M-star catalogue to the 606,900-row source catalogue on gaia_designation; psffrac>0.5, crowdsap>0.7, >=8 PSF quarters, kic!=tpforg, exclude primaries; order by phot_g_mean_mag), commit, git tag prereg/<run-id>, deposit on Zenodo sandbox then production before the first search.",
+  "Implement pipeline.search with per-star JSON checkpoints keyed on input sha256 + pipeline version, matched inverted and phase-scramble nulls in the same invocation, holdout split written before search, and a _batch-summary + heartbeat file; choose the detrending window by injection-recovery in runs/<id>/injrec/ before freezing it.",
+  "Add .claude/skills/vet-candidate/SKILL.md (12-step ladder, tiers a-d) and .claude/agents/red-team.md (tools Read/Grep/Glob/Bash; Edit/Write/WebFetch disallowed; default refuted) from the drafts; add a reimplementer agent with Read denied on pipeline/.",
+  "Save drafts/search-batch.workflow.js as .claude/workflows/search-batch.js; run it first on a 64-star slice with args {runId, batchSize: 32, maxCandidates: 5}; expect ~2 concurrent agents on 4 CPUs (set CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS if needed).",
+  "Run the 1,800-star Kepler Bonus pilot locally in the background (~16 CPU-h, ~4 h on 4 cores) with nohup/setsid and a Monitor watch on the log; only move to a 64-vCPU spot VM or Modal when the sample exceeds ~20k stars; adopt eumemic's --approve gate and credential-less instance pattern.",
+  "Create a Custom cloud environment whose allowlist adds archive.stsci.edu, mast.stsci.edu, exoplanetarchive.ipac.caltech.edu, exofop.ipac.caltech.edu, gea.esac.esa.int, cdsarc.cds.unistra.fr, zenodo.org (plus the default package registries); use cloud sessions for vetting/report work, not multi-hour sweeps.",
+  "Create a weekly Routine (off the hour, e.g. 09:07) running python -m pipeline.sectors --check, which uses lightkurve.search_tesscut per candidate to detect new TESS sectors, runs the fixed-ephemeris TESS vetter, and opens a PR; another routine re-runs the novelty check and reports diffs.",
+  "Implement pipeline/claims.py build/check so every numeral in report.md/REPORT.md resolves to a cited JSON field; make it a required check in the release skill and in CI.",
+  "Before any public statement: three red-team reports + written responses, independent re-derivation agreement, novelty re-run within 24 h, human-signed docs/decisions/<date>-<id>-release.md after viewing the PNGs, SHA256SUMS/manifest.json, lockfiles recorded, CITATION.cff/.zenodo.json/SOURCES.md credits (Kepler Bonus DOI 10.17909/7jbr-w430, MAST and Gaia acknowledgements), GitHub Release with bulk-data-manifest.json, human-run Zenodo publish.",
+  "Use the public-claim and professional-email templates in section 6; never use 'found a new planet'; state FPP, the open loophole, the null pass count and the catalogue snapshot UTC; link the hashed evidence pack; do not commit third parties' email addresses.",
+  "Treat RNAAS as a late step requiring a professional's prior read; note ExoFOP's 2026-08-19 policy that candidates must be published in a peer-reviewed journal and upload approval requested, so a CTOI is no longer the first public step."
+ ],
+ "open_questions": [
+  "Effective Workflow concurrency on 4-CPU hardware: docs say 'up to 16, fewer with fewer CPUs', the skill says min(16, CPUs-2) = 2 here; confirm empirically or set CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS.",
+  "Whether a Routine's Custom allowlist with *.stsci.edu and ipac.caltech.edu hosts is sufficient for TESScut downloads (redirect hosts) - needs one live run.",
+  "uv 0.11.32 support for `uv pip compile --generate-hashes` was not exercised in the sandbox.",
+  "Exact Modal cost for a CPU-bound BLS sweep (physical core = 2 vCPU billing) - verify with a 10-minute pilot before committing to it for the scale-up the other agent planned.",
+  "The RNAAS decline reason for Kuber's note is inferred from his post-decision audit topics, not from the decision letter.",
+  "Whether a Zenodo-only evidence release satisfies ExoFOP's 'published in a peer-reviewed journal' requirement (almost certainly not), implying a professional co-author is needed for any ExoFOP listing of a Kepler Bonus candidate.",
+  "Whether LEO-Vetter (designed for TESS) behaves sensibly on Kepler 29.4-min cadence without modification.",
+  "GitHub API access to paraschopra/tess-planet-candidates and eumemic/exoplanets was blocked from this sandbox (proxy 403), so Chopra's results/phase3 audit file names and eumemic's per-candidate folder layout were not verified directly; the raw-file contents quoted were fetched successfully."
+ ]
+}

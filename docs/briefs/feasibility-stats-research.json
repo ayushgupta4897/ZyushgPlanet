@@ -1,0 +1,122 @@
+{
+ "key_claims": [
+  {
+   "claim": "DC15 occurrence rates imply 76.5 transiting 1-4 Re planets with P<50 d per 1000 M dwarfs (25.8 with Rp 2-4 Re), for a 0.5 Msun / 0.5 Rsun host with 1.08 R*/a transit probability",
+   "source": "Dressing & Charbonneau 2015, arXiv:1501.01623 Table 5 (pdftotext extraction) + yield_model.py output",
+   "confidence": "high",
+   "how_checked": "Cumulative Table 5 values re-summed in code; total 2.48 planets/star matches the paper's 2.5 +/- 0.2"
+  },
+  {
+   "claim": "Kuber's KBONUS selection funnel 29,800 -> 9,204 -> 6,477 -> 2,495 -> 1,836 reproduces exactly from the MAST catalogues; KIC 5689121 is rank 52 by ascending G; the 1,836 eligible stars have median G 18.47 and only 104 are brighter than G 17",
+   "source": "kbonus_funnel.py on hlsp_kbonus-bkg mstars (2.4 MB) and source (159 MB) catalogues downloaded from archive.stsci.edu/hlsps/kbonus-bkg/catalogs/ on 2026-10-17",
+   "confidence": "high",
+   "how_checked": "Join on Gaia designation, cuts PSFFRAC>0.5, CROWDSAP>0.7, >=8 ones in psf_avail, kic != tpforg; counts match the editorial audit table"
+  },
+  {
+   "claim": "The KBONUS-BKG PSF light curve of KIC 5689121 has 6-h CDPP ~405 ppm and 2.3-h CDPP ~571 ppm (SAP: 315/454 ppm), 4x the paper's headline '<100 ppm for G<16'; the fixed-ephemeris fold gives 76 transits, box depth 1,856 ppm, white-noise SNR ~33",
+   "source": "kbonus_noise2.py on lightkurve download of Gaia DR3 2103792461826460288 (author KBONUS-BKG); paper claim from arXiv:2310.17733 abstract",
+   "confidence": "high",
+   "how_checked": "Measured in sandbox with wotan biweight (1 d) detrend and MAD of boxcar means; depth consistent with Kuber's 1,438-2,348 ppm range"
+  },
+  {
+   "claim": "KBONUS background M dwarfs are typically as quiet as Kepler targets of the same magnitude (median ratio 0.84 of 6-h CDPP to DR25 cool-dwarf median, range 0.23-4.97 over 13 stars); ratios <0.5 indicate PSF flux dominated by the brighter neighbour",
+   "source": "kbonus_noise_vs_G.csv vs dl/dr25_cool_dwarfs.csv (Exoplanet Archive Q1_Q17_DR25_KS)",
+   "confidence": "medium",
+   "how_checked": "13 stars only; the physical-implausibility argument for ratios 0.23-0.36 is inference, not a measured contamination fraction"
+  },
+  {
+   "claim": "Kepler DR25 cool dwarfs (Teff<4000, logg>4; 4,821 stars) have median 6-h rms CDPP of 78/102/104/132/234/417/912 ppm in Kp bins 11-12 through 17-20; Christiansen 2012 Table 2 all-dwarf medians are 32-139 ppm for Kp 9-15",
+   "source": "Exoplanet Archive TAP Q1_Q17_DR25_KS (tap_cdpp2.py, 2026-10-17); arXiv:1208.0595 Table 2",
+   "confidence": "high",
+   "how_checked": "Direct TAP download and pandas medians; Table 2 extracted with pdftotext"
+  },
+  {
+   "claim": "TESS 1-hour noise model (Stassun 2018 polynomial via ticgen 1.0.4): 595 ppm at T 12, 2,285 at T 14, 5,190 at T 15; measured TESS-SPOC FFI light curves give 506 ppm at T 11.5 and 2,200-2,400 ppm at T 13.6-13.7 (crowded Kepler-field stars)",
+   "source": "ticgen source (get_oneHourNoiseLnsigma) citing arXiv:1706.00495; tess_noise_measure.py on Kepler-138, Kepler-169, Kepler-42 TESS-SPOC sectors 81-82",
+   "confidence": "high",
+   "how_checked": "Model evaluated and compared with three measured light curves in the sandbox"
+  },
+  {
+   "claim": "Yield model (realistic logistic completeness): Kepler primaries 356 detectable vs 129 known KOIs; KBONUS eligible 1,836 stars 111 detectable (47 with Rp>2 Re), ~0 known; TESS GCNS M dwarfs within 100 pc 1,029-2,534 detectable (2-8 sectors) vs 258 TOIs; K2 proxy 691 detectable vs 132 known; realism discount factor 0.36 from the Kepler known/model ratio",
+   "source": "yield_model.py --realistic output (yield_model_realistic.out)",
+   "confidence": "medium",
+   "how_checked": "Internally consistent code; inputs sourced; the 0.36 calibration and the applicability of DC15 rates to faint colour-selected sources are the dominant systematics (factor ~2-3)"
+  },
+  {
+   "claim": "GCNS M-dwarf candidates (BP-RP>1.84, M_G>8) within 100 pc: 213,665 total; 118,970 with G<15.7 (T<~15); 36,700 with G<13.7; within 30 pc 5,025 total",
+   "source": "Gaia archive TAP, external.gaiaedr3_gcns_main_1 (gaia_gcns3.py, 2026-10-17)",
+   "confidence": "high",
+   "how_checked": "COUNT queries; T-G conversion is approximate (Stassun+2019 relation gives T-G ~ -0.9 to -1.1 at BP-RP 2-2.5, so counts are ~10% conservative)"
+  },
+  {
+   "claim": "Known planets around cool hosts (Teff<4000) as of 2026-10-17: 214 KOIs (cand+conf) on 143 hosts, 129 with P<50 d and 1-4 Re; 581 TOIs excluding FP/FA, 295 with d<100 pc, P<50 d, 1-4 Re; 223 K2 planets, 132 with P<50 d and 1-4 Re",
+   "source": "Exoplanet Archive TAP tables cumulative, toi, k2pandc (known_bins.py)",
+   "confidence": "high",
+   "how_checked": "Direct CSV download and pandas binning"
+  },
+  {
+   "claim": "White-noise BLS over a 4-yr Kepler light curve with ~1.4e5-2.7e5 trial periods yields a maximum BLS SNR of 5.7-6.1 and SDE 4.4-5.5; TLS docs give SDE 7.0 = 1% FAP and 9.1 = 0.01% FAP for white noise",
+   "source": "bls_timing2.py Monte Carlo (3-8 realisations per case); transitleastsquares.readthedocs.io FAQ; Hippke & Heller 2019 arXiv:1901.02015",
+   "confidence": "high",
+   "how_checked": "Measured in sandbox; analytic sqrt(2 ln N_eff) ~ 6.0 agrees"
+  },
+  {
+   "claim": "Kuber's inverted null passes his first screen at a per-star rate of 1.8% (32/1,736; 90% CI 1.3-2.5%), equal to the real-data rate (31/1,736), and 2/1,736 inverted stars exceed his candidate's own scores (per-star 1.2e-3, 90% CI 2e-4 to 3.6e-3), so the expected number of inverted-equivalent events in his search is ~2 and P(>=1) ~ 0.86",
+   "source": "analysis/editorial-audit-20261013/README.md (local, untrusted repo) + multiple_testing.py Poisson intervals",
+   "confidence": "high",
+   "how_checked": "Counts taken from the audit table; intervals computed with scipy chi2"
+  },
+  {
+   "claim": "Chopra's flipped test: 743 real vs 752 flipped search passes, 10 vs 17 flag-free, strongest flag-free flipped SDE 8.4 vs real 11.3/10.3, zero flipped flag-free SDE>=9 in 526 stars -> per-star FAR <5.7e-3 (95%) and <3 expected fakes per survey; TRICERATOPS never completed; runtime 1.5 h on 12 cores",
+   "source": "https://raw.githubusercontent.com/paraschopra/tess-planet-candidates/main/docs/GUIDE.md (fetched 2026-10-17)",
+   "confidence": "high",
+   "how_checked": "Numbers quoted from the document; binomial/Poisson arithmetic in multiple_testing.py"
+  },
+  {
+   "claim": "eumemic: 798,769 inverted stars scaled to 4,039,203 searched predict 96 clean SNR>=9 false alarms (2,462 including neighbour/centroid classes) vs 9,938 real SNR>=9 signals; stack-slide ~9 s/star; K/M dwarf download ~130 GB transferred, ~12 GB stored; 645 counted candidates",
+   "source": "https://raw.githubusercontent.com/eumemic/exoplanets/main/README.md (fetched 2026-10-17)",
+   "confidence": "high",
+   "how_checked": "Quoted; README itself notes a 644 vs 645 inconsistency"
+  },
+  {
+   "claim": "astropy BoxLeastSquares runtimes on 1 core: Kepler 4-yr 46k points, 0.5-25 d Ofir grid OS=2 (274k periods x 6 durations) 124 s; OS=1 54 s; one quarter 3.8 s; TESS 2 sectors 2.8 s; 10 sparse TESS sectors 54-178 s; Kuber's pipeline measured 18.7 s/star median including download",
+   "source": "bls_timing2.out; evidence/codex/database_expansion/kbonus/pilot.log 'seconds' fields (64 stars)",
+   "confidence": "high",
+   "how_checked": "Measured in sandbox (CPU shared with other agents, so +/-30%)"
+  },
+  {
+   "claim": "Follow-up for a Kp 16 M dwarf at 300 pc: RV K ~3.4 m/s on V~16.6 (impossible), 0.1 arcsec = 30 au, single-transit SNR ~3.6 with a 1-m telescope; for a T 12 mid-M at 30 pc: depth 1.5 ppt, J~10, K ~2.4 m/s, 0.1 arcsec = 3 au, routine TFOP SG1/SG3/SG4 follow-up",
+   "source": "followup_feasibility.py (Chen & Kipping 2017 mass-radius; photon-noise model with stated assumptions); Scott+2021 and Howell & Furlan 2022 speckle limits; MAROON-X design goal arXiv:1606.07140; tess.mit.edu/followup",
+   "confidence": "medium",
+   "how_checked": "Magnitude transformations and systematics floors are approximate (+/-0.3 mag, factor ~1.5 in noise)"
+  },
+  {
+   "claim": "File sizes: KBONUS stitched light curve 5-11 MB per star (M-dwarf bundle 134 GB / 29,800); Kepler PDC long-cadence 0.47 MB per quarter; TESS-SPOC FFI light curve 1.1 MB per sector",
+   "source": "du on sandbox lkcache; MAST HLSP page for the 134 GB bundle",
+   "confidence": "high",
+   "how_checked": "Measured on downloaded files"
+  }
+ ],
+ "actionable_steps": [
+  "Size the pool before searching: require >=2,000 M dwarfs (expect ~150 transiting 1-4 Re planets with P<50 d, ~50 with Rp>2 Re before completeness) and prefer stars where the minimum detectable radius (Sect. 2.5 table) is <=1.5 Re at P 10-30 d, i.e. Kepler/KBONUS G<17.5, K2 Kp<15, TESS T<13 with >=4 sectors.",
+  "If staying in KBONUS: reproduce the 1,836-star funnel with kbonus_funnel.py (code in scratchpad), then widen it (PSFFRAC>0.5, CROWDSAP>0.7, >=4 quarters gives 2,379; dropping CROWDSAP to 0.5 or including the 2,040 Kepler-target M dwarfs' PSF light curves adds more) and prioritise the ~130 background stars with G<17; treat G>18 sources as unvettable.",
+  "Add a noise-vs-magnitude pre-filter: compute 6-h CDPP per star and flag anything below 0.5x or above 3x the DR25 cool-dwarf median at its G (dl/dr25_cool_dwarfs.csv); low outliers are neighbour-dominated PSF fluxes, high outliers are variables that will dominate false alarms.",
+  "Build the period grid yourself (N = OS x baseline/min_duration x ln(Pmax/Pmin); OS 2-3) and never call BoxLeastSquares.autoperiod on multi-year baselines; budget ~1-2 CPU-min per Kepler-length star for BLS, 3-6 s per TESS 2-4 sector star, and double it for the mandatory inverted run.",
+  "Calibrate significance empirically: run the identical pipeline (detrending, holdout split, vetting) on inverted and >=38 scrambled copies of every star; report the maximum null score, the per-star pass rate at the candidate's thresholds, and the implied expected number of null events in the search; do not promote a candidate whose score is exceeded by any null star, and size the null at >=10x the search to quote per-star FARs below 1e-3.",
+  "Use SNR>=9 with pixel-level localisation as the floor (eumemic's inverted calibration shows ~25% false alarms among SNR>=9 survivors and ~79% at SNR 7.5-9 even after vetting flags).",
+  "For TESS pools, target the gaps: 13.5<T<15 M dwarfs within 100 pc (44,639 stars at T 14-15, 6 known TOIs), P 20-50 d with >=6 sectors, and stars with no SPOC/QLP light curve; cross-check every survivor against TOI, CTOI (ExoFOP), TCE and LEO-Vetter outputs before claiming novelty.",
+  "Decide the end state in advance from host magnitude and distance: T<13 within 50 pc -> CTOI submission and TFOP SG1 photometry (1-m class), speckle, TRICERATOPS FPP<0.015; Kp>15 Kepler-field -> candidate evidence pack (Zenodo DOI, GitHub, per-quarter depth-vs-aperture-share, raw-TPF centroids, neighbour light curves, injection-recovery, inverted/scrambled nulls) and at most an RNAAS note.",
+  "Download from bulk bundles or parallelise MAST fetches (lightkurve took ~30 s per KBONUS star here); plan ~8.5 MB per KBONUS star, 0.47 MB per Kepler quarter, 1.1 MB per TESS-SPOC sector, 10-50 MB per TESScut sector for vetting only.",
+  "Report yields honestly: quote the model's detectable count, the empirical 0.36 Kepler known/model ratio as the realism factor, and the measured null pass rates, rather than extrapolated FAPs (both Chopra and Kuber withdrew extrapolated false-alarm figures)."
+ ],
+ "open_questions": [
+  "How many of the 1,836 (or 27,760) KBONUS 'M stars' are genuine M dwarfs versus reddened distant K dwarfs/giants? The catalogue is colour-selected (Martinez-Palomera+2023 Sect. III.2); a Gaia parallax/absolute-magnitude cut would sharpen the occurrence prior and the yield (not done here).",
+  "What fraction of KBONUS background PSF light curves are neighbour-dominated (the 0.23-0.36 noise-ratio cases)? A systematic CDPP-vs-G scan of all 1,836 eligible stars (~4 h of downloads) would quantify it and define a contamination pre-filter.",
+  "Actual TESS sector-count distribution for GCNS M dwarfs after Sector 109 (I used 2/4/8-sector scenarios); a tess-point run over the GCNS sample would replace the scenario with a measured histogram.",
+  "The realism factor 0.36 (Kepler known/model) mixes pipeline incompleteness, Robovetter losses, catalogue incompleteness and host-Teff crossmatch issues; its transferability to TESS/K2/KBONUS is an assumption worth testing with eumemic's published candidate yields per star searched.",
+  "Which K2 M-dwarf samples have already been searched end-to-end (Dressing+2017/2019, Hardegree-Ullman+2020, Zink+2021) and down to what SNR? Without this the K2 'remaining ~200' is an upper bound.",
+  "Kuber's two inverted stars at candidate strength (KIC 8701308, KIC 5283912): what are they physically (flare-like systematics, eclipsing binaries, roll-tweak artefacts)? If they would fail his later astrophysical tests, the inverted-null rate at candidate strength overstates the risk for the real candidate; if not, it does not.",
+  "Whether the editor's RNAAS objections (sample construction, other search outcomes, TESS non-detection, Barber et al. 2022 catalogue match) can be met with existing data, or whether new ground-based photometry (2-m class, ~5 transit windows per year from a northern site) is the only route to a publishable result for KIC 5689121.",
+  "Current QLP/SPOC faint-star FFI search limits in the second and third extended missions (T<13.5 is documented for the primary and first extended mission); if official searches now reach T~14-15, the TESS 'unsearched' residual shrinks."
+ ]
+}
