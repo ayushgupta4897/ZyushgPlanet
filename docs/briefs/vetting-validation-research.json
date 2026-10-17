@@ -1,0 +1,135 @@
+{
+ "key_claims": [
+  {
+   "claim": "TRICERATOPS validation thresholds are FPP < 0.015 and NFPP < 1e-3 (likely planet: FPP < 0.5 & NFPP < 1e-3; likely nearby FP: NFPP > 0.1); FPP = 1 - (P_TP + P_PTP + P_DTP) and NFPP sums only the nearby-star scenarios, so NFPP is 0 whenever no resolved neighbours are passed in.",
+   "source": "Giacalone et al. 2021 arXiv:2002.00691 abstract; triceratops/triceratops.py source (FPP/NFPP computation) read 2026-10-17",
+   "confidence": "high",
+   "how_checked": "WebFetch of arXiv abstract and of the raw triceratops.py source; matches Kuber's NFPP=0 caveat in planethunt SCIENCE.md"
+  },
+  {
+   "claim": "triceratops 1.1.0 (PyPI 2026-09-02) installs and imports on Python 3.13 with numpy 2.5; it pins pytransit==2.2 and setuptools<81; since 1.1.0 the input light curve is assumed dilution-corrected and the blended-star scenarios default to a Gaia DR3 field population because the TRILEGAL server has been unreachable (SSL/connection errors); if the field-star query fails those six scenarios are silently skipped.",
+   "source": "PyPI JSON for triceratops; KNOWN_ISSUES.rst and CHANGES.rst in stevengiacalone/triceratops; sandbox install in an isolated venv",
+   "confidence": "high",
+   "how_checked": "uv pip install in /tmp scratch venv, import test, and an offline calc_probs run (N=2e4, 17 s) in Kuber's object.__new__(target) style"
+  },
+  {
+   "claim": "LEO-Vetter 1.2.0 (PyPI 2026-07-29; Kunimoto et al. 2025 AJ 170, 280, arXiv:2509.10619) implements 13 flux-level false-alarm tests and 5 false-positive tests with the default thresholds listed in the brief (e.g. MES < 6.2 weak, SHP > 0.6, CHI < 7.8, DMM > 1.5, b+Rp/R* > 1.5 V-shape, Rp > 22 Re) plus a TESS-only pixel test failing at offset > 15 arcsec; its pixel module needs transit-diffImage AND spiceypy.",
+   "source": "raw thresholds.py, README and arXiv HTML of 2509.10619; sandbox install and synthetic-transit run",
+   "confidence": "high",
+   "how_checked": "Read thresholds.py verbatim; ran compute_flux_metrics on a synthetic 2116-ppm transit (MES 16.2, no flags) and its inverted copy (flagged FA); import of leo_vetter.pixel failed until spiceypy was installed"
+  },
+  {
+   "claim": "DR25 Robovetter thresholds: LPP > 2.2 (DV) / 3.2 (ALT); model-shift MS1 > 1.0, MS2 > 2.0, MS3 > 4.0 (DV) or MS1 > -3, MS2 > 1, MS3 > 1 (ALT); Rubble < 0.75; Chases median < 0.8; Marshall BIC >= 10; SES_max/MES > 0.8 for P > 90 d; odd/even sigma_OE > 1.1; V-shape Rp/R* + b > 1.04; secondary MS4 > 1, MS5 > 0, MS6 > 0 with planet-occultation exception (albedo < 1, Rp < 30 Re, secondary < 10 % of primary, b < 0.95); centroid FP if 3-sigma offset > 2 arcsec or 4-sigma offset > 1 arcsec (unresolved) or brightest pixel > 1.5 px from target in >= 2/3 of quarters (resolved).",
+   "source": "Thompson et al. 2018 arXiv:1710.06758 Appendix A (HTML offsets 100k-300k and PDF text)",
+   "confidence": "high",
+   "how_checked": "Multiple WebFetch passes over the arXiv HTML plus pdftotext of the arXiv PDF"
+  },
+  {
+   "claim": "Coughlin et al. 2014 ephemeris match: sigma = sqrt(2) erfcinv(Delta'), match if sigma_P >= 3.5 and sigma_T >= 2.0, any integer period ratio, spatial criteria d < 50 sqrt(1e6 10^(-0.4 m_kep) + 1) arcsec / antipodal within 50 arcsec / same module within 10 px; DR25 modified this to S_P < 5 and S_T < 5 (statistics in units of DV ephemeris uncertainty), period ratio <= 50, d_max coefficient 55, antipodal within 100 arcsec, same module within 5 px in column.",
+   "source": "arXiv:1401.1240 HTML; Thompson 2018 Appendix A.6 (PDF text)",
+   "confidence": "high",
+   "how_checked": "WebFetch of 1401.1240v2 HTML; grep of thompson2018.txt Appendix A.6"
+  },
+  {
+   "claim": "Applying Coughlin 2014 statistics to KIC 5689121 (P = 13.769448 d, T0 = BJD 2455630.245431): Kepler-169 e (13.76710058 d, 4.4 arcmin away) gives sigma_P = 3.76 but sigma_T = 1.27, so it is NOT an ephemeris match; within 10 arcmin there are 10 KOIs on 4 stars and 27 DR25 TCEs on 13 stars and no TOIs; the nearest Villanova Kepler EBs are KIC 5774375 (1.55 d, 9.0 arcmin) and three others at 21-25 arcmin, none matching.",
+   "source": "Live Exoplanet Archive TAP/legacy API queries and Villanova CSV download, 2026-10-17",
+   "confidence": "high",
+   "how_checked": "Ran the queries in the sandbox (downloads/dr25_tce_box_kic5689121.csv, downloads/kepler_ebs.csv) and computed the statistics"
+  },
+  {
+   "claim": "From this sandbox's proxy, Exoplanet Archive TAP returns HTTP 403 (IPAC WAF page) for ADQL cone searches using contains(point(),circle()) while box queries with 'ra between ... and dec between ...' and the legacy nstedAPI return 200; the KOI/TCE tables ARE available via TAP (TAP_SCHEMA stores their names in upper case).",
+   "source": "Sandbox tests against https://exoplanetarchive.ipac.caltech.edu/TAP/sync and the legacy API",
+   "confidence": "high",
+   "how_checked": "Repeated requests with different query forms; consistent 403 only for contains() queries"
+  },
+  {
+   "claim": "ExoFOP changed policy on 2026-08-19: community planet candidates (TESS, Kepler, K2 and beyond) must first be published in a peer-reviewed journal with online access, upload requires approval via the Published Candidate Upload Request form, and an RNAAS note qualifies only if the detection and vetting methods were previously published in a peer-reviewed, cited paper.",
+   "source": "https://exofop.ipac.caltech.edu/tess/ notice and https://exofop.ipac.caltech.edu/tess/candidate_help.php; corroborated by Chopra's GUIDE.md",
+   "confidence": "high",
+   "how_checked": "WebFetch of both ExoFOP pages on 2026-10-17"
+  },
+  {
+   "claim": "The NASA Exoplanet Archive has no 'validated' solution type: soltype values are Published Confirmed / Published Candidate / TESS Project Candidate / Kepler Project Candidate (...); Kepler-186 f (validated, no mass) is 'Published Confirmed' with pl_bmassprov 'M-R relationship', and 3,035 pscomppars planets carry an M-R-relationship mass versus 2,477 'Mass' and 924 'Msini'.",
+   "source": "Live TAP queries of ps and pscomppars, 2026-10-17; exoplanet_criteria.html",
+   "confidence": "high",
+   "how_checked": "Ran group-by queries on soltype and pl_bmassprov and a Kepler-186 f lookup"
+  },
+  {
+   "claim": "TFOP SG1 photometric dispositions (Guidelines rev 6.4, Conti 2020): NEB, BEB, EB, VPC, VPC+, VPC-, CPC, PPC, PC, NPC, PNEB, STPC, VP (statistically validated planet without a mass), P (confirmed planet with a mass), KP, SB1, SB2, FA; observers must clear every Gaia star within 2.5 arcmin bright enough to produce the depth. TFOPWG dispositions in the TOI table are APC, CP, FA, FP, KP, PC.",
+   "source": "https://astrodennis.com/TFOP_SG1_Guidelines_Latest.pdf (text extracted) and Exoplanet Archive API_TOI_columns.html",
+   "confidence": "high",
+   "how_checked": "pdftotext of the saved SG1 PDF; WebFetch of the TOI column docs"
+  },
+  {
+   "claim": "Kepler pixel-level sensitivity: Coughlin 2016 off-target injections were recovered as centroid offsets about 50 % of the time at 2 arcsec (0.5 px) for MES = 20; TESS SPOC DV calls offsets significant at 3 sigma above about 7.5 arcsec; Kostov 2025 EB vetting uses a 0.2 px (~4 arcsec) photocentre threshold; eumemic's F-test centroid method rejects 0/565 known planets at p < 0.001 but catches only 38 % of neighbour-caused signals within 15 arcsec.",
+   "source": "arXiv:1512.06149 \u00a74; arXiv:2103.12538; arXiv:2506.05631; eumemic validation/centroid_sectors.md",
+   "confidence": "medium",
+   "how_checked": "WebFetch of each source; the eumemic numbers are self-reported by that project"
+  },
+  {
+   "claim": "Kepler systematics: reaction-wheel desaturations on a ~3-day cycle (KDCH \u00a75.3), monthly Earth-point downlinks (\u00a75.5), quarterly rolls, SPSDs corrected only in PDCSAP (\u00a75.9), argabrightening lasting minutes (\u00a75.8), 3-6 h focus oscillations in Q1-Q3 (\u00a75.2); rolling band / Moire is aliased GHz LDE noise that rolls with board temperature with photometric variations on timescales of several to 40 hours (Kepler Instrument Handbook \u00a76.7), flagged as quality bits 131072/262144.",
+   "source": "KSCI-19040-005 and KSCI-19033-002 PDFs (text extracted); lightkurve KeplerQualityFlags source",
+   "confidence": "high",
+   "how_checked": "pdftotext/pypdf extraction and grep of both handbooks; lightkurve utils.py read via raw GitHub"
+  },
+  {
+   "claim": "TESS: 13.7-day orbit (Ricker et al. 2015); momentum dumps every 2.5 d early in the mission, later 3.375 d, and since Sector 56 only during apogee contacts; scattered Earth/Moon light near perigee; BLS periods pile up at 12-25 d and 0.5-1 d (Chopra).",
+   "source": "arXiv:1406.0151; https://tess.mit.edu/observations/; Vanderspek 2019 TSC poster via web search; paraschopra GUIDE.md",
+   "confidence": "medium",
+   "how_checked": "WebFetch/WebSearch; the exact dump cadence varies by cycle"
+  },
+  {
+   "claim": "Multiplicity boost: Lissauer et al. 2012 estimate ~25 for a candidate with one additional candidate and ~100 with two or more (alternative estimates 30 and ~50); Guerrero 2021 find ~20 for all SPOC TESS candidates and ~54 for planets < 6 Re.",
+   "source": "arXiv:1201.5424 PDF text; arXiv:2103.12538",
+   "confidence": "high",
+   "how_checked": "pypdf extraction and grep of the Lissauer PDF; WebFetch of Guerrero HTML"
+  },
+  {
+   "claim": "Gaia RUWE: > 1.4 is the standard poor-fit cut (Lindegren 2018), Penoyre et al. 2022 propose 1.25 for EDR3, and Stassun & Torres 2021 show RUWE in 1.0-1.4 still correlates with photocentre motion of benchmark EBs; KIC 5689121 has RUWE 0.98412 and no Gaia DR3 vari_* or nss_* rows.",
+   "source": "arXiv:2101.03425 (via search snippets), arXiv:2202.06963, live Gaia archive query",
+   "confidence": "medium",
+   "how_checked": "Gaia TAP query run in sandbox; literature values from search results and abstracts, not full text"
+  },
+  {
+   "claim": "vespa's last PyPI release is 0.6 (2019-04-25) and its README recommends retiring it in favour of TRICERATOPS; PASTIS requires transit SNR > ~50 to be conclusive and is not generally distributed.",
+   "source": "PyPI JSON for vespa; github.com/timothydmorton/VESPA README; arXiv:1403.6725 abstract",
+   "confidence": "high",
+   "how_checked": "WebFetch of each"
+  },
+  {
+   "claim": "MOLUSC (Wood et al. 2021) companion limits from Gaia resolution + RUWE, fed to TRICERATOPS via molusc_file, lowered eumemic's median FPP from 0.045 to 0.016 over 542 candidates; Kuber identified this as the cheapest next step for KIC 5689121 but did not run it.",
+   "source": "github.com/woodml/MOLUSC README; eumemic validation/gaia_companion_limits.md; planethunt SCIENCE.md 'Next'",
+   "confidence": "medium",
+   "how_checked": "WebFetch of the eumemic markdown (self-reported numbers) and of Kuber's SCIENCE.md"
+  },
+  {
+   "claim": "Villanova Kepler EB catalogue CSV (2,920 rows, revision 2019-08-08) is obtainable only through a CSRF-protected multipart POST (format=file_csv) and lacks RA/Dec (GLon/GLat only); the Kirk 2016 catalogue is also on VizieR as J/AJ/151/68 and Prsa 2022 TESS EBs as J/ApJS/258/16.",
+   "source": "Sandbox download via curl with cookie jar and CSRF token; astroquery Vizier get_catalogs",
+   "confidence": "high",
+   "how_checked": "Executed the POST and parsed the CSV; VizieR metadata queries returned the expected columns"
+  }
+ ],
+ "actionable_steps": [
+  "Create an isolated vetting venv (uv venv venv-vet --python 3.13; uv pip install triceratops leo-vetter exovetter lightkurve spiceypy 'git+https://github.com/stevepur/transit-diffImage') so TRICERATOPS' pytransit==2.2 / setuptools<81 pins never touch the search venv; verify imports of triceratops, leo_vetter.main, leo_vetter.pixel, exovetter.vetters.",
+  "Write PREREG.md before opening any light curve: frozen target list hash, detrending method and windows, search band, number of peaks, first-screen thresholds, hold-out rule (last max(2, ceil(0.25 N)) quarters/sectors), inverted (f -> 2-f) and scrambled control runs through the full pipeline including triage, injection-recovery subsample, stopping rule; git-tag it.",
+  "Implement the Stage 1-9 checklist from the brief as an automated per-candidate runner that appends JSON records (test, inputs, statistic, threshold, pass/fail/inconclusive, code hash, timestamp) to vetting/<candidate>/decision_log.jsonl and never edits thresholds after the first candidate.",
+  "Run LEO-Vetter flux-level vetting (scripts/leo_flux_vet.py pattern) on every first-screen survivor, on its inverted copy, and at P/2 and 2P; log all 121 metrics; treat any FA/FP flag as a hard stop.",
+  "Run scripts/novelty_check.py (box-query TAP with legacy fallback, ExoFOP TOI+CTOI CSVs, Villanova CSRF POST, VizieR J/AJ/151/68 and J/ApJS/258/16, local Kostov 2025 tables, Gaia vari/NSS, SIMBAD) and compute Coughlin 2014 sigma_P/sigma_T for period ratios up to 50:1 against every object within >= 10 arcmin and everything on the same CCD channel/column (Kepler-RaDex2Pix or TPF headers); record the query date in the report.",
+  "For KBONUS candidates implement Kuber's three which-star-dims tests: neighbour PSF light curves at the ephemeris, per-quarter SAP depth vs FLFRCSAP x PSF/SAP dilution model, raw-TPF flux-weighted centroid shifts vs the first-order prediction for each Gaia source within 30 arcsec; ignore the KBONUS CENTROID_COLUMN/ROW columns.",
+  "For TESS candidates run transit-diffImage + LEO pixel vetting per sector, require offset <= 15 arcsec with prfFitQuality >= 0.3 in >= 2 sectors, add a sign-aware control (the inverted light curve must not localise) and an F-test against every neighbour that could produce the depth.",
+  "Run TRICERATOPS 1.1.0 >= 10 times per candidate with one cadence per run, real neighbours within 10 px (calc_depths), a Gaia-based field population (never rely on TRILEGAL in Oct 2026), dilution_corrected set correctly for the flux type, any ExoFOP contrast curves (download_filelist.php / download_files.php) and a MOLUSC kept.csv built with --gaia --ruwe; report mean +/- spread of FPP and NFPP, the dominant scenario, and any skipped scenarios.",
+  "Produce the survey-level honesty tables automatically: stars searched vs selected, every first-screen pass in real and inverted runs, scrambled-run passes, injection-recovery completeness, false-alarm fraction vs SNR from the inverted sample, and the failing test for every rejected signal.",
+  "Before any public statement, re-check KOI/TCE/TOI/CTOI/EB tables on release day, propagate the ephemeris uncertainty to the next observable transits, publish code + data hashes + decision log with a Zenodo DOI, and use only the words 'planet candidate' with an explicit FPP unless FPP < 0.015 and NFPP < 1e-3 with imaging and spectroscopy in hand and a refereed paper accepted.",
+  "Plan the publication route around ExoFOP's 2026-08-19 rule: a peer-reviewed paper (AJ/MNRAS candidates paper, or RNAAS only if the methods were already published) is now a prerequisite for ExoFOP ingestion of a community candidate."
+ ],
+ "open_questions": [
+  "Whether the IPAC WAF block on ADQL contains(point(),circle()) queries is specific to this sandbox's proxy/IP or affects all users in Oct 2026 (box queries and the legacy API work either way).",
+  "Where the Kostov et al. 2025 TESS Ten Thousand EB tables are mirrored (VizieR/MAST HLSP); only the journal machine-readable supplements were identified today.",
+  "The exact definition of the DR25 S_P/S_T ephemeris-match statistics (expressed in DV ephemeris-uncertainty units) versus Coughlin 2014's erfcinv-based sigma; the brief gives both criteria but the DR25 scaling function was not extracted.",
+  "How much a real MOLUSC run with RUWE 0.984 and Gaia resolution limits would reduce the STP term for a G 16.3 M dwarf at 298 pc (eumemic's median FPP reduction 0.045 -> 0.016 is for brighter, nearer TESS hosts).",
+  "Whether TRICERATOPS' Gaia-based background population is adequate in the crowded, low-latitude Kepler field (KNOWN_ISSUES says it is shallower there and biases the blended-star terms low); a TRILEGAL comparison is impossible while the server is down.",
+  "Current (2026) faint-limit and tip-tilt requirements for Keck LGS-AO and Gemini speckle were taken from older instrument pages and a 2021 paper; a feasibility check with an observer is needed before promising imaging for a Kp 16.3 target.",
+  "Whether Barber et al. 2022 (MELANGE-3 Notch search) actually examined the 13.77-day signal on KIC 5689121; this prior-search question remains open in Kuber's record and should be resolved by contacting the authors.",
+  "The precise LEO-Vetter completeness/reliability when applied to Kepler 30-min KBONUS photometry (its thresholds were optimised on TESS FGKM dwarfs); an injection-recovery calibration on KBONUS light curves is needed."
+ ]
+}

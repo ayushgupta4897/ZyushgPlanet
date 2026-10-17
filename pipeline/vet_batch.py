@@ -336,6 +336,7 @@ def main():
     ap.add_argument("--fnames", nargs="*")
     ap.add_argument("--top", type=int, default=None)
     ap.add_argument("--no-plots", action="store_true")
+    ap.add_argument("--skip-done", action="store_true", help="skip survivors that already have a successful vet.json")
     a = ap.parse_args()
     cfg = load_config(a.config)
     run_dir = os.path.join("runs", a.run_id)
@@ -347,6 +348,20 @@ def main():
     tg = pd.read_csv(a.targets).set_index("fname")
     rows = []
     for _, s in sv.iterrows():
+        out_dir0 = os.path.join(run_dir, "vet", s.fname)
+        if a.skip_done and os.path.exists(os.path.join(out_dir0, "vet.json")):
+            try:
+                prev = json.load(open(os.path.join(out_dir0, "vet.json")))
+                if prev.get("ok") and abs(prev.get("P_screen", -1) - float(s.real_period_d)) < 1e-6:
+                    flat = {k: v for k, v in prev.items() if not isinstance(v, (list, dict))}
+                    if isinstance(prev.get("tls"), dict):
+                        flat.update({f"tls_{k}": v for k, v in prev["tls"].items()})
+                    flat["n_known_matches"] = len(prev.get("known_matches", []))
+                    flat["stage2_fails"] = ",".join(prev.get("stage2_fails", []))
+                    rows.append(flat)
+                    continue
+            except Exception:  # noqa: BLE001
+                pass
         star = tg.loc[s.fname].to_dict() if s.fname in tg.index else {}
         star["_both_polarity"] = bool(s.get("both_polarity", False))
         out_dir = os.path.join(run_dir, "vet", s.fname)

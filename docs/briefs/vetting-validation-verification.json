@@ -1,0 +1,231 @@
+{
+ "corrections": [
+  {
+   "claim": "Kepler-186 f is soltype 'Published Confirmed' with pl_bmassprov = 'M-R relationship' (in the ps table).",
+   "verdict": "corrected",
+   "correction": "In `ps` the pl_bmassprov field for Kepler-186 f is blank in every row; the value 'M-R relationship' comes from `pscomppars` (pl_bmasse 1.71, reflink 'Calculated Value'). The soltype = 'Published Confirmed' part is correct. Counts (pscomppars: M-R relationship 3,035; Mass 2,477; Msini 924; Msin(i)/sin(i) 15; pl_controv_flag=1: 58) re-confirmed.",
+   "evidence": "[run 2026-10-17] TAP: select pl_name,soltype,pl_bmassprov from ps where pl_name='Kepler-186 f' -> pl_bmassprov empty; select pl_name,pl_bmassprov,pl_bmasse,pl_bmasse_reflink from pscomppars where pl_name='Kepler-186 f' -> 'M-R relationship',1.71,'Calculated Value'."
+  },
+  {
+   "claim": "Within 10 arcmin of KIC 5689121 there are 10 KOIs on 4 stars and 27 DR25 TCEs on 13 stars.",
+   "verdict": "corrected",
+   "correction": "Within a true 10-arcmin radius there are 14 KOIs on 8 stars (K03784.01 3.15', K00505.01-.05 4.39', K02856.01 5.02', K00557.01 7.65', K05182.01 7.84', K03144.01 7.95', K07740.01 8.97', K02369.01-.03 9.90') and 23 DR25 TCEs on 10 stars. The 27/13 figure is the count inside the RA/Dec box (which extends to 13'); K04097.01/.02 (10.36') fall outside 10'.",
+   "evidence": "[run] TAP box query on cumulative and q1_q17_dr25_tce (ra 285.68-286.13, dec 40.775-41.109) followed by SkyCoord.separation filtering at 10 arcmin (scripts in /tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/verify-vetting-validation/box.out, tce_box.csv)."
+  },
+  {
+   "claim": "Morton et al. 2016 validated 1,284 KOIs at FPP < 1 %.",
+   "verdict": "corrected",
+   "correction": "Morton et al. 2016 report 1,935 KOIs with FPP < 1 %; 1,284 is the subset not previously validated or confirmed.",
+   "evidence": "arXiv:1605.02825 abstract: '1935 have probabilities <1% to be astrophysical false positives ... 1284 of these have not yet been validated or confirmed by other methods'."
+  },
+  {
+   "claim": "Penoyre et al. 2022 propose RUWE 1.25 as the EDR3 binarity threshold.",
+   "verdict": "corrected",
+   "correction": "Penoyre et al. 2022 (arXiv:2202.06963) renormalise RUWE locally (LUWE) and use LUWE > 2; a flat 1.25 cut circulates in secondary literature but is not in their abstract. Castro-Ginard et al. 2024 (A&A, doi:10.1051/0004-6361/202450172) instead publish sky-position-dependent RUWE thresholds (GaiaUnlimited package). Use RUWE > 1.4 (Lindegren 2018) as the hard flag and treat 1.0-1.4 as 'no evidence' per Stassun & Torres 2021.",
+   "evidence": "WebFetch of arXiv:2202.06963 abstract ('We use the simple criterion of LUWE>2'); WebSearch results for Castro-Ginard 2024."
+  },
+  {
+   "claim": "TESS momentum dumps occurred every 2.5 d early, 3.375 d later, and since Sector 56 only during apogee contacts (source: tess.mit.edu/observations).",
+   "verdict": "corrected",
+   "correction": "tess.mit.edu/observations does not give cadences; it states that in EM2 'there will no longer be momentum dumps during observations' and 'the one momentum dump during the orbit will occur during the apogee contact'. Cadences come from the Data Release Notes: every 2.5 d in Sector 1 (DRN S01), every 3.125 d in Sectors 10-11 (DRN S10/S11). The 3.375-d figure could not be verified.",
+   "evidence": "[run] pdftotext of tess_sector_01_drn01_v02.pdf: 'The sudden decrease in the dispersion every 2.5 days marks the momentum dumps'; WebSearch of NTRS DRNs S10/S11: 'momentum dumps every 3.125 days'; WebFetch tess.mit.edu/observations."
+  },
+  {
+   "claim": "TESS SPOC DV centroid offsets are 'significant at 3 sigma above about 7.5 arcseconds' (Guerrero 2021).",
+   "verdict": "corrected",
+   "correction": "Guerrero et al. 2021 \u00a7V.1.2 say the quadrature error term is set so that, for TESS, offsets much smaller than ~7.5 arcsec are NOT significant at 3 sigma; 7.5 arcsec is a floor on the uncertainty, not a hard significance cut.",
+   "evidence": "WebFetch arXiv:2103.12538v2 HTML \u00a7V.1.2."
+  },
+  {
+   "claim": "SWEET_NTL requires P < 5 d while 'the text says 10 d; the paper itself notes the inconsistency'; SWEET_EB requires P < 5 d.",
+   "verdict": "corrected",
+   "correction": "Thompson 2018 App. A.3.2: SWEET_NTL fails a TCE if SWEET SNR > 50, amplitude > transit depth in both detrendings, and P < 5.0 d. App. A.4.2: SWEET_EB flags a stellar system if SWEET SNR > 50, amplitude < depth in either detrending, amplitude > 5,000 ppm, and P < 10 d. No statement of an inconsistency was found.",
+   "evidence": "[run] grep/sed of thompson2018.txt lines 2818-2832 and 3256-3266."
+  },
+  {
+   "claim": "KBONUS quality cuts: PSFFRAC > 0.5 (paper) plus 'PERTRATI ~ 1 and small PERTSTD or fall back to mean-PSF photometry'.",
+   "verdict": "corrected",
+   "correction": "The paper's only numeric cut is PSFFRAC > 0.5 for stitched light curves; PERTRATI/PERTSTD have no published thresholds (the paper only says to default to mean-PSF photometry if the perturbed model introduces artefacts). CROWDSAP > 0.7 is Kuber's choice, not the paper's. These metrics exist both as source-catalogue columns and as per-quarter header keywords in each LIGHTCURVE_Qn extension of the light-curve file.",
+   "evidence": "WebFetch arXiv:2310.17733v1; [run] astropy inspection of hlsp_kbonus-bkg_kepler_kepler_kic-005689121_kepler_v1.0_lc.fits (Q1 header: PSFFRAC 0.815, CROWDSAP 0.813, FLFRCSAP 0.913, PERTRATI 0.99999, PERTSTD 5.4e-4, MODULE 3, OUTPUT 2, CHANNEL 6)."
+  },
+  {
+   "claim": "The KBONUS M-star catalogue has 29,800 sources.",
+   "verdict": "confirmed",
+   "correction": "Confirmed by download: the MAST file hlsp_kbonus-bkg_kepler_kepler_mstars-catalog_kepler_v1.0_cat.fits has 29,800 rows (columns gaia_designation, ra, dec, kic, fname). Note the MAST HLSP page says 'about 20,000' and the paper says 'almost 27,500 new light curves'; the catalogue itself is 29,800 rows.",
+   "evidence": "[run] astropy.io.fits on the 2.4 MB catalogue downloaded from archive.stsci.edu/hlsps/kbonus-bkg/catalogs/."
+  },
+  {
+   "claim": "TRICERATOPS validation thresholds FPP < 0.015 & NFPP < 1e-3; FPP = 1-(TP+PTP+DTP); NFPP = sum of NTP/NEB/NEBx2P; NFPP = 0 when no neighbours are supplied.",
+   "verdict": "confirmed",
+   "correction": "Confirmed. Code: self.FPP = 1-(prob[0]+prob[3]+prob[9]); NFPP = sum(prob[15:]) if >15 rows else 0.0. Nuance: the paper's Rp < 8 Re rule is a selection ('we only include planets with best-fit radii Rp<8 Re under the TP scenario'), and the code uses pixel sizes 20.25\" (TESS) / 4\" (Kepler) while the paper quotes 21\". Default angular separation limit without imaging is 2.2\". New in 1.1.0 source: a `FPP_degenerate` flag with a RuntimeWarning when all log-evidences are -inf (FPP=1.0 then means a failed computation).",
+   "evidence": "[run] grep of triceratops/triceratops.py (lines 91-93, 1655-1701); WebFetch arXiv:2002.00691 abstract and HTML."
+  },
+  {
+   "claim": "triceratops 1.1.0 (PyPI 2026-09-02), Python 3.8-3.13, pytransit==2.2 and setuptools<81 pins; light curve assumed dilution-corrected; Gaia background default because TRILEGAL is unreachable; D/B scenarios silently skipped on failure.",
+   "verdict": "confirmed",
+   "correction": "Confirmed (also 1.0.21 was uploaded 2026-08-24). Caveat found: in the Py3.13 venv a standalone `import pytransit` fails ('cannot import name int from numpy'); `import triceratops.triceratops` works because its likelihoods module shims the removed names, so always import triceratops first.",
+   "evidence": "[run] PyPI JSON; KNOWN_ISSUES.rst and CHANGES.rst; import test in the sibling venv-vet."
+  },
+  {
+   "claim": "LEO-Vetter 1.2.0 thresholds (MES 6.2, SHP 0.6, CHI 7.8, DMM 1.5, V-shape 1.5, size 22, offset 15, etc.) and 13 FA + 5 FP tests; pixel module needs transit-diffImage and spiceypy; 121 metrics.",
+   "verdict": "confirmed",
+   "correction": "Confirmed verbatim from thresholds.py (the 5th FP test 'offset' is appended only when offset_qual exists). The paper states 'thirteen flux-level tests against false alarms' and four flux-level FP tests; it does not state a metric count \u2014 121 is the length of tlc.metrics in 1.2.0 (sandbox). offset_qual = offset (arcsec, vs the TIC position) in the sector with the highest prfFitQuality; offset_mean is the quality-weighted mean. Thresholds were tuned on QLP Sectors 1-70 M dwarfs and the paper says they also apply to FGK dwarfs; pixel-level vetting 'has only been implemented for TESS FFIs'.",
+   "evidence": "[run] curl raw thresholds.py; grep of leo_vetter/pixel.py; WebFetch arXiv:2509.10619 HTML (both halves)."
+  },
+  {
+   "claim": "DR25 Robovetter thresholds (LPP 2.2/3.2; MS1-3 1.0/2.0/4.0 DV and -3/1/1 ALT; Rubble 0.75; Chases median 0.8; SES_max/MES > 0.8 for P > 90 d; odd/even 1.1 and 11.2/19.8; V-shape 1.04; PLANET_OCCULT albedo<1, Rp<30 Re, sec<10%, b<0.95; CO 3\u03c3>2\" or 4\u03c3>1\"; resolved 1.5 px in \u22652/3 quarters).",
+   "verdict": "confirmed",
+   "correction": "All confirmed from the Thompson 2018 PDF text (Table 4 and App. A). Table 4 also lists 'High C' and 'High R' alternative threshold sets. Skye applies to P > 45 d; Chases \u0394t_max = P/10; Tracker fails an event if slip > 0.5 T_dur; SWEET SNR threshold is 50.",
+   "evidence": "[run] grep/sed of thompson2018.txt (lines 1254-1270, 3015-3020, 3038, 3153, 3226-3238, 3297-3312)."
+  },
+  {
+   "claim": "Coughlin 2014: \u03c3 = \u221a2\u00b7erfcinv(\u0394'), match if \u03c3_P \u2265 3.5 and \u03c3_T \u2265 2.0; random pairs cluster at 0.674; antipodal within 50\"; same module within 10 px; \u03b1 = 6.73\", \u03b3 = 0.406\"; DR25: S_P < 5, S_T < 5, ratio \u2264 50, d_max coefficient 55, antipodal 100\" (25 px), 5 px in column.",
+   "verdict": "confirmed",
+   "correction": "Confirmed with nuances: (0.674, 0.674) is 'the worst match possible' (\u0394P' = \u0394T' = 0.5) where random pairs cluster, not a median; antipodal tolerance 50\" = 12.5 px; same-module criterion is 'within 10 pixels of the same row or column'; the paper calls the mechanism 'CCD crosstalk'. DR25 criteria confirmed verbatim incl. 2(d) same module within 5 px in row and column.",
+   "evidence": "WebFetch arXiv:1401.1240v2 HTML; [run] thompson2018.txt lines 3355-3400."
+  },
+  {
+   "claim": "Kepler-169 e vs KIC 5689121: \u03c3_P = 3.76, \u03c3_T = 1.27 (not a match); period differs by 32\u03c3; nearest transits 67 h apart; offset drifts 2.80 -> 3.04 d.",
+   "verdict": "confirmed",
+   "correction": "Recomputed: \u03c3_P = 3.759 (1:1), 3.582 (1:2), \u03c3_T = 1.270; period difference 32.8\u03c3 using \u03c3_P(cand) = 6.5e-5 d and koi_period_err1 = 2.98e-5 d; nearest pair 67.26 h; offset range 2.802-3.049 d over BKJD 131-1591.",
+   "evidence": "[run] Python with scipy.special.erfcinv and TAP values for K00505.01 (P 13.76710058 \u00b1 2.982e-5, T0 BKJD 174.81089)."
+  },
+  {
+   "claim": "From this sandbox the Exoplanet Archive TAP returns 403 for contains(point(),circle()) cone searches; boxes and the legacy nstedAPI return 200; Kepler table names are upper case in TAP_SCHEMA.",
+   "verdict": "confirmed",
+   "correction": "Re-confirmed today (cone 403 with IPAC WAF HTML; box 200; legacy API 200). TAP_SCHEMA.tables lists 46 names including CUMULATIVE, Q1_Q17_DR25_TCE, KEPLERSTELLAR (upper case), and also DI_STARS_EXEP, object_aliases, TD, ml, pandora. q1_q17_dr25_tce has 34,032 rows; cumulative has 9,564 KOIs on 8,214 stars.",
+   "evidence": "[run] curl against /TAP/sync with the three query forms; count(*) queries."
+  },
+  {
+   "claim": "ExoFOP policy since 2026-08-19: community candidates only after peer-reviewed publication; RNAAS acceptable only if methods previously published; upload needs approval via pub_candidate_upload_request.php; \u22652 of period/epoch/depth > 0; duration for cTOI; TID.nn naming; PC/FP only.",
+   "verdict": "confirmed",
+   "correction": "Confirmed; the date appears only on the exofop.ipac.caltech.edu/tess/ notice, not on candidate_help.php. Candidate_help.php wording: 'at least two of these three parameters ... greater than zero'; 'For cTOI consideration all four of orbital period, transit epoch, transit depth, and transit duration must be included'; 'Planet candidates should not be assigned a lowercase letter'; 'Duplicate objects will be removed, and repeated duplications may lead to suspension of your account'. The form URL returns HTTP 200. Counts today: 8,151 TOIs (CSV 8,152 lines) and 5,138 CTOIs.",
+   "evidence": "WebFetch of both ExoFOP pages; [run] curl -w of the form URL and CSV downloads."
+  },
+  {
+   "claim": "Villanova Kepler EB CSV has 2,920 rows (revision 2019-08-08), CSRF POST only, no RA/Dec; VizieR J/AJ/151/68 and J/ApJS/258/16 exist.",
+   "verdict": "confirmed",
+   "correction": "Confirmed: 2,920 data rows, header 'Revision Date (Y/M/D): Aug. 8, 2019'; VizieR J/AJ/151/68 has 10 tables (catalog, table1-9) with RAJ2000/DEJ2000 in most; J/ApJS/258/16/tess-ebs resolves (TIC, RAJ2000, DEJ2000, Tmag, BJD0, Per, Morph). Kostov 2025 is not found on VizieR by keyword search.",
+   "evidence": "[run] grep -c of kepler_ebs.csv; astroquery.vizier get_catalogs/find_catalogs."
+  },
+  {
+   "claim": "Lester et al. 2021 speckle: ~0.02\" inner working angle, 5-9 mag contrast; facilities incl. WIYN/NESSI.",
+   "verdict": "confirmed",
+   "correction": "Lester 2021 covers 'Alopeke/Zorro only ('angular resolutions of ~20 mas out to 1.2 arcsec', 'companion stars 5-9 magnitudes fainter', 517 hosts, 102 companions); NESSI is a separate WIYN instrument not in that paper.",
+   "evidence": "WebFetch arXiv:2106.13354 abstract."
+  },
+  {
+   "claim": "Keck NIRC2: NGS \u2272 13-14 mag; LGS tip-tilt star as faint as V = 18.",
+   "verdict": "confirmed",
+   "correction": "Keck page: NGS guide star 'recommended to be brighter than V = 13 mag'; LGS tip-tilt star 'as faint as V = 18 mag'. Kuber's FOLLOWUP_PLAN notes the 2027A call quotes NGS for R < 15.",
+   "evidence": "WebFetch of www2.keck.hawaii.edu/realpublic/inst/nirc2/nirc2_ao.html; planethunt FOLLOWUP_PLAN.md."
+  },
+  {
+   "claim": "Giacalone 2022 used FPP < 0.01 and 20 TRICERATOPS runs.",
+   "verdict": "confirmed",
+   "correction": "Confirmed: 'a sufficiently small FPP (FPP<0.01)' and NFPP < 1e-3; 20 runs per TOI with mean \u00b1 std reported; imaging searched companions within ~5\"; time-series photometry of stars within 2.5'.",
+   "evidence": "WebFetch arXiv:2201.12661 HTML \u00a7III."
+  },
+  {
+   "claim": "Coughlin 2016 off-target injections recovered as centroid offsets ~50 % at 2\" (0.5 px) for MES = 20; DR24 odd/even 1.7\u03c3; DR24 LPP median + 4.06\u03c3.",
+   "verdict": "confirmed",
+   "correction": "Confirmed from the PDF text: 'a ~50% detection rate at a separation of 2\" (0.5 pixels) when recovered with a MES of 20 (Mullally et al. 2015a)'; 'If \u03c3OE > 1.7 for either the DV or alternate detrending'; '\u03c3LPP = 4.06 ... greater than the median plus 4.06 times'.",
+   "evidence": "[run] pdftotext of arXiv:1512.06149 PDF, lines 368-369, 582, 1062."
+  },
+  {
+   "claim": "Twicken 2018: 3\u03c3 radius of confusion with 0.2\" floor via 0.0667\" quadrature term; robust averaging over quarters.",
+   "verdict": "confirmed",
+   "correction": "Confirmed: 'DV is typically run with a quadrature error term equal to 0.2/3 = 0.0667 arcsec. The minimum 3\u03c3 uncertainty in the magnitude of the mean offset is therefore 0.2 arcsec'; quarterly offsets 'robustly averaged'. Note: 'the Kepler DV component does not account for proper motion in catalog coordinates'.",
+   "evidence": "[run] pdftotext of arXiv:1803.04526 PDF lines 1632-1718."
+  },
+  {
+   "claim": "DAVE: 772 K2 candidates -> 676 PC / 96 FP (49 secondary, 25 centroid, 17 modulation, 8 shape, 6 odd/even); odd/even \u03c3/F_red > 4; centroid offset > 3\u03c3 and ~1 px with 3-4 measurements.",
+   "verdict": "confirmed",
+   "correction": "Confirmed from the PDF (plus 6 V-shaped and 9 with multiple indicators): '(\u03c3odd\u2212even/Fred) > 4'; 'centroid offset is at the > 3\u03c3 level ... and on the order of a pixel or larger'.",
+   "evidence": "[run] pdftotext of arXiv:1901.07459 lines 253-257, 531-540, 661."
+  },
+  {
+   "claim": "Lissauer 2012 multiplicity boost ~25 (one extra candidate) and ~100 (two or more), alternative 30 and ~50; Guerrero 2021 ~20 and ~54.",
+   "verdict": "confirmed",
+   "correction": "Confirmed verbatim; Guerrero: '(75/930)/(930/232705) \u2248 20' and for < 6 Re '(69/545)/(545/232705) \u2248 54', with the caution not to apply it in crowded regions.",
+   "evidence": "[run] lissauer2012.txt lines 377-390; WebFetch arXiv:2103.12538v2 offset 100000."
+  },
+  {
+   "claim": "Stassun & Torres 2021: RUWE 1.0-1.4 tracks photocentre motion (r\u00b2 = 0.82) down to \u2272 0.1 mas; nearly all RUWE > 1.4 EBs are triples.",
+   "verdict": "corrected",
+   "correction": "The r\u00b2 = 0.82 correlation within the 'good' 1.0-1.4 range is confirmed from the abstract; the 'nearly all RUWE > 1.4 EBs are triples' statement is not in the abstract and remains unverified.",
+   "evidence": "WebFetch arXiv:2101.03425 abstract."
+  },
+  {
+   "claim": "Gaia DR3 2103792461826460288: RUWE 0.98412, G 16.282, BP-RP 2.194, no vari_*/nss_* rows.",
+   "verdict": "confirmed",
+   "correction": "Confirmed (RUWE 0.98412067, AEN 0.0, ipd_frac_multi_peak 0, non_single_star 0, parallax 3.4065 \u00b1 0.0397 mas, 0 rows in vari_summary, vari_classifier_result, vari_eclipsing_binary, vari_planetary_transit, vari_rotation_modulation, nss_two_body_orbit, nss_acceleration_astro, nss_non_linear_spectro, nss_vim_fl). NEW: the 7.1\" neighbour Gaia DR3 2103792427466721792 (KIC 5689116, G 15.48) has RUWE 8.73, astrometric_excess_noise 2.42 mas (significance 976), parallax 0.30 \u00b1 0.23 mas \u2014 a badly non-single-star astrometric solution the brief did not check.",
+   "evidence": "[run] astroquery.gaia queries on gaiadr3.gaia_source and the vari/nss tables."
+  },
+  {
+   "claim": "TESS quality bits: Desat 32, Straylight 2048/4096, 'ScatteredLight', PlanetSearchExclude 8192 (lightkurve TessQualityFlags).",
+   "verdict": "corrected",
+   "correction": "lightkurve names are: 1 Attitude tweak, 2 Safe mode, 4 Coarse point, 8 Earth point, 16 Argabrightening, 32 Desaturation event, 64 Cosmic ray in optimal aperture, 128 Manual exclude, 256 Discontinuity corrected, 512 Impulsive outlier, 1024 Cosmic ray in collateral data, 2048 Straylight, 4096 Straylight2, 8192 Planet Search Exclude, 16384 Bad Calibration Exclude, 32768 Insufficient Targets for Error Correction Exclude; there is no 'ScatteredLight' name. Default bitmask 17087. Kepler bits confirmed (16 Zero crossing, 32 Desaturation, 64/4096 Argabrightening, 1024 SPSD, 131072/262144 rolling band; default 1130799).",
+   "evidence": "[run] lightkurve.utils.KeplerQualityFlags/TessQualityFlags.STRINGS in lightkurve 2.6.0."
+  },
+  {
+   "claim": "Kepler Instrument Handbook \u00a76.7: rolling band variations 'on time scales from several to 40 hrs'.",
+   "verdict": "unverifiable",
+   "correction": "\u00a76.7.1 'Aliased to near-Zero Spatial Frequency: Rolling Bands' and the GHz LDE amplifier/board-temperature mechanism are present in the handbook text, but the exact 'several to 40 hrs' phrase was not located in the extracted text; keep the mechanism, drop the quoted timescale or cite it as paraphrase.",
+   "evidence": "[run] grep of kepler_instrument_hb.txt (lines 250-251, 2618-2626) found the section and mechanism but not the phrase."
+  },
+  {
+   "claim": "Kepler systematics per KDCH: desats every ~3 d (\u00a75.3), zero crossings (\u00a75.4), Earth-point downlinks (\u00a75.5), argabrightening minutes (\u00a75.8), SPSD (\u00a75.9), focus 3-6 h in Q1-Q3 (\u00a75.2), attitude tweaks (\u00a74.4), safe modes (\u00a74.2); Kepler exposure 1765.464 s.",
+   "verdict": "confirmed",
+   "correction": "Confirmed; desats 'every ~3 days (146 Long Cadence intervals)'; the LC is 270 frames of 6.02 s exposure + 0.52 s readout = 1765.5 s (KDCH \u00a71.1). Kepler LC headers give INT_TIME 6.0198 s, NUM_FRM 270, FRAMETIM 6.5388 s, TIMEDEL 0.0204336 d.",
+   "evidence": "[run] kepler_data_characteristics.txt section index and \u00a75.x text; FITS header of kplr005689116 Q1 LC."
+  },
+  {
+   "claim": "MOLUSC CLI: --rv/--resolution, --ao/--filter J|H|K|G|R|I, --ruwe, --gaia, --transit, --age; outputs prefix_kept.csv; Raghavan 2010 distributions; eumemic 0.045 -> 0.016 over 542 candidates.",
+   "verdict": "confirmed",
+   "correction": "README confirms the flags (filter choices {J,K,H,G,R,I}; GUI adds Bp, Rp), outputs output_kept.csv (always) and output_all.csv (-a), default age 5 Gyr; the README does not name Raghavan 2010 (that is from Wood et al. 2021). eumemic: MOLUSC v.20220321, 200,000 companions/host, RUWE test on 523/542, resolution test on all 542, median FPP 0.045 -> 0.016, periastron > 10 au; Gaia epoch-RV rule for 141 hosts.",
+   "evidence": "WebFetch github.com/woodml/MOLUSC and eumemic validation/gaia_companion_limits.md."
+  },
+  {
+   "claim": "LATTE: pip install tessLATTE -> 1.0.21 with the listed diagnostics.",
+   "verdict": "corrected",
+   "correction": "PyPI 1.0.21 (2021-10-19) pins matplotlib==3.2.0 and astropy<=4.0 and depends on 'sklearn'; it will not install into the Python 3.13 / numpy 2.5 vetting venv without an isolated old environment. Treat LATTE as a design reference for the diagnostic panel, not a drop-in dependency.",
+   "evidence": "[run] PyPI JSON requires_dist for tessLATTE."
+  },
+  {
+   "claim": "The KBONUS CENTROID_COLUMN/ROW columns are unusable for the centroid test (Kuber).",
+   "verdict": "confirmed",
+   "correction": "Column names confirmed in the per-quarter LIGHTCURVE_Qn extensions (CENTROID_COLUMN, CENTROID_ROW alongside FLUX, SAP_FLUX, SAP_BKG, RED_CHI2, PSF_FLUX_NOVA); the paper says centroids are 'Gaia coordinates corrected with offsets from the momentum method', i.e. model-derived, consistent with Kuber's finding. The standard Kepler LC files of the TPF owner (KIC 5689116) instead carry MOM_CENTR1/2, PSF_CENTR1/2 and POS_CORR1/2 for a true flux-weighted centroid test.",
+   "evidence": "[run] FITS inspection of the KBONUS file and of kplr005689116-2009166043257_llc.fits."
+  }
+ ],
+ "additions": [
+  "The bright 7.1\" neighbour KIC 5689116 / Gaia DR3 2103792427466721792 (the star whose TPF hosts the KBONUS extraction) has Gaia DR3 RUWE 8.73, astrometric_excess_noise 2.42 mas (sig 976) and parallax 0.30 \u00b1 0.23 mas [run]. The neighbour is itself a strong astrometric-binary / disturbed-solution candidate. Kuber's neighbour light-curve (24 \u00b1 41 ppm) and centroid tests still argue the dip is not on it, but the playbook must run RUWE/AEN/NSS checks on every Gaia source inside the aperture (not just the target), and a MOLUSC/companion argument for the neighbour-hosted-EB branch should use this value. ExoFOP's nearby-target list (download_nearbytarget.php?id=120686465) shows the neighbour without a distance for the same reason.",
+  "MAST TESS SPOC TCE bulk CSVs (https://archive.stsci.edu/missions/tess/catalogs/tce/, files tess<ts>-s<start>-s<stop>_dvr-tcestats.csv, single sectors 1-107 and multi-sector bundles) carry tce_period, tce_time0bt, tce_depth, tce_max_mult_ev, tce_ntoi, tce_dicco_msky, tce_ditco_msky, tce_cap_stat/tce_hap_stat (ghost), boot_fap, tce_albedo_stat etc. [run]. Use them (plus the TESS-SPOC HLSP FFI DV products, available from Sector 36, multi-sector from Sector 56, for T<=13.5 targets) to answer 'was this ever a TCE' for TESS \u2014 the Exoplanet Archive only hosts TOIs, not TCEs, for TESS.",
+  "Standard Kepler light-curve files contain MOM_CENTR1/2 (flux-weighted) and PSF_CENTR1/2 centroid columns plus POS_CORR1/2 and header keywords CROWDSAP, FLFRCSAP, MODULE/OUTPUT/CHANNEL/SKYGROUP [run on kplr005689116 Q1: CROWDSAP 0.9469, FLFRCSAP 0.8176, channel 6, skygroup 50]. For any KBONUS candidate, the TPF owner's own LC file gives an independent, pipeline-produced flux-weighted centroid series to fold at the candidate ephemeris \u2014 a cheaper first pass than re-deriving centroids from TPFs.",
+  "KBONUS light-curve file anatomy for dilution/aperture modelling [run]: PRIMARY header has TPFORG (= KIC of the originating TPF, 5689116 here), KEPLERID, GAIAID; LIGHTCURVE_STITCHED has TIME, CADENCENO, QUARTER, FLUX (PSF), SAP_FLUX, PSF_FLAT_FLUX, SAP_QUALITY, FLATTEN_MASK; each LIGHTCURVE_Qn carries per-quarter PSFFRAC, CROWDSAP, FLFRCSAP, PERTRATI, PERTSTD, MODULE, OUTPUT, CHANNEL and an APERTURE_Qn image (5x4 or 5x5 px). KIC 5689121 has 13 quarters (Q1-4, 6-8, 10-12, 14-16), matching the 13 TPFs of KIC 5689116 (keplerstellar st_quarters '11110111011101110'). lightkurve search with author='KBONUS-BKG' returns both the target's and the neighbour's KBONUS products, so the neighbour-light-curve test is one extra download.",
+  "Gaia colour-magnitude over-luminosity is a cheap unresolved-binary test the brief omits: an equal-brightness companion lifts a star ~0.75 mag above the single-star main sequence at its BP-RP; compare the target's absolute G (from the Gaia parallax) with an empirical M-dwarf sequence (e.g. the method of arXiv:2602.20096, which identified 21,864 unresolved low-mass binaries this way). It constrains exactly the STP/PTP scenarios that dominate Kuber's FPP.",
+  "Ephemeris-uncertainty propagation should be an explicit, logged number: \u03c3_T(N) = sqrt(\u03c3_T0\u00b2 + N\u00b2\u03c3_P\u00b2). For P = 13.769448 \u00b1 0.000065 d, T0 = 2455630.245431 \u00b1 0.0020, N = 430 cycles to 2027-06-01 gives \u03c3_T = 40.3 min [run], confirming Kuber's '~40 min by 2027'. Any follow-up window must also carry the barycentric correction for the observatory and the Gaia proper motion for acquisition.",
+  "TRICERATOPS 1.1.0 now exposes a `FPP_degenerate` attribute and emits a RuntimeWarning when every MC draw is geometrically invalid ('FPP=1.0 reflects a failed computation, not a confident false positive'); always check it, and check that `T.probs` has all 15 target rows (D/B scenarios silently dropped when the field-star query fails). Also run FPP across the method-dependent depth range (Kuber: 1,830-2,430 ppm) since FPP is depth-sensitive.",
+  "The Exoplanet Archive KOI column docs define the four FP flags and the centroid columns: koi_dicco_msky (difference-image PRF centroid vs out-of-transit centroid, arcsec), koi_dikco_msky (vs KIC position), koi_fwm_stat_sig (flux-weighted offset significance, %), koi_comment (Robovetter minor flags), koi_time0bk offset 2,454,833.0; use these columns, not just dispositions, when screening nearby KOIs as contamination parents.",
+  "Guerrero 2021 CTOI mechanics worth copying into the plan: 'ExoFOP emphasizes CTOIs should only be reported if there is no TOI with the same period'; of 169 prime-mission promoted CTOIs, 106 were TCEs 'mistakenly ruled out in pre-vetting triage'; CTOIs with no TCE and no QLP/SPOC products 'would need to be recovered manually in a reprocessing step'; TOI list updated twice daily on ExoFOP, monthly static copy at MAST.",
+  "Kostov et al. 2025 (TESS Ten Thousand) photocentre rule, now verified: PRF fit and Gaussian fit to each difference image, average adopted, offset threshold 0.2 px (\u22484\"); catalogue is 'machine-readable online supplement' (Table 3), not on VizieR as of today.",
+  "TESS-SPOC HLSP (archive.stsci.edu/hlsp/tess-spoc) runs planet searches on FFI targets with T <= 13.5 (plus H <= 10 and d < 100 pc) since May 2021, producing DV products for targets with TCEs (single-sector from S36, multi-sector from S56). This is the primary source behind Chopra's corrected 'SPOC has searched FFI light curves since 2021' and should be queried before any 'never searched' statement.",
+  "DR25 Robovetter Table 4 ships three threshold sets (DR25, 'High C' completeness-optimised, 'High R' reliability-optimised); for a small-sample candidate hunt the High-R column (e.g. MS1 DV -1.0, SES/MES 0.75, Chases 0.55, LPP 2.7) is the conservative choice to pre-register."
+ ],
+ "remaining_uncertainties": [
+  "Whether the IPAC WAF 403 on ADQL contains(point(),circle()) queries is specific to this sandbox's proxy or affects all users in Oct 2026 (re-confirmed today from here; boxes and the legacy API work either way).",
+  "Where the Kostov et al. 2025 TESS Ten Thousand tables are mirrored; VizieR keyword search finds nothing today, so only the journal's machine-readable supplements are known.",
+  "The exact scaling function behind the DR25 S_P/S_T ephemeris statistics (expressed in injection-measured DV ephemeris uncertainty); the criteria (S_P < 5, S_T < 5, Pr < 50) are verified but the power-law fits in Fig. 22 were not extracted.",
+  "How much a real MOLUSC run (RUWE 0.984, Gaia resolution) would reduce the STP term for a G 16.3 M dwarf at 298 pc; eumemic's 0.045 -> 0.016 median is for brighter, nearer TESS hosts.",
+  "Whether TRICERATOPS' Gaia-based background population is adequate in the crowded Kepler field (KNOWN_ISSUES says it is shallower there and biases D/B terms low); the TRILEGAL comparison cannot be run while the server is down.",
+  "The exact 'several to 40 hrs' rolling-band timescale phrase attributed to Kepler Instrument Handbook \u00a76.7 was not found in the extracted text; the mechanism and section exist.",
+  "Whether the TESS 'momentum dumps every 3.375 d' figure exists in any DRN; only 2.5 d (S1) and 3.125 d (S10-11) were verified, plus the EM2 apogee-contact-only rule.",
+  "Whether exovetter's Lpp vetter requires an external LPP map file and where it is obtained (docs index did not show it).",
+  "What the 15.455/15.48 G, RUWE 8.73 neighbour KIC 5689116 actually is (astrometric binary vs disturbed solution) and whether its own Kepler SAP/PDCSAP and MOM_CENTR series at the candidate ephemeris corroborate Kuber's 24 +/- 41 ppm KBONUS result; nobody has run that test.",
+  "Whether Barber et al. 2022 (MELANGE-3 Notch search) examined the 13.77-day signal on KIC 5689121 (Table 5 row verified; the authors have not been contacted).",
+  "LEO-Vetter completeness/reliability on Kepler 30-min KBONUS photometry; thresholds were tuned on TESS QLP M dwarfs (Sectors 1-70) and no Kepler calibration exists.",
+  "Current Gemini speckle faint limit and Keck LGS tip-tilt availability for a Kp 16.3 target were taken from instrument pages and a 2021 paper; an observer's feasibility check is still needed.",
+  "Which DR25 Robovetter threshold set (DR25 vs 'High R') is more appropriate for an archival small-sample hunt was not tested here; the High-R values are listed for pre-registration."
+ ]
+}

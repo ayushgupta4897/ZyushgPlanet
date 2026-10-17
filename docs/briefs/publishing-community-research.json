@@ -1,0 +1,112 @@
+{
+ "key_claims": [
+  {
+   "claim": "ExoFOP paused community candidate uploads on 2026-03-31 and reopened on 2026-08-19 requiring prior peer-reviewed publication plus upload approval; an RNAAS counts only if the detection/vetting methodology was previously refereed and cited.",
+   "source": "https://exofop.ipac.caltech.edu/tess/news.php ; https://exofop.ipac.caltech.edu/tess/candidate_help.php",
+   "confidence": "high",
+   "how_checked": "Fetched both pages via curl on 2026-10-17 and read the verbatim news items and guideline text."
+  },
+  {
+   "claim": "Of 5,138 CTOIs, 814 have been promoted to TOI; zero rows modified before 2026-08-19 carry a paper URL; 1,173 rows were uploaded 2026-08-27 (Lafarga et al. 2026 MNRAS) and one on 2026-10-08 (PHT volunteer Mason citing RNAAS 10.3847/2515-5172/aeaee1 published 2026-10-06). The AI-wave TICs 4206066, 370612437, 252721481, 120686465 are in neither the CTOI nor TOI lists.",
+   "source": "https://exofop.ipac.caltech.edu/tess/download_ctoi.php?sort=ctoi&output=csv ; download_toi.php",
+   "confidence": "high",
+   "how_checked": "Downloaded both CSVs 2026-10-17 and parsed them with Python; grep for the TIC IDs returned nothing."
+  },
+  {
+   "claim": "RNAAS scope explicitly includes 'discovery of a single exoplanet'; limits are 1,500 words total, one figure or table, moderated not peer reviewed, ~72 h, no charges; AAS LLM guidelines (page says posted 9 September 2026) require disclosure at submission and an end-of-article AI statement and forbid unsupervised generation and AI authorship.",
+   "source": "https://journals.aas.org/news/scope-of-research-notes-of-the-american-astronomical-society/ ; https://journals.aas.org/research-note-preparation-guidelines/ ; https://journals.aas.org/author-llm-guidelines/",
+   "confidence": "high",
+   "how_checked": "WebFetch of all three pages plus raw-HTML grep of the LLM page for the posting date."
+  },
+  {
+   "claim": "RNAAS in 2026 accepted sole-author candidate/variability notes from authors without major institutions and with AI disclosure: Kaplan (Jan 2026, 10.3847/2515-5172/ae3758) and Rennell ('Independent Researcher, Anchorage', Codex disclosed; Jul 2026, 10.3847/2515-5172/ae91dc).",
+   "source": "Crossref API query of container 'Research Notes of the AAS' 2026; IOPscience article pages",
+   "confidence": "high",
+   "how_checked": "Crossref listing then WebFetch of each article page for affiliation, acknowledgments and language."
+  },
+  {
+   "claim": "Kuber's repo preserves no decline text for AAS82222; the decision is recorded only as 'Declined' dated 2026-10-13 with 'Decision letter supplied by the author in this conversation; not independently checked'. The audit addresses sample construction, other search outcomes, TESS non-detection and the Barber et al. 2022 Table 5 match.",
+   "source": "/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/untrusted/planethunt/publication/2026-10-13/submission-record.json ; analysis/editorial-audit-20261013/README.md",
+   "confidence": "high",
+   "how_checked": "Read the files directly; grepped the repo for 'decline', 'editor', 'steve'."
+  },
+  {
+   "claim": "'Steve' is an astronomer who emailed Kuber about high-resolution imaging; the reply draft was never sent and the surname is not recorded anywhere in the repo.",
+   "source": "analysis/archive-exhaustion-20261012/reply-to-steve.txt ; README.md line 108; FOLLOWUP_PLAN.md",
+   "confidence": "medium",
+   "how_checked": "Read the draft and grepped repo and git log; identity candidates (Howell/Giacalone/Bryson) are speculation."
+  },
+  {
+   "claim": "NASA Exoplanet Archive requires peer-reviewed, accepted publication for inclusion; treats validated planets as 'confirmed' with no separate disposition; assigns Kepler numbers after acceptance via exonames@ipac.caltech.edu; KIC 5689121 / TIC 120686465 is absent from ps, toi and cumulative tables.",
+   "source": "https://exoplanetarchive.ipac.caltech.edu/docs/exoplanet_criteria.html ; docs/faq.html ; docs/KeplerNumbers.html ; TAP queries at https://exoplanetarchive.ipac.caltech.edu/TAP/sync",
+   "confidence": "high",
+   "how_checked": "WebFetch of policy pages; three TAP queries run in sandbox 2026-10-17 returned empty for the target."
+  },
+  {
+   "claim": "New Kepler-field planets since 2022 entered NEA only via refereed papers (ExoMiner 2022/2023: 370 planets in ps; Wang et al. 2024 MNRAS; Ofir et al. 2025 AJ; Nabbie et al. 2025; Sun et al. 2025; Lafarga et al. 2026 MNRAS); no Kepler planet on a Gaia-DR3-named (KBONUS background) host exists yet.",
+   "source": "NEA TAP: select disc_year, disc_refname, count(*) from ps where disc_facility='Kepler' and default_flag=1 and disc_year>=2022 ...",
+   "confidence": "high",
+   "how_checked": "Ran the TAP queries on 2026-10-17 and inspected output."
+  },
+  {
+   "claim": "TFOP WG Publication Policy v21 (2026-07-12) guarantees an authorship invitation to a CTOI submitter only if the CTOI was filed on ExoFOP more than two months before the TESS project posted the TOI and included epoch and duration coinciding with the published transit.",
+   "source": "https://tess.mit.edu/wp-content/uploads/TFOPWG_Publication_Policy_v21_20260712.pdf",
+   "confidence": "high",
+   "how_checked": "Downloaded PDF, pdftotext, read the cTOI paragraph."
+  },
+  {
+   "claim": "Scientific American (2026-10-14) quotes Laughlin ('solid', 'great example of human-AI teamwork') and Mercader Perez (signal flagged 2020, 'effectively detectable only in January of this year', LEO-Vetter selected it in early 2026, would have been a TOI 'within months'); Rabtsevich holds TESS DDT #100; Gizmodo quotes Hardegree-Ullman on false positives and AI's limited role in confirmation.",
+   "source": "https://www.scientificamerican.com/article/amateur-astronomer-harnesses-ai-to-find-a-possible-hidden-exoplanet/ ; https://tess.mit.edu/science/ddt/ ; https://gizmodo.com/did-claude-help-an-amateur-astronomer-discover-a-new-planet-2000824393",
+   "confidence": "high",
+   "how_checked": "WebFetch of all three pages; DDT table lists program 100 with PI Rabtsevich."
+  },
+  {
+   "claim": "Publication charges 2026: AJ/ApJ Tier 1 $1,425 (\u226430 quanta), ApJL $2,978, RNAAS free; MNRAS APC \u00a32,356 (Letters \u00a31,122) with LMIC and discretionary waivers requested at submission and no affiliation restriction; PASP APC \u00a32,655/\u20ac3,050/$3,665 or $142 per typeset page; A&A \u20ac100\u2013150/page for non-sponsoring first authors with Research4Life Group A waiver and \u226410% editor waivers; Astronomy & Computing APC USD 2,780 or no-fee subscription route.",
+   "source": "https://journals.aas.org/article-charges-and-copyright/ ; https://academic.oup.com/mnras/pages/General_Instructions ; https://iopscience.iop.org/journal/1538-3873/page/publication-charges ; https://www.aanda.org/for-authors/author-information/page-charges (via reader proxy) ; https://www.sciencedirect.com/journal/astronomy-and-computing/publish/open-access-options (via reader proxy)",
+   "confidence": "medium",
+   "how_checked": "Direct fetches for AAS/OUP/IOP; A&A and Elsevier pages blocked bots and were read through r.jina.ai, so treat those two as needing a browser re-check."
+  },
+  {
+   "claim": "arXiv requires endorsement for new submitters, forbids mass-emailing endorsers, is not peer review, and (per AAS's 2019 letter) moderators hold submissions under three pages, which affects RNAAS-length notes.",
+   "source": "https://info.arxiv.org/help/endorsement.html ; https://info.arxiv.org/help/moderation/index.html ; https://journals.aas.org/news/rnaas-on-arxiv/",
+   "confidence": "high",
+   "how_checked": "WebFetch of each page."
+  },
+  {
+   "claim": "Planet Hunters TESS is live (164,773 classifications, 57,533 classifiers as of 2026-10-17) and Planet Hunters CHEOPS launched 2026-10-13; PHT volunteers are routinely co-authors (TOI-813, TOI-4633, TOI-5628 A b, HD 715 b) and PHT's user 'eisner' has 119 of 182 CTOIs promoted to TOIs.",
+   "source": "https://www.zooniverse.org/api/projects?slug=nora-dot-eisner/planet-hunters-tess ; https://www.zooniverse.org/projects/nora-dot-eisner/planet-hunters-tess/about/results ; ExoFOP CTOI CSV",
+   "confidence": "high",
+   "how_checked": "Zooniverse API call, results page fetch, CSV parse."
+  },
+  {
+   "claim": "Kuber's tweet (2026-10-11) said 'Found a new planet ... went undiscovered' while the manuscript and repo say 'No confirmed planet is claimed' and 'Novelty remains provisional'; engagement 9,649 views, 239 likes, 15 replies, 4 quotes; Rabtsevich's thread drew 1.19M views; Kuber's Show HN got 1 point.",
+   "source": "https://api.fxtwitter.com/kuberwastaken/status/2109240782368751834 ; https://api.fxtwitter.com/p_rabtsevich/status/2107803696058822742 ; hn.algolia.com items 50071497, 50002665",
+   "confidence": "high",
+   "how_checked": "API calls on 2026-10-17; reply contents could not be retrieved (fxtwitter does not list replies; Reddit/Bluesky returned 403)."
+  }
+ ],
+ "actionable_steps": [
+  "Treat ExoFOP as the last step, not the first: since 2026-08-19 a candidate needs a peer-reviewed paper (or an RNAAS citing previously refereed methods) plus 'Published Candidate Upload Request' approval before it can be registered; request the ExoFOP account early (affiliation field required; 'Citizen Scientist' is an accepted position) because approval is manual.",
+  "Publish the pipeline first: write a methods paper (injection-recovery, inverted-null calibration, blind recovery of known KOIs/TOIs, centroid/PRF localisation) for Astronomy & Computing (no-fee subscription route), PASP or AJ; this single paper unlocks RNAAS-then-CTOI for every later candidate.",
+  "For each surviving candidate, create a versioned Zenodo record (Preprint/Dataset, CC-BY) on day 0 with P, T0 (BJD_TDB), predicted future transits, vetting table, TRICERATOPS inputs/outputs and an environment lock; cite it in everything.",
+  "Do not submit an RNAAS on an unvalidated single candidate with unpublished methods and no professional reviewer; if you do write an RNAAS, keep it to \u22641,500 words all-in, one figure, first person singular, AASTeX 7, AI-disclosure statement at the end naming tools and tasks (AAS template), Zenodo DOI for data.",
+  "Line up one professional collaborator before any public claim: for Kepler-Bonus targets email the KBONUS authors with a data question; for TESS targets post on Planet Hunters TESS Talk and ask the PHT team about their CTOI/paper workflow; for Kepler-field candidates also contact THYME/MELANGE or NExScI (Ciardi/Furlan) for AO and stellar characterisation; one email per group, evidence pack \u2264300 words plus a DOI.",
+  "If the target is TESS-detectable, file a TESS DDT (2-min cadence, \u22656 weeks before sector start, tess-ddt@mit.edu) \u2014 free, public, and it worked for Rabtsevich (DDT #100).",
+  "Use the wording ladder strictly in every public artefact (README, tweet, Zenodo title): 'transit-like signal' \u2192 'planet candidate (unvalidated)' \u2192 'validated planet candidate (FPP, inputs)' \u2192 'validated planet (after refereed acceptance)' \u2192 'confirmed (mass)'; never assign a letter; claim catalogue absence only with catalogue names and a date.",
+  "Before claiming novelty, check KOI/TCE/TOI/CTOI, NEA ps, and membership/variability catalogues (e.g. THYME/MELANGE tables) by exact Gaia ID, and ask the relevant authors which light curve they searched.",
+  "For the refereed paper, budget: AJ Tier 1 $1,425 (\u226430 quanta) and ask about the AAS Publication Support Fund at submission; or MNRAS \u00a32,356 with a discretionary RAS/OUP waiver requested at submission (not in the cover letter); after acceptance of a validated planet email exonames@ipac.caltech.edu with the acceptance letter for a Kepler/K2 number.",
+  "Get an arXiv endorser from a collaborator who has read the work; never mass-email endorsers; post the full paper rather than an RNAAS-length note to avoid the short-submission hold.",
+  "Ask Kuber for the actual AAS82222 decision letter text and for 'Steve''s identity before modelling your plan on his experience; read the X replies, r/ClaudeAI thread and Bluesky in a browser (blocked from the sandbox)."
+ ],
+ "open_questions": [
+  "What did the RNAAS decision letter for AAS82222 actually say (appropriateness vs format vs premature)? Only Kuber has it.",
+  "Who is 'Steve' (the astronomer who emailed about high-resolution imaging), and did Kuber ever reply?",
+  "Will the TESS TOI working group or ExoFOP consider a Kepler-source Community Candidate at all, and will NExScI assign a Kepler number to a validated planet around a KBONUS background source that has a KIC ID but was never a Kepler target (policy page requires KOI/KIC designations)?",
+  "Does NEA still ingest RNAAS-only candidate catalogs into candidate tables (as it did for K2 via Zink et al. 2019), or only refereed papers, in 2026?",
+  "Will ExoFOP accept an agent-built pipeline published in a methods venue (Astronomy & Computing/PASP) as 'previously published methodology' for RNAAS-backed CTOIs? Chopra's GUIDE flags this as ExoFOP's call.",
+  "What did astronomers say in the X replies/quotes to Kuber's and Rabtsevich's threads, on r/ClaudeAI and on Bluesky? All three were unreachable from the sandbox.",
+  "Is India covered by any MNRAS (hybrid) APC waiver beyond RAS/OUP discretionary waivers, and is India an A&A sponsoring country (almost certainly not; the A&A site blocks bots)?",
+  "Have Rabtsevich's or Chopra's RNAAS notes been accepted since 2026-10-17 (Crossref showed none), and did TESS DDT #100 (Oct 31\u2013Nov 26 2026) recover TIC 4206066.01?",
+  "Current affiliations and contact preferences of the KBONUS authors and Nora Eisner (verify via ADS/ORCID before emailing)."
+ ]
+}
