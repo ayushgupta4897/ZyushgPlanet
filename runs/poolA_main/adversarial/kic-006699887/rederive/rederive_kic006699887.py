@@ -256,6 +256,9 @@ res['bls_top3_power'] = [{'period_d': float(P_grid[i]), 'power': float(power[i])
                           'depth_ppm': float(r.depth[i] * 1e6), 'depth_snr': float(snr_spec[i]), 'duration_h': float(r.duration[i] * 24),
                           't0_bkjd': float(r.transit_time[i]), 'relation_to_pipeline_P': alias_label(P_grid[i], PIPE_P)} for i in peaks]
 res['bls_sde_top'] = sde(power)
+res['bls_sde_depthsnr_spectrum'] = sde(snr_spec)   # SDE of the depth/depth_err spectrum (less skewed than loglike power)
+_lp = np.log(P_grid); _tr = pd.Series(power).rolling(2001, center=True, min_periods=100).median().values
+res['bls_sde_power_minus_running_median'] = float((np.nanmax(power - _tr) - np.nanmean(power - _tr)) / np.nanstd(power - _tr))
 peaks_snr = bls_top_peaks(P_grid, snr_spec, 3)
 res['bls_top3_depthsnr'] = [{'period_d': float(P_grid[i]), 'depth_snr': float(snr_spec[i]), 'depth_ppm': float(r.depth[i] * 1e6),
                              'relation_to_pipeline_P': alias_label(P_grid[i], PIPE_P)} for i in peaks_snr]

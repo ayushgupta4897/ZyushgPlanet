@@ -318,5 +318,257 @@
     "alias_of_pipeline_period": null
    }
   ]
+ },
+ "period_fine_scan_bls": {
+  "P_best": 15.31336,
+  "P_1sig_lo": 15.31335425,
+  "P_1sig_hi": 15.3133635,
+  "t0_bkjd": 144.2824423464944,
+  "t0_1sig_min": 0.5643750000000004,
+  "duration_h": 3.7625,
+  "depth_ppm": 1031.0237717811788,
+  "note": "BLS delta-loglike=0.5 interval; box edges make the surface spiky, so this interval is optimistic"
+ },
+ "trapezoid_free_ephemeris": {
+  "P_d": 15.31348568920701,
+  "P_err_d": 9.426284726623624e-05,
+  "tref_bkjd": 864.0069662588188,
+  "tref_err_min": 5.531133136373916,
+  "tref_bjd": 2455697.006966259,
+  "t0_first_bkjd": 144.2731388660893,
+  "depth_ppm": 1066.424922433287,
+  "depth_err_ppm": 68.02206250887002,
+  "T14_h": 4.289447291969311,
+  "T14_err_h": 0.25481142555056446,
+  "T23_h": 2.7910253712326476,
+  "T23_err_h": 0.2727905397708113,
+  "T23_over_T14": 0.6506724949058112,
+  "chi2_red": 1.0917043717922208,
+  "rp_rs_from_depth": 0.032656162089769326,
+  "note": "least-squares trapezoid with P, t_ref, depth, T14, T23 free; errors from the Jacobian scaled by reduced chi2 (white noise)"
+ },
+ "adopted": {
+  "period_d": 15.31336,
+  "period_err_d": 9.426284726623624e-05,
+  "t0_first_bkjd": 144.2824423464944,
+  "t0_first_bjd": 2454977.2824423467,
+  "t0_err_min_at_tref": 5.531133136373916,
+  "depth_box_ppm": 1009.4012275569942,
+  "depth_box_err_emp_ppm": 51.38849362396461,
+  "depth_trapezoid_ppm": 1066.424922433287,
+  "depth_trapezoid_err_ppm": 68.02206250887002,
+  "duration_box_h": 3.75,
+  "T14_trapezoid_h": 4.289447291969311,
+  "snr_emp": 19.64255334945775,
+  "sde_blind": 52.6317490584189,
+  "n_transits": 86
+ },
+ "comparison_with_pipeline": {
+  "note": "pipeline numbers quoted from runs/poolA_main/vet/kic-003831969/vet.json (run id poolA_main); mine from results.json in this directory",
+  "rows": [
+   {
+    "quantity": "period (d)",
+    "mine": 15.31336,
+    "pipeline": 15.313350394501255,
+    "unit": "d"
+   },
+   {
+    "quantity": "period err (d) [mine: trapezoid covariance; BLS dLL interval = 4.6e-06]",
+    "mine": 9.426284726623624e-05,
+    "pipeline": null,
+    "unit": "d"
+   },
+   {
+    "quantity": "t0 first epoch (BKJD)",
+    "mine": 144.2824423464944,
+    "pipeline": 144.28486448191106,
+    "unit": "BKJD"
+   },
+   {
+    "quantity": "t0 difference (min)",
+    "mine": -3.4878749999779757,
+    "pipeline": null,
+    "unit": "min"
+   },
+   {
+    "quantity": "box duration (h)",
+    "mine": 3.75,
+    "pipeline": 3.75,
+    "unit": "h"
+   },
+   {
+    "quantity": "T14 trapezoid (h) vs pipeline t14_max for Rstar=0.83",
+    "mine": 4.289447291969311,
+    "pipeline": 4.1739421090219615,
+    "unit": "h"
+   },
+   {
+    "quantity": "box depth (ppm)",
+    "mine": 1009.4012275569942,
+    "pipeline": 997.149943936737,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "box depth error (ppm) [mine empirical random-phase; pipeline formal]",
+    "mine": 51.38849362396461,
+    "pipeline": 58.475683775241855,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "box noise used for SNR (ppm)",
+    "mine": 51.38849362396461,
+    "pipeline": 41.93742817536557,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "empirical SNR",
+    "mine": 19.64255334945775,
+    "pipeline": 23.77708856554232,
+    "unit": ""
+   },
+   {
+    "quantity": "trapezoid/TLS full depth (ppm)",
+    "mine": 1066.424922433287,
+    "pipeline": 1089.325563229382,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "n in-transit points",
+    "mine": 602,
+    "pipeline": 599,
+    "unit": ""
+   },
+   {
+    "quantity": "odd depth (ppm)",
+    "mine": 992.8801268697107,
+    "pipeline": 974.830461029863,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "even depth (ppm)",
+    "mine": 1026.4804735373723,
+    "pipeline": 1020.1503602205175,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "odd/even sigma",
+    "mine": 0.32291604743819324,
+    "pipeline": 0.5403275923495449,
+    "unit": ""
+   },
+   {
+    "quantity": "secondary depth at phase 0.5 (ppm)",
+    "mine": -3.80007918709957,
+    "pipeline": 0.8965177242803435,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "secondary sigma",
+    "mine": -0.07859039203451863,
+    "pipeline": 0.021377508428305728,
+    "unit": ""
+   },
+   {
+    "quantity": "n transits (>=50% coverage)",
+    "mine": 86,
+    "pipeline": 86,
+    "unit": ""
+   },
+   {
+    "quantity": "per-event chi2 about constant depth / dof",
+    "mine": "220/85",
+    "pipeline": "195/85",
+    "unit": ""
+   },
+   {
+    "quantity": "single-event dominance (max event chi2 share)",
+    "mine": 0.0763744584343169,
+    "pipeline": null,
+    "unit": ""
+   },
+   {
+    "quantity": "per-year depths (ppm) [mine: Kepler years Q1-4,5-8,9-12,13-17]",
+    "mine": [
+     1002,
+     1188,
+     962,
+     901
+    ],
+    "pipeline": null,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "per-year errors (ppm)",
+    "mine": [
+     124,
+     116,
+     103,
+     97
+    ],
+    "pipeline": null,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "per-quartile depths (ppm) [pipeline: event quartiles]",
+    "mine": null,
+    "pipeline": [
+     1015,
+     1234,
+     820,
+     814
+    ],
+    "unit": "ppm"
+   },
+   {
+    "quantity": "per-year/quartile chi2 about mean / dof",
+    "mine": "3.8/3",
+    "pipeline": null,
+    "unit": ""
+   },
+   {
+    "quantity": "SAP_FLUX box depth (ppm)",
+    "mine": 677.6453410950456,
+    "pipeline": null,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "SAP/PSF depth ratio",
+    "mine": 0.6713339776048405,
+    "pipeline": null,
+    "unit": ""
+   },
+   {
+    "quantity": "blind BLS SDE (own definition, 1-50 d)",
+    "mine": 52.6317490584189,
+    "pipeline": null,
+    "unit": ""
+   },
+   {
+    "quantity": "inverted-flux null top SDE (own definition)",
+    "mine": 9.456952760421077,
+    "pipeline": null,
+    "unit": ""
+   },
+   {
+    "quantity": "TLS SDE (pipeline only)",
+    "mine": null,
+    "pipeline": 13.337145300967194,
+    "unit": ""
+   },
+   {
+    "quantity": "stage2_pass (pipeline)",
+    "mine": null,
+    "pipeline": true,
+    "unit": ""
+   }
+  ],
+  "per_event": {
+   "n_matched": 86,
+   "corr": 0.9693389191649591,
+   "mean_diff_mine_minus_pipeline_ppm": -6.970441645117267,
+   "rms_diff_ppm": 203.8218864659099,
+   "frac_positive_mine": 0.9069767441860465,
+   "frac_positive_pipeline": 0.9186046511627907
+  }
  }
 }
