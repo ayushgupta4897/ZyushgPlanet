@@ -123,8 +123,9 @@ def f(x, nd=1):
 
 git = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
 tls = (vet or {}).get("tls") or {}
-real = (s1 or {}).get("real") or {}
-inv = (s1 or {}).get("inverted") or {}
+real = ((s1 or {}).get("real") or {}).get("s1") or {}
+inv = ((s1 or {}).get("inverted") or {}).get("s1") or {}
+real2 = ((s1 or {}).get("real") or {}).get("s2") or {}
 ps = pix["summary"] if pix else {}
 L = []
 L.append(f"# {a.fname} ({star.get('gaia_designation')}, KIC {star.get('kic')}) — evidence pack")
@@ -152,7 +153,9 @@ if vet:
     L.append(f"| R_p if on target | {f(vet.get('rp_earth_box'), 2)} R⊕ (box), {f(tls.get('rp_earth'), 2)} R⊕ (TLS) | R★ {f(vet.get('rstar_used'), 2)} R☉ colour-based | stage2/vet.json |")
     L.append(f"| Stage-2 verdict | {'PASS' if vet.get('stage2_pass') else 'FAIL ' + str(vet.get('stage2_fails'))} ({vet.get('stage2_rules')}); v1.4: {'PASS' if vet.get('stage2_pass_v14') else 'FAIL ' + str(vet.get('stage2_fails_v14'))} | post-hoc relative to stage 1 | stage2/vet.json |")
 if real:
-    L.append(f"| Stage-1 BLS | SDE {f(real.get('sde'))}, SNR_emp {f(real.get('snr_emp'))} real; inverted (2−f) top peak SDE {f(inv.get('sde'))} at {f(inv.get('period_d'), 3)} d | blind screen, config {s1.get('config_sha')} | stage1_row.json |")
+    L.append(f"| Stage-1 BLS | P {f(real.get('period_d'), 5)} d, SDE {f(real.get('sde'))}, SNR_emp {f(real.get('snr_emp'))}, {real.get('n_transits')} transits, max single-event fraction {f(real.get('max_single_event_frac'), 2)}; inverted (2−f) top peak SDE {f(inv.get('sde'))} at {f(inv.get('period_d'), 3)} d | blind screen, config {s1.get('config_sha')} | stage1_row.json |")
+    if real2:
+        L.append(f"| Stage-1 second signal (after masking the first) | P {f(real2.get('period_d'), 4)} d, depth {f(real2.get('depth_ppm'), 0)} ppm, SDE {f(real2.get('sde'))}, SNR_emp {f(real2.get('snr_emp'))} | 0.5–40 d window | stage1_row.json `real.s2` |")
 if ps:
     L.append(f"| Pixel localisation (v1.6 χ²) | **{ps.get('verdict')}**: Σ(χ²null−χ²target) {f(ps.get('sum_dchi2_null_minus_target'), 0)}, Σ(χ²best-alt−χ²target) {f(ps.get('sum_dchi2_bestalt_minus_target'), 0)} over {ps.get('n_quarters_chi2')} quarters; strongest alternative {ps.get('strongest_alternative')} | post-hoc rule, passed control KIC 5689121 | pixels/pixel_v16.json |")
 if rd:
@@ -174,7 +177,7 @@ if second:
              f"P {f(second['P'], 5)} d, depth {f(second['depth_pass2_ppm'], 0)} ppm, SNR {f(second['snr_emp_pass2'])}, {second.get('n_events')} events "
              f"({f(100*(second.get('frac_events_positive') or 0), 0)} % positive), odd/even {f(second.get('odd_even_sigma'), 2)} σ, secondary {f(second.get('secondary_sigma'), 2)} σ, "
              f"verdict {'PASS' if second.get('stage2_pass') else 'FAIL ' + str(second.get('stage2_fails'))}; known matches {len(second.get('known_matches') or [])}. "
-             f"Pixel v1.6: {(second_pix or {}).get('summary', {}).get('verdict', 'not run')}. Files: second_signal_{a.second_signal}/.")
+             f"Pixel v1.6: {(second_pix or {}).get('summary', {}).get('verdict', 'not run')} ({(second_pix or {}).get('summary', {}).get('verdict_reason', '')}). Files: second_signal_{a.second_signal}/.")
     L.append("")
 if deep:
     L.append("## Deep single-target run")
