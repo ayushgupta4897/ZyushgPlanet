@@ -95,3 +95,34 @@ Using 1 of 4 CPU threads
 [prep] upward-only clip at +4.0 x 2429 ppm: removed 59 points (no downward clipping)
 [bls-refine] P=6.815618 d T0=138.28532 BKJD dur=2.50 h depth=1113+/-74 ppm (SNR 15.1); odd 1132 even 1094; phase0.5 -25+/-74 ppm; 151 transits with data
 [vet] box depth 1065 +/- 107 ppm; odd 1041+/-158, even 1090+/-146 ppm (-0.23 sigma); secondary @0.5 -48+/-89 ppm; max other dip 2.3 sigma at phase -0.270; events 148 (105 positive); empirical SNR 12.6 (random-phase std 85 ppm)
+[bls] 215123 periods x 8 durations in 125.2s; best P=24.387973 d power=8.54 SDE=5.32
+Transit Least Squares TLS 2.0.1 (11 Oct 2026)
+Creating model cache for 35 durations
+Searching 46519 data points, 198786 periods from 1.0 to 49.999 days
+Using 1 of 4 CPU threads
+[tls] 198786 periods (1.0-50.0 d, osf=3) in 223.1s with 1 threads; P=5.943427 d SDE=7.53 SNR=4.70 depth=627 ppm dur=1.30 h T0=136.44657 BKJD transits=245 distinct=174
+[null] inverted BLS best P=24.3880 d power=8.54 SDE=5.32; inverted TLS best P=5.9434 SDE=7.53 SNR=4.70
+[compare] dP = -0.55 s (-0.9 ppm); T0 offset at epoch 106 (mid-baseline): 3.0 min; depth at reference ephemeris (2.4 h box): 1073 +/- 109 ppm
+Downloading URL https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:HLSP/kbonus-bkg/lcs/0039/003963530/hlsp_kbonus-bkg_kepler_kepler_kic-003963530_kepler_v1.0_lc.fits to /home/user/ZyushgPlanet/data/kbonus/2052383524365642112/hlsp_kbonus-bkg_kepler_kepler_kic-003963530_kepler_v1.0_lc.fits ... [Done]
+[fetch] downloaded mast:HLSP/kbonus-bkg/lcs/0039/003963530/hlsp_kbonus-bkg_kepler_kepler_kic-003963530_kepler_v1.0_lc.fits -> /home/user/ZyushgPlanet/data/kbonus/2052383524365642112/hlsp_kbonus-bkg_kepler_kepler_kic-003963530_kepler_v1.0_lc.fits (9146880 bytes, 0.8s, status=COMPLETE)
+[prep] Q 1:  1431/ 1624 cadences kept (quality=hard), median PSF flux  14111.5 e-/s, PSFFRAC 0.878, CROWDSAP 0.883
+[prep] Q 2:  2357/ 4081 cadences kept (quality=hard), median PSF flux  16116.3 e-/s, PSFFRAC 0.905, CROWDSAP 0.734
+[prep] Q 3:  3642/ 4135 cadences kept (quality=hard), median PSF flux  14516.5 e-/s, PSFFRAC 0.903, CROWDSAP 0.941
+[prep] Q 4:  3808/ 4110 cadences kept (quality=hard), median PSF flux  15777.8 e-/s, PSFFRAC 0.929, CROWDSAP 0.879
+[prep] Q 5:  4169/ 4487 cadences kept (quality=hard), median PSF flux  13664.7 e-/s, PSFFRAC 0.908, CROWDSAP 0.919
+[prep] Q 7:  3974/ 4227 cadences kept (quality=hard), median PSF flux  14528.3 e-/s, PSFFRAC 0.900, CROWDSAP 0.968
+[prep] Q 8:  2894/ 3107 cadences kept (quality=hard), median PSF flux  15669.2 e-/s, PSFFRAC 0.926, CROWDSAP 0.877
+[prep] Q 9:  4381/ 4654 cadences kept (quality=hard), median PSF flux  13384.7 e-/s, PSFFRAC 0.910, CROWDSAP 0.918
+[prep] Q11:  3915/ 4474 cadences kept (quality=hard), median PSF flux  14553.5 e-/s, PSFFRAC 0.896, CROWDSAP 0.968
+[prep] Q12:  3252/ 3894 cadences kept (quality=hard), median PSF flux  15962.0 e-/s, PSFFRAC 0.921, CROWDSAP 0.860
+[prep] Q13:  3932/ 4245 cadences kept (quality=hard), median PSF flux  13180.4 e-/s, PSFFRAC 0.911, CROWDSAP 0.919
+[prep] Q15:  4233/ 4367 cadences kept (quality=hard), median PSF flux  14251.0 e-/s, PSFFRAC 0.895, CROWDSAP 0.969
+[prep] Q16:  3364/ 3536 cadences kept (quality=hard), median PSF flux  15086.6 e-/s, PSFFRAC 0.921, CROWDSAP 0.834
+[prep] Q17:  1226/ 1291 cadences kept (quality=hard), median PSF flux  13381.6 e-/s, PSFFRAC 0.894, CROWDSAP 0.862
+[prep] wotan biweight window=0.496 d (11.9 h), break_tolerance=0.5 d, masked points=0; 0 NaN points dropped
+[prep] upward-only clip at +4.0 x 366 ppm: removed 54 points (no downward clipping)
+[prep] N=46524 points in 14 quarters, baseline 1459.5 d; std 384 ppm, robust sigma 366 ppm, point-to-point 372 ppm; 6-h CDPP-like: binned 95 ppm, lightkurve 89.55739850658489 ppm, white-noise expectation 107 ppm
+[bls] 215120 periods x 8 durations in 125.4s; best P=45.709196 d power=8.75 SDE=5.67
+[bls] refined: P=45.710934 d T0=177.10199 BKJD dur=1.30 h depth=390+/-44 ppm (+2.8s)
+[neighbour] own best BLS P=45.7109 d power=8.75 SDE=5.67; depth at target ephemeris -17 +/- 15 ppm (would need ~115 ppm to host the signal)
+[run] done in 14.0 min -> runs/kic3963519_deep/results.json
