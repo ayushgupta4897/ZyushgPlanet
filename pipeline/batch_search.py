@@ -360,4 +360,6 @@ def passes_first_screen(sig: dict, cfg: dict) -> tuple[bool, list[str]]:
         fails.append("depth")
     if sig.get("period_d", 0) < th.get("period_min_d", 0):
         fails.append("period")
+    if sig.get("period_d") and (sig.get("duration_h", 0) / 24.0) / sig["period_d"] > th.get("max_duty_cycle", 1.0):
+        fails.append("duty_cycle")
     return len(fails) == 0, fails

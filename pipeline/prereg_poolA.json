@@ -3,7 +3,9 @@
   "registered_utc": "2026-10-17T12:05:00Z",
   "revision_log": [
     "v1.0 2026-10-17T12:05Z: thresholds and target list registered before any search.",
-    "v1.1 2026-10-17T12:20Z: positive controls (kic-005689121, kic-007603200) FAILED the v1.0 screen because of three implementation bugs, fixed before any pool star was searched: (1) secondary-eclipse test used astropy depth_half (half-period model) instead of depth_phased (half-phase model); (2) odd/even sigma used the white-noise formal error instead of the empirical folded-box noise; (3) transit mask width could exceed short periods and crash the inverted run. Thresholds unchanged."
+    "v1.1 2026-10-17T12:20Z: positive controls (kic-005689121, kic-007603200) FAILED the v1.0 screen because of three implementation bugs, fixed before any pool star was searched: (1) secondary-eclipse test used astropy depth_half (half-period model) instead of depth_phased (half-phase model); (2) odd/even sigma used the white-noise formal error instead of the empirical folded-box noise; (3) transit mask width could exceed short periods and crash the inverted run. Thresholds unchanged.",
+    "v1.1 control results: kic-005689121 PASS (P 13.76956 d, 1891 ppm, SDE 51.6, SNR_emp 20.1); kic-007603200 PASS twice (Kepler-138 c 13.781 d 612 ppm SDE 99; Kepler-138 d 23.089 d 372 ppm SDE 33.6 as second signal); neighbour kic-005689116 rejected; all inverted runs rejected.",
+    "v1.2 2026-10-17T12:40Z: added max_duty_cycle = 0.15 (duration/period) as a physical cut, before any pool star was searched. Motivation: every inverted-run 'winner' in the controls was a 7-h box at P < 1 d (30-55% duty cycle), which no transiting planet around a dwarf can produce. No other threshold changed."
   ],
   "target_list": "targets/poolA_kbonus_bg_dwarfs_ranked.csv",
   "target_list_sha256": "27052817d88d95c18adb3b1c94adee40f593ac47224c5e6815564a43415e254b",
@@ -25,7 +27,8 @@
     "odd_even_sigma_max": 3.0,
     "secondary_sigma_max": 3.0,
     "depth_ppm_max": 50000,
-    "period_min_d": 0.5
+    "period_min_d": 0.5,
+    "max_duty_cycle": 0.15
   },
   "null_calibration": "The identical screen is applied to the inverted light curve (2 - f) of every star. The first-screen pass rate on inverted data is the empirical false-alarm rate; thresholds above are FIXED before the run and will not be changed after inspecting results. Any tighter post-hoc cut must be reported as post-hoc.",
   "positive_controls": ["kic-005689121 (Kuber's 13.769 d candidate; expect P=13.769, depth ~1.4-2.4 ppt)", "kic-007603200 (Kepler-138; expect c at 13.781 d ~ 700 ppm and d at 23.09 d)"],

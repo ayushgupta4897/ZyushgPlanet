@@ -114,3 +114,7 @@ Using 3 of 4 CPU threads
 [prep] wotan biweight window=0.496 d (11.9 h), break_tolerance=0.5 d, masked points=0; 0 NaN points dropped
 [prep] upward-only clip at +4.0 x 455 ppm: removed 78 points (no downward clipping)
 [prep] N=46445 points in 13 quarters, baseline 1426.4 d; std 483 ppm, robust sigma 454 ppm, point-to-point 479 ppm; 6-h CDPP-like: binned 110 ppm, lightkurve 104.97961297186478 ppm, white-noise expectation 138 ppm
+[bls] 210253 periods x 8 durations in 126.6s; best P=50.576270 d power=8.37 SDE=6.32
+[bls] refined: P=50.576168 d T0=165.71491 BKJD dur=1.30 h depth=501+/-62 ppm (+3.1s)
+[neighbour] own best BLS P=50.5762 d power=8.37 SDE=6.32; depth at target ephemeris -31 +/- 28 ppm (would need ~913 ppm to host the signal)
+[run] done in 13.8 min -> runs/kic5689121/results.json
