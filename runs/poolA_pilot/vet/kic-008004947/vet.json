@@ -1,0 +1,103 @@
+{
+ "fname": "kic-008004947",
+ "P_screen": 31.174997908179567,
+ "dur_screen_h": 1.5,
+ "t0_screen_bkjd": 137.93358320882544,
+ "object": "KIC 8004947",
+ "gaiaid": "Gaia DR3 2116962205944971264",
+ "tpforg": 8004945,
+ "kepmag": 17.2779998779297,
+ "ra": 280.2939818847494,
+ "dec": 43.87739324702573,
+ "P": 31.17464710175149,
+ "dur_h": 1.5,
+ "t0_bkjd": 137.93358320901172,
+ "t0_bjd": 2454970.933583209,
+ "depth_pass1_ppm": 1104.5059276165725,
+ "depth_pass2_ppm": 1345.3222464222536,
+ "depth_pass2_formal_err_ppm": 336.16419656925547,
+ "box_noise_ppm": 175.65144536149347,
+ "snr_emp_pass2": 7.659044556414318,
+ "n_in_transit": 110,
+ "n_points": 57120,
+ "depth_odd_ppm": 906.4157791713878,
+ "depth_even_ppm": 1672.760404530238,
+ "odd_even_sigma": 2.1814355805091745,
+ "secondary_depth_ppm": 34.945967956834245,
+ "secondary_sigma": 0.1989506427625169,
+ "core_to_box_depth_ratio": 0.920794472290935,
+ "n_events": 39,
+ "gap_frac_1d": 0.07692307692307693,
+ "gap_frac_2d": 0.1794871794871795,
+ "frac_events_positive": 0.7948717948717948,
+ "event_weighted_depth_ppm": 1009.0528395093784,
+ "event_chi2_const": 121.68120409320944,
+ "event_dof": 38,
+ "depth_by_quartile_ppm": [
+  [
+   1204.3198690383977,
+   312.4906573918437,
+   10
+  ],
+  [
+   1152.0152052717622,
+   306.44019892051443,
+   10
+  ],
+  [
+   884.309173228804,
+   286.9754665573678,
+   10
+  ],
+  [
+   771.1449008226863,
+   287.1816026977199,
+   10
+  ]
+ ],
+ "ls_period_d": 0.6108334129409592,
+ "ls_half_amplitude_ppm": 60.53604588363015,
+ "ls_power": 0.0006358519757631449,
+ "ls_amp_over_depth": 0.04499743168941088,
+ "ls_period_matches": false,
+ "rstar_used": 0.3279599237442017,
+ "t14_max_h": 2.858140734995462,
+ "duration_ratio": 0.5248167039620537,
+ "rp_earth_box": 1.3123772377493348,
+ "tls": {
+  "period": 31.17503808437897,
+  "SDE": 4.927274841438434,
+  "snr": 7.845543952360919,
+  "depth": 0.9987168964229769,
+  "duration": 0.0629147270831784,
+  "rp_rs": 0.03221350676218649,
+  "odd_even_mismatch": 0.9478862212515095,
+  "transit_count": 47.0,
+  "distinct_transit_count": 39.0,
+  "rp_earth": 1.1526130490394666,
+  "transit_depths_mean": 0.9987381618278649
+ },
+ "known_matches": [
+  {
+   "catalog": "TCE",
+   "name": "8073771-2",
+   "kepid": 8073771.0,
+   "sep_arcmin": 2.9009439992636357,
+   "period": 31.2098,
+   "ratio": "1:1",
+   "frac_diff": 0.001126341669876516,
+   "disposition": "TCE",
+   "depth_ppm": 179.4,
+   "same_tpf": false,
+   "same_kic": false,
+   "epoch_offset_phase": 0.49274752848445713
+  }
+ ],
+ "ok": true,
+ "runtime_s": 8.0,
+ "stage2_pass": false,
+ "stage2_fails": [
+  "event_chi2",
+  "tls_sde"
+ ]
+}
