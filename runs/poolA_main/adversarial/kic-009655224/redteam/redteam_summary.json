@@ -1,0 +1,16 @@
+{
+ "fname": "kic-009655224",
+ "run_id": "poolA_main/adversarial/kic-009655224/redteam",
+ "date": "2026-10-17",
+ "verdict": "survives",
+ "ephemeris_used": {"P_d": 6.703464464595031, "t0_bkjd": 265.183161835447, "dur_h": 2.4375, "source": "vet.json"},
+ "known_object": {"direct_kic_matches": 0, "koi_within_3arcmin": 1, "tce_within_3arcmin": 17, "ephemeris_matches_any_harmonic": 0, "nearest_period_coincidences": [{"kepid": 8757619, "P": 6.70842, "sep_arcmin": 88.8, "epoch_offset_h": 8.6}, {"kepid": 8314525, "P": 6.70746, "sep_arcmin": 163.5, "epoch_offset_h": -6.6}, {"kepid": 9719636, "P": 3.35157, "depth_ppm": 54970, "sep_arcmin": 52.0, "epoch_offset_h": 4.5, "note": "EB; a ghost would also appear at phase 0.5 where the fold shows -29 ppm"}], "simbad_30arcsec_at_target": "none", "gaia_within_5arcsec": "none other than target", "bienias_szabo_2025": "excluded by period/depth regime only (P 2.5-4.8 d hot Jupiters); list not checked by KIC"},
+ "pixel_own": {"stamp_total_deficit_e_s": [1.32, 0.34], "pixel_nearest_target_e_s": [0.491, 0.075], "pixel_nearest_G15.9_e_s": [0.187, 0.086], "pixel_nearest_host_e_s": [0.084, 0.065], "prf_fit_sigma0.6_amp_e_s": {"target": [1.05, 0.15], "nb_G15.9": [0.39, 0.18], "host": [-0.06, 0.14]}, "prf_fit_chi2": {"null": 443.9, "target_only": 375.1, "nb_only": 421.1, "host_only": 433.8, "all3": 352.9}, "expected_if_on_target_e_s": 1.07},
+ "pixel_pipeline_chi2_sums_10q": {"gauss_at_target": 299.5, "gauss_at_G15.9": 328.6, "gauss_at_host": 340.9, "scaled_image": 324.8, "null": 348.3},
+ "neighbour_lcs_at_ephemeris": {"kic9655226_G15.9_psf_e_s": [0.43, 0.23], "kic9655226_sap_e_s": [0.76, 0.22], "kic9655236_host_psf_e_s": [-0.15, 0.12]},
+ "lc_checks": {"depth_ppm": [648, 89], "sap_depth_ppm": [300, 34], "per_season_ppm": {"0_ch47": [716, 124], "1_ch23": [368, 112], "2_ch39": [790, 176], "3_ch63": [653, 181]}, "season_chi2_dof": [6.32, 3], "trend_ppm_per_1000d": [-204, 173], "spearman_depth_gapdist": [-0.087, 0.338], "events_gt3sigma": [5, 124], "depth_excluding_top5_events_ppm": [429, 75], "deepest_other_phase_box_ppm": [150, 0.16], "vshape_dchi2_full_V_vs_box": 8.95, "ls_peak_d": 37.0, "ls_rank_at_P_of_200000": 9018},
+ "flags": {"desaturation_z": -1.1, "zero_crossing_z": 2.6, "n_flag_types_tested": 11},
+ "density": {"aRs_for_Ms0.85": 17.0, "central_T14_h": 3.08, "implied_b": 0.65, "rp_earth": 2.25},
+ "residual_weaknesses": ["season-1 depth 2 sigma low", "0.4+/-0.2 e/s echo in G15.9 neighbour (leakage-consistent, not proven)", "per-event errors ~20% underestimated", "blend within ~4 arcsec not excludable by Kepler pixels", "host G17.1 at 2.2 kpc: statistical validation only"],
+ "files": ["redteam.md", "redteam/catalog_check.py", "redteam/catalog_check.log", "redteam/lc_checks.py", "redteam/lc_checks.log", "redteam/lc_checks.json", "redteam/pixel_check.py", "redteam/pixel_check.log", "redteam/pixel_check.json", "redteam/pixel_fit.py", "redteam/pixel_fit.log", "redteam/pixel_fit.json", "redteam/flag_check.py", "redteam/flag_check.log", "redteam/neighbour_allq.py", "redteam/neighbour_allq.log", "redteam/redteam_summary.json"]
+}
