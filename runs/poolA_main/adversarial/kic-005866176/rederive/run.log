@@ -1,0 +1,43 @@
+loaded PSF FLUX: 39966 good cadences, 169.77-1591.00 BKJD, quarters [2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 17]
+detrended (running median 1.0 d): 39837 pts, robust point-to-point scatter 457 ppm
+BLS grid: 66855 periods, 1-50 d, durations [1.5, 2.5, 4.0, 6.0, 9.0] h; 20s
+  peak 1: P=44.14386 d SDE=7.62 depth=330 ppm dur=6.00 h alias=2/3
+  peak 2: P=32.11248 d SDE=7.43 depth=229 ppm dur=9.00 h alias=None
+  peak 3: P=35.32143 d SDE=7.42 depth=359 ppm dur=4.05 h alias=None
+  SDE near 29.433 d (best within 0.3%): 6.79 at P=29.42535
+refined: P=44.14805 d t0=187.3595 BKJD dur=4.50 h BLS depth=399+-32 ppm (formal)
+masked re-detrend depth: 276 ppm, formal err 42, empirical (random-phase box) err 51 ppm -> empirical SNR 5.46; n_in=168
+odd 631+-77  even -69+-63 ppm  -> 7.03 sigma
+secondary (phase 0.5, same box): 2 ppm = 0.04 sigma (n_in=168)
+strongest other dip in phase: 150 ppm at phase -0.477 (2.97 sigma)
+n_transits with >=3 in-transit points: 20; epochs [0, 1, 2, 3, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 21, 22, 23, 24]
+   epoch   0 Q 2 tc=187.360 depth=-17+-149 n=9
+   epoch   1 Q 2 tc=231.508 depth=2978+-311 n=6
+   epoch   2 Q 3 tc=275.656 depth=94+-161 n=9
+   epoch   3 Q 3 tc=319.804 depth=-3+-182 n=7
+   epoch   6 Q 5 tc=452.248 depth=-123+-171 n=9
+   epoch   7 Q 5 tc=496.396 depth=504+-120 n=9
+   epoch   8 Q 6 tc=540.544 depth=72+-141 n=9
+   epoch   9 Q 6 tc=584.692 depth=-210+-129 n=8
+   epoch  10 Q 6 tc=628.840 depth=97+-146 n=9
+   epoch  11 Q 7 tc=672.988 depth=490+-173 n=9
+   epoch  12 Q 7 tc=717.136 depth=107+-121 n=8
+   epoch  15 Q 9 tc=849.580 depth=269+-148 n=8
+   epoch  16 Q 9 tc=893.728 depth=-24+-193 n=9
+   epoch  17 Q10 tc=937.876 depth=2477+-154 n=8
+   epoch  18 Q10 tc=982.024 depth=-229+-144 n=8
+   epoch  19 Q11 tc=1026.173 depth=432+-145 n=8
+   epoch  21 Q12 tc=1114.469 depth=-173+-203 n=9
+   epoch  22 Q12 tc=1158.617 depth=-413+-169 n=8
+   epoch  23 Q13 tc=1202.765 depth=-82+-173 n=9
+   epoch  24 Q13 tc=1246.913 depth=27+-228 n=9
+year 1 (Q[2, 3]): depth 756+-111 ppm, 4 transits
+year 2 (Q[5, 6, 7]): depth 127+-111 ppm, 7 transits
+year 3 (Q[9, 10, 11, 12]): depth 316+-73 ppm, 7 transits
+year 4 (Q[13, 17]): depth -92+-152 ppm, 2 transits
+central-half depth 265 ppm vs full-box 276 ppm
+SAP_FLUX: depth 67+-56 ppm (SNR 1.20), scatter 493 ppm, n_in=154; ratio SAP/PSF = 0.24
+SAP narrow-window BLS best: P=44.08934 depth=431 ppm
+inverted flux narrow-window max SNR-power 6.94 vs real 12.35
+implied Rp ~ 1.72 Re (undiluted, Rstar=0.9458); central-transit duration expectation ~6.2 h vs measured 4.50 h
+done in 45s; wrote /home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005866176/rederive/results.json, fold_rederive.png

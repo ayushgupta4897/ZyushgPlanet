@@ -1,0 +1,382 @@
+{
+ "fname": "kic-005866176",
+ "kic": 5866176,
+ "run_label": "adversarial_rederive_2026-10-17",
+ "method": {
+  "quality": "SAP_QUALITY==0",
+  "normalisation": "per-quarter median",
+  "detrend": "time-windowed running median, 1.0 d, gap-split, outlier-clipped; masked re-detrend (+-1 dur) for depth stats",
+  "bls": "astropy BoxLeastSquares objective=snr, 1-50 d, df=(1.5h/3)/baseline, durations 1.5-9 h; refinement +-0.2% with 1-5 h durations",
+  "depth": "box mean in-transit vs median of local annulus (1-3 dur); error = std of same-size boxes at 600 random phases"
+ },
+ "n_points_good": 39966,
+ "n_points_detrended": 39837,
+ "scatter_ppm": 456.91577565468947,
+ "blind_bls": {
+  "n_periods": 66855,
+  "top_peaks": [
+   {
+    "rank": 1,
+    "period_d": 44.14385959372488,
+    "sde": 7.623925589351935,
+    "snr_power": 11.524880466890476,
+    "depth_ppm": 330.2609084714533,
+    "duration_h": 6.0,
+    "t0_bkjd": 187.39077408611774,
+    "alias_of_29p433": "2/3"
+   },
+   {
+    "rank": 2,
+    "period_d": 32.11248235871973,
+    "sde": 7.4307219250046845,
+    "snr_power": 11.329514521134898,
+    "depth_ppm": 228.6431082853779,
+    "duration_h": 9.0,
+    "t0_bkjd": 199.40327408611773,
+    "alias_of_29p433": null
+   },
+   {
+    "rank": 3,
+    "period_d": 35.32142540240766,
+    "sde": 7.417095732160327,
+    "snr_power": 11.315735827748933,
+    "depth_ppm": 358.7084513665107,
+    "duration_h": 4.050000000000001,
+    "t0_bkjd": 196.13764908611773,
+    "alias_of_29p433": null
+   }
+  ],
+  "sde_at_29p433": 6.78978323146958,
+  "recovered_blind": true
+ },
+ "best": {
+  "period_d": 44.148053260386284,
+  "t0_bkjd": 187.35952408611774,
+  "t0_bjd": 2455020.359524086,
+  "duration_h": 4.5,
+  "bls_depth_ppm": 399.3709901957733,
+  "bls_depth_err_formal_ppm": 32.34289025032447,
+  "depth_ppm": 276.2593747612785,
+  "depth_err_empirical_ppm": 50.55770371335955,
+  "depth_err_formal_ppm": 42.168847698496506,
+  "empirical_snr": 5.464238967963229,
+  "random_phase_median_ppm": -1.6296464040999048,
+  "central_half_depth_ppm": 265.44231174763235,
+  "n_in_transit": 168,
+  "n_transits": 20,
+  "epochs": [
+   0,
+   1,
+   2,
+   3,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   15,
+   16,
+   17,
+   18,
+   19,
+   21,
+   22,
+   23,
+   24
+  ],
+  "per_event": [
+   {
+    "epoch": 0,
+    "tc_bkjd": 187.35952408611774,
+    "depth_ppm": -17.398092178266822,
+    "err_ppm": 149.28726767301382,
+    "n_in": 9,
+    "quarter": 2
+   },
+   {
+    "epoch": 1,
+    "tc_bkjd": 231.50757734650404,
+    "depth_ppm": 2977.6315163680956,
+    "err_ppm": 310.62838212617,
+    "n_in": 6,
+    "quarter": 2
+   },
+   {
+    "epoch": 2,
+    "tc_bkjd": 275.6556306068903,
+    "depth_ppm": 94.0076204746232,
+    "err_ppm": 160.649780134197,
+    "n_in": 9,
+    "quarter": 3
+   },
+   {
+    "epoch": 3,
+    "tc_bkjd": 319.8036838672766,
+    "depth_ppm": -2.9436679852556935,
+    "err_ppm": 182.07945537007083,
+    "n_in": 7,
+    "quarter": 3
+   },
+   {
+    "epoch": 6,
+    "tc_bkjd": 452.24784364843543,
+    "depth_ppm": -122.78869017556815,
+    "err_ppm": 170.91339420946298,
+    "n_in": 9,
+    "quarter": 5
+   },
+   {
+    "epoch": 7,
+    "tc_bkjd": 496.3958969088217,
+    "depth_ppm": 503.8305561781975,
+    "err_ppm": 120.47354667665448,
+    "n_in": 9,
+    "quarter": 5
+   },
+   {
+    "epoch": 8,
+    "tc_bkjd": 540.5439501692081,
+    "depth_ppm": 71.52191382586714,
+    "err_ppm": 141.25330165781648,
+    "n_in": 9,
+    "quarter": 6
+   },
+   {
+    "epoch": 9,
+    "tc_bkjd": 584.6920034295943,
+    "depth_ppm": -209.51480037956216,
+    "err_ppm": 128.77369930757104,
+    "n_in": 8,
+    "quarter": 6
+   },
+   {
+    "epoch": 10,
+    "tc_bkjd": 628.8400566899807,
+    "depth_ppm": 96.79155768949066,
+    "err_ppm": 145.7449207790811,
+    "n_in": 9,
+    "quarter": 6
+   },
+   {
+    "epoch": 11,
+    "tc_bkjd": 672.9881099503668,
+    "depth_ppm": 489.63425167114497,
+    "err_ppm": 173.17144713952786,
+    "n_in": 9,
+    "quarter": 7
+   },
+   {
+    "epoch": 12,
+    "tc_bkjd": 717.1361632107531,
+    "depth_ppm": 106.55804303993932,
+    "err_ppm": 121.032477867772,
+    "n_in": 8,
+    "quarter": 7
+   },
+   {
+    "epoch": 15,
+    "tc_bkjd": 849.580322991912,
+    "depth_ppm": 268.69570572118914,
+    "err_ppm": 147.6259877184076,
+    "n_in": 8,
+    "quarter": 9
+   },
+   {
+    "epoch": 16,
+    "tc_bkjd": 893.7283762522983,
+    "depth_ppm": -23.80120642531125,
+    "err_ppm": 192.54992119032693,
+    "n_in": 9,
+    "quarter": 9
+   },
+   {
+    "epoch": 17,
+    "tc_bkjd": 937.8764295126846,
+    "depth_ppm": 2476.5273985325466,
+    "err_ppm": 153.7440673839475,
+    "n_in": 8,
+    "quarter": 10
+   },
+   {
+    "epoch": 18,
+    "tc_bkjd": 982.0244827730709,
+    "depth_ppm": -228.73374602383478,
+    "err_ppm": 143.76735509512287,
+    "n_in": 8,
+    "quarter": 10
+   },
+   {
+    "epoch": 19,
+    "tc_bkjd": 1026.1725360334572,
+    "depth_ppm": 432.48790973593464,
+    "err_ppm": 145.26907050725956,
+    "n_in": 8,
+    "quarter": 11
+   },
+   {
+    "epoch": 21,
+    "tc_bkjd": 1114.4686425542297,
+    "depth_ppm": -173.11791826291056,
+    "err_ppm": 202.56019504216533,
+    "n_in": 9,
+    "quarter": 12
+   },
+   {
+    "epoch": 22,
+    "tc_bkjd": 1158.616695814616,
+    "depth_ppm": -412.7119887511466,
+    "err_ppm": 168.98044367974785,
+    "n_in": 8,
+    "quarter": 12
+   },
+   {
+    "epoch": 23,
+    "tc_bkjd": 1202.7647490750023,
+    "depth_ppm": -81.71175529469998,
+    "err_ppm": 172.8587342892928,
+    "n_in": 9,
+    "quarter": 13
+   },
+   {
+    "epoch": 24,
+    "tc_bkjd": 1246.9128023353885,
+    "depth_ppm": 26.835731067986757,
+    "err_ppm": 227.71910246467058,
+    "n_in": 9,
+    "quarter": 13
+   }
+  ],
+  "odd_depth_ppm": 630.9291096913139,
+  "odd_err_ppm": 77.40336222103443,
+  "even_depth_ppm": -68.92858461693407,
+  "even_err_ppm": 62.50793120866018,
+  "odd_even_sigma": 7.034359609267161,
+  "secondary_ppm": 2.2604102003498383,
+  "secondary_sigma": 0.04470951080304977,
+  "strongest_other_dip_ppm": 150.04217250214057,
+  "strongest_other_dip_phase": -0.4775,
+  "strongest_other_dip_sigma": 2.9677410460098272,
+  "per_year": [
+   {
+    "year": 1,
+    "quarters": [
+     2,
+     3
+    ],
+    "depth_ppm": 755.7489631770942,
+    "err_ppm": 111.02803188715333,
+    "n_transits": 4,
+    "n_in": 31
+   },
+   {
+    "year": 2,
+    "quarters": [
+     5,
+     6,
+     7
+    ],
+    "depth_ppm": 127.20640899654967,
+    "err_ppm": 111.03832170151055,
+    "n_transits": 7,
+    "n_in": 61
+   },
+   {
+    "year": 3,
+    "quarters": [
+     9,
+     10,
+     11,
+     12
+    ],
+    "depth_ppm": 315.97867375487976,
+    "err_ppm": 72.61141866719979,
+    "n_transits": 7,
+    "n_in": 58
+   },
+   {
+    "year": 4,
+    "quarters": [
+     13,
+     17
+    ],
+    "depth_ppm": -91.54728495675002,
+    "err_ppm": 152.33160922557613,
+    "n_transits": 2,
+    "n_in": 18
+   }
+  ],
+  "astropy_stats_depth_odd_even": [
+   0.0008206689138073875,
+   4.601295517526497e-05,
+   -1.0249472279566518e-05,
+   4.53721964876255e-05
+  ],
+  "inverted_narrow_max_power": 6.939959696585198,
+  "real_narrow_max_power": 12.348030343137522
+ },
+ "sap": {
+  "depth_ppm": 67.39673445577132,
+  "depth_err_empirical_ppm": 55.95164037801235,
+  "snr": 1.204553324986279,
+  "scatter_ppm": 493.3398125151646,
+  "ratio_sap_over_psf": 0.24396180044210355,
+  "n_in_transit": 154
+ },
+ "plausibility": {
+  "Rstar_rsun": 0.9458,
+  "implied_rp_re": 1.715072852154951,
+  "central_duration_expect_h": 6.181272133473472
+ },
+ "pipeline_reference": {
+  "period_d": 29.433,
+  "depth_ppm": 481.0,
+  "duration_h": 2.2
+ },
+ "log": [
+  "loaded PSF FLUX: 39966 good cadences, 169.77-1591.00 BKJD, quarters [2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 17]",
+  "detrended (running median 1.0 d): 39837 pts, robust point-to-point scatter 457 ppm",
+  "BLS grid: 66855 periods, 1-50 d, durations [1.5, 2.5, 4.0, 6.0, 9.0] h; 20s",
+  "  peak 1: P=44.14386 d SDE=7.62 depth=330 ppm dur=6.00 h alias=2/3",
+  "  peak 2: P=32.11248 d SDE=7.43 depth=229 ppm dur=9.00 h alias=None",
+  "  peak 3: P=35.32143 d SDE=7.42 depth=359 ppm dur=4.05 h alias=None",
+  "  SDE near 29.433 d (best within 0.3%): 6.79 at P=29.42535",
+  "refined: P=44.14805 d t0=187.3595 BKJD dur=4.50 h BLS depth=399+-32 ppm (formal)",
+  "masked re-detrend depth: 276 ppm, formal err 42, empirical (random-phase box) err 51 ppm -> empirical SNR 5.46; n_in=168",
+  "odd 631+-77  even -69+-63 ppm  -> 7.03 sigma",
+  "secondary (phase 0.5, same box): 2 ppm = 0.04 sigma (n_in=168)",
+  "strongest other dip in phase: 150 ppm at phase -0.477 (2.97 sigma)",
+  "n_transits with >=3 in-transit points: 20; epochs [0, 1, 2, 3, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 21, 22, 23, 24]",
+  "   epoch   0 Q 2 tc=187.360 depth=-17+-149 n=9",
+  "   epoch   1 Q 2 tc=231.508 depth=2978+-311 n=6",
+  "   epoch   2 Q 3 tc=275.656 depth=94+-161 n=9",
+  "   epoch   3 Q 3 tc=319.804 depth=-3+-182 n=7",
+  "   epoch   6 Q 5 tc=452.248 depth=-123+-171 n=9",
+  "   epoch   7 Q 5 tc=496.396 depth=504+-120 n=9",
+  "   epoch   8 Q 6 tc=540.544 depth=72+-141 n=9",
+  "   epoch   9 Q 6 tc=584.692 depth=-210+-129 n=8",
+  "   epoch  10 Q 6 tc=628.840 depth=97+-146 n=9",
+  "   epoch  11 Q 7 tc=672.988 depth=490+-173 n=9",
+  "   epoch  12 Q 7 tc=717.136 depth=107+-121 n=8",
+  "   epoch  15 Q 9 tc=849.580 depth=269+-148 n=8",
+  "   epoch  16 Q 9 tc=893.728 depth=-24+-193 n=9",
+  "   epoch  17 Q10 tc=937.876 depth=2477+-154 n=8",
+  "   epoch  18 Q10 tc=982.024 depth=-229+-144 n=8",
+  "   epoch  19 Q11 tc=1026.173 depth=432+-145 n=8",
+  "   epoch  21 Q12 tc=1114.469 depth=-173+-203 n=9",
+  "   epoch  22 Q12 tc=1158.617 depth=-413+-169 n=8",
+  "   epoch  23 Q13 tc=1202.765 depth=-82+-173 n=9",
+  "   epoch  24 Q13 tc=1246.913 depth=27+-228 n=9",
+  "year 1 (Q[2, 3]): depth 756+-111 ppm, 4 transits",
+  "year 2 (Q[5, 6, 7]): depth 127+-111 ppm, 7 transits",
+  "year 3 (Q[9, 10, 11, 12]): depth 316+-73 ppm, 7 transits",
+  "year 4 (Q[13, 17]): depth -92+-152 ppm, 2 transits",
+  "central-half depth 265 ppm vs full-box 276 ppm",
+  "SAP_FLUX: depth 67+-56 ppm (SNR 1.20), scatter 493 ppm, n_in=154; ratio SAP/PSF = 0.24",
+  "SAP narrow-window BLS best: P=44.08934 depth=431 ppm",
+  "inverted flux narrow-window max SNR-power 6.94 vs real 12.35",
+  "implied Rp ~ 1.72 Re (undiluted, Rstar=0.9458); central-transit duration expectation ~6.2 h vs measured 4.50 h"
+ ],
+ "runtime_s": 44.41788458824158
+}

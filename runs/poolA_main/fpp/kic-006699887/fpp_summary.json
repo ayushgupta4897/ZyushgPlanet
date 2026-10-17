@@ -1,0 +1,186 @@
+{
+ "fname": "kic-006699887",
+ "run_id": "poolA_main",
+ "utc": "2026-10-17T17:24:00.785920Z",
+ "triceratops_version": "1.1.0",
+ "ephemeris": {
+  "P_d": 15.113611512744262,
+  "dur_h": 3.75,
+  "t0_bkjd": 134.72785715926437,
+  "t0_bjd": 2454967.7278571595,
+  "depth_ppm_on_target": 1022.6050610526727,
+  "source": "runs/poolA_main/vet/kic-006699887/vet.json (poolA_kbonus_background_dwarfs_v1.7)"
+ },
+ "light_curve": {
+  "n_unbinned": 3696,
+  "n_total_cadences": 60219,
+  "bin_d": 0.010216805555555555,
+  "window_durations": 3.0,
+  "flux_err_used": 0.00010567993757952627,
+  "flux_err_source": "std of binned out-of-transit points (|dt| > 0.75 D)",
+  "n_binned": 92
+ },
+ "tic_target": {
+  "ID": "270864056",
+  "Tmag": 15.5468,
+  "Vmag": 16.5836,
+  "GAIAmag": 16.2329,
+  "gaiabp": 16.8599,
+  "gaiarp": 15.4928,
+  "Jmag": 14.59,
+  "Hmag": 14.036,
+  "Kmag": 13.872,
+  "ebv": 0.049148,
+  "ra": 294.145638488837,
+  "dec": 42.1880271800089,
+  "mass": 0.73,
+  "rad": 0.760711,
+  "Teff": 4614.0,
+  "logg": 4.53895,
+  "plx": 1.1593,
+  "disposition": null,
+  "duplicate_id": null,
+  "sep (arcsec)": 0.0,
+  "PA (E of N)": 0.0,
+  "params_estimated": ""
+ },
+ "our_host_estimate": {
+  "Teff": 4542.2,
+  "Rstar": 0.6598656177520752,
+  "dist_pc": 859.1065292096221,
+  "RUWE": 1.087,
+  "sptype": "K"
+ },
+ "quarters_used_for_field": [
+  4,
+  5,
+  6,
+  7
+ ],
+ "aperture": "3x3 px on target (stand-in for PSF photometry)",
+ "N_draws": 1000000,
+ "seeds_done": 2,
+ "FPP_mean": 0.04387170355313347,
+ "FPP_std": 0.03337415053567755,
+ "NFPP_mean": 4.582700802788476e-20,
+ "NFPP_std": 1.3516643022547626e-20,
+ "runs": [
+  {
+   "seed": 1000,
+   "FPP": 0.07724585408881102,
+   "NFPP": 3.231036500533714e-20,
+   "runtime_s": 116.5,
+   "scenario_probs": {
+    "TP:270864056": 0.7054975680139749,
+    "EB:270864056": 2.822435987410651e-225,
+    "EBx2P:270864056": 2.0385559087759612e-56,
+    "PTP:270864056": 0.20232629688653653,
+    "PEB:270864056": 1.6579577105641102e-227,
+    "PEBx2P:270864056": 1.9955424488909996e-56,
+    "STP:270864056": 0.07437458905284676,
+    "SEB:270864056": 5.28629126896505e-35,
+    "SEBx2P:270864056": 3.3376373586672024e-25,
+    "DTP:270864056": 0.014930281010677525,
+    "DEB:270864056": 2.580132352044322e-218,
+    "DEBx2P:270864056": 8.237060666331135e-48,
+    "BTP:270864056": 0.002871265035947603,
+    "BEB:270864056": 2.8592960177020714e-16,
+    "BEBx2P:270864056": 1.6709612805304877e-14,
+    "NTP:1880854624": 8.018622771897084e-157,
+    "NEB:1880854624": 3.2305662015343314e-20,
+    "NEBx2P:1880854624": 4.702989993825573e-24
+   }
+  },
+  {
+   "seed": 1001,
+   "FPP": 0.010497553017455918,
+   "NFPP": 5.934365105043239e-20,
+   "runtime_s": 111.3,
+   "scenario_probs": {
+    "TP:270864056": 0.7949688958287572,
+    "EB:270864056": 1.5061772523142882e-238,
+    "EBx2P:270864056": 1.868479242915417e-52,
+    "PTP:270864056": 0.17824168157194856,
+    "PEB:270864056": 1.3863458749172002e-228,
+    "PEBx2P:270864056": 1.0011631766316414e-39,
+    "STP:270864056": 0.006713628405767006,
+    "SEB:270864056": 8.922838630297192e-49,
+    "SEBx2P:270864056": 9.649820163100493e-18,
+    "DTP:270864056": 0.016291869581838328,
+    "DEB:270864056": 3.045303619582012e-213,
+    "DEBx2P:270864056": 1.848365166759552e-79,
+    "BTP:270864056": 0.0037839246116346892,
+    "BEB:270864056": 5.312258971949104e-14,
+    "BEBx2P:270864056": 1.0726567371403961e-16,
+    "NTP:1880854624": 2.7419819610730136e-171,
+    "NEB:1880854624": 5.934052665647578e-20,
+    "NEBx2P:1880854624": 3.1243939566137617e-24
+   }
+  }
+ ],
+ "possible_hosts": [
+  {
+   "ID": "270864056",
+   "Tmag": 15.5468,
+   "fluxratio": 0.6878484422278867,
+   "tdepth": 0.0010226050610526727
+  },
+  {
+   "ID": "1880854624",
+   "Tmag": 18.9726,
+   "fluxratio": 0.0018147037794816506,
+   "tdepth": 0.38760998142647346
+  }
+ ],
+ "neighbour_tests": [
+  {
+   "TIC": 270864061,
+   "Tmag": 14.393,
+   "fluxratio": 0.3100374286362366,
+   "required_depth": 0.0022687496195329428,
+   "ids": {
+    "KIC": 6699878,
+    "GAIA": 2077554781499349120
+   },
+   "lc_tried": [
+    "kic-006699878",
+    "gaia-dr3-2077554781499349120"
+   ],
+   "excluded": true,
+   "lc_used": "kic-006699878",
+   "note": "608 in-transit cadences",
+   "measured_depth_ppm": -14.068020967483719,
+   "measured_err_ppm": 15.879423271312955,
+   "exclusion_sigma": 143.75948052373295,
+   "why": "own light curve at the ephemeris: -14 +- 16 ppm vs 2269 ppm required (144 sigma)"
+  },
+  {
+   "TIC": 1880854624,
+   "Tmag": 18.9726,
+   "fluxratio": 0.0018147037794816506,
+   "required_depth": 0.38760998142647346,
+   "ids": {
+    "KIC": null,
+    "GAIA": 2077554777196977280
+   },
+   "lc_tried": [
+    "gaia-dr3-2077554777196977280"
+   ],
+   "excluded": false,
+   "lc_used": "gaia-dr3-2077554777196977280",
+   "note": "no KBONUS light curve (RuntimeError)"
+  }
+ ],
+ "exclude_sigma": 5.0,
+ "approximations": [
+  "Gaussian 0.75-px PSF for every star (TRICERATOPS default), not the Kepler PRF",
+  "KBONUS PSF flux treated as dilution-corrected; a 3x3 aperture on the target sets nearby-star flux ratios",
+  "stellar parameters from the TIC; no contrast curve; no MOLUSC file",
+  "folded light curve binned to half a long cadence; model supersampled 20x over 29.4 min"
+ ],
+ "thresholds": {
+  "validated_FPP": 0.015,
+  "validated_NFPP": 0.001,
+  "note": "thresholds apply only in a refereed paper; this is a pipeline product"
+ }
+}

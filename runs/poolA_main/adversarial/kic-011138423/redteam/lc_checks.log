@@ -1,0 +1,15 @@
+/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/redteam-kic011138423/lc_checks.py:196: RuntimeWarning: invalid value encountered in scalar divide
+  bk_in.append(np.nanmedian(bkg[a]) / np.nanmedian(bkg[b]) - 1)
+FLUX all 1381 +- 104 per season {0: [np.float64(927.3), np.float64(107.6), 261], 1: [np.float64(1247.5), np.float64(186.3), 200], 2: [np.float64(1550.6), np.float64(224.1), 211], 3: [np.float64(1798.2), np.float64(200.9), 264]}
+SAP_FLUX all 637 +- 49 per season {0: [np.float64(454.1), np.float64(83.2), 261], 1: [np.float64(825.6), np.float64(133.4), 200], 2: [np.float64(396.6), np.float64(65.7), 213], 3: [np.float64(868.6), np.float64(110.7), 263]}
+PSF_FLAT_FLUX all 1410 +- 105 per season {0: [np.float64(926.4), np.float64(109.9), 261], 1: [np.float64(1358.0), np.float64(169.8), 199], 2: [np.float64(1580.2), np.float64(213.9), 211], 3: [np.float64(1790.1), np.float64(203.8), 264]}
+PSF_FLUX_NOVA all 1456 +- 112 {0: [np.float64(987.9), np.float64(119.3), 261], 1: [np.float64(1187.3), np.float64(209.5), 200], 2: [np.float64(1563.2), np.float64(225.1), 211], 3: [np.float64(2037.8), np.float64(223.3), 263]}
+depth vs PSFFRAC slope 2312.342507564881 +- 600.8159605459745 chi2_const 36.40341353339365 dof 16
+per-event chi2/dof real 1.38311048015402 random median 1.2740087648513145 p84 1.4382222460442446 frac>=real 0.2733333333333333
+near-gap 24 1113.9356423692675 214.83105405956042  far 229 1239.3180937196707 66.8726255540546
+per-year t0 shift (min) and depth [[100, 470, 1.4400000000000013, 1292.3721247163558], [470, 840, 4.320000000000004, 1400.928295959284], [840, 1210, -7.200000000000006, 1396.1288107326577], [1210, 1600, 1.4400000000000013, 1528.4029730820766]]
+bkg in/out-1 median nan  redchi2 in/out-1 median 0.0014118319219293962
+phase scan: max dip 223.41952663471537 at 0.26999999999999996 err 105.66505377941883  sec@0.5 51.11169981277724
+odd/even 1412.7369256531474 134.2819096586364 1348.8668357423403 127.39645292421356
+LS top periods [40.62818255687974, 40.661084775397214, 40.6940403279956, 40.59533354307694, 40.72704934446092] power at P 0.0001794412706262192
+written /tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/redteam-kic011138423/out/lc_checks.json
