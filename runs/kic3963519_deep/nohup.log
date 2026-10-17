@@ -1,0 +1,81 @@
+[run] 2026-10-17T18:17:47Z args={'gaia': '2052383520062380544', 'ra': 293.8889379018794, 'dec': 39.04016799531641, 'neighbour': '2052383524365642112', 'out': 'runs/kic3963519_deep', 'quality': 'hard', 'min_psffrac': 0.0, 'window': None, 'clip_sigma': 4.0, 'bls_pmin': 1.0, 'bls_pmax': 60.0, 'bls_oversample': 3.0, 'tls_pmin': 1.0, 'tls_pmax': 50.0, 'tls_osf': 3, 'tls_dgs': 1.1, 'threads': 1, 'no_tls': False, 'no_tls_null': False, 'tls_neighbour': False, 'compare_period': 6.815624034742515, 'compare_t0_bjd': 2454971.28256265, 'compare_duration_h': 2.4375}
+Downloading URL https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:HLSP/kbonus-bkg/lcs/0039/003963519/hlsp_kbonus-bkg_kepler_kepler_kic-003963519_kepler_v1.0_lc.fits to /home/user/ZyushgPlanet/data/kbonus/2052383520062380544/hlsp_kbonus-bkg_kepler_kepler_kic-003963519_kepler_v1.0_lc.fits ... [Done]
+[fetch] downloaded mast:HLSP/kbonus-bkg/lcs/0039/003963519/hlsp_kbonus-bkg_kepler_kepler_kic-003963519_kepler_v1.0_lc.fits -> /home/user/ZyushgPlanet/data/kbonus/2052383520062380544/hlsp_kbonus-bkg_kepler_kepler_kic-003963519_kepler_v1.0_lc.fits (9146880 bytes, 0.8s, status=COMPLETE)
+[fetch] /home/user/ZyushgPlanet/data/kbonus/2052383520062380544/hlsp_kbonus-bkg_kepler_kepler_kic-003963519_kepler_v1.0_lc.fits
+   HDU  0 PRIMARY                PrimaryHDU     None
+   HDU  1 LIGHTCURVE_STITCHED    BinTableHDU    51828
+   HDU  2 LIGHTCURVE_Q1          BinTableHDU    1624
+   HDU  3 APERTURE_Q1            ImageHDU       [5, 6]
+   HDU  4 LIGHTCURVE_Q2          BinTableHDU    4081
+   HDU  5 APERTURE_Q2            ImageHDU       [5, 5]
+   HDU  6 LIGHTCURVE_Q3          BinTableHDU    4135
+   HDU  7 APERTURE_Q3            ImageHDU       [5, 5]
+   HDU  8 LIGHTCURVE_Q4          BinTableHDU    4110
+   HDU  9 APERTURE_Q4            ImageHDU       [5, 6]
+   HDU 10 LIGHTCURVE_Q5          BinTableHDU    4487
+   HDU 11 APERTURE_Q5            ImageHDU       [5, 6]
+   HDU 12 LIGHTCURVE_Q7          BinTableHDU    4227
+   HDU 13 APERTURE_Q7            ImageHDU       [5, 5]
+   HDU 14 LIGHTCURVE_Q8          BinTableHDU    3107
+   HDU 15 APERTURE_Q8            ImageHDU       [5, 6]
+   HDU 16 LIGHTCURVE_Q9          BinTableHDU    4654
+   HDU 17 APERTURE_Q9            ImageHDU       [5, 6]
+   HDU 18 LIGHTCURVE_Q11         BinTableHDU    4474
+   HDU 19 APERTURE_Q11           ImageHDU       [5, 5]
+   HDU 20 LIGHTCURVE_Q12         BinTableHDU    3894
+   HDU 21 APERTURE_Q12           ImageHDU       [5, 6]
+   HDU 22 LIGHTCURVE_Q13         BinTableHDU    4245
+   HDU 23 APERTURE_Q13           ImageHDU       [5, 5]
+   HDU 24 LIGHTCURVE_Q15         BinTableHDU    4367
+   HDU 25 APERTURE_Q15           ImageHDU       [5, 5]
+   HDU 26 LIGHTCURVE_Q16         BinTableHDU    3536
+   HDU 27 APERTURE_Q16           ImageHDU       [5, 6]
+   HDU 28 LIGHTCURVE_Q17         BinTableHDU    1291
+   HDU 29 APERTURE_Q17           ImageHDU       [5, 6]
+   PRIMARY: {"OBJECT": "KIC 3963519", "KEPLERID": 3963519, "GAIAID": "Gaia DR3 2052383520062380544", "TPFORG": 3963530, "RA_OBJ": 293.8889379018794, "DEC_OBJ": 39.04016799531641, "KEPMAG": 17.2840003967285, "GMAG": 17.28032112121582, "BPMAG": 17.75364685058594, "RPMAG": 16.65983009338379, "PARALLAX": 0.2291156095299037, "PMRA": -0.00379855650873768, "PMDEC": -0.00027406428147582, "XPOSURE": 1765.464, "TIMESYS": "TDB", "MJD-BEG": 54953.03907252848, "MJD-END": 56423.50139254052, "QDETECT": "011111011101110111", "HLSPVER": "V1.0", "VERSION": "1.1.2", "PROCVER": "2.0.9", "DOI": "10.17909/7jbr-w430", "APERTURE": "PSF + SAP", "DATE": "2022-07-24"}
+   TIME unit: BJD - 2454833 | TIMESYS: TDB | => BJD_TDB = TIME + 2454833.0
+   stitched columns: ['TIME', 'CADENCENO', 'QUARTER', 'FLUX', 'FLUX_ERR', 'SAP_FLUX', 'SAP_FLUX_ERR', 'PSF_FLAT_FLUX', 'PSF_FLAT_FLUX_ERR', 'SAP_QUALITY', 'FLATTEN_MASK']
+   per-quarter columns: ['CADENCENO', 'TIME', 'FLUX', 'FLUX_ERR', 'SAP_FLUX', 'SAP_FLUX_ERR', 'CENTROID_COLUMN', 'CENTROID_ROW', 'SAP_QUALITY', 'SAP_BKG', 'RED_CHI2', 'PSF_FLUX_NOVA', 'PSF_FLUX_ERR_NOVA']
+   SAP_QUALITY values seen: [0, 16, 128, 144, 2048, 2176, 8192, 8208, 8320, 8336, 262144, 262160, 262272, 270336, 393216, 393232, 393344, 393360, 395392, 401408, 401424, 401536]
+   Q   n   q0   PSFFRAC CROWDSAP FLFRCSAP NPIX  medPSF  medSAP  tmin  tmax
+    1  1624  1431 0.650  0.797   0.912   4   1617.9  1451.9   131.5   165.0
+    2  4081  2357 0.656  0.935   0.712   2   1968.7  1114.6   169.5   258.5
+    3  4135  3642 0.722  0.859   0.933   5   1768.9  1438.1   260.2   349.5
+    4  4110  3808 0.738  0.970   0.721   3   1726.7  1085.2   352.4   442.2
+    5  4487  4169 0.699  0.844   0.906   4   1434.3  1444.8   443.5   538.2
+    7  4227  3974 0.680  0.820   0.929   4   1758.0  1301.2   630.2   719.5
+    8  3107  2894 0.737  0.969   0.724   3   1718.0  1077.6   735.4   802.3
+    9  4654  4381 0.695  0.833   0.910   4   1481.0  1470.7   808.5   905.9
+   11  4474  3915 0.675  0.819   0.927   4   1767.6  1294.6  1001.2  1098.3
+   12  3894  3252 0.739  0.875   0.881   5   1818.5  1377.0  1099.4  1182.0
+   13  4245  3932 0.696  0.835   0.910   4   1465.7  1456.2  1182.7  1273.1
+   15  4367  4233 0.674  0.821   0.926   4   1729.7  1298.9  1373.5  1471.1
+   16  3536  3364 0.717  0.964   0.711   3   1688.1  1037.6  1472.1  1558.0
+   17  1291  1226 0.753  0.873   0.744   3   1344.9  1306.1  1559.2  1591.0
+[prep] Q 1:  1431/ 1624 cadences kept (quality=hard), median PSF flux   1612.7 e-/s, PSFFRAC 0.650, CROWDSAP 0.797
+[prep] Q 2:  2357/ 4081 cadences kept (quality=hard), median PSF flux   1958.8 e-/s, PSFFRAC 0.656, CROWDSAP 0.935
+[prep] Q 3:  3642/ 4135 cadences kept (quality=hard), median PSF flux   1771.8 e-/s, PSFFRAC 0.722, CROWDSAP 0.859
+[prep] Q 4:  3808/ 4110 cadences kept (quality=hard), median PSF flux   1726.8 e-/s, PSFFRAC 0.738, CROWDSAP 0.970
+[prep] Q 5:  4169/ 4487 cadences kept (quality=hard), median PSF flux   1434.3 e-/s, PSFFRAC 0.699, CROWDSAP 0.844
+[prep] Q 7:  3974/ 4227 cadences kept (quality=hard), median PSF flux   1761.0 e-/s, PSFFRAC 0.680, CROWDSAP 0.820
+[prep] Q 8:  2894/ 3107 cadences kept (quality=hard), median PSF flux   1718.5 e-/s, PSFFRAC 0.737, CROWDSAP 0.969
+[prep] Q 9:  4381/ 4654 cadences kept (quality=hard), median PSF flux   1480.6 e-/s, PSFFRAC 0.695, CROWDSAP 0.833
+[prep] Q11:  3915/ 4474 cadences kept (quality=hard), median PSF flux   1769.2 e-/s, PSFFRAC 0.675, CROWDSAP 0.819
+[prep] Q12:  3252/ 3894 cadences kept (quality=hard), median PSF flux   1818.5 e-/s, PSFFRAC 0.739, CROWDSAP 0.875
+[prep] Q13:  3932/ 4245 cadences kept (quality=hard), median PSF flux   1465.2 e-/s, PSFFRAC 0.696, CROWDSAP 0.835
+[prep] Q15:  4233/ 4367 cadences kept (quality=hard), median PSF flux   1729.6 e-/s, PSFFRAC 0.674, CROWDSAP 0.821
+[prep] Q16:  3364/ 3536 cadences kept (quality=hard), median PSF flux   1688.2 e-/s, PSFFRAC 0.717, CROWDSAP 0.964
+[prep] Q17:  1226/ 1291 cadences kept (quality=hard), median PSF flux   1344.4 e-/s, PSFFRAC 0.753, CROWDSAP 0.873
+[prep] wotan biweight window=0.496 d (11.9 h), break_tolerance=0.5 d, masked points=0; 0 NaN points dropped
+[prep] upward-only clip at +4.0 x 2429 ppm: removed 57 points (no downward clipping)
+/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/lightkurve/prf/__init__.py:7: UserWarning: Warning: the tpfmodel submodule is not available without oktopus installed, which requires a current version of autograd. See #1452 for details.
+  warnings.warn(
+[prep] N=46521 points in 14 quarters, baseline 1459.5 d; std 2587 ppm, robust sigma 2424 ppm, point-to-point 2536 ppm; 6-h CDPP-like: binned 612 ppm, lightkurve 578.2446593848031 ppm, white-noise expectation 732 ppm
+[bls] 215123 periods x 8 durations in 127.7s; best P=6.815650 d power=12.22 SDE=10.52
+[bls] refined: P=6.815663 d T0=138.27699 BKJD dur=2.50 h depth=903+/-74 ppm (+0.7s)
+/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/transitleastsquares/grid.py:196: UserWarning: period_grid defaults to R_star=1 and M_star=1 as given density yielded grid with too few values
+  warnings.warn(
+Transit Least Squares TLS 2.0.1 (11 Oct 2026)
+Creating model cache for 35 durations
+Searching 46521 data points, 198786 periods from 1.0 to 49.999 days
+Using 1 of 4 CPU threads

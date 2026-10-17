@@ -1,6 +1,6 @@
 # kic-003831969 (Gaia DR3 2100154070473374976, KIC 3831969) — evidence pack
 
-_Built 2026-10-17T18:04:56Z from run `poolA_main` at commit `0282131787ab`. Status under `CLAUDE.md` language: **candidate**. Nothing here is a planet; nothing is 'discovered'. Search, vetting, localisation, re-derivation, red team and FPP were run by Claude Code (Anthropic) agents under human direction; every number below names the file it comes from._
+_Built 2026-10-17T18:21:47Z from run `poolA_main` at commit `87e2c804b64e`. Status under `CLAUDE.md` language: **candidate**. Nothing here is a planet; nothing is 'discovered'. Search, vetting, localisation, re-derivation, red team and FPP were run by Claude Code (Anthropic) agents under human direction; every number below names the file it comes from._
 
 ## Key numbers
 
@@ -40,7 +40,7 @@ _Built 2026-10-17T18:04:56Z from run `poolA_main` at commit `0282131787ab`. Stat
 | Odd / even | 1042 / 1049 ppm, difference -0.06 σ | |
 | Secondary | phase 0.5: -6 ppm (-0.12 σ); deepest other dip in a 193-phase scan 2.4 σ | scan σ scatter 0.89 |
 | Inverted-flux null (masked LC) | BLS best SDE 5.1; TLS best SDE 10.0 at 1.554 d | full-range TLS SDE, not the stage-1 statistic |
-| TPF host (KIC 3831977) at the ephemeris | -32 ± 19 ppm (-1.7 σ) | would need 252 ppm to host the signal |
+| TPF host (KIC 3831977) at the ephemeris | -32 ± 19 ppm (-1.7 σ) | worst case: would need only 252 ppm if all of its light entered the target's photometry; the FPP step's aperture model gives the required depth under PSF separation (fpp/fpp_summary.json `neighbour_tests`), and the pixel verdict above is the primary host exclusion |
 
 ## What this pack does not show
 

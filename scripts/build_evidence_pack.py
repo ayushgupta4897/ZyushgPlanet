@@ -199,7 +199,7 @@ if deep:
     L.append(f"| Secondary | phase 0.5: {f(1e6*((sc.get('phase_0p5') or {}).get('depth') or 0), 0)} ppm ({f((sc.get('phase_0p5') or {}).get('sigma'), 2)} σ); deepest other dip in a {sc.get('scan_n_phases')}-phase scan {f((sc.get('scan_max_dip') or {}).get('sigma'), 1)} σ | scan σ scatter {f(sc.get('scan_sigma_std'), 2)} |")
     L.append(f"| Inverted-flux null (masked LC) | BLS best SDE {f((nul.get('bls') or {}).get('sde'))}; TLS best SDE {f((nul.get('tls_excluding_candidate_band') or {}).get('best_sde_overall'))} at {f((nul.get('tls_excluding_candidate_band') or {}).get('period_overall_d'), 3)} d | full-range TLS SDE, not the stage-1 statistic |")
     nbp = nb.get('depth_at_target_ephemeris_pass2') or {}
-    L.append(f"| TPF host ({(nb.get('primary_header') or {}).get('OBJECT')}) at the ephemeris | {f(nbp.get('depth'), 0)} ± {f(nbp.get('depth_err'), 0)} ppm ({f(nbp.get('sigma'), 1)} σ) | would need {f(nb.get('depth_required_if_hosted_by_neighbour_ppm'), 0)} ppm to host the signal |")
+    L.append(f"| TPF host ({(nb.get('primary_header') or {}).get('OBJECT')}) at the ephemeris | {f(nbp.get('depth'), 0)} ± {f(nbp.get('depth_err'), 0)} ppm ({f(nbp.get('sigma'), 1)} σ) | worst case: would need only {f(nb.get('depth_required_if_hosted_by_neighbour_ppm'), 0)} ppm if all of its light entered the target's photometry; the FPP step's aperture model gives the required depth under PSF separation (fpp/fpp_summary.json `neighbour_tests`), and the pixel verdict above is the primary host exclusion |")
     L.append("")
 L.append("## What this pack does not show")
 L.append("")
