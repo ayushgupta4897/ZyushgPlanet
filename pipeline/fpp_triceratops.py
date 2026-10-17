@@ -121,11 +121,15 @@ def main():
                     help="drop a nearby star when its own KBONUS light curve excludes the eclipse it would need at this many sigma")
     ap.add_argument("--exclude-tic", type=int, nargs="*", default=[], help="manual exclusions (give --exclude-reason)")
     ap.add_argument("--exclude-reason", default="")
+    ap.add_argument("--contrast-curve", default=None, help="text file: separation (arcsec), delta mag; passed to calc_probs")
+    ap.add_argument("--contrast-filt", default="Vis", help="TESS, Vis, J, H or K")
+    ap.add_argument("--contrast-note", default="", help="provenance of the contrast curve, recorded in the summary")
+    ap.add_argument("--vet-json", default=None, help="alternative vet.json (e.g. a post-hoc second signal); default runs/<run>/vet/<fname>/vet.json")
     a = ap.parse_args()
 
     warnings.filterwarnings("ignore")
     cfg = json.load(open(a.config))
-    vet = json.load(open(f"runs/{a.run_id}/vet/{a.fname}/vet.json"))
+    vet = json.load(open(a.vet_json or f"runs/{a.run_id}/vet/{a.fname}/vet.json"))
     tg = pd.read_csv(a.targets)
     row = tg[tg.fname == a.fname].iloc[0]
     out = a.out_root or f"runs/{a.run_id}/fpp/{a.fname}"
@@ -225,7 +229,8 @@ def main():
         np.random.seed(1000 + s)
         t1 = time.time()
         tgt.calc_probs(time=lc.time.values, flux_0=lc.flux.values, flux_err_0=err, P_orb=P, N=a.N, parallel=a.parallel,
-                       verbose=0, exptime=CADENCE_D, nsamples=20, dilution_corrected=True)
+                       verbose=0, exptime=CADENCE_D, nsamples=20, dilution_corrected=True,
+                       contrast_curve_file=a.contrast_curve, filt=a.contrast_filt)
         probs = tgt.probs.copy()
         probs.to_csv(os.path.join(out, f"probs_seed{s}.csv"), index=False)
         runs.append({"seed": 1000 + s, "FPP": float(tgt.FPP), "NFPP": float(tgt.NFPP), "runtime_s": round(time.time() - t1, 1),
@@ -247,6 +252,9 @@ def main():
             "our_host_estimate": {"Teff": float(row.Teff), "Rstar": float(row.Rstar), "dist_pc": float(row.dist_pc), "RUWE": float(row.RUWE), "sptype": str(row.sptype)},
             "quarters_used_for_field": a.quarters, "aperture": f"{2*hw+1}x{2*hw+1} px on target (stand-in for PSF photometry)",
             "N_draws": a.N, "seeds_done": len(runs),
+            "contrast_curve": None if not a.contrast_curve else {"file": a.contrast_curve, "filt": a.contrast_filt, "note": a.contrast_note,
+                                                                 "curve": open(a.contrast_curve).read().split("\n")[:40]},
+            "vet_json": a.vet_json or f"runs/{a.run_id}/vet/{a.fname}/vet.json",
             "FPP_mean": float(np.mean([r["FPP"] for r in runs])), "FPP_std": float(np.std([r["FPP"] for r in runs])),
             "NFPP_mean": float(np.mean([r["NFPP"] for r in runs])), "NFPP_std": float(np.std([r["NFPP"] for r in runs])),
             "runs": runs,
@@ -255,7 +263,7 @@ def main():
             "approximations": [
                 "Gaussian 0.75-px PSF for every star (TRICERATOPS default), not the Kepler PRF",
                 "KBONUS PSF flux treated as dilution-corrected; a 3x3 aperture on the target sets nearby-star flux ratios",
-                "stellar parameters from the TIC; no contrast curve; no MOLUSC file",
+                "stellar parameters from the TIC; no MOLUSC file; contrast curve only if listed above (Gaia-derived, not imaging)",
                 "folded light curve binned to half a long cadence; model supersampled 20x over 29.4 min",
             ],
             "thresholds": {"validated_FPP": 0.015, "validated_NFPP": 0.001, "note": "thresholds apply only in a refereed paper; this is a pipeline product"},

@@ -1,0 +1,32 @@
+{
+ "fname": "kic-009655224",
+ "verdict": "survives",
+ "most_likely_explanation": "A ~614-648 ppm, 2.4-h, 6.7036-d box-shaped dimming whose lost light (1.05 +/- 0.15 e/s in an independent three-source PRF fit to the host TPFs; 1.32 +/- 0.34 e/s whole-stamp; 1.07 PSF; 1.04 SAP) is located at the target to Kepler's ~1-pixel precision and is absent from both bright neighbours' own light curves. It behaves like a transit of a ~2.2 Re body with b ~ 0.65 on the G=17.1 dwarf, but a blended eclipsing source within ~4 arcsec cannot be excluded by Kepler pixels; it stays a signal until a documented TRICERATOPS FPP/NFPP run.",
+ "kill_reasons": [],
+ "surviving_strengths": [
+  "Not known: no KOI/DR25 TCE/Kepler EB row for KIC 9655224, 9655236 or 9655226; no ephemeris match at P, P/2, 2P, P/3, 3P anywhere in the field (nearest period coincidences have epoch offsets 4.5-8.6 h and are 52-163 arcmin away; the 3.35-d EB KIC 9719636 would also put a ghost at phase 0.5 where the fold shows -29 ppm); SIMBAD empty at the target; Gaia DR3 target has RUWE 1.04, ipd_frac_multi_peak 0, non_single_star 0; Bienias & Szabo 2025 / Moquin 2026 excluded by period and depth regime (redteam/catalog_check.log).",
+  "Pixel origin (own code, independent of pipeline/pixel_vet.py, redteam/pixel_fit.log): joint Gaussian-PRF amplitudes target 1.05 +/- 0.15 e/s, G=15.9 neighbour 0.39 +/- 0.18, host -0.06 +/- 0.14; target-only beats neighbour-only by dchi2 = 46 (375 vs 421, null 444); pixel nearest target 0.49 +/- 0.08 e/s vs 0.19 +/- 0.09 and 0.08 +/- 0.07 for the neighbours; whole-stamp unclipped deficit 1.32 +/- 0.34 e/s vs 1.07 expected. The pipeline's own pixel.json summed over 10 quarters agrees (Gaussian-at-target chi2 299.5 vs 328.6 at the G=15.9 star, 340.9 at the host); its unfavourable deficit-centroid statistic is edge-biased (target 0.3-1.3 px from the stamp edge) and pixel_vet.py's deficit_total_e_s is a positive-clipped sum, not light lost.",
+  "Neighbours' own KBONUS light curves at the target ephemeris, all quarters (redteam/neighbour_allq.log): KIC 9655226 (G 15.9, 5.3 arcsec) PSF 0.43 +/- 0.23 e/s (>= 4 sigma below the >= 2 e/s it would need as the origin), host KIC 9655236 -0.15 +/- 0.12 e/s.",
+  "EB diagnostics: no secondary at any phase (max 150 ppm at phase 0.16, 1.7 sigma), odd/even 0.33-0.39 sigma, flat bottom preferred over full V by dchi2 9.0, duration 2.33-2.44 h consistent with a 0.83 Rsun dwarf at b ~ 0.65 (central T14 3.1 h); SAP/PSF depth ratio 0.46 as expected (300 +/- 34 vs 648 +/- 89 ppm).",
+  "Systematics: no depth dependence on gap proximity (Spearman -0.09, p 0.34), trend -1.2 sigma, signal present in all four seasons/channels (ch 23/39/47/63), in-transit cadences not correlated with desaturations (z -1.1) or any other Kepler quality flag beyond z 2.6 among 11 tests; dropping the 5 highest-SNR events still leaves 429 +/- 75 ppm; median-based depth (644) equals mean-based (648).",
+  "No stellar variability at P or harmonics (LS rank 9018/200000 at P; peak at 37 d is quarter-scale systematics); blind BLS SDE 15.6 vs inverted-null 7.1 (re-derivation) and 125 distinct events."
+ ],
+ "checks_run": [
+  "Known-object lookup: KOI cumulative, DR25 TCE, Kirk+2016 Kepler EB, confirmed planets, keplerstellar for KIC 9655224/9655236/9655226 and within 3 arcmin; field-wide period coincidence at P/3, P/2, P, 2P, 3P with epoch offsets; Gaia DR3 cone 15 arcsec; SIMBAD 30 arcsec",
+  "TPF header channel/module/output/skygroup per season from the 10 cached KIC 9655236 TPFs; KBONUS per-quarter header provenance (CROWDSAP, FLFRCSAP, NPIXSAP, PSFFRAC)",
+  "Own per-event local-differencing pixel analysis on 10 TPFs: whole-stamp unclipped deficit, per-source nearest-pixel deficit, difference-image centroid with event bootstrap",
+  "Joint three-source Gaussian-PRF amplitude fit (sigma 0.6/0.8/1.0 px) with target-only / neighbour-only / host-only / null chi2; pipeline pixel.json chi2 sums per source over 10 quarters",
+  "Both bright neighbours' KBONUS PSF and SAP light curves folded at the target ephemeris over all their quarters (e/s)",
+  "Own masked 1-d running-median detrend: global and SAP depth with random-phase errors, per-quarter and per-season (same-channel) depths with chi2, per-event trend, gap-distance dependence, >3 sigma event outliers, depth without top-5 events, median vs mean depth, Lomb-Scargle 0.2-100 d with power at P and harmonics, trapezoid V-shape grid, secondary-box scan at all phases",
+  "Kepler QUALITY-flag proximity test for in-transit cadences (11 flag types) against random phases",
+  "Duration/density and implied radius for Ms 0.80-0.90, Rs 0.83",
+  "Review of Bienias & Szabo 2025 / Moquin et al. 2026 regimes from docs/02-landscape-and-open-ground.md"
+ ],
+ "what_would_settle_it": [
+  "Difference-image fit with the real Kepler PRF model for channels 23/39/47/63 (not a Gaussian), reporting target vs G=15.9-neighbour amplitudes per season, to close the 0.39 +/- 0.18 e/s neighbour term",
+  "TRICERATOPS run with the Gaia DR3 neighbours (G 15.9 at 5.3 arcsec, G 16.4 at 9.4 arcsec, G 20.3 at 11.8 arcsec) and the KBONUS PSF-flux depth, reporting FPP and NFPP; this is the only way to bound an unresolved blend within ~4 arcsec",
+  "PRF-based re-extraction per season to test whether the season-1 (ch 23) depth of 368 +/- 112 ppm vs ~700 ppm elsewhere (p ~ 0.1) is photometric or astrophysical",
+  "KIC-level lookup in the Bienias & Szabo 2025 and Moquin et al. 2026 target lists once obtained (currently excluded only by period/depth regime)",
+  "Quoting P as 6.7036 +/- 0.0002 d and depth as 614-648 +/- 72-89 ppm with a +/-60 ppm detrend systematic in any write-up"
+ ]
+}

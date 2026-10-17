@@ -48,9 +48,9 @@
  48676  1216.0653 ep= 32.0087 psf=    2555 sap=    4538 dt_prev= 0.020
  48677  1216.0858 ep= 32.0093 psf=    1473 sap=    3739 dt_prev= 0.020
 
-segment starts after gaps >0.5 d between BKJD 1170 and 1280: [np.float64(1177.465), np.float64(1178.916), np.float64(1180.346), np.float64(1181.899), np.float64(1182.737), np.float64(1187.948), np.float64(1215.718), np.float64(1245.859), np.float64(1274.14)]
+segment starts after gaps >0.5 d between BKJD 1170 and 1280: [1177.465, 1178.916, 1180.346, 1181.899, 1182.737, 1187.948, 1215.718, 1245.859, 1274.14]
 
-epoch tc n_in psf_depth sap_depth (only |depth|>400 or epochs 31,32 shown)
+epoch tc n_in psf_depth sap_depth (|depth|>400 ppm or epochs 31,32)
   11   525.537   2      576       72
   12   558.405   2      513      634
   14   624.143   3      425      298
@@ -62,6 +62,7 @@ n epochs with data: 38  in-box cadences: 109
 cadence-weighted mean PSF depth: 301 ppm; SAP 112
 without epochs 31,32: PSF 63 +- 40 ppm (scatter/sqrt n), SAP 38 +- 36
 epochs 31+32 share of depth*n: 0.80
+1215.779 - 1182.911 = 32.868 d (pipeline P = 32.8687 d)
 
 pixel_v16 per quarter:
  Q1: {'n_events': 1, 'chi2_best_alternative': 4.11, 'peak_snr': 0.98, 'depth_in_aperture_ppm': -399.85, 'chi2_null': 4.26, 'chi2_scaled_image': 4.23, 'chi2_gauss_at_target': 4.26, 'conclusive': False}
