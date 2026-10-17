@@ -2,8 +2,8 @@
 Sandbox-side driver for the deployed Modal app (plain HTTPS, no gRPC).
 
 Config file .modal_endpoints.json (gitignored) in the repo root:
-    {"base": "https://<workspace>--zyushg-planet-screen", "token": "<ZP_ENDPOINT_TOKEN>"}
-Endpoint URLs are   <base>-start.modal.run   <base>-status.modal.run   etc.
+    {"base": "https://<workspace>--zyushg-planet-screen", "suffix": ".us-east.modal.run", "token": "<ZP_ENDPOINT_TOKEN>"}
+Endpoint URLs are   <base>-start<suffix>   <base>-status<suffix>   etc.
 
     python -m pipeline.modal_client start  --run-id poolA_pilot --start 1 --stop 300
     python -m pipeline.modal_client status --run-id poolA_pilot
@@ -30,7 +30,7 @@ def _cfg():
 
 
 def _url(c, name):
-    return f"{c['base']}-{name}.modal.run"
+    return f"{c['base']}-{name}{c.get('suffix', '.modal.run')}"
 
 
 def main():
