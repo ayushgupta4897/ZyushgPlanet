@@ -1,0 +1,105 @@
+{
+ "key_claims": [
+  {
+   "claim": "The Kepler Bonus sample cuts 29,800 -> 9,204 (psffrac>0.5) -> 6,477 (crowdsap>0.7) -> 2,495 (>=8 PSF quarters) -> 1,836 (kic != tpforg) -> 1,800 (primary targets excluded) are exactly as stated, and the candidate ranks 51st by Gaia G among the 1,836.",
+   "source": "analysis/editorial-audit-20261013/verification.json:12-21 and verify.py:19-36; reproduced here from the live MAST catalogue FITS (hashes 406563951c... and 2e6d5a87... match)",
+   "confidence": "high",
+   "how_checked": "Downloaded both catalogues in the sandbox, verified sha256, re-applied the cuts with my own astropy code (2.8 s)."
+  },
+  {
+   "claim": "The search is Codex's pilot.py: per-quarter wotan biweight (1.0 d) cleaning, eumemic two-stage semicoherent BLS with rho=5 solar duration prior over 0.5-25 d, up to 2 peaks, last max(2, ceil(0.25 N)) quarters reserved before search, first screen snr>=9, >=3 good events in discovery and holdout, holdout snr>=4, odd/even<3 sigma, secondary<3 sigma, max single-event fraction<0.5.",
+   "source": "evidence/codex/database_expansion/kbonus/pilot.py:79-101; eumemic/pipeline/search.py:194-274,302-349 at commit 2cf0b11; paras/pipeline/lcsearch.py:59-78 at 74d5624",
+   "confidence": "high",
+   "how_checked": "Read the code at the pinned commits; cross-checked against the editorial audit's prose description (README.md:22)."
+  },
+  {
+   "claim": "The candidate's statistics: BLS SNR 26.665, holdout event SNR 15.47 (23 events), independent raw-PSF vet 70 events 2,165 +/- 98 ppm and 22 held-out events 1,929 +/- 159 ppm; corrected SAP 1,438 +/- 105 ppm (13.73 sigma) and 1,265 +/- 216 ppm held out (5.84 sigma).",
+   "source": "evidence/codex/database_expansion/kbonus/results/2103792461826460288.json; kbonus_independent_audit/2103792461826460288.json; analysis/kepler-sap-recheck.json",
+   "confidence": "high",
+   "how_checked": "Parsed the JSON files directly."
+  },
+  {
+   "claim": "Across 1,736 matched inverted searches the first screen passed real data 31 signals/29 stars vs inverted 32/28; at the candidate's thresholds (P>1.5 d, SNR>=26.7, holdout>=15.5) two inverted stars (KIC 8701308, KIC 5283912) still pass.",
+   "source": "analysis/editorial-audit-20261013/verification.json:23-82; analysis/kbonus-extension-20261011/README.md",
+   "confidence": "high",
+   "how_checked": "Read verification.json produced by verify.py from the saved CSV tables; counts are consistent with the extension README."
+  },
+  {
+   "claim": "Pixel-level localisation favours the target in 13/13 quarters with summed delta-chi^2 799 (official Kepler PRFs via lightkurve.prf.KeplerPRF on the KIC 5689116 TPFs), the raw-TPF centroid test rejects the neighbour at delta-chi^2 934, the neighbour's own KBONUS PSF light curve shows 24 +/- 41 ppm, and the dilution model fits with chi^2 15.4/12.",
+   "source": "evidence/codex/database_expansion/kbonus/pixels/localization.json; analysis/validation-20261011/results/kepler/{kcentroid_tpf.json,kcentroid_all_sources.csv,kdepth.json,kdilution_pooled.json}",
+   "confidence": "high",
+   "how_checked": "Parsed the result JSONs; read the generating scripts pixel_localize.py and kcentroid_tpf.py."
+  },
+  {
+   "claim": "TRICERATOPS 1.1 was driven offline (target object constructed without MAST, mission='Kepler', exptime 1765.464 s, Gaia-cone background resampled to 0.1 deg^2, N=1e6) and gave FPP 0.0589/0.0890/0.0581/0.0694 (mean 0.06885), STP 0.068 dominant, NFPP 0 only because no resolved neighbours were passed.",
+   "source": "analysis/validation-20261011/scripts/triceratops/{prep_kepler.py,run_kepler.py}, results/triceratops/fpp_summary.json, SCIENCE.md:67-91",
+   "confidence": "high",
+   "how_checked": "Read scripts and result files."
+  },
+  {
+   "claim": "The full-baseline ephemeris is P = 13.769448 +/- 0.000065 d, T0 = BJD_TDB 2455630.24543 +/- 0.0020, k = 0.0460, b = 0.50, a/R* = 39.7, rho* = 4.4 (+2.3/-2.8) rho_sun from a batman+emcee fit with red-noise beta 1.29.",
+   "source": "analysis/validation-20261011/scripts/kepler/kfit.py; results/kepler/kfit_psf.json",
+   "confidence": "high",
+   "how_checked": "Parsed kfit_psf.json."
+  },
+  {
+   "claim": "Codex (OpenAI cloud agent) produced the entire evidence/codex tree including the discovery; ChatGPT did most follow-up (extension runs, archive browsing, editorial audit); Claude is disclosed only in the RNAAS manuscript; no human-written analysis code is identifiable.",
+   "source": "evidence/codex/requirements-lock.txt (artifact_tool_v2 @ file:///tmp/codex-primary-runtime-...); SOURCES.md:5; analysis/editorial-audit-20261013/README.md:81 (OpenAI File Downloader UA); publication/2026-10-13/rnaas.txt:47; kuber.studio/planethunt (fetched 2026-10-17: 'initial search with Codex', 'much of the follow-up used ChatGPT Work')",
+   "confidence": "medium",
+   "how_checked": "Grepped the repo for Codex/ChatGPT/Claude/agent mentions and fetched the website; which agent produced the 11 Oct validation pack is not stated anywhere."
+  },
+  {
+   "claim": "The timeline is: TESS lanes 9 Oct; Codex TESS pilot + Kepler Bonus discovery 10 Oct (catalogue fetched 2026-10-10T13:41Z, novelty report 13:46Z); repo and release evidence-20261010 at 20:32 IST 10 Oct; extension 03:17 and 10:16 IST 11 Oct; validation pack 21:04 IST 11 Oct; archive follow-up 12 Oct evening; Zenodo DOI and RNAAS submission ~01:06-01:51 IST 13 Oct; declined same day; audit commit 12:55 IST 13 Oct.",
+   "source": "git log of the unshallowed planethunt clone (60 commits, tags evidence-20261010/-20261013/-20261013-r2); manifests/2103792461826460288.json fetched_utc; catalogs novelty_report created_utc; publication/2026-10-13/submission-record.json",
+   "confidence": "high",
+   "how_checked": "Ran git fetch --unshallow and listed commit timestamps and tags."
+  },
+  {
+   "claim": "RNAAS AAS82222 was declined on 2026-10-13; the decision letter is not in the repo and the editor's concerns are inferred from the four sections of the post-decision audit (sample construction, other search outcomes/null counts, TESS non-detection, Barber 2022 reference).",
+   "source": "publication/2026-10-13/submission-record.json ('Decision letter supplied by the author in this conversation; not independently checked in the portal'); analysis/editorial-audit-20261013/README.md:1-3",
+   "confidence": "medium",
+   "how_checked": "Grepped the repo for decline/editor/decision text; only the audit's framing exists."
+  },
+  {
+   "claim": "The star was never a Kepler target, so KOI/TCE absence is trivially expected; the relevant prior-search check is Bienias & Szabo 2025, APEXBA 2022, Kepler Bonus's own lists and Barber et al. 2022 Table 5 (Kepler flag Y), the last of which leaves prior-search status unresolved.",
+   "source": "evidence/codex/database_expansion/build_background_prior.py; analysis/archive-exhaustion-20261012/README.md:66-78; verification.json:127-133 (table5.dat line 546)",
+   "confidence": "high",
+   "how_checked": "Read the scripts and verified the CDS table URL responds (80,264 bytes, 2022-11-08)."
+  },
+  {
+   "claim": "No synthetic injection-recovery completeness study was run on the Kepler Bonus sample; the only synthetic tests are two strong-signal smoke injections in the TESS wrapper that also demonstrate no holdout leakage.",
+   "source": "evidence/codex/improvements/smoke_search.py; SEARCH_AUDIT.md:11-16 ('not a sensitivity/completeness estimate'); website: 'no complete survey sensitivity or occurrence-rate claim is made'",
+   "confidence": "high",
+   "how_checked": "Searched the repo for injection scripts; only smoke_search.py, the TESS partial injection log, and the TESS pixel-injection (dilution) test exist."
+  },
+  {
+   "claim": "Current PyPI versions on 2026-10-17: triceratops 1.1.0, leo-vetter 1.2.0, wotan 2.0 (2026-10-11), transitleastsquares 2.0.1 (2026-10-11), lightkurve 2.6.0, batman-package 2.5.3, emcee 3.1.6, pytransit 2.9.3, numba 0.68.0, astropy 8.0.2; Kuber used wotan 1.10, TLS 2.0, triceratops 1.1.0, pytransit 2.2.0.",
+   "source": "pypi.org JSON API queried from the sandbox; evidence/codex/requirements-core.txt; analysis/validation-20261011/README.md:82-84",
+   "confidence": "high",
+   "how_checked": "curl https://pypi.org/pypi/<pkg>/json for each package."
+  }
+ ],
+ "actionable_steps": [
+  "Pre-register the search in a committed PLAN.md (sample rule, holdout rule, period/duration grid, first-screen thresholds, null design, vetting ladder) before downloading any light curve; Kuber had to reconstruct this after the fact for the editor.",
+  "Reproduce the Kepler Bonus selection with the exact cuts (psffrac>0.5, crowdsap>0.7, >=8 PSF quarters, kic!=tpforg, drop keplerstellar kepids; expect 1,800) and decide explicitly whether to reuse this already-searched M-dwarf pool or widen to the 406,548 background sources with different cuts.",
+  "Ingest KBONUS FITS per quarter with PSFFRAC>=0.5, SAP_QUALITY==0, >=300 cadences, median normalisation, BTJD = TIME - 2167, and carry SAP_FLUX with SAP_FLUX_ERR (not PSF errors) from day one.",
+  "Implement the search as per-quarter wotan biweight (1.0 d) + two-stage BLS (or TLS) with rho prior, two peaks per star, and the pilot screen; run the inverted (2 - flux) control on every star the same night and report real vs inverted pass counts up front.",
+  "Run Kepler-138 (KIC 7603200) and a few faint KOIs as positive controls, and add a real injection-recovery completeness grid (Kuber never did one) to set thresholds instead of inheriting SNR>=9.",
+  "Port independent_vet.py (exposure-integrated per-event box + linear baseline, cluster-robust errors, leave-one-out, odd/even, secondary, phase controls, per-quarter depths, fixed-ephemeris holdout) and run it on PSF and SAP for every survivor.",
+  "For each survivor, download the aperture primary's Kepler TPFs and do PRF localisation (lightkurve.prf.KeplerPRF, proper-motion-propagated positions), raw centroid shifts, per-season difference images, and the FLFRCSAP dilution model; download neighbours' KBONUS light curves and test them at the fixed ephemeris.",
+  "Test every KOI/TCE/EB ephemeris within 5 arcmin against the event times (overlaps, nearest separation, period sigma, folded depth) exactly as k169_overlap.py/kdepth.py do.",
+  "Check novelty against KOI/TCE/EB, Kepler Bonus candidate lists, Bienias & Szabo 2025, APEXBA 2022, Barber et al. 2022 Table 5 and ExoFOP/SIMBAD, with provenance JSON per query; write 'no prior report found as of <date>', never 'never searched'.",
+  "Fit batman+emcee with exposure integration and red-noise inflation on both extractions; run TRICERATOPS 1.1 offline with the Kepler exposure time and a Gaia-cone background, passing resolved neighbours with aperture flux ratios so NFPP is meaningful, plus a MOLUSC/RUWE companion prior and LEO-Vetter flux tests.",
+  "Publish a dated, hashed evidence pack (search/, validation/, provenance JSONs, requirements-lock, positive and inverted outputs, LLM-entry-point rules) with a Zenodo DOI, and call the result a 'planet candidate' unless FPP<0.015 and NFPP<0.001.",
+  "Before any journal submission or public post, get an astronomer to read the pack and resolve any prior-search flag; expect RNAAS to decline an unvalidated single-candidate note and plan for arXiv-plus-DOI or co-authorship with a group that can obtain AO imaging."
+ ],
+ "open_questions": [
+  "Which agent produced the 11 October validation pack and its 'second agent' independent check (Claude is disclosed in the manuscript but never named in the repo); the Python 3.13 sandbox with MAST/Gaia/VizieR/ExoFOP blocked suggests a web-sandboxed agent, unverified.",
+  "What the RNAAS decision letter actually said; only the post-decision audit's four topics (sample construction, other search outcomes, TESS non-detection, Barber reference) survive.",
+  "Which Kepler light curve Barber et al. 2022 associated with Gaia DR3 2103792461826460288 (Kepler flag Y) and whether their Notch search examined a 13.77 d signal; Kuber's provenance e-mail to Barber/Mann was drafted but never sent.",
+  "What the two inverted survivors at the candidate's strength (KIC 8701308 at 4.254 d, KIC 5283912 at 8.785 d) physically are; characterising them would calibrate the null.",
+  "Whether the 406,548 non-M-dwarf Kepler Bonus background sources have been searched by anyone (Kuber's pool was only the 29,800-source M-star catalogue, searched to rank 1,800 with no second candidate).",
+  "Whether the Kepler Bonus team (Martinez-Palomera, Hedges, Dotson) or Bienias & Szabo have an unpublished candidate list covering KIC 5689121.",
+  "The exact text and date of the original tweet (x.com returned HTTP 402/451 from this sandbox; text taken from the task statement)."
+ ]
+}

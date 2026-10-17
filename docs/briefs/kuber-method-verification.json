@@ -1,0 +1,134 @@
+{
+ "corrections": [
+  {
+   "claim": "The exact text and date of the original tweet are unverifiable from the sandbox (x.com returned HTTP 402/451); text taken from the task statement.",
+   "verdict": "corrected",
+   "correction": "Verified via the fxtwitter mirror API: tweet by @kuberwastaken created Sun 11 Oct 2026 11:12:44 UTC (16:42 IST), text exactly as relayed ('Found a new planet with Codex this weekend ... just 4' away from the Kepler-169 system but went undiscovered'); 239 likes / 9,649 views at fetch time. Importantly the tweet (16:42 IST) preceded the 11 Oct validation pack commit 6f60b5e (21:04 IST): the public 'planet' claim was made before TRICERATOPS, the raw-TPF centroid test, the dilution model and the Kepler-169 timing test existed; only Codex's pilot vetting (PRF localisation, neighbour light curve, independent vet) and the extension counts existed then.",
+   "evidence": "curl https://api.fxtwitter.com/kuberwastaken/status/2109240782368751834 -> created_at 'Sun Oct 11 11:12:44 +0000 2026'; git log of planethunt: 83718b1 2026-10-11 10:16 +0530 (extension), 6f60b5e 2026-10-11 21:04 +0530 (validation pack)."
+  },
+  {
+   "claim": "The cuts 29,800 -> 9,204 -> 6,477 -> 2,495 -> 1,836 -> 1,800 were 'reproduced here'.",
+   "verdict": "corrected",
+   "correction": "The previous sandbox log only reproduced to 1,836; the 1,800 step in Kuber's own audit relies on the preserved file mstar_primary_exclusion_check.csv (36 rows flagged is_kepler_primary=True), not a fresh archive query. I re-derived the final step independently: a live TAP query `select distinct kepid from keplerstellar` (200,038 kepids) flags exactly 36 of the 1,836 eligible sources as Kepler primary targets, leaving 1,800. So the whole chain is now reproduced from live inputs. Note pilot.py's own select() uses kepler_primary_targets.csv (keplerstellar kepids), while verify.py uses the saved check CSV; both give 36. The candidate is rank 22 (0-based) among the 1,800 (= row 23 of pilot_targets.csv) and rank 51 among the 1,836.",
+   "evidence": "Sandbox run (astropy 8.0.2) on the two MAST catalogue FITS (sha256 406563951c... and 2e6d5a87... match) + tap/keplerstellar_kepids.csv (sha256 eae9e93b...); output 'eligible whose kic is a keplerstellar kepid: 36 -> remaining 1800'; pilot.py:29-36; verify.py:29-34; mstar_primary_exclusion_check.csv has 1836 rows, 36 True."
+  },
+  {
+   "claim": "Release tag evidence-20261010 at 20:32:46 IST (= 15:02 UTC; the repo states 15:41:31 UTC publication).",
+   "verdict": "corrected",
+   "correction": "There is no discrepancy: 20:32:46 IST is the timestamp of the tagged commit (ef2fd66), whereas the GitHub release itself was published at 10 Oct 15:41 UTC (= 21:11 IST), exactly as RELEASE_NOTES states. The later releases were published 12 Oct 19:39 UTC (evidence-20261013, commit 646feea) and 12 Oct 19:49 UTC (evidence-20261013-r2, commit a5cf646), i.e. 01:09 and 01:19 IST on 13 Oct. GitHub API access was blocked for this session, so repository creation time itself remains unverified (first commit 15c38df is 20:32:33 IST).",
+   "evidence": "WebFetch of https://github.com/Kuberwastaken/planethunt/releases (dates '10 Oct 15:41', '12 Oct 19:39', '12 Oct 19:49'); git log/tag timestamps; publication/2026-10-13/RELEASE_NOTES.md."
+  },
+  {
+   "claim": "Zenodo DOI 10.5281/zenodo.23325261 issued ~01:06-01:51 IST 13 Oct.",
+   "verdict": "confirmed",
+   "correction": "Zenodo record created 2026-10-12T19:49:40Z (= 01:19 IST 13 Oct), publication_date 2026-10-12, version 'evidence-20261013-r2', creator Mehta, Kuber (ORCID 0009-0003-1379-7856, 'Independent researcher, New Delhi, India'), licence CC-BY-4.0, single file Kuberwastaken/planethunt-evidence-20261013-r2.zip (118,175,450 bytes).",
+   "evidence": "curl https://zenodo.org/api/records/23325261"
+  },
+  {
+   "claim": "Kepler-169 e (KIC 5689351 = KOI-505, 4.39 arcmin away) has P = 13.76710058 d, T0 = BKJD 174.81089; the two ephemerides never overlap.",
+   "verdict": "confirmed",
+   "correction": "Confirmed live: cumulative KOI table K00505.01 koi_period 13.76710058, koi_time0bk 174.81089; pscomppars default (Rowe et al. 2014) 13.767102 +/- 0.000034 d; host RA 285.9999204 Dec 40.9193822 -> separation 4.389 arcmin (263.3 arcsec); period difference 0.002347 d = 32.8 sigma. One nuance the brief omitted: k169_overlap.json shows Kepler-169 b overlaps 5 candidate events and Kepler-169 d overlaps 1 (expected chance rate for 3.25 d and 8.35 d periods, per SCIENCE.md:31); 'never overlap' applies to planet e only, and all five Kepler-169 ephemerides give null depths in the target PSF series (-65 to +143 ppm).",
+   "evidence": "Exoplanet Archive TAP queries on cumulative and pscomppars; analysis/validation-20261011/results/kepler/k169_overlap.json; kdepth.json."
+  },
+  {
+   "claim": "RNAAS is editorially moderated (not peer reviewed), 1,500 words.",
+   "verdict": "confirmed",
+   "correction": "Confirmed with detail: since May 2020 the limit is 1,500 words total including title, headers, captions and references, with 150 words reserved for the required abstract; a single figure OR a single table (not both); 'not peer reviewed' but 'reviewed by an editor for appropriateness and format'; published online within days of acceptance. Kuber's note was 1,196 words with a 124-word abstract and one two-panel figure (RELEASE_NOTES), so the decline was not a format violation.",
+   "evidence": "WebSearch results: journals.aas.org 'Research Note Preparation Guidelines' and 'Research Notes Get a Little More Space' (May 2020); publication/2026-10-13/RELEASE_NOTES.md."
+  },
+  {
+   "claim": "TRICERATOPS 1.1 was driven offline with mission='Kepler', exptime 1765.464 s, Gaia-cone background resampled to 0.1 deg^2, N=1e6; FPP 0.0589/0.0890/0.0581/0.0694.",
+   "verdict": "confirmed",
+   "correction": "Confirmed from fpp_summary.json (FPP list exactly [0.05888, 0.08898, 0.05810, 0.06944], mean 0.06885, sd 0.0144; G22.5 runs 0.05831/0.08841, mean 0.0734; hypothetical Keck-K AO 0.02153/0.03235). Added facts from the TRICERATOPS source: mission must be one of 'TESS', 'Kepler', 'K2' (triceratops.py:83); calc_probs exposes exptime, nsamples, contrast_curve_file (list allowed in 1.1.0) and molusc_file; 1.1.0 (PyPI 2026-09-02) changed the default to dilution_corrected=True (input light curve assumed already deblended) and uses real Gaia DR3 field stars by default. run_kepler.py does not pass dilution_corrected, so the PSF (deblended) light curve was treated correctly; feeding a raw SAP curve would need dilution_corrected=False. 1.1.0 pins pytransit==2.2, which is why a separate venv is needed.",
+   "evidence": "results/triceratops/fpp_summary.json; raw.githubusercontent.com/stevengiacalone/triceratops/master/{CHANGES.rst,triceratops/triceratops.py,setup.py}; scripts/triceratops/run_kepler.py."
+  },
+  {
+   "claim": "Current PyPI versions on 2026-10-17: triceratops 1.1.0, leo-vetter 1.2.0, wotan 2.0 (2026-10-11), transitleastsquares 2.0.1 (2026-10-11), lightkurve 2.6.0, batman-package 2.5.3, emcee 3.1.6, pytransit 2.9.3, numba 0.68.0, astropy 8.0.2.",
+   "verdict": "confirmed",
+   "correction": "All confirmed by the PyPI JSON API today (numba 0.68.0 released 2026-09-30; pytransit 2.9.3 2026-10-15; astropy 8.0.2 2026-10-15; astroquery 0.4.11 2025-09-20). Two corrections to the recipe: MOLUSC is not on PyPI (it is a GitHub project), and the sandbox venv actually has batman-package 2.5.1 (not 2.5.3), wotan without a __version__ attribute, TLS 2.0.1, and no triceratops installed.",
+   "evidence": "curl https://pypi.org/pypi/<pkg>/json for each package; python -c 'import batman; batman.__version__' -> 2.5.1 in /home/user/ZyushgPlanet/.venv."
+  },
+  {
+   "claim": "The star is at ~298 pc; Gaia RUWE 0.984, NSS 0; neighbour KIC 5689116 RUWE 8.73.",
+   "verdict": "confirmed",
+   "correction": "Gaia DR3 TAP: target parallax 3.4065 +/- 0.0397 mas (inverse-parallax 293.6 pc; the 298 pc figure in key_numbers.json is presumably a Bailer-Jones/TIC distance), RUWE 0.98412, non_single_star 0, ipd_frac_multi_peak 0, astrometric_excess_noise_sig 0. Neighbour Gaia DR3 2103792427466721792: G 15.478, parallax 0.30 +/- 0.23 mas, RUWE 8.73, excess-noise significance 976. The neighbour is therefore a distant, physically unrelated background star (chance alignment at 7.1 arcsec), not a bound companion; its high RUWE is its own astrometric problem and irrelevant to the STP scenario for the M dwarf.",
+   "evidence": "curl Gaia archive TAP sync, gaiadr3.gaia_source for both source_ids; analysis/validation-20261011/post/data/kic5689121_key_numbers.json."
+  },
+  {
+   "claim": "The search is pilot.py with the stated thresholds, holdout rule, detrending and two-stage BLS (line citations).",
+   "verdict": "confirmed",
+   "correction": "All line citations re-read and confirmed: pilot.py select 29-42, acquire 44-71, split 79-80, inversion 82-83 (SAP now negated), separate cleaning 84, loop 86-101, screen 92, independent vet 95, SAP vet 97-98, mask +-dur 101; eumemic search.py expected_duration 41-45, period_grid 155-167, semicoherent_peak 194-229 (top 40 by excess union top 20 raw), refine 262-274 (241 periods x 12 durations, oversample 10, snr = sqrt(2*power)), event_stats 302-349; fastbls.seasons 115-128; paras lcsearch.py clean 59-78 with FLARE_CLIP_SIGMA 3, DROPOUT_CLIP_SIGMA 10, default window 0.75 d. Computed eumemic expected_duration(13.769 d, rho=5) = 2.54 h with a/R* 41.3 (brief said ~2.5 h, ~41: correct). Runtime from pilot.log: 64 stars, 9.3-35.4 s each, median 18.7 s.",
+   "evidence": "cat -n of the files in untrusted/planethunt and untrusted/upstream at commits 74d5624 / 2cf0b11; sandbox computation."
+  },
+  {
+   "claim": "The candidate's statistics (BLS SNR 26.665, holdout 15.47 over 23 events, raw-PSF vet 70 events 2,165 +/- 98 ppm, 22 held-out events 1,929 +/- 159 ppm, corrected SAP 1,438 +/- 105 ppm / 1,265 +/- 216 held out).",
+   "verdict": "confirmed",
+   "correction": "All parsed and confirmed from results/2103792461826460288.json and analysis/kepler-sap-recheck.json. Added details the brief omitted: the discovery-subset raw-PSF depth is 2,268 +/- 120 ppm versus 1,929 +/- 159 ppm held out (holdout ~85% of discovery, 1.7 sigma lower; event_stats gives 1,959 vs 1,563 ppm, 2.3 sigma) which is the expected regression-to-the-mean of a signal selected on discovery data; the pipeline also returned a rank-2 peak at 24.678 d (BLS SNR 8.1, holdout SNR -1.2, max_ses_frac 0.73) that failed the screen; per-quarter PSF depths run 1,374 +/- 500 (Q14) to 2,548 +/- 209 ppm (Q4); the 20 phase-control windows have a max |local SNR| of 1.99.",
+   "evidence": "Parsed JSON files in the untrusted repo."
+  },
+  {
+   "claim": "Barber et al. 2022 CDS table5.dat line 546 contains the exact Gaia source with Kepler flag Y; URL responds (80,264 bytes, 2022-11-08).",
+   "verdict": "unverifiable",
+   "correction": "From this sandbox today the CDS ftp URL returns an Anubis anti-bot HTML page (4,375 bytes) and VizieR TAP returned HTTP 503, so the row could not be re-fetched; the previous agent reported a 200 response and Kuber's verification.json records sha256 915a140b... and the row text. The CDS ReadMe did download and confirms the column layout: Gaia EDR3 identifier, J2016 coordinates, SpType from BP-RP (Pecaut & Mamajek), flags 'TESS?' and 'Kepler?' meaning 'Of sufficient quality for running the Notch transit-search pipeline'. Treat the row as reported-by-Kuber-and-prior-agent, not re-verified here.",
+   "evidence": "curl of https://cdsarc.cds.unistra.fr/ftp/J/AJ/164/88/{table5.dat,ReadMe}; tapvizier.cds.unistra.fr 503; analysis/editorial-audit-20261013/verification.json:127-133."
+  },
+  {
+   "claim": "Bienias & Szabo 2025 (7 background candidates), Zenodo 10.5281/zenodo.14618891.",
+   "verdict": "confirmed",
+   "correction": "The paper is Bienias & Szabo 2025, A&A 694, A209 (arXiv:2501.09152), seven hot-Jupiter background candidates (0.89-1.52 R_Jup, 2.51-4.79 d). Zenodo 14618891 is 'Appendix A: Tables of results' (65.8 kB PDF, author listed on Zenodo as John Bienias only); Appendices B and C are Zenodo 14618752 and 14618766.",
+   "evidence": "WebFetch https://zenodo.org/records/14618891; WebSearch (aanda.org 10.1051/0004-6361/202451693, arXiv 2501.09152)."
+  },
+  {
+   "claim": "Known-object contamination within 5 arcmin reduces to the Kepler-169 system.",
+   "verdict": "corrected",
+   "correction": "A live box query (+/-5 arcmin) of the KOI cumulative and DR25 TCE tables returns, besides Kepler-169 b-f (KIC 5689351), K03784.01 (KIC 5688997, FALSE POSITIVE, 23.8707 d, depth 6,386 ppm, ~3.3 arcmin west) and Kepler-1369 b (K02856.01, KIC 5688910, 25.873 d), plus a sixth Kepler-169 TCE at 199.59 d. None matches 13.769 d or its harmonics, but a complete contamination test should list them. Codex's novelty report correctly states 0 known Kepler signals within 120 arcsec.",
+   "evidence": "TAP: select ... from cumulative where ra between 285.797 and 286.018 and dec between 40.8587 and 41.0253; same on q1_q17_dr25_tce; catalogs/kbonus2103792461826460288_novelty_report.json."
+  },
+  {
+   "claim": "The 2027A NASA-Keck call closed 10 Sep 2026 and needs a US PI.",
+   "verdict": "confirmed",
+   "correction": "NExScI page (updated 7 Oct 2026): 2027A (1 Feb-31 Jul 2027), proposals due 10 Sep 2026 4 pm PT, 'open to all U.S.-based astronomers (principal affiliation at a U.S. institution)'; co-investigators may be of any nationality.",
+   "evidence": "WebFetch https://nexsci.ipac.caltech.edu/missions/KeckSolicitation/"
+  },
+  {
+   "claim": "lightkurve search returns the candidate's KBONUS product plus the neighbour's; KIC 5689116 TPFs are the pixel source.",
+   "verdict": "confirmed",
+   "correction": "Confirmed live: 3 KBONUS-BKG products within 60 arcsec (target at 0.0, Gaia DR3 2103792427466721792 = KIC 5689116 at 7.1 arcsec, Gaia DR3 2103789438169485056 = KIC 5689163 at 52.5 arcsec), search by name 'Gaia DR3 2103792461826460288' with author='KBONUS-BKG' returns 1 product; lk.search_targetpixelfile('KIC 5689116', author='Kepler', cadence='long') returns 13 quarters. The TPF URLs Codex used are of the form https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:KEPLER/url/missions/kepler/target_pixel_files/0056/005689116/kplr005689116-2009166043257_lpd-targ.fits.gz (pixels/manifest.json, 13 files with sha256).",
+   "evidence": "lightkurve 2.6.0 runs in the sandbox venv; evidence/codex/database_expansion/kbonus/pixels/manifest.json."
+  },
+  {
+   "claim": "Codex produced the evidence/codex tree; ChatGPT did follow-up; Claude only disclosed in the manuscript; website says 'initial search with Codex ... much of the follow-up used ChatGPT Work'.",
+   "verdict": "confirmed",
+   "correction": "Confirmed: requirements-lock.txt line 7 'artifact_tool_v2 @ file:///tmp/codex-primary-runtime-vxDdM8/...'; website text 'An idea on Kuber's evening run led to the initial search with Codex; much of the follow-up used ChatGPT Work' and 'Search noise can look persuasive, too' / 'Detection alone is insufficient'; the only Claude mentions in the repo are rnaas.txt:47 and manuscript.json:39. Which agent produced the 11 Oct validation pack and its 'separate agent' independent check remains unstated anywhere.",
+   "evidence": "curl https://kuber.studio/planethunt/ (420 kB, fetched 2026-10-17); grep -rni 'anthropic|claude' in the repo."
+  }
+ ],
+ "additions": [
+  "The inverted null is not a matched control for flaring M dwarfs: cleaning clips upward outliers at +3 sigma (flares) but downward only at -10 sigma (lcsearch.py FLARE_CLIP_SIGMA/DROPOUT_CLIP_SIGMA), and inversion happens before cleaning (pilot.py:83-84). In inverted data real flares become dips that survive clipping and real transits become 'flares' that are clipped; in real data flares are removed. So the 31-vs-32 comparison mixes two different noise populations. Codex's own SEARCH_AUDIT.md:31 and improvements/README.md item 4 flag this. Fix: either clip symmetrically for both polarities, or run the null with the same asymmetric clip applied before inversion, and report both.",
+  "Pre-registration timing failure that the brief under-weights: the tweet (11 Oct 11:12 UTC) preceded the validation pack (21:04 IST) by ~4.5 h; at tweet time no FPP, no centroid/dilution test and no Kepler-169 timing test existed. Public language should be gated on the FPP/NFPP numbers, not on the first-screen pass.",
+  "Regression to the mean is visible and should be expected: discovery-subset depth 2,268 +/- 120 ppm vs held-out 1,929 +/- 159 ppm (raw-PSF vet), 1,959 vs 1,563 ppm (event_stats). A signal selected as the maximum of a BLS search over a discovery set is biased high; the holdout depth is the unbiased estimate and should be the headline depth in any write-up.",
+  "The pipeline's second peak for the candidate (24.678 d, BLS SNR 8.1, holdout SNR -1.2, max_ses_frac 0.73) is a textbook noise peak and a useful calibration example of what a failing signal looks like in the same star; keep such rank-2 outputs in evidence packs.",
+  "The ranked pool is faint: of the 1,800 selected sources, rank 1 is G 14.19, rank 64 is G 16.88, rank 576 is G 18.21, rank 1,800 is G 19.00 (reproduced here). Kepler Bonus quotes CDPP < 100 ppm only for G < 16 (arXiv:2310.17733 abstract); the candidate at G 16.28 already has ~1,000 ppm per-30-min scatter (prep_kepler OOT rms 1,095 ppm). So ranks 577-1800 were mostly stars where a ~2,000 ppm, 2-h event is marginal per transit, and 'no second candidate' is weak evidence about the pool. For a new search, consider a brighter/less-crowded subset of the 406,548 background sources instead of the M-star list, and inject-recover before interpreting null outcomes.",
+  "Known-object test should list all KOIs/TCEs within the chosen radius: within +/-5 arcmin there are also K03784.01 (KIC 5688997, FP, 23.87 d, 6,386 ppm) and Kepler-1369 b (25.87 d), plus a 199.59 d Kepler-169 TCE (live TAP box queries). Also search Kepler EB catalogue and Gaia DR3 vari_eclipsing_binary (Codex did, via build_background_prior.py).",
+  "Proper-motion propagation (recipe step 14) is immaterial for this star: Gaia pmra -5.40, pmdec +2.85 mas/yr -> ~0.03 arcsec between Gaia epoch 2016.0 and Kepler 2009-2013, versus 3.98 arcsec pixels. Keep it in the general recipe for high-PM nearby stars, but do not list it as a flaw of Kuber's localisation.",
+  "Sanity check of the 'M dwarf' label (not done explicitly in the repo): Gaia G 16.282, parallax 3.4065 mas -> M_G = 8.94, BP-RP 2.194, consistent with an early-M dwarf (Barber et al. 2022 Table 5 gives M1.6; TIC Teff 3633 K, R 0.507 Rsun). The 7.1 arcsec neighbour has parallax 0.30 +/- 0.23 mas, so it is a distant unrelated star.",
+  "Kepler systematics check missing from the repo: event epochs were never compared with momentum-dump/quality-flag cadences or with the Kepler rolling-band/thermal systematics (only SAP_QUALITY == 0 filtering, pilot.py:60). A reviewer would ask for the distribution of in-transit cadences versus quality bits and versus quarter boundaries (Kepler Data Characteristics Handbook). Label: recommended addition, no evidence that it would change the result.",
+  "TRICERATOPS 1.1.0 behaviour change: calc_probs now defaults to dilution_corrected=True (input assumed deblended, as PSF flux is); pass dilution_corrected=False for raw SAP apertures. It also accepts a list of contrast curves, a molusc_file, exptime in days and nsamples; Kepler/K2 are supported via mission='Kepler'/'K2'. Because it pins pytransit==2.2 (NumPy-1-era), install it in its own venv (Python 3.13 is supported via numpy>=2.1 shims). MOLUSC is GitHub-only (not on PyPI).",
+  "RNAAS format facts: 1,500 words total including the 150-word abstract, title, captions and references; one figure OR one table; moderated by an editor, not peer reviewed; typically online within days of acceptance. Kuber's 1,196-word/one-figure note complied, so the decline was on substance (unvalidated candidate, FPP 0.069, unresolved prior-search status, TESS non-recovery).",
+  "Timestamps now pinned from live services: GitHub releases evidence-20261010 published 10 Oct 15:41 UTC; evidence-20261013 12 Oct 19:39 UTC; evidence-20261013-r2 12 Oct 19:49 UTC; Zenodo record created 12 Oct 19:49:40 UTC; RNAAS portal submission display 12-Oct-2026 16:20:10 (submission-record.json, zone unlabelled); decline 13 Oct; audit commit 09f4aa0 13 Oct 12:55 IST.",
+  "90 of the 1,836 eligible sources have an originating-TPF KIC (tpforg) that is not in keplerstellar (1,746 of 1,836 are), i.e. some KBONUS 'background' sources sit in TPFs of non-stellar or custom-aperture targets; keplerstellar is not a complete list of every Kepler TPF target, so 'excluded primary targets' should be documented as 'excluded keplerstellar kepids'.",
+  "Compute budget confirmed from pilot.log: median 18.7 s/star single-threaded (OMP/MKL threads forced to 1), so 1,736 stars ~ 9 CPU-hours; the 4-CPU sandbox could redo the whole Kepler Bonus M-dwarf search in ~3 h wall-clock with 3 workers, plus ~1 h for downloads (8.8 MB per FITS -> ~16 GB for 1,800 stars)."
+ ],
+ "remaining_uncertainties": [
+  "Which agent produced the 11 Oct validation pack and the 'separate agent' independent check: Claude is disclosed only in rnaas.txt:47; the pack's Python 3.13 sandbox with MAST/Gaia/VizieR/ExoFOP blocked suggests a web-sandboxed agent, but nothing in the repo or website names it.",
+  "The text of the RNAAS decision letter (not in the repo; 'supplied by the author in this conversation; not independently checked in the portal'); the editor's concerns are inferred from the four audit sections.",
+  "The Barber et al. 2022 table5.dat row (line 546, sha256 915a140b...) could not be re-fetched today (CDS ftp behind an Anubis anti-bot page, VizieR TAP 503); it rests on Kuber's verification.json and the previous agent's 200 response. Which Kepler light curve THYME's Notch search used for this Gaia source, and whether it covered 13.77 d, is unknown; the provenance e-mail was never sent.",
+  "What the two inverted survivors at the candidate's strength (KIC 8701308 at 4.254 d, KIC 5283912 at 8.785 d) physically are; never characterised.",
+  "GitHub repository creation timestamp (GitHub API blocked for this session; first commit 10 Oct 20:32:33 IST is the best proxy). Release publication times were read from the HTML releases page (no year shown; year from release notes).",
+  "Whether the 406,548 non-M-dwarf Kepler Bonus background sources have been searched by anyone, and whether the Kepler Bonus team or Bienias & Szabo hold unpublished candidate lists covering KIC 5689121.",
+  "The 298 pc distance in Kuber's key_numbers.json versus 293.6 pc from inverse Gaia parallax (3.4065 +/- 0.0397 mas); the source of 298 pc (Bailer-Jones or TIC) was not identified.",
+  "Whether KBONUS CENTROID_COLUMN/ROW are truly model-derived: Kuber infers it from a null response; the MAST documentation only says 'Centroid column/row value'.",
+  "Whether the asymmetric clipping actually changes the inverted pass rate for this sample (a hypothesis grounded in the code; not measured here or by Kuber).",
+  "AAS/RNAAS policy on AI-assisted manuscripts was not checked (the guidelines page I could reach did not cover it); Kuber disclosed AI assistance in the note."
+ ]
+}

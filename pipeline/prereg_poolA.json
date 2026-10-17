@@ -30,6 +30,26 @@
     "period_min_d": 0.5,
     "max_duty_cycle": 0.15
   },
+  "stage2_vetting": {
+    "registered_utc": "2026-10-17T13:05:00Z",
+    "note": "Registered after the first-screen controls and after a 208-star partial triage of the Modal batch revealed two dominant false-positive classes (periodic variables / EBs, and Kepler monthly-downlink or quarter-edge systematics at P 24-40 d), but BEFORE any pool star was vetted. Applied by pipeline/vet_batch.py; results are reported per criterion, never silently filtered.",
+    "re_detrend_with_transit_masked": true,
+    "gap_frac_1d_max": 0.5,
+    "frac_events_positive_min": 0.7,
+    "depth_pass2_over_pass1_range": [0.6, 1.8],
+    "event_chi2_const_pvalue_min": 0.001,
+    "odd_even_sigma_max": 3.0,
+    "secondary_sigma_max": 3.0,
+    "core_to_box_depth_ratio_min": 0.8,
+    "ls_amp_over_depth_max": 3.0,
+    "ls_period_matches_forbidden": true,
+    "both_polarity_forbidden": true,
+    "duration_ratio_max": 1.5,
+    "tls_sde_min": 9.0,
+    "tls_snr_min": 7.1,
+    "known_match_same_star_or_tpf_forbidden": true,
+    "rp_earth_max_for_candidate": 12.0
+  },
   "null_calibration": "The identical screen is applied to the inverted light curve (2 - f) of every star. The first-screen pass rate on inverted data is the empirical false-alarm rate; thresholds above are FIXED before the run and will not be changed after inspecting results. Any tighter post-hoc cut must be reported as post-hoc.",
   "positive_controls": ["kic-005689121 (Kuber's 13.769 d candidate; expect P=13.769, depth ~1.4-2.4 ppt)", "kic-007603200 (Kepler-138; expect c at 13.781 d ~ 700 ppm and d at 23.09 d)"],
   "after_first_screen": "Survivors go to: catalogue/ephemeris match (KOI, DR25 TCE, Kepler EB, confirmed planets; same period or 1:2, 2:1, 1:3, 3:1 within 0.1% against anything within 3 arcmin AND against the originating TPF star), TLS refinement, per-year depth consistency, pixel-level localisation on the originating TPF, Gaia neighbour/RUWE check, TRICERATOPS. Nothing is called a planet; survivors are 'first-screen signals', then 'candidates' only after pixel-level localisation and ephemeris clearance."

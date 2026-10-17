@@ -1,0 +1,124 @@
+{
+ "key_claims": [
+  {
+   "claim": "KBONUS-BKG is a single v1.0 release (2023-11-01, DOI 10.17909/7jbr-w430, CC BY 4.0) of 606,900 Kepler long-cadence PSF light curves (406,548 background + 200,352 Kepler targets per the paper), with no later data release as of 2026-10-17.",
+   "source": "https://archive.stsci.edu/hlsp/kbonus-bkg ; https://arxiv.org/abs/2310.17733 (v1 only); FITS primary header DOI/HLSPVER",
+   "confidence": "high",
+   "how_checked": "Fetched MAST page and arXiv abstract; astroquery Observations.query_criteria_count(provenance_name='KBONUS-BKG') returned 606900 in the sandbox"
+  },
+  {
+   "claim": "The four catalogue files at archive.stsci.edu/hlsps/kbonus-bkg/catalogs/ have SHA-256 hashes identical to those recorded in Kuber's verification.json (source catalogue 2e6d5a87..., M-star catalogue 40656395...), and Kuber's selection chain 29,800 -> 9,204 -> 6,477 -> 2,495 -> 1,836 -> 1,800 reproduces exactly, including the first-64 ordering.",
+   "source": "sandbox catstats.py / hunting.py vs /tmp/.../untrusted/planethunt/analysis/editorial-audit-20261013/verification.json",
+   "confidence": "high",
+   "how_checked": "Downloaded and hashed files; re-applied the cuts with keplerstellar kepids as the primary-target list"
+  },
+  {
+   "claim": "The source catalogue's real column names are tpforg, kep_mag and fname, not the documented tpf_org, kepmag and file_name; the M-star catalogue has 29,800 rows although the MAST page says ~20,000 and the paper body says ~27,500 new.",
+   "source": "sandbox Table.read of the FITS files; MAST page; arXiv HTML Appendix F",
+   "confidence": "high",
+   "how_checked": "Printed dtypes and row counts"
+  },
+  {
+   "claim": "For the same star (KIC 5689116, G=15.48) KBONUS PSF photometry gives 6-h CDPP 184 ppm stitched (133 ppm on PSF_FLAT_FLUX; per quarter 103-213 ppm) versus 121 ppm (per quarter 96-151) for official Kepler PDCSAP; for the G=16.28 target the PSF 6-h CDPP is ~475 ppm.",
+   "source": "sandbox cdpp_compare.py",
+   "confidence": "medium",
+   "how_checked": "Manual CDPP estimator (101-cadence SG flatten, 5-sigma clip, 13-cadence bins) applied identically to both products; lightkurve's estimate_cdpp returned 0 in this venv so values are from the manual estimator"
+  },
+  {
+   "claim": "A 28-star sample of clean non-target sources gives median per-quarter 6-h CDPP (PSF flux) of ~92/73/82 ppm at G=12-13/13-14/14-15, ~298 at 15-16, ~327 at 16-17, ~686 at 17-18 and ~1598 ppm at 18-19.",
+   "source": "sandbox sample_cdpp.py, sample/sample_cdpp.csv",
+   "confidence": "medium",
+   "how_checked": "Downloaded 28 files via direct URLs (4 per G bin), computed per-quarter CDPP; small sample containing some variables"
+  },
+  {
+   "claim": "Stitched FLUX is level-matched across quarters (per-quarter medians within 0.3%) while the LIGHTCURVE_Qn FLUX columns are raw e-/s differing by up to ~9% between quarters; PSF_FLAT_FLUX is a 2-day flatten that was not transit-masked (box depth at Kuber's ephemeris 1696+/-84 ppm vs ~2165-2348 ppm with local baselines); FLATTEN_MASK flags 322 outlier cadences, only 2 of them in transit.",
+   "source": "sandbox noise.py and flatmask.py",
+   "confidence": "high",
+   "how_checked": "Computed per-quarter medians and folded at P=13.769448 d, T0=BJD 2455630.245431"
+  },
+  {
+   "claim": "SAP_QUALITY is the raw Kepler TPF QUALITY word; lightkurve 2.6.0's default bitmask keeps all 50,182 cadences, 'hard' keeps 47,971 and 'hardest' equals quality==0 (46,523). lightkurve 2.6.0 silently ignores flux_column='sap_flux' for these files (use select_flux) and raises TypeError on lk.read(path, quarter=7).",
+   "source": "sandbox lightkurve tests",
+   "confidence": "high",
+   "how_checked": "Ran lk.read with each bitmask and compared medians of flux columns"
+  },
+  {
+   "claim": "The primary-header PMRA/PMDEC values (-0.00540, 0.00285, labelled mas/yr) are exactly the Gaia DR3 proper motions (-5.4019, 2.8479 mas/yr) divided by 1000.",
+   "source": "sandbox comparison of FITS header with Gaia DR3 upload-join result",
+   "confidence": "high",
+   "how_checked": "Ratio header/Gaia = 0.001 for both components"
+  },
+  {
+   "claim": "The KBONUS CENTROID_COLUMN/ROW columns are the Gaia position plus a scene-wide jitter vector: target and neighbour have identical per-quarter centroid standard deviations and differ only by a constant offset; psfmachine's get_source_centroids 'scene'/'poscor' methods shift Gaia coordinates by a common scene centroid. They cannot localise a transit, confirming Kuber's finding.",
+   "source": "sandbox noise.py; https://raw.githubusercontent.com/SSDataLab/psfmachine/master/src/psfmachine/tpf.py (get_source_centroids); Kuber SCIENCE.md kcentroid.py result",
+   "confidence": "high",
+   "how_checked": "Compared per-quarter centroid std of the two stars from the same TPF"
+  },
+  {
+   "claim": "Difference images built from the originating TPF (KIC 5689116) at Kuber's ephemeris place the dip centroid closer to KIC 5689121 than to KIC 5689116 in 13 of 13 quarters (median 0.54 px vs 1.30 px), independently supporting Kuber's PRF-fit localisation.",
+   "source": "sandbox tpf_vet.py",
+   "confidence": "medium",
+   "how_checked": "Per-event out-minus-in images, flux-weighted centroid of positive residuals, Gaia positions via TPF WCS; simple estimator without PRF fitting"
+  },
+  {
+   "claim": "Kuber's target was never a Kepler target and lost Q5, Q9, Q13, Q17 because its season-3 position fell on CCD module 3, which failed on 2010-01-09 (Q1 header: MODULE=3, CHANNEL=6, SEASON=3).",
+   "source": "FITS quarter headers; Kepler module-3 failure documented in arXiv:1202.5852 and arXiv:1501.03586",
+   "confidence": "high",
+   "how_checked": "Read MODULE/CHANNEL/SEASON per quarter; QDETECT='011110111011101110'"
+  },
+  {
+   "claim": "The official Kepler PDCSAP light curve of the TPF host KIC 5689116 shows only 101 +/- 27 ppm at Kuber's ephemeris (SAP 633 +/- 221 ppm), and keplerstellar lists ntce=0, nkoi=0 for it; Barber+2022's 'Kepler? = Y' flag means a light curve good enough for Notch, and since KIC 5689121 was never a target the flag most plausibly reflects this neighbour's PDCSAP.",
+   "source": "sandbox fold of kplr005689116 files; CDS ReadMe J/AJ/164/88; ar5iv 2206.08383 ('Only 84 had Kepler data ... PDCSAP')",
+   "confidence": "medium",
+   "how_checked": "Measured depth; the attribution of the Y flag to the neighbour's curve is an inference, not stated by Barber et al."
+  },
+  {
+   "claim": "No published systematic transit search of the KBONUS-BKG light curves exists: the KBonus paper did demos only; Bienias & Szabo 2025 searched raw Q4 pixels of ~150,000 target apertures with a ~0.0025/0.0018 depth floor and found 7 hot-Jupiter candidates; Barber+2022 searched only Kepler-target PDCSAP curves; Claytor & Tayar 2025 and Choi+2026 are not transit searches; Crossref lists 13 citations.",
+   "source": "https://arxiv.org/html/2501.09152v1 ; https://arxiv.org/abs/2206.08383 ; https://arxiv.org/abs/2506.03248 ; https://arxiv.org/abs/2604.24476 ; Crossref API",
+   "confidence": "medium",
+   "how_checked": "Read the papers' HTML; OpenAlex and Semantic Scholar citation lists were rate-limited so the full citing list was not enumerated"
+  },
+  {
+   "claim": "Among 412,033 non-Kepler-target KBONUS sources, 23,171 pass psffrac>0.5 & crowdsap>0.7 & >=8 PSF quarters; Gaia DR3 cross-match shows 8,463 of them are dwarfs (M_G>4, plx/err>5), 140 within 300 pc and ~3,600 with G<17; the 29,800-entry M-star catalogue has median G 18.47 and only 182 entries within 100 pc, of which only 6 are non-targets with psffrac>0.5 and >=8 quarters.",
+   "source": "sandbox hunting.py and Gaia upload-join (background_quality_pool_gaia.csv, mstars_gaia.parquet)",
+   "confidence": "high",
+   "how_checked": "Catalogue joins with keplerstellar kepids and Gaia DR3 async upload queries"
+  },
+  {
+   "claim": "Claytor & Tayar 2025 find that up to 63% of periodic KBonus background light curves remain correlated with their foreground star (zero-lag cross-correlation vs 3,000 random pairs, p<0.15), with signs of over-correction (anticorrelated pairs).",
+   "source": "https://arxiv.org/html/2506.03248v1",
+   "confidence": "high",
+   "how_checked": "Read the paper's method section via WebFetch"
+  },
+  {
+   "claim": "Exact working NASA Exoplanet Archive TAP queries for ephemeris matching: cumulative by kepid, q1_q17_dr25_tce by kepid (34,032 rows), and a join q1_q17_dr25_tce t join keplerstellar s on s.kepid=t.kepid with an RA/Dec box (Oracle syntax, no AS on table aliases; ADQL CONTAINS/CIRCLE was blocked by Cloudflare from the sandbox).",
+   "source": "sandbox curl against https://exoplanetarchive.ipac.caltech.edu/TAP/sync",
+   "confidence": "high",
+   "how_checked": "Ran the queries; the 5-arcmin box returns Kepler-169 b-f and KOI-3784.01"
+  }
+ ],
+ "actionable_steps": [
+  "Define 'background' as kic not in the keplerstellar kepid list (TAP: select distinct kepid from keplerstellar), never as kic != tpforg (18,583 Kepler targets have kic != tpforg).",
+  "Build the target pool from the full source catalogue, not the M-star catalogue: non-targets with psffrac>0.7, crowdsap>0.8, psf_fraction_flag.count('1')>=12, Gaia plx/err>5, M_G>4, G<17 (~3,600 dwarfs; CDPP 80-350 ppm); add the 140 dwarfs within 300 pc as a priority tier. Use /tmp/.../scratchpad/kbonus-dataset/background_quality_pool_gaia.csv as the starting table.",
+  "Search on the raw stitched FLUX (PSF) with your own detrending (wotan biweight ~0.5-1 d or per-quarter), quality==0 or 'hardest' bitmask; do not search PSF_FLAT_FLUX (not transit-masked, attenuates 2-h dips by ~20-25%) and do not trust FLUX_ERR for SNR; recompute noise empirically per quarter.",
+  "Download per source with the direct URL pattern https://archive.stsci.edu/hlsps/kbonus-bkg/lcs/<first4>/<id>/hlsp_kbonus-bkg_kepler_kepler_<fname>_kepler_v1.0_lc.fits (8-12 MB each; 4 parallel curls worked), or the MAST API URL; use the chunked bulk scripts only for >10k files.",
+  "For every candidate, run the mandatory ephemeris match: cumulative and q1_q17_dr25_tce by kepid for TPFORG and the candidate's KIC, the RA/Dec-box join with keplerstellar for TCEs within 2-5 arcmin, VizieR J/AJ/151/68 for Kepler EBs, kois-nns nn_koi, with 1/3,1/2,1,2,3 harmonics and baseline-grown timing tolerance; fold the TPF host's own KBONUS PSF curve and official PDCSAP at the candidate ephemeris.",
+  "Vet with pixels from the originating TPF (lk.search_targetpixelfile(f'KIC {TPFORG}', author='Kepler')): per-event difference images, difference-image centroid vs Gaia positions through the TPF WCS, then a Kepler PRF fit per source; ignore the KBONUS CENTROID_COLUMN/ROW columns entirely.",
+  "Use the season structure: split all consistency tests (odd/even, depth, duration) by SEASON/CHANNEL from the LIGHTCURVE_Qn headers; verify the SAP depth tracks FLFRCSAP*F_PSF/F_SAP per quarter while the PSF depth stays constant; check for module-3 season gaps before interpreting period aliases near n*90/4 d.",
+  "Run matched inverted-flux nulls on the same stars with identical processing (Kuber's real-vs-inverted first-screen counts were 31/29 vs 32/28), and calibrate thresholds on injections into the actual KBONUS noise rather than reusing Kuber's BLS SNR>=9 / holdout SNR>=4 screen.",
+  "Read per-quarter extensions with astropy Table.read(path, hdu='LIGHTCURVE_Qn') (lightkurve 2.6.0 rejects quarter=) and use lc.select_flux('sap_flux') rather than flux_column=; take proper motions from Gaia (header PMRA/PMDEC are in arcsec/yr despite the mas/yr label).",
+  "Consider the KOI false-positive-neighbour pool (cumulative where koi_disposition='FALSE POSITIVE' and koi_fpflag_co=1, cross-matched to the kois-nns catalogue) as a second, independent hunting ground where KBonus PSF photometry can re-attribute eclipses to fainter neighbours.",
+  "If you revisit Kuber's M-star remainder, target the 20,596 psffrac<=0.5 entries only through LIGHTCURVE_Qn extensions with PSFFRAC>0.3 and ITERNEG=0, and require season-consistent PSF depth.",
+  "Cite Martinez-Palomera, Hedges & Dotson 2023 (AJ 166, 265) and DOI 10.17909/7jbr-w430 in any publication; attribute CC BY 4.0."
+ ],
+ "open_questions": [
+  "Why the paper's 200,352/406,548 target/background split differs from the keplerstellar-based 194,867/412,033 and from kic==tpforg (181,681): the paper's exact definition of 'Kepler target' is not stated in the text read.",
+  "Full list of the ~13 citing papers could not be enumerated (OpenAlex and Semantic Scholar rate-limited; ADS requires a token); a manual ADS check of 2023AJ....166..265M citations is still needed to be certain no transit search was published in 2024-2026.",
+  "Whether Barber+2022 really folded KIC 5689116's PDCSAP for the Gaia source 2103792461826460288 (inference from their method and the Y flag) - only the authors can confirm what light curve was assigned.",
+  "Bit-level meaning of FLATTEN_MASK and the exact flatten parameters are undocumented; inferred here from behaviour (outlier mask, 2-day b-spline per the paper).",
+  "lightkurve's estimate_cdpp returned 0 ppm on these products in this venv; the cause (units/normalisation in lightkurve 2.6.0 + astropy 8) was not diagnosed, so all CDPP numbers here are from a manual estimator and should be re-checked against the paper's Figure 8 if used quantitatively.",
+  "The CDPP-vs-G curve is from 28 stars; a few hundred stars per bin (and splitting dwarfs from reddened giants) would be needed for a reliable detection-threshold model.",
+  "Whether the Gaia archive HTTP 500 on a 23k-row upload is a persistent limit (chunking into ~8k rows worked).",
+  "How many of the 8,463 'quality dwarfs' overlap with Bienias & Szabo's pixel search footprint (they only searched Q4 pixels and giant-planet depths), and whether their 7 candidate hosts are in KBONUS-BKG with consistent depths (their Table 3 was not readable)."
+ ]
+}
