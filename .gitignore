@@ -15,3 +15,6 @@ runs/**/*.fits
 
 # deep-run light-curve dumps (re-derivable from data/)
 runs/*_deep/lightcurve_*.csv
+
+# MOLUSC companion tables (60-70 MB each; reproducible from scripts/molusc_run.py with its fixed seed; SHA-256 in molusc_summary.json)
+runs/*/molusc/*/molusc_kept.csv
