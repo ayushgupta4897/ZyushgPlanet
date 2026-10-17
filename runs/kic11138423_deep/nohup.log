@@ -83,3 +83,11 @@ Downloading URL https://mast.stsci.edu/api/v0.1/Download/file?uri=mast:HLSP/kbon
 /home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/lightkurve/prf/__init__.py:7: UserWarning: Warning: the tpfmodel submodule is not available without oktopus installed, which requires a current version of autograd. See #1452 for details.
   warnings.warn(
 [prep] N=55932 points in 17 quarters, baseline 1470.5 d; std 2219 ppm, robust sigma 1968 ppm, point-to-point 2214 ppm; 6-h CDPP-like: binned 483 ppm, lightkurve 476.6218343111284 ppm, white-noise expectation 639 ppm
+[bls] 216740 periods x 8 durations in 144.4s; best P=4.894450 d power=15.15 SDE=21.91
+[bls] refined: P=4.894401 d T0=125.34298 BKJD dur=1.80 h depth=1103+/-72 ppm (+0.8s)
+/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/transitleastsquares/grid.py:196: UserWarning: period_grid defaults to R_star=1 and M_star=1 as given density yielded grid with too few values
+  warnings.warn(
+Transit Least Squares TLS 2.0.1 (11 Oct 2026)
+Creating model cache for 35 durations
+Searching 55932 data points, 200281 periods from 1.0 to 49.999 days
+Using 1 of 4 CPU threads

@@ -89,6 +89,7 @@ for src, dst in [(f"{R}/vet/{a.fname}/vet.json", "stage2/vet.json"), (f"{R}/vet/
                  (f"{R}/pixel/{a.fname}/pixel.json", "pixels/pixel_firstpass_descriptive.json"),
                  (f"{R}/adversarial/{a.fname}", "independent"),
                  (f"{R}/fpp/{a.fname}", "fpp"),
+                 (f"{R}/ephemeris_fieldwide/{a.fname}.json", "ephemeris_fieldwide.json"),
                  ("pipeline/prereg_poolA.json", "prereg_poolA.json"), ("data/known/manifest.json", "known_catalogues_manifest.json"),
                  (f"{R}/triage.md", "pool_triage.md"), (f"{R}/modal_status.json", "pool_modal_status.json"), (f"{R}/config_used.json", "pool_config_used.json")]:
     r = cp(src, dst)
@@ -169,6 +170,9 @@ L.append(f"| Host (Gaia DR3) | G {f(star.get('phot_g_mean_mag'), 2)}, BP−RP {f
 if vet:
     km = vet.get("known_matches") or []
     L.append(f"| Ephemeris matches (KOI/TCE/EB/confirmed within 3′, ratios 1:1,2:1,1:2,3:1,1:3, 0.2 %) | {len(km)} ({'none on the same star or TPF' if eph_ok else 'MATCH ON SAME STAR/TPF'}) | catalogues dated {known.get('fetched_utc') if known else 'n/a'} | stage2/vet.json `known_matches`, known_catalogues_manifest.json |")
+fw = jload(f"{R}/ephemeris_fieldwide/{a.fname}.json")
+if fw:
+    L.append(f"| Field-wide ephemeris check (whole Kepler field, any channel; KOI, DR25 TCE, Kepler EB; harmonics 1:1–4:1) | {fw['n_period_coincidences']} period coincidences within 0.1 %, **{fw['n_epoch_matches']} with a matching epoch** | a 4-year baseline separates period twins whose epochs differ | ephemeris_fieldwide.json |")
 L.append("")
 if second:
     L.append(f"## Second signal (post-hoc, label {a.second_signal})")

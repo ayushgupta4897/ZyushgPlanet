@@ -1,6 +1,6 @@
 # kic-003831969 (Gaia DR3 2100154070473374976, KIC 3831969) — evidence pack
 
-_Built 2026-10-17T18:00:22Z from run `poolA_main` at commit `0262864fd373`. Status under `CLAUDE.md` language: **candidate**. Nothing here is a planet; nothing is 'discovered'. Search, vetting, localisation, re-derivation, red team and FPP were run by Claude Code (Anthropic) agents under human direction; every number below names the file it comes from._
+_Built 2026-10-17T18:04:18Z from run `poolA_main` at commit `c6a4987cb718`. Status under `CLAUDE.md` language: **candidate**. Nothing here is a planet; nothing is 'discovered'. Search, vetting, localisation, re-derivation, red team and FPP were run by Claude Code (Anthropic) agents under human direction; every number below names the file it comes from._
 
 ## Key numbers
 
@@ -27,6 +27,7 @@ _Built 2026-10-17T18:00:22Z from run `poolA_main` at commit `0262864fd373`. Stat
 | TRICERATOPS NFPP | 0.00000 ± 0.00000 | nearby stars excluded only by their own light curves (fpp/fpp_summary.json `neighbour_tests`) | fpp/fpp_summary.json |
 | Host (Gaia DR3) | G 16.53, BP−RP 0.99, Teff 5275 K, R★ 0.83 R☉, 1969 pc, RUWE 1.06 | colour-based radius; TIC values in fpp/stars_tic.csv | target_row.json |
 | Ephemeris matches (KOI/TCE/EB/confirmed within 3′, ratios 1:1,2:1,1:2,3:1,1:3, 0.2 %) | 0 (none on the same star or TPF) | catalogues dated 2026-10-17T15:46:52+00:00 | stage2/vet.json `known_matches`, known_catalogues_manifest.json |
+| Field-wide ephemeris check (whole Kepler field, any channel; KOI, DR25 TCE, Kepler EB; harmonics 1:1–4:1) | 59 period coincidences within 0.1 %, **0 with a matching epoch** | a 4-year baseline separates period twins whose epochs differ | ephemeris_fieldwide.json |
 
 ## Deep single-target run (`pipeline/run.py`, `deep_run/results.json`)
 
