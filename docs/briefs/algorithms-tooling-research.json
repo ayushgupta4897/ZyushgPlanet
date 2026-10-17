@@ -1,0 +1,124 @@
+{
+ "key_claims": [
+  {
+   "claim": "TLS 2.0 (6 Oct 2026) and 2.0.1 (11 Oct 2026) and wotan 2.0 (11 Oct 2026) are brand-new major releases; TLS 2 changed results in 10 of 18 bug fixes, dropped batman as a runtime dependency, added backend= and SDE_detrend='hybrid', and is 30-60x faster than 1.33; wotan 2.0 fixed 31 bugs and made the biweight 60x faster.",
+   "source": "https://github.com/hippke/tls/releases ; https://github.com/hippke/wotan/releases ; PyPI JSON (upload dates 2026-10-11); venv tls_constants.TLS_VERSION = 'Transit Least Squares TLS 2.0.1 (11 Oct 2026)'",
+   "confidence": "high",
+   "how_checked": "WebFetch of release pages, PyPI API, and inspection of installed package constants"
+  },
+  {
+   "claim": "On the real KBONUS-BKG light curve of KIC 5689121 (45,648 cleaned points), TLS 2.0.1 recovers P = 13.769643 +- 0.0013 d, SDE 105.3, SNR 27.5, depth 1999 ppm, 74 distinct transits, odd/even mismatch 0.21 sigma in 198 s on one thread (100 s with 4 threads); astropy BLS gives P = 13.76953 d, box depth 1649 +- 56 ppm, odd 1634 +- 81 vs even 1662 +- 78 ppm, secondary -71 +- 57 ppm, harmonic_delta_log_likelihood -430.",
+   "source": "scratchpad/algorithms-tooling/s04_e2e.log, e2e_result.json, s07.log",
+   "confidence": "high",
+   "how_checked": "Ran in the sandbox venv"
+  },
+  {
+   "claim": "A batman+emcee fit with supersample_factor=7 and exp_time=1765.464 s gives t0 = BJD 2455630.2454, P = 13.769444 +- 0.000038 d, rp/rs = 0.0443, b = 0.35, a/rs = 43.7, transit-derived stellar density 5.9 (+1.3/-2.6) rho_sun and Rp = 2.45 R_earth (undiluted), in 109 s; LEO-Vetter 1.2.0 flux-level metrics (MES 24.2, 74 transits) raise no FA or FP flag.",
+   "source": "scratchpad/algorithms-tooling/s06_fit_vet.log, fit_result.json, s08_leo.py output",
+   "confidence": "high",
+   "how_checked": "Ran in the sandbox venv"
+  },
+  {
+   "claim": "Inverted and quarter-scrambled copies of the same light curve, through the identical cleaning and a 499k-period astropy BLS (objective='snr'), reach BLS depth-SNR 9.6-11.9 (global SDE 5.1-6.8) at 19.7-29 d with the longest trial duration, versus SNR 30.3 (SDE 29.3) for the real signal: a BLS SNR of ~10 is a noise-level statistic in a half-million-period Kepler search.",
+   "source": "scratchpad/algorithms-tooling/s07.log and null_throughput.json; consistent with Kuber's first-screen result (31/29 real vs 32/28 inverted) in analysis/kbonus-extension-20261011/README.md and Chopra's 12-25 d pile-up in docs/GUIDE.md",
+   "confidence": "high",
+   "how_checked": "Ran in the sandbox; compared with practitioners' repos"
+  },
+  {
+   "claim": "astropy BoxLeastSquares.autoperiod uses df = frequency_factor*min(duration)/baseline^2 and yields 83.8 million trial periods for a 4-yr Kepler baseline (0.5-30 d); a stellar-density-aware grid (Chopra/eumemic formula, oversample 3) yields 512k periods for rho = 3.9 and TLS's grid 256k.",
+   "source": "https://docs.astropy.org/en/stable/api/astropy.timeseries.BoxLeastSquares.html ; sandbox computation; paraschopra/tess-planet-candidates pipeline/lcsearch.py; eumemic/exoplanets pipeline/search.py",
+   "confidence": "high",
+   "how_checked": "Ran autoperiod and the grid functions in the venv; read the source files"
+  },
+  {
+   "claim": "Measured TLS 2.0.1 runtimes on a 67.5k-point 4-yr synthetic LC: 1-30 d with 2 threads 122 s (185k periods); 1-10 d 116 s (found the P/2 alias); binning to 1 h gave no speed-up (TLS pre-bins internally); oversampling_factor=2 at 1 thread 110 s; backend='fused' (exact) 364 s. Coherent astropy BLS on a Kepler star with 512k periods cost 150-440 s per core and on a 5-sector TESS star binned to 20 min 50 s; peak RSS 115 MB (BLS) and 225 MB (TLS).",
+   "source": "scratchpad/algorithms-tooling/tls_bench.log, tls_bench_*.json, s07.log, s09_tls.log",
+   "confidence": "medium",
+   "how_checked": "Ran in the sandbox; the 4 vCPUs were shared with other agents (load average 5-13) so wall times are upper bounds"
+  },
+  {
+   "claim": "wotan paper: optimal biweight window is about 3x the transit duration; w/T14 >= 2.2 preserves >= 98% of the flux integral; discarding half a window at edges is slightly preferable; iterative GPs/splines are inferior to robust sliders for transit searches. Chopra chose 0.75 d by injection-recovery (3/16, 10/16, 8/16, 5/16 recovered for 0.5, 0.75, 1.0, 1.5 d); Kuber used 1.0 d per quarter; eumemic uses clip(3*T14(Pmax), 0.5, 1.0) d.",
+   "source": "https://arxiv.org/html/1906.00966v3 (Sec. IV.5, IV.6, IV.4, V.2); paraschopra docs/GUIDE.md and pipeline/lcsearch.py; Kuber evidence/codex/database_expansion/kbonus/pilot.py; eumemic pipeline/search.py",
+   "confidence": "high",
+   "how_checked": "WebFetch of the paper; read the three repos' source"
+  },
+  {
+   "claim": "Over-detrending measured: with 2000 ppm, 2.3 h transits injected into a 90-d active-star synthetic LC, biweight 1.0 d recovers 1970 ppm, biweight 0.3 d 1443 ppm, cosine 1.0 d 1515 ppm, wotan gp(matern) 1096 ppm; masking the transits and re-detrending at 0.3 d recovers 2176 ppm; celerite2 Matern-3/2 with transits masked recovers 2232 ppm in 0.37 s.",
+   "source": "sandbox snippet output (celerite2/wotan comparison)",
+   "confidence": "high",
+   "how_checked": "Ran in the sandbox venv"
+  },
+  {
+   "claim": "TLS FAQ white-noise SDE/FAP table: SDE 5.7 (1-FAP 0.9), 6.1 (0.95), 7.0 (0.99), 8.3 (0.999), 9.1 (0.9999); the FAQ states the table is optimistic under red noise and SDE > 9 is the conventional threshold; the TLS paper reports 93% vs 76% recovery versus BLS with both at ~1% false positives at SDE ~ 7.",
+   "source": "https://transitleastsquares.readthedocs.io/en/latest/FAQ.html ; https://arxiv.org/abs/1901.02015",
+   "confidence": "high",
+   "how_checked": "WebFetch"
+  },
+  {
+   "claim": "eumemic calibrated false alarms on inverted light curves of 798,769 random full-sky stars: among clean-pixel SNR >= 9 signals 726 real vs 96 expected false alarms; 46% of clean SNR >= 9 signals with MES < 10 are expected to be noise, 16% at MES 10-12, 2% above; injections at nominal SNR 10 are recovered at SNR >= 9 only 22% of the time (48% at >= 7.5); search costs: coherent astropy BLS 17.5 s, stack-slide 8.9 s, semi-coherent 4.2 s per TESS star with recoveries 60/62/52%.",
+   "source": "https://github.com/eumemic/exoplanets README (Validation, Performance) and validation/false_alarm_classifier.md (local clone)",
+   "confidence": "high",
+   "how_checked": "Read the cloned README and validation note"
+  },
+  {
+   "claim": "Chopra's inverted survey of 526 stars: 743 vs 752 signals pass the search, 31 vs 39 have no hard flags, 10 vs 17 are flag-free, strongest flag-free flipped SDE 8.4 vs his candidates' 11.3/10.3; 38 scrambles reached SDE 8.5/9.3; the extrapolated false-alarm counts were withdrawn after review; his audit fixes included matched-processing control boxes (significance 8.2 -> 7.2/7.7 sigma), a missing Jacobian, a pixel test that located brightenings as easily as dimmings, and post-hoc hold-out adjustments.",
+   "source": "https://github.com/paraschopra/tess-planet-candidates/blob/main/docs/GUIDE.md ; pipeline/vet.py depth_emp_matched; pipeline/06_inverted.py",
+   "confidence": "high",
+   "how_checked": "Read the cloned repo"
+  },
+  {
+   "claim": "Install status in the venv: emcee 3.1.6, corner 2.3.0, celerite2 0.3.3, dynesty 3.1.0, juliet 2.2.10, leo-vetter 1.2.0, exovetter 0.0.16 installed cleanly; ldtk 1.9.3 only with --no-deps (+tenacity) because it pins pandas 1.5.3; psfmachine 1.1.4 fails on Python 3.13 for the same pandas pin; bare 'triceratops' resolves to 1.0.21 and fails, while triceratops==1.1.0 resolves but pins pytransit==2.2; sherlockpipe fails on the ellc build; nuance, exoplanet, pytransit 2.9.3 and allesfitter resolve in dry runs but were not installed.",
+   "source": "uv pip install / --dry-run output in the sandbox; https://raw.githubusercontent.com/stevengiacalone/triceratops/master/setup.py",
+   "confidence": "high",
+   "how_checked": "Ran the installs and dry runs"
+  },
+  {
+   "claim": "No off-the-shelf CPU ML triage model scores arbitrary Kepler-background or home-made TESS FFI signals: ExoMiner's pipeline (podman image ghcr.io/nasa/exominer:latest, run_pipeline.py with --tic_ids/--data_collection_mode/--exominer_model) operates on TESS SPOC TCEs and DV XMLs; Astronet (archived 2023-08-10) lists no pretrained weights; Astronet-Triage's README trains a model from TCE CSVs and QLP light curves; qusi is a framework.",
+   "source": "https://github.com/nasa/ExoMiner and exominer_pipeline/run_pipeline.py; https://github.com/google-research/exoplanet-ml; https://github.com/mdanatg/Astronet-Triage; https://pypi.org/project/qusi/",
+   "confidence": "medium",
+   "how_checked": "WebFetch of repo pages and the pipeline source; weights could exist in unlinked folders"
+  },
+  {
+   "claim": "KBONUS-BKG light-curve files hold a LIGHTCURVE_STITCHED extension (TIME in BKJD, QUARTER, FLUX = PSF flux, SAP_FLUX, PSF_FLAT_FLUX, SAP_QUALITY, FLATTEN_MASK) plus per-quarter LIGHTCURVE_Q extensions (FLUX = corrected PSF flux, SAP_FLUX, CENTROID_COLUMN/ROW, SAP_BKG, RED_CHI2, PSF_FLUX_NOVA) and APERTURE_Q masks; the primary header carries TPFORG 5689116, KEPMAG 16.332, GMAG 16.282; KIC 5689121 has 13 usable quarters, 46,523 good points and 1,033 ppm per-cadence scatter.",
+   "source": "astropy.io.fits inspection of the downloaded file; https://archive.stsci.edu/hlsp/kbonus-bkg",
+   "confidence": "high",
+   "how_checked": "Ran in the sandbox and compared with the MAST product description"
+  },
+  {
+   "claim": "A single-quarter in/out-of-transit Kepler difference image (7 transits, 33 in-transit cadences) of the host TPF gives a maximum per-pixel SNR of 0.4 for this 0.2%-deep signal, so localisation requires per-event local-baseline box fits stacked over all quarters with PRF templates (Kuber's pixel_localize.py) or the multi-sector joint fits used by Chopra and eumemic.",
+   "source": "scratchpad/algorithms-tooling/s05_pixels.py output; Kuber evidence/codex/database_expansion/kbonus/pixel_localize.py; Chopra pipeline/10_pixels.py docstring; eumemic validation/centroid_sectors.md",
+   "confidence": "high",
+   "how_checked": "Ran the difference image; read the three implementations"
+  },
+  {
+   "claim": "TLS catalog_info(KIC_ID=5689121) raises IndexError (the background star is absent from the Vizier KIC table TLS queries) while catalog_info(TIC_ID=120686465) returns Claret quadratic coefficients (0.2125, 0.3984), M = 0.505 +- 0.021 Msun and R = 0.507 +- 0.016 Rsun.",
+   "source": "sandbox run of transitleastsquares.catalog_info",
+   "confidence": "high",
+   "how_checked": "Ran in the sandbox"
+  }
+ ],
+ "actionable_steps": [
+  "Pin the toolchain in /home/user/ZyushgPlanet: lightkurve 2.6.0, astropy 8.0.2, transitleastsquares 2.0.1, wotan 2.0, batman-package 2.5.3, emcee 3.1.6, celerite2 0.3.3, leo-vetter 1.2.0, exovetter 0.0.16, dynesty 3.1.0 (all now in the venv); keep TRICERATOPS (pytransit==2.2 pin) and psfmachine (pandas 1.5.3 pin, needs Python <= 3.11) in separate venvs.",
+  "Port eumemic's MIT-licensed fastbls.py (numba _season_scan, _coherent_best, _stackslide) and search.py helpers (period_grid, expected_duration, sde, event_stats, refine) as the batch search engine; use astropy BoxLeastSquares only for the coherent refine step and compute_stats, and TLS 2.0.1 (use_threads=1 inside workers, oversampling_factor 3, TIC limb darkening via catalog_info(TIC_ID=...)) only on survivors.",
+  "Never call BoxLeastSquares.autoperiod on multi-year baselines (83.8M periods for Kepler); build the density-aware grid with oversample 3 (512k periods for a 0.5 Msun star over 4 yr) or let TLS build its Ofir grid (~181k-256k).",
+  "Detrend per quarter/sector with wotan biweight, window 0.75-1.0 d for Kepler 30-min M dwarfs and 0.5 d for TESS 200-s/10-min FFIs fitted to 10-min means, break_tolerance=0.5, edge_cutoff=0; clip +3 sigma / -10 sigma only after detrending; set errors from the per-segment point-to-point MAD; then verify the window with 16+ injections per Chopra's recipe.",
+  "Reserve holdout quarters/seasons before searching (Kuber: last max(2, ceil(0.25 N)) quarters) and write that split to a manifest; report fixed-ephemeris depth and SNR in the holdout separately.",
+  "Run the whole sample inverted (flux -> 2 - flux before cleaning) and, for each candidate, >= 38 quarter/sector scrambles through the identical pipeline and triage; report the real signal against the null distribution of SDE and BLS SNR instead of quoting white-noise FAPs; expect BLS depth-SNR ~10-12 from noise on a 45k-point Kepler LC searched over 500k periods.",
+  "Measure candidate depths with Chopra's matched-processing control boxes (40 off-transit phases each re-detrended with that phase masked) and Kuber's local-baseline per-event fits with 24-64 phase controls; require max single-event contribution < 0.5 and consistent odd/even and null secondary.",
+  "Vet every survivor with LEO-Vetter compute_flux_metrics + check_thresholds (star dict needs rad, e_rad, mass, e_mass, Teff, e_Teff, rho, u1, u2, id, tic, ra, dec, raDegrees, decDegrees, planetData) and require MES >= 10 for shallow signals, per eumemic's calibration; add exovetter ModShift/Sweet/OddEven as a cross-check.",
+  "Fit survivors with batman + emcee using supersample_factor=7 and exp_time=1765.464/86400 d for Kepler LC (or the TESS FFI exposure), a TIC stellar-density prior and a dilution term; report rho_star from the fit against the catalogue value.",
+  "Localise the source with per-event, per-pixel local-baseline box fits stacked over all quarters plus lightkurve.prf.KeplerPRF templates at each Gaia position (Kuber's pixel_localize.py) for Kepler, and transit-diffImage / LEO-Vetter pixel_vetting with per-sector centroid F-tests for TESS; do not rely on single-quarter in/out difference images (SNR 0.4 here) or on KBONUS CENTROID columns.",
+  "Orchestrate with ProcessPoolExecutor (4 workers, OMP/OPENBLAS/MKL threads = 1, one .npz per star, per-star JSON keyed by input SHA-256 and pipeline_version, imap_unordered chunksize 1); budget ~10 s/star/core for the fast semi-coherent tier (overnight: up to ~10k stars) and move coherent full-grid BLS / TLS-on-everything / TRICERATOPS for > 1k stars to a cloud box (~8,000-12,000 core-hours per 100k Kepler stars at coherent-BLS cost).",
+  "Keep disk under control: parse KBONUS FITS (8.4 MB each) to npz (1.4 MB) and delete the FITS, keeping URL + SHA-256 in the manifest; fetch TPFs (1.7 MB/quarter) and TESScut cutouts (3 MB per 30-min sector, ~9x for 200-s sectors) only for candidates."
+ ],
+ "open_questions": [
+  "TLS 2.0 changed results in 10 of its 18 bug fixes and the default backend 'fused-pl' is an approximation (2% template deviation); nobody has yet published a re-calibrated SDE-vs-FAP table for TLS 2 on red-noise Kepler/TESS data, and the raw BUGLOG.md could not be fetched (404) to list the exact changes.",
+  "The measured wall-clock costs (BLS 150-440 s per Kepler star, TLS 100-200 s) were taken while other agents loaded the 4 vCPUs (load average 5-13); the clean single-core numbers should be re-measured on an idle box before sizing a cloud run.",
+  "eumemic's semi-coherent/stack-slide BLS misses ~15% of weak signals that the coherent search finds (18 vs 4 exclusive detections); the right trade-off for Kepler 13-quarter light curves (90-d blocks) was not re-measured here and should be set by injection-recovery on the actual target sample.",
+  "Whether exoplanet 0.6.0 works with PyMC 6.3.2 (and exoplanet-core 0.4.0) is unverified; if PyMC-based fitting is wanted, test in a separate venv or use juliet/dynesty, which installed and imported cleanly.",
+  "psfmachine (needed to re-extract PSF photometry from Kepler TPFs the way Kepler Bonus did) does not install on Python 3.13 because of its pandas 1.5.3 pin; a Python 3.11 venv was not built or tested here.",
+  "ExoMiner's container may run on CPU (amd64/arm64 images) but its documentation does not state hardware requirements, and the pipeline only scores SPOC TCEs; whether the Keras model can be fed a home-made TCE record was not tested.",
+  "LDTk's PHOENIX download size and the exact Claret table versions behind TLS's catalog_info were not verified; limb darkening for a 3,600 K M dwarf in the Kepler band should be cross-checked between the two before publication.",
+  "Kuber's KBONUS flux choice (per-quarter FLUX = corrected PSF flux) versus PSF_FLAT_FLUX or SAP_FLUX changes the measured depth (1438 vs 2165-2348 ppm in his notes); the dilution/aperture systematics of KBONUS PSF photometry for 7-arcsec blends are not characterised in the Kepler Bonus paper and need an injection test on neighbour TPFs."
+ ]
+}

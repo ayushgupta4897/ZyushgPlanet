@@ -1,0 +1,130 @@
+{
+ "fname": "gaia-dr3-2107574403864920576",
+ "P_screen": 4.243762975278672,
+ "dur_screen_h": 3.0,
+ "t0_screen_bkjd": 135.3688291842118,
+ "object": "Gaia DR3 2107574403864920576",
+ "gaiaid": "Gaia DR3 2107574403864920576",
+ "tpforg": 10123064,
+ "kepmag": "",
+ "ra": 283.6180762649784,
+ "dec": 47.19678136666172,
+ "P": 4.243747057187992,
+ "dur_h": 3.0,
+ "t0_bkjd": 135.36882918402551,
+ "t0_bjd": 2454968.368829184,
+ "depth_pass1_ppm": 1209.4594798073288,
+ "depth_pass2_ppm": 1281.900985366069,
+ "depth_pass2_formal_err_ppm": 9.669025672890342,
+ "box_noise_ppm": 8.214207210565245,
+ "snr_emp_pass2": 156.05900271389152,
+ "n_in_transit": 1801,
+ "n_points": 59754,
+ "depth_odd_ppm": 1302.2198132340845,
+ "depth_even_ppm": 1261.6047089162307,
+ "odd_even_sigma": 2.4722473682922166,
+ "secondary_depth_ppm": -8.924363796847246,
+ "secondary_sigma": -1.08645467153161,
+ "core_to_box_depth_ratio": 1.0958374466616212,
+ "n_events": 315,
+ "gap_frac_1d": 0.10476190476190476,
+ "gap_frac_2d": 0.21904761904761905,
+ "frac_events_positive": 1.0,
+ "event_weighted_depth_ppm": 1281.2895280328125,
+ "event_chi2_const": 524.6182754920105,
+ "event_dof": 314,
+ "depth_by_quartile_ppm": [
+  [
+   1300.9048471410838,
+   17.75504548679644,
+   79
+  ],
+  [
+   1294.3219960327021,
+   17.11241838955976,
+   79
+  ],
+  [
+   1229.4406563770306,
+   16.75622175991756,
+   79
+  ],
+  [
+   1301.4757833059944,
+   17.022059793661285,
+   79
+  ]
+ ],
+ "ls_period_d": 0.8487393888125798,
+ "ls_half_amplitude_ppm": 83.80187400841565,
+ "ls_power": 0.01962885136023927,
+ "ls_amp_over_depth": 0.06537312551053588,
+ "ls_period_matches": false,
+ "rstar_used": 0.8830682110786437,
+ "t14_max_h": 2.845652780621521,
+ "duration_ratio": 1.0542396529996776,
+ "rp_earth_box": 3.449421313414084,
+ "tls": {
+  "period": 4.2437747476122505,
+  "SDE": 15.685693670005337,
+  "snr": 139.41762579019792,
+  "depth": 0.9986240515655189,
+  "duration": 0.1240172528275861,
+  "rp_rs": 0.033358631512497204,
+  "odd_even_mismatch": 1.3221498580474933,
+  "transit_count": 344.0,
+  "distinct_transit_count": 317.0,
+  "rp_earth": 3.213862023566588,
+  "transit_depths_mean": 0.9987158166005301
+ },
+ "known_matches": [
+  {
+   "catalog": "KOI",
+   "name": "K00472.01",
+   "kepid": 10123064.0,
+   "sep_arcmin": 0.008059995060860418,
+   "period": 4.243748097,
+   "ratio": "1:1",
+   "frac_diff": 2.450220852617128e-07,
+   "disposition": "CONFIRMED",
+   "depth_ppm": 1409.7,
+   "same_tpf": true,
+   "same_kic": false,
+   "epoch_offset_phase": 0.00012283985721417423
+  },
+  {
+   "catalog": "TCE",
+   "name": "10123064-1",
+   "kepid": 10123064.0,
+   "sep_arcmin": 0.008264841585345864,
+   "period": 4.24374,
+   "ratio": "1:1",
+   "frac_diff": 1.6629642702450881e-06,
+   "disposition": "TCE",
+   "depth_ppm": 1359.0,
+   "same_tpf": true,
+   "same_kic": false,
+   "epoch_offset_phase": 0.0002758920262475595
+  },
+  {
+   "catalog": "ConfirmedPlanet",
+   "name": "Kepler-565 b",
+   "kepid": NaN,
+   "sep_arcmin": 0.00028282710738689493,
+   "period": 4.243747226,
+   "ratio": "1:1",
+   "frac_diff": 3.977899694253709e-08,
+   "disposition": "CONFIRMED",
+   "depth_ppm": NaN,
+   "same_tpf": false,
+   "same_kic": false,
+   "epoch_offset_phase": 0.0001669046827892373
+  }
+ ],
+ "ok": true,
+ "runtime_s": 12.5,
+ "stage2_pass": false,
+ "stage2_fails": [
+  "known_object"
+ ]
+}

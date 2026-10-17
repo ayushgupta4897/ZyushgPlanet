@@ -1,0 +1,136 @@
+{
+ "key_claims": [
+  {
+   "claim": "TESS is observing Sector 109 (Cycle 9, EM3); Sector 110 begins 2026-10-31; SPOC 2-min light curves and single-sector DV products are public through Sector 107 (released 2026-10-01); multi-sector DV through Sectors 1-96.",
+   "source": "https://tess.mit.edu/observations/ ; https://heasarc.gsfc.nasa.gov/docs/tess/sector.html ; https://archive.stsci.edu/tess/bulk_downloads/bulk_downloads_ffi-tp-lc-dv.html ; astroquery Observations t_obs_release query (sandbox 2026-10-17)",
+   "confidence": "high",
+   "how_checked": "Fetched live pages and queried MAST Observations for sectors 100-109; S108/109 return 0 SPOC products."
+  },
+  {
+   "claim": "MAST public-release lag is 24-39 days after sector end (S100 27 d, S101 24 d, S102 31 d, S103 39 d, S105 37 d, S106 32 d, S107 24 d).",
+   "source": "astroquery.mast Observations.query_criteria(obs_collection='TESS', sequence_number=N, provenance_name='SPOC', t_exptime=[119,121]) -> t_obs_release vs t_max (sandbox)",
+   "confidence": "high",
+   "how_checked": "Computed from MAST metadata for 13,000 SPOC 2-min observations per sector."
+  },
+  {
+   "claim": "No TOIs have been alerted from Sectors 103-107; newest single-sector SPOC TOIs are from S102 (alerted 2026-08-06) and newest QLP faint-search TOIs from S98 (alerted 2026-07-24); measured TOI lags are 94-148 d (SPOC single-sector) and 200-338 d (QLP faint search).",
+   "source": "ExoFOP TOI CSV https://exofop.ipac.caltech.edu/tess/download_toi.php?sort=toi&output=csv (Source, Sectors, Date TOI Alerted columns) joined to HEASARC sector end dates (sandbox)",
+   "confidence": "high",
+   "how_checked": "Parsed 8,151-row CSV; grouped by Source string (spoc-sNNN-b02, qlp-sNN-faintsearch) and computed first alert minus sector end."
+  },
+  {
+   "claim": "QLP Sectors 99-104 carry a barycentric timing correction error (Orbit 210-220; spacecraft velocity used instead of position) and have not been redelivered; QLP is magnitude-limited to T<13.5 and covers Sectors 1-104.",
+   "source": "https://archive.stsci.edu/hlsp/qlp (fetched 2026-10-17)",
+   "confidence": "high",
+   "how_checked": "Quoted from the HLSP page."
+  },
+  {
+   "claim": "TESS-SPOC FFI light curves exist in bulk through Sector 85 (page updated 2026-07-23) and select all 2-min targets, H<=10, d<=100 pc and T<=13.5 up to 160,000 targets/sector; lightkurve returns TESS-SPOC only through S69 for southern CVZ stars.",
+   "source": "https://archive.stsci.edu/hlsp/tess-spoc ; lightkurve search for TIC 150428135, 261136679, 410153553 (sandbox)",
+   "confidence": "high",
+   "how_checked": "HLSP page quote plus lightkurve probes."
+  },
+  {
+   "claim": "TGLC bulk covers Sectors 1-55 to T=16 (portal/astroquery only S1-11); GSFC-ELEANOR-LITE covers S1-26 to T<16 (>150M LCs); T16 covers Cycle 1 to T<16 and the T16 Planet Hunt (Roth et al. 2026) reported 11,554 candidates (10,091 new, 411 single-transit) from 83.7M light curves.",
+   "source": "https://archive.stsci.edu/hlsp/tglc ; https://archive.stsci.edu/hlsp/gsfc-eleanor-lite ; https://archive.stsci.edu/hlsp/t16 ; arXiv:2604.18579",
+   "confidence": "high",
+   "how_checked": "Fetched HLSP pages and arXiv abstract."
+  },
+  {
+   "claim": "TARS (TESS All-Sky Rotation Survey, released 2026-06-03) provides unpopular-CPM FFI light curves for 7.5 million stars with T<16 and d<500 pc across Sectors 1-96 (39M star-sectors); it is a rotation survey and no transit search of it has been published.",
+   "source": "https://archive.stsci.edu/hlsp/tars ; arXiv:2603.05586 ; lightkurve shows TARS products for TIC 120686465 (S14-81) and faint M dwarfs (sandbox)",
+   "confidence": "high",
+   "how_checked": "HLSP page and abstract; transit-search absence is a negative literature finding (medium confidence on that sub-claim)."
+  },
+  {
+   "claim": "TIC contains 100,567 dwarfs with Teff<3900 K within 100 pc and 13.5<T<16.5; only 33 are TOI hosts and 43 are CTOI hosts; 6,196 lie within 50 pc with 13.5<T<16; 4,861 within 30 pc with T<16.",
+   "source": "astroquery.mast Catalogs.query_criteria(catalog='Tic', d=[0,100], Tmag=[13.5,16.5], Teff=[2300,3900], objType='STAR', lumclass='DWARF') cross-matched to ExoFOP TOI/CTOI CSVs (sandbox 2026-10-17)",
+   "confidence": "high",
+   "how_checked": "Ran the criteria queries (52 s) and matched TIC IDs; output saved to tic_mdwarfs_100pc_faint.csv."
+  },
+  {
+   "claim": "Only 457 of 8,151 TOIs and 351 of 5,138 CTOIs have T>13.5; 35 TOIs and 44 CTOIs have T>15; TOI dispositions today are PC 4,820 / CP 815 / KP 606 / FP 1,315 / FA 100 / APC 490; 330 TOIs created in 2026, 87 since 2026-07-01.",
+   "source": "NASA Exoplanet Archive TAP (toi table) and ExoFOP CSVs (sandbox 2026-10-17)",
+   "confidence": "high",
+   "how_checked": "Direct counts."
+  },
+  {
+   "claim": "Kuber's Kepler Bonus funnel reproduces exactly from the public v1.0 catalogues: 29,800 M-star rows -> PSFFRAC>0.5 9,204 -> CROWDSAP>0.7 6,477 -> >=8 PSF quarters 2,495 -> kic!=tpforg 1,836. The same cuts on non-M sources leave 25,542 background stars (6,151 with G<16, 10,417 with G<17) with no published transit search.",
+   "source": "https://archive.stsci.edu/hlsps/kbonus-bkg/catalogs/hlsp_kbonus-bkg_kepler_kepler_{mstars,source}-catalog_kepler_v1.0_cat.fits (sandbox; psf_avail parsed as 18-char 0/1 string)",
+   "confidence": "high",
+   "how_checked": "Downloaded both catalogues and applied the cuts; survivors saved to kbonus/*.csv."
+  },
+  {
+   "claim": "A NASA Goddard/Ames team (Moquin, Wilson, Quintana, Hedges, Martinez-Palomera, Kostov, Ciardi et al.) is running the TraSHDUMP matched-filter pipeline on Kepler Bonus, reported BOI-1.01 (G=17.8 M dwarf, P=3.37 d) and expects 'several hundred new planet candidates'.",
+   "source": "https://vmnexsci.ipac.caltech.edu/workshop/2026/posters/Poster_JulieMoquin_41.pdf (text extracted with pdftotext)",
+   "confidence": "high",
+   "how_checked": "Downloaded and read the poster."
+  },
+  {
+   "claim": "Kepler DR25 searched 198,709 targets producing 34,032 TCEs; Thompson 2018 catalogued 8,054 KOIs / 4,034 PCs; the cumulative KOI table today has 9,564 rows (2,748 confirmed, 1,977 candidates, 4,839 FPs); independent searches (Huang 2012, Wang 2015, Foreman-Mackey 2016, Shallue & Vanderburg 2018, Kawahara & Masuda 2019, Kunimoto 2020) have already mined primary targets; no transit search of the NGC 6791/6819 superstamps was found.",
+   "source": "arXiv:1604.06140 ; arXiv:1710.06758 ; TAP cumulative ; arXiv:1205.6492, 1512.02559, 1602.07848, 1904.04980, 2003.04397 ; WebSearch on superstamps (Kuehn 2013, Espinoza-Rojas 2023)",
+   "confidence": "high",
+   "how_checked": "Abstracts fetched; TAP counts run; superstamp negative is a search result (medium)."
+  },
+  {
+   "claim": "K2: 392,245 target-campaign rows / 361,770 unique EPIC IDs; systematic searches: Vanderburg 2016 (C0-3, 234), Crossfield 2016 (C0-4, 197), Pope 2016 (C5-6, 152), Mayo 2018 (C0-10, 275), Kruse 2019 (C0-8, Kp 9-15, 818), Zink 2021 (C1-8,10-18, 747, 61% max completeness), Christiansen 2022 (60 validated); k2pandc has 4,077 rows / 1,559 hosts; EVEREST v2 covers C0-8,102,111,112,12-18; K2SFF C0-14 at MAST; no KBONUS-like background product exists for K2.",
+   "source": "TAP k2targets/k2pandc ; arXiv:1511.07820, 1607.05263, 1606.01264, 1802.05277, 2109.02675, 2203.02087 ; ApJS 244, 11 ; https://archive.stsci.edu/hlsp/everest ; https://archive.stsci.edu/k2/hlsps.html",
+   "confidence": "high",
+   "how_checked": "TAP counts; abstracts and MAST pages fetched; K2-background negative from WebSearch (medium)."
+  },
+  {
+   "claim": "Guerrero et al. 2021: QLP produced ~50,000 TCEs/sector 'with a Tmag = 10.5 cutoff for vetting' and 'TCEs from the QLP below the Tmag = 10.5 threshold were not considered for vetting'; Kunimoto 2022 extended vetting to 10.5<T<13.5 with 1,617 new TOIs from S1-26.",
+   "source": "arXiv:2103.12538 full text (pdftotext) ; Kunimoto et al. 2022 ApJS 259, 33",
+   "confidence": "high",
+   "how_checked": "Quoted from extracted PDF text."
+  },
+  {
+   "claim": "Gaia DR4 is scheduled for 2 December 2026 with 66 months of data, ~2.8 billion sources, ~400 TB, epoch photometry (121.8 billion records) and a planned vari_planetary_transit table of 1,007 rows; PLATO launch is planned for March 2027; Roman launched 2026-08-30.",
+   "source": "https://www.cosmos.esa.int/web/gaia/dr4 ; https://www.cosmos.esa.int/web/gaia/news-2026 (via WebSearch) ; https://www.esa.int/Science_Exploration/Space_Science/Plato ; Space.com launch report",
+   "confidence": "high",
+   "how_checked": "ESA pages fetched; Gaia date from ESA news via search result; Roman from two news outlets."
+  },
+  {
+   "claim": "eumemic's sweep covered 4,166,638 FGKM dwarfs with T<=13.5, Teff<=6,500 K, R<=1.5 Rsun over Sectors 1-104, plus 22,448 M dwarfs at 11.5<T<=12.5, 84,863 at 12.5<T<=13.5, 9,979 nearby K/M dwarfs and 6,430 TOI hosts; 645 counted candidates on 2026-10-16.",
+   "source": "https://raw.githubusercontent.com/eumemic/exoplanets/main/README.md (fetched 2026-10-17)",
+   "confidence": "high",
+   "how_checked": "Read README text."
+  },
+  {
+   "claim": "ZTF photometric repeatability at bright unsaturated fluxes is 8-25 millimag; CHEOPS default proprietary period is 1 year (max 1.5 yr); Kostov 2025 catalogued 10,001 EBs from FFIs S1-82 plus ~900,000 unvetted candidates; Prsa 2022 catalogued 4,584 EBs from 2-min S1-26.",
+   "source": "arXiv:1902.01872 ; https://www.cosmos.esa.int/web/cheops-guest-observers-programme/proprietary-data ; arXiv:2506.05631 ; https://archive.stsci.edu/hlsp/tess-ebs",
+   "confidence": "high",
+   "how_checked": "Abstracts/pages fetched."
+  },
+  {
+   "claim": "TESS-SPOC coverage of faint nearby M dwarfs is inconsistent: a T=15.35, 49-pc M dwarf had TESS-SPOC in only 2 sectors; a T=15.86, 58-pc M dwarf had none (only TARS to S88, TGLC and eleanor-lite in S6/S8).",
+   "source": "lightkurve.search_lightcurve on TIC 142960957 and TIC 130644400 (sandbox 2026-10-17)",
+   "confidence": "medium",
+   "how_checked": "Two random probes; not a statistical sample."
+  }
+ ],
+ "actionable_steps": [
+  "Build the Rank-1 target list now: `Catalogs.query_criteria(catalog='Tic', d=[0,50], Tmag=[13.5,16], Teff=[2300,3900], objType='STAR', lumclass='DWARF')` (6,196 stars; file tic_mdwarfs_100pc_faint.csv already holds the 100-pc version with 100,567 rows); drop TOI/CTOI hosts (33/43) and Kostov-2025 EBs.",
+  "For every target, inventory public products with lightkurve (authors SPOC, TESS-SPOC, QLP, TGLC, TARS, GSFC-ELEANOR-LITE, T16) guarding masked sequence_number values, then fill coverage gaps with TESScut 200-s cutout photometry (aperture + PRF-weighted) for all sectors through 107, so each star has a uniform multi-sector light curve.",
+  "Run injection-recovery on ~300 TARS light curves to decide whether unpopular-CPM detrending preserves 0.1-1% transits before using TARS as a search product.",
+  "Search with wotan biweight + TLS/BLS over 0.5-30 d with transit durations down to 0.5 h (SPOC's FFI DV minimum is 2 h), require >=3 events, and run matched inverted-flux and sector-shuffled nulls on every star; log pass counts for real vs null as Kuber and eumemic did.",
+  "Pixel-localise every survivor (per-sector difference images and flux-weighted centroids vs Gaia DR3 neighbours), then run TRICERATOPS with MOLUSC Gaia-limited companions; budget for ~90% rejection at the pixel stage.",
+  "Set up a standing monthly job for the TOI-lag window: on each MAST release (24-39 d after sector end) download `tesscurl_sector_N_dv.sh` and `_lc.sh`, cross-match the new SPOC TCEs against TOI (TAP `toi`) and CTOI (ExoFOP CSV), and search T>13.5 stars yourself; S108 is expected ~early Nov 2026 and S109 ~early Dec 2026. Skip QLP S99-104 until MAST redelivers.",
+  "Optionally run the Rank-3 Kepler Bonus non-M pool: use kbonus/kbonus_nonM_background_survivors.csv (25,542 stars; restrict to G<16 -> 6,151), download their KBONUS-BKG light curves (author 'KBONUS-BKG'), apply the 25%-holdout BLS pipeline with inverted nulls and per-quarter dilution tests, and publish as a catalogue quickly; email the Moquin/Wilson/Quintana poster authors first to avoid duplicating TraSHDUMP.",
+  "Before any novelty claim, cross-match against: KOI cumulative + DR25 TCE + fpwg, Villanova Kepler EBs (2,878), k2pandc (4,077), pscomppars (6,451), TOI (8,151) + CTOI (5,138), Prsa 2022 TESS EBs (4,584), Kostov 2025 (10,001 + ~900k unvetted), T16 Planet Hunt (11,554), Kunimoto 2022 (1,617), DTARPS (J/AJ/167/203), Gaia DR3 vari tables and NSS, SIMBAD otype, and any membership/target lists (Barber 2022-type) for the star.",
+  "After 2026-12-02, cross-match candidates against Gaia DR4 `vari_planetary_transit` (1,007 rows) and pull DR4 epoch photometry via DataLink to extend ephemerides and check for blended variability.",
+  "Do not spend compute on Kepler primary targets, Kepler/K2 superstamps, Gaia-only or ground-survey-only transit searches; use ZTF/ATLAS/ASAS-SN forced photometry and Gaia only as vetting inputs."
+ ],
+ "open_questions": [
+  "Does unpopular-CPM detrending in TARS preserve transit depth/shape well enough for a blind search? (Needs injection-recovery; not tested here.)",
+  "What fraction of the 100,567 faint nearby M dwarfs actually have TESS-SPOC light curves in each sector? Only two random probes were made; the per-sector target-list CSVs on the TESS-SPOC HLSP page should be downloaded and matched to settle this.",
+  "When will MAST redeliver the QLP Sectors 99-104 products with corrected barycentric timing?",
+  "Has the Goddard TraSHDUMP/BOI effort already searched the non-M Kepler Bonus background sources, or only the M dwarfs? The poster only shows BOI-1.",
+  "Why does the KBONUS-BKG HLSP page say '~20,000' M-star sources when the catalogue file has 29,800 rows? (File is authoritative, but the discrepancy should be noted in any paper.)",
+  "Is Planet Hunters TESS still actively classifying new sectors and uploading candidate assessments to MAST? (Zooniverse page not checked.)",
+  "Does the TOI team vet TESS-SPOC FFI TCEs on faint (T>13.5) nearby stars at all, or only via the multi-sector 'spoc-s14-s86' runs? The ExoFOP Source strings suggest the latter, but the policy is undocumented.",
+  "What are the current precise photometric-precision figures for ASAS-SN and ATLAS at V~12-14? Only secondary sources were found.",
+  "Will eumemic extend their full-sky sweep below T=13.5 (they already did 11.5-13.5 M-dwarf slices)? If so the Rank-1 pool's novelty window may close within weeks.",
+  "What is the start date and cadence of Roman's Galactic Bulge Time-Domain Survey after commissioning (not found; irrelevant for 2026 but relevant for 2027 planning)?"
+ ]
+}
