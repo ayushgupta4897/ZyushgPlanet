@@ -15,9 +15,16 @@ the Kepler pipeline nor anyone else has searched, is being screened (ranks 1-100
 | Doc | What it is |
 |---|---|
 | `docs/01-anatomy-of-kubers-discovery.md` | What actually happened with KIC 5689121, from his evidence repo and our own archive queries |
+| `docs/01b-kuber-method-verified.md` | His pipeline line by line, every count re-derived |
 | `docs/02-landscape-and-open-ground.md` | The October-2026 wave (Rabtsevich, Chopra, eumemic, Kuber and eight more), what each covered, verified open-ground ranking |
 | `docs/03-kic5689121-reproduction-and-critique.md` | Independent reproduction in this repo and a referee-style red-team review |
-| `docs/04-…` onwards | Datasets, algorithms, vetting/validation, publishing, feasibility, agentic workflow, roadmap (filled in as the research agents finish) |
+| `docs/04-kepler-bonus-dataset.md`, `docs/04b-other-datasets.md` | The dataset we search, and every other archive with what is left in each |
+| `docs/05-vetting-and-validation.md` | The test battery, thresholds, false-positive zoo, and what "validated" means |
+| `docs/06-publishing-and-community.md` | Venues, policies, precedents, how to approach professionals |
+| `docs/07-feasibility-and-statistics.md` | Occurrence rates, noise, multiple testing, what can be validated at which magnitude |
+| `docs/08-agentic-workflow-with-claude-code.md` | Repo architecture, guardrails, scale, templates |
+| `docs/09-algorithms-and-tooling.md` | Detrending, BLS/TLS with measured runtimes, fitting, pixel tools |
+| `docs/10-roadmap.md` | Where the search stands and what happens next (written once the first pool is fully vetted) |
 | `docs/briefs/` | Raw and verified research briefs with sources, JSON included |
 
 ## The search
