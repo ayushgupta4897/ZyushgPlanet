@@ -95,3 +95,6 @@ stars that could host the dip (tdepth = eclipse depth they would need):
    TIC 270864061 Tmag 14.39 fluxratio 0.3100 tdepth 0.0021
    TIC 1880854624 Tmag 18.97 fluxratio 0.0018 tdepth 0.3605
    neighbour TIC 270864061: {"TIC": 270864061, "Tmag": 14.393, "fluxratio": 0.3100374286362366, "required_depth": 0.002109875148357679, "excluded": true, "lc_used": "kic-006699878", "note": "235 in-transit cadences", "measured_depth_ppm": -56.35344459009595, "measured_err_ppm": 22.916561305525548, "exclusion_sigma": 94.52677319548212, "why": "own light curve at the ephemeris: -56 +- 23 ppm vs 2110 ppm required (95 sigma)"}
+   neighbour TIC 1880854624: {"TIC": 1880854624, "Tmag": 18.9726, "fluxratio": 0.0018147037794816506, "required_depth": 0.3604666905621152, "excluded": false, "lc_used": "gaia-dr3-2077554777196977280", "note": "no KBONUS light curve (RuntimeError)"}
+   dropped TIC 270864061 from the scenario list: own light curve at the ephemeris: -56 +- 23 ppm vs 2110 ppm required (95 sigma)
+scenario hosts after exclusions: TIC 270864056 (0.0010), TIC 1880854624 (0.3605)

@@ -75,3 +75,23 @@ Transit Least Squares TLS 2.0.1 (11 Oct 2026)
 Creating model cache for 35 durations
 Searching 46521 data points, 198786 periods from 1.0 to 49.999 days
 Using 1 of 4 CPU threads
+[tls] 198786 periods (1.0-50.0 d, osf=3) in 213.2s with 1 threads; P=6.815659 d SDE=28.79 SNR=7.45 depth=971 ppm dur=1.49 h T0=138.27282 BKJD transits=214 distinct=148
+[pass1] box depth on blind-detrended LC: 825 +/- 96 ppm (biased low by in-transit trend pull)
+[prep] Q 1:  1431/ 1624 cadences kept (quality=hard), median PSF flux   1612.7 e-/s, PSFFRAC 0.650, CROWDSAP 0.797
+[prep] Q 2:  2357/ 4081 cadences kept (quality=hard), median PSF flux   1958.8 e-/s, PSFFRAC 0.656, CROWDSAP 0.935
+[prep] Q 3:  3642/ 4135 cadences kept (quality=hard), median PSF flux   1771.8 e-/s, PSFFRAC 0.722, CROWDSAP 0.859
+[prep] Q 4:  3808/ 4110 cadences kept (quality=hard), median PSF flux   1726.8 e-/s, PSFFRAC 0.738, CROWDSAP 0.970
+[prep] Q 5:  4169/ 4487 cadences kept (quality=hard), median PSF flux   1434.3 e-/s, PSFFRAC 0.699, CROWDSAP 0.844
+[prep] Q 7:  3974/ 4227 cadences kept (quality=hard), median PSF flux   1761.0 e-/s, PSFFRAC 0.680, CROWDSAP 0.820
+[prep] Q 8:  2894/ 3107 cadences kept (quality=hard), median PSF flux   1718.5 e-/s, PSFFRAC 0.737, CROWDSAP 0.969
+[prep] Q 9:  4381/ 4654 cadences kept (quality=hard), median PSF flux   1480.6 e-/s, PSFFRAC 0.695, CROWDSAP 0.833
+[prep] Q11:  3915/ 4474 cadences kept (quality=hard), median PSF flux   1769.2 e-/s, PSFFRAC 0.675, CROWDSAP 0.819
+[prep] Q12:  3252/ 3894 cadences kept (quality=hard), median PSF flux   1818.5 e-/s, PSFFRAC 0.739, CROWDSAP 0.875
+[prep] Q13:  3932/ 4245 cadences kept (quality=hard), median PSF flux   1465.2 e-/s, PSFFRAC 0.696, CROWDSAP 0.835
+[prep] Q15:  4233/ 4367 cadences kept (quality=hard), median PSF flux   1729.6 e-/s, PSFFRAC 0.674, CROWDSAP 0.821
+[prep] Q16:  3364/ 3536 cadences kept (quality=hard), median PSF flux   1688.2 e-/s, PSFFRAC 0.717, CROWDSAP 0.964
+[prep] Q17:  1226/ 1291 cadences kept (quality=hard), median PSF flux   1344.4 e-/s, PSFFRAC 0.753, CROWDSAP 0.873
+[prep] wotan biweight window=0.496 d (11.9 h), break_tolerance=0.5 d, masked points=1053; 0 NaN points dropped
+[prep] upward-only clip at +4.0 x 2429 ppm: removed 59 points (no downward clipping)
+[bls-refine] P=6.815618 d T0=138.28532 BKJD dur=2.50 h depth=1113+/-74 ppm (SNR 15.1); odd 1132 even 1094; phase0.5 -25+/-74 ppm; 151 transits with data
+[vet] box depth 1065 +/- 107 ppm; odd 1041+/-158, even 1090+/-146 ppm (-0.23 sigma); secondary @0.5 -48+/-89 ppm; max other dip 2.3 sigma at phase -0.270; events 148 (105 positive); empirical SNR 12.6 (random-phase std 85 ppm)
