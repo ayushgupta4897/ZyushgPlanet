@@ -45,6 +45,7 @@ V = {"AUTHORLINE": (f"\\author[{a.orcid}]{{{a.author}}}" if a.orcid else f"\\aut
      "prior_def_min": f"{100 * min(c['fpp']['companion_prior_default'] for c in C):.0f}", "prior_def_max": f"{100 * max(c['fpp']['companion_prior_default'] for c in C):.0f}",
      "prior_mol_min": f"{100 * min(c['fpp']['companion_prior_molusc'] for c in C):.0f}", "prior_mol_max": f"{100 * max(c['fpp']['companion_prior_molusc'] for c in C):.0f}",
      "fppmin": f"{100 * min(c['fpp']['molusc']['mean'] for c in C):.1f}", "fppmax": f"{100 * max(c['fpp']['molusc']['mean'] for c in C):.1f}",
+     "known_date": __import__("datetime").date.fromisoformat(json.load(open(os.path.join(root, "data/known/manifest.json")))["fetched_utc"][:10]).strftime("%Y %B %-d"),
      "fpp4": f"{100 * f4['FPP_mean']:.0f}", "dens_max": f"{max(abs(c['density']['tension_sigma']) for c in C):.1f}",
      "P47": f"{D['second_signal']['period_d']:.4f}", "P47s": f"{D['second_signal']['period_d']:.2f}", "dep47": f"{D['second_signal']['depth_ppm']:,.0f}", "n47": D["second_signal"]["n_events"]}
 for i, (c, f) in enumerate(zip(C, F), 1):
@@ -57,7 +58,7 @@ missing = sorted(set(re.findall(r"<<(\w+)>>", tpl)) - set(V))
 assert not missing, missing
 tex = re.sub(r"<<(\w+)>>", lambda m: str(V[m.group(1)]), tpl)
 open(os.path.join(here, "note.tex"), "w").write(tex)
-json.dump({"values": {k: str(v) for k, v in V.items()}, "sources": ["report/data.json (scripts/report_data.py; sources listed inside)"] +
+json.dump({"values": {k: str(v) for k, v in V.items()}, "sources": ["report/data.json (scripts/report_data.py; sources listed inside)", "data/known/manifest.json (fetched_utc -> known_date)"] +
            [f"runs/poolA_main/transit_fit/{k}/fit.json" for k in K] + ["runs/poolA_main/fpp/kic-003963519/fpp_summary.json"],
            "data_json_commit": D["generated_from_commit"]}, open(os.path.join(here, "numbers.json"), "w"), indent=1)
 

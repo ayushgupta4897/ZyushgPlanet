@@ -29,7 +29,7 @@ Ephemerides are BJD$_{\rm TDB}$; radii use Gaia FLAME stellar radii.
 \item KIC 3831969 (Gaia DR3 <<gaia2>>, TIC <<tic2>>; <<teff2>>\,K, <<dist2>>\,pc): $P=<<P2>>$\,d, $T_0=<<T02>>$, depth <<dep2>>\,ppm, $T_{14}=<<T142>>$\,h, $R_p=<<rp2>>\,R_\oplus$.
 \item KIC 11138423 (Gaia DR3 <<gaia3>>, TIC <<tic3>>; <<teff3>>\,K, <<dist3>>\,pc): $P=<<P3>>$\,d, $T_0=<<T03>>$, depth <<dep3>>\,ppm, $T_{14}=<<T143>>$\,h, $R_p=<<rp3>>\,R_\oplus$.
 \end{itemize}
-None appears in public candidate lists as of 2026 October 17. Statistical limits on companions within $0.5''$ are the main remaining uncertainty; speckle or adaptive-optics imaging of these $G=16$--17 hosts would test them. Code, light curves, run outputs and evidence packs are archived at <<DATA_DOI>>.
+None appears in public candidate lists as of 2026 October 17. Statistical limits on companions within $0.5''$ are the main remaining uncertainty; speckle or adaptive-optics imaging of these $G=16$--17 hosts would test them. I used Kepler Bonus light curves (\dataset[doi:10.17909/7jbr-w430]{https://doi.org/10.17909/7jbr-w430}) and Kepler long-cadence data, Q0--Q17 (\dataset[doi:10.17909/T9488N]{https://doi.org/10.17909/T9488N}), from MAST, and the KOI cumulative, DR25 TCE, Kepler stellar and Planetary Systems tables of the NASA Exoplanet Archive (\dataset[doi:10.26133/NEA4]{https://doi.org/10.26133/NEA4}, \dataset[doi:10.26133/NEA15]{https://doi.org/10.26133/NEA15}, \dataset[doi:10.26133/NEA6]{https://doi.org/10.26133/NEA6}, \dataset[doi:10.26133/NEA12]{https://doi.org/10.26133/NEA12}), accessed <<known_date>>. Code, light curves, run outputs and evidence packs are archived at <<DATA_DOI>>.
 
 \begin{figure}[ht!]
 \plotone{figure1.pdf}
@@ -37,8 +37,10 @@ None appears in public candidate lists as of 2026 October 17. Statistical limits
 \end{figure}
 
 \begin{acknowledgments}
-This paper includes data collected by the Kepler mission and Gaia. I used Claude (Anthropic) to help write analysis code and draft the text; I reviewed all results and the text and take responsibility for them.
+This paper includes data collected by the Kepler mission and obtained from the MAST data archive at the Space Telescope Science Institute (STScI); funding for the Kepler mission is provided by the NASA Science Mission Directorate, and STScI is operated by the Association of Universities for Research in Astronomy, Inc., under NASA contract NAS 5--26555. It uses data from the European Space Agency mission Gaia, processed by the Gaia Data Processing and Analysis Consortium, and has made use of the NASA Exoplanet Archive, operated by the California Institute of Technology under contract with NASA under the Exoplanet Exploration Program. I used Claude (Anthropic) to help write analysis code and draft the text; I reviewed all results and the text and take responsibility for them.
 \end{acknowledgments}
+
+\facilities{Kepler, Gaia, Exoplanet Archive}
 
 \begin{thebibliography}{}
 \bibitem[Bienias \& Szab\'o(2025)]{Bienias2025} Bienias, D., \& Szab\'o, R. 2025, A\&A, 694, A209

@@ -2,7 +2,7 @@
 
 Files: `note.tex` (AASTeX 7.0.1, RNAAS option), `figure1.pdf`, `build/note.pdf`, `cover_letter.txt`.
 Every number in the note is filled by `build_note.py` from `report/data.json` and the transit fits; `numbers.json` records them.
-Current count (`word_count.json`): see file; about 810 words including title, headers, caption and references (limit 1,500); abstract 94 (limit 150); one figure; no line numbers; first person singular.
+Current count (`word_count.json`): see file; about 930 words including title, headers, caption and references (limit 1,500); abstract 94 (limit 150); one figure; no line numbers; first person singular.
 
 Submitting is public: RNAAS publishes within about 72 hours of acceptance, indexed in ADS, under CC BY 4.0. A decline is also part of the record. Do the steps in order.
 
@@ -26,6 +26,8 @@ python papers/rnaas/build_note.py   # author, email, ORCID and DOI already set
 ## 4. Submit
 - [ ] AAS Journals portal (https://aas.msubmit.net), journal **Research Notes of the AAS**, article type Research Note.
 - [ ] Upload `note.tex`, `figure1.pdf` and, if asked, the compiled PDF.
+- [ ] File types: `note.tex` = Manuscript file; `figure1.pdf` = Figure file (keep this exact name, `\plotone` loads it); `build/note.pdf` = Author PDF.
+- [ ] Data questions: MAST = **Yes** (Kepler Bonus HLSP 10.17909/7jbr-w430; Kepler long-cadence Q0-Q17 10.17909/T9488N). IPAC = **Yes** (NASA Exoplanet Archive: KOI cumulative 10.26133/NEA4, DR25 TCE 10.26133/NEA15, Kepler stellar 10.26133/NEA6, Planetary Systems 10.26133/NEA12; accessed 2026-10-17, `data/known/manifest.json`). All six appear in `note.tex` as `\dataset` links, with the Zenodo DOI 10.5281/zenodo.23442225.
 - [ ] When the portal asks about generative AI, state: "I used Claude (Anthropic) to help write analysis code and draft the text; I reviewed all results and the text and take responsibility for them."
 - [ ] Paste `cover_letter.txt` into the cover-letter field.
 
