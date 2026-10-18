@@ -2,6 +2,7 @@
 //   NODE_PATH=$(npm root -g) node report/render.js shot <dist html> <out.png> <width> <height> [fullPage] [query]
 //   NODE_PATH=$(npm root -g) node report/render.js screens   -> report/dist/screens/screen-1..5.png
 //   NODE_PATH=$(npm root -g) node report/render.js poster    -> report/dist/poster.png and poster.pdf
+//   NODE_PATH=$(npm root -g) node report/render.js print     -> report/dist/poster-24x36in.pdf (print master, vector text, 2:3 frame sizes)
 const { chromium } = require("playwright");
 const fs = require("fs"), path = require("path");
 const root = path.resolve(__dirname);
@@ -57,9 +58,22 @@ async function artboards(file, outdir, selector, scale, pdf) {
   await browser.close();
 }
 
+async function printPdf(file, out, wIn, hIn) {
+  // the 1800x2700 CSS-px sheet scaled to the physical page (96 CSS px per inch in Chromium's PDF output)
+  const browser = await launch();
+  const page = await browser.newPage({ viewport: { width: 1800, height: 2700 } });
+  await page.addInitScript(dpr => { window.ZP_DPR = dpr; }, (wIn * 300) / 1800);  // canvases at 300 ppi on the printed sheet
+  await page.goto("file://" + wrap(file) + "?still", { waitUntil: "networkidle" });
+  await page.waitForTimeout(2000);
+  await page.pdf({ path: out, width: `${wIn}in`, height: `${hIn}in`, printBackground: true, scale: (wIn * 96) / 1800, pageRanges: "1" });
+  console.log("wrote", out);
+  await browser.close();
+}
+
 (async () => {
   const [cmd, ...a] = process.argv.slice(2);
   if (cmd === "shot") await shot(...a);
   else if (cmd === "screens") await artboards(path.join(root, "dist", "screens.html"), path.join(root, "dist", "screens"), ".board", 1, null);
+  else if (cmd === "print") await printPdf(path.join(root, "dist", "poster.html"), path.join(root, "dist", "poster-24x36in.pdf"), 24, 36);
   else if (cmd === "poster") await artboards(path.join(root, "dist", "poster.html"), path.join(root, "dist"), ".poster", 2, path.join(root, "dist", "poster.pdf"));
 })();

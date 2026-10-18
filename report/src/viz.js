@@ -19,7 +19,7 @@
 
   /* ---------- canvas sizing ---------- */
   function fit(canvas) {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = window.ZP_DPR || Math.min(window.devicePixelRatio || 1, 2);  // ZP_DPR: set by report/render.js print for 300 ppi canvases
     const r = canvas.getBoundingClientRect();
     const w = Math.max(1, Math.round(r.width)), h = Math.max(1, Math.round(r.height));
     if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) { canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr); }

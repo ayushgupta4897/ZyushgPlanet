@@ -1,31 +1,48 @@
 <title>Three Sub-Neptune Candidates Poster</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Hanken+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: 1800x2700 portrait sheet (2:3), 96px margins, stacked bands: title + planet, three dossiers, method, evidence, conditions, definitions. */
+/* Layout: 1800x2700 portrait sheet (2:3; prints at 24x36 in, 75 px/in). Framing: content sits 112px (1.5 in) inside the edge, a silver keyline
+   with corner marks at 52px (0.7 in) reads as a mat line and clears any frame lip. Bands: title, three host-star plates + dossiers,
+   method, evidence, conditions, definitions. */
 :root { --void: #050506; --ink: #0b0c0e; --line: #25282d; --steel: #737a83; --silver: #b8bdc4; --chrome: #e3e5e8; --white: #f7f8fa;
   --f-display: "Syncopate", "Eurostile", sans-serif; --f-body: "Hanken Grotesk", Arial, sans-serif; --f-mono: "IBM Plex Mono", ui-monospace, monospace; color-scheme: dark; }
 * { box-sizing: border-box; }
 @page { margin: 0; }
 body { margin: 0; background: var(--void); }
-.poster { width: 1800px; height: 2700px; background: var(--void); color: var(--silver); font-family: var(--f-body); position: relative; overflow: hidden; padding: 72px 96px 60px; display: grid; grid-template-rows: auto auto auto auto auto auto 1fr auto; gap: 26px; }
+.poster { width: 1800px; height: 2700px; background: var(--void); color: var(--silver); font-family: var(--f-body); position: relative; overflow: hidden; padding: 104px 112px 96px; display: grid; grid-template-rows: auto auto auto auto auto auto 1fr auto; gap: 22px; }
+.poster > .keyline { position: absolute; inset: 52px; border: 1px solid rgba(184,189,196,0.32); pointer-events: none; }
+.keyline i { position: absolute; width: 26px; height: 26px; border-color: var(--silver); border-style: solid; border-width: 0; }
+.keyline i:nth-child(1) { left: -9px; top: -9px; border-left-width: 2px; border-top-width: 2px; } .keyline i:nth-child(2) { right: -9px; top: -9px; border-right-width: 2px; border-top-width: 2px; }
+.keyline i:nth-child(3) { left: -9px; bottom: -9px; border-left-width: 2px; border-bottom-width: 2px; } .keyline i:nth-child(4) { right: -9px; bottom: -9px; border-right-width: 2px; border-bottom-width: 2px; }
 .poster > canvas.bg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.poster > *:not(.bg) { position: relative; }
+.poster > *:not(.bg):not(.keyline) { position: relative; }
 .strip { display: flex; justify-content: space-between; font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--steel); border-bottom: 1px solid var(--line); padding-bottom: 20px; }
-.head { display: grid; grid-template-columns: 1fr 540px; gap: 24px; align-items: center; }
-.head h1 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; color: var(--white); font-size: 100px; line-height: 0.98; margin: 0; }
-.head p { font-size: 30px; color: var(--chrome); font-weight: 300; line-height: 1.32; margin: 24px 0 0; max-width: 34ch; }
-.head canvas { width: 540px; height: 540px; }
-h2 { font-family: var(--f-mono); font-weight: 500; font-size: 20px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--chrome); margin: 0 0 18px; }
+.head { display: grid; gap: 0; }
+.head h1 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; color: var(--white); font-size: 82px; line-height: 1.02; margin: 0; letter-spacing: -0.01em; white-space: nowrap; }
+.head p { font-size: 27px; color: var(--chrome); font-weight: 300; line-height: 1.32; margin: 18px 0 0; max-width: 62ch; }
+h2 { font-family: var(--f-mono); font-weight: 500; font-size: 20px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--chrome); margin: 0 0 14px; }
 .dossiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
-.dos { background: var(--ink); padding: 26px 26px 14px; display: grid; gap: 14px; align-content: start; }
+.dos { background: var(--ink); display: grid; align-content: start; }
+.dos .body { padding: 18px 26px 6px; display: grid; gap: 10px; align-content: start; }
+.plate { position: relative; aspect-ratio: 5 / 4; background: #000 center/cover no-repeat; border-bottom: 1px solid var(--line); }
+.plate .x { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+.plate .x b { position: absolute; background: rgba(247,248,250,0.92); }
+.plate .x b:nth-child(1) { left: 16px; top: -1px; width: 34px; height: 2px; } .plate .x b:nth-child(2) { left: -50px; top: -1px; width: 34px; height: 2px; }
+.plate .x b:nth-child(3) { top: 16px; left: -1px; width: 2px; height: 34px; } .plate .x b:nth-child(4) { top: -50px; left: -1px; width: 2px; height: 34px; }
+.plate .tl { position: absolute; left: 18px; top: 16px; font-family: var(--f-mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(247,248,250,0.8); text-shadow: 0 0 6px #000; }
+.plate .ly { position: absolute; left: 18px; bottom: 16px; color: var(--white); text-shadow: 0 0 10px #000, 0 0 3px #000; }
+.plate .ly b { display: block; font-family: var(--f-display); font-weight: 700; font-size: 40px; line-height: 1; }
+.plate .ly span { font-family: var(--f-mono); font-size: 15px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--chrome); }
+.plate .sb { position: absolute; right: 20px; bottom: 20px; font-family: var(--f-mono); font-size: 14px; color: var(--chrome); text-align: center; text-shadow: 0 0 6px #000; }
+.plate .sb i { display: block; height: 2px; background: var(--white); margin-top: 6px; }
 .dos .t { display: flex; justify-content: space-between; align-items: baseline; }
 .dos .name { font-family: var(--f-display); font-size: 32px; color: var(--white); }
 .dos .fpp { font-family: var(--f-display); font-size: 36px; color: var(--white); }
-.dos .meta { font-family: var(--f-mono); font-size: 17px; color: var(--chrome); line-height: 1.5; }
+.dos .meta { font-family: var(--f-mono); font-size: 17px; color: var(--chrome); line-height: 1.42; }
 .dos .meta s { color: var(--steel); }
 .dos canvas { width: 100%; height: 120px; }
 .method { display: grid; grid-template-columns: repeat(6, 1fr); border: 1px solid var(--line); }
-.method div { padding: 18px 20px; border-left: 1px solid var(--line); display: grid; gap: 8px; align-content: start; }
+.method div { padding: 14px 20px; border-left: 1px solid var(--line); display: grid; gap: 8px; align-content: start; }
 .method div:first-child { border-left: 0; }
 .method div:last-child { background: var(--chrome); }
 .method div:last-child b, .method div:last-child span { color: var(--void); }
@@ -36,12 +53,12 @@ h2 { font-family: var(--f-mono); font-weight: 500; font-size: 20px; letter-spaci
 .pixpair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; }
 .cap { font-family: var(--f-mono); font-size: 16px; color: var(--steel); line-height: 1.45; margin: 10px 0 14px; }
 .conds { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
-.c { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 8px 0; border-bottom: 1px dashed var(--line); align-items: start; }
+.c { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 5px 0; border-bottom: 1px dashed var(--line); align-items: start; }
 .m { width: 30px; height: 30px; border-radius: 50%; background: var(--white); color: var(--void); display: grid; place-items: center; font-family: var(--f-mono); font-size: 16px; }
 .m.o { background: transparent; color: var(--steel); border: 1.5px dashed var(--steel); }
 .c b { display: block; color: var(--white); font-weight: 500; font-size: 21px; }
 .c span { font-size: 17px; color: var(--steel); }
-.defs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; border-top: 1px solid var(--line); padding-top: 24px; align-self: end; }
+.defs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; border-top: 1px solid var(--line); padding-top: 18px; align-self: end; }
 .defs div { display: grid; gap: 8px; align-content: start; font-size: 17px; line-height: 1.45; }
 .defs b { font-family: var(--f-mono); font-weight: 500; font-size: 16px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--chrome); }
 svg text { font-family: var(--f-mono); }
@@ -57,13 +74,13 @@ svg .tmark { fill: none; stroke: var(--white); stroke-width: 2.4; } svg .nbmark 
 
 <div class="poster" data-name="poster">
   <canvas class="bg"></canvas>
+  <div class="keyline"><i></i><i></i><i></i><i></i></div>
   <div class="strip"><span>Aayush Gupta · ZyushgPlanet · archival Kepler search</span><span>October 2026</span></div>
   <div class="head">
-    <div><h1>Three sub-Neptune planet candidates</h1>
-      <p>Identified in Kepler data from 2009–2013 around stars the telescope recorded but never targeted. Each passes every test the data allow, with a false-positive probability below 1&nbsp;%.</p></div>
-    <canvas id="hp"></canvas>
+    <h1>Three sub-Neptune<br>planet candidates</h1>
+    <p>Identified in Kepler data from 2009–2013 around faint stars the telescope recorded but never targeted. Each passes every test the data allow, with a false-positive probability below 1&nbsp;%.</p>
   </div>
-  <div><h2>The three</h2><div class="dossiers" id="dos"></div></div>
+  <div><h2>The three host stars, photographed, and the transits that betray their candidates</h2><div class="dossiers" id="dos"></div></div>
   <div><h2>How they were found</h2><div class="method" id="method"></div></div>
   <div class="evid">
     <div class="box"><h2>False-positive probability</h2><div id="fpp"></div></div>
@@ -75,7 +92,7 @@ svg .tmark { fill: none; stroke: var(--white); stroke-width: 2.4; } svg .nbmark 
   <div class="defs">
     <div><b>Candidate</b><span>A periodic dip that survives every test the data allow: localised on the star, absent from the inverted-flux null, unmatched by any known object, and unlikely to be anything else.</span></div>
     <div><b>Validated</b><span>False-positive probability below 1.5&nbsp;% and nearby-star probability below 0.1&nbsp;% in a refereed paper, usually with a high-resolution image of the host. Not yet done here.</span></div>
-    <div><b>Credits</b><span>Kepler Bonus photometry (Martínez-Palomera et al. 2023, CC BY 4.0), Gaia DR3, TRICERATOPS, MOLUSC. Illustrations are not to scale.</span></div>
+    <div><b>Credits</b><span>Kepler Bonus photometry (Martínez-Palomera et al. 2023, CC BY 4.0), Gaia DR3, TRICERATOPS, MOLUSC. Sky images: Pan-STARRS1 DR1 colour via CDS hips2fits, 1.2′ fields, north up; the candidates themselves are not resolved.</span></div>
   </div>
 </div>
 
@@ -101,7 +118,7 @@ svg .tmark { fill: none; stroke: var(--white); stroke-width: 2.4; } svg .nbmark 
 
   /* ---------- canvas sizing ---------- */
   function fit(canvas) {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = window.ZP_DPR || Math.min(window.devicePixelRatio || 1, 2);  // ZP_DPR: set by report/render.js print for 300 ppi canvases
     const r = canvas.getBoundingClientRect();
     const w = Math.max(1, Math.round(r.width)), h = Math.max(1, Math.round(r.height));
     if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) { canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr); }
@@ -459,25 +476,25 @@ svg .tmark { fill: none; stroke: var(--white); stroke-width: 2.4; } svg .nbmark 
 (function () {
   const D = window.ZP_DATA, Z = window.ZP, CS = Object.keys(D.candidates).map(k => D.candidates[k]), fmt = Z.fmt, F = D.funnel;
   Z.dotField(document.querySelector("canvas.bg"), { density: 0.0002 })(2.0);
-  const hp = document.getElementById("hp"); { const f = Z.fit(hp); const R = 215, cx = 275, cy = 270;
-    f.ctx.strokeStyle = "rgba(184,189,196,0.3)"; f.ctx.setLineDash([1, 8]); f.ctx.beginPath(); f.ctx.ellipse(cx, cy, R * 1.22, R * 0.3, -0.38, 0, 6.2832); f.ctx.stroke(); f.ctx.setLineDash([]);
-    Z.drawPlanet(f.ctx, cx, cy, R, 6.0, { spacing: 4.6 }); }
   const dos = document.getElementById("dos");
   CS.forEach((c, i) => {
     const teq = Math.round(c.host.teff_gspphot * Math.sqrt(1 / (2 * c.fit.a_over_rstar.median)));
     const d = document.createElement("div"); d.className = "dos";
-    d.innerHTML = `<div class="t"><span class="name">KIC ${c.kic}</span><span class="fpp">${(c.fpp.molusc.mean * 100).toFixed(2)}&thinsp;%</span></div>
+    const ly = Math.round(c.host.dist_pc * 3.26156 / 100) * 100;
+    d.innerHTML = `<div class="plate" style="background-image:url('../sky/plates/${c.fname}.jpg')"><div class="x"><b></b><b></b><b></b><b></b></div>
+      <div class="tl">Pan-STARRS1 · host star</div><div class="ly"><b>${fmt(ly)}</b><span>light-years away</span></div>
+      <div class="sb" style="width:${(10 / 72 * 100).toFixed(2)}%">10″<i></i></div></div><div class="body"><div class="t"><span class="name">KIC ${c.kic}</span><span class="fpp">${(c.fpp.molusc.mean * 100).toFixed(2)}&thinsp;%</span></div>
       <div class="meta">${c.period_d.toFixed(4)}-day orbit · ${c.rp_earth.median.toFixed(2)} Earth radii<br>${fmt(c.depth_ppm)} ppm · ${c.n_events} transits · T<sub>eq</sub> ≈ ${fmt(teq)} K<br>
-      host ${fmt(c.host.teff_gspphot)} K dwarf, G ${c.host.G.toFixed(1)}, ${fmt(c.host.dist_pc)} pc<br>FPP <s>${(c.fpp.baseline.mean * 100).toFixed(1)} %</s> → ${(c.fpp.molusc.mean * 100).toFixed(2)} % with Gaia limits${c.fname === D.second_signal.fname ? `<br>second on-target signal at ${D.second_signal.period_d.toFixed(2)} d` : ""}</div><div></div>`;
+      host ${fmt(c.host.teff_gspphot)} K dwarf, G ${c.host.G.toFixed(1)}, ${fmt(c.host.dist_pc)} pc<br>FPP <s>${(c.fpp.baseline.mean * 100).toFixed(1)} %</s> → ${(c.fpp.molusc.mean * 100).toFixed(2)} % with Gaia limits${c.fname === D.second_signal.fname ? `<br>second on-target signal at ${D.second_signal.period_d.toFixed(2)} d` : ""}</div><div></div></div>`;
     dos.appendChild(d);
-    Z.lightCurve(d.lastChild, c, { W: 560, H: 270, pts: true });
+    Z.lightCurve(d.lastChild.lastChild, c, { W: 560, H: 210, pts: true });
   });
   const st = [[F.targets, "stars searched, thresholds frozen first"], [F.first_screen_real, `first-screen passes (upside-down null: ${F.first_screen_inverted})`], [F.path_stage2, "pass stage-2 vetting"],
-    [F.path_pixel_on_target, "lose light on their own pixels"], [F.path_redteam_survives, "survive re-derivation and red team"], [F.candidates, "candidates, FPP below 1 %"]];
+    [F.path_pixel_on_target, "lose light on their own pixels"], [F.path_redteam_survives, "survive re-derivation and red team"], [F.candidates, "candidates, FPP below&nbsp;1&nbsp;%"]];
   document.getElementById("method").innerHTML = st.map(s => `<div><b>${fmt(s[0])}</b><span>${s[1]}</span></div>`).join("");
-  Z.fppChart(document.getElementById("fpp"), D, { W: 900, H: 400 });
+  Z.fppChart(document.getElementById("fpp"), D, { W: 900, H: 370 });
   const c = D.candidates["kic-006699887"], m = c.season_maps.reduce((a, b) => Math.max(...b.snr.flat()) > Math.max(...a.snr.flat()) ? b : a);
-  Z.pixelMap(document.getElementById("pi"), m, { mode: "image", cell: 50 }); Z.pixelMap(document.getElementById("ps"), m, { mode: "snr", cell: 50 });
+  Z.pixelMap(document.getElementById("pi"), m, { mode: "image", cell: 46 }); Z.pixelMap(document.getElementById("ps"), m, { mode: "snr", cell: 46 });
   document.getElementById("pcap").innerHTML = `KIC ${c.kic}, Kepler season ${m.season}. Left: the stamp of the bright star Kepler observed. Right: in-transit minus out-of-transit light. The missing light sits on the candidate's Gaia position (ring): Δχ² ${fmt(c.pixel_season.sum_dchi2_null_minus_target)} vs no signal, ${fmt(c.pixel_season.sum_dchi2_bestalt_minus_target)} vs the next-best star.`;
   const ok = (b, s) => `<div class="c"><div class="m">✓</div><div><b>${b}</b><span>${s}</span></div></div>`, op = (b, s) => `<div class="c"><div class="m o">○</div><div><b>${b}</b><span>${s}</span></div></div>`;
   document.getElementById("conds").innerHTML = [

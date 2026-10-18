@@ -1,6 +1,6 @@
 """Real sky images of the three candidate host stars, labelled with their Gaia DR3 distance.
 
-    python report/sky_cutouts.py        # -> report/sky/<fname>.png and report/sky/hosts.png
+    python report/sky_cutouts.py        # -> report/sky/<fname>.png, report/sky/hosts.png, report/sky/plates/<fname>.jpg
 
 Images: Pan-STARRS1 DR1 colour (z, g+z, g) via the CDS hips2fits service; one panel per host, 1.5'
 field, north up, east left. The transit candidates themselves are not visible in any image:
@@ -25,8 +25,8 @@ FOV_ARCMIN, NPIX = 1.5, 900
 os.makedirs(os.path.join(here, "sky"), exist_ok=True)
 
 
-def cutout(ra, dec):
-    q = urllib.parse.urlencode({"hips": "CDS/P/PanSTARRS/DR1/color-z-zg-g", "width": NPIX, "height": NPIX, "fov": FOV_ARCMIN / 60,
+def cutout(ra, dec, npix=NPIX, fov_arcmin=FOV_ARCMIN):
+    q = urllib.parse.urlencode({"hips": "CDS/P/PanSTARRS/DR1/color-z-zg-g", "width": npix, "height": npix, "fov": fov_arcmin / 60,
                                 "projection": "TAN", "coordsys": "icrs", "ra": ra, "dec": dec, "format": "png"})
     return Image.open(io.BytesIO(urllib.request.urlopen("https://alasky.cds.unistra.fr/hips-image-services/hips2fits?" + q, timeout=120).read())).convert("RGB")
 
@@ -63,3 +63,8 @@ fig.text(0.01, 0.02, "Host stars of the three transit candidates, Pan-STARRS1 DR
          color="#888888", fontsize=8)
 fig.savefig(os.path.join(here, "sky", "hosts.png"), dpi=170, facecolor="black", bbox_inches="tight")
 print("wrote", os.listdir(os.path.join(here, "sky")))
+# unannotated square plates for the poster (1.2' field; the poster draws its own crosshair, scale bar and labels)
+os.makedirs(os.path.join(here, "sky", "plates"), exist_ok=True)
+for k in K:
+    cutout(D["candidates"][k]["ra"], D["candidates"][k]["dec"], npix=1200, fov_arcmin=1.2).save(os.path.join(here, "sky", "plates", f"{k}.jpg"), quality=93)
+print("wrote plates")
