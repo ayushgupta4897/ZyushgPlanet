@@ -71,7 +71,7 @@ From README, `pipeline/params.toml`, `pipeline/rules.py`, `pipeline/cloud.py`, `
 
 ## 2. Repo architecture for an agentic science project
 
-The developer's repo already has `data/` (gitignored), `docs/01-anatomy-of-kubers-discovery.md`, an empty `pipeline/`, `runs/kic5689121/`, and `.gitignore` entries for `.venv/`, `data/`, `runs/**/*.fits` (checked 2026-10-17). The layout below extends that.
+The developer's repo already has `data/` (gitignored), `docs/01-anatomy-of-kic5689121.md`, an empty `pipeline/`, `runs/kic5689121/`, and `.gitignore` entries for `.venv/`, `data/`, `runs/**/*.fits` (checked 2026-10-17). The layout below extends that.
 
 ```
 ZyushgPlanet/

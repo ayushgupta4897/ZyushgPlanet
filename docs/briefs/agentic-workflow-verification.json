@@ -127,7 +127,7 @@
    "evidence": "WebFetch of https://code.claude.com/docs/en/memory, /hooks (three 100k-char chunks) and /permissions on 2026-10-17."
   },
   {
-   "claim": "The developer's repo has data/, docs/01-anatomy-of-kubers-discovery.md, an empty pipeline/ and runs/kic5689121/.",
+   "claim": "The developer's repo has data/, docs/01-anatomy-of-kic5689121.md, an empty pipeline/ and runs/kic5689121/.",
    "verdict": "corrected",
    "correction": "As of this check pipeline/ is no longer empty: it holds README.md, run.py, fetch.py, prep.py, search.py, vet.py, triage.py, batch_search.py, run_batch.py, modal_app.py, report.py, ephemeris_match.py and prereg_poolA.json; runs/ has kic5689121/ (PNGs, run.log) and controls/ (config_used.json, results.jsonl, summary.json); targets/poolA_kbonus_bg_dwarfs_ranked.csv and a pinned requirements.txt exist. The layout in the brief must be merged with this, not imposed.",
    "evidence": "ls /home/user/ZyushgPlanet/{pipeline,runs,targets}; head pipeline/README.md on 2026-10-17."
