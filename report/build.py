@@ -10,7 +10,7 @@ viz = open(os.path.join(here, "src", "viz.js")).read()
 mp = os.path.join(here, "map.json")
 star_map = open(mp).read() if os.path.exists(mp) else "null"  # scripts/poster_map_data.py
 os.makedirs(os.path.join(here, "dist"), exist_ok=True)
-for name in ("report.html", "screens.html", "poster.html", "poster-grand.html"):
+for name in ("report.html", "screens.html", "poster.html", "poster-grand.html", "share.html"):
     src = os.path.join(here, "src", name)
     if not os.path.exists(src):
         continue

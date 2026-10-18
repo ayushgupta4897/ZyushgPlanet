@@ -1,0 +1,108 @@
+<title>Three New Worlds Share Cards</title>
+<style>
+/* Share cards in the "Archival Sublime" language of poster-grand.html: one card per world (1080x1350, 4:5) and one card with
+   all three (2160x1440, 3:2). Real Pan-STARRS host images, real phase-folded Kepler Bonus photometry, numbers from data.json. */
+@font-face { font-family: "Italiana"; src: url("../fonts/Italiana-Regular.ttf"); }
+@font-face { font-family: "Instrument Serif"; font-style: italic; src: url("../fonts/InstrumentSerif-Italic.ttf"); }
+@font-face { font-family: "DM Mono"; src: url("../fonts/DMMono-Regular.ttf"); }
+:root { --void: #040405; --graphite: #2a2d32; --pewter: #6f757d; --silver: #b9bec5; --chrome: #dfe2e6; --white: #fbfbfc; color-scheme: dark; }
+html, body { margin: 0; background: #111; }
+.board { background: var(--void); position: relative; overflow: hidden; margin: 0 0 40px; }
+.board svg { display: block; }
+.disp { font-family: "Italiana", serif; fill: var(--white); }
+.ital { font-family: "Instrument Serif", serif; font-style: italic; fill: var(--chrome); }
+.mono { font-family: "DM Mono", monospace; fill: var(--silver); }
+.dim { fill: var(--pewter); }
+</style>
+<div id="boards"></div>
+<script>window.ZP_STILL = true; window.ZP_DATA = /*__DATA__*/null;</script>
+<script>
+(async function () {
+  await document.fonts.ready;
+  const D = window.ZP_DATA, NS = "http://www.w3.org/2000/svg", root = document.getElementById("boards");
+  const fmt = n => Math.round(n).toLocaleString("en-US"), d2r = Math.PI / 180;
+  const ORDER = ["kic-006699887", "kic-011138423", "kic-003831969"], ROMAN = ["I", "II", "III"];  // as on the grand poster (west to east)
+  const board = (name, W, H) => { const div = document.createElement("div"); div.className = "board"; div.dataset.name = name; div.style.width = W + "px"; div.style.height = H + "px";
+    const s = document.createElementNS(NS, "svg"); s.setAttribute("width", W); s.setAttribute("height", H); s.setAttribute("viewBox", `0 0 ${W} ${H}`); div.appendChild(s); root.appendChild(div); return s; };
+  const mk = (s) => (tag, a, text) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (text != null) e.textContent = text; s.appendChild(e); return e; };
+  const T = (el, x, y, str, cls, size, track, anchor, extra) => el("text", Object.assign({ x, y, class: cls, "font-size": size, "letter-spacing": `${track}em`, "text-anchor": anchor || "start" }, extra || {}), str);
+  let clipN = 0;
+
+  function frame(el, W, H) {
+    el("rect", { x: 28, y: 28, width: W - 56, height: H - 56, fill: "none", stroke: "#3a3e44" });
+    [[28, 28, 1, 1], [W - 28, 28, -1, 1], [28, H - 28, 1, -1], [W - 28, H - 28, -1, -1]].forEach(([x, y, sx, sy]) =>
+      el("path", { d: `M${x - 6 * sx} ${y + 18 * sy} V${y - 6 * sy} H${x + 18 * sx}`, fill: "none", stroke: "var(--silver)", "stroke-width": 1.4 }));
+  }
+  function lens(el, f, cx, cy, R) {
+    const id = `c${clipN++}`; const cp = el("clipPath", { id }); const cc = document.createElementNS(NS, "circle");
+    cc.setAttribute("cx", cx); cc.setAttribute("cy", cy); cc.setAttribute("r", R); cp.appendChild(cc);
+    el("image", { href: `../sky/plates/${f}.jpg`, x: cx - R, y: cy - R, width: 2 * R, height: 2 * R, "clip-path": `url(#${id})`, preserveAspectRatio: "xMidYMid slice" });
+    el("circle", { cx, cy, r: R, fill: "none", stroke: "var(--silver)", "stroke-width": 1.4 });
+    el("circle", { cx, cy, r: R + 10, fill: "none", stroke: "var(--graphite)" });
+    for (let a = 0; a < 360; a += 10) { const r0 = R + 10, r1 = a % 90 === 0 ? R + 22 : R + 16, t = a * d2r;
+      el("line", { x1: cx + r0 * Math.cos(t), y1: cy + r0 * Math.sin(t), x2: cx + r1 * Math.cos(t), y2: cy + r1 * Math.sin(t), stroke: a % 90 === 0 ? "var(--silver)" : "var(--graphite)" }); }
+    const g = R * 0.09, L = R * 0.24;
+    [[g, L], [-L, -g]].forEach(([a, b]) => { el("line", { x1: cx + a, y1: cy, x2: cx + b, y2: cy, stroke: "var(--white)", "stroke-width": 1.6 });
+      el("line", { x1: cx, y1: cy + a, x2: cx, y2: cy + b, stroke: "var(--white)", "stroke-width": 1.6 }); });
+  }
+  // the dip, drawn plainly: every folded measurement as a faint point, the binned average, the transit model, and one label
+  function dip(el, c, x0, y0, W, H, labelSize) {
+    const xr = Math.max(...c.lc_binned.map(p => Math.abs(p[0]))), d = c.depth_ppm, lo = -d * 1.9, hi = d * 0.9, tH = c.fit.T14_h.median ?? c.fit.T14_h;
+    const X = v => x0 + (v + xr) / (2 * xr) * W, Y = v => y0 + (hi - v) / (hi - lo) * H;
+    const g = el("g", {});
+    c.lc_points.forEach(p => { const y = Y(p[1]); if (y < y0 || y > y0 + H) return; const e = document.createElementNS(NS, "circle");
+      e.setAttribute("cx", X(p[0]).toFixed(1)); e.setAttribute("cy", y.toFixed(1)); e.setAttribute("r", 1.3); e.setAttribute("fill", "#8b929b"); e.setAttribute("fill-opacity", 0.35); g.appendChild(e); });
+    el("line", { x1: x0, y1: Y(0), x2: x0 + W, y2: Y(0), stroke: "var(--graphite)", "stroke-dasharray": "2 6" });
+    el("polyline", { points: c.lc_model.map(p => `${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join(" "), fill: "none", stroke: "var(--white)", "stroke-width": 2.6 });
+    c.lc_binned.forEach(p => el("circle", { cx: X(p[0]), cy: Y(p[1]), r: 3.6, fill: "var(--white)", stroke: "var(--void)", "stroke-width": 1.2 }));
+    // depth bracket at the right of the dip floor
+    const xb = X(tH / 2) + 26, yt = Y(0), yb = Y(-d);
+    el("path", { d: `M${xb - 6} ${yt} H${xb} V${yb} H${xb - 6}`, fill: "none", stroke: "var(--silver)", "stroke-width": 1.2 });
+    T(el, xb + 12, (yt + yb) / 2 + labelSize * 0.35, `${(d / 1e4).toFixed(2)} % dimmer`, "mono", labelSize, 0.06, "start", { style: "fill:var(--chrome)", stroke: "var(--void)", "stroke-width": 7, "paint-order": "stroke", "stroke-linejoin": "round" });
+    T(el, X(0), y0 + H + labelSize * 1.9, `${tH.toFixed(1)} hours`, "mono dim", labelSize * 0.9, 0.12, "middle");
+    el("path", { d: `M${X(-tH / 2)} ${y0 + H + 8} V${y0 + H + 14} H${X(tH / 2)} V${y0 + H + 8}`, fill: "none", stroke: "var(--pewter)" });
+  }
+
+  // one card per world
+  ORDER.forEach((f, i) => {
+    const c = D.candidates[f], W = 1080, H = 1350, s = board(`world-${ROMAN[i]}-kic${c.kic}`, W, H), el = mk(s);
+    const ly = Math.round(c.host.dist_pc * 3.26156 / 100) * 100;
+    frame(el, W, H);
+    T(el, 76, 92, `WORLD ${ROMAN[i]} OF III`, "mono", 17, 0.32);
+    T(el, W - 76, 92, "NASA KEPLER ARCHIVE", "mono dim", 17, 0.32, "end");
+    lens(el, f, W / 2, 400, 262);
+    T(el, W / 2, 790, fmt(ly), "disp", 96, 0.05, "middle");
+    T(el, W / 2, 830, "LIGHT-YEARS AWAY", "mono", 16, 0.34, "middle");
+    T(el, W / 2, 900, `Every ${c.period_d.toFixed(1)} days, something crosses this star.`, "ital", 34, 0, "middle");
+    dip(el, c, 120, 936, W - 240, 190, 17);
+    const facts = [[`${c.period_d.toFixed(1)} days`, "ITS YEAR"], [`${c.rp_earth.median.toFixed(1)} × Earth`, "ITS SIZE"], [`${(c.fpp.molusc.mean * 100).toFixed(1)} %`, "FALSE-ALARM ODDS"]];
+    facts.forEach(([v, k], j) => { const x = 76 + (W - 152) * (j + 0.5) / 3;
+      T(el, x, 1218, v, "disp", 40, 0.03, "middle"); T(el, x, 1246, k, "mono dim", 13, 0.3, "middle"); });
+    el("line", { x1: 76, y1: 1270, x2: W - 76, y2: 1270, stroke: "var(--graphite)" });
+    T(el, 76, 1300, `KIC ${c.kic}  ·  TRANSIT CANDIDATE`, "mono", 13, 0.24);
+    T(el, W - 76, 1300, "FOUND BY AAYUSH GUPTA", "mono", 13, 0.24, "end", { style: "fill:var(--chrome)" });
+  });
+
+  // all three together
+  { const W = 2160, H = 1440, s = board("three-new-worlds", W, H), el = mk(s);
+    frame(el, W, H);
+    T(el, 90, 106, "NASA KEPLER ARCHIVE  ·  2009 – 2013", "mono", 18, 0.32);
+    T(el, W - 90, 106, `${fmt(D.funnel.targets)} STARS SEARCHED  ·  3 SURVIVED EVERY TEST`, "mono", 18, 0.32, "end");
+    T(el, W / 2, 228, "THREE NEW WORLDS", "disp", 120, 0.16, "middle");
+    ORDER.forEach((f, i) => {
+      const c = D.candidates[f], cx = 90 + (W - 180) * (i + 0.5) / 3, ly = Math.round(c.host.dist_pc * 3.26156 / 100) * 100;
+      lens(el, f, cx, 520, 214);
+      T(el, cx, 836, fmt(ly), "disp", 70, 0.05, "middle");
+      T(el, cx, 868, "LIGHT-YEARS AWAY", "mono", 14, 0.34, "middle");
+      dip(el, c, cx - 270, 920, 540, 170, 15);
+      T(el, cx, 1180, `${ROMAN[i]}  ·  KIC ${c.kic}`, "mono", 16, 0.16, "middle", { style: "fill:var(--chrome)" });
+      T(el, cx, 1208, `${c.period_d.toFixed(1)}-day year  ·  ${c.rp_earth.median.toFixed(1)} × Earth  ·  false alarm ${(c.fpp.molusc.mean * 100).toFixed(1)} %`, "mono dim", 14, 0.08, "middle");
+    });
+    T(el, W / 2, 1300, "One person, open NASA data, and every test the data allow.", "ital", 36, 0, "middle");
+    el("line", { x1: 90, y1: 1340, x2: W - 90, y2: 1340, stroke: "var(--graphite)" });
+    T(el, 90, 1372, "AAYUSH GUPTA  ·  OCTOBER 2026", "mono", 14, 0.28, "start", { style: "fill:var(--chrome)" });
+    T(el, W - 90, 1372, "TRANSIT CANDIDATES  ·  SUBMITTED TO RESEARCH NOTES OF THE AAS", "mono dim", 13, 0.2, "end");
+  }
+  window.ZP_READY = true;
+})();
+</script>
