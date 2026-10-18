@@ -121,7 +121,7 @@ svg .tmark { fill: none; stroke: var(--white); stroke-width: 2.4; } svg .nbmark 
       <div class="tl">Pan-STARRS1 · host star</div><div class="ly"><b>${fmt(ly)}</b><span>light-years away</span></div>
       <div class="sb" style="width:${(10 / 72 * 100).toFixed(2)}%">10″<i></i></div></div><div class="body"><div class="t"><span class="name">KIC ${c.kic}</span><span class="fpp">${(c.fpp.molusc.mean * 100).toFixed(2)}&thinsp;%</span></div>
       <div class="meta">${c.period_d.toFixed(4)}-day orbit · ${c.rp_earth.median.toFixed(2)} Earth radii<br>${fmt(c.depth_ppm)} ppm · ${c.n_events} transits · T<sub>eq</sub> ≈ ${fmt(teq)} K<br>
-      host ${fmt(c.host.teff_gspphot)} K dwarf, G ${c.host.G.toFixed(1)}, ${fmt(c.host.dist_pc)} pc<br>FPP <s>${(c.fpp.baseline.mean * 100).toFixed(1)} %</s> → ${(c.fpp.molusc.mean * 100).toFixed(2)} % with Gaia limits${c.fname === D.second_signal.fname ? `<br>second on-target signal at ${D.second_signal.period_d.toFixed(2)} d` : ""}</div><div></div></div>`;
+      host ${fmt(c.host.teff_gspphot)} K dwarf, G ${c.host.G.toFixed(1)}, ${fmt(c.host.dist_pc)} pc<br>FPP ${(c.fpp.molusc.mean * 100).toFixed(2)} % with Gaia limits${c.fname === D.second_signal.fname ? `<br>second on-target signal at ${D.second_signal.period_d.toFixed(2)} d` : ""}</div><div></div></div>`;
     dos.appendChild(d);
     Z.lightCurve(d.lastChild.lastChild, c, { W: 560, H: 205, pts: true });
   });
