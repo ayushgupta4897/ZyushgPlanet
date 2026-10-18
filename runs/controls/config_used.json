@@ -1,0 +1,43 @@
+{
+ "name": "poolA_kbonus_background_dwarfs_v1.1",
+ "registered_utc": "2026-10-17T12:05:00Z",
+ "revision_log": [
+  "v1.0 2026-10-17T12:05Z: thresholds and target list registered before any search.",
+  "v1.1 2026-10-17T12:20Z: positive controls (kic-005689121, kic-007603200) FAILED the v1.0 screen because of three implementation bugs, fixed before any pool star was searched: (1) secondary-eclipse test used astropy depth_half (half-period model) instead of depth_phased (half-phase model); (2) odd/even sigma used the white-noise formal error instead of the empirical folded-box noise; (3) transit mask width could exceed short periods and crash the inverted run. Thresholds unchanged."
+ ],
+ "target_list": "targets/poolA_kbonus_bg_dwarfs_ranked.csv",
+ "target_list_sha256": "27052817d88d95c18adb3b1c94adee40f593ac47224c5e6815564a43415e254b",
+ "target_list_rule": "KBONUS-BKG v1.0 source catalogue; background extraction (kic != tpforg); not in Kuber Mehta's 1,800 searched sources; psffrac > 0.5, crowdsap > 0.7, >= 8 PSF quarters, G < 17.5; Gaia DR3 (CDS XMatch, 1 arcsec) dwarf by M_G vs BP-RP (|dMS| band -1.5..+2.0, parallax SNR > 5) or GSP-Phot logg > 4 when parallax poor; own KIC never a Kepler target (NASA Exoplanet Archive keplerstellar, any observed quarter). Ranked by expected SNR of a 2 R_earth, 10-day planet.",
+ "flux_col": "FLUX",
+ "window_length_d": 1.0,
+ "clip_sigma_up": 5.0,
+ "pmin_d": 0.5,
+ "pmax_d": 40.0,
+ "durations_h": [
+  1.5,
+  2.0,
+  3.0,
+  4.5,
+  7.0
+ ],
+ "oversample": 2.0,
+ "second_signal": "on_pass",
+ "run_inverted": true,
+ "first_screen": {
+  "sde_min": 9.0,
+  "snr_emp_min": 7.1,
+  "n_transits_min": 3,
+  "max_single_event_frac": 0.5,
+  "odd_even_sigma_max": 3.0,
+  "secondary_sigma_max": 3.0,
+  "depth_ppm_max": 50000,
+  "period_min_d": 0.5
+ },
+ "null_calibration": "The identical screen is applied to the inverted light curve (2 - f) of every star. The first-screen pass rate on inverted data is the empirical false-alarm rate; thresholds above are FIXED before the run and will not be changed after inspecting results. Any tighter post-hoc cut must be reported as post-hoc.",
+ "positive_controls": [
+  "kic-005689121 (Kuber's 13.769 d candidate; expect P=13.769, depth ~1.4-2.4 ppt)",
+  "kic-007603200 (Kepler-138; expect c at 13.781 d ~ 700 ppm and d at 23.09 d)"
+ ],
+ "after_first_screen": "Survivors go to: catalogue/ephemeris match (KOI, DR25 TCE, Kepler EB, confirmed planets; same period or 1:2, 2:1, 1:3, 3:1 within 0.1% against anything within 3 arcmin AND against the originating TPF star), TLS refinement, per-year depth consistency, pixel-level localisation on the originating TPF, Gaia neighbour/RUWE check, TRICERATOPS. Nothing is called a planet; survivors are 'first-screen signals', then 'candidates' only after pixel-level localisation and ephemeris clearance.",
+ "_sha": "9fe409fa682d304b"
+}

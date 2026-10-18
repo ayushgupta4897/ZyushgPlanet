@@ -1,0 +1,149 @@
+{
+ "fname": "kic-004159332",
+ "P_screen": 12.283722935688813,
+ "dur_screen_h": 1.95,
+ "t0_screen_bkjd": 125.21102274442092,
+ "object": "KIC 4159332",
+ "gaiaid": "Gaia DR3 2053154556893985152",
+ "tpforg": 4159347,
+ "kepmag": 16.7800006866455,
+ "ra": 292.0277210452626,
+ "dec": 39.24628327241545,
+ "P": 12.283646143222347,
+ "dur_h": 1.4625000000000001,
+ "t0_bkjd": 125.22524149442091,
+ "t0_bjd": 2454958.2252414944,
+ "depth_pass1_ppm": 865.4631782327726,
+ "depth_pass2_ppm": 953.4089875080642,
+ "depth_pass2_formal_err_ppm": 82.33707928055617,
+ "box_noise_ppm": 60.19749818688871,
+ "snr_emp_pass2": 15.838016798440988,
+ "n_in_transit": 306,
+ "n_points": 59414,
+ "depth_odd_ppm": 868.8788908740586,
+ "depth_even_ppm": 1040.1782920003154,
+ "odd_even_sigma": 1.4228116307628111,
+ "secondary_depth_ppm": -50.081800317292036,
+ "secondary_sigma": -0.8319581681253339,
+ "core_to_box_depth_ratio": 1.103811903761445,
+ "n_events": 107,
+ "gap_frac_1d": 0.11214953271028037,
+ "gap_frac_2d": 0.17757009345794392,
+ "frac_events_positive": 0.8411214953271028,
+ "event_weighted_depth_ppm": 961.9169097547224,
+ "event_chi2_const": 237.85541875331327,
+ "event_dof": 106,
+ "depth_by_quartile_ppm": [
+  [
+   1134.922139036836,
+   92.37225235613798,
+   27
+  ],
+  [
+   892.9266155875908,
+   82.1025427228714,
+   27
+  ],
+  [
+   915.6803594143161,
+   76.72824973903116,
+   27
+  ],
+  [
+   948.8634853516224,
+   76.58635746161586,
+   27
+  ]
+ ],
+ "ls_period_d": 0.951949042376189,
+ "ls_half_amplitude_ppm": 41.49289529725708,
+ "ls_power": 0.0009463778848247602,
+ "ls_amp_over_depth": 0.04352056236191724,
+ "ls_period_matches": false,
+ "rstar_used": 0.8724836182594299,
+ "t14_max_h": 4.022998430729986,
+ "duration_ratio": 0.3635348174209018,
+ "rp_earth_box": 2.9391493357532794,
+ "tls": {
+  "period": 12.283548465605167,
+  "SDE": 11.74422861334679,
+  "snr": 17.955989529891067,
+  "depth": 0.999129804706233,
+  "duration": 0.08720086431269256,
+  "rp_rs": 0.026528672108381897,
+  "odd_even_mismatch": 0.9246613425151889,
+  "transit_count": 120.0,
+  "distinct_transit_count": 109.0,
+  "rp_earth": 2.5252102525154307,
+  "transit_depths_mean": 0.9991760807594074
+ },
+ "known_matches": [
+  {
+   "catalog": "KOI",
+   "name": "K00394.01",
+   "kepid": 4159347.0,
+   "sep_arcmin": 0.16290540027449077,
+   "period": 12.28351275,
+   "ratio": "1:1",
+   "frac_diff": 1.0859533837099396e-05,
+   "disposition": "FALSE POSITIVE",
+   "depth_ppm": 597.8,
+   "same_tpf": true,
+   "same_kic": false,
+   "epoch_offset_phase": 0.0005449467211660064
+  },
+  {
+   "catalog": "TCE",
+   "name": "4159347-1",
+   "kepid": 4159347.0,
+   "sep_arcmin": 0.16290540027449077,
+   "period": 12.2836,
+   "ratio": "1:1",
+   "frac_diff": 3.7564901451596993e-06,
+   "disposition": "TCE",
+   "depth_ppm": 586.3,
+   "same_tpf": true,
+   "same_kic": false,
+   "epoch_offset_phase": 0.000334783525086646
+  },
+  {
+   "catalog": "TCE",
+   "name": "4159347-2",
+   "kepid": 4159347.0,
+   "sep_arcmin": 0.16290540027449077,
+   "period": 12.2835,
+   "ratio": "1:1",
+   "frac_diff": 1.1897522884100674e-05,
+   "disposition": "TCE",
+   "depth_ppm": 461.8,
+   "same_tpf": true,
+   "same_kic": false,
+   "epoch_offset_phase": 0.3691992027024529
+  },
+  {
+   "catalog": "KeplerEB",
+   "name": "KIC4159347",
+   "kepid": 4159347.0,
+   "sep_arcmin": 0.16290540027449077,
+   "period": 12.2835553,
+   "ratio": "1:1",
+   "frac_diff": 7.395515396686766e-06,
+   "disposition": "EB",
+   "depth_ppm": NaN,
+   "same_tpf": true,
+   "same_kic": false,
+   "epoch_offset_phase": 0.09719954686624988
+  }
+ ],
+ "ok": true,
+ "runtime_s": 5.5,
+ "stage2_pass": false,
+ "stage2_fails": [
+  "known_object"
+ ],
+ "stage2_pass_v14": false,
+ "stage2_fails_v14": [
+  "known_object"
+ ],
+ "stage2_rules": "poolA_kbonus_background_dwarfs_v1.7"
+}

@@ -1,0 +1,83 @@
+{
+ "fname": "kic-010918399",
+ "P_screen": 0.5238231727157927,
+ "dur_screen_h": 1.5,
+ "t0_screen_bkjd": 120.82636498194188,
+ "object": "KIC 10918399",
+ "gaiaid": "Gaia DR3 2129507942855831552",
+ "tpforg": 10918449,
+ "kepmag": 17.1870002746582,
+ "ra": 290.9644163223111,
+ "dec": 48.38360761025351,
+ "P": 0.5238290672001068,
+ "dur_h": 0.75,
+ "t0_bkjd": 120.72011498184875,
+ "t0_bjd": 2454953.7201149818,
+ "depth_pass1_ppm": 398.6008702349109,
+ "depth_pass2_ppm": 417.56618315180737,
+ "depth_pass2_formal_err_ppm": 31.190530672735477,
+ "box_noise_ppm": 292.5439152361528,
+ "snr_emp_pass2": 1.4273623938297664,
+ "n_in_transit": 1903,
+ "n_points": 31684,
+ "depth_odd_ppm": 433.05592068521025,
+ "depth_even_ppm": 402.0601577765515,
+ "odd_even_sigma": 0.052976256374428106,
+ "secondary_depth_ppm": -458.2174456513321,
+ "secondary_sigma": -1.5663202062549864,
+ "core_to_box_depth_ratio": 1.1812328891812824,
+ "n_events": 437,
+ "gap_frac_1d": 0.08924485125858124,
+ "gap_frac_2d": 0.20137299771167047,
+ "frac_events_positive": 0.7368421052631579,
+ "event_weighted_depth_ppm": 586.6924806487131,
+ "event_chi2_const": 674.1531883052002,
+ "event_dof": 436,
+ "depth_by_quartile_ppm": [
+  [
+   327.4900409388773,
+   73.76571419865606,
+   110
+  ],
+  [
+   546.4758393736098,
+   73.8086192921301,
+   110
+  ],
+  [
+   693.0029762637456,
+   73.51362162496815,
+   110
+  ],
+  [
+   782.207468066635,
+   73.94160297516547,
+   110
+  ]
+ ],
+ "ls_period_d": 0.6351627737597182,
+ "ls_half_amplitude_ppm": 67.10216335642505,
+ "ls_power": 0.0010964210724496372,
+ "ls_amp_over_depth": 0.16069827027163708,
+ "ls_period_matches": false,
+ "rstar_used": 0.9125034523010254,
+ "t14_max_h": 1.4481785766725144,
+ "duration_ratio": 0.5178919313412839,
+ "rp_earth_box": 2.0343324502233284,
+ "tls": {
+  "error": "Empty period grid. Check period_min, period_max and time span."
+ },
+ "known_matches": [],
+ "ok": true,
+ "runtime_s": 3.1,
+ "stage2_pass": false,
+ "stage2_fails": [
+  "snr_emp2",
+  "both_polarity"
+ ],
+ "stage2_pass_v14": false,
+ "stage2_fails_v14": [
+  "both_polarity"
+ ],
+ "stage2_rules": "poolA_kbonus_background_dwarfs_v1.7"
+}

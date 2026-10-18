@@ -1,0 +1,15 @@
+sigma=0.6 px: joint 3-source amplitudes (e/s, total light lost): target 1.05+/-0.15, nb_G15.9 0.39+/-0.18, host -0.06+/-0.14; corr(t,nb)=-0.27; npix=322
+   summed chi2: null 443.9 | target-only 375.1 | nb-only 421.1 | host-only 433.8 | all3 352.9
+sigma=0.8 px: joint 3-source amplitudes (e/s, total light lost): target 1.16+/-0.21, nb_G15.9 0.37+/-0.26, host -0.10+/-0.20; corr(t,nb)=-0.46; npix=322
+   summed chi2: null 443.9 | target-only 388.0 | nb-only 418.9 | host-only 431.9 | all3 367.9
+sigma=1.0 px: joint 3-source amplitudes (e/s, total light lost): target 1.20+/-0.29, nb_G15.9 0.41+/-0.37, host -0.15+/-0.27; corr(t,nb)=-0.59; npix=322
+   summed chi2: null 443.9 | target-only 397.9 | nb-only 416.8 | host-only 431.8 | all3 381.0
+
+pipeline pixel.json summed chi2 over all 10 quarters:
+  642496_G19.6         219.0
+  646464_G18.4         224.1
+  836928_G17.1         299.5
+  scaled_image         324.8
+  835648_G15.9         328.6
+  837184_G16.4         340.9
+  null                 348.3

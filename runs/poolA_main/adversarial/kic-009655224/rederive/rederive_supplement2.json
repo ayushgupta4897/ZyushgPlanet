@@ -1,0 +1,68 @@
+{
+  "period_bootstrap": {
+    "n_boot": 120,
+    "median_d": 6.703619678332414,
+    "std_d": 0.00022925001618168966,
+    "p16": 6.703448735004957,
+    "p84": 6.7038988187306625,
+    "pipeline_P_d": 6.7035,
+    "pipeline_offset_sigma": 0.5220428526345114,
+    "main_refined_P_d": 6.703659900291816
+  },
+  "split_half": {
+    "first_half": {
+      "best_P_d": 6.703847602769024,
+      "dlogL": 29.815193904745765,
+      "depth_at_global_ephemeris_ppm": 722.5624371308692,
+      "err_ppm": 116.65839965991128,
+      "n_in": 280
+    },
+    "second_half": {
+      "best_P_d": 6.704008490606631,
+      "dlogL": 12.359337756216942,
+      "depth_at_global_ephemeris_ppm": 413.59078139291404,
+      "err_ppm": 110.82457233281247,
+      "n_in": 277
+    }
+  },
+  "masked_redetrend": {
+    "window_0.5d": {
+      "depth_ppm": 605.7750014709651,
+      "err_ppm": 69.36656940744186,
+      "n_in": 557,
+      "snr": 8.732953159508213
+    },
+    "window_1.0d": {
+      "depth_ppm": 613.9113208745162,
+      "err_ppm": 72.18658551162133,
+      "n_in": 557,
+      "snr": 8.504506987322214,
+      "odd_ppm": 622.8002551366129,
+      "odd_err": 96.17548637703642,
+      "even_ppm": 604.597547842367,
+      "even_err": 93.34459646281384,
+      "odd_even_sigma": 0.13581486356016692,
+      "secondary_ppm": -41.68328457820891,
+      "secondary_err": 71.25745838706716,
+      "secondary_sigma": -0.5849673216210894,
+      "sap_depth_ppm": 300.7697856169944,
+      "sap_err_ppm": 30.611881286101543,
+      "sap_over_psf": 0.4899238300224666
+    },
+    "window_2.0d": {
+      "depth_ppm": 657.3853986870937,
+      "err_ppm": 81.42857818004953,
+      "n_in": 557,
+      "snr": 8.073153349595842
+    }
+  },
+  "absolute_deficit": {
+    "psf_e_s": 1.068638273323653,
+    "psf_err": 0.1417577869970337,
+    "sap_e_s": 1.0371184253098433,
+    "sap_err": 0.12369770755290453,
+    "ratio_sap_over_psf": 0.9705046611181374,
+    "ratio_err": 0.17312621731476652,
+    "note": "stitched FLUX and SAP_FLUX are both rescaled per quarter to common levels (see supplement raw_per_quarter); e/s here are in the stitched scale"
+  }
+}

@@ -1,0 +1,21 @@
+The current archive release 3.15 contains two breaking changes. Please see https://www.cosmos.esa.int/web/gaia/news#GACSrelease315 for details. In case of questions or feedback, please consult the Gaia helpdesk at https://www.cosmos.esa.int/web/gaia/gaia-helpdesk.
+Star RA: 19h00m18.432s
+Star DEC: +38d56m10.59s
+Star Mass: 0.845
+Generating Companions..
+Generation Mass Ratio Exponent:  0.0
+Companions Generated
+Number of companions: 460000
+Analyzing RUWE...
+The star has ln(ruwe) of 0.055361.
+Analyzing Gaia Contrast...
+LOADING STELLAR MODEL...
+WARNING: More than one source within 10 arcseconds of given coordinates. Closest one used.
+Calculated distance to star: 1965 pc
+Gaia Contrast Loaded
+Star Model Mag 5.779841262994767
+Total number of surviving binaries: 386250
+Surviving binary parameters saved to: /home/user/ZyushgPlanet/runs/poolA_main/molusc/kic-003831969/molusc_kept.csv
+/home/user/ZyushgPlanet/scripts/molusc_run.py:123: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "fname": a.fname, "utc": dt.datetime.utcnow().isoformat() + "Z", "molusc_repo": "https://github.com/woodml/MOLUSC", "molusc_commit": commit,
+{"fname": "kic-003831969", "n_generated": 460000, "n_kept": 386250, "n_kept_periastron_gt_10au": 188337, "fraction_kept": 0.8396739130434783, "companion_prior_passed_to_triceratops": 0.188337}

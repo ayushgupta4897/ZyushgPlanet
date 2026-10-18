@@ -1,0 +1,36 @@
+[controls] 3 targets, 0 done, 3 to run, workers=3
+  3/3  5.4 min  109 s/star  pass(real)=2 pass(inv)=0  last=kic-007603200 P=13.7811 sde=99.0 snr_emp=55.0 rt=326.2s
+{
+ "n_rows": 3,
+ "n_ok": 3,
+ "n_error": 0,
+ "n_skipped": 0,
+ "first_screen_pass_real": 2,
+ "first_screen_pass_inverted": 0,
+ "mean_runtime_s": 280.8333333333333
+}
+real passes: [
+ {
+  "fname": "kic-005689121",
+  "period_d": 13.769563730967187,
+  "depth_ppm": 1891.047375666477,
+  "duration_h": 1.9500000000000002,
+  "sde": 51.58835927389944,
+  "snr_emp": 20.08421754920036,
+  "n_transits": 73,
+  "odd_even_sigma": 0.38748898695686157,
+  "secondary_sigma": 0.015240530144601973
+ },
+ {
+  "fname": "kic-007603200",
+  "period_d": 13.781069090336945,
+  "depth_ppm": 612.2489169686496,
+  "duration_h": 1.9500000000000002,
+  "sde": 98.99879576195595,
+  "snr_emp": 55.00785075295878,
+  "n_transits": 90,
+  "odd_even_sigma": 1.371032313530044,
+  "secondary_sigma": 1.0054623405267402
+ }
+]
+inverted passes: []

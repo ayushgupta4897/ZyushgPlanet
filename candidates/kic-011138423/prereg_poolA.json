@@ -1,0 +1,106 @@
+{
+  "name": "poolA_kbonus_background_dwarfs_v1.8",
+  "registered_utc": "2026-10-17T12:05:00Z",
+  "revision_log": [
+    "v1.0 (commit 53c2cd7..a5f8fa6, 2026-10-17T12:02Z): first-screen thresholds and target list registered before any search.",
+    "v1.1 (commit c0b354d, 12:12Z): positive controls (kic-005689121, kic-007603200) FAILED the v1.0 screen because of three implementation bugs, fixed before any pool star was searched: (1) secondary-eclipse test used astropy depth_half (half-period model) instead of depth_phased (half-phase model); (2) odd/even sigma used the white-noise formal error instead of the empirical folded-box noise; (3) transit mask width could exceed short periods and crash the inverted run. Thresholds unchanged.",
+    "v1.1 control results: kic-005689121 PASS (P 13.76956 d, 1891 ppm, SDE 51.6, SNR_emp 20.1); kic-007603200 PASS twice (Kepler-138 c 13.781 d 612 ppm SDE 99; Kepler-138 d 23.089 d 372 ppm SDE 33.6 as second signal); neighbour kic-005689116 rejected; all inverted runs rejected.",
+    "v1.2 (commit a30c2fc, 12:18Z): added max_duty_cycle = 0.15 (duration/period) as a physical cut before any pool star was searched. Motivation: every inverted-run 'winner' in the controls was a 7-h box at P < 1 d (30-55% duty cycle). No other threshold changed. The Modal batch (ranks 101-6465) and the local pilot (ranks 1-100) ran with the v1.2 first screen (config_sha ccca76e8).",
+    "v1.3 (commit 90ae39a, 12:44Z): stage2_vetting block registered AFTER a 208-star partial triage of the Modal batch had been inspected (it revealed two false-positive classes: periodic variables/EBs and monthly-downlink-gap systematics at P 24-40 d) but before any pool star was vetted. Stage-2 results are therefore post-hoc relative to the stage-1 registration.",
+    "v1.4 (commit d04cfac, 12:47Z): event_chi2_const_pvalue_min = 0.001 replaced by event_reduced_chi2_max = 3.0 because the positive control KIC 5689121 (chi2 140.5 / 72 dof, p ~ 3e-6) would have FAILED the registered p-value version; formal per-event errors understate correlated noise (controls: reduced chi2 1.95 and 1.50; a gap systematic 25, a contact binary 36). Logged here on 2026-10-17 ~15:50Z after an audit noticed the missing entry.",
+    "v1.5 (2026-10-17 ~15:55Z, after the 11 v1.4 survivors and their pixel maps had been seen; POST-HOC): (a) tls_sde_min dropped: SDE computed over a +/-2% period window is not a calibrated statistic (it was the largest stage-2 killer, 358/448, including 16 stars that failed on nothing else); TLS formal snr >= 7.1 is kept. (b) snr_emp_pass2_min = 7.1 added (stage 2 previously had no empirical-SNR floor; kic-001577049 passed with 1.9). (c) secondary test made two-sided, |secondary_sigma| <= 3 (kic-009520080 shows a -4 sigma brightening at phase 0.5). (d) Estimators: stage 1 uses BLS weighted-fit depth_odd/depth_even/depth_phased with 60 random boxes; stage 2 uses unweighted box means on the masked re-detrend with 80 random boxes. Both the v1.4 survivor set (11) and the v1.5 set (23) are reported; the adversarial pass covers the union.",
+    "v1.5 pixel_localisation block registered after the first 11 pixel maps had been seen (POST-HOC): a quarter is inconclusive when the target lies within 0.5 px of the stamp edge or outside it, when fewer than 3 events are usable, or when fewer than 2 pixels exceed SNR 2; the deficit centroid carries a bootstrap error over events; verdict on-target requires >= 5 conclusive quarters with the target-to-deficit offset below its 2-sigma error and below the offset to every other Gaia source within 2 px of the stamp in >= 70% of them; offset requires the opposite in >= 70%; otherwise inconclusive. Earlier 'on target / plausible / weak / off target' labels in docs were descriptive, not registered.",
+    "v1.5 pixel rules RESULT (2026-10-17 ~16:40Z): the centroid-based verdict FAILED its positive control: KIC 5689121 came out 'inconclusive' (target within 0.5 px of the stamp edge in 9 of 13 quarters -> only 4 conclusive quarters, 2 on-target), and Kepler-138 c (the TPF host itself, bright) came out inconclusive because jitter-dominated core pixels fail the SNR>2 selection. Background sources sit at stamp edges by construction, so these rules are NOT used as a gate. Descriptive outputs are kept under runs/*/pixel_v15/. Informative anyway: kic-001577049 and kic-010782709 are 'offset' (deficit 26 and 9 arcsec from the target at 14 and 5 sigma).",
+    "v1.6 (2026-10-17 ~16:45Z, POST-HOC after the v1.5 pixel control failure): pixel verdict replaced by a chi-square model comparison that does not need a centroid and works at stamp edges. Per quarter with >= 2 usable events and a finite noise map, the missing-light map is fitted by (a) a point source (Gaussian, sigma 0.9 px) at the target's Gaia position, (b) a point source at each other Gaia source within 2 px of the stamp, and (c) a scaled copy of the out-of-transit image (a dip on whatever dominates the stamp). Summed over quarters: on-target requires sum(chi2_null - chi2_target) >= 25 AND sum(chi2_best_alternative - chi2_target) >= 25 over >= 5 quarters; offset requires some alternative to beat the target by >= 25; otherwise inconclusive. Must pass KIC 5689121 (and report Kepler-138 c, where the 'scaled image' and 'target' hypotheses coincide) before being read on pool stars. Centroid outputs remain descriptive.",
+    "v1.7 (2026-10-17 ~17:20Z, POST-HOC after the adversarial re-derivations of the v1.5 survivors had been read): stage2_vetting.n_events_min = 3 added. Motivation: kic-006515744 passed the v1.5 stage-2 verdict with n_events = 1 (events.csv has one usable event; event_dof 0), because the per-event criteria (frac_events_positive, event_reduced_chi2) are silent with one event, while stage 1 already required n_transits >= 3 on cadence counts rather than on usable events. The independent re-derivation found the signal single-cadence-wide, carried by two cadences, and absent from SAP flux (ratio 0.12). Only this star is affected: v1.5 count 23 -> v1.7 count 22. Result labelled post-hoc.",
+    "v1.8 (2026-10-17 ~19:20Z, POST-HOC method extension): season-stacked pixel localisation (pipeline/pixel_season_stack.py) for signals with too few transits per quarter for the v1.6 rule (which uses only quarters with >= 2 events). Event-differenced maps of all quarters in a Kepler season (same CCD channel) are averaged on one CCD-pixel grid; noise from 48 random-phase ephemerides; same models and thresholds as v1.6 (Gaussian sigma 0.9 px at the target vs null, vs every Gaia source within 2 px, vs a scaled image; on-target needs summed dchi2 >= 25 vs null AND vs best alternative over >= 3 seasons; offset needs an alternative to win by >= 25). Motivated by the 47.69-d second signal on kic-006699887 (v1.6: 4 quarters, inconclusive), whose v1.6 result had been seen; its season-stacked result had not. Required controls before use: KIC 5689121 on-target (run first: on-target, 357/226 over 4 seasons), kic-006699887 15.11 d on-target, kic-006367225 and kic-001577049 offset. Not used to change any Pool A stage-2 verdict.",
+    "v1.8 controls and first application (2026-10-17 ~19:45Z): KIC 5689121 on-target (4 seasons, 76 events, dchi2 357 vs null / 226 vs best alternative); kic-006699887 15.11 d on-target (182/60); kic-006367225 offset (Gaia 2077645628644911616 beats target by 280 summed); kic-001577049 offset (scaled image beats target by 862). All four as required. Then kic-006699887 47.69 d (post-hoc second signal): on-target, 4 seasons, 28 events, dchi2 92 vs null / 41 vs best alternative (every season favours the target; strongest single alternative Gaia 2077554747134280320, G 20.7, worse than the target by 29). runs/*/pixel_season/."
+  ],
+  "target_list": "targets/poolA_kbonus_bg_dwarfs_ranked.csv",
+  "target_list_sha256": "27052817d88d95c18adb3b1c94adee40f593ac47224c5e6815564a43415e254b",
+  "target_list_rule": "KBONUS-BKG v1.0 source catalogue; background extraction (kic != tpforg); not in Kuber Mehta's 1,800 searched sources; psffrac > 0.5, crowdsap > 0.7, >= 8 PSF quarters, G < 17.5; Gaia DR3 (CDS XMatch, 1 arcsec) dwarf by M_G vs BP-RP (|dMS| band -1.5..+2.0, parallax SNR > 5) or GSP-Phot logg > 4 when parallax poor; own KIC never a Kepler target (NASA Exoplanet Archive keplerstellar, any observed quarter). Ranked by expected SNR of a 2 R_earth, 10-day planet.",
+  "flux_col": "FLUX",
+  "window_length_d": 1.0,
+  "clip_sigma_up": 5.0,
+  "pmin_d": 0.5,
+  "pmax_d": 40.0,
+  "durations_h": [
+    1.5,
+    2.0,
+    3.0,
+    4.5,
+    7.0
+  ],
+  "oversample": 2.0,
+  "second_signal": "on_pass",
+  "run_inverted": true,
+  "first_screen": {
+    "sde_min": 9.0,
+    "snr_emp_min": 7.1,
+    "n_transits_min": 3,
+    "max_single_event_frac": 0.5,
+    "odd_even_sigma_max": 3.0,
+    "secondary_sigma_max": 3.0,
+    "depth_ppm_max": 50000,
+    "period_min_d": 0.5,
+    "max_duty_cycle": 0.15
+  },
+  "stage2_vetting": {
+    "registered_utc": "2026-10-17T13:05:00Z",
+    "note": "Registered after the first-screen controls and after a 208-star partial triage of the Modal batch revealed two dominant false-positive classes (periodic variables / EBs, and Kepler monthly-downlink or quarter-edge systematics at P 24-40 d), but BEFORE any pool star was vetted. Applied by pipeline/vet_batch.py; results are reported per criterion, never silently filtered.",
+    "re_detrend_with_transit_masked": true,
+    "gap_frac_1d_max": 0.5,
+    "frac_events_positive_min": 0.7,
+    "depth_pass2_over_pass1_range": [
+      0.6,
+      1.8
+    ],
+    "event_reduced_chi2_max": 3.0,
+    "event_chi2_note": "Reduced chi-square of per-event local depths about their weighted mean. Formal per-event errors understate correlated noise: positive controls give 1.95 (KIC 5689121) and 1.50 (Kepler-138 c); a gap systematic gave 25 and a contact binary 36. Ceiling fixed at 3.0 on 2026-10-17T13:20Z after the control calibration, before any pool star was judged.",
+    "odd_even_sigma_max": 3.0,
+    "secondary_sigma_max": 3.0,
+    "core_to_box_depth_ratio_min": 0.8,
+    "ls_amp_over_depth_max": 3.0,
+    "ls_period_matches_forbidden": true,
+    "both_polarity_forbidden": true,
+    "duration_ratio_max": 1.5,
+    "tls_snr_min": 7.1,
+    "known_match_same_star_or_tpf_forbidden": true,
+    "rp_earth_max_for_candidate": 12.0,
+    "snr_emp_pass2_min": 7.1,
+    "secondary_two_sided": true,
+    "note_v15": "v1.5: tls_sde_min removed; snr_emp_pass2_min and two-sided secondary added; see revision_log.",
+    "n_events_min": 3,
+    "note_v17": "v1.7: n_events_min = 3 (usable events with local depth); see revision_log."
+  },
+  "null_calibration": "The identical screen is applied to the inverted light curve (2 - f) of every star. The first-screen pass rate on inverted data is the empirical false-alarm rate; thresholds above are FIXED before the run and will not be changed after inspecting results. Any tighter post-hoc cut must be reported as post-hoc.",
+  "positive_controls": [
+    "kic-005689121 (Kuber's 13.769 d candidate; expect P=13.769, depth ~1.4-2.4 ppt)",
+    "kic-007603200 (Kepler-138; expect c at 13.781 d ~ 700 ppm and d at 23.09 d)"
+  ],
+  "after_first_screen": "Survivors go to: catalogue/ephemeris match (KOI, DR25 TCE, Kepler EB, confirmed planets; same period or 1:2, 2:1, 1:3, 3:1 within 0.1% against anything within 3 arcmin AND against the originating TPF star), TLS refinement, per-year depth consistency, pixel-level localisation on the originating TPF, Gaia neighbour/RUWE check, TRICERATOPS. Nothing is called a planet; survivors are 'first-screen signals', then 'candidates' only after pixel-level localisation and ephemeris clearance.",
+  "pixel_localisation": {
+    "registered_utc": "2026-10-17T15:55Z (post-hoc, see revision_log)",
+    "edge_px": 0.5,
+    "min_events_per_quarter": 3,
+    "min_sig_pixels": 2,
+    "min_conclusive_quarters": 5,
+    "on_target_fraction": 0.7,
+    "neighbour_search_px_outside_stamp": 2.0,
+    "bootstrap_n": 200,
+    "v16_chi2_rule": {
+      "min_quarters": 5,
+      "delta_chi2_vs_null_min": 25.0,
+      "delta_chi2_vs_best_alternative_min": 25.0,
+      "psf_sigma_px": 0.9
+    },
+    "v18_season_stack_rule": {
+      "min_seasons": 3,
+      "delta_chi2_vs_null_min": 25.0,
+      "delta_chi2_vs_best_alternative_min": 25.0,
+      "psf_sigma_px": 0.9,
+      "K_random": 48,
+      "scope": "signals with < 5 usable v1.6 quarters; method extension, post-hoc"
+    }
+  }
+}

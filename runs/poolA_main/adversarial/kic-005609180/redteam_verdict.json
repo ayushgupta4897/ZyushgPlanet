@@ -1,0 +1,41 @@
+{
+ "fname": "kic-005609180",
+ "verdict": "kill",
+ "most_likely_explanation": "Post-gap PSF-model recovery ramps in the KBONUS stitched PSF flux, three of which (epochs 4, 36, 39: 0.06-0.14 d after a Q2 downlink gap, the Q9/Q10 roll and a Q10 downlink gap; all season 0, channel 17 = module 7 output 1) happen to be commensurate with 21.106 d. The ramps are -14 to -47 ppt in the searched stitched FLUX column while the per-quarter FLUX, PSF_FLUX_NOVA and SAP_FLUX columns show different signs and amplitudes at the same cadences (e.g. epoch 39: -47 / +29 / +16 / +8 ppt), RED_CHI2 of the PSF fit jumps, and the stitched-vs-per-quarter PSF flux disagrees by 85-96 ppt MAD in Q6/Q10/Q14. With the first day after every gap masked, 21.1 d drops to BLS SDE 1.7 (rank > 40 in 15-30 d) while the inverted-flux null reaches SDE 8.3. The leftover is a 3.1-3.3 sigma PSF-only residual (201-220 +- 65 ppm beyond 2 d after gaps; SAP 97-113 +- 63 ppm, 1.5-1.8 sigma) with bad per-event chi2, no signal in season 2, dependence on three events, and an equal-amplitude brightening 3 h earlier: search-selected red noise, not a transit.",
+ "kill_reasons": [
+  "All three dominant events (4.27, 2.42, 4.04 ppt in events.csv) sit 0.06-0.14 d after data gaps and are exponential ~2 d recovery ramps; the four flux columns in the FITS file disagree in sign and by up to 100 ppt at those cadences (stitched FLUX -43/-14/-47 ppt vs per-quarter FLUX -32/-4/+29 ppt, PSF_FLUX_NOVA +17/-28/+16 ppt, SAP +7/-7/+8 ppt), which no flux deficit of the star can produce.",
+  "Ramp census over all 85 gaps: 11 gaps give stitched-PSF ramps deeper than -5 ppt (7 deeper than -10 ppt), 8 of them in season-0/channel-17 quarters; the three largest have opposite-sign SAP ramps. The ramps are a generic PSF-model artefact of this light curve, not something at the ephemeris.",
+  "The period is fixed by gap timing: only two periods above 10 d (10.552 and 21.103 d) phase all three big ramps within 0.15 d. With 1.0 d after every gap masked, a 15-30 d BLS gives SDE 1.66 at 21.1 d (rank > 40; top real peak 28.5 d at 5.86) while the identical inverted-flux null reaches SDE 8.31; SAP masked gives 2.34 at 21.1 d.",
+  "Residual after excluding events within the ~2 d ramp timescale: PSF 201-220 +- 65 ppm (3.1-3.3 sigma) with chi2 56-59 for 43-46 dof; SAP 97-113 +- 63 ppm (1.5-1.8 sigma) although CROWDSAP 0.95-1.0 requires >= 95 % of the PSF depth in SAP. Dropping the top three events gives 161 +- 70 ppm; per season: 386 +- 147 (ch17), 505 +- 141 (ch57), -110 +- 145 (ch65), 233 +- 118 (ch25). A phase scan shows -265 +- 67 ppm (brightening) at -3 h, equal in significance to the +254 +- 68 ppm dip at phase 0.",
+  "Stitched PSF flux (the searched column) differs from the per-quarter PSF flux by 85-96 ppt MAD (max 180 ppt) in Q6, Q10, Q14, versus 0.3-5 ppt elsewhere; these are exactly the channel-17 quarters where the ramps and the dominant events live.",
+  "The pipeline's own diagnostics already flagged this: gap_frac_1d 0.21, event_weighted_depth 318 ppm vs depth_pass2 656 ppm, event_chi2_const 87/60, failed v1.4 on tls_sde; the box-SNR-preferred 8 h duration is physically impossible for a 0.93-1.3 Rsun host at 21.1 d (b=0 maximum 4.7-6.5 h)."
+ ],
+ "surviving_strengths": [
+  "Not already known: KIC 5609180 was never a Kepler target; the TPF host KIC 5609183 (Kp 13.74, 12.6 arcsec, observed all quarters) has no KOI/TCE/EB; no KOI, DR25 TCE, Kirk+2016 EB or confirmed planet within 180 arcsec; live NEA TAP (2026-10-17) and SIMBAD return nothing; not in Bienias & Szabo 2025 (P 2.5-4.8 d hot Jupiters) or the Moquin+2026 poster (BOI-1.01, 3.37 d).",
+  "No field-wide KOI/TCE/EB has both a matching period (or 1/4-4x harmonic within 0.2 %) and a matching epoch; the only period-and-epoch coincidence is an 84.5 d TCE 4.5 deg away with no mechanism to reach channel 17.",
+  "No stellar variability or rotation alias: Lomb-Scargle on PSF, SAP and PSF_FLAT_FLUX shows no power at 21.1, 10.55, 42.2 or 7.04 d (PSF half-amplitude ceiling ~220 ppm, flattened flux < 10 ppm).",
+  "Odd/even (0.09-0.25 sigma) and secondary (-0.17 to -0.55 sigma) are null, and the 3.0 h duration with 483-656 ppm depth would be physically allowed (Rp 2.2-2.6 Re, T14max 4.7 h); the 1-d-threshold non-gap residual (254 +- 68 ppm, SNR 3.7) exceeds a 300-trial random-ephemeris null (max 3.1, sd 1.3) as a single-trial statistic. None of this survives sections 1-3 above."
+ ],
+ "checks_run": [
+  "Read vet.json, events.csv, fold_events.png, rederive_summary.json, rederive_box34.json, fold_rederive.png, events_raw_psf_vs_sap.png; pixel directory absent",
+  "FITS headers: primary, stitched and all 17 per-quarter extensions (SEASON, MODULE, OUTPUT, CHANNEL, CROWDSAP, FLFRCSAP, NPIXSAP, PSFFRAC, PERTRATI); SAP_QUALITY value census",
+  "Gap classification of all 70 epochs against the 70 gaps > 0.5 d and quarter boundaries (side, distance, gap length, quarter)",
+  "Post-gap ramp census at all 85 gaps > 0.3 d in stitched PSF and SAP flux; phase of each gap end at P = 21.106289 d; counts per season/channel",
+  "Cadence-level comparison of stitched FLUX vs per-quarter FLUX vs PSF_FLUX_NOVA vs SAP_FLUX around epochs 4, 36, 39, and per-quarter global ratio statistics",
+  "Per-quarter diagnostics (RED_CHI2, CENTROID_COLUMN/ROW, SAP_BKG) around the three dominant events, figure redteam/quarter_diag.png",
+  "Own per-event depths (3 h box, local linear baseline) in PSF and SAP for 61 events; weighted means with gap-distance thresholds 0.5-4 d; chi2 against constant depth",
+  "Random-ephemeris nulls (300 random phases at same P; 300 random P in 15-30 d) for the non-gap ensemble depth, with and without gap-edge events",
+  "Leave-top-k, per-season (channel), per-year, duration scan 1-8 h, and 1.5 h phase scan of the non-gap ensemble",
+  "Alias-comb count: periods in 1-50 d that phase all three big ramps within 0.15 d",
+  "Narrow 15-30 d BLS (6000 periods, 2-6 h, likelihood objective) on PSF all data, PSF with 1.0 d post-gap masked, inverted-flux masked null, SAP masked",
+  "Lomb-Scargle 0.5-100 d on PSF, SAP and PSF_FLAT_FLUX, both polarities implied; power at 21.1 d and harmonics",
+  "Duration/density bound for Rstar 0.93 and 1.3 Rsun at 21.106 d; implied Rp for 656/483/233 ppm",
+  "Known-object checks: kepler_target_kepids, keplerstellar, KOI cumulative, DR25 TCE, Kirk+2016 EB, confirmed planets (positional within 60/180 arcsec; period and epoch matches field-wide); TPF host KIC 5609183; live NEA TAP for KOI/TCE/TOI; SIMBAD 30 arcsec; Bienias & Szabo 2025 and Moquin+2026 lists from docs/02"
+ ],
+ "what_would_settle_it": [
+  "Nothing further is needed to retire this signal; the kill rests on the data already in hand (post-gap ramps on channel 17 and loss of the peak when the post-gap day is masked).",
+  "If someone insists: re-run the stage-1 search on this star with the first 1-2 d after every gap masked before detrending, on both the stitched FLUX and the per-quarter FLUX columns, and require the inverted-flux null to be reported alongside; the 21.1 d peak must be the top peak in both and exceed the null.",
+  "Any pixel-level run on the originating TPF (KIC 5609183) must exclude the twelve gap-edge epochs (4, 12, 14, 23, 36, 39, 45, 48, 49, 52, 58, 63); otherwise it will localise the thermal ramp, not a star.",
+  "A SAP depth at the ephemeris of >= 95 % of the PSF depth (CROWDSAP 0.95-1.0) on the non-ramp events, consistent across all four channels, would be the minimum for reconsideration; currently 48 +- 45 % at the 2 d threshold and -110 +- 145 ppm on channel 65."
+ ]
+}

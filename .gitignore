@@ -1,0 +1,37 @@
+# virtualenv
+.venv/
+# downloaded archival data (re-fetched by pipeline/fetch.py)
+/data/
+# python
+__pycache__/
+*.pyc
+# large binary outputs inside run directories
+runs/**/*.fits
+.zp_endpoint_token
+.modal_endpoints.json
+
+# TRICERATOPS Gaia background-population cache (re-downloadable)
+*_gaia_background.csv
+
+# deep-run light-curve dumps (re-derivable from data/)
+runs/*_deep/lightcurve_*.csv
+
+# MOLUSC companion tables (60-70 MB each; reproducible from scripts/molusc_run.py with its fixed seed; SHA-256 in molusc_summary.json)
+runs/*/molusc/*/molusc_kept.csv
+report/dist/*.wrapped.html
+
+# Zenodo upload bundle (rebuilt by papers/rnaas/build_zenodo.py)
+papers/rnaas/zenodo/*.zip
+papers/rnaas/aastex701.cls
+
+# re-derivable arrays and dumps (regenerate with the scripts that wrote them)
+runs/**/rederive/*.npz
+runs/**/rederive/*.npy
+runs/**/rederive/*periodogram*.csv
+runs/kic5689121/lightcurve_*.csv
+runs/**/.fetch_offset
+runs/**/*.flag
+
+# local copy of report/dist/report.html used for the hosted page
+report/three-quiet-transits.html
+.ruff_cache/

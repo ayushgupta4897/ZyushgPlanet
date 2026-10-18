@@ -1,0 +1,22 @@
+--- our TPF (KIC 11285496): channel, ref col/row, target CCD col/row
+Q 1 s3 ch 35 mod11.3 stamp col0=639 row0=941  target col=639.4 row=942.7 | nbr col=641.6 row=943.1 | EB(ext) col=722.0 row=922.4
+Q 2 s0 ch 79 mod23.3 stamp col0=643 row0=941  target col=643.1 row=942.8 | nbr col=645.4 row=943.3 | EB(ext) col=725.8 row=922.6
+Q 3 s1 ch 51 mod15.3 stamp col0=642 row0=937  target col=643.4 row=938.8 | nbr col=645.7 row=939.2 | EB(ext) col=726.1 row=918.5
+Q 4 s2 ch  7 mod3.3 stamp col0=639 row0=936  target col=639.8 row=937.6 | nbr col=642.1 row=938.1 | EB(ext) col=722.5 row=917.4
+Q 5 s3 ch 35 mod11.3 stamp col0=639 row0=941  target col=639.4 row=942.7 | nbr col=641.7 row=943.2 | EB(ext) col=722.1 row=922.5
+Q 6 s0 ch 79 mod23.3 stamp col0=643 row0=941  target col=643.2 row=942.8 | nbr col=645.4 row=943.3 | EB(ext) col=725.8 row=922.5
+Q 7 s1 ch 51 mod15.3 stamp col0=642 row0=937  target col=643.4 row=938.8 | nbr col=645.7 row=939.2 | EB(ext) col=726.1 row=918.5
+Q 9 s3 ch 35 mod11.3 stamp col0=639 row0=941  target col=639.4 row=942.7 | nbr col=641.7 row=943.2 | EB(ext) col=722.1 row=922.5
+Q10 s0 ch 79 mod23.3 stamp col0=643 row0=941  target col=643.2 row=942.8 | nbr col=645.4 row=943.3 | EB(ext) col=725.8 row=922.6
+Q11 s1 ch 51 mod15.3 stamp col0=642 row0=937  target col=643.4 row=938.8 | nbr col=645.7 row=939.2 | EB(ext) col=726.1 row=918.5
+Q13 s3 ch 35 mod11.3 stamp col0=639 row0=941  target col=639.4 row=942.7 | nbr col=641.7 row=943.2 | EB(ext) col=722.0 row=922.5
+Q14 s0 ch 79 mod23.3 stamp col0=643 row0=941  target col=643.2 row=942.8 | nbr col=645.5 row=943.3 | EB(ext) col=725.8 row=922.6
+Q15 s1 ch 51 mod15.3 stamp col0=642 row0=937  target col=643.5 row=938.8 | nbr col=645.7 row=939.2 | EB(ext) col=726.1 row=918.5
+Q17 s3 ch 35 mod11.3 stamp col0=639 row0=941  target col=639.4 row=942.7 | nbr col=641.7 row=943.2 | EB(ext) col=722.0 row=922.5
+--- EB TPF (KIC 11285625)
+15 TPFs
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/redteam-kic011285493/geometry.py", line 18, in <module>
+    q=int(str(sr.mission[i]).split('Q')[-1]) if 'Q' in str(sr.mission[i]) else i
+      ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'uarter 00'

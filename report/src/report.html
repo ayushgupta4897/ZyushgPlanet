@@ -1,0 +1,467 @@
+<title>Three Quiet Transits</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Hanken+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one dark observatory sheet; a wide display hero, then evidence sections on a 12-column grid, charts full-bleed inside a 1180px measure. */
+:root {
+  --void: #050506; --ink: #0b0c0e; --panel: #101114; --line: #25282d;
+  --steel: #737a83; --silver: #b8bdc4; --chrome: #e3e5e8; --white: #f7f8fa;
+  --f-display: "Syncopate", "Eurostile", "Arial Black", sans-serif;
+  --f-body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --measure: 1180px;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--void); color: var(--silver); font-family: var(--f-body); font-size: 17px; line-height: 1.6; margin: 0; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--void); }
+.wrap { max-width: var(--measure); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+#field { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+main, header, footer { position: relative; z-index: 1; }
+a { color: var(--chrome); text-decoration-color: var(--steel); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 1px solid var(--white); outline-offset: 3px; }
+
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--steel); }
+h1, h2 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; color: var(--white); text-wrap: balance; margin: 0; letter-spacing: 0.01em; }
+h1 { font-size: clamp(34px, 6.2vw, 78px); line-height: 1.02; }
+h2 { font-size: clamp(22px, 3vw, 34px); line-height: 1.12; }
+h3 { font-family: var(--f-mono); font-weight: 500; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--chrome); margin: 0; }
+p { margin: 0; max-width: 66ch; }
+.lede { font-size: clamp(17px, 1.6vw, 20px); color: var(--chrome); font-weight: 300; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.dim { color: var(--steel); }
+
+/* dotted rules */
+.rule { height: 1px; background-image: radial-gradient(circle, var(--steel) 0.9px, transparent 1.1px); background-size: 7px 1px; background-repeat: repeat-x; opacity: 0.7; animation: drift 12s linear infinite; }
+@keyframes drift { to { background-position: 70px 0; } }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 32px; align-items: center; padding-block: 72px 40px; }
+.hero-text { display: grid; gap: 24px; min-width: 0; }
+.planet-wrap { position: relative; aspect-ratio: 1 / 1; width: 100%; max-width: 100%; }
+#hero-planet { width: 100%; height: 100%; display: block; }
+.caption { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--steel); }
+.planet-wrap .caption { position: absolute; left: 0; bottom: 0; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stat { padding: 18px 16px 16px 0; display: grid; gap: 6px; min-width: 0; }
+.stat + .stat { padding-left: 16px; border-left: 1px solid var(--line); }
+.stat b { font-family: var(--f-display); font-size: clamp(20px, 2.6vw, 30px); color: var(--white); font-weight: 400; letter-spacing: 0; }
+.stat span { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); }
+
+section { padding-block: 72px; display: grid; gap: 28px; }
+.sec-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px; align-items: start; }
+.sec-head > div { display: grid; gap: 14px; min-width: 0; }
+
+/* candidate dossiers */
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.card { background: var(--ink); padding: 22px; display: grid; gap: 16px; align-content: start; min-width: 0; }
+.card canvas { width: 100%; aspect-ratio: 1.6 / 1; display: block; }
+.card .name { font-family: var(--f-display); font-size: 21px; color: var(--white); letter-spacing: 0.02em; }
+.card .sub { font-family: var(--f-mono); font-size: 13px; color: var(--chrome); }
+dl.kv { display: grid; grid-template-columns: auto 1fr; gap: 7px 16px; margin: 0; font-size: 14px; }
+dl.kv dt { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); padding-top: 2px; }
+dl.kv dd { margin: 0; color: var(--chrome); font-variant-numeric: tabular-nums; }
+.fpp-pill { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; border-top: 1px dashed var(--line); padding-top: 14px; }
+.fpp-pill .big { font-family: var(--f-display); font-size: 30px; color: var(--white); }
+.fpp-pill .was { font-family: var(--f-mono); font-size: 12px; color: var(--steel); text-decoration: line-through; }
+
+/* transit scene */
+.scene { position: relative; border: 1px solid var(--line); background: var(--ink); }
+#transit { width: 100%; aspect-ratio: 2.2 / 1; display: block; }
+
+
+/* tabs */
+.tabs { display: flex; gap: 0; flex-wrap: wrap; border: 1px solid var(--line); width: fit-content; max-width: 100%; }
+.tabs button { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel); background: transparent; border: 0; padding: 10px 16px; cursor: pointer; }
+.tabs button + button { border-left: 1px solid var(--line); }
+.tabs button[aria-selected="true"] { background: var(--chrome); color: var(--void); }
+.tabs button:hover:not([aria-selected="true"]) { color: var(--white); }
+
+.chart-grid { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: 28px; align-items: start; }
+.panel { border: 1px solid var(--line); background: var(--ink); padding: 18px 18px 8px; min-width: 0; display: grid; gap: 10px; }
+.panel h3 { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.facts { display: grid; gap: 0; border: 1px solid var(--line); }
+.facts div { display: flex; justify-content: space-between; gap: 12px; padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.facts div:last-child { border-bottom: 0; }
+.facts span:first-child { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); }
+.facts span:last-child { color: var(--white); font-variant-numeric: tabular-nums; text-align: right; }
+
+/* svg chart styling */
+svg text { font-family: var(--f-mono); }
+svg .tick { fill: var(--steel); font-size: 12px; }
+svg .label { fill: var(--silver); font-size: 12px; letter-spacing: 0.06em; }
+svg .ann { fill: var(--chrome); font-size: 12.5px; }
+svg .ann.dim { fill: var(--steel); }
+svg .val { fill: var(--white); font-size: 17px; font-weight: 500; }
+svg .rowlab { fill: var(--white); font-size: 14px; font-weight: 500; }
+svg .grid { stroke: var(--line); stroke-width: 1; stroke-dasharray: 1 5; }
+svg .axis { stroke: var(--steel); stroke-width: 1; }
+svg .zero { stroke: var(--line); stroke-width: 1; }
+svg .raw circle { fill: var(--steel); fill-opacity: 0.45; }
+svg .model { fill: none; stroke: var(--white); stroke-width: 2.2; }
+svg .bin circle { fill: var(--white); stroke: var(--void); stroke-width: 1.2; }
+svg .err { stroke: var(--silver); stroke-width: 1.2; stroke-opacity: 0.8; }
+svg .ref { stroke: var(--silver); stroke-dasharray: 2 5; stroke-width: 1; }
+svg .pg-real { fill: none; stroke: var(--white); stroke-width: 1.4; }
+svg .pg-inv { fill: none; stroke: var(--steel); stroke-width: 1.2; stroke-dasharray: 2 3; }
+svg .pk { fill: none; stroke: var(--white); stroke-width: 1.5; }
+svg .ev circle { fill: var(--white); }
+svg .thresh { stroke: var(--white); stroke-width: 1.2; stroke-dasharray: 3 4; }
+svg .arrow { stroke: var(--steel); stroke-width: 1.4; stroke-dasharray: 1 4; stroke-linecap: round; }
+svg .before { fill: var(--void); stroke: var(--steel); stroke-width: 1.6; }
+svg .after { fill: var(--white); }
+svg .seed { fill: var(--silver); fill-opacity: 0.55; }
+svg .ci { stroke: var(--white); stroke-width: 2; }
+svg .gaia { fill: var(--silver); }
+svg .cc { fill: none; stroke: var(--white); stroke-width: 1.6; }
+svg .tmark { fill: none; stroke: var(--white); stroke-width: 2; }
+svg .nbmark { fill: none; stroke: var(--steel); stroke-width: 1.4; stroke-dasharray: 2 3; }
+svg .cellv { fill: var(--steel); font-size: 10px; }
+
+/* pixel maps */
+.pix-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.pix { display: grid; gap: 8px; min-width: 0; }
+.pix .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.legend { display: flex; gap: 22px; flex-wrap: wrap; font-family: var(--f-mono); font-size: 12px; color: var(--steel); }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--white); vertical-align: -2px; margin-right: 8px; }
+.legend i.nb { border: 1.5px dashed var(--steel); }
+.ramp { display: inline-block; width: 90px; height: 10px; background: linear-gradient(90deg, #0a0a0d, #f4f5f8); vertical-align: -1px; margin: 0 8px; border: 1px solid var(--line); }
+
+/* orbits */
+.duo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+#orbits { width: 100%; aspect-ratio: 1.35 / 1; display: block; }
+
+/* funnel */
+.funnel { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 28px; align-items: stretch; }
+#funnel { width: 100%; aspect-ratio: 1.45 / 1; display: block; border: 1px solid var(--line); background: var(--ink); }
+ol.stages { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-rows: 1fr; border: 1px solid var(--line); }
+ol.stages li { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 13px 16px; border-bottom: 1px solid var(--line); align-items: baseline; transition: background .3s, color .3s; }
+ol.stages li:last-child { border-bottom: 0; }
+ol.stages b { font-family: var(--f-display); font-size: 21px; font-weight: 400; color: var(--white); font-variant-numeric: tabular-nums; }
+ol.stages span { font-size: 14px; }
+ol.stages li.on { background: var(--chrome); color: var(--void); }
+ol.stages li.on b { color: var(--void); }
+.kills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.kills div { background: var(--ink); padding: 16px; display: grid; gap: 6px; min-width: 0; font-size: 14px; }
+.kills b { font-family: var(--f-mono); font-weight: 500; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--chrome); }
+
+/* checklist */
+.checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+.check { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px dashed var(--line); align-items: start; min-width: 0; }
+.mark { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--white); display: grid; place-items: center; font-family: var(--f-mono); font-size: 13px; color: var(--void); background: var(--white); }
+.mark.open { background: transparent; color: var(--steel); border: 1.5px dashed var(--steel); }
+.check b { color: var(--white); font-weight: 500; display: block; }
+.check span { font-size: 14px; color: var(--steel); }
+
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
+.note { border: 1px solid var(--line); padding: 22px; display: grid; gap: 12px; background: var(--ink); min-width: 0; }
+.note ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; font-size: 15px; }
+
+footer { padding-block: 56px 72px; border-top: 1px solid var(--line); display: grid; gap: 20px; font-size: 14px; }
+footer .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+footer .cols > div { display: grid; gap: 8px; align-content: start; min-width: 0; }
+footer code { font-family: var(--f-mono); font-size: 12px; color: var(--silver); word-break: break-all; }
+
+@media (max-width: 920px) {
+  .hero { grid-template-columns: 1fr; padding-block: 40px 24px; }
+  .planet-wrap { max-width: 460px; justify-self: center; }
+  .sec-head, .chart-grid, .duo, .funnel, .two { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr; }
+  .pix-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kills { grid-template-columns: 1fr; }
+  .checks { grid-template-columns: 1fr; }
+  footer .cols { grid-template-columns: 1fr; }
+  section { padding-block: 48px; }
+}
+@media (max-width: 560px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat:nth-child(3) { border-left: 0; padding-left: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+  body { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .rule { animation: none; } }
+</style>
+
+<canvas id="field" aria-hidden="true"></canvas>
+
+<header class="wrap">
+  <div class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">Aayush Gupta · ZyushgPlanet · Kepler Bonus archival search · 17 October 2026</div>
+      <h1>Three sub-Neptune planet candidates</h1>
+      <p class="lede">Each has a false-positive probability below 1&nbsp;% once Gaia's limits on unseen companion stars are applied. They orbit faint stars that the Kepler telescope recorded from 2009 to 2013 without ever targeting them, and none appears in any catalogue we checked.</p>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="planet-wrap">
+      <canvas id="hero-planet" aria-label="Illustration of a sub-Neptune planet drawn in dots"></canvas>
+      <div class="caption">Illustration. Banding and colour are not measured.</div>
+    </div>
+  </div>
+  <div class="rule"></div>
+</header>
+
+<main class="wrap">
+
+  <section aria-labelledby="h-three">
+    <div class="sec-head">
+      <div><div class="eyebrow">The candidates</div><h2 id="h-three">Three orbits, three host stars</h2></div>
+      <p>Radii come from the transit fit and Gaia's measured stellar radius. Equilibrium temperatures assume zero albedo and use the fitted orbital distance. Each card shows the false-positive probability with default priors, struck through, and with Gaia's companion constraints applied.</p>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section aria-labelledby="h-scene">
+    <div class="sec-head">
+      <div><div class="eyebrow">KIC 6699887 · 15.11-day orbit</div><h2 id="h-scene">A transit, rebuilt from the fit</h2></div>
+      <p>The star's dots shade toward its edge with the limb-darkening law fitted to this transit. The dark disc is the candidate, drawn about thirty times too large to see. The curve beneath it is the fitted model, to scale: a 3.8-hour dip of about 1,080 parts per million.</p>
+    </div>
+    <div class="scene"><canvas id="transit" aria-label="Animated reconstruction of a transit and its light curve"></canvas></div>
+    <div class="caption" id="scene-cap"></div>
+  </section>
+
+  <section aria-labelledby="h-signal">
+    <div class="sec-head">
+      <div><div class="eyebrow">Photometry</div><h2 id="h-signal">The dip, folded on its period</h2></div>
+      <p>Grey dots are individual 29.4-minute Kepler measurements from four years of data, folded on the orbital period. White points are averages with their errors, and the line is the transit model. Below, every transit is measured on its own, and the period search is repeated on the light curve turned upside down. That inverted run is the null test: a real dip has no inverted twin.</p>
+    </div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="chart-grid">
+      <div class="panel"><h3><span>Phase-folded light curve</span><span class="dim" id="lc-src"></span></h3><div id="lc"></div></div>
+      <div class="facts" id="facts"></div>
+    </div>
+    <div class="two">
+      <div class="panel"><h3>Every transit, one by one</h3><div id="events"></div></div>
+      <div class="panel"><h3>Period search, real versus inverted flux</h3><div id="pg"></div></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-pix">
+    <div class="sec-head">
+      <div><div class="eyebrow">Pixel localisation</div><h2 id="h-pix">Where the light goes missing</h2></div>
+      <p>Each candidate sits in the pixel stamp of a brighter star that Kepler was observing. For every transit we subtract the in-transit image from the images just before and after. We then stack the quarters of each Kepler season, when the star falls on the same detector, and ask which star the missing light belongs to.</p>
+    </div>
+    <div class="legend"><span><i></i>candidate star (Gaia position)</span><span><i class="nb"></i>other Gaia stars</span><span>missing light<span class="ramp"></span>more</span></div>
+    <div class="pix-row" id="pix"></div>
+    <p class="mono dim" id="pix-note"></p>
+  </section>
+
+  <section aria-labelledby="h-fpp">
+    <div class="sec-head">
+      <div><div class="eyebrow">False positives</div><h2 id="h-fpp">Below the 1.5&nbsp;% line</h2></div>
+      <p>TRICERATOPS weighs the planet hypothesis against eclipsing binaries and against planets around other stars, on the target and on every neighbour within ten Kepler pixels. With default priors the three come out at 2.4, 2.7 and 3.6&nbsp;%. Almost all of that is one scenario: a planet around a fainter, unseen companion star. Gaia constrains those companions twice, through its astrometry and through its imaging. MOLUSC turns both into a companion population, and what remains is too faint to make these dips.</p>
+    </div>
+    <div class="panel"><h3><span>False-positive probability, default priors (hollow) and with Gaia constraints (solid)</span><span class="dim">8 runs × 10⁶ draws each</span></h3><div id="fpp"></div></div>
+    <div class="two">
+      <div class="panel"><h3>What Gaia would have seen</h3><div id="cc"></div></div>
+      <div class="facts" id="prior"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-rho">
+    <div class="sec-head">
+      <div><div class="eyebrow">Consistency</div><h2 id="h-rho">The transit shape fits the star</h2></div>
+      <p>How long a transit lasts, and how sharply it begins and ends, fixes the density of the star being crossed. A planet around an unseen companion would usually imply the wrong density. For all three candidates, the density from the transit matches Gaia's measurement of the host to within half a standard deviation.</p>
+    </div>
+    <div class="panel"><h3><span>Stellar density: transit fit (68&nbsp;% interval) and Gaia DR3 FLAME (bar)</span></h3><div id="rho"></div></div>
+  </section>
+
+  <section aria-labelledby="h-two">
+    <div class="duo">
+      <div style="display:grid;gap:18px;min-width:0">
+        <div class="eyebrow">KIC 6699887 · second signal</div>
+        <h2 id="h-two">Two signals, one star</h2>
+        <p id="two-text"></p>
+        <div class="facts" id="two-facts"></div>
+      </div>
+      <canvas id="orbits" aria-label="Illustration of two orbits around KIC 6699887 at their measured period ratio"></canvas>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-funnel">
+    <div class="sec-head">
+      <div><div class="eyebrow">The search</div><h2 id="h-funnel">From 6,465 stars to three</h2></div>
+      <p>Each dot is one star from the pre-registered target list: background stars on the Kepler pixels that Kepler never targeted and that no published transit search had covered. Thresholds were frozen before the search, the same search ran on every light curve turned upside down, and positive controls had to pass before any result was read. The counts follow the path the three candidates took; two other signals survived review but have inconclusive pixel tests.</p>
+    </div>
+    <div class="funnel"><canvas id="funnel" aria-label="Dot field of 6,465 stars filtered stage by stage"></canvas><ol class="stages" id="stages"></ol></div>
+    <div class="kills" id="kills"></div>
+  </section>
+
+  <section aria-labelledby="h-check">
+    <div class="sec-head">
+      <div><div class="eyebrow">Status</div><h2 id="h-check">What each candidate has passed</h2></div>
+      <p>A planet candidate is a signal that survives every test the data allow. Validation needs one more step, a refereed paper, and in practice a high-resolution image of each host to replace Gaia's statistical companion limits inside half an arcsecond.</p>
+    </div>
+    <div class="checks" id="checks"></div>
+  </section>
+
+  <section aria-labelledby="h-limits">
+    <div class="two">
+      <div class="note"><h3 id="h-limits">What this report claims</h3><ul>
+        <li>Three transit signals that are periodic, localised on the target star in Kepler's own pixels, and absent from the inverted-flux null.</li>
+        <li>Each has a false-positive probability between 0.6 and 0.7&nbsp;% with Gaia constraints, and 0&nbsp;% from nearby resolved stars.</li>
+        <li>None matches the period and timing of any known Kepler object of interest, threshold-crossing event or eclipsing binary anywhere in the Kepler field.</li>
+      </ul></div>
+      <div class="note"><h3>What it does not claim</h3><ul>
+        <li>These are not confirmed or validated planets. No mass has been measured and no paper has been refereed.</li>
+        <li>The stage-2 vetting rules and both pixel rules were set after early results had been seen. Every such change is dated in the pre-registration log and labelled post-hoc.</li>
+        <li>False-positive probabilities vary between runs; the KIC 6699887 runs span 0.15 to 3.4&nbsp;%. The mean is quoted.</li>
+        <li>The companion prior assumes that 46&nbsp;% of stars have companions, the solar-type rate, which is conservative for these smaller stars.</li>
+      </ul></div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="rule"></div>
+  <div class="cols">
+    <div><h3>Data</h3><p>Kepler Bonus background-star photometry (Martínez-Palomera et al. 2023; MAST HLSP, DOI 10.17909/7jbr-w430, CC BY 4.0). Kepler target-pixel files from MAST. Gaia DR3. Known-object catalogues from the NASA Exoplanet Archive and VizieR, downloaded <span class="mono" id="cat-date"></span>.</p></div>
+    <div><h3>Methods</h3><p>Box-least-squares search with an inverted-flux null on every star; stage-2 vetting; χ² pixel localisation per quarter and per season; TRICERATOPS (Giacalone et al. 2021); MOLUSC (Wood et al. 2021); batman and emcee transit fits. Rules and every revision are in <code>pipeline/prereg_poolA.json</code>.</p></div>
+    <div><h3>Author</h3><p>Aayush Gupta, ZyushgPlanet. Every number on this page traces to a file listed in <code>report/data.json</code>, generated at commit <code class="mono" id="commit"></code>.</p></div>
+  </div>
+</footer>
+
+<script>window.ZP_DATA = /*__DATA__*/null;</script>
+<script>/*__VIZ__*/</script>
+<script>
+(function () {
+  const D = window.ZP_DATA, Z = window.ZP, K = Object.keys(D.candidates), CS = K.map(k => D.candidates[k]);
+  const pct = v => (v * 100).toFixed(2) + " %";
+  const teq = c => Math.round(c.host.teff_gspphot * Math.sqrt(1 / (2 * c.fit.a_over_rstar.median)));
+  const fmt = Z.fmt;
+
+  // background field
+  const field = document.getElementById("field");
+  Z.loop(field, Z.dotField(field, { density: 0.00016 }));
+
+  // hero planet
+  const hp = document.getElementById("hero-planet");
+  Z.loop(hp, t => { const f = Z.fit(hp); f.ctx.clearRect(0, 0, f.w, f.h); const R = Math.min(f.w, f.h) * 0.4;
+    const cx = f.w * 0.52, cy = f.h * 0.48;
+    f.ctx.strokeStyle = "rgba(184,189,196,0.28)"; f.ctx.setLineDash([1, 6]); f.ctx.lineWidth = 1;
+    f.ctx.beginPath(); f.ctx.ellipse(cx, cy, R * 1.45, R * 0.36, -0.38, 0, 6.2832); f.ctx.stroke(); f.ctx.setLineDash([]);
+    Z.drawPlanet(f.ctx, cx, cy, R, t, { spacing: Math.max(3, R / 50) });
+    const a = t * 0.35, mx = cx + Math.cos(a) * R * 1.45 * Math.cos(-0.38) - Math.sin(a) * R * 0.36 * Math.sin(-0.38), my = cy + Math.cos(a) * R * 1.45 * Math.sin(-0.38) + Math.sin(a) * R * 0.36 * Math.cos(-0.38);
+    if (Math.sin(a) > 0 || Math.hypot(mx - cx, my - cy) > R) { f.ctx.fillStyle = "rgba(247,248,250,0.9)"; f.ctx.beginPath(); f.ctx.arc(mx, my, 2.4, 0, 6.2832); f.ctx.fill(); }
+  });
+
+  // stats
+  const F = D.funnel;
+  document.getElementById("stats").innerHTML = [
+    [fmt(F.targets), "stars searched"], [String(F.candidates), "candidates"],
+    ["< 1 %", "false-positive prob., each"],
+    ["0 %", "from nearby stars"]].map(s => `<div class="stat"><b>${s[0]}</b><span>${s[1]}</span></div>`).join("");
+
+  // cards
+  const cards = document.getElementById("cards");
+  CS.forEach((c, i) => {
+    const d = document.createElement("article"); d.className = "card";
+    const extra = c.fname === D.second_signal.fname ? `<dt>Also</dt><dd>second signal, ${D.second_signal.period_d.toFixed(2)} d</dd>` : "";
+    d.innerHTML = `<canvas aria-label="Illustration of KIC ${c.kic} candidate at its relative size"></canvas>
+      <div><div class="name">KIC ${c.kic}</div><div class="sub">${c.period_d.toFixed(4)}-day orbit · ${c.rp_earth.median.toFixed(2)} Earth radii</div></div>
+      <dl class="kv"><dt>Host</dt><dd>dwarf star, ${fmt(c.host.teff_gspphot)} K · Gaia G ${c.host.G.toFixed(2)}</dd>
+      <dt>Distance</dt><dd>${fmt(c.host.dist_pc)} pc</dd><dt>Transits</dt><dd>${c.n_events} observed, ${Math.round(c.frac_events_positive * 100)} % individually positive</dd>
+      <dt>Depth</dt><dd>${fmt(c.depth_ppm)} ppm · SNR ${c.snr_emp.toFixed(1)}</dd><dt>T<sub>eq</sub></dt><dd>≈ ${fmt(teq(c))} K</dd>${extra}</dl>
+      <div class="fpp-pill"><span class="big">${pct(c.fpp.molusc.mean)}</span><span class="was">${(c.fpp.baseline.mean * 100).toFixed(1)} %</span><span class="mono dim" style="font-size:11px;letter-spacing:.08em">FALSE-POSITIVE PROB.</span></div>`;
+    cards.appendChild(d);
+    const cv = d.querySelector("canvas");
+    Z.loop(cv, t => { const f = Z.fit(cv); f.ctx.clearRect(0, 0, f.w, f.h); const R = f.h * 0.36 * (c.rp_earth.median / 3.47);
+      Z.drawPlanet(f.ctx, f.w / 2, f.h / 2, R, t + i * 7, { spacing: Math.max(2.2, R / 22), bands: 7 + i * 3 });
+      f.ctx.fillStyle = "rgba(115,122,131,0.9)"; f.ctx.font = "500 10px 'IBM Plex Mono', monospace"; f.ctx.fillText(`${c.rp_earth.median.toFixed(2)} Earth radii · sizes to scale across cards`, 0, f.h - 4); });
+  });
+
+  // transit scene
+  const tc = document.getElementById("transit"), c0 = D.candidates["kic-006699887"];
+  Z.loop(tc, Z.transitScene(tc, c0, { phase: Z.STILL || Z.reduce ? 0.56 : null }));
+  document.getElementById("scene-cap").textContent = `Limb darkening u₁ = ${c0.limb_darkening_u[0].toFixed(2)}, u₂ = ${c0.limb_darkening_u[1].toFixed(2)} · impact parameter b = ${c0.fit.b.median.toFixed(2)} · transit ${c0.fit.T14_h.median.toFixed(2)} h`;
+
+  // signal tabs
+  const tabs = document.getElementById("tabs");
+  function showSignal(i) {
+    const c = CS[i];
+    [...tabs.children].forEach((b, j) => b.setAttribute("aria-selected", j === i ? "true" : "false"));
+    Z.lightCurve(document.getElementById("lc"), c);
+    Z.eventStrip(document.getElementById("events"), c);
+    Z.periodogram(document.getElementById("pg"), c);
+    document.getElementById("lc-src").textContent = `${c.lc_points.length} of the in-window cadences shown`;
+    const rows = [["Period", `${c.period_d.toFixed(5)} d`], ["Depth (box)", `${fmt(c.depth_ppm)} ± ${fmt(c.depth_err_ppm)} ppm`], ["Empirical SNR", c.snr_emp.toFixed(1)],
+      ["Transit duration", `${c.fit.T14_h.median.toFixed(2)} h`], ["Odd vs even depth", `${c.odd_even_sigma.toFixed(2)} σ`], ["Dip at half phase", `${fmt(c.secondary_ppm)} ppm (${c.secondary_sigma.toFixed(1)} σ)`],
+      ["Stage-1 SDE, real / inverted", `${c.stage1.bls_sde_real} / ${c.stage1.bls_sde_inverted}`], ["Independent re-derivation", `${fmt(c.rederive.depth_ppm)} ± ${fmt(c.rederive.depth_err_ppm)} ppm`],
+      ["Bright stamp star at this ephemeris", `${fmt(c.deep.host_depth_ppm)} ± ${fmt(c.deep.host_depth_err_ppm)} ppm`]];
+    document.getElementById("facts").innerHTML = rows.map(r => `<div><span>${r[0]}</span><span>${r[1]}</span></div>`).join("");
+    const pix = document.getElementById("pix"); pix.innerHTML = "";
+    (c.season_maps || []).forEach(m => {
+      const box = document.createElement("div"); box.className = "pix";
+      box.innerHTML = `<h3>Season ${m.season}</h3><div class="pair"><div></div><div></div></div><div class="caption">image · missing light</div>`;
+      pix.appendChild(box);
+      const [a, b] = box.querySelectorAll(".pair > div");
+      Z.pixelMap(a, m, { mode: "image", cell: 40, label: `Kepler pixel image, season ${m.season}` });
+      Z.pixelMap(b, m, { mode: "snr", cell: 40, label: `Missing light during transit, season ${m.season}` });
+    });
+    const ps = c.pixel_season, p6 = c.pixel_v16;
+    document.getElementById("pix-note").textContent = `KIC ${c.kic}: missing light fits a star at the candidate's position better than no signal by Δχ² ${fmt(ps.sum_dchi2_null_minus_target)} and better than any other star or the stamp's bright star by Δχ² ${fmt(ps.sum_dchi2_bestalt_minus_target)} (4 seasons, ${ps.n_events_total} transits). Per-quarter test: ${fmt(p6.sum_dchi2_null_minus_target)} / ${fmt(p6.sum_dchi2_bestalt_minus_target)} over ${p6.n_quarters_chi2} quarters.`;
+  }
+  CS.forEach((c, i) => { const b = document.createElement("button"); b.type = "button"; b.id = "tab-" + c.kic; b.setAttribute("role", "tab"); b.textContent = "KIC " + c.kic; b.onclick = () => showSignal(i); tabs.appendChild(b); });
+  showSignal(0);
+
+  // fpp, contrast, prior, density
+  Z.fppChart(document.getElementById("fpp"), D);
+  Z.contrastChart(document.getElementById("cc"), D);
+  document.getElementById("prior").innerHTML = [["Bound-companion prior, default", CS.map(c => (c.fpp.companion_prior_default * 100).toFixed(0) + " %").join(" · ")],
+    ["Same, after Gaia RUWE + imaging", CS.map(c => (c.fpp.companion_prior_molusc * 100).toFixed(0) + " %").join(" · ")],
+    ["Gaia RUWE of the hosts", CS.map(c => c.host.ruwe.toFixed(2)).join(" · ")],
+    ["Brightest neighbour excluded by its own light curve", CS.map(c => c.fpp.host_excluded_sigma + " σ").join(" · ")],
+    ["Nearby-star FPP", "0 · 0 · 0"], ["Eclipsing-binary scenarios", "≤ 0.01 % each"]].map(r => `<div><span>${r[0]}</span><span>${r[1]}</span></div>`).join("");
+  Z.densityChart(document.getElementById("rho"), D);
+
+  // two signals
+  const S2 = D.second_signal;
+  document.getElementById("two-text").textContent = `A second, shallower dip repeats every ${S2.period_d.toFixed(2)} days on the same star. The 0.5–40-day search could not reach it; an independent reviewer found it at half its period. It passes the same vetting, and the season-stacked pixel test, after passing four controls, places it on the same star. Two signals localised on one star are much harder to explain with a single background eclipsing binary.`;
+  document.getElementById("two-facts").innerHTML = [["Period", `${S2.period_d.toFixed(4)} d (ratio ${S2.period_ratio.toFixed(3)})`], ["Depth", `${fmt(S2.depth_ppm)} ppm · SNR ${S2.snr_emp}`], ["Transits", `${S2.n_events}, all individually positive`],
+    ["Pixel test (4 seasons)", `on target · Δχ² ${fmt(S2.pixel_season.sum_dchi2_null_minus_target)} / ${fmt(S2.pixel_season.sum_dchi2_bestalt_minus_target)}`], ["Its own FPP", `${(S2.fpp_mean * 100).toFixed(1)} %`], ["Odd vs even depth", `${S2.odd_even_sigma} σ`]].map(r => `<div><span>${r[0]}</span><span>${r[1]}</span></div>`).join("");
+  const ob = document.getElementById("orbits");
+  Z.loop(ob, t => { const f = Z.fit(ob), x = f.ctx; x.clearRect(0, 0, f.w, f.h); const cx = f.w / 2, cy = f.h * 0.46, r2 = f.w * 0.46, r1 = r2 * Math.pow(1 / S2.period_ratio, 2 / 3);
+    Z.drawStar(x, cx, cy, f.w * 0.055, c0.limb_darkening_u, { spacing: 3.2 });
+    for (const [r, P, lab, k] of [[r1, c0.period_d, `${c0.period_d.toFixed(2)} d`, 0], [r2, S2.period_d, `${S2.period_d.toFixed(2)} d`, 1]]) {
+      x.strokeStyle = "rgba(184,189,196,0.35)"; x.setLineDash([1, 6]); x.beginPath(); x.ellipse(cx, cy, r, r * 0.5, 0, 0, 6.2832); x.stroke(); x.setLineDash([]);
+      const a = -t * 0.9 * (c0.period_d / P) + k * 2.1, px = cx + Math.cos(a) * r, py = cy + Math.sin(a) * r * 0.5;
+      Z.drawPlanet(x, px, py, k ? 11 : 12, t, { spacing: 2.2 });
+      x.fillStyle = "rgba(184,189,196,0.85)"; x.font = "500 11px 'IBM Plex Mono', monospace"; x.fillText(lab, cx + r * 0.72, cy - r * 0.5 * 0.72 - 6);
+    }
+    x.fillStyle = "rgba(115,122,131,0.9)"; x.fillText("orbit sizes from Kepler's third law; planet sizes exaggerated", 0, f.h - 6);
+  });
+
+  // funnel
+  const fc = document.getElementById("funnel"), st = document.getElementById("stages");
+  const fn = Z.funnel(fc, D, { onStage: i => [...st.children].forEach((li, j) => li.classList.toggle("on", j === i)), stage: Z.STILL || Z.reduce ? 5 : null });
+  st.innerHTML = fn.stages.map(s => `<li><b>${fmt(s.n)}</b><span>${s.label}</span></li>`).join("");
+  st.children[1].querySelector("span").textContent += ` (inverted-flux null: ${F.first_screen_inverted})`;
+  Z.loop(fc, fn.draw);
+  document.getElementById("kills").innerHTML = [
+    ["Thermal ramps after data gaps", "Four red-team rejections, and two more rejected without a formal review, were dips in the hours after Kepler's data downlinks or segment starts, lined up into a period by the gap spacing."],
+    ["Spacecraft glitches", "One was two single cadences: the first frame after an attitude tweak, and a pixel brightening that the photometry read as a dip."],
+    ["Light from other stars", "One came from a saturated neighbour's bleed column, one from a 12.5 %-deep eclipsing binary 5.6′ away on the same detector channel, and one from a background eclipsing binary 3.6″ from the target."]]
+    .map(k => `<div><b>${k[0]}</b><span>${k[1]}</span></div>`).join("");
+
+  // checklist
+  const done = (b, s) => `<div class="check"><div class="mark" aria-label="passed">✓</div><div><b>${b}</b><span>${s}</span></div></div>`;
+  const open = (b, s) => `<div class="check"><div class="mark open" aria-label="open">○</div><div><b>${b}</b><span>${s}</span></div></div>`;
+  document.getElementById("checks").innerHTML = [
+    done("Pre-registered search with a null", "Frozen target list and thresholds; inverted flux searched on every star."),
+    done("Stage-2 vetting", "Odd/even depths, half-phase dip, per-transit consistency, variability, duration."),
+    done("Light loss on the target's pixels", "Two independent χ² tests, per quarter and per season, both on target."),
+    done("No known object shares the ephemeris", "Period and timing checked against every KOI, threshold-crossing event and eclipsing binary in the Kepler field."),
+    done("Independent re-derivation", "A separate agent with no shared code recovered the period and depth."),
+    done("Red-team review", "Agents tasked with killing each signal found no false-positive mechanism."),
+    done("Transit shape fits the host", "Transit-derived density matches Gaia within 0.5 σ."),
+    done("FPP < 1.5 % and NFPP < 0.1 %", "TRICERATOPS with Gaia RUWE and imaging constraints: 0.63, 0.71 and 0.70 %."),
+    done("Human inspection of every plot", "Every vetting, pixel and fit plot inspected by the author, 17 October 2026."),
+    open("High-resolution imaging", "Speckle or adaptive optics inside 0.5″ on a 4–8 m telescope."),
+    open("Refereed publication", "The step that turns a candidate into a validated planet.")].join("");
+
+  document.getElementById("commit").textContent = D.generated_from_commit.slice(0, 10);
+  document.getElementById("cat-date").textContent = (CS[0].ephemeris.catalogues_utc || "").slice(0, 10);
+  Z.start();
+})();
+</script>

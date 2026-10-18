@@ -1,0 +1,18 @@
+[pipeline_P_29.433] P=29.43206 t0=172.6116 dur=3.00h depth=365+-48 ppm SNR=7.65 n_tr=32 odd/even 296/428 (1.4s) sec 17 (0.4s)
+   deepest event epoch 26 tc=937.845 depth 2935 ppm, 0.04 d from gap/edge; without it depth 293+-52 (SNR 5.62); without two deepest 185 (SNR 3.86)
+   per-year: Y1 808+-103 (7 tr), Y2 168+-102 (9 tr), Y3 370+-77 (13 tr), Y4 90+-145 (3 tr)
+   deep event: epoch 2 Q2 tc=231.476 depth=2133+-318 n_in=5 gap_dist=0.08 d
+   deep event: epoch 26 Q10 tc=937.845 depth=2935+-214 n_in=5 gap_dist=0.04 d
+[blind_top_P_44.148] P=44.14703 t0=187.3804 dur=5.50h depth=245+-46 ppm SNR=5.31 n_tr=20 odd/even 547/-41 (6.2s) sec 18 (0.4s)
+   deepest event epoch 1 tc=231.527 depth 2924 ppm, 0.13 d from gap/edge; without it depth 132+-45 (SNR 2.93); without two deepest 35 (SNR 0.79)
+   per-year: Y1 635+-109 (4 tr), Y2 163+-100 (7 tr), Y3 213+-72 (7 tr), Y4 -62+-140 (2 tr)
+   deep event: epoch 1 Q2 tc=231.527 depth=2924+-351 n_in=6 gap_dist=0.13 d
+   deep event: epoch 17 Q10 tc=937.880 depth=2099+-147 n_in=9 gap_dist=0.08 d
+raw normalised PSF flux around deep events (+-1.5 d, 6-h bins):
+   tc=231.527: n=84 pts in +-1.5 d; 6h-binned raw flux: +550 +421 -- -- -- -7757 -5676 -2731 -772 +550 +1678 +2246
+   tc=937.880: n=104 pts in +-1.5 d; 6h-binned raw flux: -1114 -1159 -1096 -- -- -1154 +1533 +2439 +2063 +2156 +2357 +2229
+sensitivity window=0.5 d masked_deep=False: top3 31.7982 d SDE 6.66 (None); 49.4205 d SDE 6.52 (None); 9.6911 d SDE 6.21 (None); SDE@29.433=3.66
+sensitivity window=2.0 d masked_deep=False: top3 2.9600 d SDE 6.81 (None); 45.9270 d SDE 6.77 (None); 47.4277 d SDE 6.63 (None); SDE@29.433=3.98
+sensitivity window=1.0 d masked_deep=True: top3 48.4723 d SDE 6.74 (None); 36.2024 d SDE 6.05 (None); 2.9601 d SDE 5.80 (None); SDE@29.433=3.45
+inverted-flux null blind BLS top3: 14.7139 d SDE 5.45 depth 189; 1.4712 d SDE 5.22 depth 37; 46.8094 d SDE 4.94 depth 209
+wrote /home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005866176/rederive/results_stage2.json in 95s

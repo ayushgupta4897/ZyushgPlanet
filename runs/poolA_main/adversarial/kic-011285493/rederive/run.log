@@ -1,0 +1,21 @@
+loaded 43401 q=0 cadences, baseline 1459.5 d, kept 43375 after 5-MAD clip, robust scatter 2196 ppm
+BLS grid: 285480 periods, 8 durations
+BLS done in 111 s
+top peak: P=10.79001 d  t0=131.5949  dur=3.96 h  depth=768 ppm  SDE=19.3 (raw 13.6)
+  peak {'period_d': 10.790007097472685, 'sde': 19.252920343706208, 'power': 48.83586847285317, 'depth_ppm': 767.8596066050512, 'duration_h': 3.96, 't0_bkjd': 131.5949436779879, 'alias_of_pipeline_P': '1x'}
+  peak {'period_d': 5.395697924791104, 'sde': 15.419954610655475, 'power': 39.868515556653, 'depth_ppm': 497.43523432090706, 'duration_h': 3.96, 't0_bkjd': 136.87494367798791, 'alias_of_pipeline_P': '1/2x'}
+  peak {'period_d': 3.5964814636166134, 'sde': 13.098014294198878, 'power': 34.587506295625765, 'depth_ppm': 304.35221937601887, 'duration_h': 6.0, 't0_bkjd': 131.6374436779879, 'alias_of_pipeline_P': '1/3x'}
+refined: P=10.790158 d  t0=843.73888 BKJD  dur_bls=3.65 h
+trapezoid: depth=891 ppm T14=5.91 h T23=2.41 h dt0=-14.7 min
+box depth 649 +- 90 ppm (empirical, 3000 random phases)  SNR=7.2  n_in=996
+formal error 73 ppm (white-noise)
+secondary @0.5: 109 ppm (1.2 sigma, n=970); deepest off-transit box 247 ppm at phase +0.455
+odd 593+-127 (n=497)  even 702+-127 (n=499)  -> 0.61 sigma
+  Y1 Q1-Q4: 694 +- 162 ppm (n_in=305)
+  Y2 Q5-Q8: 842 +- 173 ppm (n_in=268)
+  Y3 Q9-Q12: 710 +- 192 ppm (n_in=219)
+  Y4 Q13-Q17: 254 +- 199 ppm (n_in=204)
+transits with data: 98, with >=50% coverage: 90 (expected 136 in baseline); strongest event epoch -61 depth 5036+-733; depth without it 598 ppm; dominance 0.06992010900538309
+SAP depth 302 +- 51 ppm; PSF depth 649; ratio SAP/PSF = 0.47; median PSF/SAP flux = 0.450
+inverted null: top SDE 11.0 at P=46.1754 (108 s)
+wrote /home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-011285493/rederive/results.json  (229 s)

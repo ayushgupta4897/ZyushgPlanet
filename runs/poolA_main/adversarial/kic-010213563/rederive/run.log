@@ -1,0 +1,78 @@
+/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/numpy/_core/fromnumeric.py:3862: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+[load] N quality==0: 59999  kept after detrend/clip: 59688  baseline 131.51-1591.00 BKJD (1459.5 d)
+[noise] per-cadence robust scatter of flattened PSF flux: 1370 ppm; median quoted error 1481 ppm
+[bls] 342574 trial periods, 6 durations
+[bls] real done in 149 s
+[bls] top peaks (raw power): P=36.76774 pow=271.6; P=18.38355 pow=120.5; P=7.35342 pow=66.7
+[bls] top peaks (median-detrended SDE): P=36.76774 SDE=78.31; P=18.38355 SDE=33.58; P=7.35342 SDE=17.97
+[bls] raw SDE of top peak = 70.74
+[bls] best: P=36.76774 t0=164.8420 dur=5.76 h depth=1734 ppm
+[bls] top peak vs pipeline 36.7671: alias ratio = 1/1
+[bls] inverted done in 149 s
+[bls] inverted top peaks (detrended SDE): P=36.76648 SDE=14.21; P=1.71041 SDE=14.20; P=5.66857 SDE=10.62
+[refine] P=36.76719 t0=164.8510 dur=5.04 h depth=1874 ppm
+/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/numpy/_core/fromnumeric.py:3862: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+[refine] masked re-detrend kept 59691 points
+[refine] box-SNR duration scan: dur=5.04 h, t0 shift 0.0 min
+[depth] PSF box depth = 2325 +- 123 ppm (random-phase MAD; std 128); n_in=343; empirical SNR=18.9; random-box mean -9 ppm
+[secondary] phase-0.5 box depth = -225 ppm (-1.82 sigma), n_in=343
+[events] 39 epochs in span, 35 with >=50% in-transit coverage
+   epoch   0 tmid   164.851 n_in  9 frac 0.88 depth    2941 +-   589 ppm  gap_dist 0.13 d
+   epoch   1 tmid   201.618 n_in 10 frac 0.97 depth    3021 +-   642 ppm  gap_dist 16.87 d
+   epoch   2 tmid   238.385 n_in  9 frac 0.88 depth    2419 +-   570 ppm  gap_dist 6.66 d
+   epoch   3 tmid   275.153 n_in  9 frac 0.88 depth    3028 +-   394 ppm  gap_dist 5.36 d
+   epoch   4 tmid   311.920 n_in 11 frac 1.07 depth    3602 +-   486 ppm  gap_dist 9.52 d
+   epoch   5 tmid   348.687 n_in  8 frac 0.78 depth    2391 +-   472 ppm  gap_dist 0.81 d
+   epoch   6 tmid   385.454 n_in 10 frac 0.97 depth    1160 +-   537 ppm  gap_dist 1.14 d
+   epoch   7 tmid   422.221 n_in 10 frac 0.97 depth    1615 +-   388 ppm  gap_dist 19.98 d
+   epoch   8 tmid   458.989 n_in  9 frac 0.88 depth    2741 +-   430 ppm  gap_dist 15.07 d
+   epoch   9 tmid   495.756 n_in  9 frac 0.88 depth    1881 +-   337 ppm  gap_dist 8.14 d
+   epoch  10 tmid   532.523 n_in 11 frac 1.07 depth    1377 +-   540 ppm  gap_dist 5.09 d
+   epoch  11 tmid   569.290 n_in 10 frac 0.97 depth    2735 +-   456 ppm  gap_dist 1.89 d
+   epoch  12 tmid   606.057 n_in 10 frac 0.97 depth    2338 +-   422 ppm  gap_dist 6.84 d
+   epoch  13 tmid   642.824 n_in  9 frac 0.88 depth    2404 +-   418 ppm  gap_dist 7.58 d
+   epoch  14 tmid   679.592 n_in  9 frac 0.88 depth    2251 +-   505 ppm  gap_dist 10.64 d
+   epoch  15 tmid   716.359 n_in 11 frac 1.07 depth    2339 +-   459 ppm  gap_dist 3.19 d
+   epoch  16 tmid   753.126 n_in  6 frac 0.58 depth    2541 +-   556 ppm  gap_dist 7.92 d
+   epoch  17 tmid   789.893 n_in  9 frac 0.88 depth    1930 +-   351 ppm  gap_dist 12.45 d
+   epoch  18 tmid   826.660 n_in 10 frac 0.97 depth    2125 +-   445 ppm  gap_dist 18.14 d
+   epoch  19 tmid   863.428 n_in 10 frac 0.97 depth    2619 +-   345 ppm  gap_dist 10.68 d
+   epoch  20 tmid   900.195 n_in 10 frac 0.97 depth    2256 +-   356 ppm  gap_dist 5.73 d
+   epoch  21 tmid   936.962 n_in  5 frac 0.49 depth    1381 +-   562 ppm  gap_dist 0.02 d
+   epoch  22 tmid   973.729 n_in 10 frac 0.97 depth    2256 +-   505 ppm  gap_dist 3.64 d
+   epoch  23 tmid  1010.496 n_in 10 frac 0.97 depth    1945 +-   519 ppm  gap_dist 1.24 d
+   epoch  24 tmid  1047.264 n_in 10 frac 0.97 depth    2216 +-   552 ppm  gap_dist 14.20 d
+   epoch  25 tmid  1084.031 n_in  9 frac 0.88 depth    3077 +-   461 ppm  gap_dist 9.55 d
+   epoch  26 tmid  1120.798 n_in 10 frac 0.97 depth    1890 +-   360 ppm  gap_dist 0.47 d
+   epoch  27 tmid  1157.565 n_in 10 frac 0.97 depth    3143 +-   427 ppm  gap_dist 2.60 d
+   epoch  28 tmid  1194.332 n_in 10 frac 0.97 depth    2464 +-   456 ppm  gap_dist 6.38 d
+   epoch  29 tmid  1231.100 n_in 10 frac 0.97 depth    1621 +-   341 ppm  gap_dist 13.82 d
+   epoch  30 tmid  1267.867 n_in 10 frac 0.97 depth    2797 +-   364 ppm  gap_dist 5.19 d
+   epoch  31 tmid  1304.634 n_in 10 frac 0.97 depth    2959 +-   388 ppm  gap_dist 0.36 d
+   epoch  32 tmid  1341.401 n_in  9 frac 0.88 depth    1024 +-   461 ppm  gap_dist 4.20 d
+   epoch  33 tmid  1378.168 n_in 10 frac 0.97 depth    1836 +-   531 ppm  gap_dist 4.68 d
+   epoch  34 tmid  1414.936 n_in  0 frac 0.00 depth      -1 +-    -1 ppm  gap_dist 2.13 d
+   epoch  35 tmid  1451.703 n_in 11 frac 1.07 depth    2239 +-   472 ppm  gap_dist 15.44 d
+   epoch  36 tmid  1488.470 n_in  0 frac 0.00 depth      -1 +-    -1 ppm  gap_dist 0.22 d
+   epoch  37 tmid  1525.237 n_in  0 frac 0.00 depth      -1 +-    -1 ppm  gap_dist 0.28 d
+   epoch  38 tmid  1562.004 n_in 10 frac 0.97 depth    2423 +-   305 ppm  gap_dist 2.78 d
+[events] weighted mean of per-event depths = 2319 +- 73 ppm (n=35)
+[odd/even] odd 2349+-101 (n=17)  even 2287+-105 (n=18)  -> 0.42 sigma
+[odd/even] box: odd 2389+-134  even 2262+-160 -> 0.61 sigma
+[year 1] depth 2549 +- 296 ppm  n_in=76  events=8
+[year 2] depth 2189 +- 203 ppm  n_in=93  events=10
+[year 3] depth 2332 +- 191 ppm  n_in=94  events=9
+[year 4] depth 2268 +- 174 ppm  n_in=80  events=8
+[depth] with unmasked 1-d running median: 2107 ppm (masked: 2325)
+[SAP] scatter 770 ppm; SAP box depth = 1170 +- 78 ppm (SNR 15.0); SAP/PSF = 0.50 +- 0.04
+[SAP] median(SAP_FLUX)/median(PSF FLUX) per quarter: min 1.79 med 1.79 max 1.80
+[SAP] if the dip is on the target and the aperture holds flfrcsap=0.8577 of its PSF flux, expected SAP/PSF depth ratio ~ 0.48 (KBONUS crowdsap in CSV: 0.8307)
+[SAP] weighted per-event mean depth 1163 +- 42 ppm
+[fig] wrote fold.png
+[done] 318 s; results.json written

@@ -1,0 +1,120 @@
+[run] 2026-10-17T11:59:36Z args={'gaia': '2103792461826460288', 'ra': 285.907827, 'dec': 40.941988, 'neighbour': '2103792427466721792', 'out': 'runs/kic5689121', 'quality': 'hard', 'min_psffrac': 0.0, 'window': None, 'clip_sigma': 4.0, 'bls_pmin': 1.0, 'bls_pmax': 60.0, 'bls_oversample': 3.0, 'tls_pmin': 1.0, 'tls_pmax': 30.0, 'tls_osf': 3, 'tls_dgs': 1.1, 'threads': 3, 'no_tls': False, 'no_tls_null': False, 'tls_neighbour': False, 'compare_period': 13.769448251, 'compare_t0_bjd': 2455630.2454306, 'compare_duration_h': 2.3}
+[fetch] cached /home/user/ZyushgPlanet/data/kbonus/2103792461826460288/hlsp_kbonus-bkg_kepler_kepler_kic-005689121_kepler_v1.0_lc.fits
+[fetch] /home/user/ZyushgPlanet/data/kbonus/2103792461826460288/hlsp_kbonus-bkg_kepler_kepler_kic-005689121_kepler_v1.0_lc.fits
+   HDU  0 PRIMARY                PrimaryHDU     None
+   HDU  1 LIGHTCURVE_STITCHED    BinTableHDU    50182
+   HDU  2 LIGHTCURVE_Q1          BinTableHDU    1624
+   HDU  3 APERTURE_Q1            ImageHDU       [4, 5]
+   HDU  4 LIGHTCURVE_Q2          BinTableHDU    4081
+   HDU  5 APERTURE_Q2            ImageHDU       [4, 5]
+   HDU  6 LIGHTCURVE_Q3          BinTableHDU    4135
+   HDU  7 APERTURE_Q3            ImageHDU       [5, 5]
+   HDU  8 LIGHTCURVE_Q4          BinTableHDU    4110
+   HDU  9 APERTURE_Q4            ImageHDU       [4, 5]
+   HDU 10 LIGHTCURVE_Q6          BinTableHDU    4272
+   HDU 11 APERTURE_Q6            ImageHDU       [4, 5]
+   HDU 12 LIGHTCURVE_Q7          BinTableHDU    4227
+   HDU 13 APERTURE_Q7            ImageHDU       [5, 5]
+   HDU 14 LIGHTCURVE_Q8          BinTableHDU    3107
+   HDU 15 APERTURE_Q8            ImageHDU       [4, 5]
+   HDU 16 LIGHTCURVE_Q10         BinTableHDU    4442
+   HDU 17 APERTURE_Q10           ImageHDU       [4, 5]
+   HDU 18 LIGHTCURVE_Q11         BinTableHDU    4474
+   HDU 19 APERTURE_Q11           ImageHDU       [5, 5]
+   HDU 20 LIGHTCURVE_Q12         BinTableHDU    3887
+   HDU 21 APERTURE_Q12           ImageHDU       [4, 5]
+   HDU 22 LIGHTCURVE_Q14         BinTableHDU    4270
+   HDU 23 APERTURE_Q14           ImageHDU       [4, 5]
+   HDU 24 LIGHTCURVE_Q15         BinTableHDU    4367
+   HDU 25 APERTURE_Q15           ImageHDU       [5, 5]
+   HDU 26 LIGHTCURVE_Q16         BinTableHDU    3535
+   HDU 27 APERTURE_Q16           ImageHDU       [4, 5]
+   PRIMARY: {"OBJECT": "KIC 5689121", "KEPLERID": 5689121, "GAIAID": "Gaia DR3 2103792461826460288", "TPFORG": 5689116, "RA_OBJ": 285.9078361543101, "DEC_OBJ": 40.94198476904723, "KEPMAG": 16.3320007324219, "GMAG": 16.28241348266602, "BPMAG": 17.42299842834473, "RPMAG": 15.22890281677246, "PARALLAX": 3.40648182595345, "PMRA": -0.00540189635732881, "PMDEC": 0.002847874935832652, "XPOSURE": 1765.464, "TIMESYS": "TDB", "MJD-BEG": 54953.03907252848, "MJD-END": 56423.50139254052, "QDETECT": "011110111011101110", "HLSPVER": "V1.0", "VERSION": "1.1.2", "PROCVER": "2.0.9", "DOI": "10.17909/7jbr-w430", "APERTURE": "PSF + SAP", "DATE": "2022-07-25"}
+   TIME unit: BJD - 2454833 | TIMESYS: TDB | => BJD_TDB = TIME + 2454833.0
+   stitched columns: ['TIME', 'CADENCENO', 'QUARTER', 'FLUX', 'FLUX_ERR', 'SAP_FLUX', 'SAP_FLUX_ERR', 'PSF_FLAT_FLUX', 'PSF_FLAT_FLUX_ERR', 'SAP_QUALITY', 'FLATTEN_MASK']
+   per-quarter columns: ['CADENCENO', 'TIME', 'FLUX', 'FLUX_ERR', 'SAP_FLUX', 'SAP_FLUX_ERR', 'CENTROID_COLUMN', 'CENTROID_ROW', 'SAP_QUALITY', 'SAP_BKG', 'RED_CHI2', 'PSF_FLUX_NOVA', 'PSF_FLUX_ERR_NOVA']
+   SAP_QUALITY values seen: [0, 16, 128, 144, 1024, 2048, 2176, 2192, 8192, 8208, 8320, 8336, 262144, 262160, 262272, 262288, 270336, 270464, 393216, 393344]
+   Q   n   q0   PSFFRAC CROWDSAP FLFRCSAP NPIX  medPSF  medSAP  tmin  tmax
+    1  1624  1450 0.815  0.813   0.913   6   4126.1  5069.7   131.5   165.0
+    2  4081  3690 0.685  0.748   0.955   7   4307.9  7501.3   169.5   258.5
+    3  4135  3876 0.871  0.906   0.889   5   3684.4  3665.4   260.2   349.5
+    4  4110  3844 0.799  0.891   0.884   4   4147.0  3581.1   352.4   442.2
+    6  4272  3976 0.676  0.747   0.953   7   4193.3  7251.2   539.5   629.3
+    7  4227  3931 0.866  0.798   0.942   6   3712.0  5324.9   630.2   719.5
+    8  3107  2956 0.797  0.897   0.889   4   4169.4  3580.0   735.4   802.3
+   10  4442  3950 0.673  0.867   0.741   4   4130.7  3158.7   906.8  1000.3
+   11  4474  3884 0.862  0.906   0.887   5   3657.9  3643.6  1001.2  1098.3
+   12  3887  3267 0.827  0.884   0.782   3   4087.8  3314.8  1099.4  1182.0
+   14  4270  4051 0.666  0.748   0.951   7   4179.3  7114.7  1274.1  1371.3
+   15  4367  4213 0.859  0.906   0.885   5   3596.1  3622.9  1373.5  1471.1
+   16  3535  3435 0.802  0.960   0.688   2   4033.5  2707.7  1472.1  1558.0
+[prep] Q 1:  1450/ 1624 cadences kept (quality=hard), median PSF flux   4126.1 e-/s, PSFFRAC 0.815, CROWDSAP 0.813
+[prep] Q 2:  3690/ 4081 cadences kept (quality=hard), median PSF flux   4308.9 e-/s, PSFFRAC 0.685, CROWDSAP 0.748
+[prep] Q 3:  3876/ 4135 cadences kept (quality=hard), median PSF flux   3684.5 e-/s, PSFFRAC 0.871, CROWDSAP 0.906
+[prep] Q 4:  3844/ 4110 cadences kept (quality=hard), median PSF flux   4147.7 e-/s, PSFFRAC 0.799, CROWDSAP 0.891
+[prep] Q 6:  3976/ 4272 cadences kept (quality=hard), median PSF flux   4193.6 e-/s, PSFFRAC 0.676, CROWDSAP 0.747
+[prep] Q 7:  3931/ 4227 cadences kept (quality=hard), median PSF flux   3711.1 e-/s, PSFFRAC 0.866, CROWDSAP 0.798
+[prep] Q 8:  2956/ 3107 cadences kept (quality=hard), median PSF flux   4170.8 e-/s, PSFFRAC 0.797, CROWDSAP 0.897
+[prep] Q10:  3950/ 4442 cadences kept (quality=hard), median PSF flux   4131.1 e-/s, PSFFRAC 0.673, CROWDSAP 0.867
+[prep] Q11:  3884/ 4474 cadences kept (quality=hard), median PSF flux   3656.0 e-/s, PSFFRAC 0.862, CROWDSAP 0.906
+[prep] Q12:  3267/ 3887 cadences kept (quality=hard), median PSF flux   4085.2 e-/s, PSFFRAC 0.827, CROWDSAP 0.884
+[prep] Q14:  4051/ 4270 cadences kept (quality=hard), median PSF flux   4178.3 e-/s, PSFFRAC 0.666, CROWDSAP 0.748
+[prep] Q15:  4213/ 4367 cadences kept (quality=hard), median PSF flux   3595.9 e-/s, PSFFRAC 0.859, CROWDSAP 0.906
+[prep] Q16:  3435/ 3535 cadences kept (quality=hard), median PSF flux   4033.5 e-/s, PSFFRAC 0.802, CROWDSAP 0.960
+[prep] wotan biweight window=0.496 d (11.9 h), break_tolerance=0.5 d, masked points=0; 0 NaN points dropped
+[prep] upward-only clip at +4.0 x 964 ppm: removed 432 points (no downward clipping)
+[prep] N=46091 points in 13 quarters, baseline 1426.4 d; std 1031 ppm, robust sigma 952 ppm, point-to-point 962 ppm; 6-h CDPP-like: binned 259 ppm, lightkurve 263.29724247626774 ppm, white-noise expectation 278 ppm
+[bls] 210253 periods x 8 durations in 134.7s; best P=13.769435 d power=35.25 SDE=33.21
+[bls] refined: P=13.769407 d T0=136.31283 BKJD dur=2.00 h depth=1685+/-48 ppm (+1.2s)
+Transit Least Squares TLS 2.0.1 (11 Oct 2026)
+Creating model cache for 32 durations
+Searching 46091 data points, 180849 periods from 1.0 to 30.0 days
+Using 3 of 4 CPU threads
+[tls] 180849 periods (1.0-30.0 d, osf=3) in 205.6s with 3 threads; P=13.769643 d SDE=127.14 SNR=25.50 depth=1600 ppm dur=1.65 h T0=136.30431 BKJD transits=104 distinct=74
+[pass1] box depth on blind-detrended LC: 1631 +/- 64 ppm (biased low by in-transit trend pull)
+[prep] Q 1:  1450/ 1624 cadences kept (quality=hard), median PSF flux   4126.1 e-/s, PSFFRAC 0.815, CROWDSAP 0.813
+[prep] Q 2:  3690/ 4081 cadences kept (quality=hard), median PSF flux   4308.9 e-/s, PSFFRAC 0.685, CROWDSAP 0.748
+[prep] Q 3:  3876/ 4135 cadences kept (quality=hard), median PSF flux   3684.5 e-/s, PSFFRAC 0.871, CROWDSAP 0.906
+[prep] Q 4:  3844/ 4110 cadences kept (quality=hard), median PSF flux   4147.7 e-/s, PSFFRAC 0.799, CROWDSAP 0.891
+[prep] Q 6:  3976/ 4272 cadences kept (quality=hard), median PSF flux   4193.6 e-/s, PSFFRAC 0.676, CROWDSAP 0.747
+[prep] Q 7:  3931/ 4227 cadences kept (quality=hard), median PSF flux   3711.1 e-/s, PSFFRAC 0.866, CROWDSAP 0.798
+[prep] Q 8:  2956/ 3107 cadences kept (quality=hard), median PSF flux   4170.8 e-/s, PSFFRAC 0.797, CROWDSAP 0.897
+[prep] Q10:  3950/ 4442 cadences kept (quality=hard), median PSF flux   4131.1 e-/s, PSFFRAC 0.673, CROWDSAP 0.867
+[prep] Q11:  3884/ 4474 cadences kept (quality=hard), median PSF flux   3656.0 e-/s, PSFFRAC 0.862, CROWDSAP 0.906
+[prep] Q12:  3267/ 3887 cadences kept (quality=hard), median PSF flux   4085.2 e-/s, PSFFRAC 0.827, CROWDSAP 0.884
+[prep] Q14:  4051/ 4270 cadences kept (quality=hard), median PSF flux   4178.3 e-/s, PSFFRAC 0.666, CROWDSAP 0.748
+[prep] Q15:  4213/ 4367 cadences kept (quality=hard), median PSF flux   3595.9 e-/s, PSFFRAC 0.859, CROWDSAP 0.906
+[prep] Q16:  3435/ 3535 cadences kept (quality=hard), median PSF flux   4033.5 e-/s, PSFFRAC 0.802, CROWDSAP 0.960
+[prep] wotan biweight window=0.496 d (11.9 h), break_tolerance=0.5 d, masked points=418; 0 NaN points dropped
+[prep] upward-only clip at +4.0 x 964 ppm: removed 431 points (no downward clipping)
+[bls-refine] P=13.769616 d T0=136.30241 BKJD dur=2.30 h depth=1932+/-45 ppm (SNR 43.0); odd 1935 even 1929; phase0.5 -27+/-45 ppm; 74 transits with data
+[vet] box depth 1916 +/- 68 ppm; odd 1895+/-104, even 1936+/-84 ppm (-0.31 sigma); secondary @0.5 -90+/-54 ppm; max other dip 2.5 sigma at phase -0.015; events 73 (72 positive); empirical SNR 31.3 (random-phase std 61 ppm)
+[bls] 210253 periods x 8 durations in 163.9s; best P=48.270651 d power=9.40 SDE=5.15
+Transit Least Squares TLS 2.0.1 (11 Oct 2026)
+Creating model cache for 32 durations
+Searching 46092 data points, 180849 periods from 1.0 to 30.0 days
+Using 3 of 4 CPU threads
+[tls] 180849 periods (1.0-30.0 d, osf=3) in 164.5s with 3 threads; P=5.379210 d SDE=8.18 SNR=5.28 depth=244 ppm dur=1.67 h T0=131.61953 BKJD transits=266 distinct=192
+[null] inverted BLS best P=48.2707 d power=9.40 SDE=5.15; inverted TLS best P=5.3792 SDE=8.18 SNR=5.28
+[compare] dP = 14.47 s (12.2 ppm); T0 offset at epoch 3 (mid-baseline): -1.4 min; depth at reference ephemeris (2.3 h box): 1879 +/- 69 ppm
+[fetch] cached /home/user/ZyushgPlanet/data/kbonus/2103792427466721792/hlsp_kbonus-bkg_kepler_kepler_kic-005689116_kepler_v1.0_lc.fits
+[prep] Q 1:  1450/ 1624 cadences kept (quality=hard), median PSF flux   8878.8 e-/s, PSFFRAC 0.921, CROWDSAP 0.906
+[prep] Q 2:  3690/ 4081 cadences kept (quality=hard), median PSF flux   8423.4 e-/s, PSFFRAC 0.872, CROWDSAP 0.817
+[prep] Q 3:  3876/ 4135 cadences kept (quality=hard), median PSF flux   9174.9 e-/s, PSFFRAC 0.916, CROWDSAP 0.927
+[prep] Q 4:  3844/ 4110 cadences kept (quality=hard), median PSF flux   8856.5 e-/s, PSFFRAC 0.921, CROWDSAP 0.949
+[prep] Q 6:  3976/ 4272 cadences kept (quality=hard), median PSF flux   8562.3 e-/s, PSFFRAC 0.855, CROWDSAP 0.864
+[prep] Q 7:  3931/ 4227 cadences kept (quality=hard), median PSF flux   9120.3 e-/s, PSFFRAC 0.912, CROWDSAP 0.922
+[prep] Q 8:  2956/ 3107 cadences kept (quality=hard), median PSF flux   8709.8 e-/s, PSFFRAC 0.923, CROWDSAP 0.945
+[prep] Q10:  3950/ 4442 cadences kept (quality=hard), median PSF flux   8629.9 e-/s, PSFFRAC 0.853, CROWDSAP 0.866
+[prep] Q11:  3884/ 4474 cadences kept (quality=hard), median PSF flux   9087.4 e-/s, PSFFRAC 0.908, CROWDSAP 0.928
+[prep] Q12:  3267/ 3887 cadences kept (quality=hard), median PSF flux   8687.4 e-/s, PSFFRAC 0.921, CROWDSAP 0.860
+[prep] Q14:  4051/ 4270 cadences kept (quality=hard), median PSF flux   8360.1 e-/s, PSFFRAC 0.850, CROWDSAP 0.861
+[prep] Q15:  4213/ 4367 cadences kept (quality=hard), median PSF flux   8918.3 e-/s, PSFFRAC 0.907, CROWDSAP 0.927
+[prep] Q16:  3435/ 3535 cadences kept (quality=hard), median PSF flux   8450.5 e-/s, PSFFRAC 0.917, CROWDSAP 0.944
+[prep] wotan biweight window=0.496 d (11.9 h), break_tolerance=0.5 d, masked points=0; 0 NaN points dropped
+[prep] upward-only clip at +4.0 x 455 ppm: removed 78 points (no downward clipping)
+[prep] N=46445 points in 13 quarters, baseline 1426.4 d; std 483 ppm, robust sigma 454 ppm, point-to-point 479 ppm; 6-h CDPP-like: binned 110 ppm, lightkurve 104.97961297186478 ppm, white-noise expectation 138 ppm
+[bls] 210253 periods x 8 durations in 126.6s; best P=50.576270 d power=8.37 SDE=6.32
+[bls] refined: P=50.576168 d T0=165.71491 BKJD dur=1.30 h depth=501+/-62 ppm (+3.1s)
+[neighbour] own best BLS P=50.5762 d power=8.37 SDE=6.32; depth at target ephemeris -31 +/- 28 ppm (would need ~913 ppm to host the signal)
+[run] done in 13.8 min -> runs/kic5689121/results.json

@@ -1,0 +1,36 @@
+{
+ "fname": "kic-006367225",
+ "verdict": "kill",
+ "most_likely_explanation": "Background eclipsing binary on the unmodelled Gaia DR3 2077645628637721728 (G=20.49, 3.6 arcsec north of the target). Own WCS-calibrated difference-image localisation on the 17 KIC 6367220 TPFs puts the stacked 12.972-d deficit 3.15 +/- 0.27 arcsec (11.6 sigma) from the target and 0.66 arcsec (2.4 sigma) from the G=20.5 star, with summed fixed-position chi2 1200 (target) vs 351 (neighbour), delta chi2 849; injection controls at both positions show the method separates the two stars in either direction, and phase-shifted nulls show no deficit. The absolute deficit is ~2.8 e/s in every season, which is ~4 percent on the G=20.5 star; V-shaped (T23/T14=0.27) with T14 4.4 h, incompatible with a k=0.044 planet on the nominal host. The pipeline's 1000-7000 ppm per-season PSF depths are 1/(flux the KBONUS PSF model assigns to the target), which varies 0.25x-1.9x by module; no number in the evidence pack is an on-target depth.",
+ "kill_reasons": [
+  "Pixel localisation (own code, pixel_own.json): combined deficit 3.15 +/- 0.27 arcsec from the target (11.6 sigma) and 0.66 arcsec from the G=20.5 Gaia source; per-quarter chi2 147/26 at target vs 18/26 at neighbour; summed fixed-position chi2 target 1200 vs G20.5 351 (delta 849); offset is sky-fixed across three seasons and points north (toward the neighbour), not toward the bright star or stamp interior.",
+  "Method controls (pixel_tests.json): injected 2.8 e/s deficit at the target recovered 0.47 +/- 0.17 arcsec from it with delta chi2 375 favouring the target; injection at G20.5 recovered 1.25 arcsec from it with delta chi2 449 favouring G20.5; phase-shifted nulls (+0.5P, +0.25P) give median peak SNR 1.9 and no preferred position. The real signal is on the neighbour, not an artefact of the method.",
+  "Flux bookkeeping (lc_checks.json): fractional PSF depth by module 700/973/1691/6055 ppm (chi2 43/3) tracks 1/(raw PSF flux assigned to target: 1.1x, 1.7x, 0.7x, 0.27x expected); absolute PSF deficit ~2 e/s constant (chi2 8.6/3); SAP absolute deficit 0.8-2.9 e/s varies with aperture size, i.e. the source sits at the aperture edge where the neighbour is. Maximum captured deficit 2.9 e/s = ~4 percent on a G=20.5 star.",
+  "Shape: V-shaped (T23/T14=0.27) with T14=4.4 h; for the nominal host (a/Rs=28.6) a k=0.044 planet gives T23/T14=0.92 and T14<=3.6 h; T23/T14=0.27 requires b>=0.95 (which shortens T14 to <2 h) or a stellar-size companion.",
+  "Pipeline's own pixel.json already had the deficit closer to the target than to any other Gaia source in only 2/14 quarters and the Gaussian-at-G20.5 chi2 beating Gaussian-at-target by 20-70 in the high-SNR quarters; its pass hinged on a target-vs-bright-star test that never considered the faint neighbour."
+ ],
+ "surviving_strengths": [
+  "The 12.972-d periodic deficit is astrophysical and real: blind recovery in two independent re-derivations (SDE 31 own grid; pipeline BLS/TLS), 87-88 percent of ~100 individual events positive, clean odd/even (0.8-0.9 sigma), no secondary, no gap or step correlation, no rotation alias (LS peak 0.76 d, no power at P or harmonics), inverted-flux null SDE 9.5.",
+  "No ephemeris-contamination source: no KOI/TCE/EB/confirmed planet within 3 arcmin at P or harmonics; nearest field match KOI-1798.01 (KIC 6867766, EB, P=12.9647 d, 39 arcmin) excluded by fold at its ephemeris (213 +/- 158 ppm) and by 4.5-sigma period mismatch (0.77 d drift over the baseline).",
+  "Not previously reported: not in KOI/TCE/Kepler EB/confirmed lists, not among the 7 Bienias & Szabo 2025 hosts (Appendix A PDF checked by ID), not BOI-1.01, nothing in SIMBAD within 60 arcsec. Irrelevant for a planet claim, but the G=20.5 star is a new faint EB candidate if anyone cares."
+ ],
+ "checks_run": [
+  "Read vet.json, events.csv, fold_events.png, pixel.json (all 17 quarters tabulated), diffimages.png, re-derivation JSONs and figure",
+  "Own WCS-calibrated difference-image localisation on 17 KIC 6367220 TPFs with per-event local OOT windows, step exclusion, bootstrap centroid errors, fixed-position chi2 for 4 Gaia sources, combined sky position (pixel_own.py/json/png)",
+  "Method controls: phase-shifted nulls (+0.5P, +0.25P) and 2.8 e/s Gaussian injections at the target and at the G=20.5 star (pixel_tests.py/json)",
+  "Per-quarter and per-module box depths in PSF and SAP flux from KBONUS per-quarter extensions, converted to absolute e/s deficit using raw un-stitched medians; chi2 of constancy (lc_checks.py/json)",
+  "Per-event depth by module from events.csv; gap-proximity correlation; quarter-edge counts",
+  "Lomb-Scargle 0.1-50 d on out-of-transit detrended flux; power at P, P/2, 2P, P/3",
+  "Fold at KOI-1798.01 exact ephemeris and phase scan at its period",
+  "Transit duration and T23/T14 vs host density (Rstar 0.879, logg 4.655) for k=0.044 and grazing geometries",
+  "Catalogue match (data/known, downloaded 2026-10-17): KOI cumulative, DR25 TCE, Kepler EB (Kirk+2016 joined to keplerstellar coordinates), confirmed planets; period tolerance 0.2 percent at P, P/2, 2P, P/3, 3P; spatial 3 arcmin; keplerstellar 1 arcmin",
+  "KBONUS per-quarter headers: SEASON/MODULE/OUTPUT/CHANNEL per quarter",
+  "Bienias & Szabo 2025 Appendix A PDF (Zenodo 14618891, sha256 c9edf3a3...) searched for KIC/Gaia IDs",
+  "SIMBAD cone 15 and 60 arcsec",
+  "Zenodo record listings for Bienias & Szabo appendices"
+ ],
+ "what_would_settle_it": [
+  "A PRF forward-model fit of the per-season difference images with both the target and Gaia DR3 2077645628637721728 as free sources; the verdict is overturned only if the deficit lands within ~1 arcsec of the target at >3 sigma in at least two seasons with fixed-position chi2 preferring the target (the injection test shows this outcome is detectable).",
+  "Optional confirmation of the EB interpretation: fold the per-pixel flux of the single pixel nearest the G=20.5 star at P=12.9715 d and 2P and look for a secondary or odd/even difference at the ~0.3 percent level in the neighbour's own units; or ground-based/TESS photometry is hopeless at G=20.5, so this stays a pixel-level question."
+ ]
+}

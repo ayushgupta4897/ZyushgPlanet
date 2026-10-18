@@ -1,0 +1,37 @@
+{
+ "fname": "kic-005950408",
+ "verdict": "kill",
+ "most_likely_explanation": "A PSF-photometry artefact of CCD channel 25 (module 9 output 1, season 3) caused by the saturated Kp 8.45 red giant KIC 5950394 (BD+41 3275) 30.6 arcsec away, whose target-pixel file the target lives in. In Q1/Q5/Q13 the target's 4-px KBONUS aperture sits 1.2-2.2 px from the giant's bleed columns, collects 8,500-10,900 e/s against the target's own ~5,100-5,400 e/s, and the PSF fit has reduced chi2 5e5-2e6. The 4104-ppm box depth is carried by six cadences (epochs 0, 10, 18, 29; all channel 25) inside multi-hour 2-6 percent excursions, two of them the last cadences of Q5 and two on the Q13 end-of-quarter flux collapse; in the host TPF the whole stamp loses no light at those times (flat to a few hundred ppm) while the aperture content sloshes by +/-10 percent as the giant's wing moves. Without channel 25 nothing remains (random-ephemeris maximum 621 ppm over 30,000 trials; pipeline period ranks 114,626th in the re-derivation). Independently, a 0.75-h, 4100-ppm box at P = 38.6 d on a 0.91 Rsun dwarf is unphysical for any planet (requires b = 1.05).",
+ "kill_reasons": [
+  "All of the depth is six cadences on channel 25: dropping cadences below -1 percent leaves 53 ppm (0.75-h box) / 17 ppm (0.9-h box); median in-box depth 468 / 445 ppm vs mean 4980 / 4095 ppm; in-box std 13,065 ppm, so the depth is ~2.5 sigma formally (pipeline's own formal error 1578 ppm against its quoted empirical SNR 10.6).",
+  "Per-season depth: season 3 (channel 25) 13,559 ppm from 15 cadences; seasons 0/1/2 give -242 / +287 / +710 ppm; 27 of 31 epochs with data lie within +/-2,400 ppm of zero.",
+  "Dropout census: channel 25 has 425 of 13,169 cadences below -1 percent and 374 above +1 percent; channels 17, 57 and 65 have zero of 36,640 below -1 percent.",
+  "Pixel level on the host TPF (Q1, Q5, Q13): whole-stamp flux is flat (+61 to +309 ppm) at epochs 0 and 10 and -1,280 ppm at epoch 29; the only pixels below -3 sigma lie on the giant's bleed columns 7-12 rows from the target; at epoch 10 the pixels next to the target brighten (+4.4, +5.1 sigma) in a dipole with the foot of the bleed column, a wing-motion signature, not a dip.",
+  "Carrying cadences sit at systematics loci: epoch 10 is the final two cadences of Q5 (0.04 d from the quarter roll), epoch 29 is on the 43 percent Q13 end-of-quarter PSF-flux collapse, epoch 0 is in the thermally unsettled first weeks of Q1.",
+  "Random-ephemeris null (30,000 trials, P 20-40 d, 0.75-h box, same statistic): robust std 414 ppm (= pipeline box noise 388 ppm) but p99.9 = 2,417 ppm, max 4,166 ppm, 2/30,000 at or above 4,104 ppm, so one such box is expected from a BLS search; without channel 25 the maximum is 621 ppm.",
+  "Pipeline's own stage-1 inverted-flux null on this star reached SDE 12.12 (at 0.527 d) against the real SDE 9.83 and was rejected only on snr_emp/odd_even/duty_cycle; the second real signal (35.15 d) failed odd/even at 8.6 sigma.",
+  "Pipeline-internal contradiction: event_weighted_depth 177 ppm and quartile depths 106/268/253/-114 ppm vs headline 4104 ppm; events.csv holds 7 events all consistent with zero and excludes the three carrying epochs, so event_chi2_const (1.77/6) tested the wrong events. Stage-1 1.5-h box gives 1972 ppm, stage-2 0.75-h box 4104 ppm: depth x duration is conserved, as for a fixed set of outlier cadences, not a transit.",
+  "SAP/PSF depth ratio 0.46-0.60 against >= 1 for any astrophysical dip in the aperture; consistent only with the PSF model failing (median RED_CHI2 1.4e6-2.3e6 on channel 25 vs 440-5,800 elsewhere).",
+  "Duration/density: a 0.75-0.9 h total duration at P = 38.6 d on a 0.91 Rsun, ~1 Msun host (T14 at b=0 is 5.96 h) needs b = 1.05 against a grazing limit of 1.064, where a 4,100-ppm depth is impossible; no stellar parameters make this a planetary transit.",
+  "Independent re-derivation agrees: not recovered blind (38.6067 d ranks 641st; nearby 38.670-d peak is 2.4 d of phase drift away), odd/even 4.9 sigma, per-year depths 7117/3818/175/5402 ppm, and the signal vanishes without the channel-25 quarters (477 +/- 122 ppm, period rank 114,626th)."
+ ],
+ "surviving_strengths": [
+  "Not a previously catalogued object: no KOI, DR25 TCE, Kirk+2016 EB, confirmed planet or TOI within 3 arcmin; no period/harmonic match anywhere in the field with a matching epoch (closest |delta phase| 0.086); not in Bienias & Szabo 2025; SIMBAD has nothing within 30 arcsec. Irrelevant to the verdict because there is no astrophysical signal to be novel."
+ ],
+ "checks_run": [
+  "Read vet.json, events.csv, fold_events.png, the triage_all/survivors/survivors_stage2/vet_summary rows, the prereg revision log and the independent re-derivation (results JSON, log, figure).",
+  "Own per-cadence dissection at the pipeline ephemeris (0.75-h and 0.9-h boxes) on PSF and SAP flux: mean/median/outlier-free depths, in-box scatter and formal error, per-epoch and per-season depths, RED_CHI2, centroid offsets, FLATTEN_MASK, gap and quarter-edge distances, +/-4-cadence neighbourhoods of each carrying cadence.",
+  "Dropout census per quarter and per channel (>1 percent and >3 percent excursions, both signs).",
+  "Random-ephemeris null for the mean-in-box depth statistic (30,000 trials, P 20-40 d, 0.75-h box), with and without the channel-25 quarters.",
+  "Lomb-Scargle 0.1-100 d on per-quarter-normalised and locally detrended PSF flux; harmonic ratios to P (52.7 d / 2548 ppm instrumental; 3.70 d / 248 ppm; neither related to 38.6 d).",
+  "Duration/density geometry and implied impact parameter/radius for the catalogue host (Rs 0.91 Rsun, Teff 5610 K).",
+  "Host-TPF pixel check (KIC 5950394 Q1, Q5, Q13 downloaded via lightkurve): saturation and bleed-column geometry, target position from KBONUS ROW/COLUMN headers, per-pixel difference images and SNR maps at the three carrying epochs, whole-stamp / bleed-column / KBONUS-aperture / non-bleed flux series cadence by cadence, Kepler QUALITY flags.",
+  "Known-object checks: 3-arcmin cone and period/harmonic (1/4..4, 0.2 percent) + epoch match against KOI cumulative, DR25 TCE, Kirk+2016 EB, confirmed Kepler-field planets and TESS EB (local copies dated 2026-10-17); live NEA TAP for KICs 5950394/5950408/5950377/5950466 and for TOIs near the target; SIMBAD 1-arcmin cone; Bienias & Szabo 2025 seven-candidate list and Moquin et al. 2026 BOI-1.01.",
+  "MODULE/OUTPUT/CHANNEL per quarter from the KBONUS per-quarter headers (seasons 0/1/2/3 = channels 17/57/65/25) to localise the artefact to one channel.",
+  "Real vs inverted pass accounting from the pipeline's stage-1 record (triage_all.csv)."
+ ],
+ "what_would_settle_it": [
+  "Nothing is recommended; the question is settled. Only a coherent dip at the ephemeris in seasons 0-2 alone could resurrect it, and those seasons give -242 / +287 / +710 ppm in the box (re-derivation dataset B: 477 +/- 122 ppm, period rank 114,626th of 271,529).",
+  "For the pipeline (post-hoc, to be logged in prereg revision_log): a per-quarter RED_CHI2 / raw-MAD screen before BLS; a rule requiring event_weighted_depth and the box depth to agree; inclusion of every epoch with in-box data in events.csv (the carrying epochs here were exactly the ones excluded by the n_in>=2 / n_out>=6 selection); a saturated-TPF-host flag (Kp < ~10) with a bleed-column-distance check in the affected seasons."
+ ]
+}

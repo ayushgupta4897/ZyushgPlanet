@@ -1,0 +1,54 @@
+[
+ {
+  "fname": "kic-006699887",
+  "status": "candidate-grade",
+  "one_line": "P 15.1136 d, 1023 +- 33 ppm, 3.75 h, 86 events, SNR_emp 20.0; independently re-derived; pipeline v1.6 pixel on-target (dchi2 503 / 200 vs best alternative); red-team free-position deficit within 1.0 and 0.7 arcsec of the Gaia position; host KIC 6699878 flat at -1.8 +- 15.8 ppm; no ephemeris match; second localised signal at 47.69 d (post-hoc). Residual: unresolved EB inside ~1.5 arcsec, needs TRICERATOPS.",
+  "next_steps": [
+   "Documented TRICERATOPS run (Kepler PRF, Gaia DR3 contrast, secondary limit -26 +- 29 ppm, odd/even 0.03 sigma) to price the surviving scenario: an unresolved EB within ~1-1.5 arcsec at dG >= 3 (eclipse >= 1.7-11%).",
+   "Kepler PRF (not Gaussian) forward model of the event-differenced deficit maps for all four seasons, fitting target + host + contaminant amplitudes jointly, to convert the ~1 arcsec localisation into a formal exclusion radius and to calibrate the season-dependent PSF depth (998/1045/1278/1036 ppm; +-15-20% systematic on depth and Rp 2.2-2.7 Re).",
+   "Run the 47.6906-d second signal (877 +- 49 ppm, 4.5 h, 26 events; pixel-localised to the target in seasons 0 and 2) through pipeline stage 2 and pixel_vet as a labelled post-hoc test; if it passes, a multiplicity-boosted FPP applies to both signals; it was discarded at its P/2 alias by the 0.5-40 d window.",
+   "Audit pipeline/pixel_vet.py's noise model for Q2, Q13 and Q14 (reported as no-signal quarters while the red-team maps show the usual target deficit) before the next pool run; extend second-signal searches beyond 40 d.",
+   "Speckle or AO imaging of the G 16.2 target to tighten the companion contrast inside 1 arcsec.",
+   "Write-up: quote vet.json (poolA_main) P 15.1136115 d, t0 BJD 2454967.72786, depth 1023 +- 33 ppm (3.75-h box), SNR_emp 20.0, TLS SDE 13.7; stage-1 BLS SDE 89.2 with inverted SDE 14.1 at 0.657 d (fails); pixel_v16 verdict with the post-hoc v1.6 label; novelty 'not in any public list as of 2026-10-17' (TraSHDUMP unpublished)."
+  ]
+ },
+ {
+  "fname": "kic-003831969",
+  "status": "candidate-grade",
+  "one_line": "P 15.3134 d, 997 +- 58 ppm, 3.75 h box (T14 4.06-4.29 h, T23/T14 0.80), 86 events, SNR_emp 23.8 pipeline / 19.6 re-derivation; independently re-derived (r = 0.97 per-event); pipeline v1.6 pixel on-target (dchi2 219 / 112); red-team free-centre deficit 0.3-0.4 arcsec from the target in three seasons, every Gaia neighbour within 25 arcsec rejected at dchi2 > 65; host KIC 3831977 flat (-44 +- 22 ppm); SAP/PSF 0.69 +- 0.06 matches on-target 0.71. Caveats: 2-sigma season dependence of depth, red-noise inflated errors.",
+  "next_steps": [
+   "Documented TRICERATOPS run with the Gaia DR3 field, depth/duration, secondary limit (-4 +- 48 ppm, 3-sigma < 14% of primary) and odd/even (0.3-0.5 sigma), to bound the unresolved-EB / hierarchical-triple space.",
+   "Kepler PRF-model fit to the stacked difference images including season 2 (target in the corner pixel of a 4x5 stamp, geometrically degenerate) to tighten the deficit position below 1 arcsec with realistic systematics.",
+   "Stamp-truncation-aware PSF refit to resolve the 2-sigma season dependence of PSF depth (1199/1089/836/772 ppm +- 100-135; chi2 9.3/3 white, 4.1/3 red-noise inflated; shallower in the two lowest-psffrac seasons); until then quote depth and radius (2.7-4.0 Re) with ~25% systematics.",
+   "Extinction-corrected host characterisation (3D dust map at ~2 kpc) to pin R* (0.83 catalogue vs 1.0-1.1 Rsun corrected) and hence Rp.",
+   "High-resolution imaging of the G 16.5 target to exclude companions inside ~1-2 arcsec able to host a ~15% EB.",
+   "Write-up: quote the conservative empirical SNR 19.6 (random-phase noise) and red-noise-inflated depth error (~70-80 ppm) rather than 23.8 / 42 ppm; per-event chi2 195/85 (pipeline) and 220/85 (re-derivation) must be stated; ExoFOP TOI/CTOI and Bienias & Szabo 2025 checks dated 2026-10-17."
+  ]
+ },
+ {
+  "fname": "kic-009520080",
+  "status": "signal-needs-work",
+  "one_line": "P 2.3770 d, 1569 +- 62 ppm box (~2000 ppm smearing-corrected), 1.1 h, 468 events, SNR_emp 28.3; strongest localisation of the set (target-pixel deficit 24.5 sigma in all 17 TPFs, pipeline v1.6 on-target dchi2 917 / 335, host pixels -11 ppm) and red team finds no non-planet origin, BUT it is a formal stage-2 FAIL under v1.5 rule (c) (secondary_sigma -4.0, a 2.2-2.8-sigma estimator-dependent brightening at phase 0.5 that no planet produces; stage2_pass_v14 = true, stage2_pass = false; the rule is post-hoc and was motivated by this star). Not candidate-grade until the phase-0.5 feature is independently explained.",
+  "next_steps": [
+   "Independent re-examination of the phase-0.5 brightening with a second detrending family and PSF-vs-SAP per quarter and per season (pipeline -222 +- 55 ppm, -4.0 sigma; red team +192 ppm mean z 2.84, clipped +126 z 2.24, median +51 z 1.32, per-epoch-median +237 +- 69 vs control +46 +- 69); if real at ~200 ppm the signal is downgraded, if it is an outlier/estimator artefact document that and the star can be re-verdicted under the recorded rules.",
+   "Any write-up must carry the v1.5 secondary_2sided stage-2 FAIL, state that rule (c) was added post-hoc after this star was seen (prereg_poolA.json revision_log v1.5), and report both stage2_pass_v14 = true and stage2_pass = false.",
+   "Ground-based transit photometry at predicted times (~2000 ppm true depth, 1.1 h, G 17.5; 1-2 m class) to confirm the event on the target at sub-arcsec resolution and separate it from the G 20.9 star at 3.5 arcsec (0.87 px).",
+   "TRICERATOPS FPP with the Gaia neighbour list and a contrast curve to bound the G > 21 background-EB and bound-companion-EB scenarios Kepler pixels cannot test; AO/speckle imaging inside 1 arcsec.",
+   "Document that the per-event chi2 inflation (912/467) and the low third-quartile depth are one event (n = 342, BKJD 945.09, Q10, isolated +6000-8000 ppm spikes); reduced chi2 ~1.5 without it, matching the controls.",
+   "Duration/impact-parameter note for the referee: T14 1.125-1.15 h vs T14(b=0) 1.99 h implies b ~ 0.85 on the K dwarf, Rp ~3.0-3.3 Re; not discriminating against a blend on a denser star."
+  ]
+ },
+ {
+  "fname": "kic-006448637",
+  "status": "signal-needs-work",
+  "one_line": "P 35.5873 d, 846 +- 52 ppm, 4.5 h, 26 events, SNR_emp 10.0 pipeline (20.0 re-derivation; noise-scale difference); independently re-derived; red team survives with a localised TPF re-analysis (deficit at target in 12/12 usable quarters, centroid offset dx 0.00 +- 0.06, dy +0.21 +- 0.07 px), but the pipeline pixel product is 'inconclusive' (v1.6 dchi2 best-alternative minus target = 1.8; v1.5 centroid 0/13 quarters) because the TPF host KIC 6448574 is a Kp 8.75 saturated star with a bleed column. Localisation is a scratch result, not a pipeline product; odd/even 2.0 sigma under re-derivation errors; epoch-28 outlier drives a per-year depth drift; Kepler-1715 b on the same channel is excluded by timing only.",
+  "next_steps": [
+   "Rerun pipeline/pixel_vet.py (or a documented extension of it) in a saturated-host / edge-of-stamp mode (local box around the Gaia position, bleed column excluded) so the on-target localisation becomes a pipeline product with its run id, checked against KIC 5689121 first; until then the pixel stage is not passed.",
+   "Quote both depth sets, with and without the Q13-start epoch-28 outlier (2268 +- 349 ppm, 4.2-sigma pull; per-year chi2 13/4 -> 4.5/4; odd/even 1.99 -> 0.41 sigma in the re-derivation), and the pipeline's conservative SNR_emp 10.0 alongside the re-derivation's 20.0, explaining the box_noise vs random-phase-box noise difference.",
+   "Explicit 2P test at 71.175 d (secondary/odd-even search with the depth-difference limit quoted) since an EB at 2P with equal eclipses is not excluded; secondary limit at P is ~130 ppm (3 sigma).",
+   "Record the Kepler-1715 b (KOI-308.01, Kp 12.35, P 35.5970 d) same-channel check: period 20 sigma from the timing-fit 35.58777 +- 0.00045 d and transits 0.84-1.20 d away at every epoch, so no crosstalk/column contamination; keep this table in the evidence pack.",
+   "TRICERATOPS with the Gaia neighbour list plus high-resolution imaging to exclude a companion with dG <= 3-4 inside 1 arcsec; neighbours KIC 6448650 (-75 +- 121 ppm vs >= 1120 required) and KIC 6448629 (971 +- 694 vs 1.0% required) are already excluded by their own KBONUS light curves.",
+   "Live cross-match against ExoFOP TOI/CTOI, VSX, Gaia NSS and the KBonus team's TraSHDUMP list when published."
+  ]
+ }
+]

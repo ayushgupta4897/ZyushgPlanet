@@ -1,0 +1,35 @@
+{
+ "fname": "kic-004474607",
+ "verdict": "kill",
+ "most_likely_explanation": "Kepler post-downlink thermal-settling ramps in Q13 (channel 49). The two events that carry the signal (epochs 13 and 14, BKJD 1182.83 and 1215.77) are the first four cadences after segment starts at BKJD 1182.737 and 1215.718 (0.093 and 0.055 d), where raw PSF and SAP flux sit 5-10 ppt below the subsequent ramp overshoot; local depths 8629 +/- 1303 and 8130 +/- 1777 ppm vs 0-2 ppt for the other 15 events. The spacing of those two segment starts, 32.981 d, is the re-derivation's best period (32.98173 d); the pipeline's 32.9427 d is a tooth of the same alias comb. A 1.95 h box placed 0.14 d after every segment start reproduces 3.5-6 ppt \"transits\" at all three Q13 monthly starts, including one off the ephemeris. With cadences < 0.5 d after any segment start masked, the box depth drops from 2162 +/- 190 ppm (which reproduces the pipeline's 2141 ppm) to 884 +/- 191 ppm, the BLS local SDE at 32.94 d falls from 10.3 to 2.2, the best real peak in 25-40 d (27.1 d, SDE 6.0) is below the inverted-flux null (SDE 7.2), and nothing meets the pre-registered SDE >= 9 / SNR >= 7.1. pixel_v16's preference for an off-stamp Gaia source (dchi2 183) is entirely Q13 (1735 vs 1915), where the difference image is the same ramp (18.6 ppt in aperture, peak SNR 21.8), not an eclipsing source.",
+ "kill_reasons": [
+  "Both high-depth events are the first 4 cadences after a data gap (0.093 and 0.055 d after segment starts at BKJD 1182.737 and 1215.718) on visible post-gap thermal ramps in both PSF and SAP flux (redteam_work/q13_events_raw.png; lc_tests.json events_pipeline_ephemeris).",
+  "Period = downlink spacing: 1215.718 - 1182.737 = 32.981 d equals the re-derivation's best period 32.98173 d; the pipeline's 32.9427 d is an alias tooth that still captures both post-gap cadence groups.",
+  "Control without an ephemeris: a 1.95 h box 0.14 d after every segment start gives 5947 +/- 1454, 4341 +/- 2137 and 3572 +/- 858 ppm at the three Q13 monthly starts (the third is not on the ephemeris), so the effect is a property of Q13 segment starts, not of the 32.94 d period.",
+  "Masking 0.5 d after every segment start (856 of 27,819 cadences): box depth 2162 +/- 190 -> 884 +/- 191 ppm (PSF), 1581 +/- 164 -> 603 +/- 166 ppm (SAP); BLS 25-40 d local SDE at 32.94 d 10.3 -> 2.2; best real peak 27.10 d SDE 6.0 vs inverted null 35.06 d SDE 7.2; no pre-registered threshold (SDE 9, SNR 7.1) is met.",
+  "Pipeline's own diagnostics agree once read together: event-weighted depth 1025 ppm vs depth_pass2 2141 ppm, quartile depths 490-1270 ppm, per-event chi2 45/16 (70/16 in the re-derivation), max_single_event_frac 0.39, gap_dist 0.093/0.055 d for the two deep events; the re-derivation's stack without epochs 13/14 is 609 +/- 181 ppm (3.4 sigma) and its blind 1-50 d BLS SDE 6.7 is below its inverted null 7.7.",
+  "Pixel localisation is inconclusive (0 conclusive quarters, target at stamp edge in 6/8) and v16's dchi2 = 183 preference for Gaia DR3 2052438568667567488 (28.7 arcsec, off-stamp) comes from Q13 alone, where the whole-stamp post-gap dimming (18,574 ppm in aperture) is fitted; it is neither on-target evidence nor a real alternative host."
+ ],
+ "surviving_strengths": [
+  "Not an EB-host leak: the TPF host KIC 4474637 (KOI-3829.01 FP, Kirk+2016 EB, P=3.8867 d, 37 % deep, 18-20 arcsec) does not leak into the target PSF flux (13 +/- 21 ppm at the EB ephemeris; re-derivation), 32.94 d is not a low-order alias of 3.8867 d, and the two deep events are at EB phases 0.60 and 0.08 with equal depth.",
+  "No known KOI, DR25 TCE, Kirk+2016 EB, confirmed planet, TESS EB, TOI or CTOI matches the period and epoch within 3 arcmin or anywhere in the field (closest phase twin TCE 4663658-01 at 32.9614 d is 2.17 d off in epoch); the target is absent from all local catalogues, Bienias & Szabo 2025 and SIMBAD. Irrelevant to an artefact, recorded for completeness.",
+  "Odd/even (0.4-1.0 sigma) and secondary (-0.07 to -1.5 sigma) are null, as expected for a two-event artefact; Lomb-Scargle variability is 68 ppm at 1.18 d with no relation to 32.94 d."
+ ],
+ "checks_run": [
+  "Read vet.json, events.csv, fold_events.png, stage-1 record (results.jsonl), pixel_v15/v16 pixel.json and diffimages.png, the independent re-derivation summary/eb_crosscheck/events_gallery, target metadata (rank 6100), prereg thresholds, per-quarter FITS headers (MODULE/OUTPUT/CHANNEL/SEASON/CROWDSAP/FLFRCSAP/PSFFRAC/NPIXSAP).",
+  "Own light-curve analysis (redteam_work/lc_tests.py, no pipeline code): gap/segment-start census with post-gap ramp amplitudes for all 37 segment starts; per-event local depths with raw-flux linear baselines and distance to the preceding segment start; weighted stacks with/without post-gap events.",
+  "Reproduced the pipeline's depth with a transit-masked per-segment 1 d running median (2162 +/- 190 vs 2141 ppm), then re-measured PSF and SAP box depths with cadences < 0.5 d after any segment start masked (random-phase errors, 2000 draws).",
+  "Control test: 1.95 h box 0.14 d after every segment start, no ephemeris.",
+  "BLS 25-40 d (astropy, 15.4k periods, durations 1.5-4.5 h, likelihood objective) on a transit-unmasked blind re-detrend, real and inverted (2-f), with and without the post-gap mask; local SDE at 32.94 d.",
+  "Raw-flux figure of PSF and SAP flux around epochs 13 and 14 with segment starts marked (q13_events_raw.png).",
+  "Decomposed pixel_v16's dchi2 by quarter from pixel.json; located the preferred alternative source (28.7 arcsec, G 17.5) and all Gaia neighbours relative to the target.",
+  "Catalogue checks: 3 arcmin cone and whole-field period/harmonic (1/3-3, 0.2 %) + epoch match in KOI cumulative and DR25 TCE; Kirk+2016 EB and TESS EB grep for KIC 4474607/4474637 and Gaia IDs; cached ExoFOP TOI/CTOI cone (read with python -I as untrusted data); Bienias & Szabo 2025 cached text grep; SIMBAD 40 arcsec cone via astroquery.",
+  "EB-host alias/phase check reviewed from the re-derivation (eb_crosscheck.json) and EB phases of epochs 13/14 recomputed from its event table.",
+  "Duration/density/implied radius for the catalogue host (0.87 Rsun, Teff 5435 K): T14(b=0) = 5.16 h, b = 0.93 required for 1.95 h; Rp 2.3-4.4 Re depending on which depth is believed."
+ ],
+ "what_would_settle_it": [
+  "A full 1-40 d pre-registered search plus inverted null on the post-gap-masked light curve (mask 0.5 d after every segment start) to formally record the non-detection; I expect no pass and no peak at 32.94 d (the 25-40 d window already shows local SDE 2.2).",
+  "Nothing else is worth spending on: the residual 600-900 ppm at the fixed ephemeris is a post-hoc measurement at an artefact-selected period and would need more than 10 additional clean transits, which Kepler does not have.",
+  "For the pipeline (post-hoc, to be logged in revision_log, not applied retroactively without labelling): re-stack depth/SNR with events < 0.5 d after a segment start removed and require the masked BLS to still peak at the same period; the Q13/channel-49 post-gap ramp in this light curve is 3.5-6 ppt at every monthly start."
+ ]
+}

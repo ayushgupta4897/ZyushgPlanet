@@ -1,0 +1,128 @@
+{
+  "header": {
+    "OBJECT": "KIC 9655226",
+    "KEPLERID": 9655226,
+    "GAIAID": "Gaia DR3 2128120393543835648",
+    "RA_OBJ": 294.2829760688896,
+    "DEC_OBJ": 46.34007164808393,
+    "KEPMAG": 15.91100025177,
+    "GMAG": 15.887621
+  },
+  "quarters_in_file": [
+    3,
+    7,
+    10,
+    11,
+    13
+  ],
+  "per_quarter": {
+    "3": {
+      "PSFFRAC": 0.9531432792721171,
+      "CROWDSAP": 0.6698470353,
+      "FLFRCSAP": 0.9474757759,
+      "NPIXSAP": 7,
+      "median_FLUX": 6247.988005176039,
+      "median_SAP": 7709.076171875
+    },
+    "7": {
+      "PSFFRAC": 0.9048594685126681,
+      "CROWDSAP": 0.7247189828,
+      "FLFRCSAP": 0.8817066969,
+      "NPIXSAP": 4,
+      "median_FLUX": 6224.5411324014085,
+      "median_SAP": 6694.12451171875
+    },
+    "10": {
+      "PSFFRAC": 0.9176070743885477,
+      "CROWDSAP": 0.7746316679,
+      "FLFRCSAP": 0.835520015,
+      "NPIXSAP": 4,
+      "median_FLUX": 6097.327052079261,
+      "median_SAP": 5845.0693359375
+    },
+    "11": {
+      "PSFFRAC": 0.9285566048281692,
+      "CROWDSAP": 0.7212220763,
+      "FLFRCSAP": 0.8622383294,
+      "NPIXSAP": 4,
+      "median_FLUX": 6119.254677500612,
+      "median_SAP": 6605.239990234375
+    },
+    "13": {
+      "PSFFRAC": 0.945042770222675,
+      "CROWDSAP": 0.841800923,
+      "FLFRCSAP": 0.8456489349,
+      "NPIXSAP": 4,
+      "median_FLUX": 5783.80653234177,
+      "median_SAP": 5803.123291015625
+    }
+  },
+  "separation_arcsec_from_target": 5.226226242262141,
+  "at_target_ephemeris": {
+    "PSF": {
+      "depth_ppm": 55.508656989333716,
+      "err_ppm": 39.432282077418265,
+      "sigma": 1.4076957777983112,
+      "n_in": 291,
+      "mad_ppm": 598.698288201119,
+      "n_good": 19669,
+      "median_flux_e_s": 6093.499966034393,
+      "deficit_e_s": 0.33824199947911976,
+      "deficit_err_e_s": 0.2402806094994068,
+      "same_quarters_as_target": {
+        "depth_ppm": 66.82200509788849,
+        "err_ppm": 64.51389456812026,
+        "sigma": 1.0357769523173197,
+        "n_in": 118
+      },
+      "narrow_bls": {
+        "best_P_d": 6.704553721611855,
+        "dlogL": 14.336362993575731,
+        "depth_ppm": 187.60788301914621,
+        "dlogL_at_target_P": 7.862486458244442,
+        "mean_dlogL": 5.865853362687924,
+        "std_dlogL": 1.7751120407155379
+      },
+      "per_quarter_depth": {
+        "3": {
+          "depth_ppm": 66.2103712086859,
+          "err_ppm": 103.95658818973952,
+          "n_in": 58
+        },
+        "7": {
+          "depth_ppm": -47.12188241584592,
+          "err_ppm": 75.0333844372004,
+          "n_in": 51
+        },
+        "10": {
+          "depth_ppm": 67.41325119097309,
+          "err_ppm": 88.64311810053992,
+          "n_in": 60
+        },
+        "11": {
+          "depth_ppm": 25.17965640702613,
+          "err_ppm": 80.31842900231494,
+          "n_in": 64
+        },
+        "13": {
+          "depth_ppm": 156.20242371428006,
+          "err_ppm": 95.25651454557321,
+          "n_in": 58
+        }
+      }
+    },
+    "SAP": {
+      "depth_ppm": 95.38456128921347,
+      "err_ppm": 28.544617557097908,
+      "sigma": 3.341595349750802,
+      "n_in": 291,
+      "mad_ppm": 484.52209643592874,
+      "n_good": 19687,
+      "median_flux_e_s": 6522.8930296170765,
+      "deficit_e_s": 0.6221832899664933,
+      "deficit_err_e_s": 0.18619348689627915
+    }
+  },
+  "target_deficit_e_s": 1.068638273323653,
+  "note": "If the signal originated on this neighbour, its own PSF flux should show a deficit at least as large in e/s as the target's (the PSF fit assigns a source's flux change mostly to that source). The target's deficit is ~1.07 e/s."
+}

@@ -1,0 +1,44 @@
+{
+ "fetched_utc": "2026-10-17T15:46:52+00:00",
+ "files": {
+  "koi_cumulative.csv": {
+   "source": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync",
+   "query": "select kepid,kepoi_name,kepler_name,koi_disposition,koi_pdisposition,koi_period,koi_time0bk,koi_duration,koi_depth,koi_fpflag_nt,koi_fpflag_ss,koi_fpflag_co,koi_fpflag_ec,ra,dec,koi_kepmag from cumulative",
+   "rows": 9564,
+   "sha256": "98a0a2571d993df7a3e8dedd740ffd14cfd84320b595b75a9e00cc192e838479"
+  },
+  "dr25_tce.csv": {
+   "source": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync",
+   "query": "select kepid,tce_plnt_num,tce_period,tce_time0bk,tce_duration,tce_depth,tce_max_mult_ev,ra,dec from q1_q17_dr25_tce",
+   "rows": 34032,
+   "sha256": "98fa18f3fa18dec238312dd3dd8b3216a9e3ca38ede0d3b4e6369ed46c397611"
+  },
+  "ps_keplerfield.csv": {
+   "source": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync",
+   "query": "select pl_name,hostname,tic_id,pl_orbper,pl_tranmid,pl_trandur,pl_trandep,ra,dec,disc_facility from ps where default_flag=1 and ra between 279 and 302.5 and dec between 36 and 53",
+   "rows": 2839,
+   "sha256": "5519f723d663d432b82115fa572cc48238e6e7bdd5106fa023dae1be52896e45"
+  },
+  "keplerstellar.csv": {
+   "source": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync",
+   "query": "select kepid,st_quarters,kepmag,teff,radius,ra,dec from keplerstellar",
+   "rows": 990244,
+   "sha256": "1ff48196864c05f6f21dbad8f21949db56c500aba02e722791b3b21db6578d2b"
+  },
+  "kepler_target_kepids.csv": {
+   "derived_from": "keplerstellar.csv (any observed quarter)",
+   "rows": 199760,
+   "sha256": "4e10e0d4f2d30ffec46e10d9f44b8424e004bf5b49f6142ab168d9798d163d6e"
+  },
+  "J_AJ_151_68_catalog.csv": {
+   "source": "VizieR J/AJ/151/68/catalog",
+   "rows": 2876,
+   "sha256": "7459948d804f8783a8f0075352037accc08fbc8044f6d87cf3fb8ce86587b780"
+  },
+  "J_ApJS_258_16_tess-ebs.csv": {
+   "source": "VizieR J/ApJS/258/16/tess-ebs",
+   "rows": 4584,
+   "sha256": "0c7f7c03305dd51417e37a8b4913c325bce37e566b8731dc2ce7302758d1097e"
+  }
+ }
+}

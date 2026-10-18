@@ -1,0 +1,109 @@
+{
+ "phase_curve_fit": {
+  "const": {
+   "ppm": 70.1797295111956,
+   "err_ppm": 8.447518276613987
+  },
+  "cos1": {
+   "ppm": 38.09623950295473,
+   "err_ppm": 12.155646190241393
+  },
+  "sin1": {
+   "ppm": 7.5990440777461075,
+   "err_ppm": 11.73372802881926
+  },
+  "cos2": {
+   "ppm": 15.26342136521245,
+   "err_ppm": 12.141952711971493
+  },
+  "sin2": {
+   "ppm": -8.632490336794893,
+   "err_ppm": 11.748603914832415
+  }
+ },
+ "secondary_phase05_per_year": {
+  "Y1_Q1-4": {
+   "depth_ppm": -136.86481440178255,
+   "err_ppm": 134.2824147174694,
+   "sigma": -1.0192311084794425,
+   "n_in": 234
+  },
+  "Y2_Q5-8": {
+   "depth_ppm": -274.7868007706433,
+   "err_ppm": 120.35140877234295,
+   "sigma": -2.2832038575504403,
+   "n_in": 274
+  },
+  "Y3_Q9-12": {
+   "depth_ppm": -298.36642552538706,
+   "err_ppm": 119.74482461735754,
+   "sigma": -2.491685352405097,
+   "n_in": 306
+  },
+  "Y4_Q13-17": {
+   "depth_ppm": -56.89011880982697,
+   "err_ppm": 107.3878021036624,
+   "sigma": -0.5297633222338458,
+   "n_in": 342
+  }
+ },
+ "per_season": {
+  "depths": {
+   "season0_Q[1, 5, 9, 13, 17]": {
+    "depth_ppm": 1686.1697772329044,
+    "err_ppm": 121.84850232113929,
+    "sigma": 13.838247866099325,
+    "n_in": 298
+   },
+   "season1_Q[2, 6, 10, 14]": {
+    "depth_ppm": 1379.4209151152259,
+    "err_ppm": 136.27736640711197,
+    "sigma": 10.122157123247998,
+    "n_in": 289
+   },
+   "season2_Q[3, 7, 11, 15]": {
+    "depth_ppm": 1423.2454023539453,
+    "err_ppm": 87.63554954385002,
+    "sigma": 16.24050296668476,
+    "n_in": 336
+   },
+   "season3_Q[4, 8, 12, 16]": {
+    "depth_ppm": 1476.0621887890402,
+    "err_ppm": 137.58658083547257,
+    "sigma": 10.728242389816563,
+    "n_in": 252
+   }
+  },
+  "weighted_mean_ppm": 1482.86791797232,
+  "chi2": 3.825365256978604,
+  "dof": 3
+ },
+ "depth_estimators_ppm": {
+  "plain_mean_vs_median_baseline": 1490.4271454369011,
+  "plain_mean_vs_mean_baseline": 1548.0527744210492,
+  "ivar_weighted": 1566.9932875500558,
+  "note": "FLUX_ERR-weighted depth is what astropy compute_stats / a weighted BLS return; the plain mean is what the random-phase box uses"
+ },
+ "flux_err_median_ppm": 1818.0821492106832,
+ "robust_scatter_ppm": 1893.3301096786956
+}
+per-quarter chi2 = 20.4 / 16 dof
+Q 1 season 0   1522 +-  405 ppm (n_in=29)
+Q 2 season 1   1779 +-  303 ppm (n_in=70)
+Q 3 season 2   1776 +-  196 ppm (n_in=95)
+Q 4 season 3   1643 +-  252 ppm (n_in=68)
+Q 5 season 0   1850 +-  296 ppm (n_in=77)
+Q 6 season 1   1536 +-  288 ppm (n_in=75)
+Q 7 season 2   1300 +-  153 ppm (n_in=82)
+Q 8 season 3   1270 +-  268 ppm (n_in=57)
+Q 9 season 0   1620 +-  246 ppm (n_in=87)
+Q10 season 1    866 +-  269 ppm (n_in=73)
+Q11 season 2   1499 +-  209 ppm (n_in=75)
+Q12 season 3   1242 +-  225 ppm (n_in=61)
+Q13 season 0   1713 +-  233 ppm (n_in=80)
+Q14 season 1   1354 +-  236 ppm (n_in=71)
+Q15 season 2   1089 +-  183 ppm (n_in=84)
+Q16 season 3   1701 +-  241 ppm (n_in=66)
+Q17 season 0   1537 +-  443 ppm (n_in=25)
+secondary scan (phase, depth ppm) min/max: (0.5, -181.36523071454747) (0.48, 88.76614851327514)
+20-bin phase curve (ppm): [33, 22, 38, 21, 63, 43, 110, 77, 94, -208, -276, 84, 148, 112, 47, -29, 102, 80, 58, 60]

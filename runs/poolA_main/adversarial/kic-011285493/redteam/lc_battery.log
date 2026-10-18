@@ -1,0 +1,60 @@
+T14 box depth 682.3682187552624 +- 121.3448404810033 SNR 5.623380574323538 n_in 995
+per quarter (ppm, white err, n_in):
+1 [1097.0, 433.0, 28] season 1
+2 [656.0, 298.0, 84] season 2
+3 [440.0, 278.0, 96] season 3
+5 [763.0, 281.0, 97] season 1
+6 [836.0, 287.0, 85] season 2
+7 [2265.0, 305.0, 79] season 3
+9 [-194.0, 242.0, 93] season 1
+10 [511.0, 364.0, 64] season 2
+11 [1563.0, 278.0, 80] season 3
+13 [377.0, 269.0, 85] season 1
+14 [143.0, 349.0, 92] season 2
+15 [473.0, 307.0, 80] season 3
+17 [169.0, 326.0, 32] season 1
+season 0 quarters [np.int64(2), np.int64(6), np.int64(10), np.int64(14)] depth 525 +- 162 n_in 325
+season 1 quarters [np.int64(3), np.int64(7), np.int64(11), np.int64(15)] depth 1151 +- 146 n_in 335
+season 3 quarters [np.int64(1), np.int64(5), np.int64(9), np.int64(13), np.int64(17)] depth 368 +- 134 n_in 335
+shape grid best (np.float64(6256.2432427263375), 0.6, np.float64(5.25), np.float64(-850.0559443745723))
+ T23/T14=1.0  dchi2=1.68  T14=4.25 h depth=-815
+ T23/T14=0.9  dchi2=1.53  T14=4.25 h depth=-840
+ T23/T14=0.8  dchi2=1.17  T14=4.75 h depth=-821
+ T23/T14=0.7  dchi2=0.47  T14=5.00 h depth=-833
+ T23/T14=0.6  dchi2=0.00  T14=5.25 h depth=-850
+ T23/T14=0.5  dchi2=0.20  T14=5.50 h depth=-870
+ T23/T14=0.4  dchi2=0.59  T14=6.00 h depth=-875
+ T23/T14=0.3  dchi2=1.11  T14=6.25 h depth=-907
+ T23/T14=0.2  dchi2=1.57  T14=6.75 h depth=-930
+ T23/T14=0.0  dchi2=2.17  T14=7.00 h depth=-1079
+secondary at 0.5: 116 ppm (1.0 sigma); max off-transit dip 298 ppm at phase -0.455; min (bump) -326
+odd 586 497
+even 778 498
+detrended LS top: [(np.float64(0.7155), np.float64(0.00069)), (np.float64(0.7156), np.float64(0.00064)), (np.float64(0.6254), np.float64(0.00059)), (np.float64(0.6346), np.float64(0.00058)), (np.float64(0.6254), np.float64(0.00056))]
+   power at 10.79 : 7e-06
+   power at 5.395 : 4e-06
+   power at 21.58 : 0.0
+   power at 3.597 : 1.8e-05
+raw_qnorm LS top: [(np.float64(46.7931), np.float64(0.05432)), (np.float64(41.9501), np.float64(0.0502)), (np.float64(36.8631), np.float64(0.04979)), (np.float64(41.7103), np.float64(0.04594)), (np.float64(46.4949), np.float64(0.04451))]
+   power at 10.79 : 0.003656
+   power at 5.395 : 0.000457
+   power at 21.58 : 0.003567
+   power at 3.597 : 0.000251
+skew of residuals 3.1328695623640184
+n events 94 weighted mean 651 chi2/dof 2.4
+ events within 0.5 d of gap/edge: 2  depth near-gap 2226  far 625
+ events within 1.0 d of gap/edge: 3  depth near-gap 1413  far 632
+ events within 2.0 d of gap/edge: 13  depth near-gap 730  far 639
+strongest events (epoch, tc, depth, err, nin, gapdist, Q):
+[-61 185.53924199999994 4883.89499358344 1134.943673364094 9
+ 2.9212144209606095 2]
+[18 1037.961724 3030.5520037449915 755.8392971036013 11 5.2972580003036 11]
+[38 1253.764884 2709.6494092916028 689.2599873631589 11 8.376129295731289
+ 13]
+[-12 714.256984 2746.041535770204 700.149488180433 10 3.086137590369958 7]
+[-13 703.466826 3017.0246403880315 785.3091138872246 10 7.704020409630061
+ 7]
+[16 1016.381408 2804.1891712159427 784.1157251956029 11 8.624743704086313
+ 11]
+weighted mean without 3 strongest 576
+PSF median 1584 e/s, SAP median 3519 e/s; PSF depth 682 ppm -> 1.08 e/s; SAP depth 302 +- 71 ppm -> 1.06 e/s

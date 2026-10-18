@@ -1,0 +1,131 @@
+{
+  "period": {
+    "mine_d": 6.815660675894585,
+    "mine_err_d": 2.728077532587747e-05,
+    "pipeline_d": 6.815624034742515,
+    "diff_d": 3.6641152069805116e-05,
+    "diff_sigma": 1.3431125630454044
+  },
+  "t0": {
+    "mine_bkjd": 860.7389380447653,
+    "pipeline_bkjd": 138.28256264993922,
+    "epochs_between": 106,
+    "diff_at_pipeline_epoch_min": -5.264999999926658
+  },
+  "depth": {
+    "mine_box_ppm": 1060.8439772125112,
+    "mine_err_empirical_ppm": 124.80201731125548,
+    "mine_trapezoid_ppm": 1129.3336762543374,
+    "pipeline_pass2_ppm": 1123.7803836516846,
+    "pipeline_box_noise_ppm": 117.46991437120832,
+    "pipeline_pass1_ppm": 979.0654421718559,
+    "diff_ppm": -62.936406439173425,
+    "diff_sigma": -0.36721045879724123
+  },
+  "snr": {
+    "mine_empirical": 8.500214981034903,
+    "pipeline_snr_emp_pass2": 9.566537863478015
+  },
+  "duration": {
+    "mine_bls_h": 2.3760000000000003,
+    "mine_trapezoid_t14_h": 2.7729597527712038,
+    "pipeline_h": 2.4375,
+    "pipeline_tls_h": 1.6042261607319646
+  },
+  "odd_even": {
+    "mine_sigma": 0.48169296815670165,
+    "pipeline_sigma": 0.40133889669696715,
+    "mine_odd_even_ppm": [
+      1001.3591190790594,
+      1121.598329269502
+    ],
+    "pipeline_odd_even_ppm": [
+      1077.3900107545753,
+      1171.6805024122311
+    ]
+  },
+  "secondary": {
+    "mine_ppm": -30.310182645543193,
+    "mine_sigma": -0.2459600882258283,
+    "pipeline_ppm": -44.9307254004605,
+    "pipeline_sigma": -0.38248708736160403
+  },
+  "n_transits": {
+    "mine_n_in_ge3": 140,
+    "mine_n_in_ge1": 151,
+    "mine_epochs_in_baseline": 214,
+    "pipeline_n_events": 148,
+    "pipeline_tls_distinct": 149.0
+  },
+  "event_consistency": {
+    "mine_chi2_const": 251.97984967526907,
+    "mine_dof": 139,
+    "pipeline_chi2_const": 234.29564252095926,
+    "pipeline_dof": 147
+  },
+  "per_year_vs_quartile": {
+    "mine_per_year_ppm": [
+      975.9311275606697,
+      1302.5465535938529,
+      639.1948194383045,
+      1288.4038500272643
+    ],
+    "mine_per_year_err_ppm": [
+      263.2602172634694,
+      247.1923448797444,
+      250.9322296645801,
+      238.85760983009214
+    ],
+    "mine_chi2_const_3dof": 4.791253276930858,
+    "pipeline_per_quartile_ppm": [
+      1156.247723586025,
+      1662.0276721381113,
+      716.3081985915679,
+      1199.6797590668098
+    ],
+    "pipeline_per_quartile_err_ppm": [
+      203.68807852010806,
+      202.88310340653317,
+      185.732935869195,
+      192.53965691193045
+    ]
+  },
+  "rp": {
+    "mine_rp_earth_from_box": 2.746640289926421,
+    "rstar_rsun": 0.7730915021896362,
+    "pipeline_rp_earth_box": 2.8274593743323226,
+    "pipeline_tls_rp_earth": 2.7426299960232483
+  },
+  "sap_vs_psf": {
+    "ratio": 0.8761200919571986,
+    "ratio_err": 0.15272239998146114,
+    "catalogue_crowdsap": 0.6497,
+    "catalogue_psffrac": 0.7731,
+    "npixsap": 2,
+    "expected_ratio_if_sap_35pct_contaminated_and_psf_clean": 0.65,
+    "sigma_from_0p65": 1.4805954593736554,
+    "sigma_from_1": -0.8111443249833623
+  },
+  "sde": {
+    "mine_bls_1_50d_sde_raw": 21.713747265459002,
+    "mine_bls_1_50d_sde_baseline_subtracted": 26.514915500125934,
+    "mine_inverted_null_sde_raw": 8.353013793063429,
+    "mine_inverted_null_sde_baseline_subtracted": 9.505070361475092,
+    "pipeline_tls_narrow_window_sde": 14.05697394885028,
+    "note": "different statistics; not directly comparable"
+  },
+  "pixel_summary_from_pipeline": {
+    "n_quarters_used": 13,
+    "median_target_to_deficit_arcsec": 3.6166717789062948,
+    "median_fluxcentroid_to_deficit_arcsec": 8.27267476375969,
+    "median_nearest_other_source_to_deficit_arcsec": 5.3011802207535474,
+    "quarters_deficit_closer_to_target_than_any_other_source": 8,
+    "quarters_deficit_closer_to_target_than_flux_centroid": 9,
+    "median_depth_in_aperture_ppm": 6.7911178168817194,
+    "quarters_target_gaussian_beats_scaled_image": 11,
+    "sum_chi2_scaled_image": 518.6228397803119,
+    "sum_chi2_gauss_at_target": 411.36508891136344,
+    "sum_chi2_null": 558.9334624640259,
+    "median_peak_snr": 3.1095459037498783
+  }
+}

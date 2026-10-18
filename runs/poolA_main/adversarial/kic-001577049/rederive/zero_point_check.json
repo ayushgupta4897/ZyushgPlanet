@@ -1,0 +1,1613 @@
+{
+ "summary": {
+  "n_calibrators": 226,
+  "zp_psf_median": 25.387871605455302,
+  "zp_psf_robust_sigma": 0.3940954721690507,
+  "zp_psf_16_84": [
+   25.15192801422594,
+   26.844790926301854
+  ],
+  "target": {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-001577049_kepler_v1.0_lc.fits",
+   "gmag": 17.338667,
+   "kepmag": 15.6599998474121,
+   "med_psf": 15848.34114216759,
+   "med_sap": 33747.90219367942
+  },
+  "target_G_implied_by_psf_flux": 14.887912077951901,
+  "target_G_implied_by_sap_flux": 14.067254650983987,
+  "target_excess_mag_psf": 2.4507549220481,
+  "target_psf_flux_over_expected": 9.556568317688134,
+  "target_sap_over_psf": 2.12942805123538,
+  "sample_sap_over_psf_median": 1.1077110399371608,
+  "sample_sap_over_psf_16_84": [
+   0.9739723882192883,
+   2.8941556410920377
+  ],
+  "note": "zp from other pool stars in the cache: G + 2.5log10(median PSF FLUX). Positive excess_mag = target PSF flux brighter than its Gaia G predicts."
+ },
+ "calibrators": [
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-004056375_kepler_v1.0_lc.fits",
+   "gmag": 16.40922737121582,
+   "kepmag": 16.3269996643066,
+   "med_psf": 14848.932919298124,
+   "med_sap": 14996.364893658814
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009394708_kepler_v1.0_lc.fits",
+   "gmag": 16.94944000244141,
+   "kepmag": 16.9689998626709,
+   "med_psf": 10390.495268975732,
+   "med_sap": 10360.250086496722
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011772482_kepler_v1.0_lc.fits",
+   "gmag": 16.85019302368164,
+   "kepmag": 16.8859996795654,
+   "med_psf": 2184.557983242924,
+   "med_sap": 2734.3290331457215
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011351427_kepler_v1.0_lc.fits",
+   "gmag": 17.00967025756836,
+   "kepmag": 17.0189990997314,
+   "med_psf": 13210.047220243738,
+   "med_sap": 13233.392237485914
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010959376_kepler_v1.0_lc.fits",
+   "gmag": 16.91460609436035,
+   "kepmag": 16.92799949646,
+   "med_psf": 2269.259681029601,
+   "med_sap": 2038.3901299071256
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006192550_kepler_v1.0_lc.fits",
+   "gmag": 17.4383,
+   "kepmag": 15.3400001525879,
+   "med_psf": 1645.3337306950625,
+   "med_sap": 1414.9691071705486
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-003831969_kepler_v1.0_lc.fits",
+   "gmag": 16.53112983703613,
+   "kepmag": 16.5970001220703,
+   "med_psf": 3217.4950912265053,
+   "med_sap": 4051.2097844594355
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008676774_kepler_v1.0_lc.fits",
+   "gmag": 16.98368263244629,
+   "kepmag": 15.9119997024536,
+   "med_psf": 2721.325135553259,
+   "med_sap": 3779.0971885924946
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010922201_kepler_v1.0_lc.fits",
+   "gmag": 16.5679988861084,
+   "kepmag": 16.2409992218018,
+   "med_psf": 3298.354907555994,
+   "med_sap": 4310.604396237175
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008115931_kepler_v1.0_lc.fits",
+   "gmag": 17.25347328186035,
+   "kepmag": 17.3080005645752,
+   "med_psf": 2926.5305918033964,
+   "med_sap": 2924.8204651686924
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008425139_kepler_v1.0_lc.fits",
+   "gmag": 17.32024192810059,
+   "kepmag": 17.3430004119873,
+   "med_psf": 9062.67862683773,
+   "med_sap": 9021.938318478547
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009964254_kepler_v1.0_lc.fits",
+   "gmag": 17.481556,
+   "kepmag": 1e+20,
+   "med_psf": 566.6994929523509,
+   "med_sap": 2784.4028698130387
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007418959_kepler_v1.0_lc.fits",
+   "gmag": 15.59378147125244,
+   "kepmag": 15.6199998855591,
+   "med_psf": 7988.647678357561,
+   "med_sap": 7353.682625878302
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011189220_kepler_v1.0_lc.fits",
+   "gmag": 16.625711,
+   "kepmag": 16.6650009155273,
+   "med_psf": 1753.0477775692398,
+   "med_sap": 9611.432556808186
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005543340_kepler_v1.0_lc.fits",
+   "gmag": 16.20748710632324,
+   "kepmag": 16.2189998626709,
+   "med_psf": 4422.5948005948085,
+   "med_sap": 4134.8699812104405
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-003128070_kepler_v1.0_lc.fits",
+   "gmag": 17.0639762878418,
+   "kepmag": 17.0970001220703,
+   "med_psf": 1845.3035648048617,
+   "med_sap": 5586.105151543724
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008620445_kepler_v1.0_lc.fits",
+   "gmag": 16.07266998291016,
+   "kepmag": 16.1070003509521,
+   "med_psf": 4737.306035917996,
+   "med_sap": 5503.230775320952
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011719192_kepler_v1.0_lc.fits",
+   "gmag": 17.02916145324707,
+   "kepmag": 17.0849990844727,
+   "med_psf": 16188.754897943458,
+   "med_sap": 16071.948258677283
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007539519_kepler_v1.0_lc.fits",
+   "gmag": 17.3875732421875,
+   "kepmag": 15.2799997329712,
+   "med_psf": 2822.4048001419533,
+   "med_sap": 3179.786643557448
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008004947_kepler_v1.0_lc.fits",
+   "gmag": 17.17429542541504,
+   "kepmag": 17.2779998779297,
+   "med_psf": 3317.4530912128616,
+   "med_sap": 2568.2894315526983
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009702845_kepler_v1.0_lc.fits",
+   "gmag": 16.311922,
+   "kepmag": 16.2329998016357,
+   "med_psf": 21169.744042239745,
+   "med_sap": 21018.869906870892
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010937946_kepler_v1.0_lc.fits",
+   "gmag": 16.23806953430176,
+   "kepmag": 16.2649993896484,
+   "med_psf": 5385.72506337269,
+   "med_sap": 13644.428372757495
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010977593_kepler_v1.0_lc.fits",
+   "gmag": 15.6622257232666,
+   "kepmag": 15.7370004653931,
+   "med_psf": 7582.957387556939,
+   "med_sap": 9649.275767453102
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010352243_kepler_v1.0_lc.fits",
+   "gmag": 16.702513,
+   "kepmag": 16.7350006103516,
+   "med_psf": 2408.1308374652217,
+   "med_sap": 2990.841946622617
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008108255_kepler_v1.0_lc.fits",
+   "gmag": 14.42706298828125,
+   "kepmag": 14.456000328064,
+   "med_psf": 24240.746248533953,
+   "med_sap": 24226.838708914336
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006364467_kepler_v1.0_lc.fits",
+   "gmag": 16.54512214660645,
+   "kepmag": 16.6679992675781,
+   "med_psf": 8851.923447176963,
+   "med_sap": 8870.14089968549
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010658339_kepler_v1.0_lc.fits",
+   "gmag": 16.22213,
+   "kepmag": 16.2080001831055,
+   "med_psf": 4528.1047339945435,
+   "med_sap": 6207.03455205847
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-012404965_kepler_v1.0_lc.fits",
+   "gmag": 17.27212905883789,
+   "kepmag": 17.2770004272461,
+   "med_psf": 11412.075469514133,
+   "med_sap": 11401.537164092508
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005792562_kepler_v1.0_lc.fits",
+   "gmag": 15.94342517852783,
+   "kepmag": 15.9209995269775,
+   "med_psf": 6769.273622602452,
+   "med_sap": 7929.346753570361
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009640786_kepler_v1.0_lc.fits",
+   "gmag": 17.10211563110352,
+   "kepmag": 17.0389995574951,
+   "med_psf": 1849.2874822602546,
+   "med_sap": 3914.5272921656224
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-003337354_kepler_v1.0_lc.fits",
+   "gmag": 15.98005104064941,
+   "kepmag": 14.1400003433228,
+   "med_psf": 13562.276362108749,
+   "med_sap": 29600.767475209526
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006765083_kepler_v1.0_lc.fits",
+   "gmag": 17.2232494354248,
+   "kepmag": 1e+20,
+   "med_psf": 11918.122539520804,
+   "med_sap": 11955.744956615099
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009963646_kepler_v1.0_lc.fits",
+   "gmag": 16.89497947692871,
+   "kepmag": 1e+20,
+   "med_psf": 1812.3459409940058,
+   "med_sap": 15597.040830279213
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009141368_kepler_v1.0_lc.fits",
+   "gmag": 16.08277893066406,
+   "kepmag": 16.0799999237061,
+   "med_psf": 5375.528171211055,
+   "med_sap": 5724.72488875074
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007450245_kepler_v1.0_lc.fits",
+   "gmag": 17.28581428527832,
+   "kepmag": 1e+20,
+   "med_psf": 9975.396378600424,
+   "med_sap": 33302.03879136736
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010263791_kepler_v1.0_lc.fits",
+   "gmag": 15.441125,
+   "kepmag": 14.4320001602173,
+   "med_psf": 10232.764768388106,
+   "med_sap": 9132.223673337325
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005609180_kepler_v1.0_lc.fits",
+   "gmag": 16.86284065246582,
+   "kepmag": 16.8640003204346,
+   "med_psf": 2645.442069794735,
+   "med_sap": 2004.839682760621
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007910658_kepler_v1.0_lc.fits",
+   "gmag": 17.42111206054688,
+   "kepmag": 1e+20,
+   "med_psf": 826.6056061687184,
+   "med_sap": 6959.191557930555
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010782709_kepler_v1.0_lc.fits",
+   "gmag": 15.608071,
+   "kepmag": 1e+20,
+   "med_psf": 7428.120472456003,
+   "med_sap": 15716.162263052336
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011766393_kepler_v1.0_lc.fits",
+   "gmag": 17.03848457336426,
+   "kepmag": 16.6459999084473,
+   "med_psf": 1537.8244791497677,
+   "med_sap": 4251.36148755085
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008955853_kepler_v1.0_lc.fits",
+   "gmag": 16.79383659362793,
+   "kepmag": 16.8409996032715,
+   "med_psf": 2788.4110266199327,
+   "med_sap": 2799.3706611364432
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005697194_kepler_v1.0_lc.fits",
+   "gmag": 16.2497386932373,
+   "kepmag": 16.8449993133545,
+   "med_psf": 4486.471025477914,
+   "med_sap": 4919.465794453281
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-012215449_kepler_v1.0_lc.fits",
+   "gmag": 15.849609375,
+   "kepmag": 15.9010000228882,
+   "med_psf": 6985.021653933715,
+   "med_sap": 5473.276377420008
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008084900_kepler_v1.0_lc.fits",
+   "gmag": 16.70197868347168,
+   "kepmag": 16.7329998016357,
+   "med_psf": 2977.7693105040953,
+   "med_sap": 3090.4248392104573
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-012072055_kepler_v1.0_lc.fits",
+   "gmag": 16.59724044799805,
+   "kepmag": 16.5799999237061,
+   "med_psf": 4042.8425620462813,
+   "med_sap": 5117.108715505124
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009266999_kepler_v1.0_lc.fits",
+   "gmag": 16.22125625610352,
+   "kepmag": 16.2980003356934,
+   "med_psf": 3519.0210208680483,
+   "med_sap": 29373.035166635127
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005866176_kepler_v1.0_lc.fits",
+   "gmag": 15.284825,
+   "kepmag": 15.3640003204346,
+   "med_psf": 11712.777541420077,
+   "med_sap": 6650.50469648676
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007039138_kepler_v1.0_lc.fits",
+   "gmag": 15.62129306793213,
+   "kepmag": 15.3970003128052,
+   "med_psf": 7556.884398935301,
+   "med_sap": 8987.829466188059
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005823939_kepler_v1.0_lc.fits",
+   "gmag": 17.178865,
+   "kepmag": 17.1149997711182,
+   "med_psf": 10094.704180879236,
+   "med_sap": 10109.78969455684
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010188640_kepler_v1.0_lc.fits",
+   "gmag": 17.33831024169922,
+   "kepmag": 1e+20,
+   "med_psf": 983.2158452189652,
+   "med_sap": 9363.704063994117
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005689121_kepler_v1.0_lc.fits",
+   "gmag": 16.28241348266602,
+   "kepmag": 16.3320007324219,
+   "med_psf": 3990.6097877917064,
+   "med_sap": 4603.174011637862
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-012059777_kepler_v1.0_lc.fits",
+   "gmag": 17.42702674865723,
+   "kepmag": 17.423999786377,
+   "med_psf": 1466.436072747671,
+   "med_sap": 1081.478416445199
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008227518_kepler_v1.0_lc.fits",
+   "gmag": 15.90764141082764,
+   "kepmag": 15.8859996795654,
+   "med_psf": 6569.274506698714,
+   "med_sap": 6567.5537034093395
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006526661_kepler_v1.0_lc.fits",
+   "gmag": 17.12220001220703,
+   "kepmag": 17.1900005340576,
+   "med_psf": 1818.945216002949,
+   "med_sap": 2308.4458064473283
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011508271_kepler_v1.0_lc.fits",
+   "gmag": 17.46168,
+   "kepmag": 16.1410007476807,
+   "med_psf": 1359.531984777083,
+   "med_sap": 3064.8287811336922
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007846791_kepler_v1.0_lc.fits",
+   "gmag": 16.71968841552734,
+   "kepmag": 16.7350006103516,
+   "med_psf": 2702.147392562199,
+   "med_sap": 5470.339179265664
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009273150_kepler_v1.0_lc.fits",
+   "gmag": 15.107876,
+   "kepmag": 14.9200000762939,
+   "med_psf": 12059.22006513206,
+   "med_sap": 10652.476634585906
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009906525_kepler_v1.0_lc.fits",
+   "gmag": 16.99434471130371,
+   "kepmag": 17.0659999847412,
+   "med_psf": 2117.4774321611985,
+   "med_sap": 1887.953282053697
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-003335940_kepler_v1.0_lc.fits",
+   "gmag": 16.29229736328125,
+   "kepmag": 16.1089992523193,
+   "med_psf": 5454.2317023809355,
+   "med_sap": 5463.958328321589
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005181589_kepler_v1.0_lc.fits",
+   "gmag": 15.09398078918457,
+   "kepmag": 15.1630001068115,
+   "med_psf": 12883.235986126016,
+   "med_sap": 12515.316229690605
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009844946_kepler_v1.0_lc.fits",
+   "gmag": 17.35497283935547,
+   "kepmag": 17.8999996185303,
+   "med_psf": 8296.195383370134,
+   "med_sap": 8280.620138320599
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010681541_kepler_v1.0_lc.fits",
+   "gmag": 16.90909,
+   "kepmag": 16.8549995422363,
+   "med_psf": 8563.190533659978,
+   "med_sap": 8561.779428883552
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006609654_kepler_v1.0_lc.fits",
+   "gmag": 17.38283920288086,
+   "kepmag": 16.0400009155273,
+   "med_psf": 6016.876652440646,
+   "med_sap": 6073.368580960785
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-003854868_kepler_v1.0_lc.fits",
+   "gmag": 17.23271369934082,
+   "kepmag": 17.2040004730225,
+   "med_psf": 1738.7629481629742,
+   "med_sap": 1901.7451986467968
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006956069_kepler_v1.0_lc.fits",
+   "gmag": 17.445904,
+   "kepmag": 17.4799995422363,
+   "med_psf": 1223.461892746468,
+   "med_sap": 1820.176133830776
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011650433_kepler_v1.0_lc.fits",
+   "gmag": 15.64725589752197,
+   "kepmag": 15.6619997024536,
+   "med_psf": 6607.204895606184,
+   "med_sap": 5587.358499070581
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010557406_kepler_v1.0_lc.fits",
+   "gmag": 16.47162628173828,
+   "kepmag": 16.5160007476807,
+   "med_psf": 5733.068853187953,
+   "med_sap": 5746.802405941809
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008736802_kepler_v1.0_lc.fits",
+   "gmag": 16.28690147399902,
+   "kepmag": 16.3549995422363,
+   "med_psf": 3852.7257074247354,
+   "med_sap": 4762.637670080674
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011236638_kepler_v1.0_lc.fits",
+   "gmag": 15.3534355,
+   "kepmag": 15.1059999465942,
+   "med_psf": 9548.795827310494,
+   "med_sap": 9668.232950799937
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008760251_kepler_v1.0_lc.fits",
+   "gmag": 17.26585388183594,
+   "kepmag": 15.6459999084473,
+   "med_psf": 6939.082638381031,
+   "med_sap": 6845.279006199089
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010149701_kepler_v1.0_lc.fits",
+   "gmag": 16.5677661895752,
+   "kepmag": 16.6380004882813,
+   "med_psf": 17328.18728247719,
+   "med_sap": 17231.57196470184
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005284896_kepler_v1.0_lc.fits",
+   "gmag": 17.37521553039551,
+   "kepmag": 1e+20,
+   "med_psf": 1549.522918194962,
+   "med_sap": 3787.6920952277346
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006675989_kepler_v1.0_lc.fits",
+   "gmag": 16.21963691711426,
+   "kepmag": 16.257999420166,
+   "med_psf": 4007.265976171435,
+   "med_sap": 4418.25385383023
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006450931_kepler_v1.0_lc.fits",
+   "gmag": 16.30393218994141,
+   "kepmag": 16.2880001068115,
+   "med_psf": 2653.3693155866267,
+   "med_sap": 15003.626089673744
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009541329_kepler_v1.0_lc.fits",
+   "gmag": 17.32741737365723,
+   "kepmag": 1e+20,
+   "med_psf": 1060.6069569482906,
+   "med_sap": 5056.03954655135
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008718284_kepler_v1.0_lc.fits",
+   "gmag": 17.44743156433105,
+   "kepmag": 16.4500007629395,
+   "med_psf": 2803.7671607571274,
+   "med_sap": 17990.931248992776
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008759744_kepler_v1.0_lc.fits",
+   "gmag": 17.01963424682617,
+   "kepmag": 17.056999206543,
+   "med_psf": 40610.32261839026,
+   "med_sap": 40503.4902496535
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007593261_kepler_v1.0_lc.fits",
+   "gmag": 16.39524459838867,
+   "kepmag": 16.4150009155273,
+   "med_psf": 2327.2533540851787,
+   "med_sap": 22228.25372342841
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009596123_kepler_v1.0_lc.fits",
+   "gmag": 17.29501533508301,
+   "kepmag": 1e+20,
+   "med_psf": 2647.633082680552,
+   "med_sap": 7336.921727915417
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008560822_kepler_v1.0_lc.fits",
+   "gmag": 16.69892311096191,
+   "kepmag": 16.6690006256104,
+   "med_psf": 3032.571702786114,
+   "med_sap": 2059.81716795371
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006126069_kepler_v1.0_lc.fits",
+   "gmag": 16.07175827026367,
+   "kepmag": 16.1560001373291,
+   "med_psf": 4068.9267211282518,
+   "med_sap": 12928.909716274246
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007707797_kepler_v1.0_lc.fits",
+   "gmag": 17.33456230163574,
+   "kepmag": 17.3080005645752,
+   "med_psf": 5102.378714532482,
+   "med_sap": 5141.365428119665
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007818192_kepler_v1.0_lc.fits",
+   "gmag": 15.44700241088867,
+   "kepmag": 15.4490003585815,
+   "med_psf": 9478.863255121822,
+   "med_sap": 8837.852757419798
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010094839_kepler_v1.0_lc.fits",
+   "gmag": 16.853172,
+   "kepmag": 16.8680000305176,
+   "med_psf": 2241.4258115279263,
+   "med_sap": 2738.90728096176
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-004932818_kepler_v1.0_lc.fits",
+   "gmag": 16.53754425048828,
+   "kepmag": 16.5919990539551,
+   "med_psf": 3013.63728001983,
+   "med_sap": 3067.0305723190877
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007345233_kepler_v1.0_lc.fits",
+   "gmag": 16.07014656066895,
+   "kepmag": 16.1480007171631,
+   "med_psf": 4484.1577061858225,
+   "med_sap": 7248.074966868759
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009221506_kepler_v1.0_lc.fits",
+   "gmag": 17.184906,
+   "kepmag": 17.2299995422363,
+   "med_psf": 1432.969680660331,
+   "med_sap": 2889.5113826969864
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010164837_kepler_v1.0_lc.fits",
+   "gmag": 17.28432655334473,
+   "kepmag": 16.4629993438721,
+   "med_psf": 5623.40048916776,
+   "med_sap": 7909.642423831928
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007373631_kepler_v1.0_lc.fits",
+   "gmag": 16.945206,
+   "kepmag": 16.9689998626709,
+   "med_psf": 2679.848543794676,
+   "med_sap": 2371.58824467034
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-002832412_kepler_v1.0_lc.fits",
+   "gmag": 17.20711326599121,
+   "kepmag": 17.2740001678467,
+   "med_psf": 4727.337703150228,
+   "med_sap": 4763.494119761991
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011098345_kepler_v1.0_lc.fits",
+   "gmag": 16.87519264221191,
+   "kepmag": 16.8950004577637,
+   "med_psf": 12909.517447907796,
+   "med_sap": 12952.666656705083
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010088644_kepler_v1.0_lc.fits",
+   "gmag": 17.442556,
+   "kepmag": 1e+20,
+   "med_psf": 5766.256677207288,
+   "med_sap": 5727.76033850445
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008765835_kepler_v1.0_lc.fits",
+   "gmag": 16.51083755493164,
+   "kepmag": 15.8050003051758,
+   "med_psf": 3485.5847850809214,
+   "med_sap": 2844.433922053422
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-003633830_kepler_v1.0_lc.fits",
+   "gmag": 16.04727363586426,
+   "kepmag": 16.0790004730225,
+   "med_psf": 11171.4190275537,
+   "med_sap": 11230.179393424865
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-004733308_kepler_v1.0_lc.fits",
+   "gmag": 14.81361103057861,
+   "kepmag": 14.8229999542236,
+   "med_psf": 13115.360733862875,
+   "med_sap": 37957.89525286625
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008872428_kepler_v1.0_lc.fits",
+   "gmag": 14.693797,
+   "kepmag": 14.8070001602173,
+   "med_psf": 15665.76859427083,
+   "med_sap": 26268.860140188743
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010610117_kepler_v1.0_lc.fits",
+   "gmag": 16.59918212890625,
+   "kepmag": 16.6159992218018,
+   "med_psf": 1873.686568697088,
+   "med_sap": 9849.070827628522
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007363491_kepler_v1.0_lc.fits",
+   "gmag": 16.91631507873535,
+   "kepmag": 1e+20,
+   "med_psf": 35968.39430713968,
+   "med_sap": 35986.708298426245
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008636232_kepler_v1.0_lc.fits",
+   "gmag": 17.37813758850098,
+   "kepmag": 17.5340003967285,
+   "med_psf": 1452.1668585148223,
+   "med_sap": 1918.4096023824768
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011519768_kepler_v1.0_lc.fits",
+   "gmag": 16.93134307861328,
+   "kepmag": 16.9400005340576,
+   "med_psf": 5136.788997811309,
+   "med_sap": 5133.212274119553
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008374272_kepler_v1.0_lc.fits",
+   "gmag": 17.21174240112305,
+   "kepmag": 17.2530002593994,
+   "med_psf": 1506.115030922218,
+   "med_sap": 2701.7256389923105
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006699887_kepler_v1.0_lc.fits",
+   "gmag": 16.219015,
+   "kepmag": 16.2560005187988,
+   "med_psf": 4629.023468274376,
+   "med_sap": 4150.849696363954
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009753182_kepler_v1.0_lc.fits",
+   "gmag": 17.128012,
+   "kepmag": 16.3209991455078,
+   "med_psf": 9145.774581561167,
+   "med_sap": 9109.122359164172
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009655224_kepler_v1.0_lc.fits",
+   "gmag": 17.09511184692383,
+   "kepmag": 17.1359996795654,
+   "med_psf": 1890.4999746640565,
+   "med_sap": 3911.8107355499224
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009475875_kepler_v1.0_lc.fits",
+   "gmag": 16.59706687927246,
+   "kepmag": 16.4710006713867,
+   "med_psf": 4172.547596211086,
+   "med_sap": 5263.375432241831
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010286620_kepler_v1.0_lc.fits",
+   "gmag": 16.51660346984863,
+   "kepmag": 16.5979995727539,
+   "med_psf": 6851.343125795533,
+   "med_sap": 6870.933584918596
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009956912_kepler_v1.0_lc.fits",
+   "gmag": 16.49040031433105,
+   "kepmag": 16.6049995422363,
+   "med_psf": 3312.210734710158,
+   "med_sap": 3108.248682509911
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-004931056_kepler_v1.0_lc.fits",
+   "gmag": 16.778524,
+   "kepmag": 16.757999420166,
+   "med_psf": 2919.8457642395006,
+   "med_sap": 3338.8450207340043
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-004929758_kepler_v1.0_lc.fits",
+   "gmag": 17.19516563415527,
+   "kepmag": 16.693000793457,
+   "med_psf": 4789.903816050283,
+   "med_sap": 4840.360170937482
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008750972_kepler_v1.0_lc.fits",
+   "gmag": 17.40384292602539,
+   "kepmag": 17.4139995574951,
+   "med_psf": 1007.8236543425961,
+   "med_sap": 4220.619287921731
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005792097_kepler_v1.0_lc.fits",
+   "gmag": 17.41786766052246,
+   "kepmag": 16.5839996337891,
+   "med_psf": 1566.6122205124418,
+   "med_sap": 2407.4084839271623
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005385224_kepler_v1.0_lc.fits",
+   "gmag": 16.43042182922363,
+   "kepmag": 15.8090000152588,
+   "med_psf": 6996.339887988258,
+   "med_sap": 7016.722602500209
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009098309_kepler_v1.0_lc.fits",
+   "gmag": 17.191189,
+   "kepmag": 1e+20,
+   "med_psf": 13829.333960577267,
+   "med_sap": 61336.58301068198
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010286969_kepler_v1.0_lc.fits",
+   "gmag": 16.733566,
+   "kepmag": 16.7830009460449,
+   "med_psf": 2492.619438137122,
+   "med_sap": 2427.7425070842332
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011017338_kepler_v1.0_lc.fits",
+   "gmag": 15.5981330871582,
+   "kepmag": 14.5349998474121,
+   "med_psf": 6384.668146147806,
+   "med_sap": 25305.663847304124
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007764680_kepler_v1.0_lc.fits",
+   "gmag": 17.13908958435059,
+   "kepmag": 17.1639995574951,
+   "med_psf": 8456.178790650047,
+   "med_sap": 8522.63163700097
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008819375_kepler_v1.0_lc.fits",
+   "gmag": 15.68238067626953,
+   "kepmag": 1e+20,
+   "med_psf": 4455.950012905574,
+   "med_sap": 23592.434696361583
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011030587_kepler_v1.0_lc.fits",
+   "gmag": 16.35361289978027,
+   "kepmag": 16.3999996185303,
+   "med_psf": 4082.7004676435613,
+   "med_sap": 3677.068956209222
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009471787_kepler_v1.0_lc.fits",
+   "gmag": 16.75204277038574,
+   "kepmag": 1e+20,
+   "med_psf": 9965.055632787004,
+   "med_sap": 9893.925826545998
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007183868_kepler_v1.0_lc.fits",
+   "gmag": 17.356897,
+   "kepmag": 17.3400001525879,
+   "med_psf": 1762.4751162700272,
+   "med_sap": 1961.390545278883
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011708893_kepler_v1.0_lc.fits",
+   "gmag": 16.15198516845703,
+   "kepmag": 16.17799949646,
+   "med_psf": 5024.064498683785,
+   "med_sap": 6728.069183145811
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006365498_kepler_v1.0_lc.fits",
+   "gmag": 16.66292572021484,
+   "kepmag": 16.753999710083,
+   "med_psf": 4388.935568361325,
+   "med_sap": 4399.175880890156
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009904091_kepler_v1.0_lc.fits",
+   "gmag": 16.34150695800781,
+   "kepmag": 16.3339996337891,
+   "med_psf": 3084.380014122997,
+   "med_sap": 5005.6450933695305
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011764124_kepler_v1.0_lc.fits",
+   "gmag": 14.90614891052246,
+   "kepmag": 14.6230001449585,
+   "med_psf": 13574.988380254104,
+   "med_sap": 10978.69400380642
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007518035_kepler_v1.0_lc.fits",
+   "gmag": 16.85082,
+   "kepmag": 16.9060001373291,
+   "med_psf": 2552.8728142069626,
+   "med_sap": 3490.8617023529036
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008806157_kepler_v1.0_lc.fits",
+   "gmag": 17.4293384552002,
+   "kepmag": 1e+20,
+   "med_psf": 7602.580328343002,
+   "med_sap": 7635.252660306757
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-003965290_kepler_v1.0_lc.fits",
+   "gmag": 17.17601776123047,
+   "kepmag": 1e+20,
+   "med_psf": 8426.322599180394,
+   "med_sap": 8413.621842533248
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008869706_kepler_v1.0_lc.fits",
+   "gmag": 17.38249015808105,
+   "kepmag": 17.4150009155273,
+   "med_psf": 1315.2918420249384,
+   "med_sap": 3745.6374075419835
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009345311_kepler_v1.0_lc.fits",
+   "gmag": 17.21530914306641,
+   "kepmag": 17.2919998168945,
+   "med_psf": 1575.9905199283103,
+   "med_sap": 6784.229238121564
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005517436_kepler_v1.0_lc.fits",
+   "gmag": 16.9804630279541,
+   "kepmag": 17.0060005187988,
+   "med_psf": 8556.848517398475,
+   "med_sap": 8602.524084833387
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007974645_kepler_v1.0_lc.fits",
+   "gmag": 15.08857727050781,
+   "kepmag": 14.9829998016357,
+   "med_psf": 12385.112616737646,
+   "med_sap": 23480.835566760907
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008571534_kepler_v1.0_lc.fits",
+   "gmag": 15.82772445678711,
+   "kepmag": 15.8590002059937,
+   "med_psf": 5424.870849702429,
+   "med_sap": 34718.06657330602
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007298308_kepler_v1.0_lc.fits",
+   "gmag": 16.503881,
+   "kepmag": 16.4969997406006,
+   "med_psf": 3201.4097366322762,
+   "med_sap": 7116.740048738651
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-012506441_kepler_v1.0_lc.fits",
+   "gmag": 14.94741821289062,
+   "kepmag": 14.9989995956421,
+   "med_psf": 15031.165658206377,
+   "med_sap": 12119.5066535966
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011044950_kepler_v1.0_lc.fits",
+   "gmag": 16.01813697814941,
+   "kepmag": 15.8959999084473,
+   "med_psf": 5939.355544616068,
+   "med_sap": 6857.7516869300825
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010918085_kepler_v1.0_lc.fits",
+   "gmag": 16.80082,
+   "kepmag": 16.757999420166,
+   "med_psf": 2390.114322675131,
+   "med_sap": 3232.9563147534827
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010619509_kepler_v1.0_lc.fits",
+   "gmag": 16.863838,
+   "kepmag": 16.7950000762939,
+   "med_psf": 4697.957151921635,
+   "med_sap": 4729.245150580537
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007811687_kepler_v1.0_lc.fits",
+   "gmag": 17.34478569030762,
+   "kepmag": 17.367000579834,
+   "med_psf": 9476.014384786777,
+   "med_sap": 9441.079065802205
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008619384_kepler_v1.0_lc.fits",
+   "gmag": 17.19101524353027,
+   "kepmag": 1e+20,
+   "med_psf": 8376.930712414396,
+   "med_sap": 8301.372104028816
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007191961_kepler_v1.0_lc.fits",
+   "gmag": 17.062185,
+   "kepmag": 16.0470008850098,
+   "med_psf": 4278.773911677834,
+   "med_sap": 4257.040218429815
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010406098_kepler_v1.0_lc.fits",
+   "gmag": 14.68186855316162,
+   "kepmag": 14.7250003814697,
+   "med_psf": 19080.30156242097,
+   "med_sap": 17312.249580111617
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007103675_kepler_v1.0_lc.fits",
+   "gmag": 16.66060829162598,
+   "kepmag": 16.6089992523193,
+   "med_psf": 3686.0936462927443,
+   "med_sap": 5660.667412397774
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009051402_kepler_v1.0_lc.fits",
+   "gmag": 17.28261184692383,
+   "kepmag": 16.9120006561279,
+   "med_psf": 5322.77049215796,
+   "med_sap": 5406.1678780148595
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009906436_kepler_v1.0_lc.fits",
+   "gmag": 17.16924095153809,
+   "kepmag": 15.7410001754761,
+   "med_psf": 1559.8212229956134,
+   "med_sap": 5032.860866042997
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006880996_kepler_v1.0_lc.fits",
+   "gmag": 17.03129,
+   "kepmag": 17.1200008392334,
+   "med_psf": 24392.85049125324,
+   "med_sap": 24379.92548809576
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008226465_kepler_v1.0_lc.fits",
+   "gmag": 17.1396656036377,
+   "kepmag": 17.1480007171631,
+   "med_psf": 1468.1869326180845,
+   "med_sap": 2979.354921318927
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011874340_kepler_v1.0_lc.fits",
+   "gmag": 17.206636,
+   "kepmag": 17.2220001220703,
+   "med_psf": 6877.417466830188,
+   "med_sap": 6954.264997343299
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011603114_kepler_v1.0_lc.fits",
+   "gmag": 16.99164772033691,
+   "kepmag": 15.3330001831055,
+   "med_psf": 3402.725158265227,
+   "med_sap": 3983.1371261004724
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005000045_kepler_v1.0_lc.fits",
+   "gmag": 16.30110168457031,
+   "kepmag": 16.3390007019043,
+   "med_psf": 4266.324682843909,
+   "med_sap": 6243.282878588452
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009224510_kepler_v1.0_lc.fits",
+   "gmag": 17.437187,
+   "kepmag": 17.3680000305176,
+   "med_psf": 2076.4008808529534,
+   "med_sap": 3840.6283367295473
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005022593_kepler_v1.0_lc.fits",
+   "gmag": 16.22330856323242,
+   "kepmag": 16.2250003814697,
+   "med_psf": 4915.844304931372,
+   "med_sap": 4181.382843545351
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-003096342_kepler_v1.0_lc.fits",
+   "gmag": 15.2719259262085,
+   "kepmag": 15.3070001602173,
+   "med_psf": 27573.821971532714,
+   "med_sap": 27892.376300989075
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009229521_kepler_v1.0_lc.fits",
+   "gmag": 16.34644317626953,
+   "kepmag": 16.3959999084473,
+   "med_psf": 4116.218389123378,
+   "med_sap": 4194.6231957634445
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-012167372_kepler_v1.0_lc.fits",
+   "gmag": 16.73005867004395,
+   "kepmag": 1e+20,
+   "med_psf": 34078.38169537453,
+   "med_sap": 34403.12466538858
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-002707972_kepler_v1.0_lc.fits",
+   "gmag": 17.14135360717773,
+   "kepmag": 17.2369995117188,
+   "med_psf": 2534.8614743344856,
+   "med_sap": 1423.2045011991756
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008120833_kepler_v1.0_lc.fits",
+   "gmag": 17.324213,
+   "kepmag": 17.375,
+   "med_psf": 1296.4610508878254,
+   "med_sap": 2380.8356218245785
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006442706_kepler_v1.0_lc.fits",
+   "gmag": 16.93769836425781,
+   "kepmag": 16.92799949646,
+   "med_psf": 11896.285836058312,
+   "med_sap": 11899.010670675993
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006131785_kepler_v1.0_lc.fits",
+   "gmag": 16.68824577331543,
+   "kepmag": 16.757999420166,
+   "med_psf": 2685.3096429951324,
+   "med_sap": 9610.081836860594
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009812515_kepler_v1.0_lc.fits",
+   "gmag": 16.339266,
+   "kepmag": 16.3589992523193,
+   "med_psf": 30911.520040895724,
+   "med_sap": 30951.06643512596
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-003657166_kepler_v1.0_lc.fits",
+   "gmag": 16.689777,
+   "kepmag": 16.7229995727539,
+   "med_psf": 2682.2663131049667,
+   "med_sap": 4813.6911927002475
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005180301_kepler_v1.0_lc.fits",
+   "gmag": 17.03885269165039,
+   "kepmag": 17.0270004272461,
+   "med_psf": 2740.618609809123,
+   "med_sap": 2753.4936345477163
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010876646_kepler_v1.0_lc.fits",
+   "gmag": 16.35866737365723,
+   "kepmag": 16.3859996795654,
+   "med_psf": 1836.3394397717504,
+   "med_sap": 12117.870322596915
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011136749_kepler_v1.0_lc.fits",
+   "gmag": 16.22939872741699,
+   "kepmag": 16.2679996490479,
+   "med_psf": 4524.943012345688,
+   "med_sap": 3592.926557933784
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-004818978_kepler_v1.0_lc.fits",
+   "gmag": 17.20161628723145,
+   "kepmag": 15.5050001144409,
+   "med_psf": 7694.500212753131,
+   "med_sap": 7798.949434826279
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-004727088_kepler_v1.0_lc.fits",
+   "gmag": 17.47378730773926,
+   "kepmag": 1e+20,
+   "med_psf": 1023.5988292253637,
+   "med_sap": 4191.522821249168
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010064231_kepler_v1.0_lc.fits",
+   "gmag": 16.055645,
+   "kepmag": 16.0620002746582,
+   "med_psf": 4981.597943430674,
+   "med_sap": 4930.96075860048
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011360475_kepler_v1.0_lc.fits",
+   "gmag": 16.69780158996582,
+   "kepmag": 16.6830005645752,
+   "med_psf": 42798.76520656285,
+   "med_sap": 42740.558435496845
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006367225_kepler_v1.0_lc.fits",
+   "gmag": 17.22469329833984,
+   "kepmag": 17.2350006103516,
+   "med_psf": 1366.3789597758046,
+   "med_sap": 3764.4985657041507
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006546046_kepler_v1.0_lc.fits",
+   "gmag": 16.58843421936035,
+   "kepmag": 16.6140003204346,
+   "med_psf": 3117.853548455801,
+   "med_sap": 7484.540559409312
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008150605_kepler_v1.0_lc.fits",
+   "gmag": 15.47132396697998,
+   "kepmag": 15.5050001144409,
+   "med_psf": 9263.121817347579,
+   "med_sap": 13763.572200414952
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006778457_kepler_v1.0_lc.fits",
+   "gmag": 17.49402,
+   "kepmag": 17.5419998168945,
+   "med_psf": 2458.1777585713953,
+   "med_sap": 2457.970035563965
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008703341_kepler_v1.0_lc.fits",
+   "gmag": 16.61043930053711,
+   "kepmag": 16.6060009002686,
+   "med_psf": 3215.362359939921,
+   "med_sap": 3868.608229803377
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008460678_kepler_v1.0_lc.fits",
+   "gmag": 15.87925624847412,
+   "kepmag": 15.8839998245239,
+   "med_psf": 5478.66140653639,
+   "med_sap": 17572.3257322304
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-003748087_kepler_v1.0_lc.fits",
+   "gmag": 17.49080085754395,
+   "kepmag": 17.2450008392334,
+   "med_psf": 2828.7544210166334,
+   "med_sap": 2800.2149857337627
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006719115_kepler_v1.0_lc.fits",
+   "gmag": 16.66100120544434,
+   "kepmag": 16.701000213623,
+   "med_psf": 2069.3907542505094,
+   "med_sap": 7160.960147247357
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007522653_kepler_v1.0_lc.fits",
+   "gmag": 16.66858673095703,
+   "kepmag": 1e+20,
+   "med_psf": 10256.330794042533,
+   "med_sap": 12839.173990455136
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-012017969_kepler_v1.0_lc.fits",
+   "gmag": 15.36759281158447,
+   "kepmag": 15.331000328064,
+   "med_psf": 9709.063605530137,
+   "med_sap": 8546.973552711468
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011826335_kepler_v1.0_lc.fits",
+   "gmag": 16.59643745422363,
+   "kepmag": 16.6009998321533,
+   "med_psf": 2361.038143722965,
+   "med_sap": 5032.329514489763
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007621844_kepler_v1.0_lc.fits",
+   "gmag": 15.82442474365234,
+   "kepmag": 15.8500003814697,
+   "med_psf": 5762.370166313174,
+   "med_sap": 9664.795480091154
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-012470523_kepler_v1.0_lc.fits",
+   "gmag": 17.33762168884277,
+   "kepmag": 17.4179992675781,
+   "med_psf": 1567.6296044114338,
+   "med_sap": 1179.4212712430929
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009728828_kepler_v1.0_lc.fits",
+   "gmag": 15.88389015197754,
+   "kepmag": 1e+20,
+   "med_psf": 11087.257373357328,
+   "med_sap": 30087.323976161442
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-003963519_kepler_v1.0_lc.fits",
+   "gmag": 17.28032112121582,
+   "kepmag": 17.2840003967285,
+   "med_psf": 1676.9451671206696,
+   "med_sap": 1291.505157822669
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-012057817_kepler_v1.0_lc.fits",
+   "gmag": 17.47916793823242,
+   "kepmag": 17.4559993743896,
+   "med_psf": 1411.873908760722,
+   "med_sap": 1681.748733256247
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009655828_kepler_v1.0_lc.fits",
+   "gmag": 16.653267,
+   "kepmag": 16.7490005493164,
+   "med_psf": 2907.1956441221173,
+   "med_sap": 4434.678469345439
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010991863_kepler_v1.0_lc.fits",
+   "gmag": 15.22762107849121,
+   "kepmag": 15.1239995956421,
+   "med_psf": 9199.122246256642,
+   "med_sap": 11000.47262297763
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-003425812_kepler_v1.0_lc.fits",
+   "gmag": 17.20614433288574,
+   "kepmag": 1e+20,
+   "med_psf": 18348.604576804064,
+   "med_sap": 18531.932618765182
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010876387_kepler_v1.0_lc.fits",
+   "gmag": 15.317866,
+   "kepmag": 15.2770004272461,
+   "med_psf": 8033.767090058807,
+   "med_sap": 38947.2798107447
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011285117_kepler_v1.0_lc.fits",
+   "gmag": 15.9293,
+   "kepmag": 15.956000328064,
+   "med_psf": 3394.12455497952,
+   "med_sap": 13179.317646563726
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007765688_kepler_v1.0_lc.fits",
+   "gmag": 17.0775203704834,
+   "kepmag": 17.0930004119873,
+   "med_psf": 25362.398691081686,
+   "med_sap": 25586.939101756485
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-003662942_kepler_v1.0_lc.fits",
+   "gmag": 16.76884651184082,
+   "kepmag": 16.886999130249,
+   "med_psf": 4464.339776283667,
+   "med_sap": 4551.435284406491
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011342819_kepler_v1.0_lc.fits",
+   "gmag": 16.54083,
+   "kepmag": 16.6299991607666,
+   "med_psf": 20963.52334790674,
+   "med_sap": 20942.19073633504
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005380604_kepler_v1.0_lc.fits",
+   "gmag": 15.67298126220703,
+   "kepmag": 15.7779998779297,
+   "med_psf": 36611.45590444591,
+   "med_sap": 77152.78057757889
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007211828_kepler_v1.0_lc.fits",
+   "gmag": 17.19955825805664,
+   "kepmag": 17.1620006561279,
+   "med_psf": 4658.115182411502,
+   "med_sap": 4655.079128031694
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-002570392_kepler_v1.0_lc.fits",
+   "gmag": 15.565932,
+   "kepmag": 15.6099996566772,
+   "med_psf": 14767.385854331107,
+   "med_sap": 6758.650392981279
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005732064_kepler_v1.0_lc.fits",
+   "gmag": 17.25204467773438,
+   "kepmag": 16.7439994812012,
+   "med_psf": 4402.787975454058,
+   "med_sap": 4367.483425774717
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009835823_kepler_v1.0_lc.fits",
+   "gmag": 17.23723220825195,
+   "kepmag": 15.706000328064,
+   "med_psf": 3459.656454857906,
+   "med_sap": 4059.250523277174
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006192017_kepler_v1.0_lc.fits",
+   "gmag": 16.545542,
+   "kepmag": 16.6459999084473,
+   "med_psf": 2891.097905558833,
+   "med_sap": 5489.148777740281
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007034115_kepler_v1.0_lc.fits",
+   "gmag": 17.46841049194336,
+   "kepmag": 17.4810009002686,
+   "med_psf": 13903.769210129674,
+   "med_sap": 13894.813184969404
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005554006_kepler_v1.0_lc.fits",
+   "gmag": 17.32797622680664,
+   "kepmag": 17.3619995117188,
+   "med_psf": 1363.9699625221026,
+   "med_sap": 2622.6949752650353
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008825373_kepler_v1.0_lc.fits",
+   "gmag": 17.43682479858398,
+   "kepmag": 17.4249992370605,
+   "med_psf": 3034.750091576305,
+   "med_sap": 3039.3049392773532
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010918399_kepler_v1.0_lc.fits",
+   "gmag": 17.01565742492676,
+   "kepmag": 17.1870002746582,
+   "med_psf": 2479.0716909915864,
+   "med_sap": 2175.1971950032093
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-009021211_kepler_v1.0_lc.fits",
+   "gmag": 16.80322265625,
+   "kepmag": 16.8090000152588,
+   "med_psf": 1819.6465772947474,
+   "med_sap": 4517.1792615465865
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006721110_kepler_v1.0_lc.fits",
+   "gmag": 17.43914794921875,
+   "kepmag": 17.5020008087158,
+   "med_psf": 1534.6528121004494,
+   "med_sap": 7467.399322351214
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007660076_kepler_v1.0_lc.fits",
+   "gmag": 16.075247,
+   "kepmag": 15.1560001373291,
+   "med_psf": 5307.762993619845,
+   "med_sap": 4438.918365294321
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010002519_kepler_v1.0_lc.fits",
+   "gmag": 16.17082595825195,
+   "kepmag": 16.2059993743896,
+   "med_psf": 3776.2166849924065,
+   "med_sap": 9091.144285843446
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006224591_kepler_v1.0_lc.fits",
+   "gmag": 16.36233711242676,
+   "kepmag": 16.3169994354248,
+   "med_psf": 3375.4410403727243,
+   "med_sap": 17137.17512977156
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-005780843_kepler_v1.0_lc.fits",
+   "gmag": 15.97315120697021,
+   "kepmag": 14.2469997406006,
+   "med_psf": 5932.382067024466,
+   "med_sap": 6802.604920995764
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008313660_kepler_v1.0_lc.fits",
+   "gmag": 17.09403419494629,
+   "kepmag": 16.9990005493164,
+   "med_psf": 4500.6998518204355,
+   "med_sap": 4553.377954010754
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006350813_kepler_v1.0_lc.fits",
+   "gmag": 14.61685,
+   "kepmag": 1e+20,
+   "med_psf": 30400.400349105214,
+   "med_sap": 51049.68436967999
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006783712_kepler_v1.0_lc.fits",
+   "gmag": 17.40546226501465,
+   "kepmag": 17.3990001678467,
+   "med_psf": 895.3983688521198,
+   "med_sap": 4040.8303533203034
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011621145_kepler_v1.0_lc.fits",
+   "gmag": 16.88926887512207,
+   "kepmag": 16.9389991760254,
+   "med_psf": 2371.7820211634953,
+   "med_sap": 1892.8357164921565
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-008245775_kepler_v1.0_lc.fits",
+   "gmag": 16.89048767089844,
+   "kepmag": 16.8519992828369,
+   "med_psf": 2702.2207328637155,
+   "med_sap": 1934.4406325548593
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006967363_kepler_v1.0_lc.fits",
+   "gmag": 15.88495063781738,
+   "kepmag": 1e+20,
+   "med_psf": 68047.64029916823,
+   "med_sap": 80232.61424277382
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006515744_kepler_v1.0_lc.fits",
+   "gmag": 16.83452606201172,
+   "kepmag": 16.8349990844727,
+   "med_psf": 2004.2334913552234,
+   "med_sap": 12597.269708849846
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007673196_kepler_v1.0_lc.fits",
+   "gmag": 16.86276435852051,
+   "kepmag": 16.9650001525879,
+   "med_psf": 2018.1042195235166,
+   "med_sap": 6849.8959736068155
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-004732334_kepler_v1.0_lc.fits",
+   "gmag": 16.0652961730957,
+   "kepmag": 16.0380001068115,
+   "med_psf": 4392.145522944698,
+   "med_sap": 7016.944494826279
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-006863247_kepler_v1.0_lc.fits",
+   "gmag": 16.69265937805176,
+   "kepmag": 16.7089996337891,
+   "med_psf": 8756.692372219373,
+   "med_sap": 8628.666040905004
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011285493_kepler_v1.0_lc.fits",
+   "gmag": 16.83535003662109,
+   "kepmag": 16.8540000915527,
+   "med_psf": 1583.9145712949214,
+   "med_sap": 3518.831171179999
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-011658862_kepler_v1.0_lc.fits",
+   "gmag": 16.88916778564453,
+   "kepmag": 16.9190006256104,
+   "med_psf": 20931.926212671373,
+   "med_sap": 21113.24610056261
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010147961_kepler_v1.0_lc.fits",
+   "gmag": 17.4134464263916,
+   "kepmag": 17.4500007629395,
+   "med_psf": 1445.074578126873,
+   "med_sap": 2149.6132276047842
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-007354034_kepler_v1.0_lc.fits",
+   "gmag": 17.27578926086426,
+   "kepmag": 1e+20,
+   "med_psf": 1871.051869369398,
+   "med_sap": 8126.777216921302
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-004556203_kepler_v1.0_lc.fits",
+   "gmag": 16.88037872314453,
+   "kepmag": 16.9570007324219,
+   "med_psf": 1975.5734502784053,
+   "med_sap": 10844.907484738105
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-012168926_kepler_v1.0_lc.fits",
+   "gmag": 15.986229,
+   "kepmag": 16.0090007781982,
+   "med_psf": 5121.476678190295,
+   "med_sap": 6002.33843961675
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-003556498_kepler_v1.0_lc.fits",
+   "gmag": 17.30077934265137,
+   "kepmag": 1e+20,
+   "med_psf": 18738.18015552759,
+   "med_sap": 18731.775512275053
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-010001229_kepler_v1.0_lc.fits",
+   "gmag": 14.8602705,
+   "kepmag": 14.8900003433228,
+   "med_psf": 14853.52585934906,
+   "med_sap": 12108.745360270848
+  },
+  {
+   "file": "hlsp_kbonus-bkg_kepler_kepler_kic-004569766_kepler_v1.0_lc.fits",
+   "gmag": 16.12581825256348,
+   "kepmag": 16.181999206543,
+   "med_psf": 2773.462685562862,
+   "med_sap": 16571.660150843087
+  }
+ ]
+}

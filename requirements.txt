@@ -1,0 +1,16 @@
+# ZyushgPlanet pipeline requirements (versions verified in the sandbox venv on 2026-10-17)
+# install:  uv pip install -r requirements.txt   (inside the activated .venv, Python 3.13)
+# setuptools is required because batman-package 2.5.3 imports distutils, removed from the Python 3.12+ stdlib
+
+lightkurve==2.6.0
+astropy==8.0.2
+astroquery==0.4.11
+transitleastsquares==2.0.1
+wotan==2.0
+batman-package==2.5.3
+numpy==2.5.4
+scipy==1.18.1
+matplotlib==3.11.2
+pandas==2.3.3
+setuptools==84.0.0
+triceratops>=1.1.0

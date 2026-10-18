@@ -1,0 +1,21 @@
+loaded 60346 good cadences, 131.51-1591.00 BKJD, quarters [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+after detrend/clip: 60263 cadences; point-to-point rms 306 ppm
+BLS grid: 190319 periods, durations [0.06, 0.09, 0.13, 0.18, 0.25, 0.35]
+BLS done in 82s
+  peak {'period_d': 32.555747593210185, 'sde': 10.59915071890401, 'power': 48.21465660776096, 'duration_d': 0.18, 't0': 148.87051937868074, 'depth_ppm': 145.31398309624208, 'alias_of_pipeline_P': '1/1'}
+  peak {'period_d': 39.780928192959024, 'sde': 9.546424476334805, 'power': 46.03626034269099, 'duration_d': 0.18, 't0': 141.65851937868075, 'depth_ppm': 165.81465971965295, 'alias_of_pipeline_P': None}
+  peak {'period_d': 9.53516714375131, 'sde': 9.49043780524571, 'power': 40.357388424675435, 'duration_d': 0.18, 't0': 133.76251937868074, 'depth_ppm': 74.82989186788137, 'alias_of_pipeline_P': None}
+inverted null done in 81s; max SDE 10.74 at P=1.4956
+refined: P=32.55555 t0=148.8655 dur=3.60 h bls_depth=165+-16 ppm
+[PSF, unmasked 1-d median detrend] depth 158 +- 21 ppm (formal 18), SNR 7.6, odd 214 even 105 (2.6 sig), sec -7 ppm (-0.4 sig), n_tr 43, per-year [235, 185, 70, 155]
+[PSF, transit-masked 1-d median detrend] depth 224 +- 25 ppm (formal 23), SNR 8.8, odd 317 even 138 (3.5 sig), sec -12 ppm (-0.5 sig), n_tr 43, per-year [409, 245, 54, 218]
+refined on masked detrend: {'period_d': 32.59084268911567, 't0_bkjd': 148.56951937868075, 'duration_h': 6.48, 'bls_depth_ppm': 752.7853658641988, 'bls_depth_err_ppm': 12.689310789848044}
+[SAP, unmasked 1-d median detrend] depth 84 +- 22 ppm (formal 19), SNR 3.9, odd 156 even 16 (3.2 sig), sec -17 ppm (-0.8 sig), n_tr 43, per-year [25, -33, 68, 277]
+SAP/PSF depth ratio 0.53 +- 0.15
+dominant events (|depth|>460 ppm): [(1, 2159, 0.094), (12, 1406, 0.062), (39, 1397, 0.071)]
+[PSF, unmasked detrend, epochs [1, 12, 39] excised] depth 51 +- 21 ppm (formal 19), SNR 2.4, odd 63 even 39 (0.6 sig), sec -7 ppm (-0.3 sig), n_tr 40, per-year [53, 38, 70, 34]
+excised BLS (81s): top [(np.float64(3.4083), np.float64(10.27)), (np.float64(1.6482), np.float64(9.2)), (np.float64(20.4507), np.float64(8.77))]; SDE at P_pipe 0.48 rank 58359
+[PSF, 0.25 d trimmed at every segment edge, then 1-d median detrend] depth 57 +- 21 ppm (formal 19), SNR 2.7, odd 65 even 51 (0.3 sig), sec -8 ppm (-0.4 sig), n_tr 40, per-year [54, 37, 85, 42]
+edge-trimmed BLS+null (160s): top [(np.float64(1.3899), np.float64(9.17)), (np.float64(9.5352), np.float64(8.74)), (np.float64(1.7041), np.float64(8.47))]; SDE at P_pipe 1.41 rank 20104; inverted max 7.23
+[SAP, 0.25 d edge-trimmed, 1-d median detrend] depth 43 +- 23 ppm (formal 20), SNR 1.9, odd 34 even 51 (0.4 sig), sec -23 ppm (-1.0 sig), n_tr 40, per-year [27, 32, 70, 35]
+wrote results.json; runtime 445 s

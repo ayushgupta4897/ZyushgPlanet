@@ -1,0 +1,39 @@
+{
+ "fname": "kic-009520080",
+ "verdict": "survives",
+ "most_likely_explanation": "A ~1.1 h, ~1600 ppm (box; ~2000 ppm true after cadence smearing) periodic dimming at 2.3770144 d located on the target's own pixel in all 17 quarters and all four CCD channels, with no eclipse-like signature from either bright neighbour (host KIC 9520088 shows -6 +- 12 ppm at the ephemeris; its pixels show -11 ppm median), no catalogued object sharing the ephemeris, clean inverted null, consistent odd/even depth and timing, and constant depth across seasons. Consistent with a ~3 Re object transiting the K dwarf at b ~ 0.85. Two open items remain: a marginal (2.2-2.8 sigma, estimator-dependent) brightening at phase 0.5 that no planet produces and that makes the signal a formal stage-2 FAIL under the post-hoc v1.5 rule (c) which was added because of this very star; and the generic unresolved-blend risk (background EB fainter than Gaia's G~21 limit inside the 4-arcsec pixel, or a bound companion EB) which Kepler pixels cannot test.",
+ "kill_reasons": [],
+ "surviving_strengths": [
+  "Independent per-pixel test on the 17 cached TPFs of KIC 9520088: deficit in the target's pixel in every quarter (per-quarter SNR 3.2-10.7, combined 1.02 +- 0.04 e/s, 24.5 sigma, ~1400 ppm of that pixel's flux), quantitatively matching 1537 e/s x 1570 ppm x psffrac 0.61 = 1.5 e/s in-stamp; the five host-dominated pixels show -0.33 +- 0.51 e/s (median -11 ppm), excluding a blend from the G 14.8 host by a factor > 50",
+  "KBONUS PSF light curves of the neighbours at the ephemeris: KIC 9520088 (G 14.8, 10 arcsec) -6 +- 12 ppm; KIC 9520089 (G 13.9, 19 arcsec) -190 +- 210 ppm; neither can feed 1500 ppm into a crowdsap-0.98 aperture",
+  "The only other Gaia source within 15 arcsec is G 20.88 at 3.5 arcsec (0.87 px); in the 13 quarters where it occupies a different pixel from the target the deficit ratio is 1.01 : 0.24 e/s in favour of the target pixel (pipeline chi2 fits agree, summed dchi2 ~ 220); Gaia DR3 TAP cone confirms the neighbour list is complete and the target has RUWE 1.15, ipd_frac_multi_peak 0, non_single_star 0",
+  "No KOI, DR25 TCE, Kepler EB or confirmed planet within 3 arcmin; field-wide period/harmonic match (1:1, 1:2, 2:1, 1:3, 3:1) finds nothing within 1e-5 fractional except Kepler-113 c at 2:1 (748 ppm, 4.8 deg away, epoch phase 0.48, no odd/even alternation): not a contaminant; TPF host and KIC 9520089 have no KOI/TCE/EB entry",
+  "Same depth on four different channels (seasons: 1500 +- 144, 1518 +- 97, 1552 +- 132, 1789 +- 126 ppm; channels 62/46/22/38), constant per year (chi2 4.7/3), no gap-distance dependence; 2.377 d is not a momentum-dump, cadence or quarter alias",
+  "Odd/even 1.13 sigma with odd and even transit centres agreeing to 1.4 min (no e cos w signature of a period-doubled EB); no secondary eclipse (dip >= ~120 ppm at phase 0.5 excluded at 2 sigma); SAP/PSF depth ratio 0.94 vs 0.98 expected (no brighter contaminant in the SAP aperture)",
+  "No variability at P or its harmonics (LS power at P, P/2, 2P < 5e-5 vs 1e-3 at the unrelated 0.286 d peak); inverted-flux null flat (re-derivation SDE 7.5 vs 108)",
+  "The pipeline's per-event chi2 inflation (912/467) and the low third time-quartile depth (1091 ppm weighted vs 1708 ppm median) are both due to one event (n=342, BKJD 945.09, Q10) with isolated +6000-8000 ppm single-cadence spikes and an under-estimated error; removing it gives ~1.5, matching the positive controls",
+  "Not in Bienias & Szabo 2025 (7 KICs checked), not a TOI/CTOI within 5 arcmin, no SIMBAD EB/variable within 30 arcsec; KIC 9520080 was never a Kepler target",
+  "Duration 1.125-1.15 h is consistent with the K-dwarf host (a/Rs 9.5, T14(b=0) 1.99 h) at b ~ 0.85; implied Rp ~ 3.0 Re (box) to ~3.3 Re (smearing-corrected)"
+ ],
+ "checks_run": [
+  "Read vet.json, events.csv, fold_events.png, pixel.json (v1.6), diffimages.png, pixel_v15/v16 summaries, rederive_results.json and rederive_addendum.json, prereg_poolA.json revision_log",
+  "events.csv: weighted mean/chi2, top |z| events, time-quartile weighted vs median depths, depth vs gap distance",
+  "Raw PSF and SAP flux around event n=342 (BKJD 945.09)",
+  "TPF headers of all 17 cached TPFs of KIC 9520088: QUARTER/SEASON/MODULE/OUTPUT/CHANNEL, host Kp/Teff/R",
+  "Field-wide period and harmonic matching (1:1,1:2,2:1,1:3,3:1; tol 1e-3 and closest deviations) against KOI cumulative, DR25 TCE, Kirk+16 Kepler EB catalogue, confirmed planets; positional search within 3 arcmin; epoch phase of matches",
+  "KOI/TCE/EB/keplerstellar/kepler-target lookups for KIC 9520080, 9520088, 9520089, 9520095",
+  "SIMBAD cone (30 arcsec and 3 arcmin); ExoFOP TOI and CTOI CSVs within 5 arcmin; Bienias & Szabo 2025 Appendix B KIC list",
+  "Gaia DR3 TAP cone 15 arcsec with RUWE, ipd_frac_multi_peak, ipd_gof_harmonic_amplitude, non_single_star, phot_variable_flag, astrometric_excess_noise_sig, parallax",
+  "Own detrend (per-quarter normalise, transit-masked 1-d running median) on PSF and SAP flux: depth at ephemeris, full phase scan of transit-duration boxes with mean/median/clipped-mean and look-elsewhere ranks, per-event bootstrap at phase 0.5, per-epoch-median statistic vs random-phase control, outlier epoch clustering, per-season phase-0.5 and transit depths, LS on out-of-transit residuals with power at P, P/2, 2P, odd/even transit-centre offsets and depth vs box width",
+  "Independent per-pixel transit depth on all 17 TPFs (e/s and ppm per pixel; target pixel vs host pixels vs G 20.9 pixel per quarter; combined significances)",
+  "KBONUS PSF/SAP light curves of KIC 9520088 and KIC 9520089 downloaded and tested at the ephemeris with random-phase box errors",
+  "Duration/density/impact-parameter and implied radius arithmetic for M 0.65-0.75, R 0.65-0.72"
+ ],
+ "what_would_settle_it": [
+  "Ground-based transit photometry at predicted times (~2000 ppm true depth, 1.1 h, G 17.5; 1-2 m class) to confirm the event on the target at sub-arcsec resolution and separate it from the G 20.9 star at 3.5 arcsec",
+  "TRICERATOPS (or equivalent) false-positive probability using the Gaia neighbour list and a contrast curve, to bound the G > 21 background-EB and bound-companion-EB scenarios that Kepler pixels cannot test",
+  "AO or speckle imaging of the target to bound companions inside 1 arcsec",
+  "An independent re-examination of the phase-0.5 brightening (second detrending family, PSF-vs-SAP at phase 0.5 per quarter); if real at ~200 ppm it is not a planet signature and the signal should be downgraded",
+  "Any public report must carry the v1.5 secondary_2sided stage-2 FAIL and state that the rule was added post-hoc after this star was seen (stage2_pass_v14 = true, stage2_pass = false)"
+ ]
+}

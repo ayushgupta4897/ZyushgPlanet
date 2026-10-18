@@ -1,0 +1,99 @@
+{
+ "fname": "kic-008819375",
+ "P_screen": 31.656707535919008,
+ "dur_screen_h": 7.050000000000001,
+ "t0_screen_bkjd": 120.68581919139251,
+ "object": "KIC 8819375",
+ "gaiaid": "Gaia DR3 2126600181278449024",
+ "tpforg": 8819383,
+ "kepmag": 1e+20,
+ "ra": 292.0093509877462,
+ "dec": 45.04159570459498,
+ "P": 31.659992740627036,
+ "dur_h": 5.2875000000000005,
+ "t0_bkjd": 120.58192020067234,
+ "t0_bjd": 2454953.5819202005,
+ "depth_pass1_ppm": 887.4917332873932,
+ "depth_pass2_ppm": 1606.149097952536,
+ "depth_pass2_formal_err_ppm": 264.90072141515566,
+ "box_noise_ppm": 87.89225648412045,
+ "snr_emp_pass2": 18.274068299096637,
+ "n_in_transit": 401,
+ "n_points": 58238,
+ "depth_odd_ppm": 1136.519423404314,
+ "depth_even_ppm": 2078.126920873724,
+ "odd_even_sigma": 5.356600997264935,
+ "secondary_depth_ppm": -99.62467294255539,
+ "secondary_sigma": -1.1334863493981935,
+ "core_to_box_depth_ratio": 1.0198606101242482,
+ "n_events": 41,
+ "gap_frac_1d": 0.0975609756097561,
+ "gap_frac_2d": 0.17073170731707318,
+ "frac_events_positive": 0.6341463414634146,
+ "event_weighted_depth_ppm": 233.12370078203574,
+ "event_chi2_const": 462.47534576105403,
+ "event_dof": 40,
+ "depth_by_quartile_ppm": [
+  [
+   876.9263438721476,
+   174.59612632476615,
+   11
+  ],
+  [
+   110.12500913511569,
+   118.38563302442668,
+   11
+  ],
+  [
+   -51.42928261492814,
+   116.78224554410282,
+   11
+  ],
+  [
+   253.05090070150308,
+   136.84339982412007,
+   11
+  ]
+ ],
+ "ls_period_d": 2.8080392383222623,
+ "ls_half_amplitude_ppm": 68.69730343517233,
+ "ls_power": 0.0011447903174911633,
+ "ls_amp_over_depth": 0.04277143605331865,
+ "ls_period_matches": false,
+ "rstar_used": 0.8141285252571105,
+ "t14_max_h": 5.267058734233626,
+ "duration_ratio": 1.0038809640821953,
+ "rp_earth_box": 3.5596774826089574,
+ "tls": {
+  "period": 31.659434050869145,
+  "SDE": 8.995786109268352,
+  "snr": 22.115367380372646,
+  "depth": 0.9985258347595716,
+  "duration": 0.29413310337041976,
+  "rp_rs": 0.03452870021006424,
+  "odd_even_mismatch": 1.2480196968359711,
+  "transit_count": 47.0,
+  "distinct_transit_count": 41.0,
+  "rp_earth": 3.066888256114135,
+  "transit_depths_mean": 0.9984809417501613
+ },
+ "known_matches": [],
+ "ok": true,
+ "runtime_s": 9.1,
+ "stage2_pass": false,
+ "stage2_fails": [
+  "events_positive",
+  "depth_pass_ratio",
+  "event_chi2",
+  "odd_even"
+ ],
+ "stage2_pass_v14": false,
+ "stage2_fails_v14": [
+  "events_positive",
+  "depth_pass_ratio",
+  "event_chi2",
+  "odd_even",
+  "tls_sde"
+ ],
+ "stage2_rules": "poolA_kbonus_background_dwarfs_v1.7"
+}

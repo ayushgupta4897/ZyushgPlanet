@@ -1,0 +1,147 @@
+<title>ZyushgPlanet Screens</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Hanken+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 1600x1200 artboards, 72px margins, a mono header strip and footer strip framing one idea per board. */
+:root { --void: #050506; --ink: #0b0c0e; --line: #25282d; --steel: #737a83; --silver: #b8bdc4; --chrome: #e3e5e8; --white: #f7f8fa;
+  --f-display: "Syncopate", "Eurostile", sans-serif; --f-body: "Hanken Grotesk", Arial, sans-serif; --f-mono: "IBM Plex Mono", ui-monospace, monospace; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #000; color: var(--silver); font-family: var(--f-body); display: grid; gap: 40px; padding: 40px; }
+.board { width: 1600px; height: 1200px; background: var(--void); position: relative; overflow: hidden; display: grid; grid-template-rows: auto 1fr auto; padding: 64px 72px 48px; gap: 28px; }
+.board > canvas.bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+.board > *:not(.bg) { position: relative; z-index: 1; }
+.top { display: flex; justify-content: space-between; font-family: var(--f-mono); font-size: 18px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--steel); }
+.foot { display: flex; justify-content: space-between; font-family: var(--f-mono); font-size: 16px; letter-spacing: 0.06em; color: var(--steel); border-top: 1px solid var(--line); padding-top: 18px; }
+h1, h2 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; color: var(--white); margin: 0; line-height: 1.02; }
+h1 { font-size: 96px; } h2 { font-size: 58px; }
+.lede { font-size: 30px; color: var(--chrome); font-weight: 300; line-height: 1.35; max-width: 30ch; margin: 0; }
+.mono { font-family: var(--f-mono); }
+svg text { font-family: var(--f-mono); }
+svg .tick { fill: var(--steel); font-size: 15px; } svg .label { fill: var(--silver); font-size: 15px; }
+svg .ann { fill: var(--chrome); font-size: 16px; } svg .ann.dim { fill: var(--steel); } svg .val { fill: var(--white); font-size: 24px; font-weight: 500; } svg .rowlab { fill: var(--white); font-size: 20px; font-weight: 500; }
+svg .grid { stroke: var(--line); stroke-dasharray: 1 5; } svg .axis { stroke: var(--steel); } svg .zero { stroke: var(--line); }
+svg .raw circle { fill: var(--steel); fill-opacity: 0.45; } svg .model { fill: none; stroke: var(--white); stroke-width: 2.6; }
+svg .bin circle { fill: var(--white); stroke: var(--void); stroke-width: 1.2; } svg .err { stroke: var(--silver); stroke-width: 1.3; }
+svg .ref { stroke: var(--silver); stroke-dasharray: 2 5; } svg .thresh { stroke: var(--white); stroke-width: 1.6; stroke-dasharray: 4 5; }
+svg .arrow { stroke: var(--steel); stroke-width: 1.6; stroke-dasharray: 1 5; stroke-linecap: round; } svg .before { fill: var(--void); stroke: var(--steel); stroke-width: 2; }
+svg .after { fill: var(--white); } svg .seed { fill: var(--silver); fill-opacity: 0.55; } svg .tmark { fill: none; stroke: var(--white); stroke-width: 2.4; } svg .nbmark { fill: none; stroke: var(--steel); stroke-width: 1.6; stroke-dasharray: 2 3; }
+
+/* board 1 */
+.b1 .mid { display: grid; grid-template-columns: 1fr 560px; gap: 40px; align-items: center; }
+.b1 .copy { display: grid; gap: 36px; }
+.rows { display: grid; border-top: 1px solid var(--line); }
+.rows div { display: grid; grid-template-columns: 250px 1fr 150px; gap: 16px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line); font-family: var(--f-mono); font-size: 21px; color: var(--chrome); }
+.rows b { font-family: var(--f-display); font-weight: 400; font-size: 26px; color: var(--white); }
+.rows span:last-child { text-align: right; font-family: var(--f-display); font-size: 26px; color: var(--white); }
+.b1 canvas.planet { width: 560px; height: 560px; }
+
+/* board 2 */
+.b2 .mid { display: grid; grid-template-columns: 430px 1fr; gap: 56px; align-items: center; }
+.zoom { display: grid; grid-template-columns: 300px 120px 1fr; align-items: center; }
+.zoom svg { display: block; }
+.b2 .side { display: grid; gap: 22px; }
+.b2 .side p { margin: 0; font-size: 24px; line-height: 1.4; color: var(--chrome); }
+.small3 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+.small3 > div { display: grid; gap: 10px; }
+.cap { font-family: var(--f-mono); font-size: 15px; color: var(--steel); letter-spacing: 0.04em; }
+
+/* board 3 */
+.b3 .mid { display: grid; grid-template-rows: auto 1fr; gap: 20px; }
+.lcs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.lcs > div { display: grid; gap: 8px; align-content: start; border: 1px solid var(--line); padding: 16px 16px 6px; background: var(--ink); }
+.lcs h3 { margin: 0; font-family: var(--f-display); font-weight: 400; font-size: 24px; color: var(--white); }
+
+/* board 4 */
+.b4 .mid { display: grid; grid-template-rows: auto 1fr; gap: 10px; }
+
+/* board 5 */
+.b5 .mid { display: grid; grid-template-columns: 1fr 520px; gap: 40px; }
+.b5 canvas.funnel { width: 100%; height: 100%; border: 1px solid var(--line); background: var(--ink); }
+ol.st { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-rows: 1fr; border: 1px solid var(--line); }
+ol.st li { display: grid; grid-template-columns: 150px 1fr; align-items: center; padding: 0 22px; border-bottom: 1px solid var(--line); font-size: 22px; color: var(--chrome); }
+ol.st li:last-child { border-bottom: 0; background: var(--chrome); color: var(--void); }
+ol.st b { font-family: var(--f-display); font-weight: 400; font-size: 36px; color: var(--white); }
+ol.st li:last-child b { color: var(--void); }
+</style>
+
+<div class="board b1" data-name="screen-1-candidates">
+  <canvas class="bg"></canvas>
+  <div class="top"><span>Aayush Gupta · ZyushgPlanet</span><span>17 Oct 2026</span></div>
+  <div class="mid">
+    <div class="copy">
+      <h1>Three sub-Neptune planet candidates</h1>
+      <p class="lede">Each with a false-positive probability below 1&nbsp;%, around stars Kepler recorded but never targeted.</p>
+      <div class="rows" id="rows"></div>
+    </div>
+    <canvas class="planet" id="p1"></canvas>
+  </div>
+  <div class="foot"><span>Candidates, not validated planets · illustration not to scale</span><span>Aayush Gupta</span></div>
+</div>
+
+<div class="board b2" data-name="screen-2-pixels">
+  <canvas class="bg"></canvas>
+  <div class="top"><span>Pixel localisation · KIC <span id="z-kic"></span></span><span>Kepler pixels, 4″ each</span></div>
+  <div class="mid">
+    <div class="side">
+      <h2>The light goes missing from this star</h2>
+      <p id="z-text"></p>
+      <div class="small3" id="z-small"></div>
+    </div>
+    <div class="zoom"><div id="z-img"></div><svg id="z-lines" viewBox="0 0 120 600" width="120" height="600"></svg><div id="z-snr"></div></div>
+  </div>
+  <div class="foot"><span>Left: the stamp of the bright star Kepler observed. Right: in-transit minus out-of-transit, magnified</span><span>◯ candidate · ┄ other Gaia stars</span></div>
+</div>
+
+<div class="board b3" data-name="screen-3-transits">
+  <canvas class="bg"></canvas>
+  <div class="top"><span>Photometry · Kepler 2009–2013</span><span>phase-folded on each period</span></div>
+  <div class="mid"><h2>Every orbit, the same dip</h2><div class="lcs" id="lcs"></div></div>
+  <div class="foot"><span>Grey: 29.4-min Kepler measurements · white: binned means · line: transit model</span><span>Kepler Bonus photometry, Martínez-Palomera et al. 2023</span></div>
+</div>
+
+<div class="board b4" data-name="screen-4-false-positives">
+  <canvas class="bg"></canvas>
+  <div class="top"><span>False-positive probability · TRICERATOPS</span><span>8 runs × 10⁶ draws each</span></div>
+  <div class="mid"><h2>Below the 1.5&nbsp;% validation line</h2><div id="fpp"></div></div>
+  <div class="foot"><span>Hollow: default priors · solid: with Gaia limits on unseen companions (MOLUSC) · dots: each run</span><span>Nearby-star FPP: 0&nbsp;%</span></div>
+</div>
+
+<div class="board b5" data-name="screen-5-search">
+  <canvas class="bg"></canvas>
+  <div class="top"><span>The search · pre-registered</span><span>every dot is one star</span></div>
+  <div class="mid"><canvas class="funnel" id="fn"></canvas><ol class="st" id="st"></ol></div>
+  <div class="foot"><span>Same search on every light curve turned upside down: 97 false alarms against 448 real first-screen passes</span><span>Aayush Gupta · ZyushgPlanet</span></div>
+</div>
+
+<script>window.ZP_STILL = true; window.ZP_DATA = /*__DATA__*/null;</script>
+<script>/*__VIZ__*/</script>
+<script>
+(function () {
+  const D = window.ZP_DATA, Z = window.ZP, CS = Object.keys(D.candidates).map(k => D.candidates[k]), fmt = Z.fmt;
+  document.querySelectorAll("canvas.bg").forEach(c => Z.dotField(c, { density: 0.00028 })(3.0));
+  // 1
+  document.getElementById("rows").innerHTML = CS.map(c => `<div><b>KIC ${c.kic}</b><span>${c.period_d.toFixed(2)} d · ${c.rp_earth.median.toFixed(2)} Earth radii</span><span>${(c.fpp.molusc.mean * 100).toFixed(2)} %</span></div>`).join("");
+  const p1 = document.getElementById("p1"); { const f = Z.fit(p1); const R = 230; f.ctx.strokeStyle = "rgba(184,189,196,0.3)"; f.ctx.setLineDash([1, 7]); f.ctx.beginPath(); f.ctx.ellipse(280, 280, R * 1.2, R * 0.3, -0.38, 0, 6.2832); f.ctx.stroke(); f.ctx.setLineDash([]); Z.drawPlanet(f.ctx, 280, 280, R, 4.2, { spacing: 4.4 }); }
+  // 2
+  const c = D.candidates["kic-006699887"];
+  const best = c.season_maps.reduce((a, b) => Math.max(...b.snr.flat()) > Math.max(...a.snr.flat()) ? b : a);
+  document.getElementById("z-kic").textContent = c.kic;
+  document.getElementById("z-text").textContent = `Kepler never pointed at KIC ${c.kic}; it sits at the edge of a brighter star's pixel stamp. Subtract each in-transit image from the frames around it, stack four years of transits, and the missing light lands on the candidate's own Gaia position: Δχ² ${fmt(c.pixel_season.sum_dchi2_null_minus_target)} against no signal and ${fmt(c.pixel_season.sum_dchi2_bestalt_minus_target)} against the next-best star.`;
+  Z.pixelMap(document.getElementById("z-img"), best, { mode: "image", cell: 50 });
+  Z.pixelMap(document.getElementById("z-snr"), best, { mode: "snr", cell: 110 });
+  const zl = document.getElementById("z-lines"), H = best.image.length;
+  for (const y of [300 - H * 25, 300 + H * 25]) { const l = document.createElementNS("http://www.w3.org/2000/svg", "line"); l.setAttribute("x1", 0); l.setAttribute("x2", 120); l.setAttribute("y1", y); l.setAttribute("y2", y < 300 ? 300 - H * 55 : 300 + H * 55); l.setAttribute("stroke", "#737a83"); l.setAttribute("stroke-dasharray", "2 5"); zl.appendChild(l); }
+  const sm = document.getElementById("z-small");
+  ["kic-003831969", "kic-011138423"].forEach(k => { const cc = D.candidates[k]; const m = cc.season_maps.reduce((a, b) => Math.max(...b.snr.flat()) > Math.max(...a.snr.flat()) ? b : a);
+    const d = document.createElement("div"); d.innerHTML = `<div></div><div class="cap">KIC ${cc.kic} · Δχ² ${fmt(cc.pixel_season.sum_dchi2_null_minus_target)} / ${fmt(cc.pixel_season.sum_dchi2_bestalt_minus_target)}</div>`; sm.appendChild(d);
+    Z.pixelMap(d.firstChild, m, { mode: "snr", cell: 30 }); });
+  // 3
+  const lcs = document.getElementById("lcs");
+  CS.forEach(cc => { const d = document.createElement("div"); d.innerHTML = `<h3>KIC ${cc.kic}</h3><div class="cap">${cc.period_d.toFixed(4)} d · ${fmt(cc.depth_ppm)} ppm · ${cc.n_events} transits · ${cc.rp_earth.median.toFixed(2)} Earth radii</div><div></div>`; lcs.appendChild(d);
+    Z.lightCurve(d.lastChild, cc, { W: 600, H: 1060 }); });
+  // 4
+  Z.fppChart(document.getElementById("fpp"), D, { W: 1456, H: 800 });
+  // 5
+  const fn = Z.funnel(document.getElementById("fn"), D, { stage: 5 }); fn.draw(0);
+  document.getElementById("st").innerHTML = fn.stages.map(s => `<li><b>${fmt(s.n)}</b><span>${s.label}</span></li>`).join("");
+})();
+</script>

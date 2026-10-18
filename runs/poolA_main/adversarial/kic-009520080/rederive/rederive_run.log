@@ -1,0 +1,14 @@
+loaded 57624 q0 points, 57493 after clip, scatter 1893 ppm, baseline 1459.5 d  [3.3s]
+BLS grid: 475798 periods
+BLS done [267.3s]
+top3: [{'period_d': 2.3770212756465545, 'power': 398.67671829096776, 'alias_of_2p377': 'same'}, {'period_d': 4.753987770095812, 'power': 210.17664744793277, 'alias_of_2p377': '2x'}, {'period_d': 1.1885145612084786, 'power': 169.86501827967683, 'alias_of_2p377': '1/2'}] SDE raw 108.0615997927081 flat 117.82933359239932
+inverted null: {'best_period_d': 24.200344437721025, 'sde_raw': 7.5023023952195, 'sde_detrended_periodogram': 9.63919978448919} [525.4s]
+refined: P=2.377014 t0=861.89886 dur=1.15 h depth=1575 ppm [526.6s]
+primary {'depth_ppm': 1490.4271454369011, 'err_ppm': 58.65197849609678, 'snr': 25.411370317816086, 'n_in': 1175, 'n_boxes': 3000} 
+secondary {'depth_ppm': -188.64575849897312, 'err_ppm': 58.38300486590199, 'snr': -3.2311759035402066, 'n_in': 1156, 'n_boxes': 3000} 
+odd/even 1560 / 1421 -> 1.14 sigma
+per year: {'Y1_Q1-4': (1713, 137), 'Y2_Q5-8': (1500, 123), 'Y3_Q9-12': (1323, 121), 'Y4_Q13-17': (1454, 107)}
+transits: {'n_epochs_with_data': 542, 'n_epochs_ge_half_coverage': 476, 'n_windows_in_baseline': 614, 'expected_cadences_per_transit': 2.3510204081632655, 'total_in_transit_cadences': 1175} 
+trapezoid: {'depth_ppm': 2164.7896750805917, 'depth_err_ppm': 1404.7885066519636, 't14_h': 1.7140916603924365, 't14_err_h': 0.0764066128293987, 't23_over_t14': 0.000587349300273819, 'dt0_d': 0.00041170406153210156, 'n_fit': 9305}
+SAP: {'n_points': 57477, 'scatter_ppm': 1942.7408389236812, 'primary': {'depth_ppm': 1396.2388542104743, 'err_ppm': 55.72653231353899, 'snr': 25.055189983017343, 'n_in': 1174, 'n_boxes': 3000}, 'secondary': {'depth_ppm': -186.38699715456397, 'err_ppm': 56.3767341418404, 'snr': -3.3060978077521437, 'n_in': 1156, 'n_boxes': 3000}, 'depth_ratio_sap_over_psf': 0.9368044982844052, 'depth_ratio_err': 0.05250766497893396, 'bls_near_peak': {'period_d': 2.377017710117315, 'duration_h': 1.1520000000000001, 'depth_ppm': 1484.0961995197122, 'depth_err_ppm': 50.42605356719059, 'depth_snr': 29.43113915393392}} [546.0s]
+wrote /home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-009520080/rederive/rederive_results.json /home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-009520080/rederive/rederive_fold.png [547.1s]

@@ -1,0 +1,28 @@
+FLUX all 1194 +- 135 rms 2639 per season {0: [np.float64(1428.3), np.float64(462.3), 39], 1: [np.float64(1002.6), np.float64(273.9), 230], 2: [np.float64(1392.8), np.float64(206.6), 203], 3: [np.float64(1170.7), np.float64(203.1), 213]}
+SAP_FLUX all 1009 +- 128 rms 2499 per season {0: [np.float64(1141.6), np.float64(377.0), 39], 1: [np.float64(853.7), np.float64(269.2), 230], 2: [np.float64(1320.3), np.float64(197.6), 203], 3: [np.float64(859.4), np.float64(174.2), 214]}
+PSF_FLAT_FLUX all 1200 +- 130 rms 2634 per season {0: [np.float64(1409.6), np.float64(487.2), 39], 1: [np.float64(1033.4), np.float64(286.1), 230], 2: [np.float64(1383.6), np.float64(196.4), 203], 3: [np.float64(1169.5), np.float64(214.3), 213]}
+PSF_FLUX_NOVA all 1201 +- 131 {0: [np.float64(1498.7), np.float64(450.1), 39], 1: [np.float64(1048.5), np.float64(286.9), 230], 2: [np.float64(1357.2), np.float64(198.0), 203], 3: [np.float64(1165.3), np.float64(233.0), 213]}
+depth vs PSFFRAC slope 3849 +- 4242
+depth vs CROWDSAP slope 3686 +- 2110
+depth vs NPIXSAP slope -203 +- 149
+depth vs FLFRCSAP slope -2300 +- 1361
+per-quarter chi2 const 10.076570255099705 dof 13
+per-event chi2/dof real 1.5551235207351077 random median 1.503601078096774 p84 1.6909718202408113 frac>=real 0.4066666666666667
+near_gap_1d 12 793 +- 370  far 136 1296 +- 101
+near_gap_2d 23 1065 +- 268  far 125 1291 +- 104
+depth without 10 strongest events 1025 +- 102
+first_third_of_quarter 49 1432 +- 173
+middle_third 53 1232 +- 163
+last_third 46 1131 +- 169
+per-year t0 shift (min) and depth [[100, 470, -10.080000000000009, 1340.9539352496456], [470, 840, -4.320000000000004, 1378.955916239485], [840, 1210, -11.51999999999999, 957.1505195870741], [1210, 1600, 5.760000000000005, 1328.409266894684]]
+/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/redteam-kic003963519/lc_checks.py:206: RuntimeWarning: invalid value encountered in scalar divide
+  bk_in.append(np.nanmedian(bkg[a]) / np.nanmedian(bkg[b]) - 1)
+bkg in/out-1 median nan  redchi2 in/out-1 median 0.0004841901740729737
+centroid shift in transit (all quarters, px): col 3.724379373683936e-05 +- 1.8780614517791216e-05  row 1.062795588782476e-05 +- 1.7182663235530524e-05
+phase scan: max dip 376.50619809782296 at 0.8899999999999999 err 124.14895153686304  sec@0.5 58.8895400949624
+odd/even 1225.650014813279 172.17195864052317 1164.2433332766038 190.40168861214272
+trapezoid {'depth_ppm': 1249.764269993713, 'T14_h': 2.3732621146603443, 'T23_h': 2.3019671916367415, 'T23_over_T14': 0.9699591028807172, 'dt_min': -2.587794019698612, 'chi2_trap': 36268.81994229962, 'chi2_box_T14': 36266.8166451741, 'box_T14_h': 2.4071710910672137, 'chi2_V': 36322.599962844135, 'V_T14_h': 3.5125151912753, 'V_depth_ppm': 1664.333126525395, 'n': 5360}
+LS top periods [52.54827889216181, 52.51164011902678, 52.584968828695125, 52.475052402345064, 52.62171003587058] [0.05704005072927672, 0.05703091625371672, 0.05694572354485576] power at P 9.167519459538364e-06
+LS detrended best 0.6202666953369151 power 0.000716251799182608 half amp ppm 99.91872621021778 P/pls 10.988215369262118
+depth after notching 0.62-d sinusoid 1177.2285955351351 +- 146.23779449559603
+written /tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/redteam-kic003963519/out/lc_checks.json

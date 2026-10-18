@@ -1,0 +1,110 @@
+[2026-10-17T18:20:05.884405Z] kic-006699887: P=15.113612 d, D=3.750 h, t0_bkjd=134.72786, depth=1023 ppm (stage 2, poolA_kbonus_background_dwarfs_v1.7)
+light curve: 92 binned points from 3696 cadences; flux_err 106 ppm
+The current archive release 3.15 contains two breaking changes. Please see https://www.cosmos.esa.int/web/gaia/news#GACSrelease315 for details. In case of questions or feedback, please consult the Gaia helpdesk at https://www.cosmos.esa.int/web/gaia/gaia-helpdesk.
+INFO: Query finished. [astroquery.utils.tap.core]
+Getting TPF for sector 4
+Getting TPF for sector 5
+Getting TPF for sector 6
+Getting TPF for sector 7
+Estimated missing stellar parameters for 14 of 34 stars from photometry. See the 'params_estimated' column of the .stars dataframe.
+TRICERATOPS target row 0: TIC 270864056 Tmag 15.55 Teff 4614.0 R 0.760711 M 0.73 plx 1.1593; 34 TIC stars within 10 px; build 18s
+row-0 offset from Gaia position: 0.15 arcsec (must be < 1)
+stars that could host the dip (tdepth = eclipse depth they would need):
+   TIC 270864056 Tmag 15.55 fluxratio 0.6878 tdepth 0.0010
+   TIC 270864061 Tmag 14.39 fluxratio 0.3100 tdepth 0.0023
+   TIC 1880854624 Tmag 18.97 fluxratio 0.0018 tdepth 0.3876
+   neighbour TIC 270864061: {"TIC": 270864061, "Tmag": 14.393, "fluxratio": 0.3100374286362366, "required_depth": 0.0022687496195329428, "excluded": true, "lc_used": "kic-006699878", "note": "608 in-transit cadences", "measured_depth_ppm": -14.068020967483719, "measured_err_ppm": 15.879423271312955, "exclusion_sigma": 143.75948052373295, "why": "own light curve at the ephemeris: -14 +- 16 ppm vs 2269 ppm required (144 sigma)"}
+   neighbour TIC 1880854624: {"TIC": 1880854624, "Tmag": 18.9726, "fluxratio": 0.0018147037794816506, "required_depth": 0.38760998142647346, "excluded": false, "lc_used": "gaia-dr3-2077554777196977280", "note": "no KBONUS light curve (RuntimeError)"}
+   dropped TIC 270864061 from the scenario list: own light curve at the ephemeris: -14 +- 16 ppm vs 2269 ppm required (144 sigma)
+scenario hosts after exclusions: TIC 270864056 (0.0010), TIC 1880854624 (0.3876)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/user/ZyushgPlanet/pipeline/fpp_triceratops.py", line 276, in <module>
+    main()
+    ~~~~^^
+  File "/home/user/ZyushgPlanet/pipeline/fpp_triceratops.py", line 231, in main
+    tgt.calc_probs(time=lc.time.values, flux_0=lc.flux.values, flux_err_0=err, P_orb=P, N=a.N, parallel=a.parallel,
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   verbose=0, exptime=CADENCE_D, nsamples=20, dilution_corrected=True,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   contrast_curve_file=a.contrast_curve, filt=a.contrast_filt)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/triceratops/triceratops.py", line 1122, in calc_probs
+    res = lnZ_PTP(
+        time, flux, flux_err, P_orb,
+    ...<6 lines>...
+        molusc_file
+        )
+  File "/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/triceratops/marginal_likelihoods.py", line 512, in lnZ_PTP
+    seps = limiting_separation(
+        [np.abs(dm) for dm in delta_mags_list], cc_files
+        )
+  File "/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/triceratops/funcs.py", line 596, in limiting_separation
+    separations, contrasts = file_to_contrast_curve(cc_file)
+                             ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/triceratops/funcs.py", line 512, in file_to_contrast_curve
+    data = np.loadtxt(contrast_curve_file, delimiter=',')
+  File "/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/numpy/lib/_npyio_impl.py", line 1381, in loadtxt
+    arr = _read(fname, dtype=dtype, comment=comment, delimiter=delimiter,
+                converters=converters, skiplines=skiprows, usecols=usecols,
+                unpack=unpack, ndmin=ndmin, encoding=encoding,
+                max_rows=max_rows, quote=quotechar)
+  File "/home/user/ZyushgPlanet/.venv/lib/python3.13/site-packages/numpy/lib/_npyio_impl.py", line 1035, in _read
+    arr = _load_from_filelike(
+        data, delimiter=delimiter, comment=comment, quote=quote,
+    ...<3 lines>...
+        encoding=encoding, filelike=filelike,
+        byte_converters=byte_converters)
+ValueError: could not convert string '0.125 0.5' to float64 at row 0, column 1.
+[2026-10-17T18:21:16.684675Z] kic-003831969: P=15.313350 d, D=3.750 h, t0_bkjd=144.28486, depth=997 ppm (stage 2, poolA_kbonus_background_dwarfs_v1.7)
+light curve: 92 binned points from 3640 cadences; flux_err 178 ppm
+The current archive release 3.15 contains two breaking changes. Please see https://www.cosmos.esa.int/web/gaia/news#GACSrelease315 for details. In case of questions or feedback, please consult the Gaia helpdesk at https://www.cosmos.esa.int/web/gaia/gaia-helpdesk.
+INFO: Query finished. [astroquery.utils.tap.core]
+Getting TPF for sector 4
+Getting TPF for sector 5
+Getting TPF for sector 6
+Getting TPF for sector 7
+Estimated missing stellar parameters for 6 of 15 stars from photometry. See the 'params_estimated' column of the .stars dataframe. 1 appear evolved and were assigned a nominal 1 M_Sun.
+TRICERATOPS target row 0: TIC 120425498 Tmag 16.01 Teff 5511.0 R 1.13211 M 0.97 plx 0.428657; 15 TIC stars within 10 px; build 15s
+row-0 offset from Gaia position: 0.03 arcsec (must be < 1)
+stars that could host the dip (tdepth = eclipse depth they would need):
+   TIC 120425498 Tmag 16.01 fluxratio 0.3848 tdepth 0.0010
+   TIC 120425499 Tmag 14.49 fluxratio 0.6119 tdepth 0.0006
+   TIC 1715992119 Tmag 19.51 fluxratio 0.0010 tdepth 0.3934
+   TIC 1715992116 Tmag 18.43 fluxratio 0.0023 tdepth 0.1692
+   neighbour TIC 120425499: {"TIC": 120425499, "Tmag": 14.4917, "fluxratio": 0.6118948888677783, "required_depth": 0.000627015328299665, "excluded": true, "lc_used": "kic-003831977", "note": "599 in-transit cadences", "measured_depth_ppm": -80.9170719804353, "measured_err_ppm": 20.493891649312754, "exclusion_sigma": 34.54358071146728, "why": "own light curve at the ephemeris: -81 +- 20 ppm vs 627 ppm required (35 sigma)"}
+   neighbour TIC 1715992119: {"TIC": 1715992119, "Tmag": 19.5082, "fluxratio": 0.0009751578319079614, "required_depth": 0.3934414123277316, "excluded": false, "lc_used": "gaia-dr3-2100154074771475456", "note": "no KBONUS light curve (RuntimeError)"}
+   neighbour TIC 1715992116: {"TIC": 1715992116, "Tmag": 18.4306, "fluxratio": 0.0022680869266898185, "required_depth": 0.1691590697488232, "excluded": false, "lc_used": "gaia-dr3-2100154070473367040", "note": "no KBONUS light curve (RuntimeError)"}
+   dropped TIC 120425499 from the scenario list: own light curve at the ephemeris: -81 +- 20 ppm vs 627 ppm required (35 sigma)
+scenario hosts after exclusions: TIC 120425498 (0.0010), TIC 1715992119 (0.3934), TIC 1715992116 (0.1692)
+Terminated
+[2026-10-17T18:22:34.397556Z] kic-006699887: P=47.690063 d, D=4.500 h, t0_bkjd=135.71223, depth=951 ppm (stage 2, None)
+light curve: 110 binned points from 1404 cadences; flux_err 204 ppm
+The current archive release 3.15 contains two breaking changes. Please see https://www.cosmos.esa.int/web/gaia/news#GACSrelease315 for details. In case of questions or feedback, please consult the Gaia helpdesk at https://www.cosmos.esa.int/web/gaia/gaia-helpdesk.
+INFO: Query finished. [astroquery.utils.tap.core]
+Getting TPF for sector 4
+Getting TPF for sector 5
+Getting TPF for sector 6
+Getting TPF for sector 7
+Estimated missing stellar parameters for 14 of 34 stars from photometry. See the 'params_estimated' column of the .stars dataframe.
+TRICERATOPS target row 0: TIC 270864056 Tmag 15.55 Teff 4614.0 R 0.760711 M 0.73 plx 1.1593; 34 TIC stars within 10 px; build 18s
+row-0 offset from Gaia position: 0.15 arcsec (must be < 1)
+stars that could host the dip (tdepth = eclipse depth they would need):
+   TIC 270864056 Tmag 15.55 fluxratio 0.6878 tdepth 0.0010
+   TIC 270864061 Tmag 14.39 fluxratio 0.3100 tdepth 0.0021
+   TIC 1880854624 Tmag 18.97 fluxratio 0.0018 tdepth 0.3605
+   neighbour TIC 270864061: {"TIC": 270864061, "Tmag": 14.393, "fluxratio": 0.3100374286362366, "required_depth": 0.002109875148357679, "excluded": true, "lc_used": "kic-006699878", "note": "235 in-transit cadences", "measured_depth_ppm": -56.35344459009595, "measured_err_ppm": 22.916561305525548, "exclusion_sigma": 94.52677319548212, "why": "own light curve at the ephemeris: -56 +- 23 ppm vs 2110 ppm required (95 sigma)"}
+   neighbour TIC 1880854624: {"TIC": 1880854624, "Tmag": 18.9726, "fluxratio": 0.0018147037794816506, "required_depth": 0.3604666905621152, "excluded": false, "lc_used": "gaia-dr3-2077554777196977280", "note": "no KBONUS light curve (RuntimeError)"}
+   dropped TIC 270864061 from the scenario list: own light curve at the ephemeris: -56 +- 23 ppm vs 2110 ppm required (95 sigma)
+scenario hosts after exclusions: TIC 270864056 (0.0010), TIC 1880854624 (0.3605)
+seed 1000: FPP 0.0220  NFPP 0.00000  (90s)
+seed 1001: FPP 0.0254  NFPP 0.00000  (85s)
+seed 1002: FPP 0.0319  NFPP 0.00000  (83s)
+seed 1003: FPP 0.0293  NFPP 0.00000  (85s)
+seed 1004: FPP 0.0141  NFPP 0.00000  (85s)
+seed 1005: FPP 0.0213  NFPP 0.00000  (83s)
+seed 1006: FPP 0.0195  NFPP 0.00000  (87s)
+seed 1007: FPP 0.0258  NFPP 0.00000  (81s)
+DONE kic-006699887: FPP 0.0237 +- 0.0053, NFPP 0.00000 +- 0.00000 over 8 seeds
+FPP_BATCH4_DONE

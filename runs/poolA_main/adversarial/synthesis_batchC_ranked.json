@@ -1,0 +1,88 @@
+[
+ {
+  "fname": "kic-005866176",
+  "status": "rejected",
+  "one_line": "P 29.433 d, 481 ppm (1.95 h box), 31 events, SNR_emp_pass2 7.5; red team KILL: two post-gap PSF-fit excursions on channel 17 (BKJD 231.44, 937.83; 3251 and 3568 ppm PSF while SAP is +18,590 / +11,152 ppm high) supply half the depth on a star whose Gaia position is 0.2-0.4 px outside the host stamp in all 11 quarters; with 0.3 d after every gap excised the box depth is 272 +- 48 ppm (SNR 5.7 < registered 7.1 floor) and the 29.43 d peak is not blind-recoverable (own BLS SDE 3.59 vs inverted null 5.94); pixel_v16 inconclusive (16/17 quarters edge/outside). Ranked first only because a ~270-330 ppm residual consistent across the three clean seasons is the one thing in this batch not yet excluded; it cannot be lifted to the registered floor with Kepler data.",
+  "next_steps": [
+   "Retire from the survivor list; log as a post-gap PSF-fit false positive (edge-of-stamp background star, channel 17) with the red-team paths /home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005866176/{redteam.md,redteam_verdict.json,redteam/}.",
+   "Any mention of the 272 +- 48 ppm residual (PSF; SAP 276 +- 55; PSF_FLAT 360 +- 52; seasons S1/S2/S3 299/334/325 ppm; 0/1500 random phases reach it) must be labelled post-hoc: the ephemeris was selected on artefact-dominated data and the statistic fails snr_emp_pass2_min = 7.1.",
+   "If anyone pursues it anyway: season-by-season PSF re-extraction on the host TPF (KIC 5866192) with the target position fixed from Gaia and a free focus term, then fold at the fixed ephemeris; the host's own KBONUS light curve is already flat (19 +- 35 ppm PSF, 14 +- 25 SAP). Not recommended by the red team.",
+   "Pipeline (post-hoc, register as v1.8 before any rerun, controls first): excise 0.3 d after every gap before the stage-2 depth or require depth with/without post-gap events to agree within 2 sigma; require per-quarter PSF and SAP depth sign agreement; flag off-stamp targets (WCS outside the stamp or PSFFRAC < 0.7) as non-localisable. 349 of 438 real first-screen passes sit in the 24-40 d monthly-gap class."
+  ]
+ },
+ {
+  "fname": "kic-005609180",
+  "status": "rejected",
+  "one_line": "P 21.106 d, 656 ppm (3.0 h box), 61 events, SNR_emp_pass2 12.3; red team KILL: three post-gap PSF-model recovery ramps (epochs 4, 36, 39; 0.06-0.14 d after gaps; all season 0, channel 17) commensurate with 21.1 d; the four flux columns disagree in sign by up to 100 ppt at those cadences; with 1 d after every gap masked the 15-30 d BLS gives SDE 1.66 at 21.1 d (rank > 40) while the inverted null reaches 8.31; stage-1 inverted SDE 11.09 already exceeded the real 10.93. Residual beyond the 2 d ramp timescale is a 3.1-3.3 sigma PSF-only feature (201-220 +- 65 ppm; SAP 97-113 +- 63 despite CROWDSAP 0.95-1.0), absent in season 2 and matched by an equal brightening 3 h earlier. No pixel run (correctly).",
+  "next_steps": [
+   "Retire; evidence pack /home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005609180/{redteam.md,redteam_verdict.json,redteam/} (masked_bls.txt, ramp_census.json, stitched_vs_quarter.txt).",
+   "Do not run pixel_vet on this ephemeris; if it is ever run, exclude the twelve gap-edge epochs (4, 12, 14, 23, 36, 39, 45, 48, 49, 52, 58, 63) or it will localise the thermal ramp.",
+   "Minimum for any reconsideration (not expected): SAP depth >= 95% of the PSF depth on the non-ramp events, consistent across all four channels (currently 48 +- 45% at the 2 d threshold; -110 +- 145 ppm on channel 65).",
+   "Pipeline (post-hoc): mask the first 1-2 d after every gap before detrending on both the stitched FLUX and the per-quarter FLUX columns; the stitched-vs-per-quarter PSF flux disagreement (85-96 ppt MAD in Q6/Q10/Q14) is a usable per-quarter quality flag."
+  ]
+ },
+ {
+  "fname": "kic-004474607",
+  "status": "rejected",
+  "one_line": "P 32.943 d, 2141 ppm (1.95 h box), 17 events, SNR_emp_pass2 11.6; red team KILL: the two deep events (epochs 13, 14; BKJD 1182.83, 1215.77) are the first four cadences after the Q13 segment starts at 1182.737 and 1215.718 (channel 49 post-downlink ramps), whose 32.981 d spacing is the re-derivation's best period; a 1.95 h box 0.14 d after every segment start reproduces 3.5-6 ppt 'transits' at all three Q13 monthly starts; with 0.5 d masked after each segment start the depth falls to 884 +- 191 ppm, BLS local SDE at 32.94 d 10.3 -> 2.2, best real peak (27.1 d, SDE 6.0) below the inverted null (7.2). pixel_v16 inconclusive; its dchi2 183 preference for an off-stamp Gaia source is Q13 alone (the whole stamp dims). Needs b = 0.93 on the 0.87 Rsun host.",
+  "next_steps": [
+   "Retire; evidence pack /home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-004474607/{redteam.md,redteam_verdict.json,redteam_work/} (lc_tests.json, q13_events_raw.png, MANIFEST.sha256).",
+   "Record the non-detection formally: a full 1-40 d pre-registered search plus inverted null on the post-gap-masked light curve (0.5 d after every segment start); expected result no pass and no peak at 32.94 d.",
+   "The residual 600-900 ppm at the fixed ephemeris (609 +- 181 ppm in the re-derivation stack without epochs 13/14) is a post-hoc measurement at an artefact-selected period and would need more than ten additional clean transits; do not pursue.",
+   "Pipeline (post-hoc, revision_log): re-stack depth/SNR with events < 0.5 d after a segment start removed and require the masked BLS to still peak at the same period. The Q13 ramps at BKJD 1182.74 and 1215.72 recur in gaia-dr3-2127687048516119168 and kic-008620445 (epoch 37) in this batch: they are spacecraft-wide."
+  ]
+ },
+ {
+  "fname": "gaia-dr3-2127687048516119168",
+  "status": "rejected",
+  "one_line": "P 32.869 d, 351 ppm (1.5 h box), 38 events, SNR_emp_pass2 9.1; NO red-team record (status provisional, rests on the independent re-derivation plus a synthesis-stage spot check). Re-derivation did not recover the period blind (top peak 16.40 d = P/2, SDE 8.1 vs inverted 6.0); pipeline events n=31 and n=32 (BKJD 1182.91 and 1215.78, 0.17 and 0.06 d after the Q13 segment starts 1182.737/1215.718; 3293 +- 437 and 3741 +- 791 ppm) carry 80% of depth x cadences and P equals their spacing (32.868 d); at 1215.76-1215.80 PSF reads -4200/-3600/-2800 ppm while SAP reads +2400/+1700/+2800 (anti-correlated). Without them: PSF 63 +- 40 ppm, SAP 38 +- 36 ppm. Pipeline's own event-weighted depth 137 ppm vs box 351, event chi2 101/37; stage-1 inverted SDE 13.31 > real 10.01. pixel_v16 inconclusive (1 conclusive on-target quarter, Q3; summed dchi2 null-target 11). Identity: KIC 9459487 (Kp 15.25, observed Q1-Q17, the TPF host itself, no KOI/TCE) lies 0.79 arcsec from the Gaia position; RUWE 1.94; the row entered the pool with kic = 0, so the 'never searched' premise fails.",
+  "next_steps": [
+   "Write the formal red-team record (redteam.md, redteam_verdict.json under /home/user/ZyushgPlanet/runs/poolA_main/adversarial/gaia-dr3-2127687048516119168/) so the kill has the same audit trail as the other six; the spot check and scripts are in .../synthesis_spotcheck/ (cadence_check.py/.txt, kic_identity_check.py/.txt, MANIFEST.sha256). Until that record exists the status is provisional.",
+   "In the record: re-run a narrow 28-37 d BLS plus inverted null with 0.3-0.5 d after every segment start excised, and report the depth with/without epochs 31 and 32 in PSF and SAP (expect ~60 +- 40 ppm, no peak).",
+   "Re-classify the pool row: Gaia DR3 2127687048516119168 is within 0.79 arcsec of KIC 9459487 (keplerstellar, manifest 2026-10-17T15:46Z), Kp 15.25 vs G 15.84 with RUWE 1.94, i.e. the TPF's own target star or an unresolved component of it, already searched by the Kepler pipeline (no DR25 TCE). Flag every pool row with kic = 0 and a keplerstellar star within 2 arcsec (gaia-dr3-2102601072256824704 is the other known case).",
+   "No pixel or TRICERATOPS work; the pixel_v16 Q3 'on-target' quarter (peak SNR 4.2, dchi2 6) does not survive the loss of the signal."
+  ]
+ },
+ {
+  "fname": "kic-008620445",
+  "status": "rejected",
+  "one_line": "P 28.072 d, 1476 ppm (0.75 h box), 17 usable events, SNR_emp_pass2 11.3; NO red-team record (status provisional, rests on the independent re-derivation plus a synthesis-stage spot check). Re-derivation did not recover 28.07 d blind (top 40.277 d, SDE 9.7 vs inverted 8.1; per-year depths 5121/38/2750/502 ppm, chi2 159/3; max single-event share 0.60). Spot check: the two carrying epochs are a 2.4% PSF (1.3% SAP) step across the Q2 attitude-tweak cadence at BKJD 200.29-200.36 (the same cadence that killed kic-006515744) and the first two cadences of a post-gap ramp at BKJD 1126.65 (Q12, 0.76 d gap, flux rising 0.4% -> 2.1% in 0.25 d); both 28.072 and 40.277 d are teeth of the comb linking them (926.37 d = 33 x 28.0717 = 23 x 40.277). They supply 76% of depth x cadences; the rest is 329 ppm PSF / 182 SAP (pipeline events.csv: 243 +- 115 ppm, chi2 26.5/16). Duration 0.62-0.75 h vs 5.2-5.6 h central needs b > 1; SAP/PSF 0.36 vs 0.70 expected; odd/even 2.6 sigma; pixel_v16 inconclusive (13/17 quarters edge/outside). Not a known object (no KOI/TCE; never a Kepler target).",
+  "next_steps": [
+   "Write the formal red-team record under /home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-008620445/ (redteam.md, redteam_verdict.json); the spot-check script, output and manifest are in .../synthesis_spotcheck/ and the re-derivation in .../rederive/ (results.json, events.csv, run.log). Until then the status is provisional.",
+   "In the record: confirm with the host TPF (kplr008620443 Q2) that BKJD 200.33 carries the AttitudeTweak/NoFinePoint QUALITY flags as in the kic-006515744 review; re-run a narrow BLS plus inverted null with the cadence after any AttitudeTweak flag and 0.5 d after every gap masked, and report depth with/without epochs 2 and 35.",
+   "No pixel or TRICERATOPS work; the pixel_v16 preference (dchi2 289 over 2 quarters) for Gaia DR3 2126997654731603072 is a fit to step/ramp maps, not localisation of anything.",
+   "Pipeline (post-hoc): include every epoch with in-box data in events.csv (the carrying epochs 2 and 35 were excluded by n_in >= 2, as in kic-005950408); require event-weighted and box depth to agree; a field-wide bad-cadence list built from the KBONUS pool itself (cadence 4473 / BKJD 200.33 is an outlier in >= 4 unrelated sources) would have removed the Q2 event at stage 1."
+  ]
+ },
+ {
+  "fname": "gaia-dr3-2102601072256824704",
+  "status": "rejected",
+  "one_line": "P 32.557 d, 191 ppm (3.375 h box), 43 events, SNR_emp_pass2 8.2; red team KILL on two independent grounds: (1) three segment-edge events (n = 1, 12, 39; 0.04-0.14 d from the 2009-07-02 Q2 safe-mode gap, the Q6 start and a 5.66 d Q15 gap; local depths ~1000 ppm on raw ramps of 3700-5700 ppm/d) supply ~70% of the depth; with a 0.3 d edge trim the depth is 62 +- 20 ppm (SNR 3.1), narrow BLS SDE at P 8.6 -> 2.35, re-derivation trimmed SDE 1.4 (rank 20104), untrimmed inverted max 10.74 > real 10.60; pipeline event chi2 108.5/42. (2) The target is the Kepler target KIC 7269549 (0.32 arcsec, Kp 14.76, Q1-Q17, no KOI/TCE), an unresolved 0.74 arcsec pair of near-twin G dwarfs (RUWE 3.9), so the PSF flux is a blend and the pool premise fails. pixel_v16 inconclusive with the scaled-image hypothesis preferred (dchi2 86).",
+  "next_steps": [
+   "Retire; evidence pack /home/user/ZyushgPlanet/runs/poolA_main/adversarial/gaia-dr3-2102601072256824704/{redteam.md,redteam_verdict.json,redteam/} (redteam_check.json, redteam_check2.json).",
+   "Correct the pool row: kic = 0 / empty kic_sep hides a Kepler target 0.32 arcsec away; flag pool rows whose TPF-host KIC is < 2 arcsec away or that have a comparable-brightness Gaia neighbour < 2 arcsec (RUWE > 2, ipd_frac_multi_peak > 30).",
+   "Only reopening route (not recommended): a per-quarter PSF re-fit of the TPF with both Gaia components modelled, or the Kepler PDC-SAP of KIC 7269549, searched with 0.3 d edge trimming; a 32.556 d detection above the inverted null on that product would be new evidence.",
+   "Pipeline (post-hoc): add segment-edge distance to the per-event table; require survival with edge-adjacent events removed (or trim 0.25-0.3 d at every edge); enforce event_chi2_const."
+  ]
+ },
+ {
+  "fname": "kic-005950408",
+  "status": "rejected",
+  "one_line": "P 38.607 d, 4104 ppm (0.75 h box), 7 usable events, SNR_emp_pass2 10.6; red team KILL: a channel-25 (season 3) PSF-photometry artefact of the saturated Kp 8.45 giant KIC 5950394 (the TPF host, 30.6 arcsec): the depth is six cadences inside multi-hour 2-6% excursions (epochs 0, 10, 18, 29), two of them the last cadences of Q5 and two on the Q13 end-of-quarter collapse; median in-box depth 468 ppm, outlier-free 53 ppm; seasons 0/1/2 give -242/+287/+710 ppm; host-TPF whole-stamp flux is flat at those times while light sloshes along the bleed columns; random-ephemeris maximum without channel 25 is 621 ppm; stage-1 inverted SDE 12.12 > real 9.83; 0.75 h at 38.6 d on a 0.91 Rsun host needs b = 1.05; SAP/PSF 0.46-0.60. pixel_v16 inconclusive (1 quarter). Re-derivation: period rank 641 blind, 114,626 without channel 25.",
+  "next_steps": [
+   "Retire; evidence pack /home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-005950408/{redteam.md,redteam_verdict.json,redteam_work/} (rt_lc_tests.*, rt_pixels.*, manifest).",
+   "Nothing further; only a coherent dip at the ephemeris in seasons 0-2 alone could reopen it and those seasons are null (re-derivation dataset B: 477 +- 122 ppm, period rank 114,626 of 271,529).",
+   "Pipeline (post-hoc, revision_log): per-quarter RED_CHI2 / raw-MAD screen before BLS (channel 25 RED_CHI2 1.4e6-2.3e6 vs 440-5800 elsewhere); saturated-TPF-host flag (Kp < ~10) with a bleed-column-distance check per season; include every epoch with in-box data in events.csv."
+  ]
+ },
+ {
+  "fname": "kic-006515744",
+  "status": "rejected",
+  "one_line": "P 36.208 d, 12,763 ppm (0.75 h box), 1 usable event (events.csv), SNR_emp_pass2 13.8; already a stage-2 FAIL under v1.7 (n_events) and v1.4 (tls_sde). Red team KILL: four isolated single-cadence PSF excursions aligned by the period search; BKJD 200.33 is the first cadence after the Q2 attitude tweak (TPF QUALITY AttitudeTweak+NoFinePoint, POS_CORR2 -27 sigma, dipole difference image, outlier in >= 4 unrelated KBONUS sources); BKJD 1370.09 is a +89 sigma pixel brightening beside the target (PSF -35,529 ppm, PSF_FLUX_NOVA +115,501, SAP +127); symmetric 5-MAD clip gives BLS SDE 7.4 with 36.2 d below the spectrum median; inverted null 9.7 vs 12.7 real; 0.48-1.5 h vs 5.9 h central needs b > 1; SAP/PSF 0.12. pixel_v15/v16: 0 of 8 quarters conclusive.",
+  "next_steps": [
+   "Retire; evidence pack /home/user/ZyushgPlanet/runs/poolA_main/adversarial/kic-006515744/{redteam.md,redteam_verdict.json,redteam_checks.*,redteam_tpf_check.*,redteam_extra.*}.",
+   "Report it in any survivor accounting as the v1.7 motivating case (v1.5 count 23 -> v1.7 count 22), with the post-hoc label the revision_log already carries.",
+   "Pipeline (post-hoc): propagate the Kepler TPF QUALITY bitmask (including the cadence after AttitudeTweak/NoFinePoint) and a symmetric 5-MAD single-cadence clip into the first screen; require >= 3 epochs with >= 2 in-window cadences and per-epoch depths consistent at < 3 sigma before any signal shorter than two cadences can advance; flag survivors whose BLS duration equals the shortest grid value and whose depth is carried by <= 2 cadences."
+  ]
+ }
+]

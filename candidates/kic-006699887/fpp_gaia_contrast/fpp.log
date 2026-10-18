@@ -1,0 +1,21 @@
+[2026-10-17T19:10:39.527909Z] kic-006699887: P=15.113612 d, D=3.750 h, t0_bkjd=134.72786, depth=1023 ppm (stage 2, poolA_kbonus_background_dwarfs_v1.7)
+light curve: 92 binned points from 3696 cadences; flux_err 106 ppm
+TRICERATOPS target row 0: TIC 270864056 Tmag 15.55 Teff 4614.0 R 0.760711 M 0.73 plx 1.1593; 34 TIC stars within 10 px; build 21s
+row-0 offset from Gaia position: 0.15 arcsec (must be < 1)
+stars that could host the dip (tdepth = eclipse depth they would need):
+   TIC 270864056 Tmag 15.55 fluxratio 0.6878 tdepth 0.0010
+   TIC 270864061 Tmag 14.39 fluxratio 0.3100 tdepth 0.0023
+   TIC 1880854624 Tmag 18.97 fluxratio 0.0018 tdepth 0.3876
+   neighbour TIC 270864061: {"TIC": 270864061, "Tmag": 14.393, "fluxratio": 0.3100374286362366, "required_depth": 0.0022687496195329428, "excluded": true, "lc_used": "kic-006699878", "note": "608 in-transit cadences", "measured_depth_ppm": -14.068020967483719, "measured_err_ppm": 15.879423271312955, "exclusion_sigma": 143.75948052373295, "why": "own light curve at the ephemeris: -14 +- 16 ppm vs 2269 ppm required (144 sigma)"}
+   neighbour TIC 1880854624: {"TIC": 1880854624, "Tmag": 18.9726, "fluxratio": 0.0018147037794816506, "required_depth": 0.38760998142647346, "excluded": false, "lc_used": "gaia-dr3-2077554777196977280", "note": "no KBONUS light curve (RuntimeError)"}
+   dropped TIC 270864061 from the scenario list: own light curve at the ephemeris: -14 +- 16 ppm vs 2269 ppm required (144 sigma)
+scenario hosts after exclusions: TIC 270864056 (0.0010), TIC 1880854624 (0.3876)
+seed 1000: FPP 0.0638  NFPP 0.00000  (119s)
+seed 1001: FPP 0.0055  NFPP 0.00000  (109s)
+seed 1002: FPP 0.0108  NFPP 0.00000  (110s)
+seed 1003: FPP 0.0089  NFPP 0.00000  (108s)
+seed 1004: FPP 0.0044  NFPP 0.00000  (109s)
+seed 1005: FPP 0.0199  NFPP 0.00000  (108s)
+seed 1006: FPP 0.0112  NFPP 0.00000  (108s)
+seed 1007: FPP 0.0094  NFPP 0.00000  (107s)
+DONE kic-006699887: FPP 0.0167 +- 0.0183, NFPP 0.00000 +- 0.00000 over 8 seeds

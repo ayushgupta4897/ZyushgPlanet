@@ -1,0 +1,39 @@
+{
+ "n_quarters_with_maps": 13,
+ "n_conclusive": 4,
+ "n_edge_or_outside": 9,
+ "n_on_target_quarters": 2,
+ "n_offset_quarters": 0,
+ "median_target_to_deficit_arcsec": 1.0475146603699081,
+ "median_target_to_deficit_sigma": 1.8321252010379854,
+ "median_nearest_other_source_arcsec": 6.610675089567183,
+ "quarters_target_gaussian_beats_scaled_image": 4,
+ "sum_chi2_null": 395.3184122404012,
+ "sum_chi2_scaled_image": 295.13225347611143,
+ "sum_chi2_gauss_at_target": 147.43431122170233,
+ "median_peak_snr": 6.030965344426952,
+ "median_depth_in_aperture_ppm": 116.06973377470874,
+ "centroid_verdict_v15": "inconclusive",
+ "centroid_verdict_reason": "2 on-target and 0 offset of 4 conclusive quarters (9 edge/outside)",
+ "verdict": "on-target",
+ "verdict_rule": "v1.6 chi2 model comparison",
+ "n_quarters_chi2": 13,
+ "sum_dchi2_null_minus_target": 663.337135695681,
+ "sum_dchi2_bestalt_minus_target": 387.47719284521895,
+ "strongest_alternative": "scaled_image",
+ "strongest_alternative_dchi2_over_target": -387.4771928452189,
+ "verdict_reason": "13 quarters: null-target dchi2 663, best-alternative-target dchi2 387 (rule: both >= 25 over >= 5 quarters)"
+}
+  Q1: ev=3 sig=2 edge=True noise=random_phase target->deficit 1.8" (0.7 sigma) other->deficit 5.3" chi2 null/img/gauss 25/19/11 -> inconclusive
+  Q2: ev=6 sig=2 edge=True noise=random_phase target->deficit 1.0" (5.9 sigma) other->deficit 7.1" chi2 null/img/gauss 50/33/17 -> inconclusive
+  Q3: ev=7 sig=5 edge=False noise=random_phase target->deficit 1.5" (2.1 sigma) other->deficit 5.8" chi2 null/img/gauss 105/71/34 -> undecided
+  Q4: ev=5 sig=3 edge=True noise=random_phase target->deficit 0.7" (5.2 sigma) other->deficit 7.8" chi2 null/img/gauss 107/72/40 -> inconclusive
+  Q6: ev=6 sig=4 edge=True noise=random_phase target->deficit 0.8" (1.6 sigma) other->deficit 6.4" chi2 null/img/gauss 175/128/41 -> inconclusive
+  Q7: ev=7 sig=4 edge=False noise=random_phase target->deficit 0.6" (1.5 sigma) other->deficit 7.1" chi2 null/img/gauss 74/55/23 -> ON
+  Q8: ev=5 sig=1 edge=True noise=random_phase target->deficit 1.1" (None sigma) other->deficit 8.1" chi2 null/img/gauss 35/23/16 -> inconclusive
+  Q10: ev=7 sig=1 edge=True noise=random_phase target->deficit 3.4" (None sigma) other->deficit 6.0" chi2 null/img/gauss 20/16/10 -> inconclusive
+  Q11: ev=7 sig=6 edge=False noise=random_phase target->deficit 1.1" (1.6 sigma) other->deficit 6.1" chi2 null/img/gauss 127/95/58 -> ON
+  Q12: ev=6 sig=3 edge=True noise=random_phase target->deficit 0.6" (1.5 sigma) other->deficit 7.2" chi2 null/img/gauss 115/86/51 -> inconclusive
+  Q14: ev=6 sig=2 edge=True noise=random_phase target->deficit 0.8" (4.8 sigma) other->deficit 6.9" chi2 null/img/gauss 19/14/5 -> inconclusive
+  Q15: ev=6 sig=5 edge=False noise=random_phase target->deficit 1.0" (3.1 sigma) other->deficit 7.2" chi2 null/img/gauss 89/74/32 -> undecided
+  Q16: ev=5 sig=3 edge=True noise=random_phase target->deficit 0.3" (2.1 sigma) other->deficit 7.4" chi2 null/img/gauss 89/70/30 -> inconclusive

@@ -1,0 +1,43 @@
+{
+ "fname": "kic-003963519",
+ "verdict": "survives",
+ "most_likely_explanation": "A real, flat-bottomed, 6.8156-d, ~1050-1200 ppm periodic dimming localised at the target star (Gaia DR3 2052383520062380544, G 17.28, GSP-Phot K dwarf 0.55-0.74 Rsun): the pixel-fitted deficit at the target (dchi2 70 vs null, 59 over the best alternative source, implied on-target depth 1053 +- 135 ppm) matches the light-curve depth, and no neighbour, systematic, variability or known-object scenario tested reproduces it. The remaining untested scenario is an unresolved companion or hierarchical eclipsing binary within ~1-2 arcsec (TRICERATOPS territory). Implied radius 2-3 Re on the K dwarf, up to ~7 Re if the host turns out to be evolved (parallax SNR only 3.8).",
+ "kill_reasons": [],
+ "surviving_strengths": [
+  "Pixel localisation with independent code (season-stacked event-differenced deficit maps, empirical host-PRF template, grid incl. 3 px beyond the stamp): target dchi2 70.1 summed over 4 seasons vs best alternative 11.4 (host, 10.4 arcsec) and 11.3 (G 20.3 star, 8.8 arcsec); nearest neighbour at 7 arcsec (G 18.67) dchi2 2.0; target inside the 1-sigma position region in 3/4 seasons and 3-sigma in 4/4; pre-registered v16 margins (>=25, >=25) met by both my analysis (59) and the pipeline's (84).",
+  "Pixel-implied depth on the target 1053 +- 135 ppm equals the light-curve depth (1061-1194 ppm): the amount of missing light is exactly what a transit of this depth on this star should remove.",
+  "Depth consistent across four flux products (PSF 1194+-135, SAP 1009+-128, PSF_FLAT 1200+-130, NOVA 1201+-131 ppm; SAP/PSF 0.85+-0.14 as expected for on-target light with CROWDSAP 0.80-0.97), four CCD channels, 14 quarters (chi2 10.1/13), 148 events; survives removal of the 10 strongest events (1025+-102) and is carried by events far from gaps (1296+-101 vs 793+-370 near gaps).",
+  "Per-event scatter (chi2/dof 1.56) equals the random-ephemeris calibration of this light curve (median 1.50, 41% of random ephemerides scatter more): the excess scatter flagged by the re-derivation is red noise, not inconsistency.",
+  "Shape and phase tests: flat-bottomed (T23/T14 0.97, V-shape worse by dchi2 54), odd/even 0.24 sigma, no secondary (59 ppm at phase 0.5 vs 124 ppm error), strongest dip anywhere in phase 3.0 sigma post-hoc over 181 phases.",
+  "The 0.62-d, 100-ppm sinusoid that nearly passed the inverted null is real variability but cannot build the box (P/P_LS = 10.99; depth after notching 1177+-146 ppm).",
+  "No ephemeris match at 1/4..4 x P with aligned epoch against any KOI, DR25 TCE, Kepler EB or confirmed planet in the whole field (catalogues fetched 2026-10-17T15:46:52Z); nothing within 3 arcmin; KIC 3963519 never a Kepler target; SIMBAD empty; not in Bienias & Szabo 2025 (hot Jupiters 2.5-4.8 d only) or Moquin 2026 BOI-1.01 (3.37 d).",
+  "Duration consistent with a K-dwarf host: T14_max 2.5-3.0 h for R 0.60-0.77 Rsun vs observed 2.37-2.44 h (b ~ 0.2-0.6)."
+ ],
+ "checks_run": [
+  "pixel localisation with own code on 14 TPFs of KIC 3963530 (4 seasons, PRF template from host, chi2 at target, every Gaia source within 45 arcsec, and a 0.25-px grid extending 3 px off the stamp)",
+  "pixel-implied depth per source vs light-curve depth",
+  "depth in PSF FLUX, SAP_FLUX, PSF_FLAT_FLUX, PSF_FLUX_NOVA (same detrend)",
+  "per-quarter, per-season, per-channel depth; chi2 of constant depth; slopes vs CROWDSAP, PSFFRAC, NPIXSAP, FLFRCSAP",
+  "trapezoid vs box vs V-shape fit with 29.4-min integration",
+  "odd/even depth",
+  "secondary / dip scan at 181 phases, 1x and 3x duration box at phase 0.5",
+  "per-event local depths with 150-random-ephemeris chi2/dof calibration; gap-proximity split (1 d, 2 d); removal of 10 strongest events; within-quarter thirds; per-year T0 shifts and depths",
+  "PSF-fit RED_CHI2 and quality-flag fraction in vs out of transit; CENTROID columns inspected (found to be PSF-model pointing only, not usable)",
+  "Lomb-Scargle on raw and on detrended flux; notch of the 0.62-d sinusoid and re-measured depth; relation of 0.62 d to P (11:1)",
+  "stage-1 real vs inverted triage row and prereg thresholds re-read",
+  "KOI cumulative, DR25 TCE, Kepler EB (J/AJ/151/68), confirmed planets: period match at m = 1/4,1/3,1/2,1,2,3,4 with epoch alignment (primary or secondary), whole field; 3-arcmin neighbourhood; TPF host TCE status",
+  "keplerstellar: target never a Kepler target; host KIC 3963530 parameters",
+  "SIMBAD 60-arcsec cone and host lookup",
+  "Gaia DR3 45-arcsec cone (42 sources) and astrophysical_parameters for the target (parallax, RUWE, GSP-Phot Teff/logg/R/d/A_G, non_single_star, ipd_frac_multi_peak)",
+  "pixel positions of all Gaia sources incl. off-stamp ones and the G 12.5 star 42 arcsec away in three channel orientations",
+  "Bienias & Szabo 2025 and Moquin et al. 2026 scope check",
+  "duration/density and implied radius under four host hypotheses (GSP-Phot 0.60, upper 0.74, pipeline 0.77, 7-arcsec neighbour, TPF host)"
+ ],
+ "what_would_settle_it": [
+  "TRICERATOPS run with the Gaia DR3 neighbour list (45-arcsec cone saved) and a prior for an unresolved companion within 1-2 arcsec; report FPP and NFPP (only FPP < 0.015 and NFPP < 0.001 in a refereed paper would count as validated).",
+  "High-resolution imaging (AO or speckle) of the target to exclude a companion within ~1 arcsec, which no Kepler pixel test can do, especially with 30-40% of the PRF off the stamp edge.",
+  "Host characterisation: a spectrum (or at least an extinction-corrected Gaia CMD argument with the 3.8-sigma parallax treated honestly) to pin the radius between 0.55 and ~2 Rsun; the implied planet radius moves from 2-3 Re to ~7 Re across that range.",
+  "Identify the 0.62-d, 100-ppm sinusoid (rotation of the target vs a blended variable), e.g. by checking its amplitude in the neighbours' KBONUS light curves and in the TPF pixels.",
+  "A re-extraction of the target photometry with the PSF constrained by neighbouring-pixel data or a custom aperture on the TPF edge pixels, to confirm the depth is not sensitive to the stamp-edge truncation (ch52 season is currently inconclusive on its own)."
+ ]
+}

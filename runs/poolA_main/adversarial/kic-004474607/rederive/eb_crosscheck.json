@@ -1,0 +1,215 @@
+{
+  "eb": {
+    "kepid": 4474637,
+    "koi": "K03829.01",
+    "disposition": "FALSE POSITIVE",
+    "fpflags": {
+      "koi_fpflag_nt": "0",
+      "koi_fpflag_ss": "1",
+      "koi_fpflag_co": "0",
+      "koi_fpflag_ec": "0"
+    },
+    "period_d": 3.886730304,
+    "t0_bkjd": 135.0201,
+    "duration_h": 16.1723,
+    "depth_ppm": 372425.0,
+    "catalogue": "data/known/koi_cumulative.csv fetched 2026-10-17"
+  },
+  "alias": {
+    "ratio": 8.48572728849344,
+    "nearest_rational": "17/2",
+    "frac_mismatch": 0.0016819667921586462,
+    "drift_over_baseline_d": 1.4391549243320874
+  },
+  "bls_power_at_eb_harmonics": {
+    "P_EB": {
+      "period_d": 3.886730304,
+      "max_power": 14.817917382586826,
+      "sde_local": 3.1108202443730466
+    },
+    "2P_EB": {
+      "period_d": 7.773460608,
+      "max_power": 13.73330155344525,
+      "sde_local": 2.652841237620871
+    },
+    "3P_EB": {
+      "period_d": 11.660190912,
+      "max_power": 13.77048024312197,
+      "sde_local": 2.6685399384078288
+    },
+    "4P_EB": {
+      "period_d": 15.546921216,
+      "max_power": 14.885706250746479,
+      "sde_local": 3.139444092259522
+    },
+    "P_EB/2": {
+      "period_d": 1.943365152,
+      "max_power": 10.365496759404795,
+      "sde_local": 1.2307857474934696
+    }
+  },
+  "bls_power_at_best": {
+    "max_power": 23.420303983334595,
+    "sde": 6.7431777715785906
+  },
+  "target_flux_folded_on_eb": {
+    "primary_depth_ppm": 13.112834582496014,
+    "primary_err_ppm": 21.00521831323171,
+    "primary_sigma": 0.6242655699624846,
+    "secondary_depth_ppm": -7.618366988593195,
+    "secondary_sigma": -0.3680576451542911,
+    "n_in_primary": 4728,
+    "note": "fraction of the 37% EB eclipse that leaks into the target's PSF flux: 0.004% of the EB depth"
+  },
+  "events_vs_eb_phase": {
+    "events": [
+      {
+        "epoch": 0,
+        "tc": 754.1131296888925,
+        "depth_ppm": 1165.3940816481745,
+        "err_ppm": 690.0486270352533,
+        "eb_phase": 0.2837632834358317,
+        "inside_eb_eclipse_window": false
+      },
+      {
+        "epoch": 1,
+        "tc": 787.0948630925598,
+        "depth_ppm": 1037.0340416090419,
+        "err_ppm": 661.1702603824577,
+        "eb_phase": 0.7694905719292819,
+        "inside_eb_eclipse_window": false
+      },
+      {
+        "epoch": 2,
+        "tc": 820.0765964962269,
+        "depth_ppm": 229.33575081784952,
+        "err_ppm": 814.3717488600362,
+        "eb_phase": 0.25521786042267536,
+        "inside_eb_eclipse_window": false
+      },
+      {
+        "epoch": 3,
+        "tc": 853.0583298998941,
+        "depth_ppm": 130.82227594807262,
+        "err_ppm": 811.9071303503464,
+        "eb_phase": 0.7409451489161256,
+        "inside_eb_eclipse_window": false
+      },
+      {
+        "epoch": 4,
+        "tc": 886.0400633035613,
+        "depth_ppm": 174.66733607873763,
+        "err_ppm": 662.3275940742952,
+        "eb_phase": 0.22667243740957588,
+        "inside_eb_eclipse_window": false
+      },
+      {
+        "epoch": 8,
+        "tc": 1017.96699691823,
+        "depth_ppm": 1120.0344712796184,
+        "err_ppm": 628.1541488124552,
+        "eb_phase": 0.16958159138332007,
+        "inside_eb_eclipse_window": false
+      },
+      {
+        "epoch": 9,
+        "tc": 1050.9487303218973,
+        "depth_ppm": 391.9960327025684,
+        "err_ppm": 632.832472262504,
+        "eb_phase": 0.6553088798767703,
+        "inside_eb_eclipse_window": false
+      },
+      {
+        "epoch": 10,
+        "tc": 1083.9304637255646,
+        "depth_ppm": -287.5146079978075,
+        "err_ppm": 757.1414619521951,
+        "eb_phase": 0.1410361683702206,
+        "inside_eb_eclipse_window": false
+      },
+      {
+        "epoch": 12,
+        "tc": 1149.893930532899,
+        "depth_ppm": 306.0937397816321,
+        "err_ppm": 662.3580499647192,
+        "eb_phase": 0.11249074535714954,
+        "inside_eb_eclipse_window": false
+      },
+      {
+        "epoch": 13,
+        "tc": 1182.875663936566,
+        "depth_ppm": 6614.603093135219,
+        "err_ppm": 1086.189551138821,
+        "eb_phase": 0.5982180338505145,
+        "inside_eb_eclipse_window": false
+      },
+      {
+        "epoch": 14,
+        "tc": 1215.8573973402333,
+        "depth_ppm": 7009.817514759154,
+        "err_ppm": 1101.3973305462089,
+        "eb_phase": 0.08394532234399321,
+        "inside_eb_eclipse_window": true
+      },
+      {
+        "epoch": 15,
+        "tc": 1248.8391307439006,
+        "depth_ppm": 78.68198692095874,
+        "err_ppm": 573.7141056854541,
+        "eb_phase": 0.569672610837415,
+        "inside_eb_eclipse_window": true
+      },
+      {
+        "epoch": 19,
+        "tc": 1380.7660643585693,
+        "depth_ppm": 1783.7006562643198,
+        "err_ppm": 642.5924555081722,
+        "eb_phase": 0.5125817648111592,
+        "inside_eb_eclipse_window": true
+      },
+      {
+        "epoch": 21,
+        "tc": 1446.7295311659036,
+        "depth_ppm": 625.2603464949048,
+        "err_ppm": 875.7209771615985,
+        "eb_phase": 0.4840363417980029,
+        "inside_eb_eclipse_window": true
+      },
+      {
+        "epoch": 23,
+        "tc": 1512.692997973238,
+        "depth_ppm": 1065.7399002290679,
+        "err_ppm": 821.2625291460646,
+        "eb_phase": 0.4554909187849603,
+        "inside_eb_eclipse_window": true
+      },
+      {
+        "epoch": 24,
+        "tc": 1545.6747313769054,
+        "depth_ppm": 412.05189101789495,
+        "err_ppm": 629.776787271665,
+        "eb_phase": 0.9412182072783821,
+        "inside_eb_eclipse_window": true
+      },
+      {
+        "epoch": 25,
+        "tc": 1578.6564647805726,
+        "depth_ppm": 804.3691689729737,
+        "err_ppm": 940.3677761205911,
+        "eb_phase": 0.4269454957718608,
+        "inside_eb_eclipse_window": true
+      }
+    ],
+    "n_events": 17,
+    "n_inside_eb_eclipse": 7,
+    "expected_if_random": 5.894609746849401,
+    "depth_inside_ppm": 1682.8030663798959,
+    "depth_outside_ppm": 1088.2466215003108
+  },
+  "depth_excluding_eb_eclipse_cadences": {
+    "depth_ppm": 1009.0295088781564,
+    "err_analytic_ppm": 223.40959958072355,
+    "n_in": 42,
+    "n_in_full": 70
+  }
+}

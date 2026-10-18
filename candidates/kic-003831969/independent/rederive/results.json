@@ -1,0 +1,574 @@
+{
+ "target": "kic-003831969",
+ "fits": "hlsp_kbonus-bkg_kepler_kepler_kic-003831969_kepler_v1.0_lc.fits",
+ "date": "2026-10-17",
+ "method": "independent re-derivation; numpy/scipy/astropy only; no pipeline/ code",
+ "settings": {
+  "pmin_d": 1.0,
+  "pmax_d": 50.0,
+  "durations_h": [
+   2.0,
+   3.0,
+   4.0,
+   5.0,
+   6.0,
+   8.0,
+   10.0
+  ],
+  "detrend": "time-aware running median, window 1.0 d, iterative 4-sigma upward clip, -10 sigma drop clip",
+  "quality": "SAP_QUALITY == 0 only",
+  "normalisation": "per-quarter median"
+ },
+ "data": {
+  "n_cadences_file": 64806,
+  "n_quality0": 59115,
+  "n_used": 58998,
+  "baseline_d": 1459.488950541243,
+  "t_start_bkjd": 131.51298948191106,
+  "t_end_bkjd": 1591.001940023154,
+  "robust_sigma_ppm_psf": 1297.768182210793,
+  "median_formal_err_ppm_psf": 951.8793276790167
+ },
+ "blind_bls": {
+  "n_periods": 205543,
+  "grid_oversample": 3.0,
+  "durations_h": [
+   2.0,
+   3.0,
+   4.0,
+   5.0,
+   6.0,
+   8.0,
+   10.0
+  ],
+  "sde_raw": 46.05505230130868,
+  "sde_detr": 52.6317490584189,
+  "peaks": [
+   {
+    "rank": 1,
+    "period_d": 15.313286174373147,
+    "power": 127.58000040682919,
+    "sde_raw": 46.05505230130868,
+    "sde_detr": 52.6317490584189,
+    "depth_ppm": 819.4329677193423,
+    "depth_snr_formal": 15.886852101298214,
+    "duration_h": 4.0,
+    "t0_bkjd": 144.27965614857774,
+    "alias_of_pipeline_period": "1"
+   },
+   {
+    "rank": 2,
+    "period_d": 7.656747554419526,
+    "power": 70.90217272896489,
+    "sde_raw": 24.458389774121397,
+    "sde_detr": 28.215286646687613,
+    "depth_ppm": 435.7140570956418,
+    "depth_snr_formal": 11.780521461302776,
+    "duration_h": 4.0,
+    "t0_bkjd": 136.62132281524438,
+    "alias_of_pipeline_period": "1/2"
+   },
+   {
+    "rank": 3,
+    "period_d": 30.626737390035206,
+    "power": 69.91862771465844,
+    "sde_raw": 24.083617299159908,
+    "sde_detr": 26.844020979979135,
+    "depth_ppm": 868.822923324435,
+    "depth_snr_formal": 11.793971001902198,
+    "duration_h": 4.0,
+    "t0_bkjd": 144.27965614857774,
+    "alias_of_pipeline_period": "2x"
+   }
+  ]
+ },
+ "recovered_blind": true,
+ "pipeline_period_in_top3_or_alias": true,
+ "ephemeris": {
+  "period_d": 15.31340868066254,
+  "period_1sig_lo_d": 15.31340868066254,
+  "period_1sig_hi_d": 15.31340868066254,
+  "period_err_d": 0.0,
+  "t0_bkjd": 144.2806978152444,
+  "t0_bjd": 2454977.280697815,
+  "t0_mid_bkjd": 864.0109058063838,
+  "t0_mid_bjd": 2455697.0109058064,
+  "duration_box_h": 3.75,
+  "bls_depth_ppm": 1033.8183648345891,
+  "bls_depth_err_formal_ppm": 53.16501875453479,
+  "refine_before_mask": {
+   "P": 15.31340868066254,
+   "t0": 144.2806978152444,
+   "dur": 0.15625,
+   "depth": 0.000877649433754833,
+   "depth_err": 5.3165018754534794e-05,
+   "P_lo": 15.31340868066254,
+   "P_hi": 15.31340868066254,
+   "power": 137.66210468164948
+  },
+  "robust_sigma_after_masked_detrend_ppm": 1301.6581033240325
+ },
+ "primary": {
+  "depth_ppm": 1009.4012275569942,
+  "err_emp_ppm": 51.38849362396461,
+  "snr_emp": 19.64255334945775,
+  "n_in": 602,
+  "n_random_boxes": 3000,
+  "random_box_depth_median_ppm": -22.863503521097783,
+  "random_box_depth_p99_ppm": 103.84515444277075
+ },
+ "secondary_phase05": {
+  "depth_ppm": -3.80007918709957,
+  "err_emp_ppm": 48.35297405604607,
+  "snr_emp": -0.07859039203451863,
+  "n_in": 577,
+  "n_random_boxes": 1500,
+  "random_box_depth_median_ppm": -24.151065128541482,
+  "random_box_depth_p99_ppm": 93.38121421806339,
+  "sigma_vs_primary_scatter": -0.07394805566605349
+ },
+ "phase_scan": {
+  "deepest_non_primary_phase": 0.5725,
+  "deepest_non_primary_ppm": 120.065267683378,
+  "primary_over_deepest_other": 8.40710429446481
+ },
+ "odd_even": {
+  "odd": {
+   "depth_ppm": 992.8801268697107,
+   "err_emp_ppm": 72.7760031678111,
+   "snr_emp": 13.642960366760875,
+   "n_in": 306,
+   "n_random_boxes": 1500,
+   "random_box_depth_median_ppm": -23.85170768570699,
+   "random_box_depth_p99_ppm": 127.39777432256848
+  },
+  "even": {
+   "depth_ppm": 1026.4804735373723,
+   "err_emp_ppm": 74.36838337138258,
+   "snr_emp": 13.802646057415421,
+   "n_in": 296,
+   "n_random_boxes": 1500,
+   "random_box_depth_median_ppm": -21.75484433908359,
+   "random_box_depth_p99_ppm": 149.78432978247415
+  },
+  "sigma": 0.32291604743819324
+ },
+ "per_year": {
+  "year1": {
+   "depth_ppm": 1001.6563392899469,
+   "err_emp_ppm": 123.62196611458802,
+   "snr_emp": 8.102575705368485,
+   "n_in": 134,
+   "n_random_boxes": 1000,
+   "random_box_depth_median_ppm": -5.717360826107409,
+   "random_box_depth_p99_ppm": 265.29180928055786,
+   "quarters": [
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  "year2": {
+   "depth_ppm": 1187.9057888859456,
+   "err_emp_ppm": 115.63960219174409,
+   "snr_emp": 10.27248249190842,
+   "n_in": 147,
+   "n_random_boxes": 1000,
+   "random_box_depth_median_ppm": -26.38880679683986,
+   "random_box_depth_p99_ppm": 199.70347362396552,
+   "quarters": [
+    5,
+    6,
+    7,
+    8
+   ]
+  },
+  "year3": {
+   "depth_ppm": 961.7876357073119,
+   "err_emp_ppm": 102.9935162498197,
+   "snr_emp": 9.33833187493485,
+   "n_in": 158,
+   "n_random_boxes": 1000,
+   "random_box_depth_median_ppm": -34.894336624402555,
+   "random_box_depth_p99_ppm": 205.24273268788468,
+   "quarters": [
+    9,
+    10,
+    11,
+    12
+   ]
+  },
+  "year4": {
+   "depth_ppm": 900.9386019406262,
+   "err_emp_ppm": 96.65082608823127,
+   "snr_emp": 9.321582012327253,
+   "n_in": 163,
+   "n_random_boxes": 1000,
+   "random_box_depth_median_ppm": -34.41384634539357,
+   "random_box_depth_p99_ppm": 185.07630014886644,
+   "quarters": [
+    13,
+    14,
+    15,
+    16,
+    17
+   ]
+  }
+ },
+ "per_year_consistency": {
+  "weighted_mean_ppm": 999.8627080821693,
+  "chi2": 3.828715261717436,
+  "dof": 3
+ },
+ "events": {
+  "n_transits_with_ge_half_coverage": 86,
+  "n_epochs_with_any_data": 86,
+  "expected_in_transit_points": 7.653061224489796,
+  "n_epochs_in_baseline": 96,
+  "single_event_dominance": 0.0763744584343169,
+  "chi2_const_depth": 220.2702171025991,
+  "dof": 85,
+  "max_event_depth_ppm": 3229.2484092829586,
+  "max_event_epoch": 20
+ },
+ "trapezoid": {
+  "tc_shift_h": -0.0819709182677468,
+  "depth_ppm": 1074.978067536072,
+  "T14_h": 4.277330733615275,
+  "T23_h": 2.6884064689877682,
+  "T23_over_T14": 0.6285243382887719,
+  "chi2_trap": 4106.742147991112,
+  "chi2_box": 4095.9324212143856,
+  "chi2_flat": 4457.950530312259,
+  "n": 3630
+ },
+ "t0_scan": {
+  "best_shift_h": -0.17812500000000003,
+  "delta_chi2_over_scan": 141.12445521863393
+ },
+ "sap": {
+  "depth_ppm": 677.6453410950456,
+  "err_emp_ppm": 41.08051988435069,
+  "snr_emp": 16.49553956480452,
+  "n_in": 601,
+  "n_random_boxes": 2000,
+  "random_box_depth_median_ppm": -15.781383444712915,
+  "random_box_depth_p99_ppm": 91.65519632602259,
+  "robust_sigma_ppm": 1012.0105495404405,
+  "median_sap_over_psf_flux": 1.2591150761376102
+ },
+ "sap_vs_psf": {
+  "depth_ratio_sap_over_psf": 0.6713339776048405,
+  "depth_ratio_err": 0.05314530529193274,
+  "crowdsap_catalog": 0.762627,
+  "flfrcsap_catalog": 0.733899,
+  "psffrac_catalog": 0.754219,
+  "expected_ratio_if_on_target_approx": "~crowdsap (0.76) if PSF flux is pure target flux; >1 would indicate the dip is stronger in the contaminated aperture, i.e. likely from a neighbour"
+ },
+ "inverted_null": {
+  "n_periods": 205543,
+  "grid_oversample": 3.0,
+  "durations_h": [
+   2.0,
+   3.0,
+   4.0,
+   5.0,
+   6.0,
+   8.0,
+   10.0
+  ],
+  "sde_raw": 7.3927158068316485,
+  "sde_detr": 9.456952760421077,
+  "peaks": [
+   {
+    "rank": 1,
+    "period_d": 1.0594047587198854,
+    "power": 23.07446533404495,
+    "sde_raw": 7.3927158068316485,
+    "sde_detr": 9.456952760421077,
+    "depth_ppm": 130.37635397981376,
+    "depth_snr_formal": 6.523094087509477,
+    "duration_h": 2.0,
+    "t0_bkjd": 131.88798948191106,
+    "alias_of_pipeline_period": null
+   },
+   {
+    "rank": 2,
+    "period_d": 24.731528155134633,
+    "power": 22.485150373052665,
+    "sde_raw": 7.128277936509757,
+    "sde_detr": 7.722795128840374,
+    "depth_ppm": 625.0899502510888,
+    "depth_snr_formal": 6.694898434823252,
+    "duration_h": 2.0,
+    "t0_bkjd": 143.91298948191107,
+    "alias_of_pipeline_period": null
+   },
+   {
+    "rank": 3,
+    "period_d": 32.407846578959024,
+    "power": 22.00843752904136,
+    "sde_raw": 6.9143669762090365,
+    "sde_detr": 7.3074310902750215,
+    "depth_ppm": 593.1145790934959,
+    "depth_snr_formal": 6.622590683844861,
+    "duration_h": 3.0,
+    "t0_bkjd": 160.1088228152444,
+    "alias_of_pipeline_period": null
+   }
+  ]
+ },
+ "period_fine_scan_bls": {
+  "P_best": 15.31336,
+  "P_1sig_lo": 15.31335425,
+  "P_1sig_hi": 15.3133635,
+  "t0_bkjd": 144.2824423464944,
+  "t0_1sig_min": 0.5643750000000004,
+  "duration_h": 3.7625,
+  "depth_ppm": 1031.0237717811788,
+  "note": "BLS delta-loglike=0.5 interval; box edges make the surface spiky, so this interval is optimistic"
+ },
+ "trapezoid_free_ephemeris": {
+  "P_d": 15.31348568920701,
+  "P_err_d": 9.426284726623624e-05,
+  "tref_bkjd": 864.0069662588188,
+  "tref_err_min": 5.531133136373916,
+  "tref_bjd": 2455697.006966259,
+  "t0_first_bkjd": 144.2731388660893,
+  "depth_ppm": 1066.424922433287,
+  "depth_err_ppm": 68.02206250887002,
+  "T14_h": 4.289447291969311,
+  "T14_err_h": 0.25481142555056446,
+  "T23_h": 2.7910253712326476,
+  "T23_err_h": 0.2727905397708113,
+  "T23_over_T14": 0.6506724949058112,
+  "chi2_red": 1.0917043717922208,
+  "rp_rs_from_depth": 0.032656162089769326,
+  "note": "least-squares trapezoid with P, t_ref, depth, T14, T23 free; errors from the Jacobian scaled by reduced chi2 (white noise)"
+ },
+ "adopted": {
+  "period_d": 15.31336,
+  "period_err_d": 9.426284726623624e-05,
+  "t0_first_bkjd": 144.2824423464944,
+  "t0_first_bjd": 2454977.2824423467,
+  "t0_err_min_at_tref": 5.531133136373916,
+  "depth_box_ppm": 1009.4012275569942,
+  "depth_box_err_emp_ppm": 51.38849362396461,
+  "depth_trapezoid_ppm": 1066.424922433287,
+  "depth_trapezoid_err_ppm": 68.02206250887002,
+  "duration_box_h": 3.75,
+  "T14_trapezoid_h": 4.289447291969311,
+  "snr_emp": 19.64255334945775,
+  "sde_blind": 52.6317490584189,
+  "n_transits": 86
+ },
+ "comparison_with_pipeline": {
+  "note": "pipeline numbers quoted from runs/poolA_main/vet/kic-003831969/vet.json (run id poolA_main); mine from results.json in this directory",
+  "rows": [
+   {
+    "quantity": "period (d)",
+    "mine": 15.31336,
+    "pipeline": 15.313350394501255,
+    "unit": "d"
+   },
+   {
+    "quantity": "period err (d) [mine: trapezoid covariance; BLS dLL interval = 4.6e-06]",
+    "mine": 9.426284726623624e-05,
+    "pipeline": null,
+    "unit": "d"
+   },
+   {
+    "quantity": "t0 first epoch (BKJD)",
+    "mine": 144.2824423464944,
+    "pipeline": 144.28486448191106,
+    "unit": "BKJD"
+   },
+   {
+    "quantity": "t0 difference (min)",
+    "mine": -3.4878749999779757,
+    "pipeline": null,
+    "unit": "min"
+   },
+   {
+    "quantity": "box duration (h)",
+    "mine": 3.75,
+    "pipeline": 3.75,
+    "unit": "h"
+   },
+   {
+    "quantity": "T14 trapezoid (h) vs pipeline t14_max for Rstar=0.83",
+    "mine": 4.289447291969311,
+    "pipeline": 4.1739421090219615,
+    "unit": "h"
+   },
+   {
+    "quantity": "box depth (ppm)",
+    "mine": 1009.4012275569942,
+    "pipeline": 997.149943936737,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "box depth error (ppm) [mine empirical random-phase; pipeline formal]",
+    "mine": 51.38849362396461,
+    "pipeline": 58.475683775241855,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "box noise used for SNR (ppm)",
+    "mine": 51.38849362396461,
+    "pipeline": 41.93742817536557,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "empirical SNR",
+    "mine": 19.64255334945775,
+    "pipeline": 23.77708856554232,
+    "unit": ""
+   },
+   {
+    "quantity": "trapezoid/TLS full depth (ppm)",
+    "mine": 1066.424922433287,
+    "pipeline": 1089.325563229382,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "n in-transit points",
+    "mine": 602,
+    "pipeline": 599,
+    "unit": ""
+   },
+   {
+    "quantity": "odd depth (ppm)",
+    "mine": 992.8801268697107,
+    "pipeline": 974.830461029863,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "even depth (ppm)",
+    "mine": 1026.4804735373723,
+    "pipeline": 1020.1503602205175,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "odd/even sigma",
+    "mine": 0.32291604743819324,
+    "pipeline": 0.5403275923495449,
+    "unit": ""
+   },
+   {
+    "quantity": "secondary depth at phase 0.5 (ppm)",
+    "mine": -3.80007918709957,
+    "pipeline": 0.8965177242803435,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "secondary sigma",
+    "mine": -0.07859039203451863,
+    "pipeline": 0.021377508428305728,
+    "unit": ""
+   },
+   {
+    "quantity": "n transits (>=50% coverage)",
+    "mine": 86,
+    "pipeline": 86,
+    "unit": ""
+   },
+   {
+    "quantity": "per-event chi2 about constant depth / dof",
+    "mine": "220/85",
+    "pipeline": "195/85",
+    "unit": ""
+   },
+   {
+    "quantity": "single-event dominance (max event chi2 share)",
+    "mine": 0.0763744584343169,
+    "pipeline": null,
+    "unit": ""
+   },
+   {
+    "quantity": "per-year depths (ppm) [mine: Kepler years Q1-4,5-8,9-12,13-17]",
+    "mine": [
+     1002,
+     1188,
+     962,
+     901
+    ],
+    "pipeline": null,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "per-year errors (ppm)",
+    "mine": [
+     124,
+     116,
+     103,
+     97
+    ],
+    "pipeline": null,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "per-quartile depths (ppm) [pipeline: event quartiles]",
+    "mine": null,
+    "pipeline": [
+     1015,
+     1234,
+     820,
+     814
+    ],
+    "unit": "ppm"
+   },
+   {
+    "quantity": "per-year/quartile chi2 about mean / dof",
+    "mine": "3.8/3",
+    "pipeline": null,
+    "unit": ""
+   },
+   {
+    "quantity": "SAP_FLUX box depth (ppm)",
+    "mine": 677.6453410950456,
+    "pipeline": null,
+    "unit": "ppm"
+   },
+   {
+    "quantity": "SAP/PSF depth ratio",
+    "mine": 0.6713339776048405,
+    "pipeline": null,
+    "unit": ""
+   },
+   {
+    "quantity": "blind BLS SDE (own definition, 1-50 d)",
+    "mine": 52.6317490584189,
+    "pipeline": null,
+    "unit": ""
+   },
+   {
+    "quantity": "inverted-flux null top SDE (own definition)",
+    "mine": 9.456952760421077,
+    "pipeline": null,
+    "unit": ""
+   },
+   {
+    "quantity": "TLS SDE (pipeline only)",
+    "mine": null,
+    "pipeline": 13.337145300967194,
+    "unit": ""
+   },
+   {
+    "quantity": "stage2_pass (pipeline)",
+    "mine": null,
+    "pipeline": true,
+    "unit": ""
+   }
+  ],
+  "per_event": {
+   "n_matched": 86,
+   "corr": 0.9693389191649591,
+   "mean_diff_mine_minus_pipeline_ppm": -6.970441645117267,
+   "rms_diff_ppm": 203.8218864659099,
+   "frac_positive_mine": 0.9069767441860465,
+   "frac_positive_pipeline": 0.9186046511627907
+  }
+ }
+}
