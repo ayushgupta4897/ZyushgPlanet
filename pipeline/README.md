@@ -5,19 +5,27 @@ reported for **KIC 5689121** (Gaia DR3 2103792461826460288): download the Kepler
 PSF light curve from MAST, clean and detrend it, search it blind with BLS and TLS, and vet the best
 signal (odd/even, secondary, per-transit depths, empirical noise, inverted-flux null, neighbour control).
 
+The same package also runs this project's batch search of Kepler Bonus background stars, with thresholds
+fixed in `prereg_poolA.json`: `run_batch` (first screen of many stars, real and inverted flux, via
+`batch_search`), `triage` (pre-registered cuts, real-vs-inverted pass counts, known-object matching with
+`ephemeris_match` against catalogues from `fetch_known`), `vet_batch` (stage-2 vetting with the signal masked
+during detrending), `pixel_vet` and `pixel_season_stack` (pixel-level localisation on the originating target
+pixel file) and `fpp_triceratops` (false-positive probability). Commands are listed in the repository's
+top-level README. This document covers the single-star modules used for KIC 5689121.
+
 Everything runs from the repo's virtualenv:
 
 ```bash
-cd /home/user/ZyushgPlanet
-. .venv/bin/activate                 # Python 3.13; packages pinned in ../requirements.txt
+cd ZyushgPlanet                       # repository root
+. .venv/bin/activate                 # Python 3.13; packages pinned in requirements.txt (repository root)
 python -m pipeline.run --gaia 2103792461826460288 --ra 285.907827 --dec 40.941988 \
     --neighbour 2103792427466721792 --out runs/kic5689121 \
     --compare-period 13.769448251 --compare-t0-bjd 2455630.2454306 --compare-duration-h 2.3
 ```
 
-Wall time for that command in the sandbox (4 shared CPUs, `--threads 3`): see `runs/kic5689121/run.log`
-(about 20-30 minutes; BLS 1-60 d ~2.5 min per light curve, TLS 1-30 d ~5 min per light curve, three
-BLS runs + two TLS runs in total).
+Wall time for that command (4 shared CPUs, `--threads 3`): 830 s (`runtime_total_s` in
+`runs/kic5689121/results.json`; details in `runs/kic5689121/run.log`). BLS 1-60 d takes ~2.2-2.7 min per
+light curve and TLS 1-30 d ~2.7-3.4 min; three BLS runs + two TLS runs in total.
 
 ---
 
@@ -85,7 +93,7 @@ BLS runs + two TLS runs in total).
 5. `transit_mask(time, P, T0, dur)` + `prepare(..., mask_ephemeris=(P, T0, dur))` — **second ("masked")
    pass**: the trend is estimated from out-of-transit points only (wotan `mask=`). Without it, a window
    containing a 2-h, ~2000-ppm transit is pulled down by ~(n_in/n_window) x depth ~ 250-300 ppm, which
-   (i) biases the depth low (1671 vs 2058 ppm for KIC 5689121) and (ii) creates +200-400 ppm "shoulders"
+   (i) biases the depth low (1671 vs 2058 ppm for KIC 5689121 in a 2.0-h box, smoke run) and (ii) creates +200-400 ppm "shoulders"
    within +/-5 h of each transit that an inverted-flux null picks up as a spurious 13.77-d dip. The blind
    searches use pass 1; all depths, odd/even, secondary and the null use pass 2.
 6. `invert(lc)` — null-test copy with `flux -> 2 - flux`.
@@ -94,7 +102,7 @@ BLS runs + two TLS runs in total).
 * `bls_search(t, f, e, pmin=1, pmax=60, durations_h=(1,1.5,2,2.5,3,4,5,6), oversample=3, q_ref_h=2)` —
   `astropy.timeseries.BoxLeastSquares.power(periods, durations, objective='snr')`. Period grid: frequency
   step `df = q_ref/(oversample * baseline * P)` so a 2-h transit drifts by <= 1/3 of its duration over the
-  1426-d baseline -> **210,246 periods between 1 and 60 d**, ~2.5 min on one core. `power` is the depth
+  1426-d baseline -> **210,253 periods between 1 and 60 d**, ~2.2 min (134.7 s in `runs/kic5689121/run.log`). `power` is the depth
   SNR of the best box at each period ("BLS SNR"); `sde = (power - median)/std`. The best peak is refined on
   a fine grid (+/-0.3 %, 1500 periods, 1-4 h in 0.25-h steps) and `compute_stats` is stored. Top distinct
   peaks (harmonics merged) are listed.
@@ -103,7 +111,7 @@ BLS runs + two TLS runs in total).
   star=STAR)` — `transitleastsquares` with `R_star=0.507`, `M_star=0.505` (+/- ranges 0.45-0.56) and
   quadratic limb darkening `u=(0.2125, 0.3984)` (what `transitleastsquares.catalog_info(TIC_ID=120686465)`
   returns for this star; the TIC mass/radius it returns, 0.5054/0.5075, are the values used above).
-  Grid: 180,843 periods for 1-30 d; measured **1.64 ms/period with 3 threads on 46k points => ~5 min**.
+  Grid: 180,849 periods for 1-30 d; measured **1.64 ms/period with 3 threads on 46k points => ~5 min**.
   The grid is restricted to 1-30 d (BLS covers 1-60 d) to keep a full run under ~30 min; no binning is
   needed because Kepler long cadence is already 29.4 min.
 * `null_sde_excluding(periods, power, P)` — best SDE of a periodogram outside +/-2 % of P and its
@@ -158,6 +166,9 @@ CLI driver (see top). Options: `--quality {hard,default,none}`, `--window`, `--c
   at twice the period or a secondary eclipse.
 * **Neighbour**: if the dip were on the brighter neighbour (KIC 5689116, 2.1x brighter in G), its own PSF
   light curve would have to show `depth_required_if_hosted_by_neighbour_ppm` at the same ephemeris.
-* This pipeline establishes a **candidate**, not a planet: it does not do pixel-level centroid/PRF
-  localisation, Gaia-neighbour dilution modelling, TRICERATOPS/LEO-Vetter false-positive probabilities, or
-  stellar-density consistency fits. See the repo playbook for those steps.
+* `run.py` produces a vetted **signal**, not a candidate and not a planet: it does not do pixel-level
+  centroid/PRF localisation, Gaia-neighbour dilution modelling, TRICERATOPS/LEO-Vetter false-positive
+  probabilities, or stellar-density consistency fits. In this project a signal becomes a candidate only after
+  pixel-level localisation on the originating TPF (`pixel_vet.py`), ephemeris clearance against known
+  objects (`ephemeris_match.py`) and a documented TRICERATOPS run (`fpp_triceratops.py`). See the
+  playbook in `docs/` for the full sequence.

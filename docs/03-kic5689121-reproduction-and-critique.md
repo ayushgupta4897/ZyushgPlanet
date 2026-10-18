@@ -1,6 +1,6 @@
 # 03 · KIC 5689121 re-done from scratch: reproduction and red-team review
 
-> Two agents worked on this on 2026-10-17 without access to Kuber's code: one rebuilt the detection end to end in this repo (`pipeline/run.py`, outputs in `runs/kic5689121/`), the other reviewed the candidate with a referee's eye using Kuber's public evidence pack plus the fresh reproduction. Their full reports follow verbatim; machine-readable results are in `docs/briefs/reproduction_and_critique.json`.
+> Two agents worked on this on 2026-10-17 without access to Kuber's code: one rebuilt the detection end to end in this repo (`pipeline/run.py`, outputs in `runs/kic5689121/`), the other reviewed the candidate with a referee's eye using Kuber's public evidence pack plus the fresh reproduction. Their reports follow. Part A's numbers have been updated from the original smoke run to the finished run (`runs/kic5689121/results.json`); values that are not in that file are labelled as smoke-run or scratch measurements. Machine-readable results are in `docs/data/reproduction_and_critique.json`.
 
 **Short version.** The 13.769-day signal is real, repeats 70 times, and the missing light sits on the M dwarf's pixel, not the brighter neighbour's. Kepler-169 e is excluded by CCD geometry, not only by epoch. The neighbour's *official* Kepler light curve even shows the predicted ~80 ppm diluted leak of the dip. What it is not: a validated planet. The dominant remaining scenario, a planet around an unresolved bound companion, cannot be excluded from any archive, and the host is too faint for the imaging that would settle it. The reviewer's "lessons for the developer" section is the design brief for this repo's own search.
 
@@ -11,7 +11,7 @@
 # KIC 5689121 end-to-end reproduction (2026-10-17, sandbox)
 
 ## 1. Environment
-- venv `/home/user/ZyushgPlanet/.venv`, Python 3.13.16: lightkurve 2.6.0, astropy 8.0.2, astroquery 0.4.11, transitleastsquares 2.0.1, wotan 2.0, batman-package 2.5.3, numpy 2.5.4, scipy 1.18.1, matplotlib 3.11.2, pandas 2.3.3. `import batman` failed (`ModuleNotFoundError: distutils`, removed in Py3.12+) -> `uv pip install setuptools` (84.0.0) fixes it. Pinned in `/home/user/ZyushgPlanet/requirements.txt`.
+- venv `.venv`, Python 3.13.16: lightkurve 2.6.0, astropy 8.0.2, astroquery 0.4.11, transitleastsquares 2.0.1, wotan 2.0, batman-package 2.5.3, numpy 2.5.4, scipy 1.18.1, matplotlib 3.11.2, pandas 2.3.3. `import batman` failed (`ModuleNotFoundError: distutils`, removed in Py3.12+) -> `uv pip install setuptools` (84.0.0) fixes it. Pinned in `requirements.txt`.
 - 4 CPUs shared with other agents (load average 5-7.5 during the run), 15 GB RAM.
 
 ## 2. Data access (commands actually run)
@@ -36,12 +36,12 @@ One multi-extension FITS per source holds all quarters (not one file per quarter
 - Per quarter: PSFFRAC 0.666-0.871, CROWDSAP 0.747-0.960, FLFRCSAP 0.688-0.955, NPIXSAP 2-7, time 131.51-1557.96 BKJD. Q5/9/13/17 missing (dead module 3, season 3).
 - **Time conversion**: BJD_TDB = TIME + 2454833.0 (`fetch.BKJD_OFFSET`). Kuber's T0 = BJD_TDB 2455630.2454306 = BKJD 797.24543 = BTJD -1369.75457.
 
-## 4. Pipeline written (`/home/user/ZyushgPlanet/pipeline/`, README there)
+## 4. Pipeline written (`pipeline/`, README there)
 `fetch.py` (query/download/cache under `data/kbonus/<gaia_id>/`, `describe_fits`, `load_quarters`), `prep.py` (stitch with SAP_QUALITY==0, per-quarter median normalisation, wotan biweight, upward-only 4-sigma clip, noise metrics, transit mask for the second pass, invert), `search.py` (astropy BLS 1-60 d with P-dependent frequency grid, 210,253 periods, durations 1-6 h, objective='snr'; `bls_refine`; TLS 1-30 d with R=0.507, M=0.505, u=(0.2125,0.3984) from `catalog_info(TIC_ID=120686465)`, use_threads=3; `null_sde_excluding`), `vet.py` (box depth with robust errors, odd/even, secondary + phase scan, per-transit depths, random-phase empirical noise, fixed-ephemeris depth, ephemeris comparison), `report.py` (JSON + 9 PNGs), `run.py` (CLI). `.gitignore` ignores `.venv/ data/ __pycache__/ *.pyc runs/**/*.fits`.
 
 **Detrending window**: for P=13.8 d, R=0.507 Rsun, M=0.505 Msun: a=0.0897 au, a/R*=38.0, T14(b=0,k=0.05)=2.91 h; x1.36 for e<=0.3 at apastron = 3.97 h; 3 x 3.97 h = 11.9 h = **0.496 d** (Hippke et al. 2019, AJ 158, 143, Sect. IV.6/VI: optimal biweight window ~3x transit duration; Sect. V.4: mask known transits).
 
-**Two-pass design (discrepancy found and fixed)**: with the blind 0.496-d biweight, the window containing the ~2000-ppm, 2-h dip is pulled down ~250-300 ppm: measured 1-h-binned shoulders of +200 to +380 ppm within +/-5 h of transit, blind depth 1671 ppm, and the inverted-flux null's top peak in a 13-15 d grid was the shoulder itself (13.7698 d, SNR 7.98, box 2.2-3.7 h after mid-transit). Pass 2 re-detrends with `wotan.flatten(..., mask=transit_mask)` (mask width max(1.5 x box, 3 h)); depth becomes 2058 ppm and the null peak moves to 14.8173 d, SDE 4.84.
+**Two-pass design (discrepancy found and fixed)**: with the blind 0.496-d biweight, the window containing the ~2000-ppm, 2-h dip is pulled down ~250-300 ppm. In the smoke run (13-15 d BLS only, same code) this showed as 1-h-binned shoulders of +200 to +380 ppm within +/-5 h of transit, a blind 2.0-h box depth of 1671 ppm, and an inverted-flux null whose top peak in the 13-15 d grid was the shoulder itself (13.7698 d, SNR 7.98, box 2.2-3.7 h after mid-transit). Pass 2 re-detrends with `wotan.flatten(..., mask=transit_mask)` (mask width max(1.5 x box, 3 h)). In the finished run the pass-1 box depth is 1631 +/- 64 ppm (2.0-h box at the TLS ephemeris) and the pass-2 box depth is 1916 +/- 68 ppm (2.3-h box at the pass-2 BLS-refined ephemeris); the inverted null on the pass-2 light curve has no peak near 13.77 d (best BLS 1-60 d peak 48.27 d, SDE 5.15).
 
 ## 5. Commands run
 ```
@@ -51,52 +51,49 @@ python -W ignore -m pipeline.run --gaia 2103792461826460288 --ra 285.907827 --de
   --compare-period 13.769448251 --compare-t0-bjd 2455630.2454306 --compare-duration-h 2.3     # 54 s, complete
 nohup python -W ignore -m pipeline.run --gaia 2103792461826460288 --ra 285.907827 --dec 40.941988 \
   --neighbour 2103792427466721792 --out runs/kic5689121 --compare-period 13.769448251 \
-  --compare-t0-bjd 2455630.2454306 --compare-duration-h 2.3 > runs/kic5689121/stdout.txt 2>&1 &   # started 11:59:34 UTC
-python scratch/tls_time.py 12 16 3 1.1     # TLS timing on the pass-1 LC, 12-16 d
-python scratch/bls_full.py                 # BLS 1-60 d timing/peaks on the pass-1 LC
+  --compare-t0-bjd 2455630.2454306 --compare-duration-h 2.3 > runs/kic5689121/stdout.txt 2>&1 &
 ```
-At the time this output was forced (12:03:43 UTC) the full run had finished pass-1 prep and the 1-60 d BLS and was inside the target TLS; it will write `runs/kic5689121/results.json` and the nine PNGs when done (~20-30 min total). The smoke2 directory contains a complete BLS-only run with all figures and identical vetting code.
+The full run wrote `runs/kic5689121/results.json` and the nine PNGs (total runtime 830 s). Two scratch timing scripts (a 12-16 d TLS and a 1-60 d BLS on the pass-1 light curve) were also run; they are not part of the repository, and their numbers are labelled "scratch" below. The smoke run (BLS 13-15 d only, no TLS) used identical vetting code.
 
 ## 6. Numbers
 **Light curve**: 46,091 points after SAP_QUALITY==0 + finite + err>0 (from 50,182 raw) in 13 quarters, baseline 1426.4 d; 432 points removed by the upward-only 4-sigma clip (964 ppm robust sigma). Noise: std 1031 ppm, robust sigma 952 ppm, **point-to-point 962 ppm**, median formal error 821 ppm; **6-h CDPP-like 259 ppm (binned robust) / 263 ppm (lightkurve estimate_cdpp, 12 cadences)**, white-noise expectation 278 ppm. Raw flux shows a stable ~1.7 % peak-to-peak rotational modulation at P_rot = 10.42 d (Lomb-Scargle; 10.2-11.2 d in every quarter), not harmonically related to 13.77 d.
 
-**BLS (blind, pass 1, 1-60 d, 210,253 periods x 8 durations, 134.7 s)**: best **P = 13.769435 d, power (depth SNR) 35.25, SDE 33.21**; refined P = 13.769407 d, T0 = 136.31283 BKJD (BJD_TDB 2454969.31283), duration 2.0 h, depth 1685 +/- 48 ppm (formal). Scratch full-grid run (211,097 periods, 143.6 s): 13.769479 d, SDE 34.9; next distinct peaks 41.308 d (=3P, SDE 21.1), 4.5898 d (=P/3, 17.2), 55.078 d (=4P, 16.0), 1.967 d (13.4), 3.442 d (13.3) - i.e. the signal and its harmonics dominate.
+**BLS (blind, pass 1, 1-60 d, 210,253 periods x 8 durations, 135.9 s)**: best **P = 13.769435 d, BLS power (SNR objective) 35.25, BLS SDE 33.21**; refined P = 13.769407 d, T0 = 136.31283 BKJD (BJD_TDB 2454969.31283), duration 2.0 h, depth 1685 +/- 48 ppm (formal). The next peaks are all harmonics of the signal: 2.7539 d (P/5, SDE 12.9), 3.4423 d (P/4, 12.5), 20.654 d (3P/2, 12.3), 1.9671 d (P/7, 12.0), 48.194 d (7P/2, 11.0). (Scratch full-grid run, 211,097 periods, 143.6 s: 13.769479 d, SDE 34.9.)
 
-**TLS (12-16 d, osf=3, dgs=1.1, 10,651 periods, 17.5 s, 1.64 ms/period on 3 threads)**: **P = 13.769272 d, SDE 48.70, SNR 25.78**, model depth 1438 ppm, duration 1.71 h, T0 = 136.32142 BKJD (BJD_TDB 2454969.32142), 104 epochs, 74 distinct transits with data. Projected 1-30 d grid: 180,843 periods -> ~300 s (running). TLS grid sizes: 1-30 d osf3 180,843; 1-60 d osf3 198,548; 0.5-25 d osf3 244,777.
+**TLS (1-30 d, osf=3, dgs=1.1, 180,849 periods, 205.6 s on 3 threads)**: **P = 13.769643 +/- 0.001299 d, TLS SDE 127.1, TLS SNR 25.5**, model depth 1600 ppm, duration 1.65 h, T0 = 136.30431 BKJD (BJD_TDB 2454969.30431), 104 epochs, 74 distinct transits with data, odd/even mismatch 0.21 sigma. (Scratch narrow-grid TLS, 12-16 d, 10,651 periods, 17.5 s: 13.769272 d, SDE 48.7, SNR 25.8, model depth 1438 ppm, 1.71 h. Scratch grid sizes, osf 3: 1-60 d 198,548; 0.5-25 d 244,777.)
 
-**Pass 2 (masked re-detrend) BLS refine**: P = 13.769540 d, T0 = 136.30866 BKJD, 2.0 h, **depth 2071 +/- 48 ppm (SNR 43.0)**, odd 2077 / even 2064 ppm, phase-0.5 depth -0 +/- 48 ppm, 74 transits with data.
+**Pass 2 (masked re-detrend) BLS refine**: P = 13.769616 d, T0 = 136.30241 BKJD (BJD_TDB 2454969.30241), 2.3 h, **depth 1932 +/- 45 ppm (formal depth SNR 43.0)**, odd 1935 +/- 64 / even 1929 +/- 63 ppm, phase-0.5 depth -27 +/- 45 ppm, 74 transits with data. This is the adopted ephemeris for vetting.
 
-**Vetting (pass 2, robust errors)**: box depth **2058 +/- 67 ppm**; odd 2040 +/- 103 (n_in 130), even 2074 +/- 86 (n_in 147), **difference -0.26 sigma**; **secondary at phase 0.5: -62 +/- 60 ppm**, largest other dip 1.7 sigma at phase 0.175; **73 individual events, 72 with positive depth**, weighted mean 2076 +/- 55 ppm, one negative outlier (-700 ppm near BKJD 645); **empirical noise** from 400 random-phase folds: std 65 ppm -> **empirical SNR 31.6** (formal 31.1 from the robust error). Rp/R* = 0.045 -> 2.5 Re for 0.507 Rsun; Teq ~ 417 K.
+**Vetting (pass 2, 2.3-h box, robust errors)**: box depth **1916 +/- 68 ppm**; odd 1895 +/- 104 (n_in 153), even 1936 +/- 84 (n_in 166), **difference -0.31 sigma**; **secondary at phase 0.5: -90 +/- 54 ppm**; largest dip in a 195-phase scan 2.5 sigma (phase -0.015); **73 individual events, 72 with positive depth**, weighted mean 1963 +/- 52 ppm, median 2026 ppm, event-to-event scatter 799 ppm (chi2 213.5 for 72 dof against a constant depth), one negative outlier (-708 ppm near BKJD 646); **empirical noise** from 400 random-phase folds: std 61 ppm -> **empirical SNR 31.3** (formal SNR 28.1 from the robust error). Rp/R* ~ sqrt(depth) = 0.044 -> 2.4 Re for 0.507 Rsun; Teq ~ 417 K.
 
-**Inverted null (flux -> 2 - flux, pass-2 LC)**: 13-15 d BLS best P = 14.8173 d, power 7.92, **SDE 4.84** (vs 33-35 real). Full 1-60 d BLS + 1-30 d TLS nulls are in the running job (`inverted_null` key, plus `*_excluding_candidate_band`).
+**Inverted null (flux -> 2 - flux, pass-2 LC)**: BLS 1-60 d best P = 48.27 d, BLS power 9.40, **BLS SDE 5.15** (vs 33.2 real); TLS 1-30 d best P = 5.379 d, **TLS SDE 8.2**, TLS SNR 5.3 (vs 127.1 / 25.5 real). Nothing near 13.77 d. (Smoke run, 13-15 d BLS: 14.8173 d, SDE 4.84.)
 
-**Comparison to Kuber's ephemeris (P 13.769448251 d, T0 BJD_TDB 2455630.2454306)**: dP = +7.9 s (6.7 ppm) for the pass-2 refine, +0.8 s for the smoke refine, -1.1 s for the full-grid BLS, -15 s for TLS (grid steps ~5 s); T0 offset at mid-baseline epoch: 2.1 min; depth in a 2.3-h box at his exact ephemeris: 1887 +/- 69 ppm.
+**Comparison to Kuber's ephemeris (P 13.769448251 d, T0 BJD_TDB 2455630.2454306)**: dP = +0.000168 d = +14.5 s (12.2 ppm) for the pass-2 refine, -1.1 s for the full-grid BLS peak, +16.8 s for the full-grid TLS (grid steps ~5 s; TLS period uncertainty 112 s); T0 offset at the mid-baseline epoch: -1.4 min; depth in a 2.3-h box at his exact ephemeris: 1879 +/- 69 ppm.
 
-**Neighbour KIC 5689116 (Gaia DR3 2103792427466721792)**: 7.09" away, G 15.478 (2.10x brighter), parallax 0.302 mas, BP-RP 0.92 (background star). Own LC: 46,445 points, p2p 479 ppm, 6-h CDPP 105 ppm; BLS 13-15 d best 14.5957 d, SDE 5.51, 250 +/- 36 ppm at 1 h (noise). **Depth at the target ephemeris: -24 +/- 29 ppm**, versus ~981 ppm required to host the signal.
+**Neighbour KIC 5689116 (Gaia DR3 2103792427466721792)**: 7.09" away, G 15.478 (2.10x brighter), parallax 0.302 mas, BP-RP 0.92 (background star). Own LC: 46,445 points, p2p 479 ppm, 6-h CDPP 105 ppm (lightkurve) / 110 ppm (binned robust); BLS 1-60 d best 50.576 d, SDE 6.32, 501 +/- 62 ppm at 1.3 h (noise level). **Depth at the target ephemeris: -31 +/- 28 ppm** (random-phase std 27 ppm), versus ~913 ppm required to host the signal.
 
 ## 7. Comparison table (ours vs Kuber)
 | quantity | this pipeline | Kuber |
 |---|---|---|
-| P (d) | 13.769435 (BLS) / 13.769272 (TLS) / 13.769540 (pass-2 refine) | 13.769448 +/- 0.000065 |
-| T0 | BKJD 136.309-136.321 (offset 2.1 min at mid-baseline) | BJD_TDB 2455630.245431 |
-| depth (ppm) | 1671 blind; 2058 +/- 67 masked; 2076 +/- 55 per-event; 1887 +/- 69 at his ephemeris (2.3 h) | 1438 +/- 105 (aperture) to 2165 +/- 98 / 2348 +/- 128 (PSF); 1830-2430 by box width |
-| duration (h) | 2.0 (BLS box), 1.71 (TLS), ~2.3 visible | 2.1-2.4 |
+| P (d) | 13.769435 (BLS) / 13.769643 (TLS) / 13.769616 (pass-2 refine) | 13.769448 +/- 0.000065 |
+| T0 | BKJD 136.302-136.313 (offset -1.4 min at mid-baseline) | BJD_TDB 2455630.245431 |
+| depth (ppm) | 1631 +/- 64 blind (pass 1, 2.0 h); 1916 +/- 68 masked (pass 2, 2.3 h); 1963 +/- 52 per-event mean; 1879 +/- 69 at his ephemeris (2.3 h) | 1438 +/- 105 (aperture) to 2165 +/- 98 / 2348 +/- 128 (PSF); 1830-2430 by box width |
+| duration (h) | 2.0 (pass-1 BLS box), 2.3 (pass-2 refine box), 1.65 (TLS model) | 2.1-2.4 |
 | transits | 73-74 with data | 70 usable |
-| SNR | BLS 35.3; empirical 31.6; TLS 25.8 | BLS 26.7; local 13.7 |
-| odd/even | -0.26 sigma | agree |
-| secondary | -62 +/- 60 ppm | none |
-| neighbour | -24 +/- 29 ppm (needs 981) | 24 +/- 41 (needs ~1100) |
+| SNR | BLS power (SNR objective) 35.2; empirical 31.3; TLS SNR 25.5 | BLS 26.7; local 13.7 |
+| odd/even | -0.31 sigma | agree |
+| secondary | -90 +/- 54 ppm | none |
+| neighbour | -31 +/- 28 ppm (needs ~913) | 24 +/- 41 (needs ~1100) |
 
 ## 8. Figures
-Final: `/home/user/ZyushgPlanet/runs/kic5689121/01_raw_stitched.png ... 09_per_transit.png` (written when the background job ends). Verified renderings from the identical code: `/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/repro/smoke2/{01_raw_stitched,02_detrended,03_bls_periodogram,05_phase_fold,06_odd_even,07_secondary,08_neighbour_fold,09_per_transit}.png` (05 shows a clean ~2.3-h, ~2000-ppm dip with 30-min bins; 06 odd and even folds identical; 09 per-event depths flat at ~2100 ppm).
+`runs/kic5689121/01_raw_stitched.png` through `09_per_transit.png`. 05 shows the pass-2 fold (box depth 1916 +/- 68 ppm, 2.3 h) with 30-min bins and the TLS model; 06 the odd and even folds; 09 the 73 single-event box depths around the weighted mean of 1963 +/- 52 ppm.
 
 ## 9. Discrepancies / caveats
-1. Blind depth is biased low by ~20 % by the biweight (fixed by the masked second pass); any pipeline quoting a depth from a single wotan pass will under-report it and will see a spurious inverted-null peak at the true period.
+1. Blind depth is biased low by ~20 % by the biweight (measured on the smoke run with the same 2.0-h box: 1671 vs 2058 ppm; fixed by the masked second pass); any pipeline quoting a depth from a single wotan pass will under-report it and will see a spurious inverted-null peak at the true period.
 2. astropy BLS `objective='likelihood'` is sign-agnostic; nulls must use `objective='snr'`.
-3. TLS depth (1438 ppm) is a limb-darkened model minimum with a 1.71-h duration, not a box depth; do not compare it to Kuber's 1438 +/- 105 aperture depth (coincidence).
-4. Formal +/-48 ppm errors are ~1.4x too small versus the random-phase estimate (65 ppm).
-5. Full-grid TLS, inverted BLS/TLS over 1-60/1-30 d, and the neighbour's 1-60 d BLS are from the still-running job; values quoted are from measured narrower grids of the same code.
-6. Nothing from the untrusted planethunt clone was executed or imported. Nothing was committed to git.
+3. TLS depth (1600 ppm, 1.65 h) is a limb-darkened model quantity, not a box depth; do not compare it to box depths or to Kuber's 1438 +/- 105 aperture depth (the scratch narrow-grid TLS happened to give 1438 ppm; a coincidence).
+4. Formal errors are ~1.4x too small: +/-45 ppm (pass-2 BLS refine) versus the random-phase estimate (61 ppm).
+5. Nothing from the untrusted planethunt clone was executed or imported. Nothing was committed to git.
 
 ---
 
@@ -106,7 +103,7 @@ Final: `/home/user/ZyushgPlanet/runs/kic5689121/01_raw_stitched.png ... 09_per_t
 
 Reviewer stance: a referee's eye. Everything below is either (E) established by a measurement I ran in the sandbox or read from a primary source, (K) taken from Kuber Mehta's evidence repo (read-only, nothing executed), or (S) my inference/speculation, labelled.
 
-Scratch analyses live in `/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/critique/` (`q1.py` archive TAP, `q2.py` Gaia/TIC, `q3.py` Kepler LC headers, `a1.py` PSF/SAP/PDCSAP depths, `a2.py`/`a4.py` difference images + pixel geometry, `a5.py` per-event depths, `a7.py` TARS fold, `a8.py` rotation). The independent reproduction is in `/home/user/ZyushgPlanet/runs/kic5689121/results.json` (finished 12:13 UTC, 13.8 min).
+The reviewer's scratch analyses (not part of this repository) were `q1.py` archive TAP, `q2.py` Gaia/TIC, `q3.py` Kepler LC headers, `a1.py` PSF/SAP/PDCSAP depths, `a2.py`/`a4.py` difference images + pixel geometry, `a5.py` per-event depths, `a7.py` TARS fold, `a8.py` rotation. The independent reproduction is in `runs/kic5689121/results.json` (13.8 min run).
 
 ## 0. Bottom line
 
@@ -211,7 +208,7 @@ Summarised in the lessons list; the two decisive changes are **target selection 
 ## 4. Assessment of the reproduction
 
 * **Recovers the same signal, blind**: P within 12 ppm of Kuber's (BLS 13.769435, pass-2 refine 13.769616, TLS 13.769643 vs 13.769448 +/- 0.000065 d); the pass-2 value is formally 2.6 sigma from Kuber's but the refinement grid, not the data, sets that difference; T0 offset at mid-baseline -1.4 min; 74 transits with data vs 70 usable; odd/even, secondary, neighbour null all agree; Rp/R* 0.044-0.046.
-* **Disagreements/caveats**: (a) the structured summary quoted smoke-run numbers (2058 +/- 67 ppm, 2.0-h box) while the finished run gives 1916 +/- 68 ppm with a 2.3-h box — purely box-width dependence, but the narrative should be regenerated from `results.json`; (b) "BLS SNR" definitions differ (35 vs 26.7, see 1.5); (c) formal errors are 1.4-1.7x too small (the reproduction already flags this); (d) the single-star inverted null (SDE 5.2) is not a population FAP; (e) TLS depth (1600 ppm, 1.65 h) is a model minimum and must not be compared with box depths; (f) limb darkening came from the TESS-band TIC table; (g) no pixel-level, SAP-dilution or official-PDCSAP tests were in the pipeline — I added them here and they agree with Kuber (1.1, 1.3).
+* **Disagreements/caveats**: (a) the first draft of Part A quoted smoke-run numbers (2058 +/- 67 ppm, 2.0-h box) while the finished run gives 1916 +/- 68 ppm with a 2.3-h box — purely box-width dependence; Part A now quotes the finished run; (b) "BLS SNR" definitions differ (35 vs 26.7, see 1.5); (c) formal errors are 1.4-1.7x too small (the reproduction already flags this); (d) the single-star inverted null (SDE 5.2) is not a population FAP; (e) TLS depth (1600 ppm, 1.65 h) is a model minimum and must not be compared with box depths; (f) limb darkening came from the TESS-band TIC table; (g) no pixel-level, SAP-dilution or official-PDCSAP tests were in the pipeline — I added them here and they agree with Kuber (1.1, 1.3).
 * **Useful discovery by the reproduction**: a blind 0.5-d biweight pulls the in-transit trend down by ~250-300 ppm, biasing the depth ~20 % low and manufacturing a +200-400-ppm shoulder that appears as an inverted-null peak at the true period (SNR ~8). A developer who sees "the signal is in both polarities" after a single-pass detrend could wrongly reject a real transit; the fix is the masked second pass (Hippke et al. 2019, AJ 158, 143).
 
 ## 5. Established vs speculation

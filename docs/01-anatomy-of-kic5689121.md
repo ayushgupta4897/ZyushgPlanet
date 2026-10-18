@@ -1,4 +1,4 @@
-# 01 · Anatomy of Kuber's "new planet" (what actually happened)
+# 01 · Anatomy of the KIC 5689121 claim
 
 > Source of truth for this chapter: Kuber Mehta's own evidence repository
 > (https://github.com/Kuberwastaken/planethunt, Zenodo doi:10.5281/zenodo.23325261),
@@ -93,8 +93,8 @@ The first screen passes *noise as often as data*. Even at the candidate's own st
 
 ## 5. The publication attempt
 
-- RNAAS manuscript AAS82222, "A 13.77-day transit candidate on the background M dwarf KIC 5689121 from Kepler Bonus photometry", sole author, "Independent researcher, New Delhi", AI assistance (Codex, ChatGPT, Claude) disclosed. Submitted 2026-10-13 IST, **declined the same day**, before a scientific editor was assigned.
-- His post-decision audit addresses four things, which is a strong hint about the editor's objections: (1) how the sample was really constructed; (2) the *other* 30 first-screen signals and the inverted controls; (3) the TESS non-detection; (4) the Barber et al. 2022 catalogue match (prior search of the same light curve).
+- RNAAS manuscript AAS82222, "A 13.77-day transit candidate on the background M dwarf KIC 5689121 from Kepler Bonus photometry", sole author (independent researcher), AI assistance (Codex, ChatGPT, Claude) disclosed. Submitted 2026-10-13 IST, **declined the same day**, before a scientific editor was assigned.
+- His post-decision audit addresses four topics: (1) how the sample was really constructed; (2) the *other* 30 first-screen signals and the inverted controls; (3) the TESS non-detection; (4) the Barber et al. 2022 catalogue match (prior search of the same light curve).
 - Zenodo DOI and a public GitHub evidence pack with SHA-256 manifests, `claim-sources.json` tracing every number in the note to a file, `inventory.json`, pinned requirements, and an LLM entry point (`planethunt.md`).
 
 ## 6. Timeline
@@ -115,11 +115,11 @@ The first screen passes *noise as often as data*. Even at the candidate's own st
 - Freezing the target list *before* looking at photometry; ranking by brightness.
 - Reserving hold-out quarters before the search; matched inverted controls on every star; a positive control (Kepler-138 c/d recovered).
 - Pixel-level "which star dims" tests using the original TPFs, dilution-vs-quarter consistency, ephemeris matching against Kepler-169, TRICERATOPS, and a public, hash-manifested evidence pack with every number traceable to a file.
-- Candidate language everywhere except the tweet.
+- Candidate language throughout the repository and the manuscript.
 
 **Avoid**
-- Tweeting "found a new planet" for a 6.9%-FPP candidate (the repo had to spend three days walking it back).
+- Announcing "found a new planet" publicly for a candidate with FPP ≈ 6.9 %. The repository's own documents, written over the following days, use candidate language throughout.
 - Choosing a regime (Kp 16, 300 pc) where *no* amateur-accessible follow-up can ever validate the result.
 - Post-hoc screens (the 12.5–14.5 d exclusion and the SNR ≥ 26.7 cut were chosen after seeing the candidate).
-- Submitting a sole-author RNAAS note three days after the search, without a professional co-author, for an unvalidated candidate.
+- Submitting a journal note for an unvalidated candidate three days after the search, before independent review by someone outside the project.
 - Reporting a detection SNR that the null controls show is reachable by noise.
