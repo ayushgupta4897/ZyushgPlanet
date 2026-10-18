@@ -9,7 +9,7 @@
 * { box-sizing: border-box; }
 @page { margin: 0; }
 body { margin: 0; background: var(--void); }
-.poster { width: 1800px; height: 2700px; background: var(--void); color: var(--silver); font-family: var(--f-body); position: relative; overflow: hidden; padding: 104px 112px 96px; display: grid; grid-template-rows: auto auto auto auto auto auto 1fr auto; gap: 22px; }
+.poster { width: 1800px; height: 2700px; background: var(--void); color: var(--silver); font-family: var(--f-body); position: relative; overflow: hidden; padding: 104px 112px 96px; display: grid; grid-template-rows: auto auto auto auto auto auto 1fr auto; gap: 20px; }
 .poster > .keyline { position: absolute; inset: 52px; border: 1px solid rgba(184,189,196,0.32); pointer-events: none; }
 .keyline i { position: absolute; width: 26px; height: 26px; border-color: var(--silver); border-style: solid; border-width: 0; }
 .keyline i:nth-child(1) { left: -9px; top: -9px; border-left-width: 2px; border-top-width: 2px; } .keyline i:nth-child(2) { right: -9px; top: -9px; border-right-width: 2px; border-top-width: 2px; }
@@ -56,12 +56,17 @@ h2 { font-family: var(--f-mono); font-weight: 500; font-size: 20px; letter-spaci
 .box { border: 1px solid var(--line); background: var(--ink); padding: 20px 22px 6px; }
 .pixpair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; }
 .cap { font-family: var(--f-mono); font-size: 16px; color: var(--steel); line-height: 1.45; margin: 10px 0 14px; }
-.conds { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
-.c { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 6px 0; border-bottom: 1px dashed var(--line); align-items: start; }
-.m { width: 30px; height: 30px; border-radius: 50%; background: var(--white); color: var(--void); display: grid; place-items: center; font-family: var(--f-mono); font-size: 16px; }
-.m.o { background: transparent; color: var(--steel); border: 1.5px dashed var(--steel); }
-.c b { display: block; color: var(--white); font-weight: 500; font-size: 21px; }
-.c span { font-size: 17px; color: var(--steel); }
+.gauntlet svg { display: block; width: 100%; height: auto; }
+svg .gname { fill: var(--white); font-family: var(--f-body); font-size: 17px; font-weight: 500; }
+svg .gnum { fill: var(--steel); font-size: 14px; letter-spacing: 0.16em; }
+svg .gicon { fill: none; stroke: var(--chrome); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+svg .gate { stroke: var(--line); stroke-dasharray: 1 6; stroke-width: 1.5; }
+svg .lane { stroke: var(--silver); stroke-width: 3; } svg .lane.noise { stroke: var(--steel); stroke-width: 2; stroke-dasharray: 6 7; }
+svg .node { fill: var(--white); stroke: var(--void); stroke-width: 3; } svg .node.noise { fill: var(--void); stroke: var(--steel); stroke-width: 2; }
+svg .gval { fill: var(--chrome); font-size: 15px; } svg .gval.noise { fill: var(--steel); }
+svg .lname { fill: var(--white); font-size: 19px; font-weight: 500; } svg .lsub { fill: var(--steel); font-size: 14px; }
+svg .kill { stroke: var(--white); stroke-width: 3; stroke-linecap: round; }
+svg .term { fill: var(--white); font-family: var(--f-display); font-size: 15px; letter-spacing: 0.08em; }
 .defs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; border-top: 1px solid var(--line); padding-top: 18px; align-self: end; }
 .defs div { display: grid; gap: 8px; align-content: start; font-size: 17px; line-height: 1.45; }
 .defs b { font-family: var(--f-mono); font-weight: 500; font-size: 16px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--chrome); }
@@ -92,7 +97,7 @@ svg .tmark { fill: none; stroke: var(--white); stroke-width: 2.4; } svg .nbmark 
     <div class="box"><h2>The light goes missing from the target</h2><div class="pixpair"><div id="pi"></div><div id="ps"></div></div>
       <div class="cap" id="pcap"></div></div>
   </div>
-  <div><h2>Every condition a candidate must meet</h2><div class="conds" id="conds"></div></div>
+  <div><h2>Eight tests, three survivors: noise never got past the pixels</h2><div class="gauntlet" id="gauntlet"></div></div>
   <div></div>
   <div class="defs">
     <div><b>Candidate</b><span>A periodic dip that survives every test the data allow: localised on the star, absent from the inverted-flux null, unmatched by any known object, and unlikely to be anything else.</span></div>
@@ -118,7 +123,7 @@ svg .tmark { fill: none; stroke: var(--white); stroke-width: 2.4; } svg .nbmark 
       <div class="meta">${c.period_d.toFixed(4)}-day orbit · ${c.rp_earth.median.toFixed(2)} Earth radii<br>${fmt(c.depth_ppm)} ppm · ${c.n_events} transits · T<sub>eq</sub> ≈ ${fmt(teq)} K<br>
       host ${fmt(c.host.teff_gspphot)} K dwarf, G ${c.host.G.toFixed(1)}, ${fmt(c.host.dist_pc)} pc<br>FPP <s>${(c.fpp.baseline.mean * 100).toFixed(1)} %</s> → ${(c.fpp.molusc.mean * 100).toFixed(2)} % with Gaia limits${c.fname === D.second_signal.fname ? `<br>second on-target signal at ${D.second_signal.period_d.toFixed(2)} d` : ""}</div><div></div></div>`;
     dos.appendChild(d);
-    Z.lightCurve(d.lastChild.lastChild, c, { W: 560, H: 215, pts: true });
+    Z.lightCurve(d.lastChild.lastChild, c, { W: 560, H: 205, pts: true });
   });
   const st = [[F.targets, "stars searched, thresholds frozen first"], [F.first_screen_real, `first-screen passes (upside-down null: ${F.first_screen_inverted})`], [F.path_stage2, "pass stage-2 vetting"],
     [F.path_pixel_on_target, "lose light on their own pixels"], [F.path_redteam_survives, "survive re-derivation and red team"], [F.candidates, "candidates, FPP below&nbsp;1&nbsp;%"]];
@@ -127,15 +132,50 @@ svg .tmark { fill: none; stroke: var(--white); stroke-width: 2.4; } svg .nbmark 
   const c = D.candidates["kic-006699887"], m = c.season_maps.reduce((a, b) => Math.max(...b.snr.flat()) > Math.max(...a.snr.flat()) ? b : a);
   Z.pixelMap(document.getElementById("pi"), m, { mode: "image", cell: 46 }); Z.pixelMap(document.getElementById("ps"), m, { mode: "snr", cell: 46 });
   document.getElementById("pcap").innerHTML = `KIC ${c.kic}, Kepler season ${m.season}. Left: the stamp of the bright star Kepler observed. Right: in-transit minus out-of-transit light. The missing light sits on the candidate's Gaia position (ring): Δχ² ${fmt(c.pixel_season.sum_dchi2_null_minus_target)} vs no signal, ${fmt(c.pixel_season.sum_dchi2_bestalt_minus_target)} vs the next-best star.`;
-  const ok = (b, s) => `<div class="c"><div class="m">✓</div><div><b>${b}</b><span>${s}</span></div></div>`;
-  document.getElementById("conds").innerHTML = [
-    ok("Pre-registered search with a null", "Frozen target list and thresholds; the same search on every light curve turned upside down."),
-    ok("Stage-2 vetting", "Odd and even transits match; no dip at half phase; every transit consistent; no stellar variability."),
-    ok("Light lost on the target's own pixels", "Two independent pixel tests, per quarter and per season."),
-    ok("No known object shares the ephemeris", "Checked against every KOI, threshold-crossing event and eclipsing binary in the Kepler field."),
-    ok("Independent re-derivation", "A separate agent with no shared code recovered period and depth."),
-    ok("Red-team review", "Agents tasked with killing each signal found no false-positive mechanism."),
-    ok("Transit shape fits the host star", "Stellar density from the transit matches Gaia within 0.5 σ."),
-    ok("False-positive probability below 1.5 %", "TRICERATOPS with Gaia constraints: 0.63, 0.71 and 0.70 %; nearby stars 0 %.")].join("");
+  // the gauntlet: eight tests as stations; each candidate a line through all of them, with its measured value at each;
+  // the upside-down (inverted-flux) null as a dashed line that dies at the pixel test
+  (function () {
+    const W = 1576, H = 338, LX = 262, X0 = 300, X1 = 1500, ST = 8, sx = i => X0 + (X1 - X0) * i / (ST - 1);
+    const names = [["Pre-registered", "search + null"], ["Stage-2", "vetting"], ["Light lost on", "its own pixels"], ["No known object", "on that orbit"],
+      ["Independent", "re-derivation"], ["Red-team", "review"], ["Transit fits", "the star (Gaia)"], ["False-positive", "prob. < 1.5 %"]];
+    const icons = [
+      "M-20 -4 H-8 L-4 4 H4 L8 -4 H20 M-20 10 H-8 L-4 2 H4 L8 10 H20",                      // dip and its upside-down twin
+      "M-22 -2 H-15 L-12 6 H-6 L-3 -2 H3 L6 6 H12 L15 -2 H22",                                // odd and even transits alike
+      "M-15 -15 H15 V15 H-15 Z M-5 -15 V15 M5 -15 V15 M-15 -5 H15 M-15 5 H15",               // pixel grid (ring drawn separately)
+      "M-12 -14 H12 M-12 -6 H12 M-12 2 H12 M-12 10 H4 M-18 18 L18 -18",                      // catalogue, struck through
+      "M-20 -6 H-8 L-4 4 H4 L8 -6 H20 M-20 -2 H-9 L-5 8 H5 L9 -2 H20",                       // two independent fits
+      "M0 -18 V-8 M0 8 V18 M-18 0 H-8 M8 0 H18",                                              // crosshair (circle drawn separately)
+      "",                                                                                     // rho (text)
+      "M-18 8 A18 18 0 0 1 18 8 M0 8 L-12 -2"];                                               // gauge, needle low
+    const C = ["kic-006699887", "kic-003831969", "kic-011138423"].map(k => D.candidates[k]), N = D.inverted_null;
+    const vals = c => [`SDE ${Math.round(c.stage1.bls_sde_real)}`, `odd–even ${c.odd_even_sigma.toFixed(1)}σ`,
+      `Δχ² +${Math.round(c.pixel_v16.sum_dchi2_bestalt_minus_target)}`, `0 matches`,
+      `ΔP ${Math.max(1, Math.round(Math.abs(c.rederive.period_d - c.period_d) * 86400))} s`, `survived`,
+      `${c.density.tension_sigma > 0 ? "+" : "−"}${Math.abs(c.density.tension_sigma).toFixed(1)}σ`, `${(c.fpp.molusc.mean * 100).toFixed(2)} %`];
+    const ly = [158, 210, 262], ny = 316;
+    let g = `<svg viewBox="0 0 ${W} ${H}">`;
+    for (let i = 0; i < ST; i++) {
+      const x = sx(i);
+      g += `<line class="gate" x1="${x}" y1="112" x2="${x}" y2="${H - 6}"/>`;
+      g += `<g transform="translate(${x},24)"><path class="gicon" d="${icons[i]}"/>` +
+        (i === 2 ? `<circle class="gicon" cx="0" cy="0" r="7"/>` : "") + (i === 5 ? `<circle class="gicon" cx="0" cy="0" r="12"/>` : "") +
+        (i === 6 ? `<circle class="gicon" cx="0" cy="0" r="17"/><text x="0" y="7" text-anchor="middle" style="fill:var(--chrome);font-size:22px;font-family:var(--f-body)">ρ</text>` : "") + `</g>`;
+      g += `<text class="gnum" x="${x}" y="64" text-anchor="middle">${String(i + 1).padStart(2, "0")}</text>`;
+      g += `<text class="gname" x="${x}" y="84" text-anchor="middle">${names[i][0]}</text><text class="gname" x="${x}" y="103" text-anchor="middle">${names[i][1]}</text>`;
+    }
+    C.forEach((c, j) => {
+      const y = ly[j];
+      g += `<text class="lname" x="0" y="${y + 1}">KIC ${c.kic}</text><text class="lsub" x="0" y="${y + 20}">${c.period_d.toFixed(2)} d · ${c.rp_earth.median.toFixed(1)}× Earth</text>`;
+      g += `<line class="lane" x1="${LX}" y1="${y}" x2="${X1 + 22}" y2="${y}"/><path d="M${X1 + 22} ${y - 7} L${X1 + 36} ${y} L${X1 + 22} ${y + 7} Z" style="fill:var(--silver)"/>`;
+      vals(c).forEach((v, i) => { g += `<circle class="node" cx="${sx(i)}" cy="${y}" r="9"/><text class="gval" x="${sx(i)}" y="${y - 16}" text-anchor="middle">${v}</text>`; });
+    });
+    const yN = ny, xk = sx(2);
+    g += `<text class="lname" x="0" y="${yN + 1}" style="fill:var(--silver)">Noise</text><text class="lsub" x="0" y="${yN + 20}">upside-down data</text>`;
+    g += `<line class="lane noise" x1="${LX}" y1="${yN}" x2="${xk - 14}" y2="${yN}"/>`;
+    [[0, `${N.first_screen} signals`], [1, `${N.stage2} left`]].forEach(([i, v]) => { g += `<circle class="node noise" cx="${sx(i)}" cy="${yN}" r="8"/><text class="gval noise" x="${sx(i)}" y="${yN - 15}" text-anchor="middle">${v}</text>`; });
+    g += `<path class="kill" d="M${xk - 10} ${yN - 10} L${xk + 10} ${yN + 10} M${xk + 10} ${yN - 10} L${xk - 10} ${yN + 10}"/><text class="gval" x="${xk + 22}" y="${yN + 5}" style="fill:var(--white)">${N.pixel_on_target} on target: stopped</text>`;
+    g += `<text class="term" x="${X1 + 44}" y="${ly[1] + 5}" text-anchor="start"></text>`;
+    document.getElementById("gauntlet").innerHTML = g + "</svg>";
+  })();
 })();
 </script>

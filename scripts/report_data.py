@@ -196,6 +196,10 @@ for f in CANDS:
 
 s47 = jl(f"{R}/vet_posthoc/kic-006699887_P47/vet.json"); f47 = jl(f"{R}/fpp_posthoc/kic-006699887_P47/fpp_summary.json")
 p47 = jl(f"{R}/pixel_season/kic-006699887_P47/pixel_season.json")
+iv, ip = jl(f"{R}/vet_inverted_summary.json"), jl(f"{R}/pixel_v16_inverted_summary.json")
+if iv and ip:  # the inverted-flux null carried through stage 2 and the pixel test (prereg v1.9)
+    out["inverted_null"] = {"first_screen": iv["inverted_first_screen"], "stage2": iv["inverted_stage2_pass"], "pixel_on_target": len(ip["on_target"]),
+                            "pixel_verdicts": ip["verdicts"], "sources": [f"{R}/vet_inverted_summary.json", f"{R}/pixel_v16_inverted_summary.json"]}
 out["second_signal"] = {"fname": "kic-006699887", "period_d": r3(s47["P"], 5), "depth_ppm": r3(s47["depth_pass2_ppm"], 0), "snr_emp": r3(s47["snr_emp_pass2"], 1),
                         "n_events": s47["n_events"], "odd_even_sigma": r3(s47["odd_even_sigma"], 2), "rp_earth_box": r3(s47["rp_earth_box"], 2),
                         "fpp_mean": r3(f47["FPP_mean"], 4), "fpp_std": r3(f47["FPP_std"], 4),
