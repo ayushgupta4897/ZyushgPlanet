@@ -1,25 +1,25 @@
 # 05 · Vetting and validation: from a periodic dip to a credible candidate to a validated planet
 
-> Adversarially verified research brief (2026-10-17). It lays out the Kepler Robovetter test battery with its published thresholds, the TESS vetting tools (LEO-Vetter, DAVE, exovetter, TRICERATOPS, MOLUSC), the catalogue queries that establish novelty, the astrophysical false-positive zoo and how each is excluded, and what "candidate", "validated" and "confirmed" mean to the NASA Exoplanet Archive. Markers: **[run]** executed in this sandbox, **[verified]** primary source opened, **[unverified]** kept with caution. Raw brief, corrections and JSON in `docs/briefs/vetting-validation-*`.
+> Adversarially verified research brief (2026-10-17). It lays out the Kepler Robovetter test battery with its published thresholds, the TESS vetting tools (LEO-Vetter, DAVE, exovetter, TRICERATOPS, MOLUSC), the catalogue queries that establish novelty, the astrophysical false-positive zoo and how each is excluded, and what "candidate", "validated" and "confirmed" mean to the NASA Exoplanet Archive. Markers: **[run]** executed in this sandbox, **[verified]** primary source opened, **[unverified]** kept with caution.
 
-**How this repo implements it.** Stage 1 (`pipeline/batch_search.py`): SDE, empirical SNR, odd/even, secondary (astropy `depth_phased`), single-event dominance, duty cycle, inverted null. Stage 2 (`pipeline/vet_batch.py`, criteria in `pipeline/prereg_poolA.json` → `stage2_vetting`): masked re-detrend, per-event depths with gap proximity, per-quartile consistency, V-shape proxy, Lomb-Scargle variability, duration plausibility, TLS, ephemeris/known-object matching. Stage 3 (per candidate, by hand with `pipeline/run.py` and the checklist below): pixel-level localisation on the originating target-pixel file, dilution-vs-quarter, Gaia neighbours and RUWE, TRICERATOPS with neighbours passed in.
+**How this repo implements it.** Stage 1 (`pipeline/batch_search.py`): SDE, empirical SNR, odd/even, secondary (astropy `depth_phased`), single-event dominance, duty cycle, inverted null. Stage 2 (`pipeline/vet_batch.py`, criteria in `pipeline/prereg_poolA.json` → `stage2_vetting`): masked re-detrend, per-event depths with gap proximity, per-quartile consistency, V-shape proxy, Lomb-Scargle variability, duration plausibility, TLS, ephemeris/known-object matching. Stage 3 (per signal, following the checklist below): pixel-level localisation on the originating target-pixel file (`pipeline/pixel_vet.py`; season-stacked version `pipeline/pixel_season_stack.py`), a deep single-target light-curve run with dilution-vs-quarter (`pipeline/run.py`), independent re-derivation and red-team review (`runs/<id>/adversarial/`), a transit fit with a stellar-density check (`scripts/transit_fit.py`), Gaia neighbours and RUWE, and TRICERATOPS with neighbours passed in (`pipeline/fpp_triceratops.py`) plus MOLUSC companion constraints (`scripts/molusc_run.py`).
 
 ## Implemented in this repo vs. prescribed below
 
-| Prescribed in this chapter | Status in the repo (2026-10-17) |
+| Prescribed in this chapter | Status in the repo (2026-10-18) |
 |---|---|
 | Robovetter-style not-transit-like / odd-even / secondary / single-event tests | Implemented (stage 1: `pipeline/batch_search.py`; stage 2: `pipeline/vet_batch.py`) |
 | Inverted-light-curve null | Implemented on every star; scrambled-time null, injection-recovery, blind hold-out quarters: **not implemented** for Pool A |
 | Ephemeris / known-object matching (KOI, TCE, EB, confirmed) | Implemented (`pipeline/ephemeris_match.py`, catalogues via `pipeline/fetch_known.py` with a dated manifest) |
-| Pixel-level localisation | Implemented with an empirical point-source model (`pipeline/pixel_vet.py`), not the official Kepler PRF; registered verdict rules in the prereg |
+| Pixel-level localisation | Implemented with an empirical point-source model (`pipeline/pixel_vet.py`, per-quarter χ² comparison; `pipeline/pixel_season_stack.py`, season-stacked), not the official Kepler PRF; verdict rules registered in the prereg (v1.6, v1.8) and checked on positive and offset controls |
 | LEO-Vetter / DAVE / exovetter | **Not run** on Pool A (TESS-oriented; planned for Pool B) |
-| TRICERATOPS with neighbours, MOLUSC, Gaia RUWE/NSS | **Not yet run**; next milestone for candidate-grade signals |
-| Decision log per candidate | Partial: `vet.json`, `pixel.json`, `runs/<id>/adversarial/` per survivor; no `decision_log.jsonl` yet |
+| TRICERATOPS with neighbours, MOLUSC, Gaia RUWE/NSS | TRICERATOPS 1.1.0 (8 seeds × 10⁶ draws, resolved neighbours passed in) run for the three candidates, kic-003963519, kic-009655224 and the 47.69-d second signal on kic-006699887; for the three candidates also with MOLUSC companion constraints (Gaia RUWE + Gaia contrast curve) and Gaia FLAME host parameters (`runs/poolA_main/fpp*/`, `runs/poolA_main/molusc/`). Results in `docs/10` §1.1 |
+| Decision log per candidate | The prereg `revision_log` (`pipeline/prereg_poolA.json`, v1.0–v1.8) is the dated decision log for every rule change; per-signal records are `vet.json`, `pixel.json`, `pixel_season.json` and `runs/<id>/adversarial/`; evidence packs with SHA-256 manifests in `candidates/<fname>/`. No per-step `decision_log.jsonl` in the format of §8 |
 
 
 # Vetting and validation playbook: from a periodic dip to a credible candidate to a statistically validated planet
 
-Dimension: **vetting-validation**. Research date 2026-10-17; adversarial re-verification 2026-10-17. Markers: **[run]** = executed in the sandbox today (outputs under `/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/verify-vetting-validation/` and the sibling `.../scratchpad/vetting-validation/`); **[verified]** = primary source opened today; **[unverified]** = could not be checked, kept because it is useful and plausibly sourced. Kuber's repository (`/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/untrusted/planethunt`, read-only, never executed) is cited as "planethunt:<path>".
+Dimension: **vetting-validation**. Research date 2026-10-17; adversarial re-verification 2026-10-17. Markers: **[run]** = executed in the research sandbox on that date (working files not included in this repository); **[verified]** = primary source opened today; **[unverified]** = could not be checked, kept because it is useful and plausibly sourced. Kuber Mehta's public planethunt repository (https://github.com/Kuberwastaken/planethunt; read only, never executed) is cited as "planethunt:<path>".
 
 ## 0. The ladder, and what "credible" actually means
 
@@ -300,7 +300,7 @@ Each step appends `{test, inputs, statistic, threshold, pass|fail|inconclusive, 
 - Imports in the Py3.13 vetting venv: triceratops, leo_vetter.main, leo_vetter.pixel, exovetter.vetters, spiceypy 8.3.0, transitDiffImage 0.1, lightkurve 2.6.0 OK; standalone pytransit import fails (numpy 2) — import triceratops first.
 - PDFs text-extracted and grepped: Thompson 2018, Twicken 2018, Coughlin 2016, DAVE 2019, Lissauer 2012, SG1 Guidelines rev 6.4, KDCH, Instrument Handbook, TESS DRN S01.
 - lightkurve quality-flag dictionaries printed (Kepler default 1130799; TESS default 17087).
-- Files: `/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/verify-vetting-validation/{box.out, tce_box.csv, leo_thresholds.py, triceratops_main.py, exofop_toi.csv, exofop_ctoi.csv, dl/table5.dat, dl/kbonus_mstars.fits, dl/kbonus/…_lc.fits, dl/kepler/…_llc.fits, dl/drn01.txt, pdfs/{twicken2018,coughlin2016,dave2019}.txt}`; sibling scripts in `.../scratchpad/vetting-validation/scripts/`.
+- Working files (query outputs, downloaded tables, test scripts) stayed in the research sandbox and are not part of this repository.
 
 ## Appendix B. Source list
 
