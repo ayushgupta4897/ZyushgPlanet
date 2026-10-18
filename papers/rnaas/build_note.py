@@ -27,6 +27,10 @@ K = ["kic-006699887", "kic-003831969", "kic-011138423"]
 C = [D["candidates"][k] for k in K]
 F = [json.load(open(os.path.join(root, f"runs/poolA_main/transit_fit/{k}/fit.json"))) for k in K]
 f4 = json.load(open(os.path.join(root, "runs/poolA_main/fpp/kic-003963519/fpp_summary.json")))
+TS = json.load(open(os.path.join(root, "runs/poolA_main/tess_sensitivity.json")))["candidates"]
+IV = json.load(open(os.path.join(root, "runs/poolA_main/vet_inverted_summary.json")))
+IP = json.load(open(os.path.join(root, "runs/poolA_main/pixel_v16_inverted_summary.json")))
+WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
 
 def pm(d, nd, scale=1.0):
@@ -47,11 +51,16 @@ V = {"AUTHORLINE": (f"\\author[{a.orcid}]{{{a.author}}}" if a.orcid else f"\\aut
      "fppmin": f"{100 * min(c['fpp']['molusc']['mean'] for c in C):.1f}", "fppmax": f"{100 * max(c['fpp']['molusc']['mean'] for c in C):.1f}",
      "known_date": __import__("datetime").date.fromisoformat(json.load(open(os.path.join(root, "data/known/manifest.json")))["fetched_utc"][:10]).strftime("%Y %B %-d"),
      "fpp4": f"{100 * f4['FPP_mean']:.0f}", "dens_max": f"{max(abs(c['density']['tension_sigma']) for c in C):.1f}",
+     "inv_s2": WORDS[IV["inverted_stage2_pass"]], "inv_pix": (["none"] + WORDS[1:])[len(IP["on_target"])],
+     "tess_nsec": "--".join(str(x) for x in sorted({min(t["n_sectors"] for t in TS.values()), max(t["n_sectors"] for t in TS.values())})),
+     "tess_tmin": f"{min(t['Tmag'] for t in TS.values()):.1f}", "tess_tmax": f"{max(t['Tmag'] for t in TS.values()):.1f}",
+     "tess_snr_max": f"{max(t['snr_upper_bound'] for t in TS.values()):.1f}",
      "P47": f"{D['second_signal']['period_d']:.4f}", "P47s": f"{D['second_signal']['period_d']:.2f}", "dep47": f"{D['second_signal']['depth_ppm']:,.0f}", "n47": D["second_signal"]["n_events"]}
 for i, (c, f) in enumerate(zip(C, F), 1):
     V.update({f"P{i}": pm(f["P_d"], 5), f"P{i}s": f"{c['period_d']:.3f}", f"T0{i}": pm(f["t0_bjd"], 4), f"dep{i}": f"{c['depth_ppm']:,.0f}",
               f"T14{i}": pm(f["T14_h"], 2), f"rp{i}": pm(c["rp_earth"], 2), f"rp{i}s": f"{c['rp_earth']['median']:.1f}",
               f"fppb{i}": f"{100 * c['fpp']['baseline']['mean']:.1f}", f"fppm{i}": f"{100 * c['fpp']['molusc']['mean']:.2f}", f"fpps{i}": f"{100 * c['fpp']['molusc']['std']:.2f}",
+              f"snr{i}": f"{c['snr_emp']:.1f}", f"nev{i}": c["n_events"], f"sde{i}": f"{c['stage1']['bls_sde_real']:.0f}", f"sdei{i}": f"{c['stage1']['bls_sde_inverted']:.0f}",
               f"gaia{i}": c["gaia_dr3"], f"tic{i}": c["tic"], f"teff{i}": f"{c['host']['teff_gspphot']:,.0f}", f"dist{i}": f"{c['host']['dist_pc']:,.0f}"})
 tpl = open(os.path.join(here, "note.tex.tpl")).read()
 missing = sorted(set(re.findall(r"<<(\w+)>>", tpl)) - set(V))
@@ -59,7 +68,8 @@ assert not missing, missing
 tex = re.sub(r"<<(\w+)>>", lambda m: str(V[m.group(1)]), tpl)
 open(os.path.join(here, "note.tex"), "w").write(tex)
 json.dump({"values": {k: str(v) for k, v in V.items()}, "sources": ["report/data.json (scripts/report_data.py; sources listed inside)", "data/known/manifest.json (fetched_utc -> known_date)"] +
-           [f"runs/poolA_main/transit_fit/{k}/fit.json" for k in K] + ["runs/poolA_main/fpp/kic-003963519/fpp_summary.json"],
+           [f"runs/poolA_main/transit_fit/{k}/fit.json" for k in K] + ["runs/poolA_main/fpp/kic-003963519/fpp_summary.json",
+           "runs/poolA_main/tess_sensitivity.json", "runs/poolA_main/vet_inverted_summary.json", "runs/poolA_main/pixel_v16_inverted_summary.json"],
            "data_json_commit": D["generated_from_commit"]}, open(os.path.join(here, "numbers.json"), "w"), indent=1)
 
 # RNAAS-style word count: title, abstract, headers, body, caption and references; LaTeX commands and math removed

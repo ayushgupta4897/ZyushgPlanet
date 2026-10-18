@@ -22,6 +22,8 @@ Inside `poolA_main/`:
 | `adversarial/<star>/` | independent re-derivation and red-team review | `rederive_result.json`, `redteam.md`, `redteam_verdict.json`, the re-derivation scripts |
 | `fpp*/`, `molusc/`, `gaia_contrast/` | `pipeline.fpp_triceratops`, `scripts/molusc_run.py`, `scripts/gaia_contrast_curve.py` | False-positive probabilities and their companion constraints |
 | `transit_fit/` | `scripts/transit_fit.py` | Transit fits and the stellar-density check |
+| `vet_inverted/`, `pixel_v16_inverted/` | `scripts/vet_inverted.py`, `scripts/pixel_vet_inverted.py` | The inverted-flux null carried through stage 2 and the pixel test (prereg v1.9) |
+| `tess_sensitivity.json` | `scripts/tess_sensitivity.py` | Upper-bound TESS transit S/N for the three candidates |
 | `ephemeris_fieldwide/` | `scripts/ephemeris_fieldwide.py` | Field-wide ephemeris matching |
 | `human_review.json` | — | Record of the human inspection of every plot |
 

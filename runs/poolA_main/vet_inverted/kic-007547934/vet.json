@@ -1,0 +1,93 @@
+{
+ "fname": "kic-007547934",
+ "P_screen": 2.485301948224345,
+ "dur_screen_h": 7.050000000000001,
+ "t0_screen_bkjd": 132.5401367782615,
+ "inverted": true,
+ "object": "KIC 7547934",
+ "gaiaid": "Gaia DR3 2078719881562312448",
+ "tpforg": 7547925,
+ "kepmag": 16.6189994812012,
+ "ra": 297.0330383555336,
+ "dec": 43.11312463170714,
+ "P": 2.4868898318146706,
+ "dur_h": 10.575000000000001,
+ "t0_bkjd": 132.12888677807524,
+ "t0_bjd": 2454965.128886778,
+ "depth_pass1_ppm": 709.428737308615,
+ "depth_pass2_ppm": 3133.487888512421,
+ "depth_pass2_formal_err_ppm": 276.8048705305535,
+ "box_noise_ppm": null,
+ "snr_emp_pass2": null,
+ "n_in_transit": 10552,
+ "n_points": 60402,
+ "depth_odd_ppm": 2473.8687972456487,
+ "depth_even_ppm": 3808.2822656213543,
+ "odd_even_sigma": null,
+ "secondary_depth_ppm": -271.8208758469842,
+ "secondary_sigma": null,
+ "core_to_box_depth_ratio": 0.924847586081422,
+ "n_events": 541,
+ "gap_frac_1d": 0.11275415896487985,
+ "gap_frac_2d": 0.19963031423290203,
+ "frac_events_positive": 0.5859519408502772,
+ "event_weighted_depth_ppm": 86.01548295238642,
+ "event_chi2_const": 7196.664566638768,
+ "event_dof": 540,
+ "depth_by_quartile_ppm": [
+  [
+   117.03954241002899,
+   44.949580177576266,
+   136
+  ],
+  [
+   -138.12519236318346,
+   39.94127380326507,
+   136
+  ],
+  [
+   294.11543660427753,
+   43.38907796365441,
+   136
+  ],
+  [
+   137.43743918258465,
+   49.796261648511795,
+   136
+  ]
+ ],
+ "ls_period_d": 4.910919885191693,
+ "ls_half_amplitude_ppm": 652.8243551462975,
+ "ls_power": 0.006178829269467334,
+ "ls_amp_over_depth": 0.20833792194940212,
+ "ls_period_matches": true,
+ "rstar_used": 0.633109188079834,
+ "t14_max_h": 1.9075408022167466,
+ "duration_ratio": 5.543787051742657,
+ "rp_earth_box": 3.8664943253010984,
+ "tls": {
+  "period": 2.4876004698598058,
+  "SDE": 8.639836744665999,
+  "snr": 16.74476133780852,
+  "depth": 0.9947358928512335,
+  "duration": 0.1126172245267039,
+  "rp_rs": 0.06524834600635387,
+  "odd_even_mismatch": 0.07544316994620405,
+  "transit_count": 587.0,
+  "distinct_transit_count": 519.0,
+  "rp_earth": 4.506847615372553,
+  "transit_depths_mean": 0.9956074505631468
+ },
+ "known_matches": [],
+ "ok": true,
+ "runtime_s": 12.5,
+ "stage2_pass": false,
+ "stage2_fails": [
+  "events_positive",
+  "depth_pass_ratio",
+  "event_chi2",
+  "snr_emp2",
+  "variability_period",
+  "duration"
+ ]
+}

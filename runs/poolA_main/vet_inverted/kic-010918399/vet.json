@@ -1,0 +1,80 @@
+{
+ "fname": "kic-010918399",
+ "P_screen": 0.5238231727157927,
+ "dur_screen_h": 1.5,
+ "t0_screen_bkjd": 120.67011498194188,
+ "inverted": true,
+ "object": "KIC 10918399",
+ "gaiaid": "Gaia DR3 2129507942855831552",
+ "tpforg": 10918449,
+ "kepmag": 17.1870002746582,
+ "ra": 290.9644163223111,
+ "dec": 48.38360761025351,
+ "P": 0.5238316869709131,
+ "dur_h": 1.125,
+ "t0_bkjd": 120.97792748184875,
+ "t0_bjd": 2454953.9779274818,
+ "depth_pass1_ppm": 418.5430164455051,
+ "depth_pass2_ppm": 421.9193101888674,
+ "depth_pass2_formal_err_ppm": 32.06791342899573,
+ "box_noise_ppm": 154.32668039623053,
+ "snr_emp_pass2": 2.733936277937155,
+ "n_in_transit": 2814,
+ "n_points": 31684,
+ "depth_odd_ppm": 418.83290243904804,
+ "depth_even_ppm": 425.0189077155131,
+ "odd_even_sigma": 0.02004191777009208,
+ "secondary_depth_ppm": -274.5158884187582,
+ "secondary_sigma": -1.778797338956196,
+ "core_to_box_depth_ratio": 1.3182637713801197,
+ "n_events": 1088,
+ "gap_frac_1d": 0.10018382352941177,
+ "gap_frac_2d": 0.18382352941176472,
+ "frac_events_positive": 0.6332720588235294,
+ "event_weighted_depth_ppm": 335.9255029966853,
+ "event_chi2_const": 2258.918564000126,
+ "event_dof": 1087,
+ "depth_by_quartile_ppm": [
+  [
+   274.13348880951634,
+   40.5598232051146,
+   272
+  ],
+  [
+   333.1365263859329,
+   48.052848063176135,
+   272
+  ],
+  [
+   376.4451395333733,
+   46.446284516984285,
+   272
+  ],
+  [
+   384.54597942398357,
+   49.32248266520216,
+   272
+  ]
+ ],
+ "ls_period_d": 0.6351627737597182,
+ "ls_half_amplitude_ppm": 67.09021572209872,
+ "ls_power": 0.0010958149673096866,
+ "ls_amp_over_depth": 0.15901195821558048,
+ "ls_period_matches": false,
+ "rstar_used": 0.9125034523010254,
+ "t14_max_h": 1.448180990875843,
+ "duration_ratio": 0.7768366019772246,
+ "rp_earth_box": 2.044908913655259,
+ "tls": {
+  "error": "Empty period grid. Check period_min, period_max and time span."
+ },
+ "known_matches": [],
+ "ok": true,
+ "runtime_s": 5.5,
+ "stage2_pass": false,
+ "stage2_fails": [
+  "events_positive",
+  "snr_emp2",
+  "both_polarity"
+ ]
+}

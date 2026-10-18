@@ -132,15 +132,19 @@ def _tls(t, y, e, P, rstar, mstar, frac=0.02):
     return out
 
 
-def vet_one(fname: str, P0: float, D0_h: float, T0_bkjd: float, star: dict, cfg: dict, out_dir: str, make_plots=True) -> dict:
+def vet_one(fname: str, P0: float, D0_h: float, T0_bkjd: float, star: dict, cfg: dict, out_dir: str, make_plots=True,
+            invert: bool = False) -> dict:
+    """invert=True vets the inverted-flux (2 - f) light curve, as the first-screen null does."""
     t_start = time.time()
     os.makedirs(out_dir, exist_ok=True)
-    res = {"fname": fname, "P_screen": P0, "dur_screen_h": D0_h, "t0_screen_bkjd": T0_bkjd}
+    res = {"fname": fname, "P_screen": P0, "dur_screen_h": D0_h, "t0_screen_bkjd": T0_bkjd, "inverted": invert}
     try:
         path = fetch_kbonus(fname, cache_dir="data/kbonus_batch", keep=True)
         t, f, fe, q, quarter, meta = read_kbonus(path, flux_col=cfg.get("flux_col", "FLUX"))
         res.update(meta)
         t, y, e, quarter = _normalise(t, f, fe, q, quarter)
+        if invert:
+            y = 2.0 - y
         window = cfg.get("window_length_d", 1.0)
         # pass 1: blind detrend (as in the screen) and refine the ephemeris
         y1, _ = _flatten(t, y, window)

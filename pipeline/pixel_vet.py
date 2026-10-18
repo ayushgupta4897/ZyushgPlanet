@@ -76,7 +76,8 @@ def _load_rules_v16():
 
 
 def pixel_vet(fname, period, t0_bjd, dur_h, ra, dec, tpforg, out_dir, make_plot=True, max_quarters=None,
-              force_analytic=False, cfg_path=None):
+              force_analytic=False, cfg_path=None, invert=False):
+    sgn = -1.0 if invert else 1.0
     import lightkurve as lk
     rules = _load_rules(cfg_path or os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "pipeline", "prereg_poolA.json"))
     os.makedirs(out_dir, exist_ok=True)
@@ -122,7 +123,8 @@ def pixel_vet(fname, period, t0_bjd, dur_h, ra, dec, tpforg, out_dir, make_plot=
                 outm = (np.abs(t - tc) > 0.75 * D) & (np.abs(t - tc) < 3.0 * D)
                 if inm.sum() < 2 or outm.sum() < 6:
                     continue
-                acc += np.nanmean(cube[outm], axis=0) - np.nanmean(cube[inm], axis=0)
+                # out - in = light missing during the event; invert=True mirrors it for the inverted-flux null
+                acc += sgn * (np.nanmean(cube[outm], axis=0) - np.nanmean(cube[inm], axis=0))
                 nev += 1
             return (acc / nev if nev else acc * np.nan), nev
 
@@ -323,8 +325,10 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--max-quarters", type=int, default=None)
     ap.add_argument("--force-analytic", action="store_true", help="use the analytic noise map in every quarter (fallback test)")
+    ap.add_argument("--invert", action="store_true", help="localise excess instead of missing light (inverted-flux null)")
     a = ap.parse_args()
-    r = pixel_vet(a.fname, a.period, a.t0_bjd, a.dur_h, a.ra, a.dec, a.tpforg, a.out, max_quarters=a.max_quarters, force_analytic=a.force_analytic)
+    r = pixel_vet(a.fname, a.period, a.t0_bjd, a.dur_h, a.ra, a.dec, a.tpforg, a.out, max_quarters=a.max_quarters, force_analytic=a.force_analytic,
+                  invert=a.invert)
     print(json.dumps(r.get("summary", {}), indent=1))
     for q in r["quarters"]:
         if "target_to_deficit_arcsec" in q:
