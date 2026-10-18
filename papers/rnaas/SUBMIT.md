@@ -14,7 +14,7 @@ Submitting is public: RNAAS publishes within about 72 hours of acceptance, index
 ## 2. Archive the data
 - [x] Bundle built for Aayush Gupta (ORCID 0009-0006-1165-0828).
 - [x] On zenodo.org: New upload, choose Dataset, upload `papers/rnaas/zenodo/*.zip`, copy title, description, license and keywords from `papers/rnaas/zenodo/.zenodo.json`, then **Reserve DOI** (reserved: 10.5281/zenodo.23442225).
-- [ ] Publish the Zenodo record when you submit (the DOI must resolve for the moderator).
+- [x] Zenodo record published 2026-10-17; DOI resolves; file checksum matches the local bundle (md5 7c7dcf9b60badf009445308388cc043a).
 
 ## 3. Finalise the manuscript
 ```sh
