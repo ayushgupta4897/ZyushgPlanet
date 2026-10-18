@@ -53,6 +53,14 @@ The audit says it *"addresses the selection, other search outcomes, TESS non-det
 - **Ethics** (https://journals.aas.org/professional-and-ethical-standards-for-the-aas-journals/): authorship for those who *"contributed significantly to the inception, design, execution, or interpretation of the research"*; *"The list of authors establishes accountability as well as credit."* No affiliation requirement; Kuber's "Independent researcher" was accepted by https://aas.msubmit.net/.
 - **arXiv and RNAAS** (https://journals.aas.org/news/rnaas-on-arxiv/, letter dated 17 April 2019): *"the arXiv is simply enforcing an existing policy of requiring submissions to be at least three pages long"*; arXiv: *"not accept short submissions of three pages or less, but there are always exemptions."* Authors *"added an extra paragraph and a figure (or more)"* to get posted. An RNAAS note may not be arXiv-postable as-is.
 
+### 1.6 Measured RNAAS turnaround (checked 2026-10-18; `scripts/rnaas_turnaround.py` → `docs/briefs/rnaas_turnaround.json`)
+AAS deposits received/accepted/online dates with Crossref. Published notes only, so declines are invisible.
+- All 969 notes since 2024: acceptance a median **5 d** after receipt (middle half 2–10 d, 90% within 19 d); online a median **9 d** after receipt; only 56/969 online within the advertised 72 h.
+- 2026 (273 notes): acceptance median 4 d, online median 9 d (90% within 23 d). 2026 planet/transit titles (21): acceptance median 4 d (middle half 3–12 d).
+- Closest precedents: Kaplan 2026 (sole author, TIC 22760643.01 candidate) accepted in 4 d, online in 9 d; Mason, Aigrain, Lee, Lintott et al. 2026 (TIC 392664683, Planet Hunters TESS) accepted in 12 d, online in 19 d.
+- Kuber (AAS82222): declined ≤ ~11 h after submission. His repo (HEAD 09f4aa0, 2026-10-13, unchanged as of 2026-10-18) still holds no decision-letter text; `submission-record.json` says only "Declined", from a letter "supplied by the author ... not independently checked". The four audit topics (sample selection, other search outcomes vs the inverted null, TESS non-recovery, Barber et al. 2022 Table 5) are the best available proxy for the editor's points. No public post by him about the decline was found.
+- AAS82486 (this project): received 2026-10-18. On these numbers, no reply within ~2 weeks is normal; a reply within a day is more likely a decline than an acceptance (median acceptance is 4–5 d, and Kuber's decline came within hours).
+
 ---
 
 ## 2. Venues: scope, cost, AI policy, affiliation (checked 2026-10-17)
