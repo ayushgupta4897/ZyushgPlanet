@@ -9,7 +9,7 @@
 * { box-sizing: border-box; }
 @page { margin: 0; }
 body { margin: 0; background: var(--void); }
-.poster { width: 1800px; height: 2700px; background: var(--void); color: var(--silver); font-family: var(--f-body); position: relative; overflow: hidden; padding: 104px 112px 96px; display: grid; grid-template-rows: auto auto auto auto auto auto 1fr auto; gap: 26px; }
+.poster { width: 1800px; height: 2700px; background: var(--void); color: var(--silver); font-family: var(--f-body); position: relative; overflow: hidden; padding: 104px 112px 96px; display: grid; grid-template-rows: auto auto auto auto auto auto 1fr auto; gap: 22px; }
 .poster > .keyline { position: absolute; inset: 52px; border: 1px solid rgba(184,189,196,0.32); pointer-events: none; }
 .keyline i { position: absolute; width: 26px; height: 26px; border-color: var(--silver); border-style: solid; border-width: 0; }
 .keyline i:nth-child(1) { left: -9px; top: -9px; border-left-width: 2px; border-top-width: 2px; } .keyline i:nth-child(2) { right: -9px; top: -9px; border-right-width: 2px; border-top-width: 2px; }
@@ -19,12 +19,16 @@ body { margin: 0; background: var(--void); }
 .strip { display: flex; justify-content: space-between; font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--steel); border-bottom: 1px solid var(--line); padding-bottom: 20px; }
 .head { display: grid; gap: 0; }
 .head h1 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; color: var(--white); font-size: 82px; line-height: 1.02; margin: 0; letter-spacing: -0.01em; white-space: nowrap; }
-.head p { font-size: 27px; color: var(--chrome); font-weight: 300; line-height: 1.32; margin: 18px 0 0; max-width: 62ch; }
+.head p { font-size: 27px; color: var(--chrome); font-weight: 300; line-height: 1.32; margin: 18px 0 0; max-width: 70ch; }
+.head .kicker { font-family: var(--f-mono); font-size: 22px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--silver); margin: 0 0 10px; }
+.head sup, .defs sup { font-family: var(--f-mono); font-size: 0.55em; color: var(--silver); letter-spacing: 0.04em; }
+.refs { display: grid; gap: 4px; margin-top: 6px; }
+.refs span { font-family: var(--f-mono); font-size: 14.5px; color: var(--silver); }
 h2 { font-family: var(--f-mono); font-weight: 500; font-size: 20px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--chrome); margin: 0 0 14px; }
 .dossiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
 .dos { background: var(--ink); display: grid; align-content: start; }
 .dos .body { padding: 18px 26px 6px; display: grid; gap: 10px; align-content: start; }
-.plate { position: relative; aspect-ratio: 5 / 4; background: #000 center/cover no-repeat; border-bottom: 1px solid var(--line); }
+.plate { position: relative; aspect-ratio: 4 / 3; background: #000 center/cover no-repeat; border-bottom: 1px solid var(--line); }
 .plate .x { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
 .plate .x b { position: absolute; background: rgba(247,248,250,0.92); }
 .plate .x b:nth-child(1) { left: 16px; top: -1px; width: 34px; height: 2px; } .plate .x b:nth-child(2) { left: -50px; top: -1px; width: 34px; height: 2px; }
@@ -53,7 +57,7 @@ h2 { font-family: var(--f-mono); font-weight: 500; font-size: 20px; letter-spaci
 .pixpair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; }
 .cap { font-family: var(--f-mono); font-size: 16px; color: var(--steel); line-height: 1.45; margin: 10px 0 14px; }
 .conds { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
-.c { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 9px 0; border-bottom: 1px dashed var(--line); align-items: start; }
+.c { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 6px 0; border-bottom: 1px dashed var(--line); align-items: start; }
 .m { width: 30px; height: 30px; border-radius: 50%; background: var(--white); color: var(--void); display: grid; place-items: center; font-family: var(--f-mono); font-size: 16px; }
 .m.o { background: transparent; color: var(--steel); border: 1.5px dashed var(--steel); }
 .c b { display: block; color: var(--white); font-weight: 500; font-size: 21px; }
@@ -75,10 +79,11 @@ svg .tmark { fill: none; stroke: var(--white); stroke-width: 2.4; } svg .nbmark 
 <div class="poster" data-name="poster">
   <canvas class="bg"></canvas>
   <div class="keyline"><i></i><i></i><i></i><i></i></div>
-  <div class="strip"><span>Aayush Gupta · ZyushgPlanet · archival Kepler search</span><span>October 2026</span></div>
+  <div class="strip"><span>Aayush Gupta · archival Kepler search</span><span>October 2026</span></div>
   <div class="head">
-    <h1>Three sub-Neptune<br>planet candidates</h1>
-    <p>Identified in Kepler data from 2009–2013 around faint stars the telescope recorded but never targeted. Each passes every test the data allow, with a false-positive probability below 1&nbsp;%.</p>
+    <div class="kicker">Three sub-Neptune planet candidates</div>
+    <h1>Three new worlds<br>in the Milky Way</h1>
+    <p>Found by Aayush Gupta in NASA Kepler data from 2009–2013, around faint stars the telescope recorded but never targeted, 2,800 to 6,400 light-years away. Each passes every test the data allow, with a false-positive probability below 1&nbsp;%.<sup>1,&thinsp;2</sup></p>
   </div>
   <div><h2>The three host stars, photographed, and the transits that betray their candidates</h2><div class="dossiers" id="dos"></div></div>
   <div><h2>How they were found</h2><div class="method" id="method"></div></div>
@@ -92,7 +97,7 @@ svg .tmark { fill: none; stroke: var(--white); stroke-width: 2.4; } svg .nbmark 
   <div class="defs">
     <div><b>Candidate</b><span>A periodic dip that survives every test the data allow: localised on the star, absent from the inverted-flux null, unmatched by any known object, and unlikely to be anything else.</span></div>
     <div><b>Validated</b><span>False-positive probability below 1.5&nbsp;% and nearby-star probability below 0.1&nbsp;% in a refereed paper, usually with a high-resolution image of the host. Not yet done here.</span></div>
-    <div><b>Credits</b><span>Kepler Bonus photometry (Martínez-Palomera et al. 2023, CC BY 4.0), Gaia DR3, TRICERATOPS, MOLUSC. Sky images: Pan-STARRS1 DR1 colour via CDS hips2fits, 1.2′ fields, north up; the candidates themselves are not resolved.</span></div>
+    <div><b>Credits</b><span>Kepler Bonus photometry (Martínez-Palomera et al. 2023; doi:10.17909/7jbr-w430), Gaia DR3, TRICERATOPS, MOLUSC. Sky images: Pan-STARRS1 via CDS hips2fits, 1.2′ fields, north up; the candidates themselves are not resolved.</span><div class="refs"><span><sup>1</sup> Data &amp; code: doi:10.5281/zenodo.23442225</span><span><sup>2</sup> Research Notes of the AAS, AAS82486 (submitted)</span></div></div>
   </div>
 </div>
 
@@ -113,7 +118,7 @@ svg .tmark { fill: none; stroke: var(--white); stroke-width: 2.4; } svg .nbmark 
       <div class="meta">${c.period_d.toFixed(4)}-day orbit · ${c.rp_earth.median.toFixed(2)} Earth radii<br>${fmt(c.depth_ppm)} ppm · ${c.n_events} transits · T<sub>eq</sub> ≈ ${fmt(teq)} K<br>
       host ${fmt(c.host.teff_gspphot)} K dwarf, G ${c.host.G.toFixed(1)}, ${fmt(c.host.dist_pc)} pc<br>FPP <s>${(c.fpp.baseline.mean * 100).toFixed(1)} %</s> → ${(c.fpp.molusc.mean * 100).toFixed(2)} % with Gaia limits${c.fname === D.second_signal.fname ? `<br>second on-target signal at ${D.second_signal.period_d.toFixed(2)} d` : ""}</div><div></div></div>`;
     dos.appendChild(d);
-    Z.lightCurve(d.lastChild.lastChild, c, { W: 560, H: 245, pts: true });
+    Z.lightCurve(d.lastChild.lastChild, c, { W: 560, H: 215, pts: true });
   });
   const st = [[F.targets, "stars searched, thresholds frozen first"], [F.first_screen_real, `first-screen passes (upside-down null: ${F.first_screen_inverted})`], [F.path_stage2, "pass stage-2 vetting"],
     [F.path_pixel_on_target, "lose light on their own pixels"], [F.path_redteam_survives, "survive re-derivation and red team"], [F.candidates, "candidates, FPP below&nbsp;1&nbsp;%"]];
