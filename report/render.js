@@ -3,6 +3,7 @@
 //   NODE_PATH=$(npm root -g) node report/render.js screens   -> report/dist/screens/screen-1..5.png
 //   NODE_PATH=$(npm root -g) node report/render.js poster    -> report/dist/poster.png and poster.pdf
 //   NODE_PATH=$(npm root -g) node report/render.js print     -> report/dist/poster-24x36in.pdf (print master, vector text, 2:3 frame sizes)
+//   NODE_PATH=$(npm root -g) node report/render.js grand     -> report/dist/poster-grand.png and poster-grand-24x36in.pdf
 const { chromium } = require("playwright");
 const fs = require("fs"), path = require("path");
 const root = path.resolve(__dirname);
@@ -74,6 +75,10 @@ async function printPdf(file, out, wIn, hIn) {
   const [cmd, ...a] = process.argv.slice(2);
   if (cmd === "shot") await shot(...a);
   else if (cmd === "screens") await artboards(path.join(root, "dist", "screens.html"), path.join(root, "dist", "screens"), ".board", 1, null);
+  else if (cmd === "grand") {
+    await artboards(path.join(root, "dist", "poster-grand.html"), path.join(root, "dist"), ".sheet", 2, null);
+    await printPdf(path.join(root, "dist", "poster-grand.html"), path.join(root, "dist", "poster-grand-24x36in.pdf"), 24, 36);
+  }
   else if (cmd === "print") await printPdf(path.join(root, "dist", "poster.html"), path.join(root, "dist", "poster-24x36in.pdf"), 24, 36);
   else if (cmd === "poster") await artboards(path.join(root, "dist", "poster.html"), path.join(root, "dist"), ".poster", 2, path.join(root, "dist", "poster.pdf"));
 })();

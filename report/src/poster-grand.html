@@ -1,0 +1,137 @@
+<title>Three New Worlds Poster</title>
+<style>
+/* "Archival Sublime" (report/grand/PHILOSOPHY.md). One 1800x2700 SVG sheet (2:3; 24x36 in at 75 px/in). Content sits 112px inside
+   the edge; a double keyline at 52/60px reads as a mat line. The field is every star searched, at its real sky position. */
+@font-face { font-family: "Italiana"; src: url("../fonts/Italiana-Regular.ttf"); }
+@font-face { font-family: "Instrument Serif"; font-style: italic; src: url("../fonts/InstrumentSerif-Italic.ttf"); }
+@font-face { font-family: "DM Mono"; src: url("../fonts/DMMono-Regular.ttf"); }
+:root { --void: #040405; --graphite: #2a2d32; --pewter: #6f757d; --silver: #b9bec5; --chrome: #dfe2e6; --white: #fbfbfc; color-scheme: dark; }
+@page { margin: 0; }
+html, body { margin: 0; background: var(--void); }
+.sheet { width: 1800px; height: 2700px; background: var(--void); position: relative; overflow: hidden; }
+.sheet svg { display: block; }
+.disp { font-family: "Italiana", serif; fill: var(--white); }
+.ital { font-family: "Instrument Serif", serif; font-style: italic; fill: var(--chrome); }
+.mono { font-family: "DM Mono", monospace; fill: var(--silver); }
+.dim { fill: var(--pewter); }
+</style>
+
+<div class="sheet" data-name="poster-grand"><svg id="g" width="1800" height="2700" viewBox="0 0 1800 2700"></svg></div>
+
+<script>window.ZP_STILL = true; window.ZP_DATA = /*__DATA__*/null; window.ZP_MAP = /*__MAP__*/null;</script>
+<script>
+(async function () {
+  await document.fonts.ready;
+  const D = window.ZP_DATA, M = window.ZP_MAP, svg = document.getElementById("g"), NS = "http://www.w3.org/2000/svg";
+  const W = 1800, H = 2700, ML = 112, MR = W - 112;
+  const el = (tag, attrs, text) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; svg.appendChild(e); return e; };
+  const fmt = n => Math.round(n).toLocaleString("en-US");
+  const tracked = (x, y, s, cls, size, track, anchor, extra) => el("text", Object.assign({ x, y, class: cls, "font-size": size, "letter-spacing": `${track}em`, "text-anchor": anchor || "start" }, extra || {}), s);
+  const fit = (t, maxW) => { let fs = +t.getAttribute("font-size"); while (t.getComputedTextLength() > maxW && fs > 10) { fs -= 1; t.setAttribute("font-size", fs); } return t; };
+
+  // frame: double keyline (mat line) with registration corners
+  el("rect", { x: 52, y: 52, width: W - 104, height: H - 104, fill: "none", stroke: "#3a3e44", "stroke-width": 1 });
+  el("rect", { x: 60, y: 60, width: W - 120, height: H - 120, fill: "none", stroke: "#1d2024", "stroke-width": 1 });
+  [[52, 52, 1, 1], [W - 52, 52, -1, 1], [52, H - 52, 1, -1], [W - 52, H - 52, -1, -1]].forEach(([x, y, sx, sy]) =>
+    el("path", { d: `M${x - 10 * sx} ${y + 26 * sy} V${y - 10 * sy} H${x + 26 * sx}`, fill: "none", stroke: "var(--silver)", "stroke-width": 1.6 }));
+
+  // top rail
+  tracked(ML, 140, "NASA KEPLER ARCHIVE  ·  2009 – 2013", "mono", 17, 0.32);
+  tracked(MR, 140, "CYGNUS  ·  LYRA  ·  THE MILKY WAY", "mono", 17, 0.32, "end");
+  el("line", { x1: ML, y1: 166, x2: MR, y2: 166, stroke: "var(--graphite)" });
+
+  // the statement
+  const title = tracked(W / 2, 336, "THREE NEW WORLDS", "disp", 176, 0.16, "middle");
+  fit(title, MR - ML - 20);
+  tracked(W / 2, 410, "No telescope time. No institution.", "ital", 50, 0.005, "middle");
+  tracked(W / 2, 468, "One person, open NASA data, and every test the data allow.", "ital", 50, 0.005, "middle");
+
+  // the field: every star searched, gnomonic projection about the field centre, east to the left
+  const stars = M.stars, d2r = Math.PI / 180;
+  const ra0 = 290.67 * d2r, de0 = 44.5 * d2r;
+  const proj = (ra, de) => { ra *= d2r; de *= d2r; const c = Math.sin(de0) * Math.sin(de) + Math.cos(de0) * Math.cos(de) * Math.cos(ra - ra0);
+    return [-(Math.cos(de) * Math.sin(ra - ra0)) / c, (Math.cos(de0) * Math.sin(de) - Math.sin(de0) * Math.cos(de) * Math.cos(ra - ra0)) / c]; };
+  const P = stars.map(s => proj(s[0], s[1]));
+  const xs = P.map(p => p[0]), ys = P.map(p => p[1]);
+  const xmin = Math.min(...xs), xmax = Math.max(...xs), ymin = Math.min(...ys), ymax = Math.max(...ys);
+  const FX0 = ML + 60, FX1 = MR - 60, FY0 = 560, FY1 = 1790;
+  const sc = Math.min((FX1 - FX0) / (xmax - xmin), (FY1 - FY0) / (ymax - ymin));
+  const cx0 = (FX0 + FX1) / 2 - sc * (xmin + xmax) / 2, cy0 = (FY0 + FY1) / 2 + sc * (ymin + ymax) / 2;
+  const X = p => cx0 + sc * p[0], Y = p => cy0 - sc * p[1];
+
+  // graticule: declination every 2 deg, right ascension every 20 min, clipped to the field box, labels on the box edge
+  const box = { x0: ML, y0: 528, x1: MR, y1: 1822 };
+  const clip = el("clipPath", { id: "fieldclip" }); const cr = document.createElementNS(NS, "rect");
+  Object.entries({ x: box.x0, y: box.y0, width: box.x1 - box.x0, height: box.y1 - box.y0 }).forEach(([k, v]) => cr.setAttribute(k, v)); clip.appendChild(cr);
+  const grat = el("g", { "clip-path": "url(#fieldclip)" });
+  const gl = (pts) => { const p = document.createElementNS(NS, "path"); p.setAttribute("d", "M" + pts.map(q => `${X(q).toFixed(1)} ${Y(q).toFixed(1)}`).join(" L"));
+    p.setAttribute("fill", "none"); p.setAttribute("stroke", "#181b1f"); p.setAttribute("stroke-width", "1"); grat.appendChild(p); };
+  for (let de = 34; de <= 54; de += 2) gl(Array.from({ length: 81 }, (_, i) => proj(272 + i * 0.4, de)));
+  for (let m = 0; m <= 180; m += 20) { const ra = 270 + m / 4; gl(Array.from({ length: 61 }, (_, i) => proj(ra, 30 + i * 0.5))); }
+  // edge ticks and labels
+  for (let de = 36; de <= 52; de += 4) { const q = proj(281, de), y = Y(q); if (y > box.y0 + 20 && y < box.y1 - 20) {
+    el("line", { x1: box.x0, y1: y, x2: box.x0 + 14, y2: y, stroke: "var(--pewter)" }); tracked(box.x0 + 22, y + 5, `+${de}°`, "mono dim", 14, 0.08); } }
+  for (let m = 40; m <= 160; m += 20) { const ra = 270 + m / 4; const q = proj(ra, 37.2); const x = X(q); if (x > box.x0 + 40 && x < box.x1 - 40) {
+    const h = Math.floor(ra / 15), mm = Math.round((ra / 15 - h) * 60);
+    el("line", { x1: x, y1: box.y1, x2: x, y2: box.y1 - 14, stroke: "var(--pewter)" }); tracked(x, box.y1 - 22, `${h}h${String(mm).padStart(2, "0")}m`, "mono dim", 14, 0.08, "middle"); } }
+
+  // stars, faint first
+  const field = el("g", {});
+  const dot = (x, y, r, fill, op) => { const c = document.createElementNS(NS, "circle"); c.setAttribute("cx", x.toFixed(1)); c.setAttribute("cy", y.toFixed(1)); c.setAttribute("r", r);
+    c.setAttribute("fill", fill); c.setAttribute("fill-opacity", op); field.appendChild(c); };
+  [0, 1, 2].forEach(st => stars.forEach((s, i) => { if (s[2] !== st) return; const p = P[i];
+    if (st === 0) dot(X(p), Y(p), 1.7, "#8b929b", 0.42); else if (st === 1) dot(X(p), Y(p), 2.5, "#d3d7dc", 0.85); else dot(X(p), Y(p), 3.6, "#fbfbfc", 1); }));
+
+  // the three, with reticle rings; lenses ordered left to right by sky position so leaders never cross
+  const K = Object.keys(M.candidates).map(f => ({ f, p: proj(M.candidates[f][0], M.candidates[f][1]), c: D.candidates[f] }))
+    .sort((a, b) => X(a.p) - X(b.p));
+  const LR = 196, LY = 2128, LX = [ML + 262, W / 2, MR - 262];
+  K.forEach((k, i) => {
+    const x = X(k.p), y = Y(k.p), lx = LX[i], ly = LY - LR - 18;
+    // leader: hairline from the star down to the top of its lens, through a fine elbow below the field
+    // inside the field the leader is a whisper; below the field it carries the eye to the lens
+    el("line", { x1: x, y1: y + 50, x2: x, y2: box.y1, stroke: "var(--silver)", "stroke-opacity": 0.28, "stroke-width": 1 });
+    el("path", { d: `M${x} ${box.y1} V${box.y1 + 30} L${lx} ${box.y1 + 76} V${ly}`, fill: "none", stroke: "var(--silver)", "stroke-opacity": 0.6, "stroke-width": 1 });
+    [[46, 0.16], [32, 0.32], [20, 0.62]].forEach(([r, o]) => el("circle", { cx: x, cy: y, r, fill: "none", stroke: "var(--white)", "stroke-opacity": o, "stroke-width": 1.2 }));
+    el("circle", { cx: x, cy: y, r: 6.5, fill: "var(--white)" });
+    const halo = { stroke: "var(--void)", "stroke-width": 6, "paint-order": "stroke", "stroke-linejoin": "round" };
+    tracked(x + 54, y - 8, ["I", "II", "III"][i], "disp", 30, 0.1, "start", halo);
+    tracked(x + 54, y + 16, `KIC ${k.c.kic}`, "mono", 14, 0.12, "start", halo);
+  });
+  el("rect", { x: box.x0, y: box.y0, width: box.x1 - box.x0, height: box.y1 - box.y0, fill: "none", stroke: "var(--graphite)" });
+
+  // legend, set in the empty north-east corner of the field, and the odds opposite it
+  const lg = [[1.7, "#8b929b", 0.42, `${fmt(M.n)} stars searched`], [2.5, "#d3d7dc", 0.85, `${fmt(D.funnel.first_screen_real)} first signals`],
+    [3.6, "#fbfbfc", 1, `${D.funnel.path_stage2} passed vetting`], [6.5, "#fbfbfc", 1, `${D.funnel.candidates} survived every test`]];
+  lg.forEach(([r, f, o, s], i) => { const y = box.y0 + 46 + i * 32; el("circle", { cx: box.x0 + 36, cy: y - 5, r, fill: f, "fill-opacity": o });
+    tracked(box.x0 + 58, y, s.toUpperCase(), "mono", 14, 0.2); });
+  tracked(box.x1 - 30, box.y0 + 46, "ONE IN", "mono", 14, 0.2, "end");
+  tracked(box.x1 - 30, box.y0 + 112, fmt(M.n / D.funnel.candidates), "disp", 64, 0.04, "end");
+
+  // three apertures: the real host stars (Pan-STARRS1), cut into the black like eyepieces
+  const defs = el("defs", {});
+  K.forEach((k, i) => {
+    const lx = LX[i], c = k.c, ly = Math.round(c.host.dist_pc * 3.26156 / 100) * 100;
+    const cp = document.createElementNS(NS, "clipPath"); cp.setAttribute("id", `lens${i}`);
+    const cc = document.createElementNS(NS, "circle"); cc.setAttribute("cx", lx); cc.setAttribute("cy", LY); cc.setAttribute("r", LR); cp.appendChild(cc); defs.appendChild(cp);
+    el("image", { href: `../sky/plates/${k.f}.jpg`, x: lx - LR, y: LY - LR, width: 2 * LR, height: 2 * LR, "clip-path": `url(#lens${i})`, preserveAspectRatio: "xMidYMid slice" });
+    el("circle", { cx: lx, cy: LY, r: LR, fill: "none", stroke: "var(--silver)", "stroke-width": 1.4 });
+    el("circle", { cx: lx, cy: LY, r: LR + 12, fill: "none", stroke: "var(--graphite)", "stroke-width": 1 });
+    for (let a = 0; a < 360; a += 10) { const r0 = LR + 12, r1 = a % 90 === 0 ? LR + 26 : LR + 18, t = a * d2r;
+      el("line", { x1: lx + r0 * Math.cos(t), y1: LY + r0 * Math.sin(t), x2: lx + r1 * Math.cos(t), y2: LY + r1 * Math.sin(t), stroke: a % 90 === 0 ? "var(--silver)" : "var(--graphite)", "stroke-width": 1 }); }
+    [[18, 46], [-46, -18]].forEach(([a, b]) => { el("line", { x1: lx + a, y1: LY, x2: lx + b, y2: LY, stroke: "var(--white)", "stroke-width": 1.6, "stroke-opacity": 0.9 });
+      el("line", { x1: lx, y1: LY + a, x2: lx, y2: LY + b, stroke: "var(--white)", "stroke-width": 1.6, "stroke-opacity": 0.9 }); });
+    tracked(lx, LY + LR + 92, fmt(ly), "disp", 74, 0.06, "middle");
+    tracked(lx, LY + LR + 128, "LIGHT-YEARS AWAY", "mono", 15, 0.32, "middle");
+    tracked(lx, LY + LR + 170, `${["I", "II", "III"][i]}  ·  KIC ${c.kic}`, "mono", 17, 0.14, "middle", { style: "fill:var(--chrome)" });
+    tracked(lx, LY + LR + 198, `${c.period_d.toFixed(1)}-day orbit  ·  ${c.rp_earth.median.toFixed(1)} × Earth`, "mono dim", 15, 0.1, "middle");
+  });
+
+  // the record
+  el("line", { x1: ML, y1: 2548, x2: MR, y2: 2548, stroke: "var(--graphite)" });
+  tracked(ML, 2584, "AAYUSH GUPTA  ·  OCTOBER 2026", "mono", 15, 0.28, "start", { style: "fill:var(--chrome)" });
+  const rec = tracked(MR, 2584, "TRANSIT CANDIDATES · FALSE-ALARM PROBABILITY < 1 % · RNAAS AAS82486 (SUBMITTED) · DOI 10.5281/ZENODO.23442225", "mono dim", 13, 0.12, "end");
+  fit(rec, 1050);
+  window.ZP_READY = true;
+})();
+</script>
