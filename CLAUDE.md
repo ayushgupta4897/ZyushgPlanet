@@ -2,7 +2,7 @@
 
 This is an archival exoplanet search. The failure mode we are guarding against is not
 "no planet found" but "a false claim made in public". Read `README.md` and
-`docs/01-anatomy-of-kubers-discovery.md` first; the rest of `docs/` is the playbook.
+`docs/01-anatomy-of-kic5689121.md` first; the rest of `docs/` is the playbook.
 
 ## Language
 - Nothing in this repo is a "planet". Stage-1 survivors are "first-screen signals";

@@ -96,7 +96,7 @@ def main():
                             kic=int(s.kic) if pd.notna(s.get("kic")) else None, radius_arcmin=3.0,
                             t0_bkjd=(s.real_t0_bjd - 2454833.0) if pd.notna(s.real_t0_bjd) else None)
         note = "; ".join(f"{h.catalog}:{h.name} {h.ratio} sep={h.sep_arcmin:.2f}' {h.disposition}"
-                         + (f" same_tpf" if h.same_tpf else "") + (f" same_kic" if h.same_kic else "")
+                         + (" same_tpf" if h.same_tpf else "") + (" same_kic" if h.same_kic else "")
                          + (f" dphase={h.epoch_offset_phase:.3f}" if pd.notna(h.epoch_offset_phase) else "")
                          for _, h in hits.iterrows()) if len(hits) else ""
         d = s.to_dict()

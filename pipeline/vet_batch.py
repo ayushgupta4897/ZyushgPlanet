@@ -152,7 +152,7 @@ def vet_one(fname: str, P0: float, D0_h: float, T0_bkjd: float, star: dict, cfg:
         mask = _phase_mask(t, P, 2.0 * D, T0)
         y2, trend2 = _flatten(t, y, window, mask=mask)
         g2 = np.isfinite(y2)
-        t2, y2, e2, q2 = t[g2], y2[g2], e[g2], quarter[g2]
+        t2, y2, e2 = t[g2], y2[g2], e[g2]
         d1, _, _ = _box_depth(t, y1, P, D, T0)
         d2, d2e, nin = _box_depth(t2, y2, P, D, T0)
         box = _empirical_box_noise(t2, y2, P, D, T0, n_boxes=80)

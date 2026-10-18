@@ -1,6 +1,6 @@
 """Fill papers/rnaas/note.tex.tpl from the run outputs, compile it, and count words the way RNAAS does.
 
-    python papers/rnaas/build_note.py [--author "Name"] [--orcid 0000-...] [--affiliation "..."] [--doi 10.5281/zenodo.N]
+    python papers/rnaas/build_note.py [--author "Name"] [--orcid 0000-...] [--affiliation "..."] [--doi 10.5281/zenodo.N] [--aastex path/to/aastex701.cls]
 
 Every number comes from report/data.json (exported from runs/ by scripts/report_data.py) or runs/poolA_main/transit_fit/*/fit.json;
 the filled values and their sources are written to papers/rnaas/numbers.json.
@@ -17,8 +17,8 @@ ap.add_argument("--orcid", default="0009-0006-1165-0828")
 ap.add_argument("--affiliation", default="Independent researcher")
 ap.add_argument("--email", default="ayushgupta4897@gmail.com")
 ap.add_argument("--doi", default="10.5281/zenodo.23442225")
-ap.add_argument("--tectonic", default="/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/tex/tectonic")
-ap.add_argument("--aastex", default="/tmp/claude-0/-home-user-ZyushgPlanet/0a31cad6-114a-5cca-8219-924182316e90/scratchpad/tex/aastex/aastex701.cls")
+ap.add_argument("--tectonic", default=os.environ.get("TECTONIC", "tectonic"), help="Tectonic TeX engine (https://tectonic-typesetting.github.io)")
+ap.add_argument("--aastex", default=os.environ.get("AASTEX_CLS"), help="path to aastex701.cls (AASTeX 7.0.1 from https://journals.aas.org/aastexguide/); skipped if already in papers/rnaas/")
 a = ap.parse_args()
 here = os.path.dirname(os.path.abspath(__file__))
 root = os.path.abspath(os.path.join(here, "..", ".."))
@@ -82,7 +82,9 @@ n_total, n_abs = words(body), words(abstract)
 print(f"words: total {n_total} (limit 1,500 incl. title, headers, caption, references), abstract {n_abs} (limit 150)")
 os.makedirs(os.path.join(here, "build"), exist_ok=True)
 import shutil
-shutil.copy(a.aastex, os.path.join(here, "aastex701.cls"))
+if a.aastex:
+    shutil.copy(a.aastex, os.path.join(here, "aastex701.cls"))
+assert os.path.exists(os.path.join(here, "aastex701.cls")), "aastex701.cls not found: pass --aastex or set AASTEX_CLS"
 r = subprocess.run([a.tectonic, "--outdir", os.path.join(here, "build"), os.path.join(here, "note.tex")], capture_output=True, text=True, cwd=here)
 print(r.stdout[-400:], r.stderr[-1500:])
 json.dump({"total_words": n_total, "abstract_words": n_abs}, open(os.path.join(here, "word_count.json"), "w"))

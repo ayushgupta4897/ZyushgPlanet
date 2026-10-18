@@ -1,19 +1,20 @@
 """
 Modal fan-out for the transit screen, driven over HTTPS, code shipped per run.
 
-Why: the Claude Code cloud sandbox cannot speak gRPC (Modal's client protocol), so
+Why: the cloud sandbox this project ran in could not speak gRPC (Modal's client protocol), so
 this app is deployed ONCE from a laptop and then controlled through authenticated
 web endpoints.  The search code itself (pipeline/batch_search.py) and the
 pre-registered config are sent in the /start request and stored in a Modal Volume,
 so pipeline changes never require a redeploy.  Containers exist only while a batch
 is running; an idle deployment costs nothing.
 
-One-time deploy (laptop, inside the repo, branch claude/planet-hunt-playbook):
+One-time deploy (from a machine with the Modal CLI, inside the repo):
 
     pip install modal
-    export ZP_ENDPOINT_TOKEN='<shared secret from the session>'
+    export ZP_ENDPOINT_TOKEN='<any random string; the client uses the same one>'
     modal deploy pipeline/modal_app.py
-    # copy the printed URLs (…--zyushg-planet-screen-start.modal.run etc.) back to the session
+    # write the printed base URL into .modal_endpoints.json for pipeline/modal_client.py:
+    # {"base": "https://<workspace>--zyushg-planet-screen", "suffix": ".modal.run", "token": "<same string>"}
 
 Tear-down when the experiments are over:
 

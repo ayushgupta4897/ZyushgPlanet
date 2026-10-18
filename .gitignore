@@ -1,7 +1,7 @@
 # virtualenv
 .venv/
 # downloaded archival data (re-fetched by pipeline/fetch.py)
-data/
+/data/
 # python
 __pycache__/
 *.pyc
@@ -23,3 +23,15 @@ report/dist/*.wrapped.html
 # Zenodo upload bundle (rebuilt by papers/rnaas/build_zenodo.py)
 papers/rnaas/zenodo/*.zip
 papers/rnaas/aastex701.cls
+
+# re-derivable arrays and dumps (regenerate with the scripts that wrote them)
+runs/**/rederive/*.npz
+runs/**/rederive/*.npy
+runs/**/rederive/*periodogram*.csv
+runs/kic5689121/lightcurve_*.csv
+runs/**/.fetch_offset
+runs/**/*.flag
+
+# local copy of report/dist/report.html used for the hosted page
+report/three-quiet-transits.html
+.ruff_cache/

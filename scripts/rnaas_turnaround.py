@@ -1,6 +1,6 @@
 """RNAAS turnaround from Crossref (AAS deposits date_received / date_accepted / date_epub per note).
 
-    python scripts/rnaas_turnaround.py [--since 2024-01-01] [--out docs/briefs/rnaas_turnaround.json]
+    python scripts/rnaas_turnaround.py [--since 2024-01-01] [--out docs/data/rnaas_turnaround.json]
 
 Only published notes carry these dates, so declined submissions are invisible here (survivorship).
 """
@@ -14,7 +14,7 @@ import urllib.request
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--since", default="2024-01-01")
-ap.add_argument("--out", default="docs/briefs/rnaas_turnaround.json")
+ap.add_argument("--out", default="docs/data/rnaas_turnaround.json")
 a = ap.parse_args()
 items, off = [], 0
 while True:

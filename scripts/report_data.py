@@ -7,7 +7,6 @@ evaluated at the transit-fit posterior medians, and (c) a coarse BLS periodogram
 stage-2 light curves for display. Each block records the file it came from.
 """
 import argparse
-import csv
 import glob
 import json
 import os

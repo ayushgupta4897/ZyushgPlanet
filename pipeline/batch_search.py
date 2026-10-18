@@ -26,7 +26,6 @@ import json
 import os
 import time
 import warnings
-from dataclasses import dataclass, asdict
 
 import numpy as np
 
@@ -228,7 +227,7 @@ def bls_one(t, y, e, pmin, pmax, durations_h, oversample=3.0, objective="likelih
     # astropy naming: depth_phased = model shifted by half a period (the SECONDARY-eclipse test);
     # depth_half = model at half the period (NOT a secondary test; kept for information only)
     dsec, dsec_e = float(stats["depth_phased"][0]), float(stats["depth_phased"][1])
-    dhalf, dhalf_e = float(stats["depth_half"][0]), float(stats["depth_half"][1])
+    dhalf = float(stats["depth_half"][0])
     box_noise = _empirical_box_noise(t, y, P, D, T0)
     have_box = bool(box_noise and np.isfinite(box_noise) and box_noise > 0)
     snr_emp = depth / box_noise if have_box else np.nan

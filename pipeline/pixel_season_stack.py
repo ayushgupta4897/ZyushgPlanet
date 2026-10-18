@@ -31,7 +31,7 @@ import warnings
 
 import numpy as np
 
-from pipeline.pixel_vet import BKJD_OFFSET, PX_ARCSEC, _gaia_neighbours
+from pipeline.pixel_vet import BKJD_OFFSET, _gaia_neighbours
 
 warnings.filterwarnings("ignore")
 SIGMA_PX = 0.9
