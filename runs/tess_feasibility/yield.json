@@ -1,0 +1,104 @@
+{
+ "computed_utc": "2026-10-19T20:59:17+00:00",
+ "n_stars": 40,
+ "median_sectors": 4.0,
+ "median_rms_10min_ppm": 7394,
+ "occurrence_assumed": {
+  "1.0": 0.25,
+  "1.5": 0.2,
+  "2.0": 0.15,
+  "3.0": 0.05,
+  "4.0": 0.03
+ },
+ "noise_top_peak_sde_percentiles_50_90_95": [
+  5.97,
+  9.74,
+  10.06
+ ],
+ "thresholds": {
+  "sde_ge_9": {
+   "noise_stars_exceeding": 0.15,
+   "recovery_by_radius": {
+    "1.0": 0.025,
+    "1.5": 0.1,
+    "2.0": 0.2,
+    "3.0": 0.475,
+    "4.0": 0.775
+   },
+   "recovery_by_radius_and_tmag": {
+    "T13.5-14.5": {
+     "1.0": 0.05,
+     "1.5": 0.21,
+     "2.0": 0.21,
+     "3.0": 0.47,
+     "4.0": 0.74
+    },
+    "T14.5-15.5": {
+     "1.0": 0.0,
+     "1.5": 0.0,
+     "2.0": 0.36,
+     "3.0": 0.82,
+     "4.0": 1.0
+    },
+    "T15.5-16.0": {
+     "1.0": 0.0,
+     "1.5": 0.0,
+     "2.0": 0.0,
+     "3.0": 0.1,
+     "4.0": 0.6
+    }
+   },
+   "expected_detections_per_1000_stars": 8.71,
+   "expected_detections": {
+    "pool": 293,
+    "within_60pc": 47,
+    "complement_of_closest_public_search": 159
+   }
+  },
+  "sde_ge_10": {
+   "noise_stars_exceeding": 0.075,
+   "recovery_by_radius": {
+    "1.0": 0.025,
+    "1.5": 0.075,
+    "2.0": 0.15,
+    "3.0": 0.475,
+    "4.0": 0.75
+   },
+   "recovery_by_radius_and_tmag": {
+    "T13.5-14.5": {
+     "1.0": 0.05,
+     "1.5": 0.16,
+     "2.0": 0.21,
+     "3.0": 0.47,
+     "4.0": 0.68
+    },
+    "T14.5-15.5": {
+     "1.0": 0.0,
+     "1.5": 0.0,
+     "2.0": 0.18,
+     "3.0": 0.82,
+     "4.0": 1.0
+    },
+    "T15.5-16.0": {
+     "1.0": 0.0,
+     "1.5": 0.0,
+     "2.0": 0.0,
+     "3.0": 0.1,
+     "4.0": 0.6
+    }
+   },
+   "expected_detections_per_1000_stars": 7.37,
+   "expected_detections": {
+    "pool": 248,
+    "within_60pc": 39,
+    "complement_of_closest_public_search": 134
+   }
+  }
+ },
+ "caveats": [
+  "injection after CPM extraction: TARS retains ~50-96 % of catalogue depth on the controls, so these are upper bounds",
+  "40 stars: binomial uncertainty on each recovery fraction is ~0.1-0.15",
+  "occurrence rates uncertain by ~2x",
+  "expected detections are planets of any novelty; known TOIs and other searches' finds are not removed"
+ ]
+}

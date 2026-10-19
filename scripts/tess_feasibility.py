@@ -4,6 +4,7 @@
     python scripts/tess_feasibility.py coverage    # light-curve products for a sample   -> runs/tess_feasibility/coverage_sample.csv
     python scripts/tess_feasibility.py controls    # known-TOI recovery (TARS, TGLC)     -> runs/tess_feasibility/controls.json
     python scripts/tess_feasibility.py inject      # injection-recovery on random stars  -> runs/tess_feasibility/inject.json
+    python scripts/tess_feasibility.py yield       # order-of-magnitude yield            -> runs/tess_feasibility/yield.json
 
 Pool: Gaia DR3, parallax > 10 mas at > 10 sigma, 1.8 < BP-RP < 5, M_G > 8, ecliptic latitude > 0, G 13.8-17.5, then
 T 13.5-16 from the Stassun et al. (2019) G -> T colour relation (BP-RP clipped at 3, so the reddest stars are approximate).
@@ -27,7 +28,7 @@ import requests
 
 warnings.filterwarnings("ignore")
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from pipeline.search import bls_search  # noqa: E402
+from pipeline.search import bls_search
 
 CACHE, OUT = "data/tess", "runs/tess_feasibility"
 POOL = f"{CACHE}/pool_T13p5_16.csv"
@@ -65,8 +66,8 @@ def exofop(name):
 
 def match_hosts(pool, cat, radius_arcsec=10.0):
     """Index into pool and separation for each catalogue row (loose radius: 100-pc dwarfs move several arcsec since J2000)."""
-    from astropy.coordinates import SkyCoord
     import astropy.units as u
+    from astropy.coordinates import SkyCoord
     cp = SkyCoord(pool.ra.values * u.deg, pool.dec.values * u.deg)
     cc = SkyCoord(cat.RA.values, cat.Dec.values, unit=(u.hourangle, u.deg)) if cat.RA.dtype == object else \
         SkyCoord(cat.RA.values * u.deg, cat.Dec.values * u.deg)
@@ -263,7 +264,7 @@ def _inject_one(arg):
             T14 = P / np.pi * np.arcsin(np.sqrt(max((1 + k) ** 2 - b * b, 1e-4)) / a_rs)
             dep = 0.9 * k * k  # box at ~the limb-darkened mean depth
             ph = ((t - t0 + 0.5 * P) % P) - 0.5 * P; ff = ff - dep * (np.abs(ph) < T14 / 2)
-        bls, rms, n = search(t, ff, refine=False)
+        bls, rms, _ = search(t, ff, refine=False)
         out.append(dict(tic=tic, tmag=tmag, rstar=R, n_sectors=len(glob.glob(f"{CACHE}/tars/{tic}/*_lc.fits")), rms_10min_ppm=rms * 1e6,
                         rp_earth=rp, period_d=P, depth_ppm=dep * 1e6, T14_h=T14 * 24, best_period_d=bls.period, sde=bls.sde,
                         depth_snr=bls.depth_snr, period_match=bool(rp > 0 and same_period(bls.period, P))))
@@ -271,7 +272,6 @@ def _inject_one(arg):
 
 
 def cmd_inject(a):
-    from astroquery.mast import Observations
     p = pd.read_csv(POOL).sample(n=4 * a.n, random_state=a.seed)
 
     def tic_of(r):
@@ -292,8 +292,38 @@ def cmd_inject(a):
     d = pd.DataFrame(res); print(d.groupby("rp_earth")[["period_match", "sde", "depth_snr"]].mean())
 
 
+# rough planets per M dwarf at 0.5-10 d in each injected radius bin, log-flat in period (Dressing & Charbonneau 2015-like;
+# uncertain by about a factor of two). Only for an order-of-magnitude yield, never for a reported number about a candidate.
+OCC = {1.0: 0.25, 1.5: 0.20, 2.0: 0.15, 3.0: 0.05, 4.0: 0.03}
+
+
+def cmd_yield(a):
+    d = pd.DataFrame(json.load(open(f"{OUT}/inject.json"))["results"]); pool = json.load(open(f"{OUT}/pool_summary.json"))["pool"]
+    cov = json.load(open(f"{OUT}/coverage_summary.json"))
+    noise = d[d.rp_earth == 0]; inj = d[d.rp_earth > 0].copy()
+    inj["p_transit"] = inj.rstar / (215.03 * (inj.rstar * (inj.period_d / 365.25) ** 2) ** (1 / 3))
+    out = {"computed_utc": now(), "n_stars": int(d.tic.nunique()), "median_sectors": float(d.groupby("tic").n_sectors.first().median()),
+           "median_rms_10min_ppm": round(float(d.groupby("tic").rms_10min_ppm.first().median())), "occurrence_assumed": OCC,
+           "noise_top_peak_sde_percentiles_50_90_95": np.percentile(noise.sde, [50, 90, 95]).round(2).tolist(), "thresholds": {}}
+    for thr in (9.0, 10.0):
+        inj["det"] = inj.period_match & (inj.sde >= thr)
+        per_star = sum(OCC[r] * float((g.det * g.p_transit).mean()) for r, g in inj.groupby("rp_earth"))
+        out["thresholds"][f"sde_ge_{thr:g}"] = {
+            "noise_stars_exceeding": round(float((noise.sde >= thr).mean()), 3),
+            "recovery_by_radius": {str(r): round(float(g.det.mean()), 3) for r, g in inj.groupby("rp_earth")},
+            "recovery_by_radius_and_tmag": {f"T{lo}-{hi}": {str(r): round(float(g.det.mean()), 2) for r, g in inj[(inj.tmag > lo) & (inj.tmag <= hi)].groupby("rp_earth")}
+                                            for lo, hi in [(13.5, 14.5), (14.5, 15.5), (15.5, 16.0)]},
+            "expected_detections_per_1000_stars": round(1000 * per_star, 2),
+            "expected_detections": {"pool": round(per_star * pool["n"]), "within_60pc": round(per_star * pool["within_60pc"]),
+                                    "complement_of_closest_public_search": round(per_star * pool["n"] * cov["complement_no2min_ge2tars"] / cov["n"])}}
+    out["caveats"] = ["injection after CPM extraction: TARS retains ~50-96 % of catalogue depth on the controls, so these are upper bounds",
+                      "40 stars: binomial uncertainty on each recovery fraction is ~0.1-0.15", "occurrence rates uncertain by ~2x",
+                      "expected detections are planets of any novelty; known TOIs and other searches' finds are not removed"]
+    json.dump(out, open(f"{OUT}/yield.json", "w"), indent=1); print(json.dumps(out, indent=1))
+
+
 if __name__ == "__main__":
-    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["pool", "coverage", "controls", "inject"])
+    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["pool", "coverage", "controls", "inject", "yield"])
     ap.add_argument("--n", type=int, default=120); ap.add_argument("--seed", type=int, default=20261019); ap.add_argument("--workers", type=int, default=4)
     a = ap.parse_args(); os.makedirs(OUT, exist_ok=True); os.makedirs(CACHE, exist_ok=True)
-    {"pool": cmd_pool, "coverage": cmd_coverage, "controls": cmd_controls, "inject": cmd_inject}[a.cmd](a)
+    {"pool": cmd_pool, "coverage": cmd_coverage, "controls": cmd_controls, "inject": cmd_inject, "yield": cmd_yield}[a.cmd](a)
