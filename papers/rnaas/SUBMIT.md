@@ -33,6 +33,8 @@ python papers/rnaas/build_note.py   # author, email, ORCID and DOI already set
 
 - [x] **Submitted 2026-10-18; AAS manuscript # AAS82486** (receipt acknowledged by the AAS Editorial Office). Intended upload: `note.tex` and `build/note.pdf` from commit 80544de (with the archive DOI sentence) and `figure1.pdf`; confirm in the portal PDF under "Check Manuscript Status". Digital assets: none. UAT: Exoplanets (498), Transit photometry (1709), Exoplanet detection methods (489), Mini Neptunes (1063), Light curves (918), Astrostatistics (1882). Portal abstract entered as plain text (same wording as `note.tex`).
 
+- [x] **2026-10-19: portal shows "Under Review", Scientific Editor "Assigned"** (passed the moderation and quality screen; AAS82222 was declined before an editor was assigned). Uploaded source is the version with the MAST/IPAC dataset DOIs (8.9 KB, uploaded 05:27 UTC, three minutes after commit 80544de).
+
 ## 5. After acceptance
 - Until a decision: keep the report, screens and poster private; README stays silent.
 - The note is the citable record; you can then post the screens and the report link with the RNAAS DOI.
