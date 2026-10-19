@@ -1,0 +1,43 @@
+{
+ "computed_utc": "2026-10-19T19:56:06+00:00",
+ "gaia_query": "SELECT g.source_id, g.ra, g.dec, g.l, g.b, g.ecl_lat, g.parallax, g.parallax_over_error,\n       g.phot_g_mean_mag AS gmag, g.bp_rp, g.ruwe, g.phot_g_mean_mag + 5*LOG10(g.parallax/100.0) AS abs_g\nFROM gaiadr3.gaia_source AS g\nWHERE g.parallax > 10 AND g.parallax_over_error > 10 AND g.bp_rp > 1.8 AND g.bp_rp < 5.0\n  AND g.phot_g_mean_mag BETWEEN 13.8 AND 17.5 AND g.phot_g_mean_mag + 5*LOG10(g.parallax/100.0) > 8.0 AND g.ecl_lat > 0",
+ "n_gaia": 46254,
+ "bins": {
+  "T10-13.5": {
+   "n": 10124,
+   "within_60pc": 2918,
+   "toi_hosts": 27,
+   "ctoi_hosts": 13
+  },
+  "T13.5-16": {
+   "n": 33689,
+   "within_60pc": 5348,
+   "toi_hosts": 24,
+   "ctoi_hosts": 13
+  },
+  "T16-17.5": {
+   "n": 2441,
+   "within_60pc": 238,
+   "toi_hosts": 0,
+   "ctoi_hosts": 0
+  }
+ },
+ "toi_file": {
+  "path": "data/tess/toi.csv",
+  "rows": 8151,
+  "downloaded_utc": "2026-10-19T19:24:16+00:00"
+ },
+ "ctoi_file": {
+  "path": "data/tess/ctoi.csv",
+  "rows": 5138,
+  "downloaded_utc": "2026-10-19T19:24:18+00:00"
+ },
+ "pool": {
+  "n": 33689,
+  "within_60pc": 5348,
+  "abs_b_lt_10": 5378,
+  "T_gt_15p5": 4976,
+  "ruwe_lt_1p4": 29812,
+  "toi_matches": 27
+ }
+}
