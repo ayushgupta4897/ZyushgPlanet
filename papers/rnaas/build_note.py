@@ -7,6 +7,7 @@ the filled values and their sources are written to papers/rnaas/numbers.json.
 """
 import argparse
 import json
+import math
 import os
 import re
 import subprocess
@@ -30,6 +31,7 @@ f4 = json.load(open(os.path.join(root, "runs/poolA_main/fpp/kic-003963519/fpp_su
 TS = json.load(open(os.path.join(root, "runs/poolA_main/tess_sensitivity.json")))["candidates"]
 IV = json.load(open(os.path.join(root, "runs/poolA_main/vet_inverted_summary.json")))
 IP = json.load(open(os.path.join(root, "runs/poolA_main/pixel_v16_inverted_summary.json")))
+TS_CHAIN = dict(json.load(open(os.path.join(root, "docs/data/target_selection_counts.json")))["chain"])
 WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
 
@@ -51,6 +53,11 @@ V = {"AUTHORLINE": (f"\\author[{a.orcid}]{{{a.author}}}" if a.orcid else f"\\aut
      "fppmin": f"{100 * min(c['fpp']['molusc']['mean'] for c in C):.1f}", "fppmax": f"{100 * max(c['fpp']['molusc']['mean'] for c in C):.1f}",
      "known_date": __import__("datetime").date.fromisoformat(json.load(open(os.path.join(root, "data/known/manifest.json")))["fetched_utc"][:10]).strftime("%Y %B %-d"),
      "fpp4": f"{100 * f4['FPP_mean']:.0f}", "dens_max": f"{max(abs(c['density']['tension_sigma']) for c in C):.1f}",
+     "c_bg": f"{TS_CHAIN['background source (kic != tpforg)']:,}", "c_psf": f"{TS_CHAIN['PSF fraction > 0.5']:,}", "c_crowd": f"{TS_CHAIN['crowding metric > 0.7']:,}",
+     "c_q": f"{TS_CHAIN['>= 8 PSF quarters']:,}", "c_g": f"{TS_CHAIN['G < 17.5']:,}", "c_kt": f"{TS_CHAIN['never a Kepler target']:,}",
+     "c_km": f"{TS_CHAIN['not among the 1,800 sources searched by Mehta (2026)']:,}",
+     "rd_dp": f"{math.ceil(max(abs(c['rederive']['period_d'] - c['period_d']) * 86400 for c in C))}",
+     "rd_dd": f"{math.ceil(max(100 * abs(c['rederive']['depth_ppm'] / c['depth_ppm'] - 1) for c in C))}",
      "inv_s2": WORDS[IV["inverted_stage2_pass"]], "inv_pix": (["none"] + WORDS[1:])[len(IP["on_target"])],
      "tess_nsec": "--".join(str(x) for x in sorted({min(t["n_sectors"] for t in TS.values()), max(t["n_sectors"] for t in TS.values())})),
      "tess_tmin": f"{min(t['Tmag'] for t in TS.values()):.1f}", "tess_tmax": f"{max(t['Tmag'] for t in TS.values()):.1f}",
@@ -69,7 +76,7 @@ tex = re.sub(r"<<(\w+)>>", lambda m: str(V[m.group(1)]), tpl)
 open(os.path.join(here, "note.tex"), "w").write(tex)
 json.dump({"values": {k: str(v) for k, v in V.items()}, "sources": ["report/data.json (scripts/report_data.py; sources listed inside)", "data/known/manifest.json (fetched_utc -> known_date)"] +
            [f"runs/poolA_main/transit_fit/{k}/fit.json" for k in K] + ["runs/poolA_main/fpp/kic-003963519/fpp_summary.json",
-           "runs/poolA_main/tess_sensitivity.json", "runs/poolA_main/vet_inverted_summary.json", "runs/poolA_main/pixel_v16_inverted_summary.json"],
+           "runs/poolA_main/tess_sensitivity.json", "runs/poolA_main/vet_inverted_summary.json", "runs/poolA_main/pixel_v16_inverted_summary.json", "docs/data/target_selection_counts.json"],
            "data_json_commit": D["generated_from_commit"]}, open(os.path.join(here, "numbers.json"), "w"), indent=1)
 
 # RNAAS-style word count: title, abstract, headers, body, caption and references; LaTeX commands and math removed
